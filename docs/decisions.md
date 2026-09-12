@@ -1,0 +1,155 @@
+# OpenBook — design decisions
+
+A running log of the decisions that shape the standard, in the order they were
+taken, each with the options that were on the table and why one won. The
+specification in [`../spec/openbook.md`](../spec/openbook.md) is revised to
+match; where the two disagree, the newer decision here wins until the spec
+catches up (tracked in [`../CHANGELOG.md`](../CHANGELOG.md)).
+
+Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
+
+---
+
+## Q1 — What OpenBook is for — decided
+
+**One shared publication format any publisher emits odds in**, the way any
+transit agency publishes GTFS.
+
+- A **publisher** is whoever transmits: a sportsbook publishing its own odds,
+  or a feed that carries sportsbooks' odds.
+- Every price is tagged with its **source** (whose odds these are), which is
+  separate from the publisher. One OpenBook feed can legitimately carry many
+  sources — exactly as one GTFS feed carries many agencies via `agency_id`.
+- Rejected: a provider→book distribution format (that is Sportradar's turf and
+  needs vendor cooperation); an internal canonical model only (a schema, not a
+  feed anyone publishes).
+
+## Q2 — How consumers know two publishers mean the same match — decided (c)
+
+Publishers use **their own ids**, but every fixture **must carry standard
+facts** — sport, start time, participant names + country, league, period —
+so consumers match across publishers deterministically.
+
+- a) own ids, consumers match alone — rejected: makes comparison everyone's
+  private problem (today's world).
+- b) one central registry everyone must map to — rejected: someone has to run
+  it; a central point of control and cost.
+- **c) own ids + mandatory standard facts** — chosen. Faithful to GTFS (which
+  standardises small enums, not entity ids) while fixing the one place betting
+  differs from transit: everyone prices the *same* fixture.
+
+## Q3 — Provenance on every price — decided (a)
+
+Every price says how the publisher obtained it:
+`official` (the book emitted it) · `licensed` (via a data agreement) ·
+`observed` (captured from the book's public surface). Same number, very
+different reliability and latency; consumers need to know.
+
+## Q4 — Which ids are shared, which are publisher-own — decided (a)
+
+- **Shared** (one list everyone uses, small and stable): sports, market types,
+  periods/segments, sides.
+- **Publisher-own** (large, changing): fixtures, leagues, teams, players.
+- Industry check: the shared concepts are already agreed industry-wide *by
+  name* (main lines, halves/quarters/innings, home/away/draw/over/under); only
+  the ids differ. OpenBook supplies stable ids and publishes crosswalks.
+
+## Q5 — What a shared id looks like — decided (both)
+
+One id, two spellings, mechanically equivalent:
+
+- **Short form on the wire:** `sport:soccer`, `market:total`,
+  `segment:soccer:1st-half` — what every real feed does (Sportradar
+  `sr:match:123`, GTFS plain ids).
+- **Formal form in the spec:** `urn:openbook:sport:soccer` — globally unique,
+  self-identifying in mixed documents, and registrable with IANA (a real path if
+  this ever goes to a standards body).
+- Rejected: numeric codes with a lookup table (Sportradar's way; unreadable).
+
+## Q6 — External cross-reference ids — decided (a)
+
+A publisher may attach any number of other systems' ids to an object
+(Sportradar URN, Opta id, Wikidata QID, its own internal id). Optional, never
+required, never the canonical key.
+
+## Q7 — Standard facts every fixture carries — proposed
+
+**Required:** publisher's own fixture id · sport (shared id + name) · league
+(own id + name + ISO country) · start time (ISO 8601) · participants (own id,
+canonical name, ISO country, role: home / away / ordinal) · `sequence` ·
+`updated_at`.
+**Optional:** location (venue, city, country) · external ids · season / stage.
+
+## Q8 — How changes are sent — decided (c, generalised) + granularity (e)
+
+**Everything is diff-able, reference tier included.**
+
+- Push streams send changes only: `fixture_change`, `odds_change`,
+  `score_change`, `settlement`.
+- Pull APIs accept `since=<sequence>` and return only what changed after it.
+- A **snapshot** exists for initial load and recovery only — it is a diff from
+  zero, not a separate format. (Betfair / Sportradar shape. GTFS-Realtime
+  re-sends everything every poll; OpenBook improves on that.)
+- **Granularity: field-level.** A change carries the object id plus only the
+  fields that changed, with **JSON Merge Patch semantics (RFC 7386)**: field
+  absent = unchanged, field `null` = removed. Odds diffs work at outcome level
+  under the same rule.
+- Rejected: snapshots only (heavy, latency = poll interval); object-level
+  re-sends (cannot tell *what* changed).
+
+## `since` — decided
+
+`since` is a **monotonic sequence number the server issues**, never a time.
+Time-based cursors break on clock skew, same-millisecond ties and late commits;
+Pinnacle's `since` is an opaque server value for exactly this reason.
+Timestamps stay on objects for humans and analytics; the cursor is for
+correctness.
+
+## Q9 — Timestamps — decided (a)
+
+**ISO 8601 with explicit offset, everywhere** — reference tier and live tier
+alike. Readability wins over the bytes saved by epoch integers. (Considered:
+epoch ms on the live wire as GTFS-Realtime and Sportradar do; both fields as
+KIBL does. Rejected for consistency.)
+
+---
+
+## Q10 — Countries and sub-national teams — open
+
+The trap: England, Scotland, Wales and Northern Ireland are **not ISO 3166-1
+countries** (only `GB` is). FIFA uses `ENG/SCO/WAL/NIR`; the IOC has only
+`GBR`. Same shape for Puerto Rico, Hong Kong, Chinese Taipei, Kosovo.
+
+- a) ISO 3166-1 alpha-2 only — clean but cannot represent England.
+- b) FIFA codes — sport-specific, not ISO, no coverage outside football.
+- **c) ISO 3166-1 alpha-2 canonical, ISO 3166-2 subdivision codes for
+  sub-national teams (`GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`), with optional
+  `fifa_code` / `ioc_code` crosswalk fields** — recommended. Stays inside ISO,
+  covers every case, keeps the sport-body codes as mappings.
+
+## Q11 — Names — open
+
+There is **no ISO standard for team or person names.** Proposed shape:
+
+- `name` — canonical display name, UTF-8, diacritics allowed.
+- `short_name`, `abbreviation` — optional.
+- `aliases[]` — the other spellings a book might use.
+- `names` — optional per-language variants keyed by ISO 639-1 (`en`, `es`).
+- `name_latin` — optional transliteration (ISO 9 for Cyrillic, ISO 843 for
+  Greek) for sorting and matching.
+- Persons: optional `given_name` / `family_name` (schema.org `Person`).
+
+## Q12 — Preferred neutral external id — open
+
+**Wikidata QIDs** (`Q9617` = Arsenal F.C.) are the most widely used free,
+neutral identifiers for teams, players, leagues and venues, resolvable at
+`https://www.wikidata.org/entity/Q…`. Proposal: name QID as the *recommended*
+external id in Q6 — still optional, never canonical.
+
+## Q13 — Field-name alignment with schema.org — open
+
+schema.org `SportsEvent` / `SportsTeam` / `Person` is the vocabulary Google's
+structured data uses (`homeTeam`, `awayTeam`, `competitor`, `startDate`,
+`location`, `alternateName`). Proposal: align OpenBook field names with it
+where there is no reason not to, so OpenBook data maps onto the web's existing
+sports vocabulary for free.
