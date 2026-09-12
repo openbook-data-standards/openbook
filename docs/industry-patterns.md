@@ -79,3 +79,66 @@ public, and each is judged only on its design.
   per feed (`agency_id`); publisher-agnostic. The structural template.
 - Realtime re-sends the full state every poll — OpenBook improves on this with
   sequenced diffs.
+
+## Beyond betting — OpenStreetMap and the weather system
+
+Two open data systems at planet scale that solved the same problems OpenBook
+faces: a bottom-up vocabulary, diffs everywhere, and real-time pub/sub run by
+a neutral body.
+
+### OpenStreetMap
+
+- **Three primitives + free key/value tags** (nodes, ways, relations). The tag
+  vocabulary is **not fixed by a committee** — it is documented on a wiki,
+  proposed and refined by the community, and enforced by validators. Lesson for
+  the market-type vocabulary: a curated, documented core plus a sanctioned
+  extension mechanism (OpenBook `x_` fields) beats trying to enumerate the world
+  up front.
+- **Every object carries `id` + `version`; every edit belongs to a
+  `changeset`.** Version increments on each change — optimistic concurrency at
+  planet scale. OpenBook's `sequence` + `updated_at` on every object is the same
+  idea.
+- **Minutely replication diffs** in the **OsmChange** format: `<create>`,
+  `<modify>`, `<delete>` blocks; each element carries `id`, `version`,
+  `changeset`; a `delete` needs only those three; a replication **state /
+  sequence number** tells a consumer where it is. This is "diffs everywhere"
+  running for the whole planet since 2012. One conscious difference: OsmChange
+  `modify` re-sends the whole element (object-level); OpenBook sends only the
+  changed fields (JSON Merge Patch).
+- **`wikidata=Q…` tags** on map objects — the cross-reference-by-QID pattern
+  OpenBook adopts for entities (decision Q12).
+- Licence: **ODbL** (share-alike) for the *data*. Note the distinction OpenBook
+  keeps: the *specification* is CC BY; each publisher's *data* licence is its
+  own.
+
+### The weather system (WMO, ICAO, OASIS)
+
+- **WIS 2.0** — since 1 January 2025 the World Meteorological Organization's
+  193 members exchange real-time data by **MQTT publish/subscribe over the
+  public internet**, replacing a private-link network (GTS). Notifications are
+  small messages carrying a link to the data (or a small embedded payload);
+  **Global Brokers** re-publish every node's notifications so a consumer
+  subscribes once. A UN body running a live pub/sub data standard is the
+  strongest possible precedent for OpenBook's live tier.
+- **WIS2 topic hierarchy** — a fixed, versioned topic grammar:
+  `channel / version / system / centre-id / notification-type / data-policy /
+  discipline / …`, e.g.
+  `origin/a/wis2/ca-eccc-msc/data/core/weather/surface-based-observations/synop`.
+  Rules: lowercase, dash-separated words, no dots, unique per level; a major
+  version bump only on rename/removal, minor on additions. OpenBook should have
+  the same kind of grammar for its streams (open decision Q14).
+- **CAP 1.2 (OASIS Common Alerting Protocol)** — the alert message standard:
+  `alert` → `info` → `area`/`resource`; `msgType` of Alert / Update / Cancel /
+  Ack / Error; `urgency`, `severity`, `certainty`; and **`references` to the
+  prior message an update or cancel applies to**. This is the right model for
+  market suspensions, re-openings and voids (open decision Q15).
+- **METAR / TAF** — terse fixed-vocabulary text read by humans and machines
+  for decades, now paired with machine forms (IWXXM XML, JSON APIs). The
+  dual-form idea OpenBook uses for ids (short slug on the wire, formal URN in
+  the spec).
+- **GRIB / BUFR** — binary, table-driven, self-describing formats for volume
+  data. Efficient but need the tables. OpenBook stays readable JSON in v1; a
+  binary encoding could become an optional transport binding later, as GTFS
+  did with protobuf.
+- **NWS API** — JSON-LD + GeoJSON payloads: web-standard encodings rather than
+  bespoke ones.

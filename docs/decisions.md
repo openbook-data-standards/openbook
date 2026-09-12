@@ -162,3 +162,22 @@ structured data uses (`homeTeam`, `awayTeam`, `competitor`, `startDate`,
 `location`, `alternateName`). Proposal: align OpenBook field names with it
 where there is no reason not to, so OpenBook data maps onto the web's existing
 sports vocabulary for free.
+
+## Q14 — Stream naming grammar — open
+
+Modelled on the WIS2 topic hierarchy: a fixed, versioned set of levels,
+lowercase, dash-separated, no dots, unique per level. Proposal:
+
+`openbook / <version> / <publisher-id> / <message-type> / <sport> [/ <league>]`
+
+e.g. `openbook/v1/acme-books/odds_change/soccer/gb-premier-league`.
+Consumers subscribe with wildcards at any level. A major version bump only on
+rename or removal of a level value; additions are minor.
+
+## Q15 — Suspensions, re-opens and voids as alerts — open
+
+Modelled on CAP 1.2: a `market_status` message carries `msg_type`
+(`alert` · `update` · `cancel`), the market key, a status
+(`suspended` · `open` · `closed` · `void`), an optional reason vocabulary, and
+`references` to the message it amends or cancels — so a re-open points at the
+suspension it lifts and a void points at the settlement it reverses.

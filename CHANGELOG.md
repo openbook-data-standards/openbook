@@ -16,6 +16,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - `docs/industry-patterns.md` — review of public betting APIs (KIBL, Pinnacle,
   Betfair, Sportradar, GTFS-Realtime): patterns adopted and avoided.
 
+- `docs/industry-patterns.md`: OpenStreetMap (tag governance, id+version,
+  OsmChange minutely diffs, Wikidata cross-refs) and the weather system (WMO
+  WIS 2.0 MQTT pub/sub and topic hierarchy, OASIS CAP 1.2 alerts, METAR/TAF,
+  GRIB/BUFR, NWS API). Decisions Q14 (stream grammar) and Q15 (alerts) opened.
+
 ### Pending spec changes (v0.2)
 - Fixtures, leagues, teams and players become **publisher-own ids + standard
   facts** (Q2/Q4); the v0.1 text still describes a neutral minted fixture id.
