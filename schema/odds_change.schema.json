@@ -14,15 +14,12 @@
       "items": {
         "type": "object",
         "required": [
-          "market_type",
+          "marketType",
           "source",
           "provenance",
           "outcomes"
         ],
         "properties": {
-          "market_type": {
-            "$ref": "common.schema.json#/$defs/shared_id"
-          },
           "segment": {
             "$ref": "common.schema.json#/$defs/shared_id"
           },
@@ -31,11 +28,7 @@
             "description": "Handicap / total value for the market, when applicable."
           },
           "status": {
-            "enum": [
-              "open",
-              "suspended",
-              "closed"
-            ]
+            "$ref": "common.schema.json#/$defs/marketStatus"
           },
           "source": {
             "$ref": "common.schema.json#/$defs/own_id",
@@ -80,6 +73,9 @@
               },
               "additionalProperties": false
             }
+          },
+          "marketType": {
+            "$ref": "common.schema.json#/$defs/shared_id"
           }
         },
         "patternProperties": {
