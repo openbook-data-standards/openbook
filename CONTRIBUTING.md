@@ -1,0 +1,33 @@
+# Contributing to OpenBook
+
+This is an early working draft. The most valuable contributions right now are to
+the **vocabularies** — especially [`vocabularies/market_types.md`](vocabularies/market_types.md),
+the market taxonomy no one else has published.
+
+## Proposing a change
+
+1. Open an issue describing the change and the real-world feed(s) that motivate
+   it. Vocabulary additions should cite at least one provider that carries the
+   sport / market / segment.
+2. For a schema change, update the JSON Schema in [`schema/`](schema/) **and** the
+   prose in [`spec/openbook.md`](spec/openbook.md) in the same change; the schema
+   is machine-normative and must not drift from the prose.
+3. Add or update an example in [`examples/`](examples/) that validates against the
+   changed schema.
+4. Note the change in [`CHANGELOG.md`](CHANGELOG.md) under "Unreleased".
+
+## Rules that don't bend
+
+- **Ids are stable.** Never re-point or reuse a published canonical id; deprecate
+  instead.
+- **No abbreviations** in canonical names (`reference_sport`, not `ref_sport`).
+- **No provider ids as canonical ids.** A provider mapping goes on the `source`
+  record.
+- **Country is ISO 3166, time is ISO 8601, currency is ISO 4217, odds are
+  decimal.** Don't reinvent a primitive that already has a standard.
+- **Segments are separate objects**, never encoded into a market id.
+
+## Style
+
+- Markdown prose over tables where a list will do.
+- Every normative statement uses MUST / SHOULD / MAY per RFC 2119.

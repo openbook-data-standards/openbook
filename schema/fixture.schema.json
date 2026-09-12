@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook.spec/schema/fixture.schema.json",
+  "title": "OpenBook reference_fixture",
+  "description": "One match — the base object of the OpenBook reference tier.",
+  "type": "object",
+  "required": ["openbook_version", "id", "sport", "start_time", "participants"],
+  "additionalProperties": false,
+  "properties": {
+    "openbook_version": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^fixture:[A-Za-z0-9-]+$",
+      "description": "Source-independent id, minted by the first schedule to see the match."
+    },
+    "sport": { "type": "string", "pattern": "^sport:[a-z0-9-]+$" },
+    "league": { "type": "string", "pattern": "^league:[a-z0-9:-]+$" },
+    "season": { "type": "string" },
+    "start_time": { "type": "string", "format": "date-time" },
+    "cutoff_time": { "type": "string", "format": "date-time" },
+    "state": { "enum": ["scheduled", "pre", "live", "ended", "suspended", "cancelled"] },
+    "parent": {
+      "type": "string",
+      "description": "A live event's pregame parent fixture, when applicable."
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["participant", "role"],
+        "additionalProperties": false,
+        "properties": {
+          "participant": { "type": "string", "pattern": "^participant:[a-z0-9:-]+$" },
+          "role": {
+            "description": "Derived by the standard, never taken from a source's ordering.",
+            "oneOf": [
+              { "enum": ["home", "away", "draw"] },
+              { "type": "integer", "minimum": 1, "description": "Ordinal for n-participant events." }
+            ]
+          }
+        }
+      }
+    },
+    "source": { "type": "object" },
+    "extensions": { "type": "object" }
+  },
+  "patternProperties": { "^x_": {} }
+}

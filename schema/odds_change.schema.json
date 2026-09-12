@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook.spec/schema/odds_change.schema.json",
+  "title": "OpenBook odds_change",
+  "description": "A live price diff. Carries only what changed and references reference-tier ids. Modeled on GTFS-Realtime: the snapshot is the stream caught up.",
+  "type": "object",
+  "required": ["openbook_version", "sequence", "timestamp", "fixture", "markets"],
+  "additionalProperties": false,
+  "properties": {
+    "openbook_version": { "type": "string" },
+    "sequence": { "type": "integer", "minimum": 0, "description": "Monotonic per feed." },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "fixture": { "type": "string", "pattern": "^fixture:[A-Za-z0-9-]+$" },
+    "markets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["market_type", "status", "outcomes"],
+        "additionalProperties": false,
+        "properties": {
+          "market_type": { "type": "string", "pattern": "^market:[a-z0-9-]+$" },
+          "segment": { "type": "string", "pattern": "^segment:[a-z0-9:-]+$" },
+          "line": { "type": "number", "description": "Handicap/total value for the market, when applicable." },
+          "status": { "enum": ["open", "suspended", "closed"] },
+          "outcomes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["side", "odds"],
+              "additionalProperties": false,
+              "properties": {
+                "side": { "enum": ["home", "away", "draw", "over", "under", "yes", "no", "participant"] },
+                "participant": { "type": "string", "description": "Required when side = participant." },
+                "odds": { "type": "number", "exclusiveMinimum": 1.0, "description": "Decimal odds (canonical form)." },
+                "line": { "type": "number", "description": "Per-outcome line for split/alternate lines." },
+                "active": { "type": "boolean", "default": true }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "patternProperties": { "^x_": {} }
+}
