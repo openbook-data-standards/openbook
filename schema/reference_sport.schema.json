@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook.spec/schema/reference_sport.schema.json",
+  "title": "OpenBook reference_sport",
+  "description": "A sport in the OpenBook reference tier.",
+  "type": "object",
+  "required": ["openbook_version", "id", "name"],
+  "additionalProperties": false,
+  "properties": {
+    "openbook_version": { "type": "string", "examples": ["0.1.0-draft"] },
+    "id": {
+      "type": "string",
+      "pattern": "^sport:[a-z0-9-]+$",
+      "examples": ["sport:soccer", "sport:athletics"]
+    },
+    "name": { "type": "string", "examples": ["Soccer", "Athletics"] },
+    "abbreviation": { "type": "string", "examples": ["SOC", "ATH"] },
+    "active": { "type": "boolean", "default": true },
+    "source": { "$ref": "#/$defs/mapping" },
+    "extensions": { "type": "object" }
+  },
+  "patternProperties": { "^x_": {} },
+  "$defs": {
+    "mapping": {
+      "type": "object",
+      "description": "Optional provider mapping metadata. A provider id is never a canonical id.",
+      "required": ["provider", "provider_id"],
+      "properties": {
+        "provider": { "type": "string", "description": "Opaque provider key." },
+        "provider_id": { "type": "string" },
+        "confidence": { "enum": ["exact", "derived", "name_match"] },
+        "status": { "enum": ["mapped", "needs_review", "rejected"] }
+      }
+    }
+  }
+}

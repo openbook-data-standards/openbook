@@ -1,0 +1,20 @@
+{
+  "openbook_version": "0.1.0-draft",
+  "id": "fixture:9b1c7a2e-4d5f-4a10-9c33-6f2e1b8a0d44",
+  "sport": "sport:soccer",
+  "league": "league:soccer:GB:premier-league",
+  "season": "season:league:soccer:GB:premier-league:2025-26",
+  "start_time": "2026-09-19T14:00:00Z",
+  "cutoff_time": "2026-09-19T14:00:00Z",
+  "state": "scheduled",
+  "participants": [
+    { "participant": "participant:soccer:GB:arsenal", "role": "home" },
+    { "participant": "participant:soccer:GB:manchester-city", "role": "away" }
+  ],
+  "source": {
+    "provider": "example-provider",
+    "provider_id": "EVT-88213",
+    "confidence": "exact",
+    "status": "mapped"
+  }
+}
