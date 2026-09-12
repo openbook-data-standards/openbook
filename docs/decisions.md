@@ -114,18 +114,27 @@ KIBL does. Rejected for consistency.)
 
 ---
 
-## Q10 — Countries and sub-national teams — open
+## Q10 — Countries and sub-national teams — decided (CLDR)
 
-The trap: England, Scotland, Wales and Northern Ireland are **not ISO 3166-1
-countries** (only `GB` is). FIFA uses `ENG/SCO/WAL/NIR`; the IOC has only
-`GBR`. Same shape for Puerto Rico, Hong Kong, Chinese Taipei, Kosovo.
+**Unicode CLDR territories** are the territory model: ISO 3166-1 alpha-2
+codes underneath (`GB`, `US`), ISO 3166-2 subdivisions for sub-national teams
+(`GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`, `US-PR`), plus CLDR's pragmatic
+extras (`XK` Kosovo, `EU`, `UN`) — and CLDR's **localized names in every
+language**, which is what every OS and browser already uses to spell country
+names. `ioc_code`, `fifa_code` and `wikidata` ride on the region record as
+crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
+`GBR` without OpenBook adopting either.
 
-- a) ISO 3166-1 alpha-2 only — clean but cannot represent England.
-- b) FIFA codes — sport-specific, not ISO, no coverage outside football.
-- **c) ISO 3166-1 alpha-2 canonical, ISO 3166-2 subdivision codes for
-  sub-national teams (`GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`), with optional
-  `fifa_code` / `ioc_code` crosswalk fields** — recommended. Stays inside ISO,
-  covers every case, keeps the sport-body codes as mappings.
+- a) ISO 3166-1 only — rejected: cannot represent England, Puerto Rico,
+  Chinese Taipei.
+- b) FIFA codes — rejected: football-only spellings (GER/NED/SUI diverge from
+  ISO; BHR/SLV/MUS diverge from the IOC); no code for what FIFA does not
+  recognise.
+- c) IOC codes — rejected: multi-sport but still a sport body's list, and no
+  England.
+- d) UN M49 — rejected: numeric, unreadable, no sub-national teams.
+- **e) CLDR** — chosen: ISO codes + the extras everyone actually needs +
+  maintained localized names, for free.
 
 ## Q11 — Names — open
 
