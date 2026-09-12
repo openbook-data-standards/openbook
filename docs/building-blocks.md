@@ -59,6 +59,14 @@ grouped by what each one is used for, with the reason it was chosen.
   Kafka, MQTT and AMQP already defined. Under consideration; would give
   OpenBook messages a routing envelope every cloud already understands.
 - **RFC 9457 Problem Details** — the error format for the pull API.
+- **WIS2 topic hierarchy** (WMO) — the model for OpenBook's stream-naming grammar:
+  fixed, versioned levels; lowercase, dash-separated, no dots. See Q14.
+- **CAP 1.2** (OASIS Common Alerting Protocol) — the model for suspension /
+  re-open / void messages: `msgType` Alert/Update/Cancel plus `references` to
+  the message being amended. See Q15.
+- **OsmChange** (OpenStreetMap replication diffs) — create/modify/delete with
+  `id` + `version` and a replication sequence; the planet-scale precedent for
+  diffs everywhere.
 - **MQTT (ISO/IEC 20922)**, **Server-Sent Events**, **WebSocket**, **AMQP** —
   transports. OpenBook standardises the message, not the transport; any of
   these may carry it.
@@ -73,6 +81,11 @@ grouped by what each one is used for, with the reason it was chosen.
   pull-delta template.
 - **Sportradar UOF** — the one public betting market taxonomy; URN ids;
   specifiers; a mapping layer. Studied, borrowed from selectively.
+- **OpenStreetMap** — bottom-up governed vocabulary; id + version on every
+  object; minutely diffs; Wikidata cross-references. The governance and
+  replication template.
+- **WMO WIS 2.0** — a UN body running real-time MQTT pub/sub for 193 members
+  since 2025, with a versioned topic grammar. The live-tier precedent.
 
 ## Sources
 
@@ -85,3 +98,8 @@ grouped by what each one is used for, with the reason it was chosen.
 - AsyncAPI — https://www.asyncapi.com · OpenAPI — https://spec.openapis.org
 - RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org
 - GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/
+- OsmChange — https://wiki.openstreetmap.org/wiki/OsmChange · Planet diffs —
+  https://wiki.openstreetmap.org/wiki/Planet.osm/diffs
+- WIS2 guide — https://wmo-im.github.io/wis2-guide/guide/wis2-guide-APPROVED.html ·
+  topic hierarchy — https://wmo-im.github.io/wis2-topic-hierarchy/standard/wis2-topic-hierarchy-STABLE.html
+- CAP 1.2 — https://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html
