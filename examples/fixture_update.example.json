@@ -1,13 +1,14 @@
 {
-  "openbook_version": "0.2.0-draft",
+  "openbook_version": "0.3.0-draft",
   "sequence": 104902,
   "timestamp": "2026-09-19T13:05:00Z",
   "publisher": "acme-feeds",
-  "fixture": "EVT-88213",
-  "operation": "modify",
+  "object": "fixture",
+  "action": "update",
+  "sport": "soccer",
+  "id": "EVT-88213",
   "changes": {
     "start_time": "2026-09-19T14:15:00Z",
-    "state": "scheduled",
     "x_reason": "kick-off delayed 15 minutes"
   }
 }

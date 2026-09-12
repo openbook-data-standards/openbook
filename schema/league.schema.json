@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/league.schema.json",
+  "title": "OpenBook league",
+  "description": "Any recurring competition — the Premier League, the FA Cup, the NBA Cup, the F1 World Championship — typed by competition_type. Publisher-own id; Wikidata QID as the shared entity id.",
+  "type": "object",
+  "required": ["openbook_version", "id", "sequence", "updated_at", "name", "sport", "territory", "competition_type", "wikidata"],
+  "properties": {
+    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "id": { "$ref": "common.schema.json#/$defs/own_id" },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "updated_at": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "name": { "type": "string" },
+    "names": { "$ref": "common.schema.json#/$defs/localized_names" },
+    "sport": { "$ref": "common.schema.json#/$defs/shared_id" },
+    "territory": { "$ref": "common.schema.json#/$defs/territory" },
+    "competition_type": { "enum": ["league", "cup", "tournament", "series", "exhibition"] },
+    "organizer": {
+      "type": "object", "additionalProperties": false,
+      "properties": { "id": { "$ref": "common.schema.json#/$defs/own_id" }, "name": { "type": "string" }, "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" } }
+    },
+    "ruleset": {
+      "type": "object", "description": "Clock / score / segment model.",
+      "properties": {
+        "clock_based": { "type": "boolean" }, "clock_ascending": { "type": "boolean" },
+        "score_based": { "type": "boolean" }, "segment_based": { "type": "boolean" },
+        "has_halftime": { "type": "boolean" }, "allow_ties": { "type": "boolean" },
+        "segments": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/shared_id" } }
+      }
+    },
+    "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" },
+    "external_ids": { "$ref": "common.schema.json#/$defs/external_ids" }
+  },
+  "patternProperties": { "^x_": {} },
+  "additionalProperties": false
+}

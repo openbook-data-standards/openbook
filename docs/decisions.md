@@ -168,21 +168,71 @@ structured data uses (`homeTeam`, `awayTeam`, `competitor`, `startDate`,
 where there is no reason not to, so OpenBook data maps onto the web's existing
 sports vocabulary for free.
 
-## Q14 — Stream naming grammar — proposed (implemented provisionally in v0.2)
+## Q14 — Stream grammar — decided (object / action, keyed by fixture)
 
-Modelled on the WIS2 topic hierarchy: a fixed, versioned set of levels,
-lowercase, dash-separated, no dots, unique per level. Proposal:
+`openbook / v1 / <publisher-id> / <object> / <action> / <sport> / <id>`
 
-`openbook / <version> / <publisher-id> / <message-type> / <sport> [/ <league>]`
+- `<object>`: fixture · odds · market · score · settlement · league · season ·
+  stage · participant · player · publisher.
+- `<action>`: snapshot · create · update · delete, plus `change` for odds only.
+- `<id>`: the **fixture id** for fixture-scoped objects (odds, market, score,
+  settlement, fixture); the object's own id otherwise. Fixture ids are
+  publisher-own — fine, because a subscription is always to one publisher's
+  stream; cross-publisher identity comes from the standard facts.
+- WIS2 rules: lowercase, dashes, no dots, unique per level; `+` and `#`.
+- Rejected: a league level keyed by Wikidata QID (Dan: key odds by fixture);
+  a flat `fixture_change`-style message-type list (object/action is uniform,
+  like OsmChange's create/modify/delete).
 
-e.g. `openbook/v1/acme-books/odds_change/soccer/gb-premier-league`.
-Consumers subscribe with wildcards at any level. A major version bump only on
-rename or removal of a level value; additions are minor.
+## Q15 — Suspensions, re-opens and voids — decided (market/update)
 
-## Q15 — Suspensions, re-opens and voids as alerts — proposed (implemented provisionally in v0.2)
+`market/update` carries CAP-style `msg_type` (alert · update · cancel),
+`reason`, and `references[]` to prior sequences. Voids and re-settles are
+`settlement/delete` + `settlement/create` (a new settlement id, never a
+mutation).
 
-Modelled on CAP 1.2: a `market_status` message carries `msg_type`
-(`alert` · `update` · `cancel`), the market key, a status
-(`suspended` · `open` · `closed` · `void`), an optional reason vocabulary, and
-`references` to the message it amends or cancels — so a re-open points at the
-suspension it lifts and a void points at the settlement it reverses.
+## Q16 — Name of the price stream — decided (c)
+
+`odds/change` — Sportradar's word. `change` is the one action reserved for
+odds: a price move is an event, not a document edit. (Considered:
+`price/tick`, `market/update`.)
+
+## Q17 — Delivery of odds — decided (b)
+
+Push preferred: publishers SHOULD deliver `odds/change` by push and MAY offer a
+`since=` pull. `market/snapshot` is the recovery / initial-load state.
+(Considered: push-only with no pull at all.)
+
+## Q18 — Topic tail — decided (a)
+
+`…/<sport>/<fixture-id>` for fixture-scoped objects. `+` at the fixture level
+= every fixture in that sport from that publisher. (Considered: a league level
+before the fixture; keying by league QID.)
+
+## Q19 — League vs competition — decided (b)
+
+Keep **`league`** as the object name for any recurring competition, typed by
+**`competition_type`** (league · cup · tournament · series · exhibition). An
+optional `organizer` (the NBA, UEFA, the FIA) can be named, because one
+organizer runs several competitions (NBA season, NBA Cup, All-Star Game).
+(Considered: renaming the object to `competition`.)
+
+## Q20 — Stages — open
+
+A named slice of a season (regular season, playoffs, group stage, round 14,
+quarter-final, leg 2, Game 3). Candidates: one recursive `stage` with `parent`
+and `stage_type` (phase · group · round · matchday · leg · series-game), or
+separate `stage` + `round`. Left open by Dan; the fixture carries a leaf
+`stage {id, name}` meanwhile.
+
+## Q21 — Participants belong to a sport — decided (a)
+
+`participant.sport` is required and there is no league field; a team is linked
+to leagues only through its fixtures (Arsenal plays the league, the cup and the
+Champions League in one week).
+
+## Naming convention — decided
+
+Every small shared vocabulary is a `*_type` field: `competition_type`,
+`participant_type`, `market_type`, `stage_type`. No `kind` / `format`
+synonyms.
