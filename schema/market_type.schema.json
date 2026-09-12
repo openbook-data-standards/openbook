@@ -51,11 +51,11 @@
     "sequence": {
       "$ref": "common.schema.json#/$defs/sequence"
     },
-    "updated_at": {
-      "$ref": "common.schema.json#/$defs/timestamp"
+    "dateModified": {
+      "$ref": "common.schema.json#/$defs/dateTime"
     },
-    "external_ids": {
-      "$ref": "common.schema.json#/$defs/external_ids"
+    "identifier": {
+      "$ref": "common.schema.json#/$defs/identifier"
     },
     "openbookVersion": {
       "$ref": "common.schema.json#/$defs/openbookVersion"

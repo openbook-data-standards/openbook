@@ -41,7 +41,7 @@
         "additionalProperties": false,
         "properties": {
           "id": {
-            "$ref": "common.schema.json#/$defs/own_id"
+            "$ref": "common.schema.json#/$defs/ownId"
           },
           "name": {
             "type": "string"
@@ -57,16 +57,16 @@
             "$ref": "common.schema.json#/$defs/sourceType"
           },
           "sameAs": {
-            "$ref": "common.schema.json#/$defs/wikidata"
+            "$ref": "common.schema.json#/$defs/sameAs"
           }
         }
       }
     },
     "openbookVersion": {
-      "$ref": "common.schema.json#/$defs/openbook_version"
+      "$ref": "common.schema.json#/$defs/openbookVersion"
     },
     "dateModified": {
-      "$ref": "common.schema.json#/$defs/timestamp"
+      "$ref": "common.schema.json#/$defs/dateTime"
     },
     "email": {
       "type": "string"
