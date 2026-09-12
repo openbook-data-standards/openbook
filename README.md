@@ -35,8 +35,10 @@ key.
 ## Layout
 
 ```
-openbook/
+openbook/  (this repository)
   README.md               ← you are here
+  docs/
+    overview.html         ← the explainer report: model, industry comparison, sources
   spec/
     openbook.md           ← the normative reference specification
   schema/                 ← JSON Schema (draft 2020-12), the machine-normative field definitions
@@ -65,7 +67,7 @@ Perform) publish little or nothing usable, and each integrator re-maps every
 feed by hand. The **market-type vocabulary** in [`vocabularies/`](vocabularies/)
 is the piece nobody has published — the thing a fragmented industry could rally
 around. Background and the full industry comparison live in the OpenBook
-overview report, published alongside this repository.
+overview report: [`docs/overview.html`](docs/overview.html).
 
 ## Roadmap to a real standard
 
