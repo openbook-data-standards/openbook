@@ -1,47 +1,92 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/odds_change.schema.json",
-  "title": "OpenBook odds_change",
-  "description": "A live price diff with JSON Merge Patch semantics: carries only the markets/outcomes that changed. Every market names its source and provenance. A priced selection is (source, fixture, market_type, segment, line, side).",
+  "title": "OpenBook odds/change payload",
+  "description": "The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).",
   "type": "object",
-  "required": ["openbook_version", "sequence", "timestamp", "publisher", "fixture", "markets"],
+  "required": [
+    "markets"
+  ],
   "properties": {
-    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
-    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
-    "timestamp": { "$ref": "common.schema.json#/$defs/timestamp" },
-    "publisher": { "$ref": "common.schema.json#/$defs/own_id", "description": "The publisher's id (who transmits)." },
-    "fixture": { "$ref": "common.schema.json#/$defs/own_id" },
     "markets": {
-      "type": "array", "minItems": 1,
+      "type": "array",
+      "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["market_type", "source", "provenance", "outcomes"],
+        "required": [
+          "marketType",
+          "source",
+          "provenance",
+          "outcomes"
+        ],
         "properties": {
-          "market_type": { "$ref": "common.schema.json#/$defs/shared_id" },
-          "segment": { "$ref": "common.schema.json#/$defs/shared_id" },
-          "line": { "type": "number", "description": "Handicap / total value for the market, when applicable." },
-          "status": { "enum": ["open", "suspended", "closed"] },
-          "source": { "$ref": "common.schema.json#/$defs/own_id", "description": "Whose odds these are — a source declared in the publisher record." },
-          "provenance": { "$ref": "common.schema.json#/$defs/provenance" },
+          "segment": {
+            "$ref": "common.schema.json#/$defs/sharedId"
+          },
+          "line": {
+            "type": "number",
+            "description": "Handicap / total value for the market, when applicable."
+          },
+          "status": {
+            "$ref": "common.schema.json#/$defs/marketStatus"
+          },
+          "source": {
+            "$ref": "common.schema.json#/$defs/ownId",
+            "description": "Whose odds these are \u2014 a source declared in the publisher record."
+          },
+          "provenance": {
+            "$ref": "common.schema.json#/$defs/provenance"
+          },
           "outcomes": {
-            "type": "array", "minItems": 1,
+            "type": "array",
+            "minItems": 1,
             "items": {
-              "type": "object", "required": ["side"],
+              "type": "object",
+              "required": [
+                "side"
+              ],
               "properties": {
-                "side": { "$ref": "common.schema.json#/$defs/side" },
-                "participant": { "$ref": "common.schema.json#/$defs/own_id", "description": "Required when side = participant." },
-                "odds": { "type": ["number", "null"], "exclusiveMinimum": 1.0, "description": "Decimal odds. null = removed (Merge Patch)." },
-                "line": { "type": "number" },
-                "active": { "type": "boolean" }
+                "side": {
+                  "$ref": "common.schema.json#/$defs/side"
+                },
+                "participant": {
+                  "$ref": "common.schema.json#/$defs/ownId",
+                  "description": "Required when side = participant."
+                },
+                "odds": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "exclusiveMinimum": 1.0,
+                  "description": "Decimal odds. null = removed (Merge Patch)."
+                },
+                "line": {
+                  "type": "number"
+                },
+                "active": {
+                  "type": "boolean"
+                }
               },
-              "patternProperties": { "^x_": {} }, "additionalProperties": false
+              "patternProperties": {
+                "^x_": {}
+              },
+              "additionalProperties": false
             }
+          },
+          "marketType": {
+            "$ref": "common.schema.json#/$defs/sharedId"
           }
         },
-        "patternProperties": { "^x_": {} }, "additionalProperties": false
+        "patternProperties": {
+          "^x_": {}
+        },
+        "additionalProperties": false
       }
     }
   },
-  "patternProperties": { "^x_": {} },
+  "patternProperties": {
+    "^x_": {}
+  },
   "additionalProperties": false
 }

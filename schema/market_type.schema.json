@@ -2,23 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/market_type.schema.json",
   "title": "OpenBook reference_market_type",
-  "description": "A canonical market type — what can be bet. The controlled market vocabulary is the core contribution of OpenBook.",
+  "description": "A canonical market type \u2014 what can be bet. The controlled market vocabulary is the core contribution of OpenBook.",
   "type": "object",
   "required": [
-    "openbook_version",
+    "openbookVersion",
     "id",
     "name",
     "genre",
     "shape",
-    "category",
-    "sequence",
-    "updated_at"
+    "category"
   ],
   "additionalProperties": false,
   "properties": {
-    "openbook_version": {
-      "$ref": "common.schema.json#/$defs/openbook_version"
-    },
     "id": {
       "type": "string",
       "pattern": "^market:[a-z0-9-]+$",
@@ -42,67 +37,44 @@
       "description": "Grouping label, e.g. 'match', 'player', 'team'."
     },
     "shape": {
-      "description": "How the outcome is priced.",
-      "enum": [
-        "binary",
-        "n-way",
-        "over-under",
-        "handicap",
-        "exact-value",
-        "correct-score",
-        "yes-no"
-      ]
+      "$ref": "common.schema.json#/$defs/marketShape"
     },
     "category": {
-      "enum": [
-        "main-line",
-        "score-prop",
-        "game-prop",
-        "player-prop",
-        "outright",
-        "parlay-special",
-        "same-game-parlay"
-      ]
-    },
-    "is_player_prop": {
-      "type": "boolean",
-      "default": false
-    },
-    "is_team_prop": {
-      "type": "boolean",
-      "default": false
-    },
-    "is_game_prop": {
-      "type": "boolean",
-      "default": false
+      "$ref": "common.schema.json#/$defs/marketCategory"
     },
     "sides": {
       "type": "array",
-      "description": "The canonical sides this market's outcomes take.",
       "items": {
-        "enum": [
-          "home",
-          "away",
-          "draw",
-          "over",
-          "under",
-          "yes",
-          "no",
-          "participant"
-        ]
+        "$ref": "common.schema.json#/$defs/side"
       }
-    },
-    "extensions": {
-      "type": "object"
     },
     "sequence": {
       "$ref": "common.schema.json#/$defs/sequence"
     },
-    "updated_at": {
-      "$ref": "common.schema.json#/$defs/timestamp"
+    "dateModified": {
+      "$ref": "common.schema.json#/$defs/dateTime"
     },
-    "external_ids": {
-      "$ref": "common.schema.json#/$defs/external_ids"
+    "identifier": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "openbookVersion": {
+      "$ref": "common.schema.json#/$defs/openbookVersion"
+    },
+    "isPlayerProp": {
+      "type": "boolean",
+      "default": false
+    },
+    "isTeamProp": {
+      "type": "boolean",
+      "default": false
+    },
+    "isGameProp": {
+      "type": "boolean",
+      "default": false
+    },
+    "@context": {},
+    "@type": {
+      "type": "string"
     }
   },
   "patternProperties": {
