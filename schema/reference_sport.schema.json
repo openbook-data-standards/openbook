@@ -1,36 +1,61 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openbook.spec/schema/reference_sport.schema.json",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/reference_sport.schema.json",
   "title": "OpenBook reference_sport",
   "description": "A sport in the OpenBook reference tier.",
   "type": "object",
-  "required": ["openbook_version", "id", "name"],
+  "required": [
+    "openbook_version",
+    "id",
+    "name",
+    "sequence",
+    "updated_at"
+  ],
   "additionalProperties": false,
   "properties": {
-    "openbook_version": { "type": "string", "examples": ["0.1.0-draft"] },
+    "openbook_version": {
+      "$ref": "common.schema.json#/$defs/openbook_version"
+    },
     "id": {
       "type": "string",
       "pattern": "^sport:[a-z0-9-]+$",
-      "examples": ["sport:soccer", "sport:athletics"]
+      "examples": [
+        "sport:soccer",
+        "sport:athletics"
+      ]
     },
-    "name": { "type": "string", "examples": ["Soccer", "Athletics"] },
-    "abbreviation": { "type": "string", "examples": ["SOC", "ATH"] },
-    "active": { "type": "boolean", "default": true },
-    "source": { "$ref": "#/$defs/mapping" },
-    "extensions": { "type": "object" }
-  },
-  "patternProperties": { "^x_": {} },
-  "$defs": {
-    "mapping": {
-      "type": "object",
-      "description": "Optional provider mapping metadata. A provider id is never a canonical id.",
-      "required": ["provider", "provider_id"],
-      "properties": {
-        "provider": { "type": "string", "description": "Opaque provider key." },
-        "provider_id": { "type": "string" },
-        "confidence": { "enum": ["exact", "derived", "name_match"] },
-        "status": { "enum": ["mapped", "needs_review", "rejected"] }
-      }
+    "name": {
+      "type": "string",
+      "examples": [
+        "Soccer",
+        "Athletics"
+      ]
+    },
+    "abbreviation": {
+      "type": "string",
+      "examples": [
+        "SOC",
+        "ATH"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "extensions": {
+      "type": "object"
+    },
+    "sequence": {
+      "$ref": "common.schema.json#/$defs/sequence"
+    },
+    "updated_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "external_ids": {
+      "$ref": "common.schema.json#/$defs/external_ids"
     }
+  },
+  "patternProperties": {
+    "^x_": {}
   }
 }

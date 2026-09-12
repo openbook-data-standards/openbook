@@ -1,36 +1,40 @@
 {
-  "openbook_version": "0.1.0-draft",
+  "openbook_version": "0.2.0-draft",
   "sequence": 104871,
   "timestamp": "2026-09-19T14:37:12Z",
-  "fixture": "fixture:9b1c7a2e-4d5f-4a10-9c33-6f2e1b8a0d44",
+  "publisher": "acme-feeds",
+  "fixture": "EVT-88213",
   "markets": [
     {
       "market_type": "market:moneyline",
       "segment": "segment:soccer:full-time",
       "status": "open",
+      "source": "pinnacle",
+      "provenance": "licensed",
       "outcomes": [
-        { "side": "home", "odds": 2.10, "active": true },
-        { "side": "draw", "odds": 3.40, "active": true },
-        { "side": "away", "odds": 3.25, "active": true }
+        { "side": "home", "odds": 2.10 },
+        { "side": "away", "odds": 3.25 }
       ]
     },
     {
       "market_type": "market:total",
       "segment": "segment:soccer:full-time",
       "line": 2.5,
-      "status": "open",
+      "source": "acme-book",
+      "provenance": "official",
       "outcomes": [
-        { "side": "over", "odds": 1.95 },
-        { "side": "under", "odds": 1.90 }
+        { "side": "over", "odds": 1.95 }
       ]
     },
     {
       "market_type": "market:spread",
       "segment": "segment:soccer:full-time",
       "status": "suspended",
+      "source": "bigbook",
+      "provenance": "observed",
       "outcomes": [
-        { "side": "home", "odds": 2.05, "line": -0.5, "active": false },
-        { "side": "away", "odds": 1.80, "line": 0.5, "active": false }
+        { "side": "home", "line": -0.5, "active": false },
+        { "side": "away", "line": 0.5, "active": false }
       ]
     }
   ]

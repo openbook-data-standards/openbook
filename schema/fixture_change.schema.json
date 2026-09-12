@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/fixture_change.schema.json",
+  "title": "OpenBook fixture_change",
+  "description": "A diff to a reference_fixture, JSON Merge Patch semantics: the fixture id plus only the fields that changed (a moved start time, a state flip, a lineup change). Fields absent are unchanged; null removes.",
+  "type": "object",
+  "required": ["openbook_version", "sequence", "timestamp", "publisher", "fixture", "changes"],
+  "properties": {
+    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "timestamp": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "publisher": { "$ref": "common.schema.json#/$defs/own_id" },
+    "fixture": { "$ref": "common.schema.json#/$defs/own_id" },
+    "operation": { "enum": ["create", "modify", "delete"], "default": "modify", "description": "OsmChange-style. A delete carries no changes." },
+    "changes": {
+      "type": "object",
+      "description": "A JSON Merge Patch against the reference_fixture document (any subset of its fields).",
+      "additionalProperties": true
+    }
+  },
+  "patternProperties": { "^x_": {} },
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/reference_participant.schema.json",
+  "title": "OpenBook reference_participant",
+  "description": "A team or individual competitor. Publisher-own id; Wikidata QID as the shared entity id (required when it exists, null otherwise). Home/away is NOT a property here — it is a role on the fixture.",
+  "type": "object",
+  "required": ["openbook_version", "id", "sequence", "updated_at", "name", "territory", "type", "wikidata"],
+  "properties": {
+    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "id": { "$ref": "common.schema.json#/$defs/own_id" },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "updated_at": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "name": { "type": "string", "description": "Canonical display name, UTF-8, diacritics kept." },
+    "short_name": { "type": "string" },
+    "abbreviation": { "type": "string" },
+    "aliases": { "type": "array", "items": { "type": "string" }, "description": "Other spellings a book might use." },
+    "names": { "$ref": "common.schema.json#/$defs/localized_names" },
+    "name_latin": { "type": "string", "description": "Transliteration (ISO 9 / ISO 843) for sorting and matching." },
+    "territory": { "$ref": "common.schema.json#/$defs/territory" },
+    "type": { "enum": ["team", "individual"] },
+    "sport": { "$ref": "common.schema.json#/$defs/shared_id" },
+    "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" },
+    "external_ids": { "$ref": "common.schema.json#/$defs/external_ids" }
+  },
+  "patternProperties": { "^x_": {} },
+  "additionalProperties": false
+}

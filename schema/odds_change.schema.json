@@ -1,47 +1,47 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openbook.spec/schema/odds_change.schema.json",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/odds_change.schema.json",
   "title": "OpenBook odds_change",
-  "description": "A live price diff. Carries only what changed and references reference-tier ids. Modeled on GTFS-Realtime: the snapshot is the stream caught up.",
+  "description": "A live price diff with JSON Merge Patch semantics: carries only the markets/outcomes that changed. Every market names its source and provenance. A priced selection is (source, fixture, market_type, segment, line, side).",
   "type": "object",
-  "required": ["openbook_version", "sequence", "timestamp", "fixture", "markets"],
-  "additionalProperties": false,
+  "required": ["openbook_version", "sequence", "timestamp", "publisher", "fixture", "markets"],
   "properties": {
-    "openbook_version": { "type": "string" },
-    "sequence": { "type": "integer", "minimum": 0, "description": "Monotonic per feed." },
-    "timestamp": { "type": "string", "format": "date-time" },
-    "fixture": { "type": "string", "pattern": "^fixture:[A-Za-z0-9-]+$" },
+    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "timestamp": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "publisher": { "$ref": "common.schema.json#/$defs/own_id", "description": "The publisher's id (who transmits)." },
+    "fixture": { "$ref": "common.schema.json#/$defs/own_id" },
     "markets": {
-      "type": "array",
-      "minItems": 1,
+      "type": "array", "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["market_type", "status", "outcomes"],
-        "additionalProperties": false,
+        "required": ["market_type", "source", "provenance", "outcomes"],
         "properties": {
-          "market_type": { "type": "string", "pattern": "^market:[a-z0-9-]+$" },
-          "segment": { "type": "string", "pattern": "^segment:[a-z0-9:-]+$" },
-          "line": { "type": "number", "description": "Handicap/total value for the market, when applicable." },
+          "market_type": { "$ref": "common.schema.json#/$defs/shared_id" },
+          "segment": { "$ref": "common.schema.json#/$defs/shared_id" },
+          "line": { "type": "number", "description": "Handicap / total value for the market, when applicable." },
           "status": { "enum": ["open", "suspended", "closed"] },
+          "source": { "$ref": "common.schema.json#/$defs/own_id", "description": "Whose odds these are — a source declared in the publisher record." },
+          "provenance": { "$ref": "common.schema.json#/$defs/provenance" },
           "outcomes": {
-            "type": "array",
-            "minItems": 1,
+            "type": "array", "minItems": 1,
             "items": {
-              "type": "object",
-              "required": ["side", "odds"],
-              "additionalProperties": false,
+              "type": "object", "required": ["side"],
               "properties": {
-                "side": { "enum": ["home", "away", "draw", "over", "under", "yes", "no", "participant"] },
-                "participant": { "type": "string", "description": "Required when side = participant." },
-                "odds": { "type": "number", "exclusiveMinimum": 1.0, "description": "Decimal odds (canonical form)." },
-                "line": { "type": "number", "description": "Per-outcome line for split/alternate lines." },
-                "active": { "type": "boolean", "default": true }
-              }
+                "side": { "$ref": "common.schema.json#/$defs/side" },
+                "participant": { "$ref": "common.schema.json#/$defs/own_id", "description": "Required when side = participant." },
+                "odds": { "type": ["number", "null"], "exclusiveMinimum": 1.0, "description": "Decimal odds. null = removed (Merge Patch)." },
+                "line": { "type": "number" },
+                "active": { "type": "boolean" }
+              },
+              "patternProperties": { "^x_": {} }, "additionalProperties": false
             }
           }
-        }
+        },
+        "patternProperties": { "^x_": {} }, "additionalProperties": false
       }
     }
   },
-  "patternProperties": { "^x_": {} }
+  "patternProperties": { "^x_": {} },
+  "additionalProperties": false
 }

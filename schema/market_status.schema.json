@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/market_status.schema.json",
+  "title": "OpenBook market_status (proposed, Q15)",
+  "description": "A CAP-shaped alert for a market: suspend, re-open, close or void, with references to the message(s) it amends or cancels.",
+  "type": "object",
+  "required": ["openbook_version", "sequence", "timestamp", "publisher", "msg_type", "fixture", "market_type", "source", "status"],
+  "properties": {
+    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "timestamp": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "publisher": { "$ref": "common.schema.json#/$defs/own_id" },
+    "msg_type": { "enum": ["alert", "update", "cancel"], "description": "CAP 1.2 msgType: a new alert, an update to a prior one, or a cancellation of a prior one." },
+    "fixture": { "$ref": "common.schema.json#/$defs/own_id" },
+    "market_type": { "$ref": "common.schema.json#/$defs/shared_id" },
+    "segment": { "$ref": "common.schema.json#/$defs/shared_id" },
+    "line": { "type": "number" },
+    "source": { "$ref": "common.schema.json#/$defs/own_id" },
+    "status": { "enum": ["open", "suspended", "closed", "void"] },
+    "reason": { "type": "string", "examples": ["goal", "red-card", "injury", "data-loss", "settlement-error"] },
+    "references": {
+      "type": "array", "description": "Sequences of the prior message(s) this amends or cancels.",
+      "items": { "$ref": "common.schema.json#/$defs/sequence" }
+    }
+  },
+  "patternProperties": { "^x_": {} },
+  "additionalProperties": false
+}
