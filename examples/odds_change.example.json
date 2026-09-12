@@ -1,41 +1,63 @@
 {
-  "openbook_version": "0.2.0-draft",
+  "openbook_version": "0.3.0-draft",
   "sequence": 104871,
   "timestamp": "2026-09-19T14:37:12Z",
   "publisher": "acme-feeds",
-  "fixture": "EVT-88213",
-  "markets": [
-    {
-      "market_type": "market:moneyline",
-      "segment": "segment:soccer:full-time",
-      "status": "open",
-      "source": "pinnacle",
-      "provenance": "licensed",
-      "outcomes": [
-        { "side": "home", "odds": 2.10 },
-        { "side": "away", "odds": 3.25 }
-      ]
-    },
-    {
-      "market_type": "market:total",
-      "segment": "segment:soccer:full-time",
-      "line": 2.5,
-      "source": "acme-book",
-      "provenance": "official",
-      "outcomes": [
-        { "side": "over", "odds": 1.95 }
-      ]
-    },
-    {
-      "market_type": "market:spread",
-      "segment": "segment:soccer:full-time",
-      "status": "suspended",
-      "source": "bigbook",
-      "provenance": "observed",
-      "outcomes": [
-        { "side": "home", "line": -0.5, "active": false },
-        { "side": "away", "line": 0.5, "active": false }
-      ]
-    }
-  ]
+  "object": "odds",
+  "action": "change",
+  "sport": "soccer",
+  "id": "EVT-88213",
+  "changes": {
+    "markets": [
+      {
+        "market_type": "market:moneyline",
+        "segment": "segment:soccer:full-time",
+        "status": "open",
+        "source": "pinnacle",
+        "provenance": "licensed",
+        "outcomes": [
+          {
+            "side": "home",
+            "odds": 2.1
+          },
+          {
+            "side": "away",
+            "odds": 3.25
+          }
+        ]
+      },
+      {
+        "market_type": "market:total",
+        "segment": "segment:soccer:full-time",
+        "line": 2.5,
+        "source": "acme-book",
+        "provenance": "official",
+        "outcomes": [
+          {
+            "side": "over",
+            "odds": 1.95
+          }
+        ]
+      },
+      {
+        "market_type": "market:spread",
+        "segment": "segment:soccer:full-time",
+        "status": "suspended",
+        "source": "bigbook",
+        "provenance": "observed",
+        "outcomes": [
+          {
+            "side": "home",
+            "line": -0.5,
+            "active": false
+          },
+          {
+            "side": "away",
+            "line": 0.5,
+            "active": false
+          }
+        ]
+      }
+    ]
+  }
 }

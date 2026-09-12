@@ -1,6 +1,6 @@
 # OpenBook — an open standard for sportsbook data
 
-**Status:** `v0.2.0-draft` · working draft, not yet published · started 2026-09-12
+**Status:** `v0.3.0-draft` · working draft, not yet published · started 2026-09-12
 **Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The document:** the OpenBook specification in [`spec/openbook.md`](spec/openbook.md)
 
 OpenBook is an open standard for exchanging **sportsbook & gambling data** —
@@ -46,4 +46,6 @@ openbook/  (this repository)
     publisher.schema.json         who transmits + the sources the feed carries
     reference_sport.schema.json   reference_region · reference_participant · market_type
     fixture.schema.json           the base object + standard facts
-    odds_change.schema.json       fixture_change · market_status  (live diffs, Merge Patch)
+    change.schema.json            the one message envelope: object / action, Merge Patch
+    league.schema.json            any recurring competition, typed by competition_type
+    odds_change.schema.json       payload of odds/change

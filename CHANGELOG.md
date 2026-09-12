@@ -5,6 +5,34 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+## [0.3.0-draft] — 2026-09-12
+
+Breaking rename of the live wire around decisions Q14–Q21. Not frozen.
+
+### Changed
+- **Object/action streams**: `openbook/v1/<publisher>/<object>/<action>/<sport>/<id>`,
+  keyed by fixture for fixture-scoped objects. Actions: snapshot · create ·
+  update · delete, plus `change` for odds only.
+- **One change envelope** (`schema/change.schema.json`) replaces the per-message
+  schemas: `odds/change` replaces `odds_change`; `fixture/update` replaces
+  `fixture_change`; `market/update` (CAP-style `msg_type` / `references`)
+  replaces `market_status`.
+- **Odds push-first**: `odds/change` SHOULD be pushed, a `since=` pull MAY be
+  offered; `market/snapshot` for recovery.
+- **Hierarchy**: sport → league (`competition_type`, optional `organizer`) →
+  season → stage (open, Q20) → fixture → segment. **Participants belong to a
+  sport**, not a league.
+- `*_type` naming for small vocabularies: `competition_type`,
+  `participant_type`, `market_type`, `stage_type`.
+
+### Added
+- `schema/change.schema.json`, `schema/league.schema.json`;
+  `examples/fixture_update.example.json`, `examples/market_update.example.json`.
+
+### Removed
+- `schema/fixture_change.schema.json`, `schema/market_status.schema.json` and
+  their examples (folded into the envelope).
+
 ## [0.2.0-draft] — 2026-09-12
 
 Not frozen; the wire may change before 1.0.

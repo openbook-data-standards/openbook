@@ -1,18 +1,56 @@
 {
-  "openbook_version": "0.2.0-draft",
+  "openbook_version": "0.3.0-draft",
   "id": "EVT-88213",
   "sequence": 104870,
   "updated_at": "2026-09-12T18:02:11Z",
-  "sport": { "id": "sport:soccer", "name": "Soccer" },
-  "league": { "id": "LG-17", "name": "Premier League", "territory": "GB-ENG", "wikidata": "Q9448" },
-  "season": { "id": "S-2025", "name": "2025-26" },
+  "sport": {
+    "id": "sport:soccer",
+    "name": "Soccer"
+  },
+  "league": {
+    "id": "LG-17",
+    "name": "Premier League",
+    "territory": "GB-ENG",
+    "wikidata": "Q9448",
+    "competition_type": "league"
+  },
+  "season": {
+    "id": "S-2025",
+    "name": "2025-26"
+  },
   "start_time": "2026-09-19T14:00:00Z",
   "cutoff_time": "2026-09-19T14:00:00Z",
   "state": "scheduled",
   "participants": [
-    { "id": "T-3", "name": "Arsenal", "territory": "GB-ENG", "role": "home", "wikidata": "Q9617" },
-    { "id": "T-11", "name": "Manchester City", "territory": "GB-ENG", "role": "away", "wikidata": "Q50602" }
+    {
+      "id": "T-3",
+      "name": "Arsenal",
+      "territory": "GB-ENG",
+      "role": "home",
+      "wikidata": "Q9617"
+    },
+    {
+      "id": "T-11",
+      "name": "Manchester City",
+      "territory": "GB-ENG",
+      "role": "away",
+      "wikidata": "Q50602"
+    }
   ],
-  "location": { "venue": "Emirates Stadium", "city": "London", "territory": "GB-ENG", "wikidata": "Q19478" },
-  "external_ids": [ { "system": "sportradar", "id": "sr:match:8412480" } ]
+  "location": {
+    "venue": "Emirates Stadium",
+    "city": "London",
+    "territory": "GB-ENG",
+    "wikidata": "Q19478"
+  },
+  "external_ids": [
+    {
+      "system": "sportradar",
+      "id": "sr:match:8412480"
+    }
+  ],
+  "stage": {
+    "id": "ST-REG",
+    "name": "Regular Season"
+  }
 }
