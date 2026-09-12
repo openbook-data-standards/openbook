@@ -64,20 +64,19 @@ DraftKings) run proprietary catalogs; the providers (Sportradar, Genius, Stats
 Perform) publish little or nothing usable, and each integrator re-maps every
 feed by hand. The **market-type vocabulary** in [`vocabularies/`](vocabularies/)
 is the piece nobody has published — the thing a fragmented industry could rally
-around. Background and the full comparison: [`../DATA-STANDARDS.md`](../DATA-STANDARDS.md)
-and the companion page [`../data-standards.html`](../data-standards.html).
+around. Background and the full industry comparison live in the OpenBook
+overview report, published alongside this repository.
 
 ## Roadmap to a real standard
 
-1. **v0.x — this folder.** Nail the reference objects, the live messages, and a
-   first market-type vocabulary. Validate with real drever feeds behind the
-   scenes (private adapters).
-2. **Split into its own public repo** (`openbook-spec`) once the shape settles —
-   this folder is self-contained so a `git subtree split` can lift it out clean.
+1. **v0.x — this repository.** Nail the reference objects, the live messages, and
+   a first market-type vocabulary. Validate against real provider feeds behind
+   private adapters.
+2. **Private while the shape settles; public once v0.x is stable.**
 3. **Ship a validator + conformance suite** so "OpenBook-compliant" is testable.
 4. **Land one external adopter** using the mapping layer.
 5. **Governance** — start as a gravity play under an open licence; a consortium
    or standards body only once there are 2–3 non-competing adopters.
 
-This folder is a **specification**, not drever code. It intentionally names no
-internal system.
+This repository is a **specification**, not an implementation. It names no
+operator's internal system.
