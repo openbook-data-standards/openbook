@@ -82,3 +82,10 @@ overview report: [`docs/overview.html`](docs/overview.html).
 
 This repository is a **specification**, not an implementation. It names no
 operator's internal system.
+
+## Documents
+
+- [`docs/decisions.md`](docs/decisions.md) — the design decision log: what was decided, what was on the table, why.
+- [`docs/building-blocks.md`](docs/building-blocks.md) — the widely used standards OpenBook stands on rather than reinvents.
+- [`docs/industry-patterns.md`](docs/industry-patterns.md) — what public betting APIs do, and what OpenBook adopts or avoids.
+- [`docs/overview.html`](docs/overview.html) — the explainer report.

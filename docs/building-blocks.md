@@ -1,0 +1,85 @@
+# Building blocks — the widely used standards OpenBook stands on
+
+OpenBook reinvents nothing that already has a real standard. This is the list,
+grouped by what each one is used for, with the reason it was chosen.
+
+## Reference data: countries, names, languages, money, time
+
+- **ISO 3166-1 alpha-2** — countries (`GB`, `US`). Canonical country key.
+- **ISO 3166-2** — subdivisions. Used for **sub-national teams** that are not
+  ISO countries: `GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`. The sport bodies'
+  own codes are carried as crosswalks: **FIFA** (`ENG`, `SCO`…) and **IOC**
+  (`GBR`, `TPE`, `PUR`…). See decision Q10.
+- **ISO 639-1** — language codes for per-language name variants (`en`, `es`).
+- **ISO 4217** — currency (`USD`, `GBP`) on stakes and limits.
+- **ISO 8601 / RFC 3339** — every timestamp, with an explicit offset
+  (`2026-09-19T14:00:00Z`). RFC 3339 is the strict internet profile of ISO 8601
+  and is what parsers actually implement. See decision Q9.
+- **IANA time-zone database** — venue-local time names (`Europe/London`) where
+  display needs them; never used in place of an offset on the wire.
+- **Unicode / UTF-8** — all text. Names keep their diacritics.
+- **ISO 9 (Cyrillic) / ISO 843 (Greek)** — transliteration to Latin for the
+  optional `name_latin` field used in sorting and matching.
+
+## Neutral identifiers for entities
+
+- **Wikidata QIDs** — the most widely used free, neutral identifiers for
+  teams, players, leagues and venues (`Q9617` = Arsenal F.C.; resolvable at
+  `https://www.wikidata.org/entity/Q9617`). Recommended external id. See Q12.
+- **GeoNames** ids — places (cities, venues' locations) when a publisher has
+  them.
+- **schema.org** `SportsEvent` / `SportsTeam` / `SportsOrganization` /
+  `Person` — the sports vocabulary Google structured data uses. OpenBook
+  aligns field names with it where it can (`homeTeam`, `awayTeam`,
+  `startDate`, `location`, `alternateName`). See Q13.
+
+## Identifiers and schemas
+
+- **RFC 8141 (URN)** — the formal spelling of every shared id:
+  `urn:openbook:sport:soccer`; short form `sport:soccer` on the wire. Decision
+  Q5.
+- **RFC 9562 UUID v7** — recommended (not required) when a publisher mints
+  fixture ids: time-ordered, globally unique, sorts by creation time.
+- **JSON Schema (2020-12)** — the machine-normative definition of every object
+  and message ([`../schema/`](../schema/)).
+- **Semantic Versioning** — versioning of the standard
+  ([`../VERSIONING.md`](../VERSIONING.md)).
+
+## The wire
+
+- **RFC 7386 JSON Merge Patch** — the semantics of every change message:
+  absent = unchanged, `null` = removed. Decision Q8.
+- **OpenAPI 3.1** — describes the pull side (snapshot + `since=` endpoints).
+- **AsyncAPI 3.0** — describes the push side (the change streams), the
+  event-driven counterpart to OpenAPI, now standard in enterprise RFPs.
+- **CloudEvents (CNCF, graduated 2024)** — a candidate envelope for change
+  messages (`id`, `source`, `type`, `time`, `data`), with bindings to HTTP,
+  Kafka, MQTT and AMQP already defined. Under consideration; would give
+  OpenBook messages a routing envelope every cloud already understands.
+- **RFC 9457 Problem Details** — the error format for the pull API.
+- **MQTT (ISO/IEC 20922)**, **Server-Sent Events**, **WebSocket**, **AMQP** —
+  transports. OpenBook standardises the message, not the transport; any of
+  these may carry it.
+
+## The models OpenBook is shaped after
+
+- **GTFS / GTFS-Realtime** — static reference layer + live changes keyed to it;
+  publisher-agnostic; many agencies per feed. The structural template.
+- **Betfair Exchange streaming** — initial image + sequenced deltas. The
+  change-delivery template.
+- **Pinnacle `since` cursor** — opaque server-issued delta cursor. The
+  pull-delta template.
+- **Sportradar UOF** — the one public betting market taxonomy; URN ids;
+  specifiers; a mapping layer. Studied, borrowed from selectively.
+
+## Sources
+
+- ISO 3166-2:GB — https://en.wikipedia.org/wiki/ISO_3166-2:GB ·
+  IOC / FIFA / ISO code comparison — https://simple.wikipedia.org/wiki/Comparison_of_IOC,_FIFA,_and_ISO_3166_country_codes
+- Wikidata: sports team `Q12973014`, sports venue `Q1076486`, property
+  `P54` member of sports team — https://www.wikidata.org
+- CloudEvents — https://github.com/cloudevents/spec · CNCF —
+  https://www.cncf.io/projects/cloudevents/
+- AsyncAPI — https://www.asyncapi.com · OpenAPI — https://spec.openapis.org
+- RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org
+- GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/
