@@ -21,7 +21,7 @@
         ],
         "properties": {
           "segment": {
-            "$ref": "common.schema.json#/$defs/shared_id"
+            "$ref": "common.schema.json#/$defs/sharedId"
           },
           "line": {
             "type": "number",
@@ -31,7 +31,7 @@
             "$ref": "common.schema.json#/$defs/marketStatus"
           },
           "source": {
-            "$ref": "common.schema.json#/$defs/own_id",
+            "$ref": "common.schema.json#/$defs/ownId",
             "description": "Whose odds these are \u2014 a source declared in the publisher record."
           },
           "provenance": {
@@ -50,7 +50,7 @@
                   "$ref": "common.schema.json#/$defs/side"
                 },
                 "participant": {
-                  "$ref": "common.schema.json#/$defs/own_id",
+                  "$ref": "common.schema.json#/$defs/ownId",
                   "description": "Required when side = participant."
                 },
                 "odds": {
@@ -75,7 +75,7 @@
             }
           },
           "marketType": {
-            "$ref": "common.schema.json#/$defs/shared_id"
+            "$ref": "common.schema.json#/$defs/sharedId"
           }
         },
         "patternProperties": {
