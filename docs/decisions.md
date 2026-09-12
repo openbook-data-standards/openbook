@@ -136,9 +136,16 @@ crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
 - **e) CLDR** — chosen: ISO codes + the extras everyone actually needs +
   maintained localized names, for free.
 
-## Q11 — Names — open
+## Q11 — Names — proposed (implemented in v0.3)
 
-There is **no ISO standard for team or person names.** Proposed shape:
+There is **no ISO standard for team or person names.** The real standards
+nearby: **vCard (RFC 6350 / ITU X.520)** for a person's name structure
+(family · given · additional · prefix · suffix — also schema.org's
+`familyName` etc.); the **Olympic Data Feed**, which gives every athlete
+several display forms (`PrintName`, `TVName`, `TVInitialName`,
+`LocalFamilyName`…); and **finance**, which standardises *identity* (ISIN,
+LEI) and treats the name as a mutable attribute — our `sameAs` stance.
+Implemented shape:
 
 - `name` — canonical display name, UTF-8, diacritics allowed.
 - `short_name`, `abbreviation` — optional.
@@ -160,7 +167,7 @@ identifier string to pin, never a runtime dependency. Fixtures are not in
 Wikidata and stay publisher-own + standard facts. (OpenStreetMap's
 `wikidata=Q…` tags are the precedent.)
 
-## Q13 — Field-name alignment with schema.org — open
+## Q13 — Field-name alignment with schema.org — decided (d: full alignment)
 
 schema.org `SportsEvent` / `SportsTeam` / `Person` is the vocabulary Google's
 structured data uses (`homeTeam`, `awayTeam`, `competitor`, `startDate`,
@@ -217,13 +224,13 @@ optional `organizer` (the NBA, UEFA, the FIA) can be named, because one
 organizer runs several competitions (NBA season, NBA Cup, All-Star Game).
 (Considered: renaming the object to `competition`.)
 
-## Q20 — Stages — open
+## Q20 — Stages — decided (a: one recursive object)
 
-A named slice of a season (regular season, playoffs, group stage, round 14,
-quarter-final, leg 2, Game 3). Candidates: one recursive `stage` with `parent`
-and `stage_type` (phase · group · round · matchday · leg · series-game), or
-separate `stage` + `round`. Left open by Dan; the fixture carries a leaf
-`stage {id, name}` meanwhile.
+`stage` is a named slice of a season with an optional `parent` stage and a
+`stageType`: phase · group · round · matchday · leg · seriesGame. Stages nest
+to any depth (Knockout → Quarter-final → Leg 2; Playoffs → Conference
+Semifinals → Game 3; F1 season → Round 14). A fixture names its leaf stage.
+(Rejected: separate `stage` + `round` objects.)
 
 ## Q21 — Participants belong to a sport — decided (a)
 
@@ -236,3 +243,20 @@ Champions League in one week).
 Every small shared vocabulary is a `*_type` field: `competition_type`,
 `participant_type`, `market_type`, `stage_type`. No `kind` / `format`
 synonyms.
+
+## Q22 — Teams and individuals are both participants; role and order — decided
+
+One `participant` object with `participantType` team · individual. `player`
+is roster membership only. On a fixture every participant carries **both**
+`role` (home · away · neutral) **and** `order` (integer, always present) —
+facts asserted by the publisher, never inferred from presentation.
+schema.org `homeTeam` / `awayTeam` are derivable from `role`; `participants[]`
+stays the source of truth because it can express a 20-car grid.
+
+## Naming convention — revised (Q13 d)
+
+camelCase everywhere; schema.org's property name wherever one exists
+(`startDate`, `dateModified`, `datePublished`, `alternateName`, `sameAs`,
+`identifier`, `superEvent`, `organizer`, `location`, `eventStatus`); small
+shared vocabularies are `*Type` fields. Documents may carry JSON-LD
+`@context` / `@type`.

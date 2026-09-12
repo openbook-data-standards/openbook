@@ -1,19 +1,19 @@
 {
-  "openbook_version": "0.3.0-draft",
+  "openbookVersion": "0.3.0-draft",
   "sequence": 105330,
-  "timestamp": "2026-09-19T14:41:03Z",
+  "datePublished": "2026-09-19T14:41:03Z",
   "publisher": "acme-feeds",
   "object": "market",
   "action": "update",
   "sport": "soccer",
   "id": "EVT-88213",
-  "msg_type": "update",
+  "msgType": "update",
   "reason": "goal",
   "references": [
     104871
   ],
   "changes": {
-    "market_type": "market:spread",
+    "marketType": "market:spread",
     "segment": "segment:soccer:full-time",
     "line": -0.5,
     "source": "bigbook",

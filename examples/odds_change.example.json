@@ -1,7 +1,7 @@
 {
-  "openbook_version": "0.3.0-draft",
+  "openbookVersion": "0.3.0-draft",
   "sequence": 104871,
-  "timestamp": "2026-09-19T14:37:12Z",
+  "datePublished": "2026-09-19T14:37:12Z",
   "publisher": "acme-feeds",
   "object": "odds",
   "action": "change",
@@ -10,7 +10,7 @@
   "changes": {
     "markets": [
       {
-        "market_type": "market:moneyline",
+        "marketType": "market:moneyline",
         "segment": "segment:soccer:full-time",
         "status": "open",
         "source": "pinnacle",
@@ -27,7 +27,7 @@
         ]
       },
       {
-        "market_type": "market:total",
+        "marketType": "market:total",
         "segment": "segment:soccer:full-time",
         "line": 2.5,
         "source": "acme-book",
@@ -40,7 +40,7 @@
         ]
       },
       {
-        "market_type": "market:spread",
+        "marketType": "market:spread",
         "segment": "segment:soccer:full-time",
         "status": "suspended",
         "source": "bigbook",

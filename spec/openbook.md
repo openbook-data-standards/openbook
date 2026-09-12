@@ -33,10 +33,13 @@ It standardises the data contract only.
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
 - **Odds** — decimal is canonical; other formats are presentation only.
 - **Text** — UTF-8; names keep their diacritics.
-- **Field names** — full words, `snake_case`. Small shared vocabularies are
-  `*_type` fields: `competition_type`, `participant_type`, `market_type`,
-  `stage_type`.
-- Every object and message carries `openbook_version`.
+- **Field names** — camelCase, and **schema.org's name wherever schema.org has
+  the property**: `startDate`, `dateModified`, `datePublished`, `alternateName`,
+  `sameAs`, `identifier`, `superEvent`, `organizer`, `location`. Small shared
+  vocabularies are `*Type` fields: `competitionType`, `participantType`,
+  `marketType`, `stageType`, `sourceType`. Documents MAY carry JSON-LD
+  `@context` / `@type`, so an OpenBook document is also valid schema.org data.
+- Every object and message carries `openbookVersion`.
 
 ## 3. Identifiers
 
@@ -51,14 +54,15 @@ Once published, never re-pointed; only deprecated.
 Leagues, seasons, stages, fixtures, participants, players and venues carry the
 **publisher's own id**, unique within that publisher. OpenBook mints none.
 
-### 3.3 Shared entity id — Wikidata
-For leagues, participants, players, venues and territories the **Wikidata QID**
-is the shared cross-publisher entity id: **REQUIRED when one exists, `null`
-when it does not**. A string to pin, never a runtime dependency.
+### 3.3 Shared entity id — `sameAs` (Wikidata)
+For leagues, participants, venues and territories, **`sameAs`** holds the
+Wikidata entity URL (`https://www.wikidata.org/entity/Q9617`) — the shared
+cross-publisher entity id: **REQUIRED when one exists, `null` when it does
+not**. A string to pin, never a runtime dependency.
 
-### 3.4 External ids
-Any object MAY carry `external_ids`: `{system, id}` pairs. Optional, never
-canonical.
+### 3.4 External ids — `identifier`
+Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
+(`{propertyID, value}`). Optional, never canonical.
 
 ## 4. The hierarchy
 
@@ -66,25 +70,32 @@ canonical.
 sport                       shared vocabulary
   └ league                  publisher-own; competition_type: league · cup · tournament · series · exhibition
       └ season              publisher-own; one edition (2025-26, F1 2026)
-          └ stage           publisher-own; a named slice of a season (model open — decisions Q20)
+          └ stage           publisher-own; a named slice of a season; RECURSIVE (parent) with stageType
               └ fixture     publisher-own; the priced event
                   └ segment shared vocabulary; a slice INSIDE a match (1st half, set 3, Q1)
-participant / player        publisher-own; belong to a SPORT, linked to leagues only through fixtures
+participant                 publisher-own; a TEAM or an INDIVIDUAL; belongs to a SPORT, linked to leagues only through fixtures
+player                      publisher-own; roster membership of a person in a team (lineups, player props)
 ```
 
 - A **league** is any recurring competition — the Premier League, the FA Cup,
-  the NBA Cup, the F1 World Championship — typed by `competition_type`. It MAY
+  the NBA Cup, the F1 World Championship — typed by `competitionType`. It MAY
   name an `organizer` (the NBA, UEFA, the FIA): one organizer runs several
   competitions.
-- A **participant** belongs to a sport, never to a league: the same team plays
-  the league, the cup and the continental competition in one week.
+- A **participant** is a team *or* an individual (`participantType`); a tennis
+  player, an F1 driver, a golfer is a participant. It belongs to a sport, never
+  to a league: the same team plays the league, the cup and the continental
+  competition in one week. `player` exists only as roster membership.
+- A **stage** is recursive: Champions League → *Knockout* (phase) →
+  *Quarter-final* (round) → *Leg 2* (leg); NBA → *Playoffs* (phase) →
+  *Conference Semifinals* (round) → *Game 3* (seriesGame). A fixture names its
+  **leaf** stage; the chain is walked via `parent`.
 - In Formula 1, Qualifying, Sprint and Race are three **fixtures** in one
   round; their sessions (Q1/Q2/Q3) are **segments**.
 
 ## 5. Change: everything is diff-able
 
 - Every object and message carries **`sequence`** — a monotonic integer the
-  publisher's server issues per feed — and **`updated_at`**.
+  publisher's server issues per feed — and **`dateModified`**.
 - **Push** streams (§8) send changes only. **Pull** endpoints accept
   `since=<sequence>` and return only what changed after it. `since` is never a
   timestamp.
@@ -101,37 +112,42 @@ participant / player        publisher-own; belong to a SPORT, linked to leagues 
 ## 6. Standard facts (matching across publishers)
 
 Every fixture MUST carry: own `id` · `sport` (shared id + name) · `league`
-(own id + name + territory + `competition_type`) · `start_time` ·
-`participants[]` (own id, name, territory, `role`: home · away · ordinal) ·
-`sequence` · `updated_at`; and MAY carry `season`, `stage`, `location`,
-`external_ids`. Consumers match on sport + league (name, territory) +
+(own id + name + territory + `competitionType`) · `startDate` ·
+`participants[]` (own id, name, territory, **`role`**: home · away · neutral, **and `order`**, always present) ·
+`sequence` · `dateModified`; and MAY carry `season`, `stage`, `location`,
+`identifier`. Consumers match on sport + league (name, territory) +
 start_time + participants (names, territories), and on Wikidata QIDs when both
-sides have them. Home/away, side order and the sign of a handicap are
-**derived** from these facts; a publisher's presentation order is never a fact.
+sides have them. `role` and `order` are facts the publisher asserts; the sign of a handicap is
+derived from them. A feed's presentation order is never a fact.
 
 ## 7. Objects
 
-Each reference document carries `openbook_version`, `id`, `sequence`,
-`updated_at`; exact types in the schemas.
+Each reference document carries `openbookVersion`, `id`, `sequence`,
+`dateModified`; exact types in the schemas.
 
 - **`publisher`** — who transmits, and the `sources[]` the feed carries
   (`{id, name, kind: sportsbook | exchange | model}`). GTFS `agency.txt`.
-- **`sport`**, **`segment`**, **`market_type`**, **`side`** — shared
+- **`sport`**, **`segment`**, **`marketType`**, **`side`** — shared
   vocabularies ([`../vocabularies/`](../vocabularies/)).
-- **`region`** — `id` = CLDR territory code; `name`, `names{lang}`, `parent`,
-  crosswalks `ioc_code`, `fifa_code`, `wikidata`.
-- **`league`** — own id, `name`, `sport`, `territory`, `competition_type`,
-  optional `organizer`, `ruleset`, `wikidata`.
+- **`region`** — `id` = CLDR territory code; `name`, `names{lang}`, `superEvent`,
+  crosswalks `iocCode`, `fifaCode`, `sameAs`.
+- **`league`** — own id, `name`, `sport`, `territory`, `competitionType`,
+  optional `organizer`, `ruleset`, `sameAs`.
 - **`season`** — own id, `league`, `name`, `start_date`, `end_date`.
-- **`stage`** — own id, `season`, `name`, `parent`, `stage_type` *(open, Q20)*.
-- **`participant`** — own id, `name`, `short_name`, `aliases[]`,
-  `names{lang}`, `territory`, `participant_type` (team · individual), `sport`,
-  `wikidata`. No league field.
-- **`player`** — own id, `name`, `given_name`, `family_name`, `participant`,
-  `sport`, `position`, `wikidata`.
-- **`fixture`** — §6 plus `state`, `cutoff_time`, `parent`.
+- **`stage`** — own id, `season`, `name`, `parent`, `stageType` (phase · group ·
+  round · matchday · leg · seriesGame), `order`.
+- **`participant`** — own id, `participantType` (team · individual), `sport`,
+  `territory`, `sameAs`, and the **name model**: `name` (full), `shortName`
+  ("Man City", "C. Alcaraz"), `abbreviation` ("MCI"), `alternateName[]`,
+  `localName` (native script), `names{lang}`; for individuals the vCard /
+  X.520 parts `familyName`, `givenName`, `additionalName`, `honorificPrefix`,
+  `honorificSuffix` (after ODF's Print / TV / Local name forms). No league field.
+- **`player`** — roster membership: own id, `participant` (the person),
+  `team` (the team participant), `position`, `number`.
+- **`fixture`** — §6 plus `eventStatus`, `cutoffDate`, `superEvent` (a live
+  event's pregame parent), `location` (a schema.org Place).
 - **`market`** — a fixture's market as priced by one source: `fixture`,
-  `market_type`, `segment`, `line`, `source`, `provenance` (`official` ·
+  `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
   `licensed` · `observed`), `status`, `outcomes[]` (`side`, `odds`, `line`,
   `active`). Identity: `(source, fixture, market_type, segment, line)`.
 - **`score`** — `fixture`, `state`, `clock`, `scores[]`.
@@ -168,11 +184,11 @@ openbook/v1/acme-feeds/league/update/soccer/LG-17        a league record changed
 
 ### 8.1 The change envelope
 One envelope for every message ([`../schema/change.schema.json`](../schema/change.schema.json)):
-`openbook_version`, `sequence`, `timestamp`, `publisher`, `object`, `action`,
+`openbookVersion`, `sequence`, `timestamp`, `publisher`, `object`, `action`,
 `sport`, `id`, and `changes` — a Merge Patch against the object's document
 schema. `odds/change` carries its `markets[]` diff in `changes`
 ([`odds_change.schema.json`](../schema/odds_change.schema.json)).
-`market/update` MAY carry `msg_type` (`alert` · `update` · `cancel`), `reason`
+`market/update` MAY carry `msgType` (`alert` · `update` · `cancel`), `reason`
 and `references[]` to prior sequences, after OASIS CAP 1.2. A void or a
 re-settle is `settlement/delete` + `settlement/create`.
 

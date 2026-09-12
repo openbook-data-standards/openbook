@@ -1,180 +1,46 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/fixture.schema.json",
-  "title": "OpenBook reference_fixture",
-  "description": "One match \u2014 the base object. Publisher-own id plus the standard facts (spec \u00a75) that let consumers match it across publishers.",
+  "title": "OpenBook fixture",
+  "description": "One match — the base object (schema.org SportsEvent). Publisher-own id plus the standard facts that let consumers match it across publishers. Every participant carries a role (home / away / neutral) AND an order.",
   "type": "object",
-  "required": [
-    "openbook_version",
-    "id",
-    "sequence",
-    "updated_at",
-    "sport",
-    "league",
-    "start_time",
-    "participants"
-  ],
+  "required": ["openbookVersion", "id", "sequence", "dateModified", "sport", "league", "startDate", "participants"],
   "properties": {
-    "openbook_version": {
-      "$ref": "common.schema.json#/$defs/openbook_version"
-    },
-    "id": {
-      "$ref": "common.schema.json#/$defs/own_id"
-    },
-    "sequence": {
-      "$ref": "common.schema.json#/$defs/sequence"
-    },
-    "updated_at": {
-      "$ref": "common.schema.json#/$defs/timestamp"
-    },
-    "sport": {
-      "type": "object",
-      "required": [
-        "id",
-        "name"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "id": {
-          "$ref": "common.schema.json#/$defs/shared_id"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "league": {
-      "type": "object",
-      "required": [
-        "competition_type",
-        "id",
-        "name",
-        "territory"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "id": {
-          "$ref": "common.schema.json#/$defs/own_id"
-        },
-        "name": {
-          "type": "string"
-        },
-        "territory": {
-          "$ref": "common.schema.json#/$defs/territory"
-        },
-        "wikidata": {
-          "$ref": "common.schema.json#/$defs/wikidata"
-        },
-        "competition_type": {
-          "enum": [
-            "league",
-            "cup",
-            "tournament",
-            "series",
-            "exhibition"
-          ]
-        }
-      }
-    },
-    "season": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "$ref": "common.schema.json#/$defs/own_id"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "stage": {
-      "type": "object",
-      "description": "The leaf stage (shape open, Q20).",
-      "properties": {
-        "id": {
-          "$ref": "common.schema.json#/$defs/own_id"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "start_time": {
-      "$ref": "common.schema.json#/$defs/timestamp"
-    },
-    "cutoff_time": {
-      "$ref": "common.schema.json#/$defs/timestamp"
-    },
-    "state": {
-      "enum": [
-        "scheduled",
-        "live",
-        "ended",
-        "suspended",
-        "postponed",
-        "cancelled"
-      ]
-    },
-    "parent": {
-      "$ref": "common.schema.json#/$defs/own_id",
-      "description": "A live event's pregame parent fixture, when applicable."
-    },
+    "@context": {}, "@type": { "type": "string", "examples": ["SportsEvent"] },
+    "openbookVersion": { "$ref": "common.schema.json#/$defs/openbookVersion" },
+    "id": { "$ref": "common.schema.json#/$defs/ownId" },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "dateModified": { "$ref": "common.schema.json#/$defs/dateTime" },
+    "name": { "type": "string" },
+    "sport": { "type": "object", "required": ["id", "name"], "additionalProperties": false,
+      "properties": { "id": { "$ref": "common.schema.json#/$defs/sharedId" }, "name": { "type": "string" } } },
+    "league": { "type": "object", "required": ["id", "name", "territory", "competitionType"], "additionalProperties": false,
+      "properties": { "id": { "$ref": "common.schema.json#/$defs/ownId" }, "name": { "type": "string" },
+        "territory": { "$ref": "common.schema.json#/$defs/territory" },
+        "competitionType": { "enum": ["league", "cup", "tournament", "series", "exhibition"] },
+        "sameAs": { "$ref": "common.schema.json#/$defs/sameAs" } } },
+    "season": { "type": "object", "properties": { "id": { "$ref": "common.schema.json#/$defs/ownId" }, "name": { "type": "string" } } },
+    "stage": { "type": "object", "description": "The leaf stage; walk `parent` on the stage object for the chain.",
+      "properties": { "id": { "$ref": "common.schema.json#/$defs/ownId" }, "name": { "type": "string" }, "stageType": { "$ref": "stage.schema.json#/$defs/stageType" } } },
+    "startDate": { "$ref": "common.schema.json#/$defs/dateTime" },
+    "cutoffDate": { "$ref": "common.schema.json#/$defs/dateTime" },
+    "eventStatus": { "enum": ["scheduled", "live", "ended", "suspended", "postponed", "cancelled"] },
+    "superEvent": { "$ref": "common.schema.json#/$defs/ownId", "description": "schema.org superEvent — a live event's pregame parent fixture, when applicable." },
     "participants": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "object",
-        "required": [
-          "id",
-          "name",
-          "territory",
-          "role"
-        ],
-        "additionalProperties": false,
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["id", "name", "territory", "role", "order"], "additionalProperties": false,
         "properties": {
-          "id": {
-            "$ref": "common.schema.json#/$defs/own_id"
-          },
-          "name": {
-            "type": "string"
-          },
-          "territory": {
-            "$ref": "common.schema.json#/$defs/territory"
-          },
-          "role": {
-            "$ref": "common.schema.json#/$defs/role",
-            "description": "Derived fact, never a source's presentation order."
-          },
-          "wikidata": {
-            "$ref": "common.schema.json#/$defs/wikidata"
-          }
-        }
-      }
+          "id": { "$ref": "common.schema.json#/$defs/ownId" },
+          "name": { "type": "string" },
+          "territory": { "$ref": "common.schema.json#/$defs/territory" },
+          "role": { "$ref": "common.schema.json#/$defs/role" },
+          "order": { "type": "integer", "minimum": 1, "description": "Listing order — always present, even for two-sided events." },
+          "sameAs": { "$ref": "common.schema.json#/$defs/sameAs" } } }
     },
-    "location": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "venue": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "territory": {
-          "$ref": "common.schema.json#/$defs/territory"
-        },
-        "wikidata": {
-          "$ref": "common.schema.json#/$defs/wikidata"
-        }
-      }
-    },
-    "external_ids": {
-      "$ref": "common.schema.json#/$defs/external_ids"
-    }
+    "location": { "type": "object", "additionalProperties": false, "description": "schema.org Place",
+      "properties": { "name": { "type": "string" }, "addressLocality": { "type": "string" }, "territory": { "$ref": "common.schema.json#/$defs/territory" }, "sameAs": { "$ref": "common.schema.json#/$defs/sameAs" } } },
+    "identifier": { "$ref": "common.schema.json#/$defs/identifier" }
   },
-  "patternProperties": {
-    "^x_": {}
-  },
+  "patternProperties": { "^x_": {} },
   "additionalProperties": false
 }

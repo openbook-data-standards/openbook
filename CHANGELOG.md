@@ -25,7 +25,23 @@ Breaking rename of the live wire around decisions Q14–Q21. Not frozen.
 - `*_type` naming for small vocabularies: `competition_type`,
   `participant_type`, `market_type`, `stage_type`.
 
+- **Field names are camelCase and follow schema.org** (Q13 d): `startDate`,
+  `dateModified`, `datePublished`, `alternateName`, `sameAs` (Wikidata URL,
+  replaces `wikidata`), `identifier` (PropertyValue list, replaces
+  `external_ids`), `superEvent`, `eventStatus`, `location` (Place); `*Type`
+  vocabularies. Documents may carry JSON-LD `@context` / `@type`.
+- **Participants**: one object for teams and individuals (`participantType`);
+  every fixture participant carries `role` (home · away · neutral) **and**
+  `order` (Q22). Name model after vCard/X.520 and ODF (Q11): `shortName`,
+  `abbreviation`, `alternateName`, `localName`, `familyName`, `givenName`…
+- **Stages are recursive** (Q20): `stage.schema.json` with `parent` and
+  `stageType` (phase · group · round · matchday · leg · seriesGame).
+- Schema files renamed: `reference_participant` → `participant`,
+  `reference_region` → `region`, `reference_sport` → `sport`.
+
 ### Added
+- `schema/stage.schema.json`; `examples/participant.example.json`,
+  `examples/stage.example.json`.
 - `schema/change.schema.json`, `schema/league.schema.json`;
   `examples/fixture_update.example.json`, `examples/market_update.example.json`.
 

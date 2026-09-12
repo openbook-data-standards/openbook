@@ -2,26 +2,25 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/change.schema.json",
   "title": "OpenBook change envelope",
-  "description": "One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object's document schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/<publisher>/<object>/<action>/<sport>/<id>.",
+  "description": "One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object's schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/<publisher>/<object>/<action>/<sport>/<id>.",
   "type": "object",
-  "required": ["openbook_version", "sequence", "timestamp", "publisher", "object", "action", "sport", "changes"],
+  "required": ["openbookVersion", "sequence", "datePublished", "publisher", "object", "action", "sport", "changes"],
   "properties": {
-    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "@context": {}, "@type": { "type": "string" },
+    "openbookVersion": { "$ref": "common.schema.json#/$defs/openbookVersion" },
     "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
-    "timestamp": { "$ref": "common.schema.json#/$defs/timestamp" },
-    "publisher": { "$ref": "common.schema.json#/$defs/own_id" },
+    "datePublished": { "$ref": "common.schema.json#/$defs/dateTime" },
+    "publisher": { "$ref": "common.schema.json#/$defs/ownId" },
     "object": { "enum": ["fixture", "odds", "market", "score", "settlement", "league", "season", "stage", "participant", "player", "publisher"] },
     "action": { "enum": ["snapshot", "create", "update", "delete", "change"], "description": "`change` is used only by `odds`." },
-    "sport": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Shared sport slug without prefix (soccer)." },
-    "id": { "$ref": "common.schema.json#/$defs/own_id", "description": "The topic's <id>: the fixture id for fixture-scoped objects, else the object's own id." },
-    "msg_type": { "enum": ["alert", "update", "cancel"], "description": "market/update only — CAP 1.2 msgType." },
+    "sport": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "id": { "$ref": "common.schema.json#/$defs/ownId", "description": "The topic's <id>: the fixture id for fixture-scoped objects, else the object's own id." },
+    "msgType": { "enum": ["alert", "update", "cancel"], "description": "market/update only — CAP 1.2 msgType." },
     "reason": { "type": "string" },
-    "references": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/sequence" }, "description": "Prior sequences this amends or cancels." },
-    "changes": { "type": "object", "description": "Merge Patch against the object's schema; for odds/change, the odds_change payload." }
+    "references": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/sequence" } },
+    "changes": { "type": "object" }
   },
-  "allOf": [
-    { "if": { "properties": { "action": { "const": "change" } }, "required": ["action"] }, "then": { "properties": { "object": { "const": "odds" } } } }
-  ],
+  "allOf": [ { "if": { "properties": { "action": { "const": "change" } }, "required": ["action"] }, "then": { "properties": { "object": { "const": "odds" } } } } ],
   "patternProperties": { "^x_": {} },
   "additionalProperties": false
 }
