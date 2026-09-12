@@ -2,34 +2,29 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/league.schema.json",
   "title": "OpenBook league",
-  "description": "Any recurring competition — the Premier League, the FA Cup, the NBA Cup, the F1 World Championship — typed by competition_type. Publisher-own id; Wikidata QID as the shared entity id.",
+  "description": "Any recurring competition — the Premier League, the FA Cup, the NBA Cup, the F1 World Championship — typed by competitionType. Publisher-own id; sameAs (Wikidata) as the shared entity id.",
   "type": "object",
-  "required": ["openbook_version", "id", "sequence", "updated_at", "name", "sport", "territory", "competition_type", "wikidata"],
+  "required": ["openbookVersion", "id", "sequence", "dateModified", "name", "sport", "territory", "competitionType", "sameAs"],
   "properties": {
-    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
-    "id": { "$ref": "common.schema.json#/$defs/own_id" },
+    "@context": {}, "@type": { "type": "string" },
+    "openbookVersion": { "$ref": "common.schema.json#/$defs/openbookVersion" },
+    "id": { "$ref": "common.schema.json#/$defs/ownId" },
     "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
-    "updated_at": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "dateModified": { "$ref": "common.schema.json#/$defs/dateTime" },
     "name": { "type": "string" },
-    "names": { "$ref": "common.schema.json#/$defs/localized_names" },
-    "sport": { "$ref": "common.schema.json#/$defs/shared_id" },
+    "alternateName": { "$ref": "common.schema.json#/$defs/alternateName" },
+    "names": { "$ref": "common.schema.json#/$defs/localizedNames" },
+    "sport": { "$ref": "common.schema.json#/$defs/sharedId" },
     "territory": { "$ref": "common.schema.json#/$defs/territory" },
-    "competition_type": { "enum": ["league", "cup", "tournament", "series", "exhibition"] },
-    "organizer": {
-      "type": "object", "additionalProperties": false,
-      "properties": { "id": { "$ref": "common.schema.json#/$defs/own_id" }, "name": { "type": "string" }, "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" } }
-    },
-    "ruleset": {
-      "type": "object", "description": "Clock / score / segment model.",
-      "properties": {
-        "clock_based": { "type": "boolean" }, "clock_ascending": { "type": "boolean" },
-        "score_based": { "type": "boolean" }, "segment_based": { "type": "boolean" },
-        "has_halftime": { "type": "boolean" }, "allow_ties": { "type": "boolean" },
-        "segments": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/shared_id" } }
-      }
-    },
-    "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" },
-    "external_ids": { "$ref": "common.schema.json#/$defs/external_ids" }
+    "competitionType": { "enum": ["league", "cup", "tournament", "series", "exhibition"] },
+    "organizer": { "type": "object", "additionalProperties": false, "description": "schema.org organizer — the NBA, UEFA, the FIA.",
+      "properties": { "id": { "$ref": "common.schema.json#/$defs/ownId" }, "name": { "type": "string" }, "sameAs": { "$ref": "common.schema.json#/$defs/sameAs" } } },
+    "ruleset": { "type": "object", "properties": {
+        "clockBased": { "type": "boolean" }, "clockAscending": { "type": "boolean" }, "scoreBased": { "type": "boolean" },
+        "segmentBased": { "type": "boolean" }, "hasHalftime": { "type": "boolean" }, "allowTies": { "type": "boolean" },
+        "segments": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/sharedId" } } } },
+    "sameAs": { "$ref": "common.schema.json#/$defs/sameAs" },
+    "identifier": { "$ref": "common.schema.json#/$defs/identifier" }
   },
   "patternProperties": { "^x_": {} },
   "additionalProperties": false

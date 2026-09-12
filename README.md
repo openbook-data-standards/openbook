@@ -44,7 +44,7 @@ openbook/  (this repository)
   schema/                 ← JSON Schema (draft 2020-12), the machine-normative field definitions
     common.schema.json            shared $defs: ids, territory, wikidata, sequence, provenance
     publisher.schema.json         who transmits + the sources the feed carries
-    reference_sport.schema.json   reference_region · reference_participant · market_type
+    sport.schema.json             region · participant (teams AND individuals) · stage · market_type
     fixture.schema.json           the base object + standard facts
     change.schema.json            the one message envelope: object / action, Merge Patch
     league.schema.json            any recurring competition, typed by competition_type
