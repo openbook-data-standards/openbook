@@ -136,9 +136,16 @@ crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
 - **e) CLDR** — chosen: ISO codes + the extras everyone actually needs +
   maintained localized names, for free.
 
-## Q11 — Names — open
+## Q11 — Names — proposed (implemented in v0.3)
 
-There is **no ISO standard for team or person names.** Proposed shape:
+There is **no ISO standard for team or person names.** The real standards
+nearby: **vCard (RFC 6350 / ITU X.520)** for a person's name structure
+(family · given · additional · prefix · suffix — also schema.org's
+`familyName` etc.); the **Olympic Data Feed**, which gives every athlete
+several display forms (`PrintName`, `TVName`, `TVInitialName`,
+`LocalFamilyName`…); and **finance**, which standardises *identity* (ISIN,
+LEI) and treats the name as a mutable attribute — our `sameAs` stance.
+Implemented shape:
 
 - `name` — canonical display name, UTF-8, diacritics allowed.
 - `short_name`, `abbreviation` — optional.
@@ -160,7 +167,7 @@ identifier string to pin, never a runtime dependency. Fixtures are not in
 Wikidata and stay publisher-own + standard facts. (OpenStreetMap's
 `wikidata=Q…` tags are the precedent.)
 
-## Q13 — Field-name alignment with schema.org — open
+## Q13 — Field-name alignment with schema.org — decided (d: full alignment)
 
 schema.org `SportsEvent` / `SportsTeam` / `Person` is the vocabulary Google's
 structured data uses (`homeTeam`, `awayTeam`, `competitor`, `startDate`,
@@ -168,21 +175,88 @@ structured data uses (`homeTeam`, `awayTeam`, `competitor`, `startDate`,
 where there is no reason not to, so OpenBook data maps onto the web's existing
 sports vocabulary for free.
 
-## Q14 — Stream naming grammar — proposed (implemented provisionally in v0.2)
+## Q14 — Stream grammar — decided (object / action, keyed by fixture)
 
-Modelled on the WIS2 topic hierarchy: a fixed, versioned set of levels,
-lowercase, dash-separated, no dots, unique per level. Proposal:
+`openbook / v1 / <publisher-id> / <object> / <action> / <sport> / <id>`
 
-`openbook / <version> / <publisher-id> / <message-type> / <sport> [/ <league>]`
+- `<object>`: fixture · odds · market · score · settlement · league · season ·
+  stage · participant · player · publisher.
+- `<action>`: snapshot · create · update · delete, plus `change` for odds only.
+- `<id>`: the **fixture id** for fixture-scoped objects (odds, market, score,
+  settlement, fixture); the object's own id otherwise. Fixture ids are
+  publisher-own — fine, because a subscription is always to one publisher's
+  stream; cross-publisher identity comes from the standard facts.
+- WIS2 rules: lowercase, dashes, no dots, unique per level; `+` and `#`.
+- Rejected: a league level keyed by Wikidata QID (Dan: key odds by fixture);
+  a flat `fixture_change`-style message-type list (object/action is uniform,
+  like OsmChange's create/modify/delete).
 
-e.g. `openbook/v1/acme-books/odds_change/soccer/gb-premier-league`.
-Consumers subscribe with wildcards at any level. A major version bump only on
-rename or removal of a level value; additions are minor.
+## Q15 — Suspensions, re-opens and voids — decided (market/update)
 
-## Q15 — Suspensions, re-opens and voids as alerts — proposed (implemented provisionally in v0.2)
+`market/update` carries CAP-style `msg_type` (alert · update · cancel),
+`reason`, and `references[]` to prior sequences. Voids and re-settles are
+`settlement/delete` + `settlement/create` (a new settlement id, never a
+mutation).
 
-Modelled on CAP 1.2: a `market_status` message carries `msg_type`
-(`alert` · `update` · `cancel`), the market key, a status
-(`suspended` · `open` · `closed` · `void`), an optional reason vocabulary, and
-`references` to the message it amends or cancels — so a re-open points at the
-suspension it lifts and a void points at the settlement it reverses.
+## Q16 — Name of the price stream — decided (c)
+
+`odds/change` — Sportradar's word. `change` is the one action reserved for
+odds: a price move is an event, not a document edit. (Considered:
+`price/tick`, `market/update`.)
+
+## Q17 — Delivery of odds — decided (b)
+
+Push preferred: publishers SHOULD deliver `odds/change` by push and MAY offer a
+`since=` pull. `market/snapshot` is the recovery / initial-load state.
+(Considered: push-only with no pull at all.)
+
+## Q18 — Topic tail — decided (a)
+
+`…/<sport>/<fixture-id>` for fixture-scoped objects. `+` at the fixture level
+= every fixture in that sport from that publisher. (Considered: a league level
+before the fixture; keying by league QID.)
+
+## Q19 — League vs competition — decided (b)
+
+Keep **`league`** as the object name for any recurring competition, typed by
+**`competition_type`** (league · cup · tournament · series · exhibition). An
+optional `organizer` (the NBA, UEFA, the FIA) can be named, because one
+organizer runs several competitions (NBA season, NBA Cup, All-Star Game).
+(Considered: renaming the object to `competition`.)
+
+## Q20 — Stages — decided (a: one recursive object)
+
+`stage` is a named slice of a season with an optional `parent` stage and a
+`stageType`: phase · group · round · matchday · leg · seriesGame. Stages nest
+to any depth (Knockout → Quarter-final → Leg 2; Playoffs → Conference
+Semifinals → Game 3; F1 season → Round 14). A fixture names its leaf stage.
+(Rejected: separate `stage` + `round` objects.)
+
+## Q21 — Participants belong to a sport — decided (a)
+
+`participant.sport` is required and there is no league field; a team is linked
+to leagues only through its fixtures (Arsenal plays the league, the cup and the
+Champions League in one week).
+
+## Naming convention — decided
+
+Every small shared vocabulary is a `*_type` field: `competition_type`,
+`participant_type`, `market_type`, `stage_type`. No `kind` / `format`
+synonyms.
+
+## Q22 — Teams and individuals are both participants; role and order — decided
+
+One `participant` object with `participantType` team · individual. `player`
+is roster membership only. On a fixture every participant carries **both**
+`role` (home · away · neutral) **and** `order` (integer, always present) —
+facts asserted by the publisher, never inferred from presentation.
+schema.org `homeTeam` / `awayTeam` are derivable from `role`; `participants[]`
+stays the source of truth because it can express a 20-car grid.
+
+## Naming convention — revised (Q13 d)
+
+camelCase everywhere; schema.org's property name wherever one exists
+(`startDate`, `dateModified`, `datePublished`, `alternateName`, `sameAs`,
+`identifier`, `superEvent`, `organizer`, `location`, `eventStatus`); small
+shared vocabularies are `*Type` fields. Documents may carry JSON-LD
+`@context` / `@type`.
