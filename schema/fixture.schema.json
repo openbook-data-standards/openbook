@@ -1,49 +1,53 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openbook.spec/schema/fixture.schema.json",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/fixture.schema.json",
   "title": "OpenBook reference_fixture",
-  "description": "One match — the base object of the OpenBook reference tier.",
+  "description": "One match — the base object. Publisher-own id plus the standard facts (spec §5) that let consumers match it across publishers.",
   "type": "object",
-  "required": ["openbook_version", "id", "sport", "start_time", "participants"],
-  "additionalProperties": false,
+  "required": ["openbook_version", "id", "sequence", "updated_at", "sport", "league", "start_time", "participants"],
   "properties": {
-    "openbook_version": { "type": "string" },
-    "id": {
-      "type": "string",
-      "pattern": "^fixture:[A-Za-z0-9-]+$",
-      "description": "Source-independent id, minted by the first schedule to see the match."
+    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "id": { "$ref": "common.schema.json#/$defs/own_id" },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "updated_at": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "sport": {
+      "type": "object", "required": ["id", "name"], "additionalProperties": false,
+      "properties": { "id": { "$ref": "common.schema.json#/$defs/shared_id" }, "name": { "type": "string" } }
     },
-    "sport": { "type": "string", "pattern": "^sport:[a-z0-9-]+$" },
-    "league": { "type": "string", "pattern": "^league:[a-z0-9:-]+$" },
-    "season": { "type": "string" },
-    "start_time": { "type": "string", "format": "date-time" },
-    "cutoff_time": { "type": "string", "format": "date-time" },
-    "state": { "enum": ["scheduled", "pre", "live", "ended", "suspended", "cancelled"] },
-    "parent": {
-      "type": "string",
-      "description": "A live event's pregame parent fixture, when applicable."
+    "league": {
+      "type": "object", "required": ["id", "name", "territory"], "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/own_id" },
+        "name": { "type": "string" },
+        "territory": { "$ref": "common.schema.json#/$defs/territory" },
+        "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" }
+      }
     },
+    "season": { "type": "object", "properties": { "id": { "$ref": "common.schema.json#/$defs/own_id" }, "name": { "type": "string" } } },
+    "stage": { "type": "string" },
+    "start_time": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "cutoff_time": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "state": { "enum": ["scheduled", "live", "ended", "suspended", "postponed", "cancelled"] },
+    "parent": { "$ref": "common.schema.json#/$defs/own_id", "description": "A live event's pregame parent fixture, when applicable." },
     "participants": {
-      "type": "array",
-      "minItems": 1,
+      "type": "array", "minItems": 1,
       "items": {
-        "type": "object",
-        "required": ["participant", "role"],
-        "additionalProperties": false,
+        "type": "object", "required": ["id", "name", "territory", "role"], "additionalProperties": false,
         "properties": {
-          "participant": { "type": "string", "pattern": "^participant:[a-z0-9:-]+$" },
-          "role": {
-            "description": "Derived by the standard, never taken from a source's ordering.",
-            "oneOf": [
-              { "enum": ["home", "away", "draw"] },
-              { "type": "integer", "minimum": 1, "description": "Ordinal for n-participant events." }
-            ]
-          }
+          "id": { "$ref": "common.schema.json#/$defs/own_id" },
+          "name": { "type": "string" },
+          "territory": { "$ref": "common.schema.json#/$defs/territory" },
+          "role": { "$ref": "common.schema.json#/$defs/role", "description": "Derived fact, never a source's presentation order." },
+          "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" }
         }
       }
     },
-    "source": { "type": "object" },
-    "extensions": { "type": "object" }
+    "location": {
+      "type": "object", "additionalProperties": false,
+      "properties": { "venue": { "type": "string" }, "city": { "type": "string" }, "territory": { "$ref": "common.schema.json#/$defs/territory" }, "wikidata": { "$ref": "common.schema.json#/$defs/wikidata" } }
+    },
+    "external_ids": { "$ref": "common.schema.json#/$defs/external_ids" }
   },
-  "patternProperties": { "^x_": {} }
+  "patternProperties": { "^x_": {} },
+  "additionalProperties": false
 }

@@ -1,6 +1,6 @@
 # OpenBook — an open standard for sportsbook data
 
-**Status:** `v0.1.0-draft` · working draft, not yet published · started 2026-09-12
+**Status:** `v0.2.0-draft` · working draft, not yet published · started 2026-09-12
 **Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The document:** the OpenBook specification in [`spec/openbook.md`](spec/openbook.md)
 
 OpenBook is an open standard for exchanging **sportsbook & gambling data** —
@@ -42,50 +42,8 @@ openbook/  (this repository)
   spec/
     openbook.md           ← the normative reference specification
   schema/                 ← JSON Schema (draft 2020-12), the machine-normative field definitions
-    reference_sport.schema.json
-    fixture.schema.json
-    market_type.schema.json
-    odds_change.schema.json
-  vocabularies/           ← the controlled vocabularies (the real contribution)
-    sports.md
-    market_types.md
-  examples/               ← sample messages that validate against the schemas
-    fixture.example.json
-    odds_change.example.json
-  GOVERNANCE.md           ← open-spec / closed-code, licensing, how it's governed
-  VERSIONING.md           ← semver rules for the spec
-  CONTRIBUTING.md
-  CHANGELOG.md
-  LICENSE                 ← CC BY 4.0 (spec text); implementations are the implementer's own
-```
-
-## Why this exists
-
-No cross-vendor market taxonomy exists in betting. The books (bet365, FanDuel,
-DraftKings) run proprietary catalogs; the providers (Sportradar, Genius, Stats
-Perform) publish little or nothing usable, and each integrator re-maps every
-feed by hand. The **market-type vocabulary** in [`vocabularies/`](vocabularies/)
-is the piece nobody has published — the thing a fragmented industry could rally
-around. Background and the full industry comparison live in the OpenBook
-overview report: [`docs/overview.html`](docs/overview.html).
-
-## Roadmap to a real standard
-
-1. **v0.x — this repository.** Nail the reference objects, the live messages, and
-   a first market-type vocabulary. Validate against real provider feeds behind
-   private adapters.
-2. **Private while the shape settles; public once v0.x is stable.**
-3. **Ship a validator + conformance suite** so "OpenBook-compliant" is testable.
-4. **Land one external adopter** using the mapping layer.
-5. **Governance** — start as a gravity play under an open licence; a consortium
-   or standards body only once there are 2–3 non-competing adopters.
-
-This repository is a **specification**, not an implementation. It names no
-operator's internal system.
-
-## Documents
-
-- [`docs/decisions.md`](docs/decisions.md) — the design decision log: what was decided, what was on the table, why.
-- [`docs/building-blocks.md`](docs/building-blocks.md) — the widely used standards OpenBook stands on rather than reinvents.
-- [`docs/industry-patterns.md`](docs/industry-patterns.md) — what public betting APIs do, and what OpenBook adopts or avoids.
-- [`docs/overview.html`](docs/overview.html) — the explainer report.
+    common.schema.json            shared $defs: ids, territory, wikidata, sequence, provenance
+    publisher.schema.json         who transmits + the sources the feed carries
+    reference_sport.schema.json   reference_region · reference_participant · market_type
+    fixture.schema.json           the base object + standard facts
+    odds_change.schema.json       fixture_change · market_status  (live diffs, Merge Patch)

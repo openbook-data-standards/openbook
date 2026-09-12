@@ -1,156 +1,202 @@
 # OpenBook — the specification
 
 The normative document defining the **OpenBook** standard.
-Version `0.1.0-draft` · 2026-09-12
+Version `0.2.0-draft` · 2026-09-12
 
 This is the normative reference. The JSON Schemas in [`../schema/`](../schema/)
 are the machine-normative field definitions; where prose and schema disagree,
-the schema wins. Field lists below give the shape; the schema gives the exact
-types and which fields are required.
+the schema wins. The decisions behind every rule here are recorded in
+[`../docs/decisions.md`](../docs/decisions.md).
 
 Keywords **MUST**, **SHOULD**, **MAY** are used per RFC 2119.
 
 ---
 
-## 1. Conventions
+## 1. What OpenBook is
 
-- **Identifiers** are readable, namespaced slugs owned by the standard, lowercase
-  with `:` as the namespace separator and `-` inside a segment:
-  `sport:soccer`, `region:GB`, `league:soccer:GB:premier-league`,
-  `market:total`, `segment:baseball:inning-1`, `participant:soccer:GB:arsenal`,
-  `fixture:<uuid>`. An id **MUST** be treated as an opaque whole.
-- **Time** is ISO 8601 with an explicit offset (`2026-09-12T18:30:00Z`).
-- **Currency** is ISO 4217 (`USD`). **Country** is ISO 3166-1 alpha-2 (`GB`).
-- **Odds** are decimal (`2.50`) as the canonical form. Display formats
-  (American, Hong Kong, Malay, Indonesian) are presentation and are **not** part
-  of the wire.
-- **Language** for display text is ISO 639-1, defaulting to `en`.
-- Every object **MUST** carry `openbook_version`.
+OpenBook is **one shared format any publisher emits sportsbook data in**, the
+way any transit agency publishes GTFS. It applies whenever odds that originate
+from a sportsbook are emitted externally — by the sportsbook itself, or by a
+feed that carries them.
 
-## 2. The two tiers
+- A **publisher** is whoever transmits an OpenBook feed.
+- A **source** is whose odds a price is. Every price carries its source, and
+  one feed MAY carry many sources (as one GTFS feed carries many agencies).
+- A **consumer** reads one or more OpenBook feeds with a single importer.
 
-- **Reference tier** (§4): durable, bounded objects. Delivered as documents;
-  refreshed when they change. Never carries prices or live state.
-- **Live tier** (§5): streamed messages that carry only diffs and reference the
-  ids from the reference tier. Ordered, with a monotonic sequence and a change
-  signal ("doorbell"). Modeled on GTFS-Realtime: the live feed never re-sends the
-  reference tier.
+OpenBook is independent of any sportsbook, data provider or software vendor.
+It standardises the data contract only; how a publisher produces or prices
+data is out of scope.
 
-A conformant producer **MUST** publish the reference tier and **MAY** publish any
-subset of the live messages, provided each references valid reference ids.
+## 2. Conventions
 
-## 3. Mapping (how a source becomes OpenBook)
+- **Time** — ISO 8601 with an explicit offset, everywhere
+  (`2026-09-19T14:00:00Z`).
+- **Currency** — ISO 4217. **Language** — ISO 639-1.
+- **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 for
+  countries (`GB`), ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`),
+  plus CLDR's extras (`XK`, `EU`). Names come from CLDR.
+- **Odds** — decimal is the canonical form (`2.50`). Other formats are
+  presentation and are not on the wire.
+- **Text** — UTF-8; names keep their diacritics.
+- **Field names** — full words, `snake_case`, no abbreviations.
+- Every object and message carries `openbook_version`.
 
-Every provider id resolves to a canonical id through a **mapping record**
-(`reference_map`). A mapping record has: the canonical id, the source
-(`provider`, an opaque provider key), the provider's own id, a `confidence`
-(`exact` · `derived` · `name_match`), and a `status` (`mapped` · `needs_review`
-· `rejected`). A provider's id **MUST NOT** be used as a canonical id. This is
-what lets OpenBook stay neutral while ingesting any feed.
+## 3. Identifiers
 
-## 4. Reference objects
+### 3.1 Shared ids (the vocabularies)
 
-Each object below is a document with `id`, the fields listed, and OPTIONAL
-`source` mapping metadata. Full field/type detail is in the matching schema.
+Sports, market types, segments and sides use ids owned by the standard. One
+id, two equivalent spellings:
 
-### 4.1 `reference_sport`
-A sport. Fields: `id` (`sport:*`), `name`, `abbreviation`, `active`.
-The sport vocabulary is versioned; see [`../vocabularies/sports.md`](../vocabularies/sports.md).
+- **Short form, on the wire:** `sport:soccer`, `market:total`,
+  `segment:soccer:1st-half`, `side:home`.
+- **Formal form, in the spec:** `urn:openbook:sport:soccer`. Adding or
+  removing the `urn:openbook:` prefix is the only difference.
 
-### 4.2 `reference_region` / `reference_location`
-A country and its sub-regions. `reference_region.id` is `region:<ISO-3166-1-a2>`.
-Fields: `id`, `name`. Location adds `region` (the parent region id).
+Shared ids are lowercase, `:`-separated namespaces with `-` inside a segment.
+Once published an id is never re-pointed or reused; it is deprecated.
 
-### 4.3 `reference_league`
-A competition. Fields: `id`, `sport`, `region`, `name`, `abbreviation`,
-`active`, and a `ruleset` object (clock, scoring, segment model). Country is a
-linked `region`, **never** embedded in `name`.
+### 3.2 Publisher-own ids (the entities)
 
-### 4.4 `reference_season`
-Fields: `id`, `league`, `name`, `start_date`, `end_date`, `active`.
+Fixtures, leagues, participants (teams), players and venues carry the
+**publisher's own id**, unique within that publisher. OpenBook does not mint
+or own these. Cross-publisher identity comes from **standard facts** (§5) and
+from the **shared entity id** (§3.3).
 
-### 4.5 `reference_participant`
-A team or individual. Fields: `id`, `sport`, `type` (`team` · `individual`),
-`name`, `abbreviation`, `aliases` (array), `associations` (array of
-`{participant, kind}` for parent/child links). **Home/away is not a property of
-a participant** — it is a role assigned on the fixture (§4.10).
+### 3.3 Shared entity id — Wikidata *(proposed, Q12 a)*
 
-### 4.6 `reference_player`
-Fields: `id`, `participant` (their team, if any), `sport`, `position`, `name`,
-`active`.
+For leagues, participants, players, venues and territories, the **Wikidata
+QID** (`Q9617`) is the shared cross-publisher entity id. It is **REQUIRED when
+one exists and `null` when it does not**; the publisher's own id and the
+standard facts are always present as the fallback. It is an identifier string
+to pin, never a runtime dependency.
 
-### 4.7 `reference_segment`
-A slice of a match (half, quarter, inning, set). Fields: `id`, `sport`, `name`,
-`ordinal`, `family` (the normalised grouping across vendor numbering). Segments
-are first-class objects, not encoded in market ids.
+### 3.4 External ids
 
-### 4.8 `reference_market_type`
-What can be bet. Fields: `id` (`market:*`), `name`, `genre`, `shape` (how the
-outcome is priced — e.g. `binary`, `over-under`, `handicap`, `n-way`), `category`
-(`main-line` · `score-prop` · `game-prop` · `player-prop` · `outright` ·
-`parlay-special` · `same-game-parlay`), and prop flags. The controlled market
-vocabulary is [`../vocabularies/market_types.md`](../vocabularies/market_types.md).
+Any object MAY carry `external_ids`: a list of `{system, id}` pairs
+(`sportradar`, `opta`, a provider's own key). Optional, never canonical.
 
-### 4.9 `reference_side`
-A canonical outcome role: `home`, `away`, `over`, `under`, `draw`, `yes`, `no`,
-`participant` (for n-way). The **sign of a handicap and the order of sides are
-derived by the standard**, never taken from a source's presentation.
+## 4. The two tiers, and change
 
-### 4.10 `reference_fixture`
-One match — the base object. Fields: `id` (`fixture:<uuid>`), `sport`, `league`,
-`season`, `start_time`, `cutoff_time`, `state`, `participants` (array of
-`{participant, role}` where `role` is `home`/`away`/an ordinal), and OPTIONAL
-`parent` (a live event's pregame parent).
+- **Reference tier** — durable, bounded objects (§6). Delivered as documents.
+- **Live tier** — prices, scores, settlement, market status (§7).
 
-**Fixture identity:** a fixture id is minted by whichever schedule sees the match
-first and is source-independent. Producers **MUST** deduplicate on
-`(sport, start_time, participant-set)` before minting a new id, so a match only
-one minor source carries still gets one clean identity.
+**Everything is diff-able, reference tier included.**
 
-## 5. Live messages
+- Every object and message carries **`sequence`** — a monotonic integer the
+  publisher's server issues per feed — and **`updated_at`**.
+- **Push** streams send changes only. **Pull** endpoints accept
+  `since=<sequence>` and return only what changed after it. `since` is never a
+  timestamp.
+- A **snapshot** is the state as of a sequence; it exists for initial load and
+  recovery and is a diff from zero, not a separate format.
+- **Change granularity is field-level**, with **JSON Merge Patch (RFC 7386)**
+  semantics: a change message carries the object's id plus only the fields that
+  changed; a field absent is unchanged; a field `null` is removed.
+- Consumers MUST merge diffs and MUST NOT assume a message re-sends unchanged
+  state.
 
-Each live message carries `openbook_version`, `sequence` (monotonic per feed),
-`timestamp`, and references reference ids. Producers **SHOULD** emit a change
-signal per message. Consumers **MUST** merge diffs and **MUST NOT** assume a
-message re-sends unchanged state.
+## 5. Standard facts (how consumers match across publishers)
 
-### 5.1 `odds_change`
-A price diff. Carries `fixture`, and a list of `markets`, each with
-`market_type`, OPTIONAL `segment`, OPTIONAL `line` (the handicap/total value),
-`status` (`open` · `suspended` · `closed`), and `outcomes` — each with `side`,
-`odds` (decimal), OPTIONAL `line`, and `active`. A priced instance is identified
-by `(fixture, market_type, segment, line, side)`. Schema:
-[`../schema/odds_change.schema.json`](../schema/odds_change.schema.json).
+Every `reference_fixture` MUST carry:
 
-### 5.2 `score_change`
-The live status: `fixture`, `state` (`pre` · `live` · `ended` · `suspended`),
-`clock` (`{segment, elapsed}`), and `scores` (per participant, per segment).
-One producer, one shape, one signal.
+- publisher's own `id`
+- `sport` — shared id + `name`
+- `league` — own id + `name` + `territory`
+- `start_time`
+- `participants[]` — each with own id, `name`, `territory`, and `role`
+  (`home` · `away` · an ordinal for n-participant events)
+- `sequence`, `updated_at`
 
-### 5.3 `settlement`
-Per market/outcome result: `fixture`, and `results` — each with `market_type`,
-`segment`, `line`, `side`, `result` (`win` · `lose` · `void` · `half-win` ·
-`half-lose`), and `settlement_id`. A re-settle is a **new** `settlement_id`,
-never a mutation. A companion `settlement_rollback` references a prior
-`settlement_id`.
+and MAY carry `location` (venue, city, territory), `external_ids`, `season`,
+`stage`. Consumers match on sport + league (name, territory) + start_time +
+participants (names, territories), and on shared entity ids when both sides
+have them. Home/away, side order and handicap sign are **derived** by the
+consumer from these facts; a publisher's presentation order is never a fact.
 
-### 5.4 `market_status`
-A standalone open/suspend/close diff for markets without a price change.
+## 6. Reference objects
 
-## 6. Extensions
+Each is a document with `openbook_version`, `id`, `sequence`, `updated_at`,
+the fields below, and optional `wikidata` / `external_ids`. Exact types are in
+the schemas.
 
-A producer **MAY** add fields under an `x_` prefix or a namespaced `extensions`
-object. Consumers **MUST** ignore unknown `x_` fields. New sports, leagues,
-segments and market types are added to the vocabularies, not invented per-feed.
+- **`publisher`** — the feed's own record: `id`, `name`, `url`, `contact`,
+  the `sources[]` it carries (`{id, name, kind: sportsbook|exchange|model}`).
+  Analogous to GTFS `agency.txt`.
+- **`reference_sport`** *(shared vocab)* — `id`, `name`, `abbreviation`,
+  `active`. Disciplines hang beneath (`athletics:110m-hurdles`).
+- **`reference_segment`** *(shared vocab)* — `id`, `sport`, `name`,
+  `ordinal`, `family`. A first-class object, never encoded in a market id.
+- **`reference_market_type`** *(shared vocab)* — `id`, `name`, `genre`,
+  `shape`, `category`, `sides[]`, prop flags. The controlled market vocabulary
+  is [`../vocabularies/market_types.md`](../vocabularies/market_types.md).
+- **`reference_side`** *(shared vocab)* — `home`, `away`, `draw`, `over`,
+  `under`, `yes`, `no`, `participant`.
+- **`reference_region`** — `id` = the CLDR territory code, `name`,
+  `names{lang}`, `parent`, plus crosswalks `ioc_code`, `fifa_code`,
+  `wikidata`.
+- **`reference_league`** — own `id`, `name`, `sport`, `territory`,
+  `ruleset` (clock/score/segment model), `wikidata`.
+- **`reference_participant`** — own `id`, `name`, `short_name`, `aliases[]`,
+  `names{lang}`, `territory`, `type` (`team` · `individual`), `wikidata`.
+  Home/away is not a participant property.
+- **`reference_player`** — own `id`, `name`, `given_name`, `family_name`,
+  `participant`, `position`, `wikidata`.
+- **`reference_fixture`** — §5, plus `state`, `cutoff_time`, `parent`.
 
-## 7. Conformance
+## 7. Live messages
 
-An implementation is **OpenBook-conformant at level R** if its reference documents
-validate against the reference schemas, and **at level L** if its live messages
-validate against the live schemas and reference only ids present in the
-reference tier. A conformance suite ships separately (roadmap item 3).
+Every live message carries `openbook_version`, `sequence`, `timestamp`,
+`publisher`, and references reference ids. Semantics are JSON Merge Patch.
 
-## 8. Versioning
+- **`fixture_change`** — `fixture` + only the changed fixture fields (a moved
+  start time, a state flip, a lineup change).
+- **`odds_change`** — `fixture`, then `markets[]`, each with `market_type`,
+  `segment`, optional `line`, `status`, **`source`**, **`provenance`**
+  (`official` · `licensed` · `observed`), and `outcomes[]` (`side`,
+  `odds`, optional `line`, `active`). A priced selection is identified by
+  `(source, fixture, market_type, segment, line, side)`.
+- **`score_change`** — `fixture`, `state`, `clock`, `scores[]`.
+- **`settlement`** — per market/outcome `result` (`win` · `lose` · `void` ·
+  `half-win` · `half-lose`) with a `settlement_id`. A re-settle is a **new**
+  id, never a mutation. `settlement_rollback` references a prior
+  `settlement_id`.
+- **`market_status`** *(proposed, Q15)* — CAP-shaped: `msg_type`
+  (`alert` · `update` · `cancel`), the market key, `status` (`open` ·
+  `suspended` · `closed` · `void`), optional `reason`, and `references[]` to
+  the message(s) it amends or cancels.
 
-Semantic versioning per [`../VERSIONING.md`](../VERSIONING.md). `openbook_version`
-on every object states the version it was produced against.
+## 8. Streams *(proposed, Q14)*
+
+Stream (topic) names follow a fixed, versioned grammar modelled on the WMO
+WIS2 topic hierarchy:
+
+`openbook / <version> / <publisher-id> / <message-type> / <sport> [/ <league>]`
+
+e.g. `openbook/v1/acme-books/odds_change/soccer/gb-premier-league`. Levels are
+lowercase, dash-separated, no dots, unique per level. Consumers subscribe with
+wildcards at any level. Transport (MQTT, AMQP, WebSocket, SSE) is not part of
+the standard; the message is.
+
+## 9. Extensions
+
+A publisher MAY add fields under an `x_` prefix. Consumers MUST ignore unknown
+`x_` fields. New sports, segments and market types are proposed to the shared
+vocabularies, not invented per feed.
+
+## 10. Conformance
+
+- **Level R** — reference documents validate against the reference schemas
+  and carry the standard facts of §5.
+- **Level L** — live messages validate against the live schemas, carry
+  `sequence`, reference only ids present in the reference tier, and honour
+  Merge Patch semantics.
+
+A validator and conformance suite ship separately.
+
+## 11. Versioning
+
+Semantic versioning per [`../VERSIONING.md`](../VERSIONING.md). Pre-1.0 the
+wire may change between minor versions; the `-draft` suffix marks an unfrozen
+version.

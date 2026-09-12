@@ -72,7 +72,7 @@ A publisher may attach any number of other systems' ids to an object
 (Sportradar URN, Opta id, Wikidata QID, its own internal id). Optional, never
 required, never the canonical key.
 
-## Q7 — Standard facts every fixture carries — proposed
+## Q7 — Standard facts every fixture carries — decided
 
 **Required:** publisher's own fixture id · sport (shared id + name) · league
 (own id + name + ISO country) · start time (ISO 8601) · participants (own id,
@@ -148,12 +148,17 @@ There is **no ISO standard for team or person names.** Proposed shape:
   Greek) for sorting and matching.
 - Persons: optional `given_name` / `family_name` (schema.org `Person`).
 
-## Q12 — Preferred neutral external id — open
+## Q12 — Shared entity id — decided (Wikidata QID)
 
 **Wikidata QIDs** (`Q9617` = Arsenal F.C.) are the most widely used free,
 neutral identifiers for teams, players, leagues and venues, resolvable at
-`https://www.wikidata.org/entity/Q…`. Proposal: name QID as the *recommended*
-external id in Q6 — still optional, never canonical.
+`https://www.wikidata.org/entity/Q…`. **Decided:** the QID is the shared
+cross-publisher entity id for leagues, participants, players, venues and
+territories — **required when one exists, `null` when it does not** — with the
+publisher's own id and the standard facts always present as the fallback. An
+identifier string to pin, never a runtime dependency. Fixtures are not in
+Wikidata and stay publisher-own + standard facts. (OpenStreetMap's
+`wikidata=Q…` tags are the precedent.)
 
 ## Q13 — Field-name alignment with schema.org — open
 
@@ -163,7 +168,7 @@ structured data uses (`homeTeam`, `awayTeam`, `competitor`, `startDate`,
 where there is no reason not to, so OpenBook data maps onto the web's existing
 sports vocabulary for free.
 
-## Q14 — Stream naming grammar — open
+## Q14 — Stream naming grammar — proposed (implemented provisionally in v0.2)
 
 Modelled on the WIS2 topic hierarchy: a fixed, versioned set of levels,
 lowercase, dash-separated, no dots, unique per level. Proposal:
@@ -174,7 +179,7 @@ e.g. `openbook/v1/acme-books/odds_change/soccer/gb-premier-league`.
 Consumers subscribe with wildcards at any level. A major version bump only on
 rename or removal of a level value; additions are minor.
 
-## Q15 — Suspensions, re-opens and voids as alerts — open
+## Q15 — Suspensions, re-opens and voids as alerts — proposed (implemented provisionally in v0.2)
 
 Modelled on CAP 1.2: a `market_status` message carries `msg_type`
 (`alert` · `update` · `cancel`), the market key, a status

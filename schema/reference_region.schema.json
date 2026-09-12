@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/reference_region.schema.json",
+  "title": "OpenBook reference_region",
+  "description": "A territory. The id is the CLDR territory code (ISO 3166-1 alpha-2, or ISO 3166-2 for sub-national teams); names come from CLDR; sport-body codes ride along as crosswalks.",
+  "type": "object",
+  "required": ["openbook_version", "id", "sequence", "updated_at", "name"],
+  "properties": {
+    "openbook_version": { "$ref": "common.schema.json#/$defs/openbook_version" },
+    "id": { "$ref": "common.schema.json#/$defs/territory", "examples": ["GB", "GB-ENG", "US-PR", "XK"] },
+    "sequence": { "$ref": "common.schema.json#/$defs/sequence" },
+    "updated_at": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "name": { "type": "string", "examples": ["England"] },
+    "names": { "$ref": "common.schema.json#/$defs/localized_names" },
+    "parent": { "$ref": "common.schema.json#/$defs/territory", "description": "The containing country for a subdivision (GB for GB-ENG)." },
+    "ioc_code": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$", "examples": ["GBR"] },
+    "fifa_code": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$", "examples": ["ENG"] },
+    "wikidata": { "$ref": "common.schema.json#/$defs/wikidata", "examples": ["Q21"] },
+    "external_ids": { "$ref": "common.schema.json#/$defs/external_ids" }
+  },
+  "patternProperties": { "^x_": {} },
+  "additionalProperties": false
+}

@@ -1,37 +1,111 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openbook.spec/schema/market_type.schema.json",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/market_type.schema.json",
   "title": "OpenBook reference_market_type",
   "description": "A canonical market type — what can be bet. The controlled market vocabulary is the core contribution of OpenBook.",
   "type": "object",
-  "required": ["openbook_version", "id", "name", "genre", "shape", "category"],
+  "required": [
+    "openbook_version",
+    "id",
+    "name",
+    "genre",
+    "shape",
+    "category",
+    "sequence",
+    "updated_at"
+  ],
   "additionalProperties": false,
   "properties": {
-    "openbook_version": { "type": "string" },
+    "openbook_version": {
+      "$ref": "common.schema.json#/$defs/openbook_version"
+    },
     "id": {
       "type": "string",
       "pattern": "^market:[a-z0-9-]+$",
-      "examples": ["market:moneyline", "market:total", "market:spread", "market:player-points"]
+      "examples": [
+        "market:moneyline",
+        "market:total",
+        "market:spread",
+        "market:player-points"
+      ]
     },
-    "name": { "type": "string", "examples": ["Moneyline", "Total", "Player Points"] },
-    "genre": { "type": "string", "description": "Grouping label, e.g. 'match', 'player', 'team'." },
+    "name": {
+      "type": "string",
+      "examples": [
+        "Moneyline",
+        "Total",
+        "Player Points"
+      ]
+    },
+    "genre": {
+      "type": "string",
+      "description": "Grouping label, e.g. 'match', 'player', 'team'."
+    },
     "shape": {
       "description": "How the outcome is priced.",
-      "enum": ["binary", "n-way", "over-under", "handicap", "exact-value", "correct-score", "yes-no"]
+      "enum": [
+        "binary",
+        "n-way",
+        "over-under",
+        "handicap",
+        "exact-value",
+        "correct-score",
+        "yes-no"
+      ]
     },
     "category": {
-      "enum": ["main-line", "score-prop", "game-prop", "player-prop", "outright", "parlay-special", "same-game-parlay"]
+      "enum": [
+        "main-line",
+        "score-prop",
+        "game-prop",
+        "player-prop",
+        "outright",
+        "parlay-special",
+        "same-game-parlay"
+      ]
     },
-    "is_player_prop": { "type": "boolean", "default": false },
-    "is_team_prop": { "type": "boolean", "default": false },
-    "is_game_prop": { "type": "boolean", "default": false },
+    "is_player_prop": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_team_prop": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_game_prop": {
+      "type": "boolean",
+      "default": false
+    },
     "sides": {
       "type": "array",
       "description": "The canonical sides this market's outcomes take.",
-      "items": { "enum": ["home", "away", "draw", "over", "under", "yes", "no", "participant"] }
+      "items": {
+        "enum": [
+          "home",
+          "away",
+          "draw",
+          "over",
+          "under",
+          "yes",
+          "no",
+          "participant"
+        ]
+      }
     },
-    "source": { "type": "object" },
-    "extensions": { "type": "object" }
+    "extensions": {
+      "type": "object"
+    },
+    "sequence": {
+      "$ref": "common.schema.json#/$defs/sequence"
+    },
+    "updated_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "external_ids": {
+      "$ref": "common.schema.json#/$defs/external_ids"
+    }
   },
-  "patternProperties": { "^x_": {} }
+  "patternProperties": {
+    "^x_": {}
+  }
 }

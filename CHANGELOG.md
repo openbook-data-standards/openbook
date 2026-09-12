@@ -5,6 +5,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+## [0.2.0-draft] — 2026-09-12
+
+Not frozen; the wire may change before 1.0.
+
 ### Added
 - `docs/decisions.md` — the design decision log (Q1–Q9 decided; Q7 proposed;
   Q10–Q13 open): purpose, matching via standard facts, provenance, shared vs
@@ -21,12 +25,19 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   WIS 2.0 MQTT pub/sub and topic hierarchy, OASIS CAP 1.2 alerts, METAR/TAF,
   GRIB/BUFR, NWS API). Decisions Q14 (stream grammar) and Q15 (alerts) opened.
 
-### Pending spec changes (v0.2)
-- Fixtures, leagues, teams and players become **publisher-own ids + standard
-  facts** (Q2/Q4); the v0.1 text still describes a neutral minted fixture id.
-- Add `source` and `provenance` to every price (Q1/Q3); `sequence` and
-  `updated_at` to every object; `fixture_change` message; `since=` on pull
-  endpoints; JSON Merge Patch semantics for all change messages (Q8).
+### Changed (the v0.2 spec rewrite)
+- Fixtures, leagues, teams and players are **publisher-own ids + standard
+  facts** (Q2/Q4/Q7); the v0.1 neutral minted fixture id is gone.
+- `source` + `provenance` on every market (Q1/Q3); `sequence` + `updated_at`
+  on every object; `fixture_change` and `market_status` messages; `since=` as
+  a sequence cursor; JSON Merge Patch semantics for all changes (Q8).
+- Wikidata QID as the shared entity id on leagues, participants, players,
+  venues, territories — required when it exists, null otherwise (Q12).
+- New schemas: `common`, `publisher`, `reference_region`,
+  `reference_participant`, `fixture_change`, `market_status`; `fixture` and
+  `odds_change` rewritten. New examples for `fixture_change`, `market_status`.
+- Proposed and implemented provisionally: stream grammar (Q14), CAP-shaped
+  market_status (Q15).
 - Region model per Q10: CLDR territories (ISO 3166-1/-2 + `XK`/`EU`/`UN`) with
   CLDR localized names; `ioc_code` / `fifa_code` / `wikidata` crosswalks.
 
