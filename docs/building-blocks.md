@@ -5,11 +5,13 @@ grouped by what each one is used for, with the reason it was chosen.
 
 ## Reference data: countries, names, languages, money, time
 
-- **ISO 3166-1 alpha-2** — countries (`GB`, `US`). Canonical country key.
-- **ISO 3166-2** — subdivisions. Used for **sub-national teams** that are not
-  ISO countries: `GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`. The sport bodies'
-  own codes are carried as crosswalks: **FIFA** (`ENG`, `SCO`…) and **IOC**
-  (`GBR`, `TPE`, `PUR`…). See decision Q10.
+- **Unicode CLDR territories** — the territory model (decision Q10). ISO
+  3166-1 alpha-2 codes underneath (`GB`, `US`), ISO 3166-2 subdivisions for
+  sub-national teams (`GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`, `US-PR`), the
+  pragmatic extras (`XK` Kosovo, `EU`, `UN`), and localized territory names in
+  every language — what every OS and browser uses. Sport-body codes ride
+  alongside as crosswalks: **IOC** (`GBR`, `TPE`), **FIFA** (`ENG`, `SCO`),
+  plus a **Wikidata** QID.
 - **ISO 639-1** — language codes for per-language name variants (`en`, `es`).
 - **ISO 4217** — currency (`USD`, `GBP`) on stakes and limits.
 - **ISO 8601 / RFC 3339** — every timestamp, with an explicit offset

@@ -22,7 +22,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - Add `source` and `provenance` to every price (Q1/Q3); `sequence` and
   `updated_at` to every object; `fixture_change` message; `since=` on pull
   endpoints; JSON Merge Patch semantics for all change messages (Q8).
-- Country model per Q10 once decided.
+- Region model per Q10: CLDR territories (ISO 3166-1/-2 + `XK`/`EU`/`UN`) with
+  CLDR localized names; `ioc_code` / `fifa_code` / `wikidata` crosswalks.
 
 ## [0.1.0-draft] — 2026-09-12
 
