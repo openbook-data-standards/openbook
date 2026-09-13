@@ -148,3 +148,24 @@ footer strong{color:var(--ink);display:block;margin-bottom:6px;font-family:Georg
 .schema-list a:hover{background:var(--fill);color:var(--stamp)}
 .skip{position:absolute;left:-999px;top:8px;background:var(--stamp);color:var(--ticket);padding:8px 12px}
 .skip:focus{left:8px;z-index:20}
+
+.page{padding:36px 0 72px}
+.crumb{font:13px/1.4 Georgia,serif;color:var(--mute);margin-bottom:14px}
+.crumb a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule)}
+.source{font:12px/1.4 "Courier New",Courier,monospace;color:var(--mute);margin:0 0 24px}
+.doc h1{font-size:clamp(26px,4vw,38px);margin-bottom:8px}
+.doc h2{font-size:22px;margin:32px 0 10px;padding-top:16px;border-top:1px solid var(--rule)}
+.doc h3{font-size:17px;margin:22px 0 8px}
+.doc p,.doc li{font-size:16px}
+.doc p{margin:0 0 12px}
+.doc ul,.doc ol{margin:0 0 16px;padding-left:22px}
+.doc li{margin:5px 0}
+.doc blockquote{margin:0 0 16px;padding:10px 14px;border-left:5px solid var(--stamp);background:var(--ticket)}
+.doc hr{border:none;border-top:1px solid var(--rule);margin:24px 0}
+.doc pre{background:var(--ticket);border:1.5px solid var(--rule);padding:14px 16px;overflow-x:auto;font-size:12.5px;line-height:1.55;margin:12px 0}
+.toc{border:1.5px solid var(--rule);padding:14px 16px;margin:0 0 24px;background:var(--ticket)}
+.toc strong{display:block;font:11px/1 "Courier New",Courier,monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.toc a{display:block;text-decoration:none;padding:3px 0;font-size:14px}
+.schema-block{margin:0 0 28px;border:1.5px solid var(--rule);background:var(--ticket);padding:16px}
+.schema-block h2{font-size:18px;margin:0 0 6px;border:none;padding:0}
+.schema-block p{color:var(--ink-2);margin:0 0 10px;font-size:14px}
