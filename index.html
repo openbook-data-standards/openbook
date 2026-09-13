@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBook — an open standard for sportsbook data</title>
+<meta name="description" content="OpenBook is an open, vendor-neutral standard for sportsbook & gambling data: a reference model, a live wire, and controlled vocabularies. One format any publisher emits odds in.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#f5f3ee; --ink:#1c1b18; --muted:#6a655c; --rule:#e0dccf; --card:#fbfaf6;
+  --accent:#0e7c86; --accent-soft:#d7ecee; --live:#2e7d4f; --warn:#a8620a; --code:#eceadf;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#111312; --ink:#e9e7e0; --muted:#9a958a; --rule:#2a2c2a; --card:#181a19;
+  --accent:#4fb6c0; --accent-soft:#123034; --live:#63c08a; --warn:#e0a040; --code:#1c1f1e;
+}}
+:root[data-theme="dark"]{
+  --paper:#111312; --ink:#e9e7e0; --muted:#9a958a; --rule:#2a2c2a; --card:#181a19;
+  --accent:#4fb6c0; --accent-soft:#123034; --live:#63c08a; --warn:#e0a040; --code:#1c1f1e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.01em;text-wrap:balance;margin:0}
+code,pre{font-family:"JetBrains Mono",ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.5rem}
+header.site{border-bottom:1px solid var(--rule);position:sticky;top:0;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);z-index:10}
+header.site .wrap{display:flex;align-items:center;gap:1.5rem;height:56px}
+.brand{font-family:Fraunces,serif;font-weight:600;font-size:1.15rem;color:var(--ink)}
+.brand b{color:var(--accent)}
+header.site nav{margin-left:auto;display:flex;gap:1.25rem;font-size:.9rem}
+header.site nav a{color:var(--muted)}
+header.site nav a:hover{color:var(--ink);text-decoration:none}
+.hero{padding:4.5rem 0 3rem}
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:600;margin-bottom:1rem}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem)}
+.hero p.lead{font-size:1.25rem;color:var(--muted);max-width:40ch;margin:1.2rem 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.btn{display:inline-block;padding:.6rem 1.1rem;border-radius:7px;font-weight:600;font-size:.95rem;border:1px solid var(--rule)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{text-decoration:none;filter:brightness(1.06)}
+.btn.ghost{color:var(--ink);background:var(--card)}
+.btn.ghost:hover{text-decoration:none;border-color:var(--accent)}
+.badges{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2.5rem;font-size:.85rem;color:var(--muted)}
+.badges b{color:var(--ink);font-weight:600}
+section{padding:3rem 0;border-top:1px solid var(--rule)}
+section h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:.4rem}
+section .sub{color:var(--muted);max-width:52ch;margin:0 0 1.75rem}
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:720px){.tiers{grid-template-columns:1fr}}
+.tier{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:1.25rem 1.35rem}
+.tier h3{font-size:1.15rem;margin-bottom:.5rem}
+.tier .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:.6rem}
+.tier.ref .k{color:var(--accent)} .tier.live .k{color:var(--live)}
+.tier ul{margin:.5rem 0 0;padding-left:1.1rem;color:var(--muted);font-size:.95rem}
+.tier li{margin:.25rem 0}
+.tier code{background:var(--code);padding:.05em .35em;border-radius:4px;font-size:.85em;color:var(--ink)}
+pre.wire{background:var(--code);border:1px solid var(--rule);border-radius:10px;padding:1.1rem 1.25rem;overflow-x:auto;font-size:.82rem;line-height:1.55;margin:0}
+pre.wire .c{color:var(--muted)} pre.wire .t{color:var(--accent);font-weight:500}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:720px){.grid3{grid-template-columns:1fr}}
+.pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.pill{font-size:.8rem;font-family:"JetBrains Mono",monospace;background:var(--code);border:1px solid var(--rule);border-radius:99px;padding:.15em .7em;color:var(--ink)}
+.feat h3{font-size:1.05rem;margin-bottom:.35rem}
+.feat p{color:var(--muted);font-size:.93rem;margin:0}
+.steps{counter-reset:s;display:grid;gap:.75rem;margin-top:1rem}
+.step{display:flex;gap:.9rem;align-items:flex-start}
+.step::before{counter-increment:s;content:counter(s);flex:none;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:.85rem;display:grid;place-items:center;font-family:Inter}
+.step div{font-size:.95rem} .step code{background:var(--code);padding:.05em .35em;border-radius:4px;font-size:.85em}
+footer{border-top:1px solid var(--rule);padding:2.5rem 0 3.5rem;color:var(--muted);font-size:.9rem}
+footer a{color:var(--muted);text-decoration:underline}
+.note{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,var(--rule));border-radius:10px;padding:1rem 1.2rem;font-size:.92rem}
+.draft{display:inline-block;font-size:.72rem;font-weight:600;color:var(--warn);border:1px solid var(--warn);border-radius:99px;padding:.1em .6em;vertical-align:middle;margin-left:.5rem}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <span class="brand">Open<b>Book</b></span>
+  <nav>
+    <a href="#model">Model</a>
+    <a href="#wire">Live wire</a>
+    <a href="#start">Get started</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+<section class="hero" style="border-top:none">
+  <div class="eyebrow">Open · vendor-neutral · <code style="font-family:JetBrains Mono">v0.3.0-draft</code></div>
+  <h1>One open standard for<br>sportsbook data.</h1>
+  <p class="lead">A reference model, a live wire, and controlled vocabularies — the format any sportsbook or feed emits odds in. Read it once, consume every publisher.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/openbook-data-standards/openbook/blob/main/spec/openbook.md">Read the specification</a>
+    <a class="btn ghost" href="#start">Get started</a>
+    <a class="btn ghost" href="https://github.com/openbook-data-standards/openbook">View on GitHub</a>
+  </div>
+  <div class="badges">
+    <span><b>16</b> JSON schemas</span>
+    <span><b>25+</b> market types</span>
+    <span><b>schema.org</b> field names</span>
+    <span><b>Wikidata</b> entity ids</span>
+    <span><b>CC BY 4.0</b></span>
+  </div>
+</section>
+
+<section id="why" style="border-top:none;padding-top:0">
+  <h2>The problem it solves</h2>
+  <p class="sub">Every book and feed ships odds in its own shape, so every consumer writes a bespoke integration per source. No neutral, cross-vendor market taxonomy exists. OpenBook is the shared contract — like GTFS for transit — so a publisher emits once and any consumer reads it with one importer.</p>
+  <div class="grid3">
+    <div class="feat"><h3>Publisher-neutral</h3><p>A sportsbook publishing its own odds, or a feed carrying many books' odds — same format. Every price carries its <em>source</em> and how it was obtained.</p></div>
+    <div class="feat"><h3>Live by default</h3><p>Prices, scores and grades are streamed as diffs with a monotonic sequence — modelled on live transit feeds and MQTT, not a REST endpoint you poll.</p></div>
+    <div class="feat"><h3>Built on real standards</h3><p>ISO 8601, ISO 4217, CLDR territories, Wikidata ids, schema.org field names, JSON Merge Patch — nothing reinvented.</p></div>
+  </div>
+</section>
+
+<section id="model">
+  <h2>Two tiers</h2>
+  <p class="sub">The same split GTFS uses: a durable reference layer, and a live layer of diffs that point back at it.</p>
+  <div class="tiers">
+    <div class="tier ref"><div class="k">Reference — the timetable</div>
+      <h3>Durable, bounded objects</h3>
+      <ul>
+        <li><code>sport</code> → <code>league</code> → <code>season</code> → <code>stage</code> → <code>fixture</code></li>
+        <li><code>participant</code> (teams &amp; individuals) belong to a sport</li>
+        <li><code>market_type</code>, <code>segment</code>, <code>side</code> — shared vocabularies</li>
+        <li>Publisher-own ids + standard facts + Wikidata <code>sameAs</code></li>
+      </ul>
+    </div>
+    <div class="tier live"><div class="k">Live — the wire</div>
+      <h3>Streamed diffs</h3>
+      <ul>
+        <li><code>odds/change</code> — price moves, per source, with provenance</li>
+        <li><code>score/update</code> — status, clock, scores per unit &amp; segment</li>
+        <li><code>market/update</code> — suspend · re-open · void (CAP-style)</li>
+        <li><code>grade/create</code> — the book's grade, once a segment is <em>down</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="wire">
+  <h2>The live wire</h2>
+  <p class="sub">One envelope for everything: object + action, a Merge-Patch <code>changes</code> body, and a topic that says the same thing. Fixture-first, so one subscription follows a whole match.</p>
+  <pre class="wire"><span class="c"># subscribe to everything about one match</span>
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="t">#</span>
+
+<span class="c"># an odds change on that match</span>
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 104871,
+  "publisher": "acme-feeds",
+  "object": "odds", "action": "change",
+  "sport": "soccer", "id": "EVT-88213",
+  "changes": { "markets": [{
+    "marketType": "market:total",
+    "segment": "segment:soccer:full-time",
+    "line": 2.5,
+    "source": "pinnacle", "provenance": "licensed",
+    "outcomes": [{ "side": "over", "odds": 1.95 }]
+  }]}
+}</pre>
+</section>
+
+<section id="vocab">
+  <h2>Controlled vocabularies</h2>
+  <p class="sub">The piece no one else publishes: readable, versioned ids for what can be bet, and how a match is sliced. Short form on the wire, formal <code>urn:openbook:</code> in the spec.</p>
+  <div class="pill-row">
+    <span class="pill">market:moneyline</span><span class="pill">market:spread</span><span class="pill">market:total</span>
+    <span class="pill">market:player-points</span><span class="pill">market:correct-score</span><span class="pill">market:outright-winner</span>
+    <span class="pill">segment:soccer:1st-half</span><span class="pill">segment:baseball:inning-1</span><span class="pill">segment:tennis:set-2</span>
+    <span class="pill">side:over</span><span class="pill">sport:athletics</span>
+  </div>
+  <p style="margin-top:1.25rem"><a href="https://github.com/openbook-data-standards/openbook/tree/main/vocabularies">Browse the vocabularies →</a></p>
+</section>
+
+<section id="start">
+  <h2>Get started</h2>
+  <div class="steps">
+    <div class="step"><div>Read the <a href="https://github.com/openbook-data-standards/openbook/blob/main/spec/openbook.md">specification</a> and the <a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/decisions.md">decision log</a> — every rule and why it exists.</div></div>
+    <div class="step"><div>Validate against the <a href="https://github.com/openbook-data-standards/openbook/tree/main/schema">JSON Schemas</a> (draft 2020-12). Run the checker: <code>python3 tools/validate.py</code>.</div></div>
+    <div class="step"><div>Map your feed in: keep your own ids, add the standard facts, attach a Wikidata <code>sameAs</code> where one exists.</div></div>
+    <div class="step"><div>Publish — a sportsbook's own odds, or a feed carrying many books. Same format either way.</div></div>
+  </div>
+  <p class="note" style="margin-top:1.75rem"><b>Draft status.</b> OpenBook is <code>v0.3.0-draft</code> — the model is settled, the wire may still change before 1.0. Feedback and issues welcome on <a href="https://github.com/openbook-data-standards/openbook/issues">GitHub</a>.</p>
+</section>
+
+<section id="open">
+  <h2>Open spec, private engines</h2>
+  <p class="sub">OpenBook standardises the data contract — schemas and vocabularies — and nothing else. How any book produces, models or prices its data stays entirely its own. The specification is CC&nbsp;BY&nbsp;4.0; implementations are the implementer's, and may be fully proprietary. This is how OpenRTB, FIX and GTFS all reached adoption.</p>
+</section>
+</div>
+
+<footer><div class="wrap">
+  <strong style="font-family:Fraunces,serif;color:var(--ink)">OpenBook Data Standards</strong> · an open standard for sportsbook &amp; gambling data<br>
+  <span style="display:inline-block;margin-top:.6rem">
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a> ·
+    <a href="https://github.com/openbook-data-standards/openbook/blob/main/spec/openbook.md">Spec</a> ·
+    <a href="https://github.com/openbook-data-standards/openbook/blob/main/GOVERNANCE.md">Governance</a> ·
+    <a href="https://github.com/openbook-data-standards/openbook/blob/main/LICENSE">CC BY 4.0</a>
+  </span>
+</div></footer>
+</body>
+</html>
