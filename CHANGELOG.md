@@ -14,7 +14,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Units on every score line** (Q26): `scoreUnit` vocabulary; `primaryUnit` on
   sport and league ruleset.
 - **Fixture-first topics** (Q29): `openbook/v1/<publisher>/<sport>/fixture/<id>/<object>/<action>`.
-- Corrections as errata (`correction: true`), never a second down (Q31, proposed).
+- Corrections as errata (`correction: true`), never a second down (Q31).
 - `vocabularies/segments.md` — per-sport segment ids.
 - Examples: `score.example.json`, `grade.example.json`.
 

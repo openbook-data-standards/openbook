@@ -126,7 +126,7 @@ Rules: `eventStatus: ended` ⇒ every segment `down`. A market whose segment is
 `down` MUST be `closed` or `void`. A `grade` MAY only reference a `down`
 segment.
 
-**Corrections without settling twice** *(proposed, Q31)*: a downed segment's
+**Corrections without settling twice** (Q31): a downed segment's
 `status` and `downAt` never change. A publisher correcting a result sends
 `score/update` with `correction: true` and a `statusReason` — an erratum, not a
 second settlement. Grades built on the old values are `grade/delete`d and
