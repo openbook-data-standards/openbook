@@ -28,13 +28,16 @@ It standardises the data contract only.
 ## 2. Conventions
 
 - **Time** — RFC 3339 (ISO 8601 with an explicit offset), everywhere.
-- **Currency** — ISO 4217. **Language** — ISO 639-1.
+- **Currency** — ISO 4217. Each feed MUST declare **`baseCurrency`** once
+  on the publisher record (and on a full snapshot of that record). Incremental
+  messages do not repeat it. Money is `{amount}` in that currency. Odds are
+  not money. Another currency is another subscription (Q44).
+- **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
 - **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
   Decimal odds only (MUST be strictly greater than 1); American and
-  fractional forms are presentation. When a monetary value appears, it is
-  `{amount, currency}` (`amount` a decimal string, `currency` ISO 4217).
+  fractional forms are presentation.
 - **Text** — UTF-8; names keep their diacritics.
 - **Field names** — camelCase, and **schema.org's name wherever schema.org has
   the property**: `startDate`, `dateModified`, `datePublished`, `alternateName`,
@@ -197,8 +200,10 @@ derived from them. A feed's presentation order is never a fact.
 Each reference document carries `openbookVersion`, `id`, `sequence`,
 `dateModified`; exact types in the schemas.
 
-- **`publisher`** — who transmits, and the `sources[]` the feed carries
-  (`{id, name, kind: sportsbook | exchange | model}`). GTFS `agency.txt`.
+- **`publisher`** — who transmits, `baseCurrency` (ISO 4217, once per feed),
+  and the `sources[]` the feed carries (`{id, name, sourceType: sportsbook |
+  exchange | model}`). GTFS `agency.txt`. Another currency is another
+  subscription (Q44).
 - **`sport`**, **`segment`**, **`marketType`**, **`side`** — shared
   vocabularies ([`../vocabularies/`](../vocabularies/)).
 - **`region`** — `id` = CLDR territory code; `name`, `names{lang}`, `superEvent`,

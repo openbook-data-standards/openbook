@@ -148,8 +148,7 @@
     &quot;money&quot;: {
       &quot;type&quot;: &quot;object&quot;,
       &quot;required&quot;: [
-        &quot;amount&quot;,
-        &quot;currency&quot;
+        &quot;amount&quot;
       ],
       &quot;additionalProperties&quot;: false,
       &quot;patternProperties&quot;: {
@@ -158,14 +157,14 @@
       &quot;properties&quot;: {
         &quot;amount&quot;: {
           &quot;$ref&quot;: &quot;#/$defs/decimalString&quot;
-        },
-        &quot;currency&quot;: {
-          &quot;type&quot;: &quot;string&quot;,
-          &quot;pattern&quot;: &quot;^[A-Z]{3}$&quot;,
-          &quot;description&quot;: &quot;ISO 4217 alpha code.&quot;
         }
       },
-      &quot;description&quot;: &quot;A monetary value. Use this shape whenever money appears (stakes, limits); not a JSON number.&quot;
+      &quot;description&quot;: &quot;A monetary value in the feed&#x27;s baseCurrency (Q44). Incremental messages do not repeat currency. Odds are not money.&quot;
+    },
+    &quot;iso4217&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[A-Z]{3}$&quot;,
+      &quot;description&quot;: &quot;ISO 4217 alpha code (GBP, EUR, USD).&quot;
     },
     &quot;sharedId&quot;: {
       &quot;type&quot;: &quot;string&quot;,
@@ -1281,7 +1280,7 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="publisher"><h2>OpenBook publisher</h2><p>The feed&#x27;s own record — who transmits, and which sources (whose odds) the feed carries. Analogous to GTFS agency.txt.</p><p><a href="schema/publisher.schema.json">publisher.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, sources</code></p><pre>{
+}</pre></section><section class="schema-block" id="publisher"><h2>OpenBook publisher</h2><p>The feed&#x27;s own record — who transmits, and which sources (whose odds) the feed carries. Analogous to GTFS agency.txt.</p><p><a href="schema/publisher.schema.json">publisher.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, baseCurrency, sources</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/publisher.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook publisher&quot;,
@@ -1293,6 +1292,7 @@
     &quot;sequence&quot;,
     &quot;dateModified&quot;,
     &quot;name&quot;,
+    &quot;baseCurrency&quot;,
     &quot;sources&quot;
   ],
   &quot;properties&quot;: {
@@ -1306,6 +1306,10 @@
     },
     &quot;name&quot;: {
       &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;baseCurrency&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/iso4217&quot;,
+      &quot;description&quot;: &quot;This feed&#x27;s accounting currency. Money `{amount}` is in this code. Another currency is another subscription (Q44).&quot;
     },
     &quot;url&quot;: {
       &quot;type&quot;: &quot;string&quot;,

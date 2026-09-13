@@ -29,6 +29,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   ids deferred.
 - **Q43** — off the board is `marketStatus`; outcome removal is Merge Patch
   `null`; `odds: "0"` is not a takedown.
+- **Q44** — `baseCurrency` once per feed; money is `{amount}`; another
+  currency is another subscription.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

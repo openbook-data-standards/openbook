@@ -36,8 +36,7 @@
     "money": {
       "type": "object",
       "required": [
-        "amount",
-        "currency"
+        "amount"
       ],
       "additionalProperties": false,
       "patternProperties": {
@@ -46,14 +45,14 @@
       "properties": {
         "amount": {
           "$ref": "#/$defs/decimalString"
-        },
-        "currency": {
-          "type": "string",
-          "pattern": "^[A-Z]{3}$",
-          "description": "ISO 4217 alpha code."
         }
       },
-      "description": "A monetary value. Use this shape whenever money appears (stakes, limits); not a JSON number."
+      "description": "A monetary value in the feed's baseCurrency (Q44). Incremental messages do not repeat currency. Odds are not money."
+    },
+    "iso4217": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 alpha code (GBP, EUR, USD)."
     },
     "sharedId": {
       "type": "string",

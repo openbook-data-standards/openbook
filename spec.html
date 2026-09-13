@@ -37,9 +37,10 @@
 <h2 id="2-conventions">2. Conventions</h2>
 <ul>
 <li><strong>Time</strong> — RFC 3339 (ISO 8601 with an explicit offset), everywhere.</li>
-<li><strong>Currency</strong> — ISO 4217. <strong>Language</strong> — ISO 639-1.</li>
+<li><strong>Currency</strong> — ISO 4217. Each feed MUST declare <strong><code>baseCurrency</code></strong> once on the publisher record (and on a full snapshot of that record). Incremental messages do not repeat it. Money is <code>{amount}</code> in that currency. Odds are not money. Another currency is another subscription (Q44).</li>
+<li><strong>Language</strong> — ISO 639-1.</li>
 <li><strong>Territory</strong> — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (<code>GB</code>), ISO 3166-2 for sub-national teams (<code>GB-ENG</code>, <code>US-PR</code>), CLDR extras (<code>XK</code>).</li>
-<li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation. When a monetary value appears, it is <code>{amount, currency}</code> (<code>amount</code> a decimal string, <code>currency</code> ISO 4217).</li>
+<li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation.</li>
 <li><strong>Text</strong> — UTF-8; names keep their diacritics.</li>
 <li><strong>Field names</strong> — camelCase, and <strong>schema.org's name wherever schema.org has the property</strong>: <code>startDate</code>, <code>dateModified</code>, <code>datePublished</code>, <code>alternateName</code>, <code>sameAs</code>, <code>identifier</code>, <code>superEvent</code>, <code>organizer</code>, <code>location</code>. Small shared vocabularies are <code>*Type</code> fields: <code>competitionType</code>, <code>participantType</code>, <code>marketType</code>, <code>stageType</code>, <code>sourceType</code>. Documents MAY carry JSON-LD <code>@context</code> / <code>@type</code>, so an OpenBook document is also valid schema.org data.</li>
 <li>Every object and message carries <code>openbookVersion</code>.</li>
@@ -109,7 +110,7 @@ player                      publisher-own; roster membership of a person in a te
 <h2 id="7-objects">7. Objects</h2>
 <p>Each reference document carries <code>openbookVersion</code>, <code>id</code>, <code>sequence</code>, <code>dateModified</code>; exact types in the schemas.</p>
 <ul>
-<li><strong><code>publisher</code></strong> — who transmits, and the <code>sources[]</code> the feed carries (<code>{id, name, kind: sportsbook | exchange | model}</code>). GTFS <code>agency.txt</code>.</li>
+<li><strong><code>publisher</code></strong> — who transmits, <code>baseCurrency</code> (ISO 4217, once per feed), and the <code>sources[]</code> the feed carries (<code>{id, name, sourceType: sportsbook | exchange | model}</code>). GTFS <code>agency.txt</code>. Another currency is another subscription (Q44).</li>
 <li><strong><code>sport</code></strong>, <strong><code>segment</code></strong>, <strong><code>marketType</code></strong>, <strong><code>side</code></strong> — shared vocabularies (<a href="vocabularies/"><code>../vocabularies/</code></a>).</li>
 <li><strong><code>region</code></strong> — <code>id</code> = CLDR territory code; <code>name</code>, <code>names{lang}</code>, <code>superEvent</code>, crosswalks <code>iocCode</code>, <code>fifaCode</code>, <code>sameAs</code>.</li>
 <li><strong><code>league</code></strong> — own id, <code>name</code>, <code>sport</code>, <code>territory</code>, <code>competitionType</code>, optional <code>organizer</code>, <code>ruleset</code>, <code>sameAs</code>.</li>

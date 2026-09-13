@@ -7,6 +7,7 @@
     {"path": "examples/market_update.example.json"},
     {"path": "examples/odds_change.example.json"},
     {"path": "examples/participant.example.json"},
+    {"path": "examples/publisher.example.json"},
     {"path": "examples/score.example.json"},
     {"path": "examples/stage.example.json"}
   ],

@@ -538,3 +538,17 @@ Rejected: requiring odds to be nulled whenever status is not `open`;
 
 **Supersedes:** none of Q33; names how takedown vs tombstone share the
 wire.
+
+## Q44 — Feed has baseCurrency once; money is amount; odds are not money — decided
+
+Each feed **MUST** declare `baseCurrency` (ISO 4217) on the publisher
+record. A full snapshot of that record carries it; incremental messages
+do not. Money is `{amount}` in that currency (same pattern as a last-sale
+tape: currency is the listing, not the tick). Decimal odds are not money
+and never carry currency. Another currency is a **different subscription**.
+
+Rejected: `{amount, currency}` on every money object; inherit-if-omitted
+on the hot path.
+
+**Supersedes:** Q39's `{amount, currency}` money shape. Odds-as-strings
+stands.
