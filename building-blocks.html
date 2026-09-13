@@ -51,8 +51,8 @@
 <ul>
 <li><strong>RFC 7386 JSON Merge Patch</strong> — the semantics of every change message: absent = unchanged, <code>null</code> = removed. Decision Q8.</li>
 <li><strong>OpenAPI 3.1</strong> — describes the pull side (snapshot + <code>since=</code> endpoints).</li>
-<li><strong>AsyncAPI 3.0</strong> — describes the push side (the change streams), the event-driven counterpart to OpenAPI, now standard in enterprise RFPs.</li>
-<li><strong>CloudEvents (CNCF, graduated 2024)</strong> — a candidate envelope for change messages (<code>id</code>, <code>source</code>, <code>type</code>, <code>time</code>, <code>data</code>), with bindings to HTTP, Kafka, MQTT and AMQP already defined. Under consideration; would give OpenBook messages a routing envelope every cloud already understands.</li>
+<li><strong>AsyncAPI 3.0</strong> — describes the push side (the change streams) (<a href="spec/asyncapi.yaml"><code>../spec/asyncapi.yaml</code></a>; Q42).</li>
+<li><strong>CloudEvents</strong> — deferred (Q42). OpenBook's own change envelope is the message; a CloudEvents wrap is not on the wire.</li>
 <li><strong>RFC 9457 Problem Details</strong> — the error format for the pull API.</li>
 <li><strong>WIS2 topic hierarchy</strong> (WMO) — the model for OpenBook's stream-naming grammar: fixed, versioned levels; lowercase, dash-separated, no dots. See Q14.</li>
 <li><strong>CAP 1.2</strong> (OASIS Common Alerting Protocol) — the model for suspension / re-open / void messages: <code>msgType</code> Alert/Update/Cancel plus <code>references</code> to the message being amended. See Q15.</li>

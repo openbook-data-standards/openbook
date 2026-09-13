@@ -511,3 +511,17 @@ Rejected: no two-implementation rule at all; two impls per MINOR; defer
 the ops principles until after 1.0.
 
 **Supersedes:** the last sentence of Q40.
+
+## Q42 — AsyncAPI describes the streams; CloudEvents and DNS ids deferred — decided
+
+The push streams are described in AsyncAPI 3
+([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml)) against the existing
+fixture-first topics and the change envelope. MQTT is still not required.
+
+**Deferred:** wrapping messages as CloudEvents; a DNS-style id namespace
+(would reopen Q4).
+
+Rejected: deferring AsyncAPI as well; shipping CloudEvents in this change.
+
+**Supersedes:** building-blocks “CloudEvents under consideration” — now
+explicitly deferred.

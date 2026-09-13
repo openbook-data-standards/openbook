@@ -21,6 +21,8 @@ NAV = [
 PAGE_MAP = {
     "spec/openbook.md": "spec.html",
     "../spec/openbook.md": "spec.html",
+    "asyncapi.yaml": "spec/asyncapi.yaml",
+    "../spec/asyncapi.yaml": "spec/asyncapi.yaml",
     "docs/decisions.md": "decisions.html",
     "../docs/decisions.md": "decisions.html",
     "docs/building-blocks.md": "building-blocks.html",

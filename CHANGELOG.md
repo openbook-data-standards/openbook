@@ -24,6 +24,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   ([`conformance/`](conformance/)); the Python validator is one runner.
 - **Q41** — GBFS-style ops principles (`ttl`, one discovery URL, co-serve
   versions); two independent implementations freeze 1.0 only.
+- **Q42** — AsyncAPI describes the push streams
+  ([`spec/asyncapi.yaml`](spec/asyncapi.yaml)); CloudEvents and DNS-style
+  ids deferred.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

@@ -1,0 +1,100 @@
+asyncapi: 3.0.0
+info:
+  title: OpenBook live streams
+  version: 0.3.0-draft
+  license:
+    name: CC-BY-4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  description: |
+    Push-side description of OpenBook streams (decision Q42). The prose
+    contract is `spec/openbook.md` §8. MQTT is not required; any transport that
+    can name these topics MAY carry the same envelope. Pull (`since=`) is not
+    described here. Messages are the OpenBook change envelope, not CloudEvents.
+  externalDocs:
+    description: OpenBook specification
+    url: https://openbook-data-standards.github.io/openbook/spec.html
+defaultContentType: application/json
+
+channels:
+  fixtureScoped:
+    address: openbook/{specVersion}/{publisherId}/{sport}/fixture/{fixtureId}/{object}/{action}
+    description: |
+      Everything about one match is under `.../fixture/{fixtureId}/#`.
+      `action` `change` is used only with `object` `odds`.
+    parameters:
+      specVersion:
+        description: Topic-grammar version. `v1` until a breaking change to the grammar.
+      publisherId:
+        description: Publisher's own id.
+      sport:
+        description: Shared sport slug without the `sport:` prefix (`soccer`).
+      fixtureId:
+        description: Publisher's fixture id.
+      object:
+        description: fixture · odds · market · score · grade
+      action:
+        description: snapshot · create · update · delete · change
+    messages:
+      changeEnvelope:
+        $ref: "#/components/messages/changeEnvelope"
+
+  entity:
+    address: openbook/{specVersion}/{publisherId}/{sport}/{object}/{id}/{action}
+    description: Reference-tier objects that are not a fixture.
+    parameters:
+      specVersion:
+        description: Topic-grammar version. `v1` until a breaking change to the grammar.
+      publisherId:
+        description: Publisher's own id.
+      sport:
+        description: Shared sport slug without the `sport:` prefix.
+      object:
+        description: league · season · stage · participant · player
+      id:
+        description: The object's own id.
+      action:
+        description: snapshot · create · update · delete
+    messages:
+      changeEnvelope:
+        $ref: "#/components/messages/changeEnvelope"
+
+  publisherRecord:
+    address: openbook/{specVersion}/{publisherId}/publisher/{action}
+    parameters:
+      specVersion:
+        description: Topic-grammar version. `v1` until a breaking change to the grammar.
+      publisherId:
+        description: Publisher's own id.
+      action:
+        description: snapshot · create · update · delete
+    messages:
+      changeEnvelope:
+        $ref: "#/components/messages/changeEnvelope"
+
+operations:
+  receiveFixtureScoped:
+    action: receive
+    channel:
+      $ref: "#/channels/fixtureScoped"
+    summary: Consume fixture-scoped messages (consumer view).
+  receiveEntity:
+    action: receive
+    channel:
+      $ref: "#/channels/entity"
+    summary: Consume league / season / stage / participant / player messages.
+  receivePublisher:
+    action: receive
+    channel:
+      $ref: "#/channels/publisherRecord"
+    summary: Consume publisher-record messages.
+
+components:
+  messages:
+    changeEnvelope:
+      name: changeEnvelope
+      title: OpenBook change envelope
+      contentType: application/json
+      payload:
+        schemaFormat: application/schema+json;version=2020-12
+        schema:
+          $ref: "../schema/change.schema.json"

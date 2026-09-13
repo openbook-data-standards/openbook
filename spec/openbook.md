@@ -261,6 +261,9 @@ openbook/v1/+/soccer/fixture/+/score/update                    every soccer scor
 openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record changed
 ```
 
+The same grammar is described for tooling in
+[`asyncapi.yaml`](asyncapi.yaml) (Q42). MQTT is not required.
+
 ### 8.1 The change envelope
 One envelope for every message ([`../schema/change.schema.json`](../schema/change.schema.json)):
 `openbookVersion`, `sequence`, `datePublished`, `publisher`, `object`, `action`,

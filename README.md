@@ -56,6 +56,7 @@ openbook/  (this repository)
     decisions.md            ← the design decision log
   spec/
     openbook.md           ← the normative reference specification
+    asyncapi.yaml         ← push streams (Q42); MQTT not required
   schema/                 ← JSON Schema (draft 2020-12), the machine-normative field definitions
     common.schema.json            shared $defs: ids, territory, wikidata, sequence, provenance
     publisher.schema.json         who transmits + the sources the feed carries
