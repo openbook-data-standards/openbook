@@ -18,6 +18,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q88** — optional `throws` and `bats` on `player` (`left` · `right` ·
   `both`).
 - **Q80** — `lineup` live object: fixture-keyed roster `player` ids.
+- Plan: cover the Pinnacle Lines API
+  ([`docs/still-to-do.md`](docs/still-to-do.md)). No wire change in that note.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
