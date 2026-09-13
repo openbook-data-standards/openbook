@@ -6,15 +6,51 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Changed
-- **Q11** — names are decided camelCase, matching the participant schema:
-  `shortName`, `alternateName`, `localName`, `givenName` / `familyName` (not
-  `short_name` / `aliases` / `name_latin`).
+- **Q11** — names on the participant: required `name`; optional `shortName`,
+  `names`, `nameLatin`, `alternateName`. Teams MAY add `location`,
+  `nickname`, `registeredName`, `abbreviation`. Persons MAY add `givenName`
+  / `familyName`; no `abbreviation`. Fixture `participants[]` copies `name`.
+  `player` has no name fields.
+- Logged catalog answers on the wire: league/venue `shortName` /
+  `registeredName`; Place `timeZone`, `latitude`, `longitude`; publisher
+  `inLanguage` / `registeredName`; league `gender` (`men` · `women` ·
+  `mixed` · `open`) and `ageGroup`; fixture `surface`; participant `seed`.
+- **Q88** — optional `throws` and `bats` on `player` (`left` · `right` ·
+  `both`).
+- **Q80** — `lineup` live object: fixture-keyed roster `player` ids.
+
+### Removed
+- `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
+  participant (pre-1.0; Q11). Native script is `nameLatin`.
 
 ### Added
 - **Input bounds** — shared primitives in
   [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
   `maxItems`, so conformant parsers reject oversized input; covered by
   `conformance/invalid/alternate-name-too-long.json`.
+- **Q95** — protocol-fit pass closed; next work is a new area, not more
+  take/don't-take pins from that comparison list
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q94** — no spec-owned multi-publisher index; one discovery URL per
+  publisher (Q49); an aggregator is itself a publisher (Q1)
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q93** — FIX session is not the OpenBook session; Q33/Q46 stand
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q92** — ISO 20022 is not the OpenBook model or encoding; Q13/Q38/Q44
+  stand ([`docs/decisions.md`](docs/decisions.md)).
+- **Q91** — JSON Patch (RFC 6902) is never an alternate change encoding; Merge
+  Patch (Q8) stands ([`docs/decisions.md`](docs/decisions.md)).
+- **Q90** — no GBFS-style data wrapper; discovery stays `{ lastUpdated, ttl,
+  feeds }` at the root (Q49); objects and change messages stay themselves
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q89** — JSON (`application/json`) is the required v1 encoding; additional
+  encodings MAY exist later as optional bindings; scaffolding stays JSON
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Security model** — [`SECURITY.md`](SECURITY.md) states what the standard
+  secures (closed schemas, canonical-id integrity) and what it delegates to
+  deployments (TLS, authn/authz, rate limiting, schema-fetch integrity).
+- **Feed monitoring** — [`spec/openbook.md`](spec/openbook.md) §5.3 names the
+  liveness, continuity, freshness, and conformance signals a consumer alarms on.
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
 - **Q33** — Level L delivery/recovery: all eight guarantees MUST
@@ -87,8 +123,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q85** — optional `seed` on the fixture participant row.
 - **Q86** — generic fixture extras stop at surface + seed; no metadata bag.
 - **Q87** — catalog pass closed; next work is a new area, not more fixture keys.
-- [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q55 remains a
-  later PR (1.0+).
+- [`docs/still-to-do.md`](docs/still-to-do.md) — catalog names/place/`gender`
+  on the wire; Q55 remains a later PR (1.0+).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and
