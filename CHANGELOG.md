@@ -33,6 +33,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   currency is another subscription.
 - **Q45** — priced markets MUST carry `limit`; sport/league defaults
   optional; most specific wins.
+- [`docs/still-to-do.md`](docs/still-to-do.md) — remaining items; next is Q46
+  (Q33 names), not yet decided.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and
