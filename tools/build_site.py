@@ -196,14 +196,19 @@ LOGO = '''<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
     </svg>
     OpenBook'''
 
+def toc_nav(toc: list[tuple[str, str]] | None) -> str:
+    if not toc:
+        return ""
+    links = "".join(
+        f'<a href="#{html.escape(sid, quote=True)}">{html.escape(label)}</a>' for sid, label in toc
+    )
+    return f'<nav class="page-toc"><strong>On this page</strong>{links}</nav>'
 
-def chrome(title: str, body: str, depth: int, current: str) -> str:
+
+def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str, str]] | None = None) -> str:
     root = "../" * depth if depth else "./"
-    nav = []
-    for href, label in NAV:
-        dest = href if href.startswith("http") else root + href
-        here = ' aria-current="page"' if href.rstrip("/") == current.rstrip("/") else ""
-        nav.append(f'<a href="{html.escape(dest, quote=True)}"{here}>{html.escape(label)}</a>')
+    spec_cur = ' aria-current="page"' if current.rstrip("/") == "spec.html" else ""
+    voc_cur = ' aria-current="page"' if current.rstrip("/") == "vocabularies" else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -218,11 +223,11 @@ def chrome(title: str, body: str, depth: int, current: str) -> str:
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
-  <a class="logo" href="{root}">
-    {LOGO}
-  </a>
+  <a class="logo" href="{root}">{LOGO}</a>
   <nav>
-    {"".join(nav)}
+    <a href="{root}spec.html"{spec_cur}>Spec</a>
+    <a href="{root}vocabularies/"{voc_cur}>Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
@@ -241,19 +246,21 @@ def chrome(title: str, body: str, depth: int, current: str) -> str:
 
 def write_md_page(src: Path, dest: Path, depth: int, current: str, source_label: str) -> None:
     html_body, toc = md_to_html(src.read_text(), depth)
-    toc_html = ""
-    if toc:
-        items = "".join(f'<a href="#{html.escape(sid, quote=True)}">{html.escape(label)}</a>' for sid, label in toc)
-        toc_html = f'<nav class="toc"><strong>Contents</strong>{items}</nav>'
     home = "../" * depth if depth else "./"
-    inner = f'<p class="crumb"><a href="{home}">Home</a> · {html.escape(source_label)}</p>{toc_html}<article class="doc">{html_body}</article><p class="source">Source: {html.escape(source_label)}</p>'
+    inner = (
+        f'<p class="crumb"><a href="{home}">Home</a> · {html.escape(source_label)}</p>'
+        f"{toc_nav(toc)}"
+        f'<article class="doc">{html_body}</article>'
+        f'<p class="source">Source: {html.escape(source_label)}</p>'
+    )
     title = re.sub(r"^# ", "", src.read_text().splitlines()[0])
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(chrome(title, inner, depth, current))
+    dest.write_text(chrome(title, inner, depth, current, toc))
 
 
 def schemas_page() -> str:
     blocks = []
+    toc: list[tuple[str, str]] = []
     for path in sorted((ROOT / "schema").glob("*.schema.json")):
         data = json.loads(path.read_text())
         title = data.get("title") or path.name
@@ -261,6 +268,7 @@ def schemas_page() -> str:
         req = ", ".join(data.get("required") or []) or "—"
         rel = f"schema/{path.name}"
         sid = path.name.removesuffix(".schema.json")
+        toc.append((sid, sid))
         blocks.append(
             f'<section class="schema-block" id="{html.escape(sid)}">'
             f"<h2>{html.escape(title)}</h2>"
@@ -269,8 +277,10 @@ def schemas_page() -> str:
             f" · required: <code>{html.escape(req)}</code></p>"
             f"<pre>{html.escape(path.read_text().rstrip())}</pre></section>"
         )
+    toc.append(("examples", "examples"))
     inner = (
         '<p class="crumb"><a href="./">Home</a> · JSON Schemas</p>'
+        f"{toc_nav(toc)}"
         '<article class="doc"><h1>JSON Schemas</h1>'
         "<p>Draft 2020-12. These files are the machine-normative field definitions. "
         "Each <code>$id</code> is this same URL on GitHub Pages.</p>"
@@ -280,7 +290,7 @@ def schemas_page() -> str:
         + "".join(example_blocks())
         + "</article>"
     )
-    return chrome("JSON Schemas", inner, 0, "schemas.html")
+    return chrome("JSON Schemas", inner, 0, "schemas.html", toc)
 
 
 def example_blocks() -> list[str]:
@@ -314,7 +324,7 @@ def vocab_index() -> str:
         (ROOT / "vocabularies/sports.md", "sports", "Sports", "vocabularies/sports.md"),
         (ROOT / "vocabularies/segments.md", "segments", "Segments", "vocabularies/segments.md"),
     ]
-    toc = "".join(f'<a href="#{sid}">{html.escape(label)}</a>' for _, sid, label, _ in sections)
+    toc_items = [(sid, label) for _, sid, label, _ in sections]
     parts = []
     for src, sid, label, source_label in sections:
         body, _ = md_to_html(src.read_text(), 1)
@@ -322,13 +332,13 @@ def vocab_index() -> str:
         parts.append(f'<section id="{html.escape(sid)}">{body}<p class="source">Source: {html.escape(source_label)}</p></section>')
     inner = (
         '<p class="crumb"><a href="../">Home</a> · Vocabularies</p>'
-        f'<nav class="toc"><strong>Contents</strong>{toc}</nav>'
+        f"{toc_nav(toc_items)}"
         '<article class="doc"><h1>Controlled vocabularies</h1>'
         "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments are on this page.</p>"
         + "".join(parts)
         + "</article>"
     )
-    return chrome("Vocabularies", inner, 1, "vocabularies/")
+    return chrome("Vocabularies", inner, 1, "vocabularies/", toc_items)
 
 
 def main() -> None:

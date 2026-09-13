@@ -12,8 +12,7 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
-  <a class="logo" href="./">
-    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
       <rect class="ink" x="2" y="8" width="4" height="4"/>
       <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
       <rect class="ink" x="2" y="20" width="4" height="4"/>
@@ -21,14 +20,15 @@
       <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
       <rect class="ink" x="8" y="20" width="8" height="4"/>
     </svg>
-    OpenBook
-  </a>
+    OpenBook</a>
   <nav>
-    <a href="./spec.html">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    <a href="./spec.html">Spec</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · JSON Schemas</p><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
+<p class="crumb"><a href="./">Home</a> · JSON Schemas</p><nav class="page-toc"><strong>On this page</strong><a href="#change">change</a><a href="#common">common</a><a href="#fixture">fixture</a><a href="#grade">grade</a><a href="#league">league</a><a href="#market">market</a><a href="#market_type">market_type</a><a href="#odds_change">odds_change</a><a href="#participant">participant</a><a href="#player">player</a><a href="#publisher">publisher</a><a href="#region">region</a><a href="#score">score</a><a href="#season">season</a><a href="#sport">sport</a><a href="#stage">stage</a><a href="#examples">examples</a></nav><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook change envelope&quot;,
