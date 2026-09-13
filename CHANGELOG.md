@@ -45,13 +45,14 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   discovery.
 - **Q49** — GBFS-shaped discovery document
   (`schema/discovery.schema.json`).
-- **Q50** — later PR: one-way docs-vs-schema name CI.
+- **Q50** — one-way docs-vs-schema name CI in `tools/validate.py` (spec/docs
+  names MUST exist on a schema; extra schema fields allowed).
 - **Q51** — no consumer-view schema file.
 - **Q52** — CloudEvents wrap never.
 - **Q53** — DNS-style ids never; Q4/Q5 stand.
 - **Q54** — no OpenAPI file in this repo; `since=` / 410 stay in the spec.
 - **Q55** — later PR: schema-diff CI at 1.0+ only.
-- [`docs/still-to-do.md`](docs/still-to-do.md) — Q50 / Q55 remain later PRs.
+- [`docs/still-to-do.md`](docs/still-to-do.md) — Q55 remains a later PR (1.0+).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

@@ -12,6 +12,9 @@ Checks, in order:
        - a document validates against the schema named by its file stem
   5. stream topics follow the fixture-first grammar  openbook/v1/<publisher>/<sport>/fixture/<id>/<object>/<action>
   6. conformance/manifest.json: valid paths exist; invalid cases are rejected
+  7. one-way name check (Q50): camelCase / property-like names in spec and
+     selected docs MUST exist on a schema (properties, $defs, or enums). Extra
+     schema fields are allowed. The decision log is history and is not scanned.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -173,6 +176,70 @@ for case in man["invalid"]:
         ok(f"{case['path']}  (rejected)")
     else:
         fail(f"{case['path']}: expected reject ({case.get('reason', '')}) but validated")
+
+print("7. docs names exist on a schema (Q50, one-way)")
+TICK = re.compile(r"`([^`]+)`")
+IDENT = re.compile(r"^[a-z][a-zA-Z0-9]*$")
+# Not JSON fields: protocol, literals, foreign vocab, ISO 639 examples.
+NOT_FIELDS = frozenset({
+    "http", "https", "urn", "null", "true", "false", "spec", "version",
+    "en", "es", "v1", "since",
+    "homeTeam", "awayTeam", "tools",
+})
+NAME_DOCS = (
+    os.path.join(ROOT, "spec", "openbook.md"),
+    os.path.join(ROOT, "spec", "asyncapi.yaml"),
+    os.path.join(ROOT, "docs", "building-blocks.md"),
+    os.path.join(ROOT, "docs", "still-to-do.md"),
+)
+
+def schema_names():
+    props, enums, defs, stems = set(), set(), set(), set()
+    def walk(o):
+        if isinstance(o, dict):
+            if "$defs" in o and isinstance(o["$defs"], dict):
+                defs.update(o["$defs"].keys())
+            if "properties" in o and isinstance(o["properties"], dict):
+                props.update(k for k in o["properties"] if not str(k).startswith("@"))
+            if "enum" in o and isinstance(o["enum"], list):
+                for x in o["enum"]:
+                    s = str(x)
+                    enums.add(s)
+                    enums.add(s.split(":")[-1])
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    for name, s in schemas.items():
+        stems.add(name.removesuffix(".schema.json"))
+        walk(s)
+    voc_dir = os.path.join(ROOT, "vocabularies")
+    voc_tick = re.compile(r"`((?:sport|market|segment|side):[a-z0-9:-]+)`")
+    for p in glob.glob(os.path.join(voc_dir, "*.md")):
+        for m in voc_tick.finditer(open(p).read()):
+            s = m.group(1)
+            enums.add(s)
+            enums.add(s.split(":")[-1])
+    return props | enums | defs | stems
+
+known_names = schema_names()
+mentioned = {}
+for path in NAME_DOCS:
+    rel = os.path.relpath(path, ROOT)
+    for i, line in enumerate(open(path), 1):
+        for raw in TICK.findall(line):
+            if "." in raw:
+                continue  # file / version ticks, not field names
+            tok = raw.split()[0].split("=")[0].split("/")[0].split(":")[0].rstrip("[]{}(),.*")
+            if IDENT.match(tok) and tok not in NOT_FIELDS:
+                mentioned.setdefault(tok, []).append(f"{rel}:{i}")
+missing_names = sorted(n for n in mentioned if n not in known_names)
+if missing_names:
+    for n in missing_names:
+        fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
+else:
+    ok(f"{len(mentioned)} documented names present on a schema")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")
