@@ -563,3 +563,87 @@ specific wins:** market → league → sport. `odds/change` does not repeat
 Rejected: required on every tick; no inheritance; optional everywhere.
 
 **Supersedes:** none.
+
+## Q46 — Caught-up, heartbeat, stale since — decided
+
+Wire names for Q33 items 4, 5, and 1. No schema in this patch.
+
+- **Caught-up (push MUST).** After snapshot + replay, emit `action: snapshotComplete`. Pull has **no** marker; the HTTP response is the batch.
+- **Heartbeat (push).** Same stream: `action: heartbeat`. Interval on the publisher record as `heartbeatMs`.
+- **Stale `since` (pull).** If `since < R`, HTTP **410** plus RFC 9457 Problem Details pointing at the snapshot URL. Not a 200 with a flag; not a silent full snapshot.
+
+Rejected: infer caught-up like Betfair; CloudEvents-style control object; 200 + `sinceStatus`; transport-only ping; client TestRequest pair (FIX).
+
+**Supersedes:** Q33 consequences (“names … are later items”).
+
+## Q47 — Honest conflation — decided (`conflated`)
+
+Q33 item 6. If intermediate ticks were dropped, the change that skipped them carries `conflated: true`. Sequence still increases.
+
+Rejected: a separate `action: conflated`; infer from a `sequence` hole; publisher-level `conflationMs` only.
+
+**Supersedes:** Q33 item 6 unnamed.
+
+## Q48 — Cache lifetime field — decided (`ttl`)
+
+Q41’s cache lifetime is `ttl`, integer seconds, GBFS.
+
+Rejected: `maxAge`; HTTP `Cache-Control` only; `expiresAt` timestamp.
+
+**Supersedes:** Q41 “field names … are later” for this field.
+
+## Q49 — Discovery document — decided (GBFS-shaped)
+
+Q41’s one discovery URL returns `{ lastUpdated, ttl, feeds: [{ name, url }] }`. Snapshot, stream, and any publisher-hosted API docs are named feeds. The `publisher` object stays identity, not the catalog.
+
+Rejected: extend `publisher` with `feeds[]`; `.well-known/openbook` pointing only at OpenAPI/AsyncAPI; prose-only with no JSON shape.
+
+**Supersedes:** Q41 “discovery document shape are later”.
+
+## Q50 — Docs-vs-schema name CI — decided (later PR, one-way)
+
+If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR. Extra schema fields are allowed. **Later PR**, not this patch. 0.x still uses review until that job exists.
+
+Rejected: never (CONTRIBUTING only); bidirectional (every schema field named in the spec); CI on this patch.
+
+**Supersedes:** Q38 “a CI check … is a later item” by naming the rule.
+
+## Q51 — Consumer-view schema — decided (none)
+
+Q37 stands. One publisher schema stays `additionalProperties: false`. “Ignore unknown” is spec/conformance text. No `*-consumer.schema.json`.
+
+Rejected: a second consumer schema; `additionalProperties: true` for everyone; two `$id`s on one file.
+
+**Supersedes:** Q37 “or use a consumer-view schema”.
+
+## Q52 — CloudEvents wrap — decided (never)
+
+OpenBook’s envelope is enough (`sequence`, `publisher`, `object`/`action`, `datePublished`). No CloudEvents wrap. Not deferred.
+
+Rejected: wrap now; optional MAY wrap; keep deferred until 1.0.
+
+**Supersedes:** Q42 “CloudEvents … deferred”.
+
+## Q53 — DNS-style ids — decided (never)
+
+Q4 and Q5 stand. Two spellings only: `sport:soccer` on the wire, `urn:openbook:sport:soccer` in the spec. No DNS-style third form.
+
+Rejected: defer to 1.0; adopt DNS now; optional third spelling.
+
+**Supersedes:** Q42 “DNS-style id namespace deferred”. Does not reopen Q4 or Q5.
+
+## Q54 — Pull OpenAPI — decided (not in this repo)
+
+No `openapi.yaml` in the spec repo. Spec keeps `since=` and **410**. A publisher who offers HTTP publishes **their own** OpenAPI; discovery lists those URLs.
+
+Rejected: in-repo OpenAPI as the standard pull API; strike `since=`/410 from the spec; non-normative example as the spec.
+
+**Supersedes:** building-blocks’ “OpenAPI 3.1 describes the pull side” as a file we ship. AsyncAPI for **push** (Q42) stands.
+
+## Q55 — Schema-diff CI — decided (later PR, 1.0+ only)
+
+A CI schema-diff gate (required field added, re-type, remove) is a **later PR**, and only for **frozen majors** (1.0+). 0.x-draft may still break (Q32).
+
+Rejected: run it on 0.x now; never; this patch.
+
+**Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
