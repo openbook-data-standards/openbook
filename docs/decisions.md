@@ -260,3 +260,30 @@ camelCase everywhere; schema.org's property name wherever one exists
 `identifier`, `superEvent`, `organizer`, `location`, `eventStatus`); small
 shared vocabularies are `*Type` fields. Documents may carry JSON-LD
 `@context` / `@type`.
+
+## Q23 — Score model — proposed (implemented in v0.3)
+
+One `score` document per fixture (`score/update`): `eventStatus`, the current
+`segment`, a `clock` (`elapsed` / `remaining` in **integer seconds** within the
+current segment, `running`, and a broadcast `display` string), and `scores[]`
+per participant with `total`, `bySegment` (segment id → score) and free
+sport-specific `stats` counts. Racket sports add `server`.
+
+- Considered: clock as a `"45:00"` string only (unparseable across sports);
+  scores as a flat per-participant number only (loses per-segment grading).
+
+## Q24 — Settlement model — proposed (implemented in v0.3)
+
+A `settlement` is the grade of one market for one source: `settlementId`,
+`dateSettled`, `basis` (what it graded on), and `outcomes[]` with a
+`settlementResult` (win · lose · void · half-win · half-lose). **Immutable**: a
+re-settle is a new `settlementId` that names the one it `supersedes`
+(Pinnacle's re-settle-as-new-id semantics); a void is a settlement whose
+outcomes are `void`. Delivered as `settlement/create`; a rollback is
+`settlement/delete`.
+
+## Segments vocabulary — added
+
+`vocabularies/segments.md`: named per-sport slices (`segment:soccer:1st-half`,
+`segment:ice-hockey:regulation`, `segment:motorsport:q3`). Every sport has
+`full-time`; `regulation` where overtime rules make the distinction matter.

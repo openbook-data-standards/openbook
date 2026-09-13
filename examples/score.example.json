@@ -1,0 +1,45 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 105410,
+  "datePublished": "2026-09-19T15:32:08Z",
+  "publisher": "acme-feeds",
+  "object": "score",
+  "action": "update",
+  "sport": "soccer",
+  "id": "EVT-88213",
+  "changes": {
+    "eventStatus": "live",
+    "segment": "segment:soccer:2nd-half",
+    "clock": {
+      "elapsed": 1320,
+      "running": true,
+      "display": "67:00"
+    },
+    "scores": [
+      {
+        "participant": "T-3",
+        "total": 2,
+        "bySegment": {
+          "segment:soccer:1st-half": 1,
+          "segment:soccer:2nd-half": 1
+        },
+        "stats": {
+          "corners": 5,
+          "yellowCards": 1
+        }
+      },
+      {
+        "participant": "T-11",
+        "total": 1,
+        "bySegment": {
+          "segment:soccer:1st-half": 1,
+          "segment:soccer:2nd-half": 0
+        },
+        "stats": {
+          "corners": 3,
+          "yellowCards": 2
+        }
+      }
+    ]
+  }
+}

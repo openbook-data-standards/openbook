@@ -49,3 +49,7 @@ openbook/  (this repository)
     change.schema.json            the one message envelope: object / action, Merge Patch
     league.schema.json            any recurring competition, typed by competition_type
     odds_change.schema.json       payload of odds/change
+    market.schema.json            a fixture's market for one source (snapshot / update document)
+    score.schema.json             live state: status, clock, scores per participant and segment
+    settlement.schema.json        immutable grade of one market; re-settle = new id
+    season.schema.json · player.schema.json
