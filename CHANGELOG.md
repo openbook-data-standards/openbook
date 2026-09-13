@@ -55,6 +55,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q56** — MCP servers and additional plugins are discovery feeds
   (`kind` `mcp` / `plugin`, plus `id` / `schemaUrl`). OpenBook does not wrap
   MCP or ship its schema; payloads stay OpenBook documents.
+- **Q57** — non-normative publisher repo scaffold
+  (`tools/scaffold.py`): discovery + optional MCP/plugin manifests;
+  not a feed engine.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q55 remains a later PR (1.0+).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
