@@ -805,3 +805,12 @@ No height or weight. Shirt `number` and `position` stay on `player`.
 Rejected: optional SI measurements; required.
 
 **Supersedes:** none.
+
+## Q76 — Player position — decided (free string)
+
+`player.position` stays an optional free string. No ISO. Unknown values
+are tolerated (**Q34**). A per-sport vocab is later, not this walk.
+
+Rejected: required shared position ids now; drop the field.
+
+**Supersedes:** none.
