@@ -814,3 +814,11 @@ are tolerated (**Q34**). A per-sport vocab is later, not this walk.
 Rejected: required shared position ids now; drop the field.
 
 **Supersedes:** none.
+
+## Q77 — Team colours / kit — decided (omit)
+
+No kit or colour fields. Presentation, not a price fact.
+
+Rejected: optional hex; required.
+
+**Supersedes:** none of Q62.
