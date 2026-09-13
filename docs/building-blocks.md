@@ -13,7 +13,9 @@ grouped by what each one is used for, with the reason it was chosen.
   alongside as crosswalks: **IOC** (`GBR`, `TPE`), **FIFA** (`ENG`, `SCO`),
   plus a **Wikidata** QID.
 - **ISO 639-1** — language codes for per-language name variants (`en`, `es`).
-- **ISO 4217** — currency (`USD`, `GBP`) on stakes and limits.
+- **ISO 4217** — `baseCurrency` once on the publisher / feed (Q44). Money
+  on that feed is `{amount}` in that code; incremental messages do not
+  repeat currency.
 - **ISO 8601 / RFC 3339** — every timestamp, with an explicit offset
   (`2026-09-19T14:00:00Z`). RFC 3339 is the strict internet profile of ISO 8601
   and is what parsers actually implement. See decision Q9.
@@ -52,12 +54,10 @@ grouped by what each one is used for, with the reason it was chosen.
 - **RFC 7386 JSON Merge Patch** — the semantics of every change message:
   absent = unchanged, `null` = removed. Decision Q8.
 - **OpenAPI 3.1** — describes the pull side (snapshot + `since=` endpoints).
-- **AsyncAPI 3.0** — describes the push side (the change streams), the
-  event-driven counterpart to OpenAPI, now standard in enterprise RFPs.
-- **CloudEvents (CNCF, graduated 2024)** — a candidate envelope for change
-  messages (`id`, `source`, `type`, `time`, `data`), with bindings to HTTP,
-  Kafka, MQTT and AMQP already defined. Under consideration; would give
-  OpenBook messages a routing envelope every cloud already understands.
+- **AsyncAPI 3.0** — describes the push side (the change streams)
+  ([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml); Q42).
+- **CloudEvents** — deferred (Q42). OpenBook's own change envelope is the
+  message; a CloudEvents wrap is not on the wire.
 - **RFC 9457 Problem Details** — the error format for the pull API.
 - **WIS2 topic hierarchy** (WMO) — the model for OpenBook's stream-naming grammar:
   fixed, versioned levels; lowercase, dash-separated, no dots. See Q14.

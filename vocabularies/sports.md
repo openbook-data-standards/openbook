@@ -21,6 +21,9 @@ ids are stable and never re-pointed once published.
 - `sport:esports` — Esports
 - `sport:athletics` — Athletics (track & field)
 - `sport:motorsport` — Motorsport
+- `sport:unknown` — Catch-all when the sport is not in this list (Q34).
+  Publishers SHOULD use this rather than inventing an id. Consumers MUST
+  still accept unrecognised `sport:*` values.
 
 ## Disciplines (sub-sport granularity)
 

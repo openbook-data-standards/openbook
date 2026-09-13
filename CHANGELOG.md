@@ -8,6 +8,44 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ### Added
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
+- **Q33** — Level L delivery/recovery: all eight guarantees MUST
+  ([`spec/openbook.md`](spec/openbook.md) §5.1).
+- **Q34** — catch-all `unknown`/`other`; consumers MUST tolerate unrecognised
+  values.
+- **Q35** — never reuse frozen ids, list-values, or field names;
+  [`vocabularies/deprecated.md`](vocabularies/deprecated.md).
+- **Q36** — machine-readable deprecation (reason, replacement, sunset);
+  removal only at MAJOR after the window.
+- **Q37** — closed when you write, open when you read; `x_` still vendor extras.
+- **Q38** — camelCase is canonical; current-doc snake_case drift fixed.
+- **Q39** — odds and lines are decimal strings; money is
+  `{amount, currency}`; decimal odds only on the wire.
+- **Q40** — conformance gate is spec + schema + language-agnostic corpus
+  ([`conformance/`](conformance/)); the Python validator is one runner.
+- **Q41** — GBFS-style ops principles (`ttl`, one discovery URL, co-serve
+  versions); two independent implementations freeze 1.0 only.
+- **Q42** — AsyncAPI describes the push streams
+  ([`spec/asyncapi.yaml`](spec/asyncapi.yaml)); CloudEvents and DNS-style
+  ids deferred.
+- **Q43** — off the board is `marketStatus`; outcome removal is Merge Patch
+  `null`; `odds: "0"` is not a takedown.
+- **Q44** — `baseCurrency` once per feed; money is `{amount}`; another
+  currency is another subscription.
+- **Q45** — priced markets MUST carry `limit`; sport/league defaults
+  optional; most specific wins.
+- **Q46** — `snapshotComplete` on push; `heartbeat` + `heartbeatMs`; pull stale
+  `since` is HTTP 410 + RFC 9457 (log only; no schema in this patch).
+- **Q47** — `conflated: true` when ticks were dropped.
+- **Q48** — `ttl` seconds (GBFS).
+- **Q49** — GBFS-shaped discovery document.
+- **Q50** — later PR: one-way docs-vs-schema name CI.
+- **Q51** — no consumer-view schema file.
+- **Q52** — CloudEvents wrap never.
+- **Q53** — DNS-style ids never; Q4/Q5 stand.
+- **Q54** — no OpenAPI file in this repo; `since=` / 410 stay in the spec.
+- **Q55** — later PR: schema-diff CI at 1.0+ only.
+- [`docs/still-to-do.md`](docs/still-to-do.md) — recorded through Q55; wire not
+  built.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

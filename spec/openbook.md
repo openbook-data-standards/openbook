@@ -27,11 +27,17 @@ It standardises the data contract only.
 
 ## 2. Conventions
 
-- **Time** — ISO 8601 with an explicit offset, everywhere.
-- **Currency** — ISO 4217. **Language** — ISO 639-1.
+- **Time** — RFC 3339 (ISO 8601 with an explicit offset), everywhere.
+- **Currency** — ISO 4217. Each feed MUST declare **`baseCurrency`** once
+  on the publisher record (and on a full snapshot of that record). Incremental
+  messages do not repeat it. Money is `{amount}` in that currency. Odds are
+  not money. Another currency is another subscription (Q44).
+- **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
-- **Odds** — decimal is canonical; other formats are presentation only.
+- **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
+  Decimal odds only (MUST be strictly greater than 1); American and
+  fractional forms are presentation.
 - **Text** — UTF-8; names keep their diacritics.
 - **Field names** — camelCase, and **schema.org's name wherever schema.org has
   the property**: `startDate`, `dateModified`, `datePublished`, `alternateName`,
@@ -48,7 +54,10 @@ Sports, segments, market types and sides use ids owned by the standard, in two
 equivalent spellings: **short on the wire** (`sport:soccer`, `market:total`,
 `segment:soccer:1st-half`, `side:home`) and **formal in the spec**
 (`urn:openbook:sport:soccer`). Lowercase, `:`-separated, `-` inside a segment.
-Once published, never re-pointed; only deprecated.
+Once published in a frozen version, never re-pointed, removed, or
+**reassigned**; only deprecated (Q35). Field names and list-values take the
+same promise. Deprecation is `name` + `reason` + `replacement` + `sunset`;
+removal from the live set only at MAJOR after the window (Q36).
 
 ### 3.2 Publisher-own ids — the entities
 Leagues, seasons, stages, fixtures, participants, players and venues carry the
@@ -68,7 +77,7 @@ Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
 
 ```
 sport                       shared vocabulary
-  └ league                  publisher-own; competition_type: league · cup · tournament · series · exhibition
+  └ league                  publisher-own; competitionType: league · cup · tournament · series · exhibition
       └ season              publisher-own; one edition (2025-26, F1 2026)
           └ stage           publisher-own; a named slice of a season; RECURSIVE (parent) with stageType
               └ fixture     publisher-own; the priced event
@@ -109,6 +118,46 @@ player                      publisher-own; roster membership of a person in a te
   MAY additionally offer a `since=` pull. `market/snapshot` gives a fixture's
   current prices for initial load and recovery.
 
+### 5.1 Delivery and recovery (Q33)
+
+A publisher that claims Level L MUST honour all eight. These are protocol
+guarantees, not JSON Schema.
+
+1. **Retention horizon `R`.** `since=N` with `N ≥ R` MUST return a complete,
+   ordered delta. `N < R` MUST NOT return a silently incomplete gap; the
+   publisher MUST send the client to a snapshot.
+2. **Snapshot is compaction; Merge Patch `null` is a tombstone.** Replaying
+   snapshot + diffs MUST converge on the same document as a fresh snapshot.
+3. **Ordering is per fixture.** `sequence` is per publisher, strictly
+   increasing, unique. For one fixture, messages appear in increasing
+   sequence. Cross-fixture display order is not guaranteed.
+4. A **caught-up marker** MUST tell a consumer snapshot + replay is finished
+   and it is live.
+5. **Bounded heartbeats.** Quiet is not dead; the publisher MUST declare a
+   maximum silence. Longer than that, the consumer SHOULD treat the feed as
+   down.
+6. If intermediate ticks are dropped, the publisher MUST say so (**honest
+   conflation**).
+7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once
+   / exactly-once). MQTT is not required; other transports MUST name the
+   equivalent.
+8. **Dedup key** is `(publisher, sequence)`. Consumers MUST ignore duplicates.
+
+### 5.2 Feed operations (Q41)
+
+Principles, not field names:
+
+- Live documents SHOULD declare a **cache lifetime** (GBFS `ttl`). The
+  OpenBook field name is a later question.
+- A publisher SHOULD offer **one discovery URL** that lists the feeds it
+  serves. The document shape is a later question.
+- A publisher MAY **co-serve** more than one OpenBook version at the same
+  time (distinct URLs or topics per `openbookVersion`).
+
+Two independent implementations (a producer and a consumer; not
+[`../tools/validate.py`](../tools/validate.py)) are required to **freeze
+1.0**, not to ship a 0.x minor.
+
 ## 5a. Status: three questions, three fields
 
 - **Fixture status** — *is the event happening?* `eventStatus`: scheduled ·
@@ -120,7 +169,10 @@ player                      publisher-own; roster membership of a person in a te
   second down; a validator MUST reject one.
 - **Market status** — *can you bet it?* Per market per source: open ·
   suspended · closed · void, via `market/update`. Grading is not a market
-  status; it is the `grade` object.
+  status; it is the `grade` object. **Taking a market off the board is
+  `marketStatus`** (`suspended` · `closed` · `void`). Last odds MAY stay on
+  the document. Dropping an outcome or price from the snapshot is Merge
+  Patch **`null`** (tombstone). Never a sentinel price (`odds: "0"`).
 
 Rules: `eventStatus: ended` ⇒ every segment `down`. A market whose segment is
 `down` MUST be `closed` or `void`. A `grade` MAY only reference a `down`
@@ -148,15 +200,18 @@ derived from them. A feed's presentation order is never a fact.
 Each reference document carries `openbookVersion`, `id`, `sequence`,
 `dateModified`; exact types in the schemas.
 
-- **`publisher`** — who transmits, and the `sources[]` the feed carries
-  (`{id, name, kind: sportsbook | exchange | model}`). GTFS `agency.txt`.
+- **`publisher`** — who transmits, `baseCurrency` (ISO 4217, once per feed),
+  and the `sources[]` the feed carries (`{id, name, sourceType: sportsbook |
+  exchange | model}`). GTFS `agency.txt`. Another currency is another
+  subscription (Q44).
 - **`sport`**, **`segment`**, **`marketType`**, **`side`** — shared
-  vocabularies ([`../vocabularies/`](../vocabularies/)).
+  vocabularies ([`../vocabularies/`](../vocabularies/)). A sport MAY carry a
+  default `limit`.
 - **`region`** — `id` = CLDR territory code; `name`, `names{lang}`, `superEvent`,
   crosswalks `iocCode`, `fifaCode`, `sameAs`.
 - **`league`** — own id, `name`, `sport`, `territory`, `competitionType`,
-  optional `organizer`, `ruleset`, `sameAs`.
-- **`season`** — own id, `league`, `name`, `start_date`, `end_date`.
+  optional `organizer`, `ruleset`, `sameAs`, optional `limit`.
+- **`season`** — own id, `league`, `name`, `startDate`, `endDate`.
 - **`stage`** — own id, `season`, `name`, `parent`, `stageType` (phase · group ·
   round · matchday · leg · seriesGame), `order`.
 - **`participant`** — own id, `participantType` (team · individual), `sport`,
@@ -171,8 +226,12 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   event's pregame parent), `location` (a schema.org Place).
 - **`market`** — a fixture's market as priced by one source: `fixture`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
-  `licensed` · `observed`), `status`, `outcomes[]` (`side`, `odds`, `line`,
-  `active`). Identity: `(source, fixture, market_type, segment, line)`.
+  `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's
+  `baseCurrency` (required on the market document / snapshot), `outcomes[]`
+  (`side`, `odds`, `line`, `active`). Identity: `(source, fixture, marketType,
+  segment, line)`. Price-only ticks (`odds/change`) do not repeat `limit`
+  unless it changed. **Most specific wins** (Q45): market `limit` → league
+  `limit` → sport `limit`. A priced market MUST resolve to a limit.
 - **`score`** — `fixture`, `eventStatus` (+ `statusReason`), `segments[]`
   (each `segment`, `status`, `downAt`), `currentSegment`, `clock` (`elapsed` /
   `remaining` in integer seconds, `running`, broadcast `display`), and
@@ -215,9 +274,12 @@ openbook/v1/+/soccer/fixture/+/score/update                    every soccer scor
 openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record changed
 ```
 
+The same grammar is described for tooling in
+[`asyncapi.yaml`](asyncapi.yaml) (Q42). MQTT is not required.
+
 ### 8.1 The change envelope
 One envelope for every message ([`../schema/change.schema.json`](../schema/change.schema.json)):
-`openbookVersion`, `sequence`, `timestamp`, `publisher`, `object`, `action`,
+`openbookVersion`, `sequence`, `datePublished`, `publisher`, `object`, `action`,
 `sport`, `id`, and `changes` — a Merge Patch against the object's document
 schema. `odds/change` carries its `markets[]` diff in `changes`
 ([`odds_change.schema.json`](../schema/odds_change.schema.json)).
@@ -226,16 +288,31 @@ and `references[]` to prior sequences, after OASIS CAP 1.2. A void is a `market/
 `grade/create` with `supersedes`.
 
 ## 9. Extensions
-Publishers MAY add `x_`-prefixed fields; consumers MUST ignore unknown ones.
-New sports, segments and market types are proposed to the shared vocabularies.
+Publishers MAY add `x_`-prefixed fields for vendor-specific extras.
+Publishers validate **strictly** against the schema (closed when you write).
+Consumers MUST ignore unrecognized **fields**, whether `x_`-prefixed or added
+in a later minor (Q37). Growable lists (`sport:*`, `market:*`, `segment:*`,
+`side`, `scoreUnit`, `statusReason`) have a catch-all (`unknown` / `other`).
+A conformant consumer MUST accept unrecognised **values** (carry them; MUST
+NOT crash). Adding a market type is not a breaking change (Q34). Publishers
+SHOULD use the catch-all rather than inventing an id; publisher-side
+validation MAY warn. New sports, segments and market types are also proposed
+to the shared vocabularies.
 
 ## 10. Conformance
 - **Level R** — reference documents validate and carry the §6 facts.
 - **Level L** — messages validate, carry `sequence`, reference only known ids,
-  honour Merge Patch semantics, and deliver `odds/change` by push.
+  honour Merge Patch semantics, deliver `odds/change` by push, and honour
+  §5.1.
+
+The gate is this spec, the JSON Schemas, and the language-agnostic corpus
+in [`../conformance/`](../conformance/) (Q40). Valid cases MUST be
+accepted; invalid cases MUST be rejected. [`../tools/validate.py`](../tools/validate.py)
+is one runner, not a language oracle.
 
 ## 11. Versioning
 Semantic versioning per [`../VERSIONING.md`](../VERSIONING.md). `-draft`
 marks an unfrozen version. Within a frozen major, compatibility is
 **FULL-TRANSITIVE** (Q32): minors only add optional fields; the required set
-does not shrink or grow.
+does not shrink or grow. Freezing **1.0** requires two independent
+implementations (Q41).

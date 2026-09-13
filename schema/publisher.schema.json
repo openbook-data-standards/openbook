@@ -10,6 +10,7 @@
     "sequence",
     "dateModified",
     "name",
+    "baseCurrency",
     "sources"
   ],
   "properties": {
@@ -23,6 +24,10 @@
     },
     "name": {
       "type": "string"
+    },
+    "baseCurrency": {
+      "$ref": "common.schema.json#/$defs/iso4217",
+      "description": "This feed's accounting currency. Money `{amount}` is in this code. Another currency is another subscription (Q44)."
     },
     "url": {
       "type": "string",

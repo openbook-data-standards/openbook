@@ -14,9 +14,11 @@ conformant feed.
 - **Implementations** — parsers, pricing engines, trading models, back-office —
   are each implementer's own and stay proprietary. Conformance is about the wire,
   not the engine.
-- Any reference tooling published later (a validator, a conformance suite,
-  reference adapters) will carry a permissive software licence (Apache-2.0) with
-  a royalty-free patent grant, separate from the spec's CC BY licence.
+- The **conformance corpus** ([`conformance/`](conformance/)) is part of the
+  specification (CC BY 4.0): language-agnostic JSON cases any implementation
+  MUST pass. The in-repo validator is one runner, not a language oracle (Q40).
+- Reference libraries and extra runners, if published later, carry Apache-2.0
+  with a royalty-free patent grant, separate from the spec's CC BY licence.
 
 ## How it's governed (staged)
 
@@ -38,6 +40,9 @@ committees:
 - Canonical ids are **stable**: once an id is published it is never re-pointed or
   reused, only deprecated.
 - Versioning follows [`VERSIONING.md`](VERSIONING.md).
+- **1.0 freeze** requires two independent implementations — one producer and
+  one consumer — that are not the in-repo validator (Q41). 0.x minors have
+  no two-implementation gate.
 
 ## What this is not
 

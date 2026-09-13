@@ -364,3 +364,286 @@ change. `additionalProperties: false` on publisher schemas stays until the
 strict-write / open-read question. Pre-1.0 `-draft` may still break.
 
 **Supersedes:** none of Q1–Q31; tightens [`../VERSIONING.md`](../VERSIONING.md).
+
+## Q33 — Delivery and recovery — decided (all eight MUST)
+
+Level L is a contract, not a sketch. A conformant live publisher MUST:
+
+1. Advertise a retention horizon `R`; `since ≥ R` is complete and ordered;
+   `since < R` is not a silent hole (send the client to a snapshot).
+2. Treat snapshot as compaction and Merge Patch `null` as a tombstone;
+   snapshot + diffs MUST converge.
+3. Keep `sequence` unique and increasing per publisher; guarantee order
+   **per fixture**.
+4. Emit a caught-up marker after snapshot + replay.
+5. Bound heartbeats (quiet ≠ dead).
+6. Flag conflation when ticks are dropped.
+7. Use QoS 0/1/2 as vocabulary (MQTT not required).
+8. Dedup on `(publisher, sequence)`.
+
+Rejected: a thinner MUST set; leaving the wire as a sketch.
+
+**Consequences:** names of the caught-up message, heartbeat interval field,
+and how pull returns “too old” are later items. This change is spec prose.
+
+**Supersedes:** Q8/Q17 on snapshot-for-recovery by making completeness
+normative.
+
+## Q34 — Unknown values — decided (catch-all + must-tolerate)
+
+Growable lists get an `unknown` / `other` bucket, **and** a conformant
+consumer MUST accept unrecognised values (carry through; MUST NOT crash).
+Adding a bet type is never a breaking change.
+
+- Vocab: `sport:unknown`, `market:unknown`, `segment:unknown:unknown`.
+- Schema enums: `side` and `scoreUnit` include `other` (`statusReason` already
+  had `other`).
+- Publisher validation MAY still warn on unregistered ids.
+
+Rejected: catch-all but reject surprise values; no catch-all; closed lists
+as breaking.
+
+**Supersedes:** nothing; refines Q4 vocabularies and §9.
+
+## Q35 — Stability — decided (permanent; never reuse)
+
+Once shipped in a **frozen** version, an id, list-value, or field name is never
+removed, moved, re-typed, or **reassigned**. Fixes are new aliases. Retired
+names live in [`../vocabularies/deprecated.md`](../vocabularies/deprecated.md)
+(empty until something is retired). “Never reuse” survives MAJOR: the string
+is not given a new meaning. Removal of a name from the *live* set is a later
+deprecation-window question.
+
+Cautionary: ISO 3166 `CS` reuse. Model: Unicode stability.
+
+Rejected: ids-only; reuse allowed at MAJOR; leave CONTRIBUTING as ids-only.
+
+**Consequences:** pre-1.0 `-draft` is not this promise yet (`VERSIONING.md`).
+
+**Supersedes:** CONTRIBUTING “ids are stable” by extending it to field names
+and list-values.
+
+## Q36 — Deprecation — decided (marker + window; remove only at MAJOR)
+
+A deprecation is machine-readable: `name`, `reason`, `replacement`, `sunset`
+(date). It applies to fields, list-values, and message types. A window is
+REQUIRED; removal from the live set only at MAJOR, and only after sunset.
+The string still MUST NOT be reused (Q35).
+
+The registry is [`../vocabularies/deprecated.json`](../vocabularies/deprecated.json);
+the shape is `common.schema.json#/$defs/deprecation`.
+
+Rejected: CHANGELOG-only; no window; never remove even at MAJOR.
+
+**Supersedes:** the “removal is a later question” line in Q35.
+
+## Q37 — Strict when you write, open when you read — decided
+
+Publishers validate **strictly** against the schema (catch typos). Consumers
+MUST ignore unrecognized **fields**, whether `x_`-prefixed or added in a
+later minor. `x_` remains reserved for vendor-specific extras.
+
+Rejected: closed-when-you-read (MINORs break old validators); open-when-you-write
+(typos become data).
+
+**Consequences:** shipped schemas keep `additionalProperties: false` +
+`patternProperties: ^x_` as the **publisher** contract. A consumer that
+validates incoming documents MUST ignore unknown properties (or use a
+consumer-view schema). That split is the JSON Schema form of Protobuf “skip
+unknown.”
+
+**Supersedes:** §9 / VERSIONING “ignore unknown `x_`-prefixed fields” by
+widening ignore to all unrecognized fields.
+
+## Q38 — Naming is camelCase; remaining snake_case is drift — decided
+
+Canonical field names are camelCase, schema.org where a property exists
+(Q13). Snake_case in prose (`openbook_version`, envelope `timestamp`) is
+drift. A CI check that flags names in docs that are not on a schema is a
+later item.
+
+This change fixes current docs/spec/VERSIONING to match the schemas
+(`openbookVersion`, `datePublished`, `startDate`, `marketType`,
+`competitionType`). Historical Q1–Q31 entries are not rewritten.
+
+Rejected: leave mixed spellings; CI in this same patch.
+
+**Supersedes:** none of Q13; implements it.
+
+## Q39 — Odds, lines and money are decimal strings — decided
+
+Odds and lines are decimal **strings** on the wire, not JSON numbers.
+Money, when it appears, is `{amount, currency}` (`amount` a decimal string,
+`currency` ISO 4217). Decimal odds are the only wire form (MUST be strictly
+greater than 1); American and fractional are display. Times stay RFC 3339 /
+ISO 8601 with an explicit offset (Q9).
+
+Rejected: JSON numbers for odds/lines; deferring the money shape; strings for
+odds only.
+
+**Supersedes:** spec §2 “decimal is canonical” by fixing the JSON type.
+
+## Q40 — Spec, schema, validator, language-agnostic corpus — decided
+
+The conformance gate is the spec, the JSON Schemas, and a
+**language-agnostic corpus** ([`../conformance/`](../conformance/)).
+[`../tools/validate.py`](../tools/validate.py) is one runner. No language
+is an oracle. Reference libraries MAY exist later (Apache-2.0); they are
+not the spec.
+
+Rejected: schema-only / self-certify; a blessed language library as the gate.
+
+**Supersedes:** GOVERNANCE “reference tooling published later” by naming
+the corpus now. The two-implementation 1.0 gate is a later question.
+
+## Q41 — GBFS-style ops; two implementations at 1.0 only — decided
+
+Three feed-ops principles, after GBFS: a cache lifetime (`ttl` in GBFS
+terms), **one discovery URL** that lists a publisher's feeds, and publishers
+MAY **co-serve** more than one OpenBook version. Field names and the
+discovery document shape are later.
+
+Two independent implementations — one **producer** and one **consumer**,
+neither of which is the in-repo runner — are the **1.0 freeze** gate
+only. They are not required per MINOR, and not during 0.x.
+
+Rejected: no two-implementation rule at all; two impls per MINOR; defer
+the ops principles until after 1.0.
+
+**Supersedes:** the last sentence of Q40.
+
+## Q42 — AsyncAPI describes the streams; CloudEvents and DNS ids deferred — decided
+
+The push streams are described in AsyncAPI 3
+([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml)) against the existing
+fixture-first topics and the change envelope. MQTT is still not required.
+
+**Deferred:** wrapping messages as CloudEvents; a DNS-style id namespace
+(would reopen Q4).
+
+Rejected: deferring AsyncAPI as well; shipping CloudEvents in this change.
+
+**Supersedes:** building-blocks “CloudEvents under consideration” — now
+explicitly deferred.
+
+## Q43 — Off the board is marketStatus; tombstone is null; never odds 0 — decided
+
+Taking a market off the board is **`marketStatus`** (`suspended` · `closed`
+· `void`). Last odds MAY remain. Removing an outcome or `odds` field from
+the document is Merge Patch **`null`** (Q33 tombstone). `odds: "0"` is
+not a takedown; it is an illegal price (Q39).
+
+Rejected: requiring odds to be nulled whenever status is not `open`;
+`"0"` as a takedown synonym.
+
+**Supersedes:** none of Q33; names how takedown vs tombstone share the
+wire.
+
+## Q44 — Feed has baseCurrency once; money is amount; odds are not money — decided
+
+Each feed **MUST** declare `baseCurrency` (ISO 4217) on the publisher
+record. A full snapshot of that record carries it; incremental messages
+do not. Money is `{amount}` in that currency (same pattern as a last-sale
+tape: currency is the listing, not the tick). Decimal odds are not money
+and never carry currency. Another currency is a **different subscription**.
+
+Rejected: `{amount, currency}` on every money object; inherit-if-omitted
+on the hot path.
+
+**Supersedes:** Q39's `{amount, currency}` money shape. Odds-as-strings
+stands.
+
+## Q45 — Markets have a limit; most specific wins — decided
+
+A priced market document **MUST** carry `limit` `{amount}` in the feed's
+`baseCurrency`. Sport and league MAY carry a default `limit`. **Most
+specific wins:** market → league → sport. `odds/change` does not repeat
+`limit` unless it changed (same tape rule as Q44).
+
+Rejected: required on every tick; no inheritance; optional everywhere.
+
+**Supersedes:** none.
+
+## Q46 — Caught-up, heartbeat, stale since — decided
+
+Wire names for Q33 items 4, 5, and 1. No schema in this patch.
+
+- **Caught-up (push MUST).** After snapshot + replay, emit `action: snapshotComplete`. Pull has **no** marker; the HTTP response is the batch.
+- **Heartbeat (push).** Same stream: `action: heartbeat`. Interval on the publisher record as `heartbeatMs`.
+- **Stale `since` (pull).** If `since < R`, HTTP **410** plus RFC 9457 Problem Details pointing at the snapshot URL. Not a 200 with a flag; not a silent full snapshot.
+
+Rejected: infer caught-up like Betfair; CloudEvents-style control object; 200 + `sinceStatus`; transport-only ping; client TestRequest pair (FIX).
+
+**Supersedes:** Q33 consequences (“names … are later items”).
+
+## Q47 — Honest conflation — decided (`conflated`)
+
+Q33 item 6. If intermediate ticks were dropped, the change that skipped them carries `conflated: true`. Sequence still increases.
+
+Rejected: a separate `action: conflated`; infer from a `sequence` hole; publisher-level `conflationMs` only.
+
+**Supersedes:** Q33 item 6 unnamed.
+
+## Q48 — Cache lifetime field — decided (`ttl`)
+
+Q41’s cache lifetime is `ttl`, integer seconds, GBFS.
+
+Rejected: `maxAge`; HTTP `Cache-Control` only; `expiresAt` timestamp.
+
+**Supersedes:** Q41 “field names … are later” for this field.
+
+## Q49 — Discovery document — decided (GBFS-shaped)
+
+Q41’s one discovery URL returns `{ lastUpdated, ttl, feeds: [{ name, url }] }`. Snapshot, stream, and any publisher-hosted API docs are named feeds. The `publisher` object stays identity, not the catalog.
+
+Rejected: extend `publisher` with `feeds[]`; `.well-known/openbook` pointing only at OpenAPI/AsyncAPI; prose-only with no JSON shape.
+
+**Supersedes:** Q41 “discovery document shape are later”.
+
+## Q50 — Docs-vs-schema name CI — decided (later PR, one-way)
+
+If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR. Extra schema fields are allowed. **Later PR**, not this patch. 0.x still uses review until that job exists.
+
+Rejected: never (CONTRIBUTING only); bidirectional (every schema field named in the spec); CI on this patch.
+
+**Supersedes:** Q38 “a CI check … is a later item” by naming the rule.
+
+## Q51 — Consumer-view schema — decided (none)
+
+Q37 stands. One publisher schema stays `additionalProperties: false`. “Ignore unknown” is spec/conformance text. No `*-consumer.schema.json`.
+
+Rejected: a second consumer schema; `additionalProperties: true` for everyone; two `$id`s on one file.
+
+**Supersedes:** Q37 “or use a consumer-view schema”.
+
+## Q52 — CloudEvents wrap — decided (never)
+
+OpenBook’s envelope is enough (`sequence`, `publisher`, `object`/`action`, `datePublished`). No CloudEvents wrap. Not deferred.
+
+Rejected: wrap now; optional MAY wrap; keep deferred until 1.0.
+
+**Supersedes:** Q42 “CloudEvents … deferred”.
+
+## Q53 — DNS-style ids — decided (never)
+
+Q4 and Q5 stand. Two spellings only: `sport:soccer` on the wire, `urn:openbook:sport:soccer` in the spec. No DNS-style third form.
+
+Rejected: defer to 1.0; adopt DNS now; optional third spelling.
+
+**Supersedes:** Q42 “DNS-style id namespace deferred”. Does not reopen Q4 or Q5.
+
+## Q54 — Pull OpenAPI — decided (not in this repo)
+
+No `openapi.yaml` in the spec repo. Spec keeps `since=` and **410**. A publisher who offers HTTP publishes **their own** OpenAPI; discovery lists those URLs.
+
+Rejected: in-repo OpenAPI as the standard pull API; strike `since=`/410 from the spec; non-normative example as the spec.
+
+**Supersedes:** building-blocks’ “OpenAPI 3.1 describes the pull side” as a file we ship. AsyncAPI for **push** (Q42) stands.
+
+## Q55 — Schema-diff CI — decided (later PR, 1.0+ only)
+
+A CI schema-diff gate (required field added, re-type, remove) is a **later PR**, and only for **frozen majors** (1.0+). 0.x-draft may still break (Q32).
+
+Rejected: run it on 0.x now; never; this patch.
+
+**Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.

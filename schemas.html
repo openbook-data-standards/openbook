@@ -136,7 +136,41 @@
     &quot;dateTime&quot;: {
       &quot;type&quot;: &quot;string&quot;,
       &quot;format&quot;: &quot;date-time&quot;,
-      &quot;description&quot;: &quot;ISO 8601 with explicit offset.&quot;
+      &quot;description&quot;: &quot;RFC 3339 (ISO 8601 with an explicit offset).&quot;
+    },
+    &quot;decimalString&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$&quot;,
+      &quot;description&quot;: &quot;Exact decimal as a string, not a JSON number (Q39).&quot;
+    },
+    &quot;decimalOdds&quot;: {
+      &quot;type&quot;: [
+        &quot;string&quot;,
+        &quot;null&quot;
+      ],
+      &quot;pattern&quot;: &quot;^(?:1\\.(?:0*[1-9][0-9]*)|[2-9][0-9]*(?:\\.[0-9]+)?|[1-9][0-9]+(?:\\.[0-9]+)?)$&quot;,
+      &quot;description&quot;: &quot;Decimal odds as a decimal string. MUST be strictly greater than 1. null = tombstone (Merge Patch removed). Never a sentinel (not \&quot;0\&quot;). American and fractional forms are presentation only.&quot;
+    },
+    &quot;money&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;amount&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;patternProperties&quot;: {
+        &quot;^x_&quot;: {}
+      },
+      &quot;properties&quot;: {
+        &quot;amount&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/decimalString&quot;
+        }
+      },
+      &quot;description&quot;: &quot;A monetary value in the feed&#x27;s baseCurrency (Q44). Incremental messages do not repeat currency. Odds are not money.&quot;
+    },
+    &quot;iso4217&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[A-Z]{3}$&quot;,
+      &quot;description&quot;: &quot;ISO 4217 alpha code (GBP, EUR, USD).&quot;
     },
     &quot;sharedId&quot;: {
       &quot;type&quot;: &quot;string&quot;,
@@ -211,7 +245,8 @@
         &quot;under&quot;,
         &quot;yes&quot;,
         &quot;no&quot;,
-        &quot;participant&quot;
+        &quot;participant&quot;,
+        &quot;other&quot;
       ]
     },
     &quot;provenance&quot;: {
@@ -228,6 +263,35 @@
         &quot;neutral&quot;
       ],
       &quot;description&quot;: &quot;A fact set by the publisher; never inferred from presentation order.&quot;
+    },
+    &quot;deprecation&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;name&quot;,
+        &quot;reason&quot;,
+        &quot;replacement&quot;,
+        &quot;sunset&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;minLength&quot;: 1
+        },
+        &quot;reason&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;minLength&quot;: 1
+        },
+        &quot;replacement&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;minLength&quot;: 1
+        },
+        &quot;sunset&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;format&quot;: &quot;date&quot;,
+          &quot;description&quot;: &quot;Inclusive last date the name may appear on the live wire; removal only at MAJOR (Q36).&quot;
+        }
+      }
     },
     &quot;jsonld&quot;: {
       &quot;properties&quot;: {
@@ -292,7 +356,8 @@
         &quot;suspended&quot;,
         &quot;closed&quot;,
         &quot;void&quot;
-      ]
+      ],
+      &quot;description&quot;: &quot;Can you bet it (Q43). Off the board is status, not a sentinel price. Last odds MAY remain when not open.&quot;
     },
     &quot;competitionType&quot;: {
       &quot;enum&quot;: [
@@ -393,7 +458,8 @@
         &quot;rounds&quot;,
         &quot;knockdowns&quot;,
         &quot;aces&quot;,
-        &quot;faults&quot;
+        &quot;faults&quot;,
+        &quot;other&quot;
       ],
       &quot;description&quot;: &quot;What a score line counts (Q26). The sport/league declares its primaryUnit.&quot;
     },
@@ -644,7 +710,7 @@
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
     },
     &quot;line&quot;: {
-      &quot;type&quot;: &quot;number&quot;
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
     },
     &quot;basis&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;,
@@ -675,7 +741,7 @@
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
           },
           &quot;line&quot;: {
-            &quot;type&quot;: &quot;number&quot;
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
           },
           &quot;result&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/gradeResult&quot;
@@ -788,6 +854,10 @@
         }
       }
     },
+    &quot;limit&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+      &quot;description&quot;: &quot;Default stake/liability cap for this league (Q45). Overrides sport; overridden by market.&quot;
+    },
     &quot;sameAs&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
     },
@@ -799,7 +869,7 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, outcomes</code></p><pre>{
+}</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, limit, outcomes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/market.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook market&quot;,
@@ -814,6 +884,7 @@
     &quot;source&quot;,
     &quot;provenance&quot;,
     &quot;status&quot;,
+    &quot;limit&quot;,
     &quot;outcomes&quot;
   ],
   &quot;properties&quot;: {
@@ -840,7 +911,7 @@
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
     },
     &quot;line&quot;: {
-      &quot;type&quot;: &quot;number&quot;
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
     },
     &quot;source&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
@@ -854,6 +925,10 @@
     &quot;isMain&quot;: {
       &quot;type&quot;: &quot;boolean&quot;,
       &quot;description&quot;: &quot;The main line among alternates.&quot;
+    },
+    &quot;limit&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+      &quot;description&quot;: &quot;Max stake/liability in the feed&#x27;s baseCurrency (Q45). Required on the market document; omitted on a patch unless it changed.&quot;
     },
     &quot;outcomes&quot;: {
       &quot;type&quot;: &quot;array&quot;,
@@ -876,15 +951,10 @@
             &quot;description&quot;: &quot;Required when side = participant.&quot;
           },
           &quot;odds&quot;: {
-            &quot;type&quot;: [
-              &quot;number&quot;,
-              &quot;null&quot;
-            ],
-            &quot;exclusiveMinimum&quot;: 1.0,
-            &quot;description&quot;: &quot;Decimal. null = removed.&quot;
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalOdds&quot;
           },
           &quot;line&quot;: {
-            &quot;type&quot;: &quot;number&quot;
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
           },
           &quot;active&quot;: {
             &quot;type&quot;: &quot;boolean&quot;
@@ -979,11 +1049,11 @@
   &quot;patternProperties&quot;: {
     &quot;^x_&quot;: {}
   }
-}</pre></section><section class="schema-block" id="odds_change"><h2>OpenBook odds/change payload</h2><p>The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).</p><p><a href="schema/odds_change.schema.json">odds_change.schema.json</a> · required: <code>markets</code></p><pre>{
+}</pre></section><section class="schema-block" id="odds_change"><h2>OpenBook odds/change payload</h2><p>The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line).</p><p><a href="schema/odds_change.schema.json">odds_change.schema.json</a> · required: <code>markets</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/odds_change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook odds/change payload&quot;,
-  &quot;description&quot;: &quot;The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).&quot;,
+  &quot;description&quot;: &quot;The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line).&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;markets&quot;
@@ -1005,11 +1075,15 @@
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
           },
           &quot;line&quot;: {
-            &quot;type&quot;: &quot;number&quot;,
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;,
             &quot;description&quot;: &quot;Handicap / total value for the market, when applicable.&quot;
           },
           &quot;status&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketStatus&quot;
+          },
+          &quot;limit&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+            &quot;description&quot;: &quot;Present on a tick only when the limit changed (Merge Patch).&quot;
           },
           &quot;source&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
@@ -1035,15 +1109,10 @@
                   &quot;description&quot;: &quot;Required when side = participant.&quot;
                 },
                 &quot;odds&quot;: {
-                  &quot;type&quot;: [
-                    &quot;number&quot;,
-                    &quot;null&quot;
-                  ],
-                  &quot;exclusiveMinimum&quot;: 1.0,
-                  &quot;description&quot;: &quot;Decimal odds. null = removed (Merge Patch).&quot;
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalOdds&quot;
                 },
                 &quot;line&quot;: {
-                  &quot;type&quot;: &quot;number&quot;
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
                 },
                 &quot;active&quot;: {
                   &quot;type&quot;: &quot;boolean&quot;
@@ -1230,7 +1299,7 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="publisher"><h2>OpenBook publisher</h2><p>The feed&#x27;s own record — who transmits, and which sources (whose odds) the feed carries. Analogous to GTFS agency.txt.</p><p><a href="schema/publisher.schema.json">publisher.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, sources</code></p><pre>{
+}</pre></section><section class="schema-block" id="publisher"><h2>OpenBook publisher</h2><p>The feed&#x27;s own record — who transmits, and which sources (whose odds) the feed carries. Analogous to GTFS agency.txt.</p><p><a href="schema/publisher.schema.json">publisher.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, baseCurrency, sources</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/publisher.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook publisher&quot;,
@@ -1242,6 +1311,7 @@
     &quot;sequence&quot;,
     &quot;dateModified&quot;,
     &quot;name&quot;,
+    &quot;baseCurrency&quot;,
     &quot;sources&quot;
   ],
   &quot;properties&quot;: {
@@ -1255,6 +1325,10 @@
     },
     &quot;name&quot;: {
       &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;baseCurrency&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/iso4217&quot;,
+      &quot;description&quot;: &quot;This feed&#x27;s accounting currency. Money `{amount}` is in this code. Another currency is another subscription (Q44).&quot;
     },
     &quot;url&quot;: {
       &quot;type&quot;: &quot;string&quot;,
@@ -1586,6 +1660,10 @@
     },
     &quot;primaryUnit&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;
+    },
+    &quot;limit&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+      &quot;description&quot;: &quot;Default stake/liability cap for this sport (Q45). Overridden by a more specific league or market limit.&quot;
     }
   },
   &quot;patternProperties&quot;: {
@@ -1747,7 +1825,7 @@
     &quot;segment&quot;: &quot;segment:soccer:1st-half&quot;,
     &quot;source&quot;: &quot;acme-book&quot;,
     &quot;marketType&quot;: &quot;market:total&quot;,
-    &quot;line&quot;: 1.5,
+    &quot;line&quot;: &quot;1.5&quot;,
     &quot;basis&quot;: &quot;goals&quot;,
     &quot;basedOn&quot;: 105388,
     &quot;dateGraded&quot;: &quot;2026-09-19T14:48:02Z&quot;,
@@ -1762,6 +1840,34 @@
       }
     ]
   }
+}</pre></section><section class="schema-block" id="market.example"><h2>market.example.json</h2><p><a href="examples/market.example.json">examples/market.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 104880,
+  &quot;dateModified&quot;: &quot;2026-09-19T14:05:00Z&quot;,
+  &quot;fixture&quot;: &quot;EVT-88213&quot;,
+  &quot;marketType&quot;: &quot;market:spread&quot;,
+  &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+  &quot;line&quot;: &quot;-0.5&quot;,
+  &quot;source&quot;: &quot;bigbook&quot;,
+  &quot;provenance&quot;: &quot;observed&quot;,
+  &quot;status&quot;: &quot;open&quot;,
+  &quot;limit&quot;: {
+    &quot;amount&quot;: &quot;500&quot;
+  },
+  &quot;outcomes&quot;: [
+    {
+      &quot;side&quot;: &quot;home&quot;,
+      &quot;odds&quot;: &quot;1.91&quot;,
+      &quot;line&quot;: &quot;-0.5&quot;,
+      &quot;active&quot;: true
+    },
+    {
+      &quot;side&quot;: &quot;away&quot;,
+      &quot;odds&quot;: &quot;1.95&quot;,
+      &quot;line&quot;: &quot;0.5&quot;,
+      &quot;active&quot;: true
+    }
+  ]
 }</pre></section><section class="schema-block" id="market_update.example"><h2>market_update.example.json</h2><p><a href="examples/market_update.example.json">examples/market_update.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 105330,
@@ -1779,7 +1885,7 @@
   &quot;changes&quot;: {
     &quot;marketType&quot;: &quot;market:spread&quot;,
     &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
-    &quot;line&quot;: -0.5,
+    &quot;line&quot;: &quot;-0.5&quot;,
     &quot;source&quot;: &quot;bigbook&quot;,
     &quot;status&quot;: &quot;open&quot;
   }
@@ -1803,24 +1909,24 @@
         &quot;outcomes&quot;: [
           {
             &quot;side&quot;: &quot;home&quot;,
-            &quot;odds&quot;: 2.1
+            &quot;odds&quot;: &quot;2.1&quot;
           },
           {
             &quot;side&quot;: &quot;away&quot;,
-            &quot;odds&quot;: 3.25
+            &quot;odds&quot;: &quot;3.25&quot;
           }
         ]
       },
       {
         &quot;marketType&quot;: &quot;market:total&quot;,
         &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
-        &quot;line&quot;: 2.5,
+        &quot;line&quot;: &quot;2.5&quot;,
         &quot;source&quot;: &quot;acme-book&quot;,
         &quot;provenance&quot;: &quot;official&quot;,
         &quot;outcomes&quot;: [
           {
             &quot;side&quot;: &quot;over&quot;,
-            &quot;odds&quot;: 1.95
+            &quot;odds&quot;: &quot;1.95&quot;
           }
         ]
       },
@@ -1833,12 +1939,12 @@
         &quot;outcomes&quot;: [
           {
             &quot;side&quot;: &quot;home&quot;,
-            &quot;line&quot;: -0.5,
+            &quot;line&quot;: &quot;-0.5&quot;,
             &quot;active&quot;: false
           },
           {
             &quot;side&quot;: &quot;away&quot;,
-            &quot;line&quot;: 0.5,
+            &quot;line&quot;: &quot;0.5&quot;,
             &quot;active&quot;: false
           }
         ]
@@ -1865,6 +1971,26 @@
     &quot;Carlos Alcaraz Garfia&quot;
   ],
   &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q63155283&quot;
+}</pre></section><section class="schema-block" id="publisher.example"><h2>publisher.example.json</h2><p><a href="examples/publisher.example.json">examples/publisher.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;id&quot;: &quot;acme-feeds&quot;,
+  &quot;sequence&quot;: 1,
+  &quot;dateModified&quot;: &quot;2026-09-19T12:00:00Z&quot;,
+  &quot;name&quot;: &quot;Acme Feeds&quot;,
+  &quot;baseCurrency&quot;: &quot;GBP&quot;,
+  &quot;url&quot;: &quot;https://example.invalid/acme-feeds&quot;,
+  &quot;sources&quot;: [
+    {
+      &quot;id&quot;: &quot;acme-book&quot;,
+      &quot;name&quot;: &quot;Acme Book&quot;,
+      &quot;sourceType&quot;: &quot;sportsbook&quot;
+    },
+    {
+      &quot;id&quot;: &quot;pinnacle&quot;,
+      &quot;name&quot;: &quot;Pinnacle&quot;,
+      &quot;sourceType&quot;: &quot;sportsbook&quot;
+    }
+  ]
 }</pre></section><section class="schema-block" id="score.example"><h2>score.example.json</h2><p><a href="examples/score.example.json">examples/score.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 105410,

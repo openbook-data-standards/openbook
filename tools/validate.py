@@ -11,6 +11,7 @@ Checks, in order:
          as a Merge Patch (required relaxed) for update/change
        - a document validates against the schema named by its file stem
   5. stream topics follow the fixture-first grammar  openbook/v1/<publisher>/<sport>/fixture/<id>/<object>/<action>
+  6. conformance/manifest.json: valid paths exist; invalid cases are rejected
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -87,29 +88,48 @@ def for_changes(schema, full):
     else: s.pop("required", None)
     return s
 
-print("4. examples validate")
 change_v = validator(schemas["change.schema.json"])
-for path in sorted(glob.glob(f"{EXAMPLE_DIR}/*.json")):
-    name = os.path.basename(path); doc = json.load(open(path))
+
+def instance_errors(path):
+    """Schema errors for one document or message. Empty list = valid."""
+    name = os.path.basename(path)
+    doc = json.load(open(path))
+    out = []
     if "object" in doc and "action" in doc:
         errs = sorted(change_v.iter_errors(doc), key=lambda e: e.path)
-        for e in errs: fail(f"{name}: envelope: {e.message} at /{'/'.join(map(str,e.path))}")
+        for e in errs:
+            out.append(f"{name}: envelope: {e.message} at /{'/'.join(map(str, e.path))}")
         target = OBJECT_SCHEMA.get(doc["object"])
         if target and f"{target}.schema.json" not in schemas:
-            fail(f"{name}: no schema for object '{doc['object']}' (expected schema/{target}.schema.json)"); target = None
-        if target:
+            out.append(f"{name}: no schema for object '{doc['object']}' (expected schema/{target}.schema.json)")
+            target = None
+        if target and "changes" in doc:
             s = schemas[f"{target}.schema.json"]
             full = doc["action"] in ("snapshot", "create") and doc["object"] != "odds"
             v = validator(for_changes(s, full))
             for e in sorted(v.iter_errors(doc["changes"]), key=lambda e: e.path):
-                fail(f"{name}: changes vs {target} ({'full' if full else 'patch'}): {e.message} at /changes/{'/'.join(map(str,e.path))}")
-        if not errs: ok(f"{name}  ({doc['object']}/{doc['action']})")
+                out.append(f"{name}: changes vs {target} ({'full' if full else 'patch'}): {e.message} at /changes/{'/'.join(map(str, e.path))}")
     else:
-        stem = name.split(".")[0]; s = schemas.get(f"{stem}.schema.json")
-        if not s: fail(f"{name}: no schema for document type '{stem}'"); continue
-        errs = sorted(validator(s).iter_errors(doc), key=lambda e: e.path)
-        for e in errs: fail(f"{name}: {e.message} at /{'/'.join(map(str,e.path))}")
-        if not errs: ok(f"{name}  (document: {stem})")
+        stem = name.split(".")[0]
+        s = schemas.get(f"{stem}.schema.json")
+        if not s:
+            return [f"{name}: no schema for document type '{stem}'"]
+        for e in sorted(validator(s).iter_errors(doc), key=lambda e: e.path):
+            out.append(f"{name}: {e.message} at /{'/'.join(map(str, e.path))}")
+    return out
+
+print("4. examples validate")
+for path in sorted(glob.glob(f"{EXAMPLE_DIR}/*.json")):
+    name = os.path.basename(path)
+    errs = instance_errors(path)
+    for e in errs:
+        fail(e)
+    if not errs:
+        doc = json.load(open(path))
+        if "object" in doc and "action" in doc:
+            ok(f"{name}  ({doc['object']}/{doc['action']})")
+        else:
+            ok(f"{name}  (document: {name.split('.')[0]})")
 
 print("5. topic grammar")
 objects = set(schemas["common.schema.json"]["$defs"]["objectType"]["enum"])
@@ -131,6 +151,26 @@ topics = sys.argv[sys.argv.index("--topic")+1:] if "--topic" in sys.argv else [
 ]
 for t in topics:
     err = check_topic(t); fail(f"topic {t}: {err}") if err else ok(t)
+
+print("6. conformance corpus")
+man_path = os.path.join(ROOT, "conformance", "manifest.json")
+man = json.load(open(man_path))
+for case in man["valid"]:
+    p = os.path.join(ROOT, case["path"])
+    if not os.path.isfile(p):
+        fail(f"manifest valid missing: {case['path']}")
+    else:
+        ok(f"valid {case['path']}")
+for case in man["invalid"]:
+    p = os.path.join(ROOT, case["path"])
+    if not os.path.isfile(p):
+        fail(f"manifest invalid missing: {case['path']}")
+        continue
+    errs = instance_errors(p)
+    if errs:
+        ok(f"{case['path']}  (rejected)")
+    else:
+        fail(f"{case['path']}: expected reject ({case.get('reason', '')}) but validated")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

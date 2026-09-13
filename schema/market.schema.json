@@ -13,6 +13,7 @@
     "source",
     "provenance",
     "status",
+    "limit",
     "outcomes"
   ],
   "properties": {
@@ -39,7 +40,7 @@
       "$ref": "common.schema.json#/$defs/sharedId"
     },
     "line": {
-      "type": "number"
+      "$ref": "common.schema.json#/$defs/decimalString"
     },
     "source": {
       "$ref": "common.schema.json#/$defs/ownId"
@@ -53,6 +54,10 @@
     "isMain": {
       "type": "boolean",
       "description": "The main line among alternates."
+    },
+    "limit": {
+      "$ref": "common.schema.json#/$defs/money",
+      "description": "Max stake/liability in the feed's baseCurrency (Q45). Required on the market document; omitted on a patch unless it changed."
     },
     "outcomes": {
       "type": "array",
@@ -75,15 +80,10 @@
             "description": "Required when side = participant."
           },
           "odds": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "exclusiveMinimum": 1.0,
-            "description": "Decimal. null = removed."
+            "$ref": "common.schema.json#/$defs/decimalOdds"
           },
           "line": {
-            "type": "number"
+            "$ref": "common.schema.json#/$defs/decimalString"
           },
           "active": {
             "type": "boolean"

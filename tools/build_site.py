@@ -18,6 +18,8 @@ NAV = [
 PAGE_MAP = {
     "spec/openbook.md": "spec.html",
     "../spec/openbook.md": "spec.html",
+    "asyncapi.yaml": "spec/asyncapi.yaml",
+    "../spec/asyncapi.yaml": "spec/asyncapi.yaml",
     "docs/decisions.md": "decisions.html",
     "../docs/decisions.md": "decisions.html",
     "docs/building-blocks.md": "building-blocks.html",
@@ -44,6 +46,10 @@ PAGE_MAP = {
     "schema/": "schemas.html",
     "../examples/": "schemas.html#examples",
     "examples/": "schemas.html#examples",
+    "../conformance/": "conformance/",
+    "conformance/": "conformance/",
+    "../conformance/README.md": "conformance/",
+    "conformance/README.md": "conformance/",
 }
 
 
@@ -340,6 +346,7 @@ def main() -> None:
     write_redirect(ROOT / "vocabularies/segments.html", "./#segments", "vocabularies/#segments")
     (ROOT / "schemas.html").write_text(schemas_page())
     write_redirect(ROOT / "examples.html", "./schemas.html#examples", "schemas.html#examples")
+    write_md_page(ROOT / "conformance/README.md", ROOT / "conformance/index.html", 1, "conformance/", "conformance/README.md")
     (ROOT / ".nojekyll").write_text("")
     print("wrote HTML pages")
 

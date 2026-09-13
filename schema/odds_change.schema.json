@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/odds_change.schema.json",
   "title": "OpenBook odds/change payload",
-  "description": "The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).",
+  "description": "The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line).",
   "type": "object",
   "required": [
     "markets"
@@ -24,11 +24,15 @@
             "$ref": "common.schema.json#/$defs/sharedId"
           },
           "line": {
-            "type": "number",
+            "$ref": "common.schema.json#/$defs/decimalString",
             "description": "Handicap / total value for the market, when applicable."
           },
           "status": {
             "$ref": "common.schema.json#/$defs/marketStatus"
+          },
+          "limit": {
+            "$ref": "common.schema.json#/$defs/money",
+            "description": "Present on a tick only when the limit changed (Merge Patch)."
           },
           "source": {
             "$ref": "common.schema.json#/$defs/ownId",
@@ -54,15 +58,10 @@
                   "description": "Required when side = participant."
                 },
                 "odds": {
-                  "type": [
-                    "number",
-                    "null"
-                  ],
-                  "exclusiveMinimum": 1.0,
-                  "description": "Decimal odds. null = removed (Merge Patch)."
+                  "$ref": "common.schema.json#/$defs/decimalOdds"
                 },
                 "line": {
-                  "type": "number"
+                  "$ref": "common.schema.json#/$defs/decimalString"
                 },
                 "active": {
                   "type": "boolean"

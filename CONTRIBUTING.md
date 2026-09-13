@@ -13,18 +13,23 @@ the market taxonomy no one else has published.
    prose in [`spec/openbook.md`](spec/openbook.md) in the same change; the schema
    is machine-normative and must not drift from the prose.
 3. Add or update an example in [`examples/`](examples/) that validates against the
-   changed schema.
+   changed schema, and list it in [`conformance/manifest.json`](conformance/manifest.json).
+   If the change makes a previously legal document illegal, add an **invalid**
+   case under `conformance/invalid/`.
 4. Note the change in [`CHANGELOG.md`](CHANGELOG.md) under "Unreleased".
 
 ## Rules that don't bend
 
-- **Ids are stable.** Never re-point or reuse a published canonical id; deprecate
-  instead.
+- **Ids, list-values and field names are stable** once shipped in a frozen
+  version (Q35). Never re-point or reuse a published name; deprecate instead.
+  Retired names go in [`vocabularies/deprecated.md`](vocabularies/deprecated.md).
 - **No abbreviations** in canonical names (`reference_sport`, not `ref_sport`).
 - **No provider ids as canonical ids.** A provider mapping goes on the `source`
   record.
-- **Country is ISO 3166, time is ISO 8601, currency is ISO 4217, odds are
-  decimal.** Don't reinvent a primitive that already has a standard.
+- **Country is ISO 3166, time is RFC 3339 / ISO 8601, currency is ISO 4217
+  (`baseCurrency` once per feed), odds and lines are decimal strings, money
+  is `{amount}` in that currency.** Don't reinvent a primitive that already
+  has a standard.
 - **Segments are separate objects**, never encoded into a market id.
 
 ## Style

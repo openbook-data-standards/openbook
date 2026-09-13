@@ -98,6 +98,10 @@
         }
       }
     },
+    "limit": {
+      "$ref": "common.schema.json#/$defs/money",
+      "description": "Default stake/liability cap for this league (Q45). Overrides sport; overridden by market."
+    },
     "sameAs": {
       "$ref": "common.schema.json#/$defs/sameAs"
     },

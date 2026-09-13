@@ -73,12 +73,13 @@
 <ul>
 <li><code>market:same-game-parlay</code> — Same-Game Parlay · composite · (references other market outcomes)</li>
 <li><code>market:parlay</code> — Parlay / Accumulator · composite · (cross-fixture legs)</li>
+<li><code>market:unknown</code> — Catch-all when the market type is not in this list (Q34). Consumers MUST accept unrecognised <code>market:*</code> values.</li>
 </ul>
 <hr>
 <h3 id="notes">Notes</h3>
 <ul>
 <li><strong>Shape</strong> drives how a client renders and how a settlement grades — a <code>handicap</code> market always has a <code>line</code>; an <code>over-under</code> always has <code>over</code>/<code>under</code> outcomes and a <code>line</code>; <code>n-way</code> enumerates <code>participant</code> outcomes.</li>
-<li>A concrete priced selection is identified by <code>(fixture, market_type, segment, line, side)</code> — see the odds_change schema.</li>
+<li>A concrete priced selection is identified by <code>(fixture, marketType, segment, line, side)</code> — see the odds_change schema.</li>
 <li>This list is deliberately small in v0.1. It grows through <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>, with stable ids.</li>
 </ul><p class="source">Source: vocabularies/market_types.md</p></section><section id="sports"><h2 id="openbook-controlled-vocabulary-sports">OpenBook controlled vocabulary — sports</h2>
 <p>Version <code>0.1.0-draft</code>. Each entry is a canonical <code>sport:*</code> id and its display name. Additions go through the process in <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>; ids are stable and never re-pointed once published.</p>
@@ -100,6 +101,7 @@
 <li><code>sport:esports</code> — Esports</li>
 <li><code>sport:athletics</code> — Athletics (track & field)</li>
 <li><code>sport:motorsport</code> — Motorsport</li>
+<li><code>sport:unknown</code> — Catch-all when the sport is not in this list (Q34). Publishers SHOULD use this rather than inventing an id. Consumers MUST still accept unrecognised <code>sport:*</code> values.</li>
 </ul>
 <h2 id="disciplines-sub-sport-granularity">Disciplines (sub-sport granularity)</h2>
 <p>Some sports carry disciplines beneath them. Athletics is the worked example — the point is that OpenBook names them readably, where a source like the Olympic Data Feed uses opaque codes (<code>ATH</code>, <code>ATM012</code>):</p>
@@ -141,6 +143,7 @@
 <h2 id="athletics-segment-athletics">Athletics — <code>segment:athletics:</code></h2>
 <p><code>final</code> · <code>heat-&lt;n&gt;</code> · <code>semi-final-&lt;n&gt;</code> · <code>attempt-&lt;n&gt;</code> (jumps/throws) · <code>lap-&lt;n&gt;</code></p>
 <hr>
+<p>Catch-all: <code>segment:unknown:unknown</code> (Q34). Consumers MUST accept unrecognised <code>segment:*</code> values.</p>
 <p>Additions go through <code>CONTRIBUTING.md</code>; ids are stable once published.</p><p class="source">Source: vocabularies/segments.md</p></section></article>
 </div></main>
 <footer><div class="wrap">

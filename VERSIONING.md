@@ -27,13 +27,20 @@ machine schema-diff gate is not part of this decision.
 
 ## Rules
 
-- Every object and message carries `openbook_version`, the version it was
+- Every object and message carries `openbookVersion`, the version it was
   produced against.
-- Consumers **MUST** ignore unknown `x_`-prefixed fields, so MINOR additions never
-  break an older consumer.
-- Canonical ids are permanent. An id is deprecated, never deleted or re-pointed.
+- Publishers validate strictly against the schema. Consumers **MUST** ignore
+  unrecognized fields (including unknown `x_`-prefixed fields) so MINOR
+  additions never break an older consumer (Q37).
+- Canonical ids, list-values and field names are permanent once shipped in a
+  frozen version. They are deprecated with reason + replacement + sunset,
+  never re-pointed, and **never reused** (Q35, Q36). Removal from the live
+  set is only at MAJOR, after the window.
 - Pre-1.0 (`0.x`) the wire may still change between MINOR versions; the `-draft`
   suffix marks a version that is not yet frozen. Q32 is the intended 1.0
   contract; it is not a 0.x freeze.
+- **Freezing 1.0** requires two independent implementations: one producer and
+  one consumer, neither of which is [`tools/validate.py`](tools/validate.py)
+  (Q41). That gate does not apply to 0.x or to each MINOR.
 
 The current version is recorded in [`CHANGELOG.md`](CHANGELOG.md).

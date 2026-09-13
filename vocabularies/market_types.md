@@ -50,6 +50,8 @@ Format: `market:<id>` — Name · shape · sides.
 
 - `market:same-game-parlay` — Same-Game Parlay · composite · (references other market outcomes)
 - `market:parlay` — Parlay / Accumulator · composite · (cross-fixture legs)
+- `market:unknown` — Catch-all when the market type is not in this list (Q34).
+  Consumers MUST accept unrecognised `market:*` values.
 
 ---
 
@@ -59,6 +61,6 @@ Format: `market:<id>` — Name · shape · sides.
   `handicap` market always has a `line`; an `over-under` always has `over`/`under`
   outcomes and a `line`; `n-way` enumerates `participant` outcomes.
 - A concrete priced selection is identified by
-  `(fixture, market_type, segment, line, side)` — see the odds_change schema.
+  `(fixture, marketType, segment, line, side)` — see the odds_change schema.
 - This list is deliberately small in v0.1. It grows through
   [`../CONTRIBUTING.md`](../CONTRIBUTING.md), with stable ids.
