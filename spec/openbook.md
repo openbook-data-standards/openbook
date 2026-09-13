@@ -194,7 +194,7 @@ Every fixture MUST carry: own `id` · `sport` (shared id + name) · `league`
 (own id + name + territory + `competitionType`) · `startDate` ·
 `participants[]` (own id, name, territory, **`role`**: home · away · neutral, **and `order`**, always present) ·
 `sequence` · `dateModified`; and MAY carry `season`, `stage`, `location`,
-`identifier`. Consumers match on sport + league (name, territory) +
+`surface`, `identifier`. Fixture `participants[]` MAY carry `seed`. Consumers match on sport + league (name, territory) +
 start_time + participants (names, territories), and on Wikidata QIDs when both
 sides have them. `role` and `order` are facts the publisher asserts; the sign of a handicap is
 derived from them. A feed's presentation order is never a fact.
@@ -209,17 +209,22 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   exchange | model}`). GTFS `agency.txt`. Another currency is another
   subscription (Q44). Level L MUST declare **`heartbeatMs`**. Optional
   **`ttl`** (seconds) MAY also sit here; the discovery document is where
-  `ttl` is required (Q46, Q48).
+  `ttl` is required (Q46, Q48). Optional `registeredName` (Q60) and
+  `inLanguage` (ISO 639-1, Q68).
 - **`sport`**, **`segment`**, **`marketType`**, **`side`** — shared
   vocabularies ([`../vocabularies/`](../vocabularies/)). A sport MAY carry a
-  default `limit`.
+  default `limit`. Sport, market type, and segment are **`name` only** (Q59).
 - **`region`** — `id` = CLDR territory code; `name`, `names{lang}`, `superEvent`,
   crosswalks `iocCode`, `fifaCode`, `sameAs`.
 - **`league`** — own id, `name`, `sport`, `territory`, `competitionType`,
-  optional `organizer`, `ruleset`, `sameAs`, optional `limit`.
-- **`season`** — own id, `league`, `name`, `startDate`, `endDate`.
+  optional `organizer`, `ruleset`, `sameAs`, optional `limit`. Team-style
+  names: optional `shortName`, `registeredName` (Q59). Optional `gender`
+  (`men` · `women` · `mixed` · `open`) and `ageGroup` (Q72, Q73).
+- **`season`** — own id, `league`, `name` (display), `startDate`, `endDate`
+  (Q60 / Q9).
 - **`stage`** — own id, `season`, `name`, `parent`, `stageType` (phase · group ·
-  round · matchday · leg · seriesGame), `order`.
+  round · matchday · leg · seriesGame), `order`, optional `startDate` /
+  `endDate`.
 - **`participant`** — own id, `participantType` (team · individual), `sport`,
   `territory`, `sameAs`. Required `name` (popular/board). Optional `shortName`,
   `names` (ISO 639-1), `nameLatin` (ISO 9 / ISO 843), `alternateName[]`.
@@ -230,7 +235,9 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
 - **`player`** — roster membership: own id, `participant` (the person),
   `team` (the team participant), `position`, `number`. No name fields.
 - **`fixture`** — §6 plus `eventStatus`, `cutoffDate`, `superEvent` (a live
-  event's pregame parent), `location` (a schema.org Place).
+  event's pregame parent), optional display `name`, `location` (nested
+  schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`,
+  optional WGS 84 `latitude` / `longitude`), optional `surface`.
 - **`market`** — a fixture's market as priced by one source: `fixture`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
   `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's

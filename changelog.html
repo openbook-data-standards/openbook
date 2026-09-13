@@ -34,6 +34,7 @@
 <h3 id="changed">Changed</h3>
 <ul>
 <li><strong>Q11</strong> — names on the participant: required <code>name</code>; optional <code>shortName</code>, <code>names</code>, <code>nameLatin</code>, <code>alternateName</code>. Teams MAY add <code>location</code>, <code>nickname</code>, <code>registeredName</code>, <code>abbreviation</code>. Persons MAY add <code>givenName</code> / <code>familyName</code>; no <code>abbreviation</code>. Fixture <code>participants[]</code> copies <code>name</code>. <code>player</code> has no name fields.</li>
+<li>Logged catalog answers on the wire: league/venue <code>shortName</code> / <code>registeredName</code>; Place <code>timeZone</code>, <code>latitude</code>, <code>longitude</code>; publisher <code>inLanguage</code> / <code>registeredName</code>; league <code>gender</code> (<code>men</code> · <code>women</code> · <code>mixed</code> · <code>open</code>) and <code>ageGroup</code>; fixture <code>surface</code>; participant <code>seed</code>.</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>
@@ -90,7 +91,7 @@
 <li><strong>Q85</strong> — optional <code>seed</code> on the fixture participant row.</li>
 <li><strong>Q86</strong> — generic fixture extras stop at surface + seed; no metadata bag.</li>
 <li><strong>Q87</strong> — catalog pass closed; next work is a new area, not more fixture keys.</li>
-<li><a href="docs/still-to-do.md"><code>docs/still-to-do.md</code></a> — Q11 names on the wire; Q55 remains a later PR (1.0+).</li>
+<li><a href="docs/still-to-do.md"><code>docs/still-to-do.md</code></a> — catalog names/place/<code>gender</code> on the wire; Q55 remains a later PR (1.0+).</li>
 </ul>
 <ul>
 <li>Schemas for the objects the spec names but had no schema: <code>season</code>, <code>player</code> (roster membership), <code>market</code> (snapshot/update document), <code>score</code> (Q23) and <strong><code>grade</code></strong> (replaces <code>settlement</code>; Q27/Q28).</li>

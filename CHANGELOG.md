@@ -11,6 +11,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `nickname`, `registeredName`, `abbreviation`. Persons MAY add `givenName`
   / `familyName`; no `abbreviation`. Fixture `participants[]` copies `name`.
   `player` has no name fields.
+- Logged catalog answers on the wire: league/venue `shortName` /
+  `registeredName`; Place `timeZone`, `latitude`, `longitude`; publisher
+  `inLanguage` / `registeredName`; league `gender` (`men` · `women` ·
+  `mixed` · `open`) and `ageGroup`; fixture `surface`; participant `seed`.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
@@ -89,8 +93,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q85** — optional `seed` on the fixture participant row.
 - **Q86** — generic fixture extras stop at surface + seed; no metadata bag.
 - **Q87** — catalog pass closed; next work is a new area, not more fixture keys.
-- [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 names on the wire; Q55
-  remains a later PR (1.0+).
+- [`docs/still-to-do.md`](docs/still-to-do.md) — catalog names/place/`gender`
+  on the wire; Q55 remains a later PR (1.0+).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

@@ -777,8 +777,8 @@ Rejected: optional or required capacity.
 
 ## Q72 — Competition sex category — decided
 
-Optional on the **league**: `men` · `women` · `mixed` · `open`. Vocab, not
-ISO 5218. Not a field on the person.
+Optional on the **league** as **`gender`**: `men` · `women` · `mixed` ·
+`open`. Vocab, not ISO 5218. Not a field on the person.
 
 Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
 

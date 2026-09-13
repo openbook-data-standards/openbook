@@ -244,6 +244,104 @@
       &quot;type&quot;: &quot;string&quot;,
       &quot;description&quot;: &quot;Latin-script form. Method: ISO 9 (Cyrillic) or ISO 843 (Greek).&quot;
     },
+    &quot;iso6391&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[a-z]{2}$&quot;,
+      &quot;description&quot;: &quot;ISO 639-1 language code (Q68).&quot;
+    },
+    &quot;timeZone&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;description&quot;: &quot;IANA time-zone database name (Europe/London). Display only; timestamps stay RFC 3339 with offset (Q9, Q64).&quot;
+    },
+    &quot;latitude&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;minimum&quot;: -90,
+      &quot;maximum&quot;: 90,
+      &quot;description&quot;: &quot;WGS 84 latitude (Q70).&quot;
+    },
+    &quot;longitude&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;minimum&quot;: -180,
+      &quot;maximum&quot;: 180,
+      &quot;description&quot;: &quot;WGS 84 longitude (Q70).&quot;
+    },
+    &quot;place&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;additionalProperties&quot;: false,
+      &quot;description&quot;: &quot;schema.org Place (Q62). City + territory; no street or postal (Q69). No capacity (Q71).&quot;,
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;shortName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;registeredName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;alternateName&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/alternateName&quot;
+        },
+        &quot;names&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/localizedNames&quot;
+        },
+        &quot;nameLatin&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/nameLatin&quot;
+        },
+        &quot;addressLocality&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;territory&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/territory&quot;
+        },
+        &quot;timeZone&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/timeZone&quot;
+        },
+        &quot;latitude&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/latitude&quot;
+        },
+        &quot;longitude&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/longitude&quot;
+        },
+        &quot;sameAs&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/sameAs&quot;
+        },
+        &quot;identifier&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/identifier&quot;
+        }
+      },
+      &quot;patternProperties&quot;: {
+        &quot;^x_&quot;: {}
+      }
+    },
+    &quot;surface&quot;: {
+      &quot;enum&quot;: [
+        &quot;grass&quot;,
+        &quot;clay&quot;,
+        &quot;hard&quot;,
+        &quot;turf&quot;,
+        &quot;ice&quot;,
+        &quot;indoor&quot;,
+        &quot;other&quot;
+      ],
+      &quot;description&quot;: &quot;This fixture&#x27;s playing surface (Q84).&quot;
+    },
+    &quot;gender&quot;: {
+      &quot;enum&quot;: [
+        &quot;men&quot;,
+        &quot;women&quot;,
+        &quot;mixed&quot;,
+        &quot;open&quot;,
+        &quot;other&quot;
+      ],
+      &quot;description&quot;: &quot;Competition gender on the league, not the person (Q72). Vocab, not ISO 5218.&quot;
+    },
+    &quot;ageGroup&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;description&quot;: &quot;League age grade (open, U21, U19, …). Growable vocab (Q73).&quot;
+    },
     &quot;side&quot;: {
       &quot;enum&quot;: [
         &quot;home&quot;,
@@ -610,6 +708,18 @@
         &quot;competitionType&quot;: {
           &quot;$ref&quot;: &quot;common.schema.json#/$defs/competitionType&quot;
         },
+        &quot;shortName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;registeredName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;gender&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/gender&quot;
+        },
+        &quot;ageGroup&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/ageGroup&quot;
+        },
         &quot;sameAs&quot;: {
           &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
         }
@@ -687,28 +797,20 @@
           },
           &quot;sameAs&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+          },
+          &quot;seed&quot;: {
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;minimum&quot;: 1,
+            &quot;description&quot;: &quot;This draw&#x27;s seed on the fixture participant row (Q85).&quot;
           }
         }
       }
     },
     &quot;location&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;description&quot;: &quot;schema.org Place&quot;,
-      &quot;properties&quot;: {
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
-        },
-        &quot;addressLocality&quot;: {
-          &quot;type&quot;: &quot;string&quot;
-        },
-        &quot;territory&quot;: {
-          &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
-        },
-        &quot;sameAs&quot;: {
-          &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
-        }
-      }
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/place&quot;
+    },
+    &quot;surface&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/surface&quot;
     },
     &quot;identifier&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
@@ -851,11 +953,26 @@
     &quot;name&quot;: {
       &quot;type&quot;: &quot;string&quot;
     },
+    &quot;shortName&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;registeredName&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
     &quot;alternateName&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
     },
     &quot;names&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/localizedNames&quot;
+    },
+    &quot;nameLatin&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/nameLatin&quot;
+    },
+    &quot;gender&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/gender&quot;
+    },
+    &quot;ageGroup&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ageGroup&quot;
     },
     &quot;sport&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
@@ -1429,6 +1546,14 @@
     &quot;name&quot;: {
       &quot;type&quot;: &quot;string&quot;
     },
+    &quot;registeredName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Optional registry / legal name (Q60). ISO 17442 is the LEI id, not this string.&quot;
+    },
+    &quot;inLanguage&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/iso6391&quot;,
+      &quot;description&quot;: &quot;Feed language (Q68). A bare name is in this language.&quot;
+    },
     &quot;baseCurrency&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/iso4217&quot;,
       &quot;description&quot;: &quot;This feed&#x27;s accounting currency. Money `{amount}` is in this code. Another currency is another subscription (Q44).&quot;
@@ -1701,7 +1826,8 @@
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
     },
     &quot;name&quot;: {
-      &quot;type&quot;: &quot;string&quot;
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Display label (2025/26, F1 2026). Machine bounds are startDate / endDate (Q60).&quot;
     },
     &quot;alternateName&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
@@ -1883,6 +2009,8 @@
     &quot;name&quot;: &quot;Premier League&quot;,
     &quot;territory&quot;: &quot;GB-ENG&quot;,
     &quot;competitionType&quot;: &quot;league&quot;,
+    &quot;gender&quot;: &quot;men&quot;,
+    &quot;ageGroup&quot;: &quot;open&quot;,
     &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q9448&quot;
   },
   &quot;season&quot;: {
@@ -1919,8 +2047,12 @@
     &quot;name&quot;: &quot;Emirates Stadium&quot;,
     &quot;addressLocality&quot;: &quot;London&quot;,
     &quot;territory&quot;: &quot;GB-ENG&quot;,
+    &quot;timeZone&quot;: &quot;Europe/London&quot;,
+    &quot;latitude&quot;: 51.555,
+    &quot;longitude&quot;: -0.108,
     &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q19478&quot;
   },
+  &quot;surface&quot;: &quot;grass&quot;,
   &quot;identifier&quot;: [
     {
       &quot;propertyID&quot;: &quot;sportradar&quot;,
@@ -2141,6 +2273,7 @@
   &quot;sequence&quot;: 1,
   &quot;dateModified&quot;: &quot;2026-09-19T12:00:00Z&quot;,
   &quot;name&quot;: &quot;Acme Feeds&quot;,
+  &quot;inLanguage&quot;: &quot;en&quot;,
   &quot;baseCurrency&quot;: &quot;GBP&quot;,
   &quot;heartbeatMs&quot;: 5000,
   &quot;ttl&quot;: 60,
