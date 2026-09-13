@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/discovery.schema.json",
   "title": "OpenBook discovery document",
-  "description": "One URL lists a publisher's feeds (Q49). GBFS-shaped. The publisher object stays identity, not the catalog.",
+  "description": "One URL lists a publisher's feeds (Q49). GBFS-shaped field names, not a GBFS data wrapper (Q89). The publisher object stays identity, not the catalog.",
   "type": "object",
   "required": [
     "lastUpdated",

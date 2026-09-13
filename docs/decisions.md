@@ -946,3 +946,17 @@ Rejected: protobuf/SBE as the v1 encoding; JSON-only forever; shipping
 
 **Supersedes:** none of Q8/Q39/Q40. Pins `docs/industry-patterns.md` “JSON in
 v1; binary later”.
+
+## Q89 — No GBFS-style data wrapper — decided (A)
+
+GBFS wraps every file in `last_updated` / `ttl` / `version` / `data`.
+OpenBook does not. Discovery is `{ lastUpdated, ttl, feeds }` at the root
+(**Q49**). Object documents and change messages are the object (**Q8**).
+They are not nested under a GBFS-style data member, on HTTP pull or on
+sockets.
+
+Rejected: wrap HTTP pull only; wrap every message including MQTT / WebSocket
+/ SSE; leave this unsaid because Q49 named discovery.
+
+**Supersedes:** none of Q49. GBFS-shaped means `ttl` and the discovery
+fields, not the GBFS file envelope.

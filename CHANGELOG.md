@@ -11,6 +11,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Q89** — no GBFS-style data wrapper; discovery stays `{ lastUpdated, ttl,
+  feeds }` at the root (Q49); objects and change messages stay themselves
+  ([`docs/decisions.md`](docs/decisions.md)).
 - **Q88** — JSON (`application/json`) is the required v1 encoding; additional
   encodings MAY exist later as optional bindings; scaffolding stays JSON
   ([`docs/decisions.md`](docs/decisions.md)).
