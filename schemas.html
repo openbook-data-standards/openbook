@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON Schemas — OpenBook</title>
+<meta name="theme-color" content="#e6d7b8">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/schemas.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./">
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
+  </a>
+  <nav>
+    <a href="./spec.html">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="./schemas.html" aria-current="page">Schemas</a><a href="./examples.html">Examples</a><a href="./decisions.html">Decisions</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · JSON Schemas</p><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/change.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook change envelope&quot;,
+  &quot;description&quot;: &quot;One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;sequence&quot;,
+    &quot;datePublished&quot;,
+    &quot;publisher&quot;,
+    &quot;object&quot;,
+    &quot;action&quot;,
+    &quot;sport&quot;,
+    &quot;changes&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;datePublished&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;publisher&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;object&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/objectType&quot;
+    },
+    &quot;action&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/action&quot;
+    },
+    &quot;sport&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[a-z0-9-]+$&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The topic&#x27;s &lt;id&gt;: the fixture id for fixture-scoped objects, else the object&#x27;s own id.&quot;
+    },
+    &quot;msgType&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/msgType&quot;
+    },
+    &quot;reason&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;references&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+      }
+    },
+    &quot;changes&quot;: {
+      &quot;type&quot;: &quot;object&quot;
+    }
+  },
+  &quot;allOf&quot;: [
+    {
+      &quot;if&quot;: {
+        &quot;properties&quot;: {
+          &quot;action&quot;: {
+            &quot;const&quot;: &quot;change&quot;
+          }
+        },
+        &quot;required&quot;: [
+          &quot;action&quot;
+        ]
+      },
+      &quot;then&quot;: {
+        &quot;properties&quot;: {
+          &quot;object&quot;: {
+            &quot;const&quot;: &quot;odds&quot;
+          }
+        }
+      }
+    }
+  ],
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="common"><h2>OpenBook common definitions</h2><p>Field names are camelCase and follow schema.org where a property exists (startDate, dateModified, alternateName, sameAs, identifier, superEvent). Every document MAY carry JSON-LD @context / @type.</p><p><a href="schema/common.schema.json">common.schema.json</a> · required: <code>—</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/common.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook common definitions&quot;,
+  &quot;description&quot;: &quot;Field names are camelCase and follow schema.org where a property exists (startDate, dateModified, alternateName, sameAs, identifier, superEvent). Every document MAY carry JSON-LD @context / @type.&quot;,
+  &quot;$defs&quot;: {
+    &quot;openbookVersion&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;examples&quot;: [
+        &quot;0.3.0-draft&quot;
+      ]
+    },
+    &quot;sequence&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 0,
+      &quot;description&quot;: &quot;Monotonic per feed, issued by the publisher&#x27;s server. The `since` cursor.&quot;
+    },
+    &quot;dateTime&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;format&quot;: &quot;date-time&quot;,
+      &quot;description&quot;: &quot;ISO 8601 with explicit offset.&quot;
+    },
+    &quot;sharedId&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[a-z][a-z0-9-]*(:[a-z0-9-]+)+$&quot;,
+      &quot;description&quot;: &quot;Short form of a shared id (sport:soccer). Formal form: urn:openbook:sport:soccer.&quot;
+    },
+    &quot;ownId&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;description&quot;: &quot;The publisher&#x27;s own id, unique within the publisher.&quot;
+    },
+    &quot;territory&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[A-Z]{2}(-[A-Z0-9]{1,3})?$&quot;,
+      &quot;description&quot;: &quot;CLDR territory code: ISO 3166-1 alpha-2 (GB) or ISO 3166-2 subdivision (GB-ENG, US-PR).&quot;
+    },
+    &quot;sameAs&quot;: {
+      &quot;type&quot;: [
+        &quot;string&quot;,
+        &quot;null&quot;
+      ],
+      &quot;pattern&quot;: &quot;^https://www\\.wikidata\\.org/entity/Q[0-9]+$&quot;,
+      &quot;description&quot;: &quot;schema.org sameAs \u2192 the Wikidata entity URL. The shared entity id: required when one exists, null otherwise.&quot;
+    },
+    &quot;identifier&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;description&quot;: &quot;schema.org identifier as PropertyValue list \u2014 external cross-reference ids.&quot;,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;propertyID&quot;,
+          &quot;value&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+          &quot;propertyID&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;examples&quot;: [
+              &quot;sportradar&quot;,
+              &quot;opta&quot;
+            ]
+          },
+          &quot;value&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+          }
+        }
+      }
+    },
+    &quot;alternateName&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;string&quot;
+      },
+      &quot;description&quot;: &quot;schema.org alternateName \u2014 aliases and other spellings.&quot;
+    },
+    &quot;localizedNames&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;propertyNames&quot;: {
+        &quot;pattern&quot;: &quot;^[a-z]{2}$&quot;
+      },
+      &quot;additionalProperties&quot;: {
+        &quot;type&quot;: &quot;string&quot;
+      },
+      &quot;description&quot;: &quot;Per-language names keyed by ISO 639-1.&quot;
+    },
+    &quot;side&quot;: {
+      &quot;enum&quot;: [
+        &quot;home&quot;,
+        &quot;away&quot;,
+        &quot;draw&quot;,
+        &quot;over&quot;,
+        &quot;under&quot;,
+        &quot;yes&quot;,
+        &quot;no&quot;,
+        &quot;participant&quot;
+      ]
+    },
+    &quot;provenance&quot;: {
+      &quot;enum&quot;: [
+        &quot;official&quot;,
+        &quot;licensed&quot;,
+        &quot;observed&quot;
+      ]
+    },
+    &quot;role&quot;: {
+      &quot;enum&quot;: [
+        &quot;home&quot;,
+        &quot;away&quot;,
+        &quot;neutral&quot;
+      ],
+      &quot;description&quot;: &quot;A fact set by the publisher; never inferred from presentation order.&quot;
+    },
+    &quot;jsonld&quot;: {
+      &quot;properties&quot;: {
+        &quot;@context&quot;: {},
+        &quot;@type&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;enums&quot;: {
+      &quot;description&quot;: &quot;Every closed vocabulary in OpenBook lives here, once. Schemas $ref these; docs/vocabularies are generated from them.&quot;
+    },
+    &quot;objectType&quot;: {
+      &quot;enum&quot;: [
+        &quot;fixture&quot;,
+        &quot;odds&quot;,
+        &quot;market&quot;,
+        &quot;score&quot;,
+        &quot;grade&quot;,
+        &quot;league&quot;,
+        &quot;season&quot;,
+        &quot;stage&quot;,
+        &quot;participant&quot;,
+        &quot;player&quot;,
+        &quot;publisher&quot;
+      ]
+    },
+    &quot;action&quot;: {
+      &quot;enum&quot;: [
+        &quot;snapshot&quot;,
+        &quot;create&quot;,
+        &quot;update&quot;,
+        &quot;delete&quot;,
+        &quot;change&quot;
+      ],
+      &quot;description&quot;: &quot;`change` is used only by `odds`.&quot;
+    },
+    &quot;msgType&quot;: {
+      &quot;enum&quot;: [
+        &quot;alert&quot;,
+        &quot;update&quot;,
+        &quot;cancel&quot;
+      ],
+      &quot;description&quot;: &quot;CAP 1.2 msgType, on market/update.&quot;
+    },
+    &quot;eventStatus&quot;: {
+      &quot;enum&quot;: [
+        &quot;scheduled&quot;,
+        &quot;delayed&quot;,
+        &quot;live&quot;,
+        &quot;paused&quot;,
+        &quot;suspended&quot;,
+        &quot;postponed&quot;,
+        &quot;ended&quot;,
+        &quot;cancelled&quot;
+      ],
+      &quot;description&quot;: &quot;Fixture lifecycle (Q25). `ended` happens once.&quot;
+    },
+    &quot;marketStatus&quot;: {
+      &quot;enum&quot;: [
+        &quot;open&quot;,
+        &quot;suspended&quot;,
+        &quot;closed&quot;,
+        &quot;void&quot;
+      ]
+    },
+    &quot;competitionType&quot;: {
+      &quot;enum&quot;: [
+        &quot;league&quot;,
+        &quot;cup&quot;,
+        &quot;tournament&quot;,
+        &quot;series&quot;,
+        &quot;exhibition&quot;
+      ]
+    },
+    &quot;participantType&quot;: {
+      &quot;enum&quot;: [
+        &quot;team&quot;,
+        &quot;individual&quot;
+      ]
+    },
+    &quot;sourceType&quot;: {
+      &quot;enum&quot;: [
+        &quot;sportsbook&quot;,
+        &quot;exchange&quot;,
+        &quot;model&quot;
+      ]
+    },
+    &quot;stageType&quot;: {
+      &quot;enum&quot;: [
+        &quot;phase&quot;,
+        &quot;group&quot;,
+        &quot;round&quot;,
+        &quot;matchday&quot;,
+        &quot;leg&quot;,
+        &quot;seriesGame&quot;
+      ]
+    },
+    &quot;marketShape&quot;: {
+      &quot;enum&quot;: [
+        &quot;binary&quot;,
+        &quot;n-way&quot;,
+        &quot;over-under&quot;,
+        &quot;handicap&quot;,
+        &quot;exact-value&quot;,
+        &quot;correct-score&quot;,
+        &quot;yes-no&quot;
+      ]
+    },
+    &quot;marketCategory&quot;: {
+      &quot;enum&quot;: [
+        &quot;main-line&quot;,
+        &quot;score-prop&quot;,
+        &quot;game-prop&quot;,
+        &quot;player-prop&quot;,
+        &quot;outright&quot;,
+        &quot;parlay-special&quot;,
+        &quot;same-game-parlay&quot;
+      ]
+    },
+    &quot;segmentStatus&quot;: {
+      &quot;enum&quot;: [
+        &quot;pending&quot;,
+        &quot;live&quot;,
+        &quot;paused&quot;,
+        &quot;down&quot;
+      ],
+      &quot;description&quot;: &quot;Per-segment status (Q30). `down` = final, happens once, terminal.&quot;
+    },
+    &quot;statusReason&quot;: {
+      &quot;enum&quot;: [
+        &quot;weather&quot;,
+        &quot;crowd&quot;,
+        &quot;injury&quot;,
+        &quot;retirement&quot;,
+        &quot;walkover&quot;,
+        &quot;forfeit&quot;,
+        &quot;technical&quot;,
+        &quot;scheduling&quot;,
+        &quot;correction&quot;,
+        &quot;other&quot;
+      ]
+    },
+    &quot;scoreUnit&quot;: {
+      &quot;enum&quot;: [
+        &quot;goals&quot;,
+        &quot;points&quot;,
+        &quot;runs&quot;,
+        &quot;hits&quot;,
+        &quot;errors&quot;,
+        &quot;sets&quot;,
+        &quot;games&quot;,
+        &quot;frames&quot;,
+        &quot;strokes&quot;,
+        &quot;laps&quot;,
+        &quot;position&quot;,
+        &quot;time&quot;,
+        &quot;corners&quot;,
+        &quot;yellowCards&quot;,
+        &quot;redCards&quot;,
+        &quot;wickets&quot;,
+        &quot;overs&quot;,
+        &quot;rounds&quot;,
+        &quot;knockdowns&quot;,
+        &quot;aces&quot;,
+        &quot;faults&quot;
+      ],
+      &quot;description&quot;: &quot;What a score line counts (Q26). The sport/league declares its primaryUnit.&quot;
+    },
+    &quot;gradeResult&quot;: {
+      &quot;enum&quot;: [
+        &quot;win&quot;,
+        &quot;lose&quot;,
+        &quot;void&quot;,
+        &quot;half-win&quot;,
+        &quot;half-lose&quot;
+      ]
+    }
+  }
+}</pre></section><section class="schema-block" id="fixture"><h2>OpenBook fixture</h2><p>One match — the base object (schema.org SportsEvent). Publisher-own id plus the standard facts that let consumers match it across publishers. Every participant carries a role (home / away / neutral) AND an order.</p><p><a href="schema/fixture.schema.json">fixture.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, sport, league, startDate, participants</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/fixture.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook fixture&quot;,
+  &quot;description&quot;: &quot;One match \u2014 the base object (schema.org SportsEvent). Publisher-own id plus the standard facts that let consumers match it across publishers. Every participant carries a role (home / away / neutral) AND an order.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;sport&quot;,
+    &quot;league&quot;,
+    &quot;startDate&quot;,
+    &quot;participants&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;examples&quot;: [
+        &quot;SportsEvent&quot;
+      ]
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;sport&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;id&quot;,
+        &quot;name&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;league&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;id&quot;,
+        &quot;name&quot;,
+        &quot;territory&quot;,
+        &quot;competitionType&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;territory&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
+        },
+        &quot;competitionType&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/competitionType&quot;
+        },
+        &quot;sameAs&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+        }
+      }
+    },
+    &quot;season&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      }
+    },
+    &quot;stage&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;description&quot;: &quot;The leaf stage; walk `parent` on the stage object for the chain.&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;stageType&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/stageType&quot;
+        }
+      }
+    },
+    &quot;startDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;cutoffDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;eventStatus&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/eventStatus&quot;
+    },
+    &quot;superEvent&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;schema.org superEvent \u2014 a live event&#x27;s pregame parent fixture, when applicable.&quot;
+    },
+    &quot;participants&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;minItems&quot;: 1,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;id&quot;,
+          &quot;name&quot;,
+          &quot;territory&quot;,
+          &quot;role&quot;,
+          &quot;order&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+          },
+          &quot;name&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;territory&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
+          },
+          &quot;role&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/role&quot;
+          },
+          &quot;order&quot;: {
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;minimum&quot;: 1,
+            &quot;description&quot;: &quot;Listing order \u2014 always present, even for two-sided events.&quot;
+          },
+          &quot;sameAs&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+          }
+        }
+      }
+    },
+    &quot;location&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;additionalProperties&quot;: false,
+      &quot;description&quot;: &quot;schema.org Place&quot;,
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;addressLocality&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;territory&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
+        },
+        &quot;sameAs&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+        }
+      }
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="grade"><h2>OpenBook grade</h2><p>The book&#x27;s judgement: one market x one source, graded from a segment that is down. `basedOn` is the score `sequence` (the down, or a later correction) it graded from. A grade is never edited: a corrected grade is grade/delete + a new grade/create with `supersedes`.</p><p><a href="schema/grade.schema.json">grade.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, gradeId, fixture, segment, source, marketType, basis, basedOn, outcomes</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/grade.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook grade&quot;,
+  &quot;description&quot;: &quot;The book&#x27;s judgement: one market x one source, graded from a segment that is down. `basedOn` is the score `sequence` (the down, or a later correction) it graded from. A grade is never edited: a corrected grade is grade/delete + a new grade/create with `supersedes`.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;gradeId&quot;,
+    &quot;fixture&quot;,
+    &quot;segment&quot;,
+    &quot;source&quot;,
+    &quot;marketType&quot;,
+    &quot;basis&quot;,
+    &quot;basedOn&quot;,
+    &quot;outcomes&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;gradeId&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;supersedes&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;segment&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+    },
+    &quot;source&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;marketType&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+    },
+    &quot;line&quot;: {
+      &quot;type&quot;: &quot;number&quot;
+    },
+    &quot;basis&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;,
+      &quot;description&quot;: &quot;The unit this market graded on (goals, corners, cards...).&quot;
+    },
+    &quot;basedOn&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;,
+      &quot;description&quot;: &quot;The score message sequence the grade was computed from.&quot;
+    },
+    &quot;dateGraded&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;outcomes&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;minItems&quot;: 1,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;side&quot;,
+          &quot;result&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+          &quot;side&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
+          },
+          &quot;participant&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+          },
+          &quot;line&quot;: {
+            &quot;type&quot;: &quot;number&quot;
+          },
+          &quot;result&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/gradeResult&quot;
+          }
+        }
+      }
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="league"><h2>OpenBook league</h2><p>Any recurring competition — the Premier League, the FA Cup, the NBA Cup, the F1 World Championship — typed by competitionType. Publisher-own id; sameAs (Wikidata) as the shared entity id.</p><p><a href="schema/league.schema.json">league.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, sport, territory, competitionType, sameAs</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/league.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook league&quot;,
+  &quot;description&quot;: &quot;Any recurring competition \u2014 the Premier League, the FA Cup, the NBA Cup, the F1 World Championship \u2014 typed by competitionType. Publisher-own id; sameAs (Wikidata) as the shared entity id.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;name&quot;,
+    &quot;sport&quot;,
+    &quot;territory&quot;,
+    &quot;competitionType&quot;,
+    &quot;sameAs&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;alternateName&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
+    },
+    &quot;names&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/localizedNames&quot;
+    },
+    &quot;sport&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+    },
+    &quot;territory&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
+    },
+    &quot;competitionType&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/competitionType&quot;
+    },
+    &quot;organizer&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;additionalProperties&quot;: false,
+      &quot;description&quot;: &quot;schema.org organizer \u2014 the NBA, UEFA, the FIA.&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;sameAs&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+        }
+      }
+    },
+    &quot;ruleset&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;clockBased&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;clockAscending&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;scoreBased&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;segmentBased&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;hasHalftime&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;allowTies&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;segments&quot;: {
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;items&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+          }
+        },
+        &quot;primaryUnit&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;
+        }
+      }
+    },
+    &quot;sameAs&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, outcomes</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/market.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook market&quot;,
+  &quot;description&quot;: &quot;A fixture&#x27;s market as priced by ONE source \u2014 the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;fixture&quot;,
+    &quot;marketType&quot;,
+    &quot;source&quot;,
+    &quot;provenance&quot;,
+    &quot;status&quot;,
+    &quot;outcomes&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;marketType&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+    },
+    &quot;segment&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+    },
+    &quot;line&quot;: {
+      &quot;type&quot;: &quot;number&quot;
+    },
+    &quot;source&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;provenance&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/provenance&quot;
+    },
+    &quot;status&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketStatus&quot;
+    },
+    &quot;isMain&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;description&quot;: &quot;The main line among alternates.&quot;
+    },
+    &quot;outcomes&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;minItems&quot;: 1,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;side&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;patternProperties&quot;: {
+          &quot;^x_&quot;: {}
+        },
+        &quot;properties&quot;: {
+          &quot;side&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
+          },
+          &quot;participant&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+            &quot;description&quot;: &quot;Required when side = participant.&quot;
+          },
+          &quot;odds&quot;: {
+            &quot;type&quot;: [
+              &quot;number&quot;,
+              &quot;null&quot;
+            ],
+            &quot;exclusiveMinimum&quot;: 1.0,
+            &quot;description&quot;: &quot;Decimal. null = removed.&quot;
+          },
+          &quot;line&quot;: {
+            &quot;type&quot;: &quot;number&quot;
+          },
+          &quot;active&quot;: {
+            &quot;type&quot;: &quot;boolean&quot;
+          }
+        }
+      }
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="market_type"><h2>OpenBook reference_market_type</h2><p>A canonical market type — what can be bet. The controlled market vocabulary is the core contribution of OpenBook.</p><p><a href="schema/market_type.schema.json">market_type.schema.json</a> · required: <code>openbookVersion, id, name, genre, shape, category</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/market_type.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook reference_market_type&quot;,
+  &quot;description&quot;: &quot;A canonical market type \u2014 what can be bet. The controlled market vocabulary is the core contribution of OpenBook.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;name&quot;,
+    &quot;genre&quot;,
+    &quot;shape&quot;,
+    &quot;category&quot;
+  ],
+  &quot;additionalProperties&quot;: false,
+  &quot;properties&quot;: {
+    &quot;id&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^market:[a-z0-9-]+$&quot;,
+      &quot;examples&quot;: [
+        &quot;market:moneyline&quot;,
+        &quot;market:total&quot;,
+        &quot;market:spread&quot;,
+        &quot;market:player-points&quot;
+      ]
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;examples&quot;: [
+        &quot;Moneyline&quot;,
+        &quot;Total&quot;,
+        &quot;Player Points&quot;
+      ]
+    },
+    &quot;genre&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Grouping label, e.g. &#x27;match&#x27;, &#x27;player&#x27;, &#x27;team&#x27;.&quot;
+    },
+    &quot;shape&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketShape&quot;
+    },
+    &quot;category&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketCategory&quot;
+    },
+    &quot;sides&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
+      }
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;isPlayerProp&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: false
+    },
+    &quot;isTeamProp&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: false
+    },
+    &quot;isGameProp&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: false
+    },
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  }
+}</pre></section><section class="schema-block" id="odds_change"><h2>OpenBook odds/change payload</h2><p>The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).</p><p><a href="schema/odds_change.schema.json">odds_change.schema.json</a> · required: <code>markets</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/odds_change.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook odds/change payload&quot;,
+  &quot;description&quot;: &quot;The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;markets&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;markets&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;minItems&quot;: 1,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;marketType&quot;,
+          &quot;source&quot;,
+          &quot;provenance&quot;,
+          &quot;outcomes&quot;
+        ],
+        &quot;properties&quot;: {
+          &quot;segment&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+          },
+          &quot;line&quot;: {
+            &quot;type&quot;: &quot;number&quot;,
+            &quot;description&quot;: &quot;Handicap / total value for the market, when applicable.&quot;
+          },
+          &quot;status&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketStatus&quot;
+          },
+          &quot;source&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+            &quot;description&quot;: &quot;Whose odds these are \u2014 a source declared in the publisher record.&quot;
+          },
+          &quot;provenance&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/provenance&quot;
+          },
+          &quot;outcomes&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;minItems&quot;: 1,
+            &quot;items&quot;: {
+              &quot;type&quot;: &quot;object&quot;,
+              &quot;required&quot;: [
+                &quot;side&quot;
+              ],
+              &quot;properties&quot;: {
+                &quot;side&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
+                },
+                &quot;participant&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+                  &quot;description&quot;: &quot;Required when side = participant.&quot;
+                },
+                &quot;odds&quot;: {
+                  &quot;type&quot;: [
+                    &quot;number&quot;,
+                    &quot;null&quot;
+                  ],
+                  &quot;exclusiveMinimum&quot;: 1.0,
+                  &quot;description&quot;: &quot;Decimal odds. null = removed (Merge Patch).&quot;
+                },
+                &quot;line&quot;: {
+                  &quot;type&quot;: &quot;number&quot;
+                },
+                &quot;active&quot;: {
+                  &quot;type&quot;: &quot;boolean&quot;
+                }
+              },
+              &quot;patternProperties&quot;: {
+                &quot;^x_&quot;: {}
+              },
+              &quot;additionalProperties&quot;: false
+            }
+          },
+          &quot;marketType&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+          }
+        },
+        &quot;patternProperties&quot;: {
+          &quot;^x_&quot;: {}
+        },
+        &quot;additionalProperties&quot;: false
+      }
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="participant"><h2>OpenBook participant</h2><p>A competitor — a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names follow vCard/X.520 structure for persons and ODF&#x27;s multiple display forms.</p><p><a href="schema/participant.schema.json">participant.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, territory, participantType, sport, sameAs</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/participant.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook participant&quot;,
+  &quot;description&quot;: &quot;A competitor \u2014 a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names follow vCard/X.520 structure for persons and ODF&#x27;s multiple display forms.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;name&quot;,
+    &quot;territory&quot;,
+    &quot;participantType&quot;,
+    &quot;sport&quot;,
+    &quot;sameAs&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;examples&quot;: [
+        &quot;SportsTeam&quot;,
+        &quot;Person&quot;
+      ]
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;participantType&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/participantType&quot;
+    },
+    &quot;sport&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+    },
+    &quot;territory&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Full display name, UTF-8, diacritics kept.&quot;
+    },
+    &quot;shortName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Board / ticker form: &#x27;Man City&#x27;, &#x27;K. De Bruyne&#x27;.&quot;
+    },
+    &quot;abbreviation&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;3\u20134 characters: &#x27;MCI&#x27;.&quot;
+    },
+    &quot;alternateName&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
+    },
+    &quot;localName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Name in the native script (ODF LocalName).&quot;
+    },
+    &quot;names&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/localizedNames&quot;
+    },
+    &quot;familyName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Individuals only (vCard N / X.520).&quot;
+    },
+    &quot;givenName&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;additionalName&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;honorificPrefix&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;honorificSuffix&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;sameAs&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="player"><h2>OpenBook player (roster membership)</h2><p>A person&#x27;s membership of a team&#x27;s roster — for lineups and player props. The person and the team are both participants. Not a competitor object; individuals who compete are participants.</p><p><a href="schema/player.schema.json">player.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, participant, team</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/player.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook player (roster membership)&quot;,
+  &quot;description&quot;: &quot;A person&#x27;s membership of a team&#x27;s roster \u2014 for lineups and player props. The person and the team are both participants. Not a competitor object; individuals who compete are participants.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;participant&quot;,
+    &quot;team&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;participant&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The person (a participant with participantType individual).&quot;
+    },
+    &quot;team&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The team (a participant with participantType team).&quot;
+    },
+    &quot;position&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;number&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 0
+    },
+    &quot;startDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;endDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;active&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: true
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="publisher"><h2>OpenBook publisher</h2><p>The feed&#x27;s own record — who transmits, and which sources (whose odds) the feed carries. Analogous to GTFS agency.txt.</p><p><a href="schema/publisher.schema.json">publisher.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, sources</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/publisher.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook publisher&quot;,
+  &quot;description&quot;: &quot;The feed&#x27;s own record \u2014 who transmits, and which sources (whose odds) the feed carries. Analogous to GTFS agency.txt.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;name&quot;,
+    &quot;sources&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;id&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[a-z0-9][a-z0-9-]*$&quot;,
+      &quot;description&quot;: &quot;Publisher id: lowercase, dash-separated; also the &lt;publisher-id&gt; level of stream names.&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;url&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;format&quot;: &quot;uri&quot;
+    },
+    &quot;sources&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;minItems&quot;: 1,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;id&quot;,
+          &quot;name&quot;,
+          &quot;sourceType&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+          },
+          &quot;name&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;territory&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
+          },
+          &quot;url&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;uri&quot;
+          },
+          &quot;sourceType&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sourceType&quot;
+          },
+          &quot;sameAs&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+          }
+        }
+      }
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;email&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;examples&quot;: [
+        &quot;Organization&quot;
+      ]
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="region"><h2>OpenBook region</h2><p>A territory. id = CLDR territory code (ISO 3166-1 alpha-2, or ISO 3166-2 for sub-national teams); names from CLDR; sport-body codes as crosswalks.</p><p><a href="schema/region.schema.json">region.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/region.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook region&quot;,
+  &quot;description&quot;: &quot;A territory. id = CLDR territory code (ISO 3166-1 alpha-2, or ISO 3166-2 for sub-national teams); names from CLDR; sport-body codes as crosswalks.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [&quot;openbookVersion&quot;, &quot;id&quot;, &quot;sequence&quot;, &quot;dateModified&quot;, &quot;name&quot;],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {}, &quot;@type&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;examples&quot;: [&quot;Country&quot;, &quot;AdministrativeArea&quot;] },
+    &quot;openbookVersion&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot; },
+    &quot;id&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;, &quot;examples&quot;: [&quot;GB&quot;, &quot;GB-ENG&quot;, &quot;US-PR&quot;, &quot;XK&quot;] },
+    &quot;sequence&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot; },
+    &quot;dateModified&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot; },
+    &quot;name&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;names&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/localizedNames&quot; },
+    &quot;parent&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot; },
+    &quot;iocCode&quot;: { &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;], &quot;pattern&quot;: &quot;^[A-Z]{3}$&quot; },
+    &quot;fifaCode&quot;: { &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;], &quot;pattern&quot;: &quot;^[A-Z]{3}$&quot; },
+    &quot;sameAs&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot; },
+    &quot;identifier&quot;: { &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot; }
+  },
+  &quot;patternProperties&quot;: { &quot;^x_&quot;: {} },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="score"><h2>OpenBook score</h2><p>The live state of a fixture (score/update): event status, per-segment status (a segment goes `down` ONCE, terminally), clock, and score lines per participant x unit with per-segment breakdown. A correction to a down segment is an erratum (`correction: true`), never a second down.</p><p><a href="schema/score.schema.json">score.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, eventStatus, segments, scores</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/score.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook score&quot;,
+  &quot;description&quot;: &quot;The live state of a fixture (score/update): event status, per-segment status (a segment goes `down` ONCE, terminally), clock, and score lines per participant x unit with per-segment breakdown. A correction to a down segment is an erratum (`correction: true`), never a second down.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;fixture&quot;,
+    &quot;eventStatus&quot;,
+    &quot;segments&quot;,
+    &quot;scores&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;eventStatus&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/eventStatus&quot;
+    },
+    &quot;statusReason&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/statusReason&quot;
+    },
+    &quot;correction&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: false,
+      &quot;description&quot;: &quot;True when this update corrects the scores of an already-down segment (Q31). Status and downAt do not change.&quot;
+    },
+    &quot;segments&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;segment&quot;,
+          &quot;status&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+          &quot;segment&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+          },
+          &quot;status&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/segmentStatus&quot;
+          },
+          &quot;downAt&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+          },
+          &quot;order&quot;: {
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;minimum&quot;: 1
+          }
+        }
+      }
+    },
+    &quot;currentSegment&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+    },
+    &quot;clock&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;additionalProperties&quot;: false,
+      &quot;description&quot;: &quot;Integer seconds within the current segment plus the broadcast string.&quot;,
+      &quot;properties&quot;: {
+        &quot;elapsed&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;minimum&quot;: 0
+        },
+        &quot;remaining&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;minimum&quot;: 0
+        },
+        &quot;running&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;display&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;examples&quot;: [
+            &quot;67:00&quot;,
+            &quot;Q3 07:12&quot;,
+            &quot;45:00+2&quot;
+          ]
+        }
+      }
+    },
+    &quot;scores&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;participant&quot;,
+          &quot;unit&quot;,
+          &quot;total&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+          &quot;participant&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+          },
+          &quot;unit&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;
+          },
+          &quot;total&quot;: {
+            &quot;type&quot;: &quot;number&quot;
+          },
+          &quot;bySegment&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;description&quot;: &quot;segment id -&gt; value in that segment&quot;,
+            &quot;additionalProperties&quot;: {
+              &quot;type&quot;: &quot;number&quot;
+            }
+          },
+          &quot;display&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;description&quot;: &quot;For units like tennis points: &#x27;30&#x27;, &#x27;AD&#x27;.&quot;
+          }
+        }
+      }
+    },
+    &quot;server&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;Racket sports: the serving participant.&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="season"><h2>OpenBook season</h2><p>One edition of a league: 2025-26, F1 2026. Publisher-own id.</p><p><a href="schema/season.schema.json">season.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, league, name</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/season.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook season&quot;,
+  &quot;description&quot;: &quot;One edition of a league: 2025-26, F1 2026. Publisher-own id.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;league&quot;,
+    &quot;name&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;league&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;alternateName&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
+    },
+    &quot;startDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;endDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;sameAs&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="sport"><h2>OpenBook sport</h2><p>A sport — shared vocabulary owned by the standard. Disciplines hang beneath (athletics:110m-hurdles).</p><p><a href="schema/sport.schema.json">sport.schema.json</a> · required: <code>openbookVersion, id, name</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/sport.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook sport&quot;,
+  &quot;description&quot;: &quot;A sport \u2014 shared vocabulary owned by the standard. Disciplines hang beneath (athletics:110m-hurdles).&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;name&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;,
+      &quot;examples&quot;: [
+        &quot;sport:soccer&quot;,
+        &quot;sport:athletics&quot;
+      ]
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;abbreviation&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;active&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: true
+    },
+    &quot;alternateName&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
+    },
+    &quot;names&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/localizedNames&quot;
+    },
+    &quot;sameAs&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    },
+    &quot;primaryUnit&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="stage"><h2>OpenBook stage</h2><p>A named slice of a season. Recursive: a stage MAY have a parent stage. Regular Season (phase) · Group A (group) · Round 14 (round) · Matchday 7 · Leg 2 · Game 3 (seriesGame).</p><p><a href="schema/stage.schema.json">stage.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, season, name, stageType</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/stage.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook stage&quot;,
+  &quot;description&quot;: &quot;A named slice of a season. Recursive: a stage MAY have a parent stage. Regular Season (phase) \u00b7 Group A (group) \u00b7 Round 14 (round) \u00b7 Matchday 7 \u00b7 Leg 2 \u00b7 Game 3 (seriesGame).&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;season&quot;,
+    &quot;name&quot;,
+    &quot;stageType&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;season&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;alternateName&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
+    },
+    &quot;parent&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The containing stage, if any.&quot;
+    },
+    &quot;stageType&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/stageType&quot;
+    },
+    &quot;order&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 1
+    },
+    &quot;startDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;endDate&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;identifier&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section></article>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>

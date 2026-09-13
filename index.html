@@ -5,155 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenBook — an open standard for sportsbook data</title>
 <meta name="description" content="OpenBook is an open, vendor-neutral standard for sportsbook & gambling data: a reference model, a live wire, and controlled vocabularies. One format any publisher emits odds in.">
-<meta name="theme-color" content="#0B1220">
+<meta name="theme-color" content="#e6d7b8">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/logo-icon.svg">
+<link rel="stylesheet" href="assets/site.css">
 <meta property="og:title" content="OpenBook — an open standard for sportsbook data">
 <meta property="og:description" content="A reference model, a live wire, and controlled vocabularies. One format any publisher emits odds in.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://openbook-data-standards.github.io/openbook/">
 <meta property="og:image" content="https://openbook-data-standards.github.io/openbook/assets/logo-icon.svg">
 <meta name="twitter:card" content="summary">
-<style>
-:root{
-  --bg:#ffffff; --fg:#0b1220; --fg2:#4a5568; --mute:#6b7280;
-  --line:#e5e8ef; --line2:#c9d0dc; --fill:#f4f6fa; --fill2:#eceff5;
-  --accent:#276ef1; --accent-press:#1e54c4; --accent-fill:#eef3fe;
-  --pos:#048848; --neg:#d44333; --code:#f4f6fa;
-  --board:#0b1220; --board-fg:#f4f7fb; --board-mute:#8b93b0; --board-line:#1c2740;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f141e; --fg:#f4f7fb; --fg2:#b3b9c9; --mute:#8b93b0;
-  --line:#243049; --line2:#33415c; --fill:#171d2b; --fill2:#1c2438;
-  --accent:#4c8dff; --accent-press:#78a9ff; --accent-fill:#15233f;
-  --pos:#33ab6b; --code:#171d2b;
-}}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-section[id],#board,#main{scroll-margin-top:72px}
-body{margin:0;background:var(--bg);color:var(--fg);
-  font:15px/1.55 "Helvetica Neue",Helvetica,Arial,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.08}
-code,pre{font-family:"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace}
-a{color:var(--accent)}
-a:hover{color:var(--accent-press)}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-
-header.top{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
-header.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--fg);text-decoration:none}
-.logo svg{display:block}
-.logo .ink{fill:var(--fg)}
-header.top nav{margin-left:auto;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:16px 20px;font-size:13px;font-weight:500}
-header.top nav a{color:var(--fg2);text-decoration:none}
-header.top nav a:hover{color:var(--fg)}
-
-.btn{display:inline-flex;align-items:center;height:44px;padding:0 20px;font:600 14px/1 "Helvetica Neue",Helvetica,Arial,sans-serif;
-  border-radius:4px;text-decoration:none;border:1px solid transparent;cursor:pointer;letter-spacing:.01em}
-.btn.primary{background:var(--accent);color:#fff}
-.btn.primary:hover{background:var(--accent-press);color:#fff}
-.btn.secondary{background:transparent;color:var(--fg);border-color:var(--line2)}
-.btn.secondary:hover{background:var(--fill)}
-
-.hero{padding:64px 0 36px}
-.tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.02em;
-  color:var(--fg2);border:1px solid var(--line);border-radius:4px;padding:5px 10px;margin-bottom:24px}
-.tag .dot{width:7px;height:7px;border-radius:50%;background:var(--pos)}
-.hero h1{font-size:clamp(34px,6.2vw,58px)}
-.hero h1 .a{color:var(--accent)}
-.hero p{font-size:19px;color:var(--fg2);max-width:52ch;margin:20px 0 0}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.stats{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.stats div{flex:1 1 0;min-width:130px;padding:16px 18px;border-right:1px solid var(--line)}
-.stats div:last-child{border-right:none}
-.stats .n{font-size:22px;font-weight:700;letter-spacing:-.02em}
-.stats .l{font-size:12px;color:var(--mute);margin-top:2px}
-
-section{padding:56px 0;border-top:1px solid var(--line)}
-section h2{font-size:clamp(24px,3.6vw,32px)}
-section .lede{color:var(--fg2);max-width:56ch;margin:10px 0 28px;font-size:16px}
-
-.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:760px){
-  .cols3,.cols2{grid-template-columns:1fr}
-  .stats div{border-right:none;border-bottom:1px solid var(--line)}
-  .stats div:last-child{border-bottom:none}
-  header.top .wrap{height:auto;padding:12px 24px;flex-wrap:wrap}
-  header.top nav{margin-left:0;width:100%}
-}
-.card{border:1px solid var(--line);border-radius:4px;padding:20px;background:var(--bg)}
-.card h3{font-size:16px;margin-bottom:8px}
-.card p{margin:0;color:var(--fg2);font-size:14px}
-.card ul{margin:8px 0 0;padding-left:18px;color:var(--fg2);font-size:14px}
-.card li{margin:5px 0}
-.card code,.lede code,section p code{background:var(--code);border:1px solid var(--line);border-radius:3px;padding:1px 5px;font-size:12px;color:var(--fg)}
-.kicker{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
-.kicker.ref{color:var(--accent)} .kicker.live{color:var(--pos)}
-
-pre.code{background:var(--code);border:1px solid var(--line);border-radius:4px;padding:18px 20px;overflow-x:auto;
-  font-size:12.5px;line-height:1.6;margin:0;color:var(--fg)}
-pre.code .c{color:var(--mute)} pre.code .k{color:var(--accent)} pre.code .s{color:var(--pos)}
-
-.pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{font-family:"SFMono-Regular",Menlo,monospace;font-size:12.5px;border:1px solid var(--line2);border-radius:4px;
-  padding:5px 10px;color:var(--fg);background:var(--fill)}
-.steps{display:grid;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.steps .s{display:flex;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line);font-size:15px;color:var(--fg2)}
-.steps .s:last-child{border-bottom:none}
-.steps .num{flex:none;width:26px;height:26px;border:1px solid var(--line2);border-radius:4px;display:grid;place-items:center;
-  font-weight:700;font-size:13px;color:var(--fg)}
-.steps .s code{background:var(--code);border:1px solid var(--line);border-radius:3px;padding:1px 5px;font-size:12px;color:var(--fg)}
-.callout{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;padding:16px 20px;background:var(--fill);font-size:14px}
-footer{border-top:1px solid var(--line);padding:36px 0 56px;color:var(--mute);font-size:13px}
-footer a{color:var(--fg2);text-decoration:none} footer a:hover{color:var(--fg)}
-footer .row{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
-footer .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
-@media(max-width:760px){footer .cols{grid-template-columns:1fr}}
-footer strong{color:var(--fg);display:block;margin-bottom:6px}
-
-.board{background:var(--board);color:var(--board-fg);border-radius:4px;overflow:hidden;margin-top:8px}
-.board .hd{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--board-line);font-size:12px;color:var(--board-mute)}
-.board .hd b{color:var(--board-fg);font-size:14px}
-.board table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-.board th,.board td{padding:12px 18px;text-align:left;font-size:13px;border-bottom:1px solid var(--board-line)}
-.board th{color:var(--board-mute);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.board tr:last-child td{border-bottom:none}
-.board .mkt{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:12px;color:var(--board-mute)}
-.board .price{display:inline-block;min-width:52px;text-align:center;background:#151d30;border:1px solid #2a3a5c;border-radius:2px;padding:6px 8px;font-weight:700}
-.board .price.open{border-color:#276ef1;color:#9cbcff}
-.board .cap{padding:12px 18px;font-size:12px;color:var(--board-mute)}
-
-.schema-list{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-@media(max-width:760px){.schema-list{grid-template-columns:repeat(2,1fr)}}
-.schema-list a{display:block;border:1px solid var(--line);border-radius:4px;padding:10px 12px;text-decoration:none;color:var(--fg);font-family:"SFMono-Regular",Menlo,monospace;font-size:12px;background:var(--fill)}
-.schema-list a:hover{border-color:var(--accent);color:var(--accent)}
-.skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#fff;padding:8px 12px}
-.skip:focus{left:8px;z-index:20}
-</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="./">
-    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
-      <rect class="ink" x="2" y="8" width="4" height="4"/>
-      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
-      <rect class="ink" x="2" y="20" width="4" height="4"/>
-      <rect class="ink" x="8" y="8" width="12" height="4"/>
-      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
-      <rect class="ink" x="8" y="20" width="8" height="4"/>
-    </svg>
-    OpenBook
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
   </a>
   <nav>
-    <a href="#who">Who</a>
-    <a href="#model">Model</a>
-    <a href="#wire">Wire</a>
-    <a href="#vocab">Vocab</a>
-    <a href="#schemas">Schemas</a>
-    <a href="#docs">Docs</a>
+    <a href="spec.html">Spec</a>
+    <a href="vocabularies/">Vocabularies</a>
+    <a href="schemas.html">Schemas</a>
+    <a href="examples.html">Examples</a>
+    <a href="decisions.html">Decisions</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
@@ -161,13 +38,13 @@ footer strong{color:var(--fg);display:block;margin-bottom:6px}
 <main id="main">
 <div class="wrap">
 <section class="hero" style="border-top:none">
-  <span class="tag"><span class="dot"></span>Open sportsbook data · v0.3.0-draft</span>
-  <h1>One open standard for <span class="a">sportsbook data</span>.</h1>
-  <p>The contract any sportsbook or feed emits odds in. A reference model, a live wire, and controlled vocabularies. Read it once, consume every publisher.</p>
+  <span class="tag">v0.3.0-draft · the sheet the board is written on</span>
+  <h1>The book was paper. The <span class="a">open book</span> is the feed.</h1>
+  <p>Odds used to move on a ticket, in a room where everybody knew the clerk. OpenBook is that sheet as a standard — a catalogue, a live wire, and the names of the bets — so any house can publish and any desk can read.</p>
   <div class="cta">
-    <a class="btn primary" href="https://github.com/openbook-data-standards/openbook/blob/main/spec/openbook.md">Read the specification</a>
+    <a class="btn primary" href="spec.html">Read the specification</a>
     <a class="btn secondary" href="#start">Get started</a>
-    <a class="btn secondary" href="https://github.com/openbook-data-standards/openbook/tree/main/schema">JSON Schemas</a>
+    <a class="btn secondary" href="schemas.html">JSON Schemas</a>
   </div>
   <div class="stats">
     <div><div class="n">16</div><div class="l">JSON schemas</div></div>
@@ -180,7 +57,7 @@ footer strong{color:var(--fg);display:block;margin-bottom:6px}
 
 <section id="who" style="border-top:none;padding-top:0">
   <h2>Who it is for</h2>
-  <p class="lede">Same format whether you run a book, carry many books, or consume odds. The mark is a two-column board: rotation ticks and staggered market rows. The middle row is the line that is open.</p>
+  <p class="lede">Same sheet whether you take the action, carry other houses, or read the prices. The engine stays in the back. The ticket is what travels.</p>
   <div class="cols3">
     <div class="card"><h3>Sportsbooks</h3><p>Publish your own prices without inventing a private dump format. Keep the engine, models and pricing proprietary.</p></div>
     <div class="card"><h3>Feeds</h3><p>Carry many sources in one stream. Every price names its source and how it was obtained — licensed, scraped, or derived.</p></div>
@@ -201,8 +78,8 @@ footer strong{color:var(--fg);display:block;margin-bottom:6px}
 
 <section id="board" style="padding:0 0 56px;border-top:none">
   <div class="wrap">
-    <h2>Looks like a sportsbook. Travels as data.</h2>
-    <p class="lede">The live wire is fixture-first. One subscription follows a match; markets, prices and grades hang off that fixture. This board is an example, not a live feed.</p>
+    <h2>A slip, not a dashboard.</h2>
+    <p class="lede">Fixture-first, the way a ticket names one game. Markets, prices and grades hang off that fixture. This is an example, not a live feed.</p>
     <div class="board">
       <div class="hd">
         <div>
@@ -294,29 +171,29 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
     <span class="pill">segment:soccer:1st-half</span><span class="pill">segment:baseball:inning-1</span><span class="pill">segment:tennis:set-2</span>
     <span class="pill">side:over</span><span class="pill">sport:athletics</span>
   </div>
-  <p style="margin-top:22px"><a href="https://github.com/openbook-data-standards/openbook/tree/main/vocabularies">Browse the vocabularies →</a></p>
+  <p style="margin-top:22px"><a href="vocabularies/">Browse the vocabularies →</a></p>
 </section>
 
 <section id="schemas">
   <h2>JSON Schemas</h2>
   <p class="lede">Draft 2020-12. Machine-normative for what is on the wire. Validate with <code>python3 tools/validate.py</code>.</p>
   <div class="schema-list">
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/change.schema.json">change</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/common.schema.json">common</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/fixture.schema.json">fixture</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/grade.schema.json">grade</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/league.schema.json">league</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/market.schema.json">market</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/market_type.schema.json">market_type</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/odds_change.schema.json">odds_change</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/participant.schema.json">participant</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/player.schema.json">player</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/publisher.schema.json">publisher</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/region.schema.json">region</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/score.schema.json">score</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/season.schema.json">season</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/sport.schema.json">sport</a>
-    <a href="https://github.com/openbook-data-standards/openbook/blob/main/schema/stage.schema.json">stage</a>
+    <a href="schemas.html#change">change</a>
+    <a href="schemas.html#common">common</a>
+    <a href="schemas.html#fixture">fixture</a>
+    <a href="schemas.html#grade">grade</a>
+    <a href="schemas.html#league">league</a>
+    <a href="schemas.html#market">market</a>
+    <a href="schemas.html#market_type">market_type</a>
+    <a href="schemas.html#odds_change">odds_change</a>
+    <a href="schemas.html#participant">participant</a>
+    <a href="schemas.html#player">player</a>
+    <a href="schemas.html#publisher">publisher</a>
+    <a href="schemas.html#region">region</a>
+    <a href="schemas.html#score">score</a>
+    <a href="schemas.html#season">season</a>
+    <a href="schemas.html#sport">sport</a>
+    <a href="schemas.html#stage">stage</a>
   </div>
 </section>
 
@@ -324,20 +201,20 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
   <h2>Documentation</h2>
   <p class="lede">Normative spec first; decisions and patterns sit beside it so the why does not live only in chat history.</p>
   <div class="cols3">
-    <div class="card"><h3><a href="https://github.com/openbook-data-standards/openbook/blob/main/spec/openbook.md">Specification</a></h3><p>The document. BCP 14 language. Where the spec and a schema disagree on a shipped field, the schema wins.</p></div>
-    <div class="card"><h3><a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/decisions.md">Decision log</a></h3><p>Every rule and why it exists. A newer decision wins until the spec and schemas catch up.</p></div>
-    <div class="card"><h3><a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/building-blocks.md">Building blocks</a></h3><p>CLDR, Wikidata, schema.org, JSON Merge Patch, MQTT, OpenAPI, AsyncAPI — what we reuse instead of inventing.</p></div>
-    <div class="card"><h3><a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/industry-patterns.md">Industry patterns</a></h3><p>How existing books and feeds already slice markets, segments and settlement — the map, not the standard.</p></div>
-    <div class="card"><h3><a href="https://github.com/openbook-data-standards/openbook/blob/main/GOVERNANCE.md">Governance</a></h3><p>Open spec, private engines. How change is proposed, and what will never be in scope.</p></div>
-    <div class="card"><h3><a href="https://github.com/openbook-data-standards/openbook/blob/main/VERSIONING.md">Versioning</a></h3><p>SemVer for the standard. How drafts become 1.0, and how vocabularies deprecate instead of reuse.</p></div>
+    <div class="card"><h3><a href="spec.html">Specification</a></h3><p>The document. BCP 14 language. Where the spec and a schema disagree on a shipped field, the schema wins.</p></div>
+    <div class="card"><h3><a href="decisions.html">Decision log</a></h3><p>Every rule and why it exists. A newer decision wins until the spec and schemas catch up.</p></div>
+    <div class="card"><h3><a href="building-blocks.html">Building blocks</a></h3><p>CLDR, Wikidata, schema.org, JSON Merge Patch, MQTT, OpenAPI, AsyncAPI — what we reuse instead of inventing.</p></div>
+    <div class="card"><h3><a href="industry-patterns.html">Industry patterns</a></h3><p>How existing books and feeds already slice markets, segments and settlement — the map, not the standard.</p></div>
+    <div class="card"><h3><a href="governance.html">Governance</a></h3><p>Open spec, private engines. How change is proposed, and what will never be in scope.</p></div>
+    <div class="card"><h3><a href="versioning.html">Versioning</a></h3><p>SemVer for the standard. How drafts become 1.0, and how vocabularies deprecate instead of reuse.</p></div>
   </div>
 </section>
 
 <section id="start">
   <h2>Get started</h2>
   <div class="steps">
-    <div class="s"><span class="num">1</span><div>Read the <a href="https://github.com/openbook-data-standards/openbook/blob/main/spec/openbook.md">specification</a> and the <a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/decisions.md">decision log</a> — every rule and why it exists.</div></div>
-    <div class="s"><span class="num">2</span><div>Validate against the <a href="https://github.com/openbook-data-standards/openbook/tree/main/schema">JSON Schemas</a> (draft 2020-12): <code>python3 tools/validate.py</code>.</div></div>
+    <div class="s"><span class="num">1</span><div>Read the <a href="spec.html">specification</a> and the <a href="decisions.html">decision log</a> — every rule and why it exists.</div></div>
+    <div class="s"><span class="num">2</span><div>Validate against the <a href="schemas.html">JSON Schemas</a> (draft 2020-12): <code>python3 tools/validate.py</code>.</div></div>
     <div class="s"><span class="num">3</span><div>Map your feed in: keep your own ids, add the standard facts, attach a Wikidata <code>sameAs</code> where one exists.</div></div>
     <div class="s"><span class="num">4</span><div>Publish — a book's own odds, or a feed carrying many books. Same format either way.</div></div>
   </div>
@@ -353,33 +230,27 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
-    <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-      <rect class="ink" x="2" y="8" width="4" height="4"/>
-      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
-      <rect class="ink" x="2" y="20" width="4" height="4"/>
-      <rect class="ink" x="8" y="8" width="12" height="4"/>
-      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
-      <rect class="ink" x="8" y="20" width="8" height="4"/>
-    </svg>
-    OpenBook
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
   </a>
   <div>OpenBook Data Standards — an open standard for sportsbook &amp; gambling data</div>
   <div class="cols">
     <div>
       <strong>Standard</strong>
       <div class="row">
-        <a href="https://github.com/openbook-data-standards/openbook/blob/main/spec/openbook.md">Spec</a>
-        <a href="https://github.com/openbook-data-standards/openbook/tree/main/schema">Schemas</a>
-        <a href="https://github.com/openbook-data-standards/openbook/tree/main/vocabularies">Vocabularies</a>
-        <a href="https://github.com/openbook-data-standards/openbook/tree/main/examples">Examples</a>
+        <a href="spec.html">Spec</a>
+        <a href="schemas.html">Schemas</a>
+        <a href="vocabularies/">Vocabularies</a>
+        <a href="examples.html">Examples</a>
       </div>
     </div>
     <div>
       <strong>Project</strong>
       <div class="row">
         <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
-        <a href="https://github.com/openbook-data-standards/openbook/blob/main/GOVERNANCE.md">Governance</a>
-        <a href="https://github.com/openbook-data-standards/openbook/blob/main/CONTRIBUTING.md">Contributing</a>
+        <a href="governance.html">Governance</a>
+        <a href="contributing.html">Contributing</a>
         <a href="https://github.com/openbook-data-standards/openbook/blob/main/LICENSE">CC BY 4.0</a>
       </div>
     </div>
