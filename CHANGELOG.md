@@ -10,6 +10,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   ([`VERSIONING.md`](VERSIONING.md)).
 - **Q33** — Level L delivery/recovery: all eight guarantees MUST
   ([`spec/openbook.md`](spec/openbook.md) §5.1).
+- **Q34** — catch-all `unknown`/`other`; consumers MUST tolerate unrecognised
+  values.
 - **Q35** — never reuse ids, list-values, or field names once frozen;
   registry [`vocabularies/deprecated.md`](vocabularies/deprecated.md).
 
