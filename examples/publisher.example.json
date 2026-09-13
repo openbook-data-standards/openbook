@@ -5,6 +5,8 @@
   "dateModified": "2026-09-19T12:00:00Z",
   "name": "Acme Feeds",
   "baseCurrency": "GBP",
+  "heartbeatMs": 5000,
+  "ttl": 60,
   "url": "https://example.invalid/acme-feeds",
   "sources": [
     {

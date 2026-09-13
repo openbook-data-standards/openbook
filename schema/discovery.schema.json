@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/discovery.schema.json",
+  "title": "OpenBook discovery document",
+  "description": "One URL lists a publisher's feeds (Q49). GBFS-shaped. The publisher object stays identity, not the catalog.",
+  "type": "object",
+  "required": [
+    "lastUpdated",
+    "ttl",
+    "feeds"
+  ],
+  "properties": {
+    "lastUpdated": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "ttl": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Cache lifetime in seconds (Q48)."
+    },
+    "feeds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "url"
+        ],
+        "additionalProperties": false,
+        "patternProperties": {
+          "^x_": {}
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Snapshot, stream, or publisher-hosted API docs."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x_": {}
+  },
+  "additionalProperties": false
+}

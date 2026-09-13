@@ -241,7 +241,7 @@
 <p>Rejected: required on every tick; no inheritance; optional everywhere.</p>
 <p><strong>Supersedes:</strong> none.</p>
 <h2 id="q46-caught-up-heartbeat-stale-since-decided">Q46 — Caught-up, heartbeat, stale since — decided</h2>
-<p>Wire names for Q33 items 4, 5, and 1. No schema in this patch.</p>
+<p>Wire names for Q33 items 4, 5, and 1.</p>
 <ul>
 <li><strong>Caught-up (push MUST).</strong> After snapshot + replay, emit <code>action: snapshotComplete</code>. Pull has <strong>no</strong> marker; the HTTP response is the batch.</li>
 <li><strong>Heartbeat (push).</strong> Same stream: <code>action: heartbeat</code>. Interval on the publisher record as <code>heartbeatMs</code>.</li>

@@ -57,6 +57,10 @@
         "$ref": "common.schema.json#/$defs/sequence"
       }
     },
+    "conflated": {
+      "type": "boolean",
+      "description": "true when this message skipped intermediate ticks (Q47). Sequence still increases."
+    },
     "changes": {
       "type": "object"
     }
