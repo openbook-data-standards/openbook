@@ -22,19 +22,17 @@
     </svg>
     OpenBook</a>
   <nav>
-    <a href="../spec.html">Spec</a>
-    <a href="../vocabularies/">Vocabularies</a>
-    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    <a href="../guide.html"">Guide</a><a href="../spec.html"">Spec</a><a href="../taxonomy.html"">Taxonomy</a><a href="../vocabularies/"">Vocabularies</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="../">Home</a> · conformance/README.md</p><article class="doc"><h1 id="conformance-corpus">Conformance corpus</h1>
+<p class="crumb"><a href="../">Home</a> · conformance/README.md</p><div class="page-layout"><article class="doc"><h1 id="conformance-corpus">Conformance corpus</h1>
 <p>Language-agnostic JSON cases that any OpenBook implementation MUST pass. The Python file <a href="../tools/validate.py"><code>../tools/validate.py</code></a> is <strong>one runner</strong>, not a language oracle (Q40).</p>
 <ul>
 <li><strong>Valid</strong> cases are the documents in <a href="../schemas.html#examples"><code>../examples/</code></a>. A conformant consumer and a conformant publisher both accept them.</li>
 <li><strong>Invalid</strong> cases in <a href="invalid/"><code>invalid/</code></a> MUST be rejected. Each entry in <a href="manifest.json"><code>manifest.json</code></a> states why.</li>
 </ul>
-<p>Cases are part of the specification (CC BY 4.0). A runner in any language may read <code>manifest.json</code> and apply the schemas in <a href="../schemas.html"><code>../schema/</code></a>. Reference libraries, if published later, are optional and Apache-2.0.</p></article><p class="source">Source: conformance/README.md</p>
+<p>Cases are part of the specification (CC BY 4.0). A runner in any language may read <code>manifest.json</code> and apply the schemas in <a href="../schemas.html"><code>../schema/</code></a>. Reference libraries, if published later, are optional and Apache-2.0.</p></article></div><p class="source">Source: conformance/README.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="../" style="margin-bottom:12px">
@@ -50,5 +48,6 @@
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
+
 </body>
 </html>

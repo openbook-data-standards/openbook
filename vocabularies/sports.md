@@ -1,7 +1,8 @@
 # OpenBook controlled vocabulary — sports
 
 Version `0.1.0-draft`. Each entry is a canonical `sport:*` id and its display
-name. Additions go through the process in [`../CONTRIBUTING.md`](../CONTRIBUTING.md);
+name. Human map: [`../docs/taxonomy.md`](../docs/taxonomy.md). Additions go
+through the process in [`../CONTRIBUTING.md`](../CONTRIBUTING.md);
 ids are stable and never re-pointed once published.
 
 - `sport:soccer` — Soccer
