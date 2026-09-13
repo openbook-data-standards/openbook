@@ -54,6 +54,7 @@ openbook/  (this repository)
   index.html                ← project homepage (GitHub Pages)
   docs/
     decisions.md            ← the design decision log
+    protocol-comparison.md   ← GTFS, GBFS, MQTT, FIX, ISO 20022, OpenRTB, … vs OpenBook
   spec/
     openbook.md           ← the normative reference specification
     asyncapi.yaml         ← push streams (Q42); MQTT not required

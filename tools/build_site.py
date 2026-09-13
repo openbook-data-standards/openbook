@@ -26,6 +26,10 @@ PAGE_MAP = {
     "../docs/building-blocks.md": "building-blocks.html",
     "docs/industry-patterns.md": "industry-patterns.html",
     "../docs/industry-patterns.md": "industry-patterns.html",
+    "docs/protocol-comparison.md": "protocol-comparison.html",
+    "../docs/protocol-comparison.md": "protocol-comparison.html",
+    "protocol-comparison.md": "protocol-comparison.html",
+    "industry-patterns.md": "industry-patterns.html",
     "GOVERNANCE.md": "governance.html",
     "../GOVERNANCE.md": "governance.html",
     "VERSIONING.md": "versioning.html",
@@ -346,6 +350,7 @@ def main() -> None:
     write_md_page(ROOT / "docs/decisions.md", ROOT / "decisions.html", 0, "decisions.html", "docs/decisions.md")
     write_md_page(ROOT / "docs/building-blocks.md", ROOT / "building-blocks.html", 0, "building-blocks.html", "docs/building-blocks.md")
     write_md_page(ROOT / "docs/industry-patterns.md", ROOT / "industry-patterns.html", 0, "industry-patterns.html", "docs/industry-patterns.md")
+    write_md_page(ROOT / "docs/protocol-comparison.md", ROOT / "protocol-comparison.html", 0, "protocol-comparison.html", "docs/protocol-comparison.md")
     write_md_page(ROOT / "GOVERNANCE.md", ROOT / "governance.html", 0, "governance.html", "GOVERNANCE.md")
     write_md_page(ROOT / "VERSIONING.md", ROOT / "versioning.html", 0, "versioning.html", "VERSIONING.md")
     write_md_page(ROOT / "CONTRIBUTING.md", ROOT / "contributing.html", 0, "contributing.html", "CONTRIBUTING.md")

@@ -90,6 +90,10 @@ grouped by what each one is used for, with the reason it was chosen.
 - **WMO WIS 2.0** — a UN body running real-time MQTT pub/sub for 193 members
   since 2025, with a versioned topic grammar. The live-tier precedent.
 
+Which pieces of those protocols are on the OpenBook wire, which are shape
+only, which are later encodings, and which are rejected, is
+[`protocol-comparison.md`](protocol-comparison.md).
+
 ## Sources
 
 - ISO 3166-2:GB — https://en.wikipedia.org/wiki/ISO_3166-2:GB ·
@@ -104,6 +108,9 @@ grouped by what each one is used for, with the reason it was chosen.
 - FIX Protocol — https://www.fixtrading.org/standards/
 - ISO 20022 — https://www.iso20022.org/
 - OpenRTB — https://iabtechlab.com/standards/openrtb/
+- MQTT 5.0 — https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html
+  (ISO/IEC 20922:2016 is MQTT 3.1.1)
+- GBFS 3.0 — https://gbfs.org/documentation/reference/
 - OsmChange — https://wiki.openstreetmap.org/wiki/OsmChange · Planet diffs —
   https://wiki.openstreetmap.org/wiki/Planet.osm/diffs
 - WIS2 guide — https://wmo-im.github.io/wis2-guide/guide/wis2-guide-APPROVED.html ·
