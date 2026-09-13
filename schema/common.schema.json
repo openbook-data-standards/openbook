@@ -265,6 +265,16 @@
         "model"
       ]
     },
+    "feedKind": {
+      "enum": [
+        "snapshot",
+        "stream",
+        "docs",
+        "mcp",
+        "plugin"
+      ],
+      "description": "What a discovery feed entry is (Q56). snapshot/stream/docs are the OpenBook feed; mcp and plugin point at another standard's manifest, not an OpenBook document."
+    },
     "stageType": {
       "enum": [
         "phase",

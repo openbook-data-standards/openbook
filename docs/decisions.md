@@ -650,3 +650,29 @@ A CI schema-diff gate (required field added, re-type, remove) is a **later PR**,
 Rejected: run it on 0.x now; never; this patch.
 
 **Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
+
+## Q56 — MCP and plugins are discovery feeds, not a second wire — decided
+
+A publisher MAY advertise **additional surfaces** (an MCP server, an Agent
+Plugin, other client tooling) on the **same discovery document** as the
+OpenBook feeds (Q49). Each entry is still `{ name, url }`. Optional
+**`kind`** (`snapshot` · `stream` · `docs` · `mcp` · `plugin`), **`id`**,
+and **`schemaUrl`** say what the URL is.
+
+- `mcp` and `plugin` URLs point at **that surface's own manifest**, not an
+  OpenBook document. OpenBook does not wrap MCP, does not ship MCP or Agent
+  Plugins schemas, and does not add `mcp` to `objectType` or the topic
+  grammar.
+- An MCP/plugin that exposes OpenBook data uses OpenBook document shapes as
+  the payload. That is the data standard for adding a plugin: advertise it
+  on discovery; keep the wire.
+
+Rejected: inline `mcpServers` in discovery (duplicates MCP's own config);
+a new live `object` for MCP; `.well-known/openbook-mcp` as a second
+discovery URL; wrapping change messages as MCP-only payloads with a
+parallel betting schema; shipping MCP `server.json` schema in this repo
+(same as Q54 for OpenAPI).
+
+**Supersedes:** Q49 “named feeds” by adding `kind` / `schemaUrl` / `id`
+and naming MCP/plugin. Q52 (no wrap) and Q54 (foreign docs stay at their
+own URL) stand.
