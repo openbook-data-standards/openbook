@@ -31,10 +31,16 @@ It standardises the data contract only.
 - **Currency** — ISO 4217. Each feed MUST declare **`baseCurrency`** once
   on the publisher record (and on a full snapshot of that record). Incremental
   messages do not repeat it. Money is `{amount}` in that currency. Odds are
-  not money. Another currency is another subscription (Q44).
+  not money. Another currency is another subscription (Q44). ISO 20022
+  XML and the ISO 20022 JSON trial are not the OpenBook encoding (Q92).
 - **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
+- **Encoding** — JSON is the required v1 encoding (Q89). The schemas,
+  examples, discovery document, corpus, validator, and AsyncAPI describe
+  this encoding. Additional encodings MAY exist later as optional bindings
+  generated from the JSON Schemas; they are not in this repo in v1 and
+  they do not replace JSON.
 - **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
   Decimal odds only (MUST be strictly greater than 1); American and
   fractional forms are presentation.
@@ -113,7 +119,8 @@ player                      publisher-own; roster membership of a person in a te
 - **Field-level granularity, JSON Merge Patch (RFC 7386) semantics**: a change
   carries the object id plus only the fields that changed; absent = unchanged;
   `null` = removed. Consumers MUST merge and MUST NOT assume a message re-sends
-  unchanged state.
+  unchanged state. JSON Patch (RFC 6902) is not an alternate change encoding
+  (Q91).
 - **Odds are push-first.** Publishers SHOULD deliver `odds/change` by push and
   MAY additionally offer a `since=` pull. `market/snapshot` gives a fixture's
   current prices for initial load and recovery.
@@ -138,7 +145,8 @@ guarantees, not JSON Schema.
 5. **Bounded heartbeats (push).** The same stream carries `action:
    heartbeat` (`changes: {}`). The publisher record MUST declare
    `heartbeatMs` (maximum silence, milliseconds). Quiet longer than that, the
-   consumer SHOULD treat the feed as down (Q46).
+   consumer SHOULD treat the feed as down (Q46). FIX session (Logon /
+   Heartbeat / TestRequest / Logout) is not the OpenBook session (Q93).
 6. If intermediate ticks are dropped, that change MUST carry **`conflated:
    true`**. Sequence still increases (Q47).
 7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once
@@ -155,12 +163,31 @@ guarantees, not JSON Schema.
   ([`../schema/discovery.schema.json`](../schema/discovery.schema.json)).
   Snapshot, stream, and any publisher-hosted API docs are named feeds. The
   `publisher` object stays identity, not the catalog (Q49).
+  Documents are not wrapped in a GBFS-style outer container (Q90).
+  There is no spec-owned list of many publishers (Q94).
 - A publisher MAY **co-serve** more than one OpenBook version at the same
   time (distinct URLs or topics per `openbookVersion`).
 
 Two independent implementations (a producer and a consumer; not
 [`../tools/validate.py`](../tools/validate.py)) are required to **freeze
 1.0**, not to ship a 0.x minor.
+
+### 5.3 Monitoring a feed
+
+The §5.1 guarantees are also the signals a consumer watches to know a feed is
+healthy, not only what it replays:
+
+- **Liveness** — silence longer than the publisher's declared `heartbeatMs`
+  (§5.1.5) SHOULD raise an alarm. Quiet is not dead only up to that bound.
+- **Continuity** — a gap, reorder, or duplicate in per-fixture `sequence`
+  (§5.1.3, §5.1.8) is observable and SHOULD be surfaced, never hidden.
+- **Freshness** — `datePublished` / `dateModified` and the discovery document's
+  `lastUpdated` and `ttl` (§5.2) bound how old a live feed may be before a
+  consumer treats it as stale.
+- **Conformance** — a consumer MAY run the conformance corpus
+  ([`../conformance/`](../conformance/)) against a live feed continuously — the
+  same runner CI uses — to catch a producer drifting off-spec. Conformance is a
+  monitoring tool, not only a release gate.
 
 ## 5a. Status: three questions, three fields
 
@@ -194,7 +221,7 @@ Every fixture MUST carry: own `id` · `sport` (shared id + name) · `league`
 (own id + name + territory + `competitionType`) · `startDate` ·
 `participants[]` (own id, name, territory, **`role`**: home · away · neutral, **and `order`**, always present) ·
 `sequence` · `dateModified`; and MAY carry `season`, `stage`, `location`,
-`identifier`. Consumers match on sport + league (name, territory) +
+`surface`, `identifier`. Fixture `participants[]` MAY carry `seed`. Consumers match on sport + league (name, territory) +
 start_time + participants (names, territories), and on Wikidata QIDs when both
 sides have them. `role` and `order` are facts the publisher asserts; the sign of a handicap is
 derived from them. A feed's presentation order is never a fact.
@@ -209,27 +236,36 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   exchange | model}`). GTFS `agency.txt`. Another currency is another
   subscription (Q44). Level L MUST declare **`heartbeatMs`**. Optional
   **`ttl`** (seconds) MAY also sit here; the discovery document is where
-  `ttl` is required (Q46, Q48).
+  `ttl` is required (Q46, Q48). Optional `registeredName` (Q60) and
+  `inLanguage` (ISO 639-1, Q68).
 - **`sport`**, **`segment`**, **`marketType`**, **`side`** — shared
   vocabularies ([`../vocabularies/`](../vocabularies/)). A sport MAY carry a
-  default `limit`.
+  default `limit`. Sport, market type, and segment are **`name` only** (Q59).
 - **`region`** — `id` = CLDR territory code; `name`, `names{lang}`, `superEvent`,
   crosswalks `iocCode`, `fifaCode`, `sameAs`.
 - **`league`** — own id, `name`, `sport`, `territory`, `competitionType`,
-  optional `organizer`, `ruleset`, `sameAs`, optional `limit`.
-- **`season`** — own id, `league`, `name`, `startDate`, `endDate`.
+  optional `organizer`, `ruleset`, `sameAs`, optional `limit`. Team-style
+  names: optional `shortName`, `registeredName` (Q59). Optional `gender`
+  (`men` · `women` · `mixed` · `open`) and `ageGroup` (Q72, Q73).
+- **`season`** — own id, `league`, `name` (display), `startDate`, `endDate`
+  (Q60 / Q9).
 - **`stage`** — own id, `season`, `name`, `parent`, `stageType` (phase · group ·
-  round · matchday · leg · seriesGame), `order`.
+  round · matchday · leg · seriesGame), `order`, optional `startDate` /
+  `endDate`.
 - **`participant`** — own id, `participantType` (team · individual), `sport`,
-  `territory`, `sameAs`, and the **name model**: `name` (full), `shortName`
-  ("Man City", "C. Alcaraz"), `abbreviation` ("MCI"), `alternateName[]`,
-  `localName` (native script), `names{lang}`; for individuals the vCard /
-  X.520 parts `familyName`, `givenName`, `additionalName`, `honorificPrefix`,
-  `honorificSuffix` (after ODF's Print / TV / Local name forms). No league field.
+  `territory`, `sameAs`. Required `name` (popular/board). Optional `shortName`,
+  `names` (ISO 639-1), `nameLatin` (ISO 9 / ISO 843), `alternateName[]`.
+  **Teams** MAY add `location` + `nickname`, `registeredName`,
+  `abbreviation`. **Individuals** MAY add `givenName` / `familyName` (vCard
+  RFC 6350 / ITU X.520); no `abbreviation`. No league field. Fixture
+  `participants[]` copies `name` plus `role` and `order`.
 - **`player`** — roster membership: own id, `participant` (the person),
-  `team` (the team participant), `position`, `number`.
+  `team` (the team participant), `position`, `number`. Optional `throws`
+  and `bats` (`left` · `right` · `both`). No name fields.
 - **`fixture`** — §6 plus `eventStatus`, `cutoffDate`, `superEvent` (a live
-  event's pregame parent), `location` (a schema.org Place).
+  event's pregame parent), optional display `name`, `location` (nested
+  schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`,
+  optional WGS 84 `latitude` / `longitude`), optional `surface`.
 - **`market`** — a fixture's market as priced by one source: `fixture`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
   `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's
@@ -244,6 +280,9 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   `scores[]` — **one line per participant × unit** (`goals`, `corners`,
   `sets`, `games`, `runs`, `hits`…) with `total` and `bySegment`. The sport /
   league declares its `primaryUnit`. `server` for racket sports.
+- **`lineup`** — starting roster `player` ids for one `fixture` (Q80). Not
+  on the catalog fixture. No formation, substitutions, or predicted lineup
+  (Q82).
 - **`grade`** — the book's judgement for one market × one source, graded from
   a `down` segment: `gradeId`, `segment`, `marketType`, `line`, `basis` (the
   unit graded on — Pinnacle's *resultingUnit*, generalised), `basedOn` (the
@@ -259,7 +298,7 @@ single subscription.
 
 ```
 fixture-scoped   openbook / v1 / <publisher-id> / <sport> / fixture / <fixture-id> / <object> / <action>
-                 object ∈ fixture · odds · market · score · grade
+                 object ∈ fixture · odds · market · score · grade · lineup
 entity           openbook / v1 / <publisher-id> / <sport> / <object> / <id> / <action>
                  object ∈ league · season · stage · participant · player
 publisher        openbook / v1 / <publisher-id> / publisher / <action>

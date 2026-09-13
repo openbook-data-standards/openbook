@@ -167,7 +167,7 @@ Rejected: required city+nickname; legal name as the only `name`; Print/TV
 scoreboard copies from ODF; ISO numbers invented for nicknames.
 
 **Supersedes:** Q11 proposed (v0.3 snake_case list). CamelCase is Q38. Schema
-may still be ahead or behind this list until a later wire PR.
+and spec match this names list.
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
@@ -777,8 +777,8 @@ Rejected: optional or required capacity.
 
 ## Q72 — Competition sex category — decided
 
-Optional on the **league**: `men` · `women` · `mixed` · `open`. Vocab, not
-ISO 5218. Not a field on the person.
+Optional on the **league** as **`gender`**: `men` · `women` · `mixed` ·
+`open`. Vocab, not ISO 5218. Not a field on the person.
 
 Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
 
@@ -844,12 +844,15 @@ Rejected: optional or required coach now.
 
 **Supersedes:** none.
 
-## Q80 — Match lineup — decided (later live object)
+## Q80 — Match lineup — decided (lineup object)
 
-`player` is **roster** (season membership). Starting XI is a **later live
-object**, not fields on the catalog fixture.
+`player` is **roster** (season membership). Starting XI is a live **`lineup`**
+object, fixture-keyed, not fields on the catalog fixture. The ids are roster
+**`player`** ids. Formation, substitutions, and predicted lineup stay omitted
+(**Q82**).
 
-Rejected: starter ids on the fixture now; never a match XI.
+Rejected: starter ids on the fixture now; never a match XI; person ids
+without the roster row.
 
 **Supersedes:** none. Spec already says `player` is for lineups/props; match
 XI is not the roster row.
@@ -922,5 +925,114 @@ generic fixture.
 
 Rejected: unpack stage/series immediately; jump to Q46 wire in this
 question.
+
+**Supersedes:** none.
+
+## Q88 — Throwing/shooting and batting hand — decided
+
+Optional on **`player`** (roster), not the person: **`throws`** (throwing or
+shooting) and **`bats`**. Each is `left` · `right` · `both`. No ISO.
+`both` is switch / either hand.
+
+Rejected: one `hand` field; ISO 5218-style sex codes; person-level FIFA
+Gender as a stand-in.
+
+**Supersedes:** none of Q75/Q76.
+
+## Q89 — JSON is the v1 encoding; other encodings are not forbidden — decided (A)
+
+The required v1 encoding is **JSON** (`application/json`). The spec, JSON
+Schemas, examples, discovery document, conformance corpus, validator, site,
+and AsyncAPI `defaultContentType` describe this encoding only. OpenBook
+scaffolding does not ship `.proto`, SBE, or another codec in v1.
+
+Additional encodings (protobuf, SBE, or anything else) **MAY** exist later
+as optional bindings, generated from the existing JSON Schemas — the same
+pattern OpenRTB uses (JSON default, protobuf optional). This log does **not**
+forbid them and does not require them.
+
+A later encoding is a new binding of the same objects, not a second data
+model. Decimal strings (**Q39**), Merge Patch (**Q8**), and RFC 3339 (**Q9**)
+stay the contract.
+
+Rejected: protobuf/SBE as the v1 encoding; JSON-only forever; shipping
+`.proto` now; leaving this as unnumbered industry-pattern prose.
+
+**Supersedes:** none of Q8/Q39/Q40. Pins `docs/industry-patterns.md` “JSON in
+v1; binary later”.
+
+## Q90 — No GBFS-style data wrapper — decided (A)
+
+GBFS wraps every file in `last_updated` / `ttl` / `version` / `data`.
+OpenBook does not. Discovery is `{ lastUpdated, ttl, feeds }` at the root
+(**Q49**). Object documents and change messages are the object (**Q8**).
+They are not nested under a GBFS-style data member, on HTTP pull or on
+sockets.
+
+Rejected: wrap HTTP pull only; wrap every message including MQTT / WebSocket
+/ SSE; leave this unsaid because Q49 named discovery.
+
+**Supersedes:** none of Q49. GBFS-shaped means `ttl` and the discovery
+fields, not the GBFS file envelope.
+
+## Q91 — JSON Patch (RFC 6902) — decided (never)
+
+Change semantics stay **JSON Merge Patch (RFC 7386)** (**Q8**). RFC 6902
+JSON Patch is **not** an alternate change encoding, on pull or on sockets.
+
+Rejected: optional second patch language; JSON Patch on HTTP pull only;
+leave RFC 6902 unsaid because Q8 named Merge Patch.
+
+**Supersedes:** none of Q8. Same kind of pin as Q52 (envelope) and Q90
+(no second wrapper).
+
+## Q92 — ISO 20022 is not the OpenBook model or encoding — decided (never)
+
+The wire stays JSON Schema, schema.org-aligned camelCase (**Q13** / **Q38**),
+and Q44 money (`{amount}` plus feed `baseCurrency`). ISO 20022 XML and the
+ISO 20022 JSON trial are **not** the OpenBook encoding. They do not rename
+money fields and they do not replace JSON Schema.
+
+Rejected: adopt the ISO 20022 JSON trial money shape; add an ISO 20022
+mapping document in this question; leave ISO 20022 unsaid because Q13/Q38/Q44
+named names and money.
+
+**Supersedes:** none of Q13/Q38/Q44.
+
+## Q93 — FIX session is not the OpenBook session — decided (never)
+
+Session and recovery stay **Q33** / **Q46**: `snapshotComplete`,
+`heartbeat` + `heartbeatMs`, stale `since` is HTTP 410. FIX Logon /
+Heartbeat / TestRequest / Logout, and sequence reset, are **not** the
+OpenBook session. A later SBE binding (**Q89**) would still carry OpenBook
+heartbeats, not FIX Logon.
+
+Rejected: adopt FIX TestRequest / Heartbeat / Logout on the socket; add a
+FIX-session mapping document in this question; leave this unsaid because
+Q46 rejected a client TestRequest pair.
+
+**Supersedes:** none of Q46.
+
+## Q94 — No spec-owned multi-publisher manifest — decided (A)
+
+Each publisher has **one discovery URL** (**Q41** / **Q49**). That document
+lists that publisher's feeds, not other publishers. An aggregator is itself
+a publisher (**Q1**) and lists its own feeds. There is no spec-owned
+GBFS-style manifest of many publishers.
+
+Rejected: an OpenBook manifest of many publishers' discovery URLs; putting
+other publishers' discovery URLs on this publisher's discovery document;
+leave this unsaid because Q49 named one URL per publisher.
+
+**Supersedes:** none of Q1/Q49.
+
+## Q95 — Protocol-fit pass closed — decided
+
+This walk of encoding, wrappers, patch language, ISO 20022, FIX session,
+and discovery index is **closed**. Further questions are a **new area**,
+not more take/don't-take pins from that comparison list.
+
+Rejected: keep minting never-X questions from memory; unpack another
+protocol in this question.
 
 **Supersedes:** none.
