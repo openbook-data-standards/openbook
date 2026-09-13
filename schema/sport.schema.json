@@ -45,6 +45,9 @@
     },
     "identifier": {
       "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "primaryUnit": {
+      "$ref": "common.schema.json#/$defs/scoreUnit"
     }
   },
   "patternProperties": {

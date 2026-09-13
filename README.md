@@ -50,6 +50,6 @@ openbook/  (this repository)
     league.schema.json            any recurring competition, typed by competition_type
     odds_change.schema.json       payload of odds/change
     market.schema.json            a fixture's market for one source (snapshot / update document)
-    score.schema.json             live state: status, clock, scores per participant and segment
-    settlement.schema.json        immutable grade of one market; re-settle = new id
+    score.schema.json             live state: three statuses, clock, score lines per participant x unit x segment
+    grade.schema.json             the book's grade of one market from a down segment; never edited
     season.schema.json · player.schema.json

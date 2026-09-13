@@ -1,18 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openbook-data-standards.github.io/openbook/schema/settlement.schema.json",
-  "title": "OpenBook settlement (proposed, Q24)",
-  "description": "The grade of one market for one source. Immutable: a re-settle is a NEW settlementId that names the one it supersedes; a void is a settlement with result void. Delivered as settlement/create; reversed with settlement/delete.",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/grade.schema.json",
+  "title": "OpenBook grade",
+  "description": "The book's judgement: one market x one source, graded from a segment that is down. `basedOn` is the score `sequence` (the down, or a later correction) it graded from. A grade is never edited: a corrected grade is grade/delete + a new grade/create with `supersedes`.",
   "type": "object",
   "required": [
     "openbookVersion",
     "sequence",
     "dateModified",
-    "settlementId",
+    "gradeId",
     "fixture",
+    "segment",
     "source",
     "marketType",
-    "dateSettled",
+    "basis",
+    "basedOn",
     "outcomes"
   ],
   "properties": {
@@ -29,15 +31,17 @@
     "dateModified": {
       "$ref": "common.schema.json#/$defs/dateTime"
     },
-    "settlementId": {
+    "gradeId": {
       "$ref": "common.schema.json#/$defs/ownId"
     },
     "supersedes": {
-      "$ref": "common.schema.json#/$defs/ownId",
-      "description": "The settlementId this re-settle replaces."
+      "$ref": "common.schema.json#/$defs/ownId"
     },
     "fixture": {
       "$ref": "common.schema.json#/$defs/ownId"
+    },
+    "segment": {
+      "$ref": "common.schema.json#/$defs/sharedId"
     },
     "source": {
       "$ref": "common.schema.json#/$defs/ownId"
@@ -45,18 +49,19 @@
     "marketType": {
       "$ref": "common.schema.json#/$defs/sharedId"
     },
-    "segment": {
-      "$ref": "common.schema.json#/$defs/sharedId"
-    },
     "line": {
       "type": "number"
     },
-    "dateSettled": {
-      "$ref": "common.schema.json#/$defs/dateTime"
-    },
     "basis": {
-      "type": "string",
-      "description": "What it graded on: final score, corners, bookings, a stat."
+      "$ref": "common.schema.json#/$defs/scoreUnit",
+      "description": "The unit this market graded on (goals, corners, cards...)."
+    },
+    "basedOn": {
+      "$ref": "common.schema.json#/$defs/sequence",
+      "description": "The score message sequence the grade was computed from."
+    },
+    "dateGraded": {
+      "$ref": "common.schema.json#/$defs/dateTime"
     },
     "outcomes": {
       "type": "array",
@@ -79,7 +84,7 @@
             "type": "number"
           },
           "result": {
-            "$ref": "common.schema.json#/$defs/settlementResult"
+            "$ref": "common.schema.json#/$defs/gradeResult"
           }
         }
       }
