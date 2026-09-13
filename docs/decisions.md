@@ -960,3 +960,14 @@ Rejected: wrap HTTP pull only; wrap every message including MQTT / WebSocket
 
 **Supersedes:** none of Q49. GBFS-shaped means `ttl` and the discovery
 fields, not the GBFS file envelope.
+
+## Q90 — JSON Patch (RFC 6902) — decided (never)
+
+Change semantics stay **JSON Merge Patch (RFC 7386)** (**Q8**). RFC 6902
+JSON Patch is **not** an alternate change encoding, on pull or on sockets.
+
+Rejected: optional second patch language; JSON Patch on HTTP pull only;
+leave RFC 6902 unsaid because Q8 named Merge Patch.
+
+**Supersedes:** none of Q8. Same kind of pin as Q52 (envelope) and Q89
+(no second wrapper).

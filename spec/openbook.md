@@ -118,7 +118,8 @@ player                      publisher-own; roster membership of a person in a te
 - **Field-level granularity, JSON Merge Patch (RFC 7386) semantics**: a change
   carries the object id plus only the fields that changed; absent = unchanged;
   `null` = removed. Consumers MUST merge and MUST NOT assume a message re-sends
-  unchanged state.
+  unchanged state. JSON Patch (RFC 6902) is not an alternate change encoding
+  (Q90).
 - **Odds are push-first.** Publishers SHOULD deliver `odds/change` by push and
   MAY additionally offer a `since=` pull. `market/snapshot` gives a fixture's
   current prices for initial load and recovery.

@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q89**. Catalog pass closed. Log only.
+Questions recorded through **Q90**. Catalog pass closed. Log only.
 Q46–Q49 are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
@@ -19,8 +19,9 @@ Q46–Q49 are on the wire. **Q50** is the docs-vs-schema name check in
 
 - (none parked from this walk)
 
-## Done (Q32–Q89)
+## Done (Q32–Q90)
 
 Q32–Q55 · **Q11/Q57–Q87** catalog names/place/omits; fixture extras stop; catalog pass closed.
 **Q88** — JSON is the v1 encoding; other encodings are not forbidden.
 **Q89** — no GBFS-style data wrapper.
+**Q90** — JSON Patch (RFC 6902) never; Merge Patch (Q8) stands.

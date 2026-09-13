@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/change.schema.json",
   "title": "OpenBook change envelope",
-  "description": "One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object's schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/<publisher>/<object>/<action>/<sport>/<id>.",
+  "description": "One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object's schema (absent = unchanged, null = removed). JSON Patch (RFC 6902) is not an alternate (Q90). Mirrors the topic openbook/v1/<publisher>/<object>/<action>/<sport>/<id>.",
   "type": "object",
   "required": [
     "openbookVersion",

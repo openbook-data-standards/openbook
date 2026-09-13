@@ -54,7 +54,8 @@ grouped by what each one is used for, with the reason it was chosen.
 - **JSON** — the required v1 encoding (Q88). Additional encodings MAY exist
   later as optional bindings; this repo’s scaffolding stays JSON.
 - **RFC 7386 JSON Merge Patch** — the semantics of every change message:
-  absent = unchanged, `null` = removed. Decision Q8.
+  absent = unchanged, `null` = removed. Decision Q8. JSON Patch (RFC 6902)
+  is never an alternate (Q90).
 - **OpenAPI 3.1** — a publisher who offers HTTP publishes **their own** pull
   docs; this repo does not ship `openapi.yaml` (Q54). Spec still names
   `since=` and HTTP 410.

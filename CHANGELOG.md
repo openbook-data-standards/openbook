@@ -11,6 +11,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Q90** — JSON Patch (RFC 6902) is never an alternate change encoding; Merge
+  Patch (Q8) stands ([`docs/decisions.md`](docs/decisions.md)).
 - **Q89** — no GBFS-style data wrapper; discovery stays `{ lastUpdated, ttl,
   feeds }` at the root (Q49); objects and change messages stay themselves
   ([`docs/decisions.md`](docs/decisions.md)).
