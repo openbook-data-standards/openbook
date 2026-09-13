@@ -858,3 +858,24 @@ No referee object. Add later if those markets exist (**Q35**).
 Rejected: optional or required officials now.
 
 **Supersedes:** none.
+
+## Q82 — Encyclopedia fields — decided (omit)
+
+Omit from OpenBook (not a price feed). Presentation, PII, or another
+sport’s wiki. **Q74 / Q75 stay omit** (DOB, height/weight).
+
+Omit includes: venue roof, pitch size, attendance, weather; team mascot,
+owner, founded, social, photos, stock ticker, LEI, rivalries, derby flag,
+retired numbers; person nationality besides territory, passport names, salary,
+transfer fee, draft pick, agent, headshot; formation, substitutions, VAR,
+ball type; TV/streaming/radio, hashtags, sponsors, ticket price, prize
+money; xG/possession/shots, ranking tables, medal tables; coverage flags,
+predicted lineup, highlight clips. Kit, home stadium, coach, officials,
+capacity already omitted in Q71/Q77–Q79/Q81.
+
+Not in this omit (later questions): pitch **surface**, **seed**, racing
+**draw/stall**, cricket **toss**, playoff **series state**.
+
+Rejected: keep asking those encyclopedia fields one by one.
+
+**Supersedes:** none; does not reopen Q74/Q75.
