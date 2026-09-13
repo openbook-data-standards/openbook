@@ -10,7 +10,7 @@ Checks, in order:
          `changes` validates against the object's schema — in full for snapshot/create,
          as a Merge Patch (required relaxed) for update/change
        - a document validates against the schema named by its file stem
-  5. stream topics follow the grammar  openbook/v1/<publisher>/<object>/<action>/<sport>/<id>
+  5. stream topics follow the fixture-first grammar  openbook/v1/<publisher>/<sport>/fixture/<id>/<object>/<action>
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -25,9 +25,11 @@ except ImportError:
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCHEMA_DIR, EXAMPLE_DIR = os.path.join(ROOT, "schema"), os.path.join(ROOT, "examples")
 OBJECT_SCHEMA = {"fixture": "fixture", "odds": "odds_change", "market": "market", "score": "score",
-                 "settlement": "settlement", "league": "league", "season": "season", "stage": "stage",
+                 "grade": "grade", "league": "league", "season": "season", "stage": "stage",
                  "participant": "participant", "player": "player", "publisher": "publisher"}
-TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<object>[a-z]+)/(?P<action>[a-z]+)/(?P<sport>[a-z0-9-]+)(?:/(?P<id>[^/#+]+))?$")
+FIXTURE_TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/fixture/(?P<id>[^/#+]+)/(?P<object>fixture|odds|market|score|grade)/(?P<action>[a-z]+)$")
+ENTITY_TOPIC  = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/(?P<object>league|season|stage|participant|player)/(?P<id>[^/#+]+)/(?P<action>[a-z]+)$")
+PUB_TOPIC     = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/publisher/(?P<action>[a-z]+)$")
 
 failures = []
 def fail(msg): failures.append(msg); print("  FAIL", msg)
@@ -105,21 +107,19 @@ print("5. topic grammar")
 objects = set(schemas["common.schema.json"]["$defs"]["objectType"]["enum"])
 actions = set(schemas["common.schema.json"]["$defs"]["action"]["enum"])
 def check_topic(t):
-    m = TOPIC.match(t)
-    if not m: return f"does not match grammar"
-    g = m.groupdict()
-    if g["object"] not in objects: return f"unknown object '{g['object']}'"
+    m = FIXTURE_TOPIC.match(t) or ENTITY_TOPIC.match(t) or PUB_TOPIC.match(t)
+    if not m: return "does not match grammar (fixture-first: .../<sport>/fixture/<id>/<object>/<action>)"
+    g = m.groupdict(); obj = g.get("object", "publisher")
     if g["action"] not in actions: return f"unknown action '{g['action']}'"
-    if g["action"] == "change" and g["object"] != "odds": return "`change` is only for odds"
-    if g["object"] == "publisher" and g["id"]: return "publisher topics carry no <id>"
-    if g["object"] != "publisher" and not g["id"]: return "missing <id>"
+    if g["action"] == "change" and obj != "odds": return "`change` is only for odds"
     return None
 topics = sys.argv[sys.argv.index("--topic")+1:] if "--topic" in sys.argv else [
-    "openbook/v1/acme-feeds/odds/change/soccer/EVT-88213",
-    "openbook/v1/acme-feeds/fixture/update/soccer/EVT-88213",
-    "openbook/v1/acme-feeds/market/update/soccer/EVT-88213",
-    "openbook/v1/acme-feeds/league/update/soccer/LG-17",
-    "openbook/v1/acme-feeds/publisher/update/soccer",
+    "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change",
+    "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/update",
+    "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/market/update",
+    "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/grade/create",
+    "openbook/v1/acme-feeds/soccer/league/LG-17/update",
+    "openbook/v1/acme-feeds/publisher/update",
 ]
 for t in topics:
     err = check_topic(t); fail(f"topic {t}: {err}") if err else ok(t)
