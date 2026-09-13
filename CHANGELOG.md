@@ -31,6 +31,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `null`; `odds: "0"` is not a takedown.
 - **Q44** — `baseCurrency` once per feed; money is `{amount}`; another
   currency is another subscription.
+- **Q45** — priced markets MUST carry `limit`; sport/league defaults
+  optional; most specific wins.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

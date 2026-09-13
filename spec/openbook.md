@@ -205,11 +205,12 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   exchange | model}`). GTFS `agency.txt`. Another currency is another
   subscription (Q44).
 - **`sport`**, **`segment`**, **`marketType`**, **`side`** — shared
-  vocabularies ([`../vocabularies/`](../vocabularies/)).
+  vocabularies ([`../vocabularies/`](../vocabularies/)). A sport MAY carry a
+  default `limit`.
 - **`region`** — `id` = CLDR territory code; `name`, `names{lang}`, `superEvent`,
   crosswalks `iocCode`, `fifaCode`, `sameAs`.
 - **`league`** — own id, `name`, `sport`, `territory`, `competitionType`,
-  optional `organizer`, `ruleset`, `sameAs`.
+  optional `organizer`, `ruleset`, `sameAs`, optional `limit`.
 - **`season`** — own id, `league`, `name`, `startDate`, `endDate`.
 - **`stage`** — own id, `season`, `name`, `parent`, `stageType` (phase · group ·
   round · matchday · leg · seriesGame), `order`.
@@ -225,8 +226,12 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   event's pregame parent), `location` (a schema.org Place).
 - **`market`** — a fixture's market as priced by one source: `fixture`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
-  `licensed` · `observed`), `status`, `outcomes[]` (`side`, `odds`, `line`,
-  `active`). Identity: `(source, fixture, marketType, segment, line)`.
+  `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's
+  `baseCurrency` (required on the market document / snapshot), `outcomes[]`
+  (`side`, `odds`, `line`, `active`). Identity: `(source, fixture, marketType,
+  segment, line)`. Price-only ticks (`odds/change`) do not repeat `limit`
+  unless it changed. **Most specific wins** (Q45): market `limit` → league
+  `limit` → sport `limit`. A priced market MUST resolve to a limit.
 - **`score`** — `fixture`, `eventStatus` (+ `statusReason`), `segments[]`
   (each `segment`, `status`, `downAt`), `currentSegment`, `clock` (`elapsed` /
   `remaining` in integer seconds, `running`, broadcast `display`), and

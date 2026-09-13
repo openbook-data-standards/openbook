@@ -552,3 +552,14 @@ on the hot path.
 
 **Supersedes:** Q39's `{amount, currency}` money shape. Odds-as-strings
 stands.
+
+## Q45 — Markets have a limit; most specific wins — decided
+
+A priced market document **MUST** carry `limit` `{amount}` in the feed's
+`baseCurrency`. Sport and league MAY carry a default `limit`. **Most
+specific wins:** market → league → sport. `odds/change` does not repeat
+`limit` unless it changed (same tape rule as Q44).
+
+Rejected: required on every tick; no inheritance; optional everywhere.
+
+**Supersedes:** none.

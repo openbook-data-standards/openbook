@@ -48,6 +48,10 @@
     },
     "primaryUnit": {
       "$ref": "common.schema.json#/$defs/scoreUnit"
+    },
+    "limit": {
+      "$ref": "common.schema.json#/$defs/money",
+      "description": "Default stake/liability cap for this sport (Q45). Overridden by a more specific league or market limit."
     }
   },
   "patternProperties": {

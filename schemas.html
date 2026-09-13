@@ -848,6 +848,10 @@
         }
       }
     },
+    &quot;limit&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+      &quot;description&quot;: &quot;Default stake/liability cap for this league (Q45). Overrides sport; overridden by market.&quot;
+    },
     &quot;sameAs&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
     },
@@ -859,7 +863,7 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, outcomes</code></p><pre>{
+}</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, limit, outcomes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/market.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook market&quot;,
@@ -874,6 +878,7 @@
     &quot;source&quot;,
     &quot;provenance&quot;,
     &quot;status&quot;,
+    &quot;limit&quot;,
     &quot;outcomes&quot;
   ],
   &quot;properties&quot;: {
@@ -914,6 +919,10 @@
     &quot;isMain&quot;: {
       &quot;type&quot;: &quot;boolean&quot;,
       &quot;description&quot;: &quot;The main line among alternates.&quot;
+    },
+    &quot;limit&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+      &quot;description&quot;: &quot;Max stake/liability in the feed&#x27;s baseCurrency (Q45). Required on the market document; omitted on a patch unless it changed.&quot;
     },
     &quot;outcomes&quot;: {
       &quot;type&quot;: &quot;array&quot;,
@@ -1065,6 +1074,10 @@
           },
           &quot;status&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketStatus&quot;
+          },
+          &quot;limit&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+            &quot;description&quot;: &quot;Present on a tick only when the limit changed (Merge Patch).&quot;
           },
           &quot;source&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
@@ -1641,6 +1654,10 @@
     },
     &quot;primaryUnit&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;
+    },
+    &quot;limit&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/money&quot;,
+      &quot;description&quot;: &quot;Default stake/liability cap for this sport (Q45). Overridden by a more specific league or market limit.&quot;
     }
   },
   &quot;patternProperties&quot;: {

@@ -4,6 +4,7 @@
     {"path": "examples/fixture.example.json"},
     {"path": "examples/fixture_update.example.json"},
     {"path": "examples/grade.example.json"},
+    {"path": "examples/market.example.json"},
     {"path": "examples/market_update.example.json"},
     {"path": "examples/odds_change.example.json"},
     {"path": "examples/participant.example.json"},
@@ -23,6 +24,10 @@
     {
       "path": "conformance/invalid/odds-zero.json",
       "reason": "odds 0 is not a takedown; use marketStatus and/or Merge Patch null (Q43)"
+    },
+    {
+      "path": "conformance/invalid/market-missing-limit.json",
+      "reason": "priced market create/snapshot MUST carry limit (Q45)"
     }
   ]
 }
