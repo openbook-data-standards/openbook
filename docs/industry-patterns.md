@@ -96,7 +96,7 @@ a neutral body.
   up front.
 - **Every object carries `id` + `version`; every edit belongs to a
   `changeset`.** Version increments on each change — optimistic concurrency at
-  planet scale. OpenBook's `sequence` + `updated_at` on every object is the same
+  planet scale. OpenBook's `sequence` + `dateModified` on every object is the same
   idea.
 - **Minutely replication diffs** in the **OsmChange** format: `<create>`,
   `<modify>`, `<delete>` blocks; each element carries `id`, `version`,
