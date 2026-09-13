@@ -130,7 +130,42 @@
     &quot;dateTime&quot;: {
       &quot;type&quot;: &quot;string&quot;,
       &quot;format&quot;: &quot;date-time&quot;,
-      &quot;description&quot;: &quot;ISO 8601 with explicit offset.&quot;
+      &quot;description&quot;: &quot;RFC 3339 (ISO 8601 with an explicit offset).&quot;
+    },
+    &quot;decimalString&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$&quot;,
+      &quot;description&quot;: &quot;Exact decimal as a string, not a JSON number (Q39).&quot;
+    },
+    &quot;decimalOdds&quot;: {
+      &quot;type&quot;: [
+        &quot;string&quot;,
+        &quot;null&quot;
+      ],
+      &quot;pattern&quot;: &quot;^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$&quot;,
+      &quot;description&quot;: &quot;Decimal odds as a decimal string. MUST be strictly greater than 1. American and fractional forms are presentation only, never on the wire. null = removed (Merge Patch).&quot;
+    },
+    &quot;money&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;amount&quot;,
+        &quot;currency&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;patternProperties&quot;: {
+        &quot;^x_&quot;: {}
+      },
+      &quot;properties&quot;: {
+        &quot;amount&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/decimalString&quot;
+        },
+        &quot;currency&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;pattern&quot;: &quot;^[A-Z]{3}$&quot;,
+          &quot;description&quot;: &quot;ISO 4217 alpha code.&quot;
+        }
+      },
+      &quot;description&quot;: &quot;A monetary value. Use this shape whenever money appears (stakes, limits); not a JSON number.&quot;
     },
     &quot;sharedId&quot;: {
       &quot;type&quot;: &quot;string&quot;,
@@ -669,7 +704,7 @@
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
     },
     &quot;line&quot;: {
-      &quot;type&quot;: &quot;number&quot;
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
     },
     &quot;basis&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;,
@@ -700,7 +735,7 @@
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
           },
           &quot;line&quot;: {
-            &quot;type&quot;: &quot;number&quot;
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
           },
           &quot;result&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/gradeResult&quot;
@@ -865,7 +900,7 @@
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
     },
     &quot;line&quot;: {
-      &quot;type&quot;: &quot;number&quot;
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
     },
     &quot;source&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
@@ -901,15 +936,10 @@
             &quot;description&quot;: &quot;Required when side = participant.&quot;
           },
           &quot;odds&quot;: {
-            &quot;type&quot;: [
-              &quot;number&quot;,
-              &quot;null&quot;
-            ],
-            &quot;exclusiveMinimum&quot;: 1.0,
-            &quot;description&quot;: &quot;Decimal. null = removed.&quot;
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalOdds&quot;
           },
           &quot;line&quot;: {
-            &quot;type&quot;: &quot;number&quot;
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
           },
           &quot;active&quot;: {
             &quot;type&quot;: &quot;boolean&quot;
@@ -1030,7 +1060,7 @@
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
           },
           &quot;line&quot;: {
-            &quot;type&quot;: &quot;number&quot;,
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;,
             &quot;description&quot;: &quot;Handicap / total value for the market, when applicable.&quot;
           },
           &quot;status&quot;: {
@@ -1060,15 +1090,10 @@
                   &quot;description&quot;: &quot;Required when side = participant.&quot;
                 },
                 &quot;odds&quot;: {
-                  &quot;type&quot;: [
-                    &quot;number&quot;,
-                    &quot;null&quot;
-                  ],
-                  &quot;exclusiveMinimum&quot;: 1.0,
-                  &quot;description&quot;: &quot;Decimal odds. null = removed (Merge Patch).&quot;
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalOdds&quot;
                 },
                 &quot;line&quot;: {
-                  &quot;type&quot;: &quot;number&quot;
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
                 },
                 &quot;active&quot;: {
                   &quot;type&quot;: &quot;boolean&quot;

@@ -18,6 +18,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   removal only at MAJOR after the window.
 - **Q37** — closed when you write, open when you read; `x_` still vendor extras.
 - **Q38** — camelCase is canonical; current-doc snake_case drift fixed.
+- **Q39** — odds and lines are decimal strings; money is
+  `{amount, currency}`; decimal odds only on the wire.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

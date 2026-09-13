@@ -27,11 +27,14 @@ It standardises the data contract only.
 
 ## 2. Conventions
 
-- **Time** — ISO 8601 with an explicit offset, everywhere.
+- **Time** — RFC 3339 (ISO 8601 with an explicit offset), everywhere.
 - **Currency** — ISO 4217. **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
-- **Odds** — decimal is canonical; other formats are presentation only.
+- **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
+  Decimal odds only (MUST be strictly greater than 1); American and
+  fractional forms are presentation. When a monetary value appears, it is
+  `{amount, currency}` (`amount` a decimal string, `currency` ISO 4217).
 - **Text** — UTF-8; names keep their diacritics.
 - **Field names** — camelCase, and **schema.org's name wherever schema.org has
   the property**: `startDate`, `dateModified`, `datePublished`, `alternateName`,

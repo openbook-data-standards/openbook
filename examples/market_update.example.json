@@ -15,7 +15,7 @@
   "changes": {
     "marketType": "market:spread",
     "segment": "segment:soccer:full-time",
-    "line": -0.5,
+    "line": "-0.5",
     "source": "bigbook",
     "status": "open"
   }

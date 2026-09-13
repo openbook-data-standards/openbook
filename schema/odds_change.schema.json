@@ -24,7 +24,7 @@
             "$ref": "common.schema.json#/$defs/sharedId"
           },
           "line": {
-            "type": "number",
+            "$ref": "common.schema.json#/$defs/decimalString",
             "description": "Handicap / total value for the market, when applicable."
           },
           "status": {
@@ -54,15 +54,10 @@
                   "description": "Required when side = participant."
                 },
                 "odds": {
-                  "type": [
-                    "number",
-                    "null"
-                  ],
-                  "exclusiveMinimum": 1.0,
-                  "description": "Decimal odds. null = removed (Merge Patch)."
+                  "$ref": "common.schema.json#/$defs/decimalOdds"
                 },
                 "line": {
-                  "type": "number"
+                  "$ref": "common.schema.json#/$defs/decimalString"
                 },
                 "active": {
                   "type": "boolean"

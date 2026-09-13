@@ -28,7 +28,7 @@
 <ul>
 <li><strong>Unicode CLDR territories</strong> — the territory model (decision Q10). ISO 3166-1 alpha-2 codes underneath (<code>GB</code>, <code>US</code>), ISO 3166-2 subdivisions for sub-national teams (<code>GB-ENG</code>, <code>GB-SCT</code>, <code>GB-WLS</code>, <code>GB-NIR</code>, <code>US-PR</code>), the pragmatic extras (<code>XK</code> Kosovo, <code>EU</code>, <code>UN</code>), and localized territory names in every language — what every OS and browser uses. Sport-body codes ride alongside as crosswalks: <strong>IOC</strong> (<code>GBR</code>, <code>TPE</code>), <strong>FIFA</strong> (<code>ENG</code>, <code>SCO</code>), plus a <strong>Wikidata</strong> QID.</li>
 <li><strong>ISO 639-1</strong> — language codes for per-language name variants (<code>en</code>, <code>es</code>).</li>
-<li><strong>ISO 4217</strong> — currency (<code>USD</code>, <code>GBP</code>) on stakes and limits.</li>
+<li><strong>ISO 4217</strong> — currency (<code>USD</code>, <code>GBP</code>) on stakes and limits, carried as <code>{amount, currency}</code> (<code>amount</code> a decimal string).</li>
 <li><strong>ISO 8601 / RFC 3339</strong> — every timestamp, with an explicit offset (<code>2026-09-19T14:00:00Z</code>). RFC 3339 is the strict internet profile of ISO 8601 and is what parsers actually implement. See decision Q9.</li>
 <li><strong>IANA time-zone database</strong> — venue-local time names (<code>Europe/London</code>) where display needs them; never used in place of an offset on the wire.</li>
 <li><strong>Unicode / UTF-8</strong> — all text. Names keep their diacritics.</li>

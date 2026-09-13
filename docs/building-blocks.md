@@ -13,7 +13,8 @@ grouped by what each one is used for, with the reason it was chosen.
   alongside as crosswalks: **IOC** (`GBR`, `TPE`), **FIFA** (`ENG`, `SCO`),
   plus a **Wikidata** QID.
 - **ISO 639-1** — language codes for per-language name variants (`en`, `es`).
-- **ISO 4217** — currency (`USD`, `GBP`) on stakes and limits.
+- **ISO 4217** — currency (`USD`, `GBP`) on stakes and limits, carried as
+  `{amount, currency}` (`amount` a decimal string).
 - **ISO 8601 / RFC 3339** — every timestamp, with an explicit offset
   (`2026-09-19T14:00:00Z`). RFC 3339 is the strict internet profile of ISO 8601
   and is what parsers actually implement. See decision Q9.

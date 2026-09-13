@@ -39,7 +39,7 @@
       "$ref": "common.schema.json#/$defs/sharedId"
     },
     "line": {
-      "type": "number"
+      "$ref": "common.schema.json#/$defs/decimalString"
     },
     "source": {
       "$ref": "common.schema.json#/$defs/ownId"
@@ -75,15 +75,10 @@
             "description": "Required when side = participant."
           },
           "odds": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "exclusiveMinimum": 1.0,
-            "description": "Decimal. null = removed."
+            "$ref": "common.schema.json#/$defs/decimalOdds"
           },
           "line": {
-            "type": "number"
+            "$ref": "common.schema.json#/$defs/decimalString"
           },
           "active": {
             "type": "boolean"

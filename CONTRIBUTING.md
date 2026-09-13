@@ -24,8 +24,9 @@ the market taxonomy no one else has published.
 - **No abbreviations** in canonical names (`reference_sport`, not `ref_sport`).
 - **No provider ids as canonical ids.** A provider mapping goes on the `source`
   record.
-- **Country is ISO 3166, time is ISO 8601, currency is ISO 4217, odds are
-  decimal.** Don't reinvent a primitive that already has a standard.
+- **Country is ISO 3166, time is RFC 3339 / ISO 8601, currency is ISO 4217,
+  odds and lines are decimal strings, money is `{amount, currency}`.** Don't
+  reinvent a primitive that already has a standard.
 - **Segments are separate objects**, never encoded into a market id.
 
 ## Style

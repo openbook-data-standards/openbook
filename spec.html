@@ -36,10 +36,10 @@
 <p>OpenBook is independent of any sportsbook, data provider or software vendor. It standardises the data contract only.</p>
 <h2 id="2-conventions">2. Conventions</h2>
 <ul>
-<li><strong>Time</strong> — ISO 8601 with an explicit offset, everywhere.</li>
+<li><strong>Time</strong> — RFC 3339 (ISO 8601 with an explicit offset), everywhere.</li>
 <li><strong>Currency</strong> — ISO 4217. <strong>Language</strong> — ISO 639-1.</li>
 <li><strong>Territory</strong> — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (<code>GB</code>), ISO 3166-2 for sub-national teams (<code>GB-ENG</code>, <code>US-PR</code>), CLDR extras (<code>XK</code>).</li>
-<li><strong>Odds</strong> — decimal is canonical; other formats are presentation only.</li>
+<li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation. When a monetary value appears, it is <code>{amount, currency}</code> (<code>amount</code> a decimal string, <code>currency</code> ISO 4217).</li>
 <li><strong>Text</strong> — UTF-8; names keep their diacritics.</li>
 <li><strong>Field names</strong> — camelCase, and <strong>schema.org's name wherever schema.org has the property</strong>: <code>startDate</code>, <code>dateModified</code>, <code>datePublished</code>, <code>alternateName</code>, <code>sameAs</code>, <code>identifier</code>, <code>superEvent</code>, <code>organizer</code>, <code>location</code>. Small shared vocabularies are <code>*Type</code> fields: <code>competitionType</code>, <code>participantType</code>, <code>marketType</code>, <code>stageType</code>, <code>sourceType</code>. Documents MAY carry JSON-LD <code>@context</code> / <code>@type</code>, so an OpenBook document is also valid schema.org data.</li>
 <li>Every object and message carries <code>openbookVersion</code>.</li>

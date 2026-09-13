@@ -18,24 +18,24 @@
         "outcomes": [
           {
             "side": "home",
-            "odds": 2.1
+            "odds": "2.1"
           },
           {
             "side": "away",
-            "odds": 3.25
+            "odds": "3.25"
           }
         ]
       },
       {
         "marketType": "market:total",
         "segment": "segment:soccer:full-time",
-        "line": 2.5,
+        "line": "2.5",
         "source": "acme-book",
         "provenance": "official",
         "outcomes": [
           {
             "side": "over",
-            "odds": 1.95
+            "odds": "1.95"
           }
         ]
       },
@@ -48,12 +48,12 @@
         "outcomes": [
           {
             "side": "home",
-            "line": -0.5,
+            "line": "-0.5",
             "active": false
           },
           {
             "side": "away",
-            "line": 0.5,
+            "line": "0.5",
             "active": false
           }
         ]

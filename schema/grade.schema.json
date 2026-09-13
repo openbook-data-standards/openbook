@@ -50,7 +50,7 @@
       "$ref": "common.schema.json#/$defs/sharedId"
     },
     "line": {
-      "type": "number"
+      "$ref": "common.schema.json#/$defs/decimalString"
     },
     "basis": {
       "$ref": "common.schema.json#/$defs/scoreUnit",
@@ -81,7 +81,7 @@
             "$ref": "common.schema.json#/$defs/ownId"
           },
           "line": {
-            "type": "number"
+            "$ref": "common.schema.json#/$defs/decimalString"
           },
           "result": {
             "$ref": "common.schema.json#/$defs/gradeResult"

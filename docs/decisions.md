@@ -469,3 +469,16 @@ This change fixes current docs/spec/VERSIONING to match the schemas
 Rejected: leave mixed spellings; CI in this same patch.
 
 **Supersedes:** none of Q13; implements it.
+
+## Q39 — Odds, lines and money are decimal strings — decided
+
+Odds and lines are decimal **strings** on the wire, not JSON numbers.
+Money, when it appears, is `{amount, currency}` (`amount` a decimal string,
+`currency` ISO 4217). Decimal odds are the only wire form (MUST be strictly
+greater than 1); American and fractional are display. Times stay RFC 3339 /
+ISO 8601 with an explicit offset (Q9).
+
+Rejected: JSON numbers for odds/lines; deferring the money shape; strings for
+odds only.
+
+**Supersedes:** spec §2 “decimal is canonical” by fixing the JSON type.

@@ -18,7 +18,42 @@
     "dateTime": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO 8601 with explicit offset."
+      "description": "RFC 3339 (ISO 8601 with an explicit offset)."
+    },
+    "decimalString": {
+      "type": "string",
+      "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+      "description": "Exact decimal as a string, not a JSON number (Q39)."
+    },
+    "decimalOdds": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+      "description": "Decimal odds as a decimal string. MUST be strictly greater than 1. American and fractional forms are presentation only, never on the wire. null = removed (Merge Patch)."
+    },
+    "money": {
+      "type": "object",
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x_": {}
+      },
+      "properties": {
+        "amount": {
+          "$ref": "#/$defs/decimalString"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 alpha code."
+        }
+      },
+      "description": "A monetary value. Use this shape whenever money appears (stakes, limits); not a JSON number."
     },
     "sharedId": {
       "type": "string",
