@@ -924,3 +924,14 @@ Rejected: unpack stage/series immediately; jump to Q46 wire in this
 question.
 
 **Supersedes:** none.
+
+## Q88 — Throwing/shooting and batting hand — decided
+
+Optional on **`player`** (roster), not the person: **`throws`** (throwing or
+shooting) and **`bats`**. Each is `left` · `right` · `both`. No ISO.
+`both` is switch / either hand.
+
+Rejected: one `hand` field; ISO 5218-style sex codes; person-level FIFA
+Gender as a stand-in.
+
+**Supersedes:** none of Q75/Q76.

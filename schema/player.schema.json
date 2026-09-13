@@ -44,6 +44,14 @@
       "type": "integer",
       "minimum": 0
     },
+    "throws": {
+      "$ref": "common.schema.json#/$defs/hand",
+      "description": "Throwing or shooting hand (Q88)."
+    },
+    "bats": {
+      "$ref": "common.schema.json#/$defs/hand",
+      "description": "Batting side (Q88). both = switch."
+    },
     "startDate": {
       "$ref": "common.schema.json#/$defs/dateTime"
     },

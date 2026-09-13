@@ -342,6 +342,14 @@
       &quot;minLength&quot;: 1,
       &quot;description&quot;: &quot;League age grade (open, U21, U19, …). Growable vocab (Q73).&quot;
     },
+    &quot;hand&quot;: {
+      &quot;enum&quot;: [
+        &quot;left&quot;,
+        &quot;right&quot;,
+        &quot;both&quot;
+      ],
+      &quot;description&quot;: &quot;Throwing/shooting or batting side (Q88). No ISO.&quot;
+    },
     &quot;side&quot;: {
       &quot;enum&quot;: [
         &quot;home&quot;,
@@ -1501,6 +1509,14 @@
       &quot;type&quot;: &quot;integer&quot;,
       &quot;minimum&quot;: 0
     },
+    &quot;throws&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/hand&quot;,
+      &quot;description&quot;: &quot;Throwing or shooting hand (Q88).&quot;
+    },
+    &quot;bats&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/hand&quot;,
+      &quot;description&quot;: &quot;Batting side (Q88). both = switch.&quot;
+    },
     &quot;startDate&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
     },
@@ -2267,6 +2283,17 @@
     &quot;Carlos Alcaraz Garfia&quot;
   ],
   &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q63155283&quot;
+}</pre></section><section class="schema-block" id="player.example"><h2>player.example.json</h2><p><a href="examples/player.example.json">examples/player.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;id&quot;: &quot;PL-27&quot;,
+  &quot;sequence&quot;: 104100,
+  &quot;dateModified&quot;: &quot;2026-09-01T09:00:00Z&quot;,
+  &quot;participant&quot;: &quot;P-27&quot;,
+  &quot;team&quot;: &quot;T-NYY&quot;,
+  &quot;position&quot;: &quot;SS&quot;,
+  &quot;number&quot;: 2,
+  &quot;throws&quot;: &quot;right&quot;,
+  &quot;bats&quot;: &quot;both&quot;
 }</pre></section><section class="schema-block" id="publisher.example"><h2>publisher.example.json</h2><p><a href="examples/publisher.example.json">examples/publisher.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;id&quot;: &quot;acme-feeds&quot;,

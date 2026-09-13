@@ -220,6 +220,14 @@
       "minLength": 1,
       "description": "League age grade (open, U21, U19, …). Growable vocab (Q73)."
     },
+    "hand": {
+      "enum": [
+        "left",
+        "right",
+        "both"
+      ],
+      "description": "Throwing/shooting or batting side (Q88). No ISO."
+    },
     "side": {
       "enum": [
         "home",

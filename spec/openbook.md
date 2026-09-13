@@ -233,7 +233,8 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   RFC 6350 / ITU X.520); no `abbreviation`. No league field. Fixture
   `participants[]` copies `name` plus `role` and `order`.
 - **`player`** — roster membership: own id, `participant` (the person),
-  `team` (the team participant), `position`, `number`. No name fields.
+  `team` (the team participant), `position`, `number`. Optional `throws`
+  and `bats` (`left` · `right` · `both`). No name fields.
 - **`fixture`** — §6 plus `eventStatus`, `cutoffDate`, `superEvent` (a live
   event's pregame parent), optional display `name`, `location` (nested
   schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`,

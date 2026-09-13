@@ -15,6 +15,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `registeredName`; Place `timeZone`, `latitude`, `longitude`; publisher
   `inLanguage` / `registeredName`; league `gender` (`men` · `women` ·
   `mixed` · `open`) and `ageGroup`; fixture `surface`; participant `seed`.
+- **Q88** — optional `throws` and `bats` on `player` (`left` · `right` ·
+  `both`).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
