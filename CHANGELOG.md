@@ -11,6 +11,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Input bounds** — shared primitives in
+  [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
+  `maxItems`, so conformant parsers reject oversized input; covered by
+  `conformance/invalid/alternate-name-too-long.json`.
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
 - **Q33** — Level L delivery/recovery: all eight guarantees MUST

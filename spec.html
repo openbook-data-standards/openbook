@@ -49,6 +49,7 @@
 <li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation.</li>
 <li><strong>Text</strong> — UTF-8; names keep their diacritics.</li>
 <li><strong>Field names</strong> — camelCase, and <strong>schema.org's name wherever schema.org has the property</strong>: <code>startDate</code>, <code>dateModified</code>, <code>datePublished</code>, <code>alternateName</code>, <code>sameAs</code>, <code>identifier</code>, <code>superEvent</code>, <code>organizer</code>, <code>location</code>. Small shared vocabularies are <code>*Type</code> fields: <code>competitionType</code>, <code>participantType</code>, <code>marketType</code>, <code>stageType</code>, <code>sourceType</code>. Documents MAY carry JSON-LD <code>@context</code> / <code>@type</code>, so an OpenBook document is also valid schema.org data.</li>
+<li><strong>Bounds</strong> — shared primitives are length- and size-bounded (id, decimal, and name lengths; alias and identifier list sizes) in <a href="schema/common.schema.json"><code>../schema/common.schema.json</code></a>, so a conformant parser rejects oversized input instead of trusting it.</li>
 <li>Every object and message carries <code>openbookVersion</code>.</li>
 </ul>
 <h2 id="3-identifiers">3. Identifiers</h2>
