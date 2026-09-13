@@ -716,3 +716,13 @@ Rejected: GeoNames required; a first-class catalog `venue` object in this
 walk.
 
 **Supersedes:** none of Q10 or Q59.
+
+## Q64 — IANA time zone on Place — decided
+
+Optional `timeZone` (`Europe/London`) from the **IANA time-zone database**.
+Every timestamp remains RFC 3339 with an explicit offset (**Q9**). The zone
+is display (“stadium clock”); it does not replace the offset.
+
+Rejected: no TZ field; TZ required on every location.
+
+**Supersedes:** none of Q9.

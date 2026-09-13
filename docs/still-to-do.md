@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q62**. This patch is log only. Do not change
+Questions recorded through **Q64**. This patch is log only. Do not change
 schemas until asked.
 
 ## Later PRs (decided, not built)
@@ -18,4 +18,4 @@ schemas until asked.
 
 ## Done (Q32–Q62)
 
-Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place.
+Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place · **Q64** IANA `timeZone`.
