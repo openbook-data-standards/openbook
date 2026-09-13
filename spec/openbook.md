@@ -31,10 +31,16 @@ It standardises the data contract only.
 - **Currency** — ISO 4217. Each feed MUST declare **`baseCurrency`** once
   on the publisher record (and on a full snapshot of that record). Incremental
   messages do not repeat it. Money is `{amount}` in that currency. Odds are
-  not money. Another currency is another subscription (Q44).
+  not money. Another currency is another subscription (Q44). ISO 20022
+  XML and the ISO 20022 JSON trial are not the OpenBook encoding (Q92).
 - **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
+- **Encoding** — JSON is the required v1 encoding (Q89). The schemas,
+  examples, discovery document, corpus, validator, and AsyncAPI describe
+  this encoding. Additional encodings MAY exist later as optional bindings
+  generated from the JSON Schemas; they are not in this repo in v1 and
+  they do not replace JSON.
 - **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
   Decimal odds only (MUST be strictly greater than 1); American and
   fractional forms are presentation.
@@ -113,7 +119,8 @@ player                      publisher-own; roster membership of a person in a te
 - **Field-level granularity, JSON Merge Patch (RFC 7386) semantics**: a change
   carries the object id plus only the fields that changed; absent = unchanged;
   `null` = removed. Consumers MUST merge and MUST NOT assume a message re-sends
-  unchanged state.
+  unchanged state. JSON Patch (RFC 6902) is not an alternate change encoding
+  (Q91).
 - **Odds are push-first.** Publishers SHOULD deliver `odds/change` by push and
   MAY additionally offer a `since=` pull. `market/snapshot` gives a fixture's
   current prices for initial load and recovery.
@@ -138,7 +145,8 @@ guarantees, not JSON Schema.
 5. **Bounded heartbeats (push).** The same stream carries `action:
    heartbeat` (`changes: {}`). The publisher record MUST declare
    `heartbeatMs` (maximum silence, milliseconds). Quiet longer than that, the
-   consumer SHOULD treat the feed as down (Q46).
+   consumer SHOULD treat the feed as down (Q46). FIX session (Logon /
+   Heartbeat / TestRequest / Logout) is not the OpenBook session (Q93).
 6. If intermediate ticks are dropped, that change MUST carry **`conflated:
    true`**. Sequence still increases (Q47).
 7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once
@@ -155,6 +163,8 @@ guarantees, not JSON Schema.
   ([`../schema/discovery.schema.json`](../schema/discovery.schema.json)).
   Snapshot, stream, and any publisher-hosted API docs are named feeds. The
   `publisher` object stays identity, not the catalog (Q49).
+  Documents are not wrapped in a GBFS-style outer container (Q90).
+  There is no spec-owned list of many publishers (Q94).
 - A publisher MAY **co-serve** more than one OpenBook version at the same
   time (distinct URLs or topics per `openbookVersion`).
 
