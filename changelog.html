@@ -36,6 +36,7 @@
 <li><strong>Q11</strong> — names on the participant: required <code>name</code>; optional <code>shortName</code>, <code>names</code>, <code>nameLatin</code>, <code>alternateName</code>. Teams MAY add <code>location</code>, <code>nickname</code>, <code>registeredName</code>, <code>abbreviation</code>. Persons MAY add <code>givenName</code> / <code>familyName</code>; no <code>abbreviation</code>. Fixture <code>participants[]</code> copies <code>name</code>. <code>player</code> has no name fields.</li>
 <li>Logged catalog answers on the wire: league/venue <code>shortName</code> / <code>registeredName</code>; Place <code>timeZone</code>, <code>latitude</code>, <code>longitude</code>; publisher <code>inLanguage</code> / <code>registeredName</code>; league <code>gender</code> (<code>men</code> · <code>women</code> · <code>mixed</code> · <code>open</code>) and <code>ageGroup</code>; fixture <code>surface</code>; participant <code>seed</code>.</li>
 <li><strong>Q88</strong> — optional <code>throws</code> and <code>bats</code> on <code>player</code> (<code>left</code> · <code>right</code> · <code>both</code>).</li>
+<li><strong>Q80</strong> — <code>lineup</code> live object: fixture-keyed roster <code>player</code> ids.</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>
