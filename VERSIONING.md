@@ -27,7 +27,7 @@ machine schema-diff gate is not part of this decision.
 
 ## Rules
 
-- Every object and message carries `openbook_version`, the version it was
+- Every object and message carries `openbookVersion`, the version it was
   produced against.
 - Publishers validate strictly against the schema. Consumers **MUST** ignore
   unrecognized fields (including unknown `x_`-prefixed fields) so MINOR

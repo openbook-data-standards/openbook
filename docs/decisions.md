@@ -454,3 +454,18 @@ unknown.”
 
 **Supersedes:** §9 / VERSIONING “ignore unknown `x_`-prefixed fields” by
 widening ignore to all unrecognized fields.
+
+## Q38 — Naming is camelCase; remaining snake_case is drift — decided
+
+Canonical field names are camelCase, schema.org where a property exists
+(Q13). Snake_case in prose (`openbook_version`, envelope `timestamp`) is
+drift. A CI check that flags names in docs that are not on a schema is a
+later item.
+
+This change fixes current docs/spec/VERSIONING to match the schemas
+(`openbookVersion`, `datePublished`, `startDate`, `marketType`,
+`competitionType`). Historical Q1–Q31 entries are not rewritten.
+
+Rejected: leave mixed spellings; CI in this same patch.
+
+**Supersedes:** none of Q13; implements it.

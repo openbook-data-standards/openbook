@@ -71,7 +71,7 @@ Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
 
 ```
 sport                       shared vocabulary
-  └ league                  publisher-own; competition_type: league · cup · tournament · series · exhibition
+  └ league                  publisher-own; competitionType: league · cup · tournament · series · exhibition
       └ season              publisher-own; one edition (2025-26, F1 2026)
           └ stage           publisher-own; a named slice of a season; RECURSIVE (parent) with stageType
               └ fixture     publisher-own; the priced event
@@ -184,7 +184,7 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   crosswalks `iocCode`, `fifaCode`, `sameAs`.
 - **`league`** — own id, `name`, `sport`, `territory`, `competitionType`,
   optional `organizer`, `ruleset`, `sameAs`.
-- **`season`** — own id, `league`, `name`, `start_date`, `end_date`.
+- **`season`** — own id, `league`, `name`, `startDate`, `endDate`.
 - **`stage`** — own id, `season`, `name`, `parent`, `stageType` (phase · group ·
   round · matchday · leg · seriesGame), `order`.
 - **`participant`** — own id, `participantType` (team · individual), `sport`,
@@ -200,7 +200,7 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
 - **`market`** — a fixture's market as priced by one source: `fixture`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
   `licensed` · `observed`), `status`, `outcomes[]` (`side`, `odds`, `line`,
-  `active`). Identity: `(source, fixture, market_type, segment, line)`.
+  `active`). Identity: `(source, fixture, marketType, segment, line)`.
 - **`score`** — `fixture`, `eventStatus` (+ `statusReason`), `segments[]`
   (each `segment`, `status`, `downAt`), `currentSegment`, `clock` (`elapsed` /
   `remaining` in integer seconds, `running`, broadcast `display`), and
@@ -245,7 +245,7 @@ openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record c
 
 ### 8.1 The change envelope
 One envelope for every message ([`../schema/change.schema.json`](../schema/change.schema.json)):
-`openbookVersion`, `sequence`, `timestamp`, `publisher`, `object`, `action`,
+`openbookVersion`, `sequence`, `datePublished`, `publisher`, `object`, `action`,
 `sport`, `id`, and `changes` — a Merge Patch against the object's document
 schema. `odds/change` carries its `markets[]` diff in `changes`
 ([`odds_change.schema.json`](../schema/odds_change.schema.json)).

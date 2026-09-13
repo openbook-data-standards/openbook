@@ -1004,11 +1004,11 @@
   &quot;patternProperties&quot;: {
     &quot;^x_&quot;: {}
   }
-}</pre></section><section class="schema-block" id="odds_change"><h2>OpenBook odds/change payload</h2><p>The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).</p><p><a href="schema/odds_change.schema.json">odds_change.schema.json</a> · required: <code>markets</code></p><pre>{
+}</pre></section><section class="schema-block" id="odds_change"><h2>OpenBook odds/change payload</h2><p>The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line).</p><p><a href="schema/odds_change.schema.json">odds_change.schema.json</a> · required: <code>markets</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/odds_change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook odds/change payload&quot;,
-  &quot;description&quot;: &quot;The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, market_type, segment, line).&quot;,
+  &quot;description&quot;: &quot;The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line).&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;markets&quot;

@@ -59,10 +59,10 @@ openbook/  (this repository)
   schema/                 ← JSON Schema (draft 2020-12), the machine-normative field definitions
     common.schema.json            shared $defs: ids, territory, wikidata, sequence, provenance
     publisher.schema.json         who transmits + the sources the feed carries
-    sport.schema.json             region · participant (teams AND individuals) · stage · market_type
+    sport.schema.json             region · participant (teams AND individuals) · stage · marketType
     fixture.schema.json           the base object + standard facts
     change.schema.json            the one message envelope: object / action, Merge Patch
-    league.schema.json            any recurring competition, typed by competition_type
+    league.schema.json            any recurring competition, typed by competitionType
     odds_change.schema.json       payload of odds/change
     market.schema.json            a fixture's market for one source (snapshot / update document)
     score.schema.json             live state: three statuses, clock, score lines per participant x unit x segment
