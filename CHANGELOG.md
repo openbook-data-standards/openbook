@@ -11,6 +11,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Q91** — ISO 20022 is not the OpenBook model or encoding; Q13/Q38/Q44
+  stand ([`docs/decisions.md`](docs/decisions.md)).
 - **Q90** — JSON Patch (RFC 6902) is never an alternate change encoding; Merge
   Patch (Q8) stands ([`docs/decisions.md`](docs/decisions.md)).
 - **Q89** — no GBFS-style data wrapper; discovery stays `{ lastUpdated, ttl,

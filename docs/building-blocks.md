@@ -15,7 +15,7 @@ grouped by what each one is used for, with the reason it was chosen.
 - **ISO 639-1** — language codes for per-language name variants (`en`, `es`).
 - **ISO 4217** — `baseCurrency` once on the publisher / feed (Q44). Money
   on that feed is `{amount}` in that code; incremental messages do not
-  repeat currency.
+  repeat currency. ISO 20022 is not the OpenBook encoding (Q91).
 - **ISO 8601 / RFC 3339** — every timestamp, with an explicit offset
   (`2026-09-19T14:00:00Z`). RFC 3339 is the strict internet profile of ISO 8601
   and is what parsers actually implement. See decision Q9.
@@ -105,7 +105,7 @@ grouped by what each one is used for, with the reason it was chosen.
 - RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org
 - GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/
 - FIX Protocol — https://www.fixtrading.org/standards/
-- ISO 20022 — https://www.iso20022.org/
+- ISO 20022 — https://www.iso20022.org/ (not the OpenBook encoding; Q91)
 - OpenRTB — https://iabtechlab.com/standards/openrtb/
 - OsmChange — https://wiki.openstreetmap.org/wiki/OsmChange · Planet diffs —
   https://wiki.openstreetmap.org/wiki/Planet.osm/diffs

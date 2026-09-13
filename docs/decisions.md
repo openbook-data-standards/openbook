@@ -971,3 +971,16 @@ leave RFC 6902 unsaid because Q8 named Merge Patch.
 
 **Supersedes:** none of Q8. Same kind of pin as Q52 (envelope) and Q89
 (no second wrapper).
+
+## Q91 — ISO 20022 is not the OpenBook model or encoding — decided (never)
+
+The wire stays JSON Schema, schema.org-aligned camelCase (**Q13** / **Q38**),
+and Q44 money (`{amount}` plus feed `baseCurrency`). ISO 20022 XML and the
+ISO 20022 JSON trial are **not** the OpenBook encoding. They do not rename
+money fields and they do not replace JSON Schema.
+
+Rejected: adopt the ISO 20022 JSON trial money shape; add an ISO 20022
+mapping document in this question; leave ISO 20022 unsaid because Q13/Q38/Q44
+named names and money.
+
+**Supersedes:** none of Q13/Q38/Q44.
