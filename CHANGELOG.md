@@ -54,6 +54,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q62** — fixture `location` stays nested Place; GeoNames optional; no
   first-class venue object in this walk.
 - **Q64** — optional IANA `timeZone` on Place; timestamps stay Q9.
+- **Q66** — fixture `name` optional display; participants + `startDate` are facts.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 

@@ -726,3 +726,13 @@ is display (“stadium clock”); it does not replace the offset.
 Rejected: no TZ field; TZ required on every location.
 
 **Supersedes:** none of Q9.
+
+## Q66 — Fixture name — decided
+
+`name` on a fixture is an **optional** display string (“Arsenal vs Chelsea”).
+No ISO. The facts are `participants[]` and `startDate`. schema.org
+`SportsEvent.name`.
+
+Rejected: required composed title; forbid the field.
+
+**Supersedes:** none.
