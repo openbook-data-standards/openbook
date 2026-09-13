@@ -1,7 +1,7 @@
 # OpenBook — an open standard for sportsbook data
 
 <p>
-<img src="assets/logo-icon.svg" alt="OpenBook" height="40">
+<img src="assets/logo.svg" alt="OpenBook" height="36">
 </p>
 
 <p>
