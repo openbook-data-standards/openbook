@@ -93,7 +93,8 @@
         "under",
         "yes",
         "no",
-        "participant"
+        "participant",
+        "other"
       ]
     },
     "provenance": {
@@ -275,7 +276,8 @@
         "rounds",
         "knockdowns",
         "aces",
-        "faults"
+        "faults",
+        "other"
       ],
       "description": "What a score line counts (Q26). The sport/league declares its primaryUnit."
     },

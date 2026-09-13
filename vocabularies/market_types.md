@@ -50,6 +50,8 @@ Format: `market:<id>` — Name · shape · sides.
 
 - `market:same-game-parlay` — Same-Game Parlay · composite · (references other market outcomes)
 - `market:parlay` — Parlay / Accumulator · composite · (cross-fixture legs)
+- `market:unknown` — Catch-all when the market type is not in this list (Q34).
+  Consumers MUST accept unrecognised `market:*` values.
 
 ---
 

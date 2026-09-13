@@ -48,4 +48,7 @@ Qualifying, Sprint and Race are separate **fixtures**; their internal slices:
 `final` · `heat-<n>` · `semi-final-<n>` · `attempt-<n>` (jumps/throws) · `lap-<n>`
 
 ---
+Catch-all: `segment:unknown:unknown` (Q34). Consumers MUST accept unrecognised
+`segment:*` values.
+
 Additions go through `CONTRIBUTING.md`; ids are stable once published.

@@ -388,3 +388,19 @@ and how pull returns “too old” are later items. This change is spec prose.
 
 **Supersedes:** Q8/Q17 on snapshot-for-recovery by making completeness
 normative.
+
+## Q34 — Unknown values — decided (catch-all + must-tolerate)
+
+Growable lists get an `unknown` / `other` bucket, **and** a conformant
+consumer MUST accept unrecognised values (carry through; MUST NOT crash).
+Adding a bet type is never a breaking change.
+
+- Vocab: `sport:unknown`, `market:unknown`, `segment:unknown:unknown`.
+- Schema enums: `side` and `scoreUnit` include `other` (`statusReason` already
+  had `other`).
+- Publisher validation MAY still warn on unregistered ids.
+
+Rejected: catch-all but reject surprise values; no catch-all; closed lists
+as breaking.
+
+**Supersedes:** nothing; refines Q4 vocabularies and §9.

@@ -10,6 +10,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   ([`VERSIONING.md`](VERSIONING.md)).
 - **Q33** — Level L delivery/recovery: all eight guarantees MUST
   ([`spec/openbook.md`](spec/openbook.md) §5.1).
+- **Q34** — catch-all `unknown`/`other` on growable lists; consumers MUST
+  tolerate unrecognised values.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and
