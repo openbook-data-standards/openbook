@@ -675,3 +675,32 @@ objects later. ISO 639-1, ISO 9, ISO 843, ISO 3166/CLDR (Q10), vCard, schema.org
 Rejected: invent ISO numbers; drop fields that lack ISO.
 
 **Supersedes:** Q11 “proposed”.
+
+## Q59 — Names on other objects — decided
+
+League and venue use the **team** name package (`name` plus optional
+`shortName` / `registeredName`; venue city is not a nickname). Territory
+stays **Q10**. Sport, market type, and segment are **`name` only** (vocab
+lists).
+
+Rejected: copy city+nickname onto vocab slugs; unpack league names as a
+totally different model.
+
+**Supersedes:** none of Q11; extends it.
+
+## Q60 — Season, stage, publisher names — decided
+
+**Season:** `name` is display (`2025/26`, `F1 2026`). There is no ISO for
+that label. The machine is `startDate` / `endDate` (**Q9** RFC 3339).
+Rejected: required ISO 8601 interval string (duplicates the dates); required
+`startYear` as a fake season code.
+
+**Stage:** `name` only; optional `startDate` / `endDate` as already in the
+schema. No ISO pattern for “Matchday 7”.
+
+**Publisher:** `name` plus optional `registeredName`. ISO 17442 is the LEI
+(the id), not the name string.
+
+Rejected: required stage-name grammar.
+
+**Supersedes:** none.

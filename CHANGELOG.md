@@ -47,6 +47,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q11 / Q57** — names decided (log only): board `name`; optional team
   location/nickname/registeredName; person given/family; `shortName`; team-only
   `abbreviation`; `names` / `nameLatin`; fixture copies `name`. Cite ISO or none.
+- **Q59** — league/venue use the team name package; sport/market/segment `name`
+  only.
+- **Q60** — season `name` is display; dates are Q9. Stage `name` + optional
+  dates. Publisher `name` + optional `registeredName`.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 
