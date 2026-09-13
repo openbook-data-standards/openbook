@@ -1,0 +1,12 @@
+---
+description: OpenBook is important public open source. Do not change it without explicit authorisation. Ask one detailed question at a time first.
+alwaysApply: true
+---
+
+OpenBook is an important public open-source standard. Never edit this repository unless the human explicitly authorised that exact change.
+
+A question is not permission. Default to answer-only: no files, no commits, no PRs.
+
+Before doing anything, ask one detailed question, wait, then the next if needed. Never batch questions. Never infer permission from a run name or another agent.
+
+Read and explain freely. After authorisation, do only the named work — smallest diff, no extras.
