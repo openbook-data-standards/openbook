@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBook — design decisions — OpenBook</title>
+<meta name="theme-color" content="#e6d7b8">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/decisions.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./">
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
+  </a>
+  <nav>
+    <a href="./spec.html">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="./schemas.html">Schemas</a><a href="./examples.html">Examples</a><a href="./decisions.html" aria-current="page">Decisions</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · docs/decisions.md</p><nav class="toc"><strong>On this sheet</strong><a href="#q1-what-openbook-is-for-decided">Q1 — What OpenBook is for — decided</a><a href="#q2-how-consumers-know-two-publishers-mean-the-same-match-decided-c">Q2 — How consumers know two publishers mean the same match — decided (c)</a><a href="#q3-provenance-on-every-price-decided-a">Q3 — Provenance on every price — decided (a)</a><a href="#q4-which-ids-are-shared-which-are-publisher-own-decided-a">Q4 — Which ids are shared, which are publisher-own — decided (a)</a><a href="#q5-what-a-shared-id-looks-like-decided-both">Q5 — What a shared id looks like — decided (both)</a><a href="#q6-external-cross-reference-ids-decided-a">Q6 — External cross-reference ids — decided (a)</a><a href="#q7-standard-facts-every-fixture-carries-decided">Q7 — Standard facts every fixture carries — decided</a><a href="#q8-how-changes-are-sent-decided-c-generalised-granularity-e">Q8 — How changes are sent — decided (c, generalised) + granularity (e)</a><a href="#since-decided">since — decided</a><a href="#q9-timestamps-decided-a">Q9 — Timestamps — decided (a)</a><a href="#q10-countries-and-sub-national-teams-decided-cldr">Q10 — Countries and sub-national teams — decided (CLDR)</a><a href="#q11-names-proposed-implemented-in-v0-3">Q11 — Names — proposed (implemented in v0.3)</a><a href="#q12-shared-entity-id-decided-wikidata-qid">Q12 — Shared entity id — decided (Wikidata QID)</a><a href="#q13-field-name-alignment-with-schema-org-decided-d-full-alignment">Q13 — Field-name alignment with schema.org — decided (d: full alignment)</a><a href="#q14-stream-grammar-decided-object-action-keyed-by-fixture">Q14 — Stream grammar — decided (object / action, keyed by fixture)</a><a href="#q15-suspensions-re-opens-and-voids-decided-market-update">Q15 — Suspensions, re-opens and voids — decided (market/update)</a><a href="#q16-name-of-the-price-stream-decided-c">Q16 — Name of the price stream — decided (c)</a><a href="#q17-delivery-of-odds-decided-b">Q17 — Delivery of odds — decided (b)</a><a href="#q18-topic-tail-decided-a">Q18 — Topic tail — decided (a)</a><a href="#q19-league-vs-competition-decided-b">Q19 — League vs competition — decided (b)</a><a href="#q20-stages-decided-a-one-recursive-object">Q20 — Stages — decided (a: one recursive object)</a><a href="#q21-participants-belong-to-a-sport-decided-a">Q21 — Participants belong to a sport — decided (a)</a><a href="#naming-convention-decided">Naming convention — decided</a><a href="#q22-teams-and-individuals-are-both-participants-role-and-order-decided">Q22 — Teams and individuals are both participants; role and order — decided</a><a href="#naming-convention-revised-q13-d">Naming convention — revised (Q13 d)</a><a href="#q23-score-model-decided-a-everything">Q23 — Score model — decided (a: everything)</a><a href="#q24-settlement-model-superseded-by-q27-q28-q30-see-below">Q24 — Settlement model — superseded by Q27/Q28/Q30 (see below)</a><a href="#segments-vocabulary-added">Segments vocabulary — added</a><a href="#q25-fixture-status-decided-a">Q25 — Fixture status — decided (a)</a><a href="#q26-units-on-every-score-line-decided-a">Q26 — Units on every score line — decided (a)</a><a href="#q27-settlement-vs-grade-decided-two-things">Q27 — Settlement vs grade — decided (two things)</a><a href="#q28-down-once-decided-a">Q28 — &quot;Down&quot;, once — decided (a)</a><a href="#q29-topic-order-decided-a-fixture-first">Q29 — Topic order — decided (a: fixture-first)</a><a href="#q30-three-statuses-decided">Q30 — Three statuses — decided</a><a href="#q31-corrections-without-settling-twice-decided-a-erratum">Q31 — Corrections without settling twice — decided (a: erratum)</a></nav><article class="doc"><h1 id="openbook-design-decisions">OpenBook — design decisions</h1>
+<p>A running log of the decisions that shape the standard, in the order they were taken, each with the options that were on the table and why one won. The specification in <a href="spec.html"><code>../spec/openbook.md</code></a> is revised to match; where the two disagree, the newer decision here wins until the spec catches up (tracked in <a href="changelog.html"><code>../CHANGELOG.md</code></a>).</p>
+<p>Status key: <strong>decided</strong> · <strong>proposed</strong> (awaiting confirmation) · <strong>open</strong>.</p>
+<hr>
+<h2 id="q1-what-openbook-is-for-decided">Q1 — What OpenBook is for — decided</h2>
+<p><strong>One shared publication format any publisher emits odds in</strong>, the way any transit agency publishes GTFS.</p>
+<ul>
+<li>A <strong>publisher</strong> is whoever transmits: a sportsbook publishing its own odds, or a feed that carries sportsbooks' odds.</li>
+<li>Every price is tagged with its <strong>source</strong> (whose odds these are), which is separate from the publisher. One OpenBook feed can legitimately carry many sources — exactly as one GTFS feed carries many agencies via <code>agency_id</code>.</li>
+<li>Rejected: a provider→book distribution format (that is Sportradar's turf and needs vendor cooperation); an internal canonical model only (a schema, not a feed anyone publishes).</li>
+</ul>
+<h2 id="q2-how-consumers-know-two-publishers-mean-the-same-match-decided-c">Q2 — How consumers know two publishers mean the same match — decided (c)</h2>
+<p>Publishers use <strong>their own ids</strong>, but every fixture <strong>must carry standard facts</strong> — sport, start time, participant names + country, league, period — so consumers match across publishers deterministically.</p>
+<ul>
+<li>a) own ids, consumers match alone — rejected: makes comparison everyone's private problem (today's world).</li>
+<li>b) one central registry everyone must map to — rejected: someone has to run it; a central point of control and cost.</li>
+<li><strong>c) own ids + mandatory standard facts</strong> — chosen. Faithful to GTFS (which standardises small enums, not entity ids) while fixing the one place betting differs from transit: everyone prices the *same* fixture.</li>
+</ul>
+<h2 id="q3-provenance-on-every-price-decided-a">Q3 — Provenance on every price — decided (a)</h2>
+<p>Every price says how the publisher obtained it: <code>official</code> (the book emitted it) · <code>licensed</code> (via a data agreement) · <code>observed</code> (captured from the book's public surface). Same number, very different reliability and latency; consumers need to know.</p>
+<h2 id="q4-which-ids-are-shared-which-are-publisher-own-decided-a">Q4 — Which ids are shared, which are publisher-own — decided (a)</h2>
+<ul>
+<li><strong>Shared</strong> (one list everyone uses, small and stable): sports, market types, periods/segments, sides.</li>
+<li><strong>Publisher-own</strong> (large, changing): fixtures, leagues, teams, players.</li>
+<li>Industry check: the shared concepts are already agreed industry-wide *by name* (main lines, halves/quarters/innings, home/away/draw/over/under); only the ids differ. OpenBook supplies stable ids and publishes crosswalks.</li>
+</ul>
+<h2 id="q5-what-a-shared-id-looks-like-decided-both">Q5 — What a shared id looks like — decided (both)</h2>
+<p>One id, two spellings, mechanically equivalent:</p>
+<ul>
+<li><strong>Short form on the wire:</strong> <code>sport:soccer</code>, <code>market:total</code>, <code>segment:soccer:1st-half</code> — what every real feed does (Sportradar <code>sr:match:123</code>, GTFS plain ids).</li>
+<li><strong>Formal form in the spec:</strong> <code>urn:openbook:sport:soccer</code> — globally unique, self-identifying in mixed documents, and registrable with IANA (a real path if this ever goes to a standards body).</li>
+<li>Rejected: numeric codes with a lookup table (Sportradar's way; unreadable).</li>
+</ul>
+<h2 id="q6-external-cross-reference-ids-decided-a">Q6 — External cross-reference ids — decided (a)</h2>
+<p>A publisher may attach any number of other systems' ids to an object (Sportradar URN, Opta id, Wikidata QID, its own internal id). Optional, never required, never the canonical key.</p>
+<h2 id="q7-standard-facts-every-fixture-carries-decided">Q7 — Standard facts every fixture carries — decided</h2>
+<p><strong>Required:</strong> publisher's own fixture id · sport (shared id + name) · league (own id + name + ISO country) · start time (ISO 8601) · participants (own id, canonical name, ISO country, role: home / away / ordinal) · <code>sequence</code> · <code>updated_at</code>. <strong>Optional:</strong> location (venue, city, country) · external ids · season / stage.</p>
+<h2 id="q8-how-changes-are-sent-decided-c-generalised-granularity-e">Q8 — How changes are sent — decided (c, generalised) + granularity (e)</h2>
+<p><strong>Everything is diff-able, reference tier included.</strong></p>
+<ul>
+<li>Push streams send changes only: <code>fixture_change</code>, <code>odds_change</code>, <code>score_change</code>, <code>settlement</code>.</li>
+<li>Pull APIs accept <code>since=&lt;sequence&gt;</code> and return only what changed after it.</li>
+<li>A <strong>snapshot</strong> exists for initial load and recovery only — it is a diff from zero, not a separate format. (Betfair / Sportradar shape. GTFS-Realtime re-sends everything every poll; OpenBook improves on that.)</li>
+<li><strong>Granularity: field-level.</strong> A change carries the object id plus only the fields that changed, with <strong>JSON Merge Patch semantics (RFC 7386)</strong>: field absent = unchanged, field <code>null</code> = removed. Odds diffs work at outcome level under the same rule.</li>
+<li>Rejected: snapshots only (heavy, latency = poll interval); object-level re-sends (cannot tell *what* changed).</li>
+</ul>
+<h2 id="since-decided"><code>since</code> — decided</h2>
+<p><code>since</code> is a <strong>monotonic sequence number the server issues</strong>, never a time. Time-based cursors break on clock skew, same-millisecond ties and late commits; Pinnacle's <code>since</code> is an opaque server value for exactly this reason. Timestamps stay on objects for humans and analytics; the cursor is for correctness.</p>
+<h2 id="q9-timestamps-decided-a">Q9 — Timestamps — decided (a)</h2>
+<p><strong>ISO 8601 with explicit offset, everywhere</strong> — reference tier and live tier alike. Readability wins over the bytes saved by epoch integers. (Considered: epoch ms on the live wire as GTFS-Realtime and Sportradar do; both fields as KIBL does. Rejected for consistency.)</p>
+<hr>
+<h2 id="q10-countries-and-sub-national-teams-decided-cldr">Q10 — Countries and sub-national teams — decided (CLDR)</h2>
+<p><strong>Unicode CLDR territories</strong> are the territory model: ISO 3166-1 alpha-2 codes underneath (<code>GB</code>, <code>US</code>), ISO 3166-2 subdivisions for sub-national teams (<code>GB-ENG</code>, <code>GB-SCT</code>, <code>GB-WLS</code>, <code>GB-NIR</code>, <code>US-PR</code>), plus CLDR's pragmatic extras (<code>XK</code> Kosovo, <code>EU</code>, <code>UN</code>) — and CLDR's <strong>localized names in every language</strong>, which is what every OS and browser already uses to spell country names. <code>ioc_code</code>, <code>fifa_code</code> and <code>wikidata</code> ride on the region record as crosswalks, so a football consumer reads <code>ENG</code> and an Olympic consumer reads <code>GBR</code> without OpenBook adopting either.</p>
+<ul>
+<li>a) ISO 3166-1 only — rejected: cannot represent England, Puerto Rico, Chinese Taipei.</li>
+<li>b) FIFA codes — rejected: football-only spellings (GER/NED/SUI diverge from ISO; BHR/SLV/MUS diverge from the IOC); no code for what FIFA does not recognise.</li>
+<li>c) IOC codes — rejected: multi-sport but still a sport body's list, and no England.</li>
+<li>d) UN M49 — rejected: numeric, unreadable, no sub-national teams.</li>
+<li><strong>e) CLDR</strong> — chosen: ISO codes + the extras everyone actually needs + maintained localized names, for free.</li>
+</ul>
+<h2 id="q11-names-proposed-implemented-in-v0-3">Q11 — Names — proposed (implemented in v0.3)</h2>
+<p>There is <strong>no ISO standard for team or person names.</strong> The real standards nearby: <strong>vCard (RFC 6350 / ITU X.520)</strong> for a person's name structure (family · given · additional · prefix · suffix — also schema.org's <code>familyName</code> etc.); the <strong>Olympic Data Feed</strong>, which gives every athlete several display forms (<code>PrintName</code>, <code>TVName</code>, <code>TVInitialName</code>, <code>LocalFamilyName</code>…); and <strong>finance</strong>, which standardises *identity* (ISIN, LEI) and treats the name as a mutable attribute — our <code>sameAs</code> stance. Implemented shape:</p>
+<ul>
+<li><code>name</code> — canonical display name, UTF-8, diacritics allowed.</li>
+<li><code>short_name</code>, <code>abbreviation</code> — optional.</li>
+<li><code>aliases[]</code> — the other spellings a book might use.</li>
+<li><code>names</code> — optional per-language variants keyed by ISO 639-1 (<code>en</code>, <code>es</code>).</li>
+<li><code>name_latin</code> — optional transliteration (ISO 9 for Cyrillic, ISO 843 for Greek) for sorting and matching.</li>
+<li>Persons: optional <code>given_name</code> / <code>family_name</code> (schema.org <code>Person</code>).</li>
+</ul>
+<h2 id="q12-shared-entity-id-decided-wikidata-qid">Q12 — Shared entity id — decided (Wikidata QID)</h2>
+<p><strong>Wikidata QIDs</strong> (<code>Q9617</code> = Arsenal F.C.) are the most widely used free, neutral identifiers for teams, players, leagues and venues, resolvable at <code>https://www.wikidata.org/entity/Q…</code>. <strong>Decided:</strong> the QID is the shared cross-publisher entity id for leagues, participants, players, venues and territories — <strong>required when one exists, <code>null</code> when it does not</strong> — with the publisher's own id and the standard facts always present as the fallback. An identifier string to pin, never a runtime dependency. Fixtures are not in Wikidata and stay publisher-own + standard facts. (OpenStreetMap's <code>wikidata=Q…</code> tags are the precedent.)</p>
+<h2 id="q13-field-name-alignment-with-schema-org-decided-d-full-alignment">Q13 — Field-name alignment with schema.org — decided (d: full alignment)</h2>
+<p>schema.org <code>SportsEvent</code> / <code>SportsTeam</code> / <code>Person</code> is the vocabulary Google's structured data uses (<code>homeTeam</code>, <code>awayTeam</code>, <code>competitor</code>, <code>startDate</code>, <code>location</code>, <code>alternateName</code>). Proposal: align OpenBook field names with it where there is no reason not to, so OpenBook data maps onto the web's existing sports vocabulary for free.</p>
+<h2 id="q14-stream-grammar-decided-object-action-keyed-by-fixture">Q14 — Stream grammar — decided (object / action, keyed by fixture)</h2>
+<p><code>openbook / v1 / &lt;publisher-id&gt; / &lt;object&gt; / &lt;action&gt; / &lt;sport&gt; / &lt;id&gt;</code></p>
+<ul>
+<li><code>&lt;object&gt;</code>: fixture · odds · market · score · settlement · league · season · stage · participant · player · publisher.</li>
+<li><code>&lt;action&gt;</code>: snapshot · create · update · delete, plus <code>change</code> for odds only.</li>
+<li><code>&lt;id&gt;</code>: the <strong>fixture id</strong> for fixture-scoped objects (odds, market, score, settlement, fixture); the object's own id otherwise. Fixture ids are publisher-own — fine, because a subscription is always to one publisher's stream; cross-publisher identity comes from the standard facts.</li>
+<li>WIS2 rules: lowercase, dashes, no dots, unique per level; <code>+</code> and <code>#</code>.</li>
+<li>Rejected: a league level keyed by Wikidata QID (Dan: key odds by fixture); a flat <code>fixture_change</code>-style message-type list (object/action is uniform, like OsmChange's create/modify/delete).</li>
+</ul>
+<h2 id="q15-suspensions-re-opens-and-voids-decided-market-update">Q15 — Suspensions, re-opens and voids — decided (market/update)</h2>
+<p><code>market/update</code> carries CAP-style <code>msg_type</code> (alert · update · cancel), <code>reason</code>, and <code>references[]</code> to prior sequences. Voids and re-settles are <code>settlement/delete</code> + <code>settlement/create</code> (a new settlement id, never a mutation).</p>
+<h2 id="q16-name-of-the-price-stream-decided-c">Q16 — Name of the price stream — decided (c)</h2>
+<p><code>odds/change</code> — Sportradar's word. <code>change</code> is the one action reserved for odds: a price move is an event, not a document edit. (Considered: <code>price/tick</code>, <code>market/update</code>.)</p>
+<h2 id="q17-delivery-of-odds-decided-b">Q17 — Delivery of odds — decided (b)</h2>
+<p>Push preferred: publishers SHOULD deliver <code>odds/change</code> by push and MAY offer a <code>since=</code> pull. <code>market/snapshot</code> is the recovery / initial-load state. (Considered: push-only with no pull at all.)</p>
+<h2 id="q18-topic-tail-decided-a">Q18 — Topic tail — decided (a)</h2>
+<p><code>…/&lt;sport&gt;/&lt;fixture-id&gt;</code> for fixture-scoped objects. <code>+</code> at the fixture level = every fixture in that sport from that publisher. (Considered: a league level before the fixture; keying by league QID.)</p>
+<h2 id="q19-league-vs-competition-decided-b">Q19 — League vs competition — decided (b)</h2>
+<p>Keep <strong><code>league</code></strong> as the object name for any recurring competition, typed by <strong><code>competition_type</code></strong> (league · cup · tournament · series · exhibition). An optional <code>organizer</code> (the NBA, UEFA, the FIA) can be named, because one organizer runs several competitions (NBA season, NBA Cup, All-Star Game). (Considered: renaming the object to <code>competition</code>.)</p>
+<h2 id="q20-stages-decided-a-one-recursive-object">Q20 — Stages — decided (a: one recursive object)</h2>
+<p><code>stage</code> is a named slice of a season with an optional <code>parent</code> stage and a <code>stageType</code>: phase · group · round · matchday · leg · seriesGame. Stages nest to any depth (Knockout → Quarter-final → Leg 2; Playoffs → Conference Semifinals → Game 3; F1 season → Round 14). A fixture names its leaf stage. (Rejected: separate <code>stage</code> + <code>round</code> objects.)</p>
+<h2 id="q21-participants-belong-to-a-sport-decided-a">Q21 — Participants belong to a sport — decided (a)</h2>
+<p><code>participant.sport</code> is required and there is no league field; a team is linked to leagues only through its fixtures (Arsenal plays the league, the cup and the Champions League in one week).</p>
+<h2 id="naming-convention-decided">Naming convention — decided</h2>
+<p>Every small shared vocabulary is a <code>*_type</code> field: <code>competition_type</code>, <code>participant_type</code>, <code>market_type</code>, <code>stage_type</code>. No <code>kind</code> / <code>format</code> synonyms.</p>
+<h2 id="q22-teams-and-individuals-are-both-participants-role-and-order-decided">Q22 — Teams and individuals are both participants; role and order — decided</h2>
+<p>One <code>participant</code> object with <code>participantType</code> team · individual. <code>player</code> is roster membership only. On a fixture every participant carries <strong>both</strong> <code>role</code> (home · away · neutral) <strong>and</strong> <code>order</code> (integer, always present) — facts asserted by the publisher, never inferred from presentation. schema.org <code>homeTeam</code> / <code>awayTeam</code> are derivable from <code>role</code>; <code>participants[]</code> stays the source of truth because it can express a 20-car grid.</p>
+<h2 id="naming-convention-revised-q13-d">Naming convention — revised (Q13 d)</h2>
+<p>camelCase everywhere; schema.org's property name wherever one exists (<code>startDate</code>, <code>dateModified</code>, <code>datePublished</code>, <code>alternateName</code>, <code>sameAs</code>, <code>identifier</code>, <code>superEvent</code>, <code>organizer</code>, <code>location</code>, <code>eventStatus</code>); small shared vocabularies are <code>*Type</code> fields. Documents may carry JSON-LD <code>@context</code> / <code>@type</code>.</p>
+<h2 id="q23-score-model-decided-a-everything">Q23 — Score model — decided (a: everything)</h2>
+<p>One <code>score</code> document per fixture (<code>score/update</code>): <code>eventStatus</code>, the current <code>segment</code>, a <code>clock</code> (<code>elapsed</code> / <code>remaining</code> in <strong>integer seconds</strong> within the current segment, <code>running</code>, and a broadcast <code>display</code> string), and <code>scores[]</code> per participant with <code>total</code>, <code>bySegment</code> (segment id → score) and free sport-specific <code>stats</code> counts. Racket sports add <code>server</code>.</p>
+<ul>
+<li>Considered: clock as a <code>&quot;45:00&quot;</code> string only (unparseable across sports); scores as a flat per-participant number only (loses per-segment grading).</li>
+</ul>
+<h2 id="q24-settlement-model-superseded-by-q27-q28-q30-see-below">Q24 — Settlement model — superseded by Q27/Q28/Q30 (see below)</h2>
+<p>A <code>settlement</code> is the grade of one market for one source: <code>settlementId</code>, <code>dateSettled</code>, <code>basis</code> (what it graded on), and <code>outcomes[]</code> with a <code>settlementResult</code> (win · lose · void · half-win · half-lose). <strong>Immutable</strong>: a re-settle is a new <code>settlementId</code> that names the one it <code>supersedes</code> (Pinnacle's re-settle-as-new-id semantics); a void is a settlement whose outcomes are <code>void</code>. Delivered as <code>settlement/create</code>; a rollback is <code>settlement/delete</code>.</p>
+<h2 id="segments-vocabulary-added">Segments vocabulary — added</h2>
+<p><code>vocabularies/segments.md</code>: named per-sport slices (<code>segment:soccer:1st-half</code>, <code>segment:ice-hockey:regulation</code>, <code>segment:motorsport:q3</code>). Every sport has <code>full-time</code>; <code>regulation</code> where overtime rules make the distinction matter.</p>
+<h2 id="q25-fixture-status-decided-a">Q25 — Fixture status — decided (a)</h2>
+<p>A real feed's state table (Universal, Scheduled, Started, Halftime, Second Half, Postponed, Suspended, Rain Delay, Delay, Cancelled, Final, Deleted, Retired) mixes four things: lifecycle, progress within the match, reason, and non-states. OpenBook splits them: <code>eventStatus</code> (scheduled · delayed · live · paused · suspended · postponed · ended · cancelled) + optional <code>statusReason</code> (weather · crowd · injury · retirement · walkover · forfeit · technical · scheduling · correction · other). Halftime / Second Half are <code>segment</code> + <code>clock</code>; Deleted is <code>fixture/delete</code>; Retired is <code>ended</code> + <code>retirement</code>.</p>
+<h2 id="q26-units-on-every-score-line-decided-a">Q26 — Units on every score line — decided (a)</h2>
+<p><code>scores[]</code> is one line per participant × <code>unit</code> (goals · points · runs · hits · errors · sets · games · frames · strokes · laps · position · time · corners · yellowCards · redCards · wickets · overs · rounds · knockdowns · aces · faults), each with <code>total</code> and <code>bySegment</code>. The sport / league declares <code>primaryUnit</code>. A corners market settles from the feed by half; tennis carries sets, games and points at once. Generalises Pinnacle's <code>resultingUnit</code>.</p>
+<h2 id="q27-settlement-vs-grade-decided-two-things">Q27 — Settlement vs grade — decided (two things)</h2>
+<p>Pinnacle separates the <strong>result</strong> (<code>/fixtures/settled</code>: per-period scores, settlementId, status) from the <strong>grade</strong> (<code>/bets</code>: WON / LOSE / REFUNDED). OpenBook does too — but the result is not a separate object (Q28).</p>
+<h2 id="q28-down-once-decided-a">Q28 — "Down", once — decided (a)</h2>
+<p>A segment goes <strong>down</strong> as a state on the score (<code>segments[].status: down</code>, <code>downAt</code>). No <code>settlement</code> object, no <code>settlementId</code>, no <code>resettled</code>. <strong>A fixture ends once and a segment goes down once</strong>; <code>down</code> is terminal and a validator rejects a second one. Grades reference the segment and the score <code>sequence</code> they graded from (<code>basedOn</code>).</p>
+<h2 id="q29-topic-order-decided-a-fixture-first">Q29 — Topic order — decided (a: fixture-first)</h2>
+<p><code>openbook/v1/&lt;publisher&gt;/&lt;sport&gt;/fixture/&lt;fixture-id&gt;/&lt;object&gt;/&lt;action&gt;</code>, so everything about one match is one <code>#</code> subscription. Entities: <code>…/&lt;sport&gt;/&lt;object&gt;/&lt;id&gt;/&lt;action&gt;</code>; publisher: <code>…/publisher/&lt;action&gt;</code>. (Supersedes the object-first order in Q14/Q18.)</p>
+<h2 id="q30-three-statuses-decided">Q30 — Three statuses — decided</h2>
+<p>Fixture status (<code>eventStatus</code>), segment status (<code>segmentStatus</code>: pending · live · paused · down) and market status (<code>marketStatus</code>: open · suspended · closed · void) are three fields answering three questions. Graded is not a market status; it is the <code>grade</code> object.</p>
+<h2 id="q31-corrections-without-settling-twice-decided-a-erratum">Q31 — Corrections without settling twice — decided (a: erratum)</h2>
+<p>A downed segment's <code>status</code> / <code>downAt</code> are frozen. A correction is <code>score/update</code> with <code>correction: true</code> + <code>statusReason</code> (an erratum), and affected grades are <code>grade/delete</code> + new <code>grade/create</code> with <code>supersedes</code>. (Rejected: reopen → down again; absolutely immutable with no corrections.)</p></article><p class="source">Source: docs/decisions.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contributing to OpenBook — OpenBook</title>
+<meta name="theme-color" content="#e6d7b8">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/contributing.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./">
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
+  </a>
+  <nav>
+    <a href="./spec.html">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="./schemas.html">Schemas</a><a href="./examples.html">Examples</a><a href="./decisions.html">Decisions</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · CONTRIBUTING.md</p><nav class="toc"><strong>On this sheet</strong><a href="#proposing-a-change">Proposing a change</a><a href="#rules-that-don-t-bend">Rules that don&#x27;t bend</a><a href="#style">Style</a></nav><article class="doc"><h1 id="contributing-to-openbook">Contributing to OpenBook</h1>
+<p>This is an early working draft. The most valuable contributions right now are to the <strong>vocabularies</strong> — especially <a href="vocabularies/market-types.html"><code>vocabularies/market_types.md</code></a>, the market taxonomy no one else has published.</p>
+<h2 id="proposing-a-change">Proposing a change</h2>
+<ol>
+<li>Open an issue describing the change and the real-world feed(s) that motivate it. Vocabulary additions should cite at least one provider that carries the sport / market / segment.</li>
+<li>For a schema change, update the JSON Schema in <a href="schemas.html"><code>schema/</code></a> <strong>and</strong> the prose in <a href="spec.html"><code>spec/openbook.md</code></a> in the same change; the schema is machine-normative and must not drift from the prose.</li>
+<li>Add or update an example in <a href="examples/"><code>examples/</code></a> that validates against the changed schema.</li>
+<li>Note the change in <a href="changelog.html"><code>CHANGELOG.md</code></a> under "Unreleased".</li>
+</ol>
+<h2 id="rules-that-don-t-bend">Rules that don't bend</h2>
+<ul>
+<li><strong>Ids are stable.</strong> Never re-point or reuse a published canonical id; deprecate instead.</li>
+<li><strong>No abbreviations</strong> in canonical names (<code>reference_sport</code>, not <code>ref_sport</code>).</li>
+<li><strong>No provider ids as canonical ids.</strong> A provider mapping goes on the <code>source</code> record.</li>
+<li><strong>Country is ISO 3166, time is ISO 8601, currency is ISO 4217, odds are decimal.</strong> Don't reinvent a primitive that already has a standard.</li>
+<li><strong>Segments are separate objects</strong>, never encoded into a market id.</li>
+</ul>
+<h2 id="style">Style</h2>
+<ul>
+<li>Markdown prose over tables where a list will do.</li>
+<li>Every normative statement uses MUST / SHOULD / MAY per RFC 2119.</li>
+</ul></article><p class="source">Source: CONTRIBUTING.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <span class="name">OpenBook</span>
+    <span class="rule"></span>
+    <span class="sub">Open sportsbook standard</span>
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>
