@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: "OpenBook — an open standard for sportsbook data"
+message: "If you use OpenBook, please cite it as below."
+type: dataset
+abstract: >-
+  OpenBook is an open, vendor-neutral standard for sportsbook and gambling data:
+  a reference model, a live wire, and controlled vocabularies. One format any
+  publisher emits odds in.
+authors:
+  - name: "The OpenBook authors"
+repository-code: "https://github.com/openbook-data-standards/openbook"
+url: "https://openbook-data-standards.github.io/openbook/"
+license: CC-BY-4.0
+version: 0.3.0-draft
