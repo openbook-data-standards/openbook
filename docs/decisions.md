@@ -260,3 +260,85 @@ camelCase everywhere; schema.org's property name wherever one exists
 `identifier`, `superEvent`, `organizer`, `location`, `eventStatus`); small
 shared vocabularies are `*Type` fields. Documents may carry JSON-LD
 `@context` / `@type`.
+
+## Q23 — Score model — decided (a: everything)
+
+One `score` document per fixture (`score/update`): `eventStatus`, the current
+`segment`, a `clock` (`elapsed` / `remaining` in **integer seconds** within the
+current segment, `running`, and a broadcast `display` string), and `scores[]`
+per participant with `total`, `bySegment` (segment id → score) and free
+sport-specific `stats` counts. Racket sports add `server`.
+
+- Considered: clock as a `"45:00"` string only (unparseable across sports);
+  scores as a flat per-participant number only (loses per-segment grading).
+
+## Q24 — Settlement model — superseded by Q27/Q28/Q30 (see below)
+
+A `settlement` is the grade of one market for one source: `settlementId`,
+`dateSettled`, `basis` (what it graded on), and `outcomes[]` with a
+`settlementResult` (win · lose · void · half-win · half-lose). **Immutable**: a
+re-settle is a new `settlementId` that names the one it `supersedes`
+(Pinnacle's re-settle-as-new-id semantics); a void is a settlement whose
+outcomes are `void`. Delivered as `settlement/create`; a rollback is
+`settlement/delete`.
+
+## Segments vocabulary — added
+
+`vocabularies/segments.md`: named per-sport slices (`segment:soccer:1st-half`,
+`segment:ice-hockey:regulation`, `segment:motorsport:q3`). Every sport has
+`full-time`; `regulation` where overtime rules make the distinction matter.
+
+## Q25 — Fixture status — decided (a)
+
+A real feed's state table (Universal, Scheduled, Started, Halftime, Second
+Half, Postponed, Suspended, Rain Delay, Delay, Cancelled, Final, Deleted,
+Retired) mixes four things: lifecycle, progress within the match, reason, and
+non-states. OpenBook splits them: `eventStatus` (scheduled · delayed · live ·
+paused · suspended · postponed · ended · cancelled) + optional `statusReason`
+(weather · crowd · injury · retirement · walkover · forfeit · technical ·
+scheduling · correction · other). Halftime / Second Half are `segment` +
+`clock`; Deleted is `fixture/delete`; Retired is `ended` + `retirement`.
+
+## Q26 — Units on every score line — decided (a)
+
+`scores[]` is one line per participant × `unit` (goals · points · runs · hits ·
+errors · sets · games · frames · strokes · laps · position · time · corners ·
+yellowCards · redCards · wickets · overs · rounds · knockdowns · aces · faults),
+each with `total` and `bySegment`. The sport / league declares `primaryUnit`.
+A corners market settles from the feed by half; tennis carries sets, games and
+points at once. Generalises Pinnacle's `resultingUnit`.
+
+## Q27 — Settlement vs grade — decided (two things)
+
+Pinnacle separates the **result** (`/fixtures/settled`: per-period scores,
+settlementId, status) from the **grade** (`/bets`: WON / LOSE / REFUNDED).
+OpenBook does too — but the result is not a separate object (Q28).
+
+## Q28 — "Down", once — decided (a)
+
+A segment goes **down** as a state on the score (`segments[].status: down`,
+`downAt`). No `settlement` object, no `settlementId`, no `resettled`.
+**A fixture ends once and a segment goes down once**; `down` is terminal and a
+validator rejects a second one. Grades reference the segment and the score
+`sequence` they graded from (`basedOn`).
+
+## Q29 — Topic order — decided (a: fixture-first)
+
+`openbook/v1/<publisher>/<sport>/fixture/<fixture-id>/<object>/<action>`, so
+everything about one match is one `#` subscription. Entities:
+`…/<sport>/<object>/<id>/<action>`; publisher: `…/publisher/<action>`.
+(Supersedes the object-first order in Q14/Q18.)
+
+## Q30 — Three statuses — decided
+
+Fixture status (`eventStatus`), segment status (`segmentStatus`: pending ·
+live · paused · down) and market status (`marketStatus`: open · suspended ·
+closed · void) are three fields answering three questions. Graded is not a
+market status; it is the `grade` object.
+
+## Q31 — Corrections without settling twice — decided (a: erratum)
+
+A downed segment's `status` / `downAt` are frozen. A correction is
+`score/update` with `correction: true` + `statusReason` (an erratum), and
+affected grades are `grade/delete` + new `grade/create` with `supersedes`.
+(Rejected: reopen → down again; absolutely immutable with no corrections.)

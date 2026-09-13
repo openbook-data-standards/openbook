@@ -92,6 +92,9 @@
           "items": {
             "$ref": "common.schema.json#/$defs/sharedId"
           }
+        },
+        "primaryUnit": {
+          "$ref": "common.schema.json#/$defs/scoreUnit"
         }
       }
     },

@@ -5,6 +5,19 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Added
+- Schemas for the objects the spec names but had no schema: `season`, `player`
+  (roster membership), `market` (snapshot/update document), `score` (Q23) and
+  **`grade`** (replaces `settlement`; Q27/Q28).
+- **Three statuses** (Q25/Q30): `eventStatus`, per-segment `segmentStatus`
+  (`down` once, terminal), `marketStatus`; `statusReason` vocabulary.
+- **Units on every score line** (Q26): `scoreUnit` vocabulary; `primaryUnit` on
+  sport and league ruleset.
+- **Fixture-first topics** (Q29): `openbook/v1/<publisher>/<sport>/fixture/<id>/<object>/<action>`.
+- Corrections as errata (`correction: true`), never a second down (Q31).
+- `vocabularies/segments.md` — per-sport segment ids.
+- Examples: `score.example.json`, `grade.example.json`.
+
 ## [0.3.0-draft] — 2026-09-12
 
 Breaking rename of the live wire around decisions Q14–Q21. Not frozen.
