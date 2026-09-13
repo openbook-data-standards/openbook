@@ -63,6 +63,8 @@ grouped by what each one is used for, with the reason it was chosen.
   ([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml); Q42).
 - **CloudEvents** — never (Q52). OpenBook's own change envelope is the
   message.
+- **FIX session** — never (Q92). Recovery is Q33/Q46, not FIX Logon /
+  TestRequest.
 - **RFC 9457 Problem Details** — the error format for a stale `since`
   (HTTP 410) and other pull errors.
 - **WIS2 topic hierarchy** (WMO) — the model for OpenBook's stream-naming grammar:
@@ -104,7 +106,8 @@ grouped by what each one is used for, with the reason it was chosen.
 - AsyncAPI — https://www.asyncapi.com · OpenAPI — https://spec.openapis.org
 - RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org
 - GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/
-- FIX Protocol — https://www.fixtrading.org/standards/
+- FIX Protocol — https://www.fixtrading.org/standards/ (not the OpenBook
+  session; Q92)
 - ISO 20022 — https://www.iso20022.org/ (not the OpenBook encoding; Q91)
 - OpenRTB — https://iabtechlab.com/standards/openrtb/
 - OsmChange — https://wiki.openstreetmap.org/wiki/OsmChange · Planet diffs —

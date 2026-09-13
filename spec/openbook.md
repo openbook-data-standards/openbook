@@ -145,7 +145,8 @@ guarantees, not JSON Schema.
 5. **Bounded heartbeats (push).** The same stream carries `action:
    heartbeat` (`changes: {}`). The publisher record MUST declare
    `heartbeatMs` (maximum silence, milliseconds). Quiet longer than that, the
-   consumer SHOULD treat the feed as down (Q46).
+   consumer SHOULD treat the feed as down (Q46). FIX session (Logon /
+   Heartbeat / TestRequest / Logout) is not the OpenBook session (Q92).
 6. If intermediate ticks are dropped, that change MUST carry **`conflated:
    true`**. Sequence still increases (Q47).
 7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once

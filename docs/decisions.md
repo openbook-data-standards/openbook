@@ -984,3 +984,17 @@ mapping document in this question; leave ISO 20022 unsaid because Q13/Q38/Q44
 named names and money.
 
 **Supersedes:** none of Q13/Q38/Q44.
+
+## Q92 — FIX session is not the OpenBook session — decided (never)
+
+Session and recovery stay **Q33** / **Q46**: `snapshotComplete`,
+`heartbeat` + `heartbeatMs`, stale `since` is HTTP 410. FIX Logon /
+Heartbeat / TestRequest / Logout, and sequence reset, are **not** the
+OpenBook session. A later SBE binding (**Q88**) would still carry OpenBook
+heartbeats, not FIX Logon.
+
+Rejected: adopt FIX TestRequest / Heartbeat / Logout on the socket; add a
+FIX-session mapping document in this question; leave this unsaid because
+Q46 rejected a client TestRequest pair.
+
+**Supersedes:** none of Q46.
