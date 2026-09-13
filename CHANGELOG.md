@@ -44,7 +44,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q53** — DNS-style ids never; Q4/Q5 stand.
 - **Q54** — no OpenAPI file in this repo; `since=` / 410 stay in the spec.
 - **Q55** — later PR: schema-diff CI at 1.0+ only.
-- [`docs/still-to-do.md`](docs/still-to-do.md) — recorded through Q55; wire not
+- **Q11 / Q57** — names decided (log only): board `name`; optional team
+  location/nickname/registeredName; person given/family; `shortName`; team-only
+  `abbreviation`; `names` / `nameLatin`; fixture copies `name`. Cite ISO or none.
+- [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`

@@ -136,24 +136,38 @@ crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
 - **e) CLDR** — chosen: ISO codes + the extras everyone actually needs +
   maintained localized names, for free.
 
-## Q11 — Names — proposed (implemented in v0.3)
+## Q11 — Names — decided (Q57 unpack)
 
-There is **no ISO standard for team or person names.** The real standards
-nearby: **vCard (RFC 6350 / ITU X.520)** for a person's name structure
-(family · given · additional · prefix · suffix — also schema.org's
-`familyName` etc.); the **Olympic Data Feed**, which gives every athlete
-several display forms (`PrintName`, `TVName`, `TVInitialName`,
-`LocalFamilyName`…); and **finance**, which standardises *identity* (ISIN,
-LEI) and treats the name as a mutable attribute — our `sameAs` stance.
-Implemented shape:
+There is **no ISO** for a display name. Cite a real standard when one exists;
+if none exists, say so (Q57d). Identity is **Q12** (Wikidata), not the string.
+Names are mutable. FIFA/ODF/Sportradar/GLEIF all split **id** from **many
+labels**.
 
-- `name` — canonical display name, UTF-8, diacritics allowed.
-- `short_name`, `abbreviation` — optional.
-- `aliases[]` — the other spellings a book might use.
-- `names` — optional per-language variants keyed by ISO 639-1 (`en`, `es`).
-- `name_latin` — optional transliteration (ISO 9 for Cyrillic, ISO 843 for
-  Greek) for sorting and matching.
-- Persons: optional `given_name` / `family_name` (schema.org `Person`).
+**Catalog `participant` vs fixture vs `player` (looks correct):** a
+participant is a team or an individual (Q21/Q22). Fixture `participants[]` is
+that same id plus **role** and **order**, and **copies `name`** so a snapshot
+reads without a join. `player` is roster only (person on team); it has **no**
+name fields.
+
+**Teams:** `name` required (popular/board). Optional: `location` + `nickname`
+(NFL `market`/`name`; empty for Arsenal), `registeredName` (FIFA
+international long / registry — not ISO), `shortName`, `abbreviation`.
+Sportradar soccer is `name`/`short_name`/`abbreviation` with city on the
+**venue**, not the team. NFL uses the split.
+
+**Persons:** `name` is popular/board (`Erling Haaland`, `Ronaldinho`).
+Optional `givenName` / `familyName` (vCard RFC 6350 / ITU X.520, schema.org).
+Optional `shortName`. No `abbreviation`.
+
+**Both:** optional `names` keyed by **ISO 639-1**; optional `nameLatin`
+(method: **ISO 9** Cyrillic, **ISO 843** Greek); other spellings in
+`alternateName` (schema.org).
+
+Rejected: required city+nickname; legal name as the only `name`; Print/TV
+scoreboard copies from ODF; ISO numbers invented for nicknames.
+
+**Supersedes:** Q11 proposed (v0.3 snake_case list). CamelCase is Q38. Schema
+may still be ahead or behind this list until a later wire PR.
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
@@ -647,3 +661,17 @@ A CI schema-diff gate (required field added, re-type, remove) is a **later PR**,
 Rejected: run it on 0.x now; never; this patch.
 
 **Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
+
+## Q57 — Name fields unpacked — decided (closes Q11)
+
+Walk: participant vs `player` vs fixture row; team strings; person strings;
+citation rule. Recorded as **Q11 decided**. No schema in this patch.
+
+**Q57d:** every field cites a real standard or **none**. Same rule for other
+objects later. ISO 639-1, ISO 9, ISO 843, ISO 3166/CLDR (Q10), vCard, schema.org
+`alternateName` are real. Display `name`, `nickname`, `abbreviation` have
+**no ISO**.
+
+Rejected: invent ISO numbers; drop fields that lack ISO.
+
+**Supersedes:** Q11 “proposed”.
