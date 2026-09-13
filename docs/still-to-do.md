@@ -1,7 +1,6 @@
 # Still to do
 
-Questions recorded through **Q86**. This patch is log only. Do not change
-schemas until asked.
+Questions recorded through **Q87**. Catalog pass closed. Log only.
 
 ## Later PRs (decided, not built)
 
@@ -21,6 +20,6 @@ schemas until asked.
 
 - (none parked from this walk)
 
-## Done (Q32–Q86)
+## Done (Q32–Q87)
 
-Q32–Q55 · **Q11/Q57–Q82** catalog · **Q84–Q86** surface, seed, fixture extras stop.
+Q32–Q55 · **Q11/Q57–Q87** catalog names/place/omits; fixture extras stop; catalog pass closed.

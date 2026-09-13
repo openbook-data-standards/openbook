@@ -74,6 +74,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q84** — optional fixture `surface` (grass/clay/hard/…).
 - **Q85** — optional `seed` on the fixture participant row.
 - **Q86** — generic fixture extras stop at surface + seed; no metadata bag.
+- **Q87** — catalog pass closed; next work is a new area, not more fixture keys.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 

@@ -910,3 +910,14 @@ junk stays `x_` (**Q37**).
 Rejected: keep bolting optionals onto fixture; a `metadata` object.
 
 **Supersedes:** none. Closes the “leftover” list from Q82 as *not on fixture*.
+
+## Q87 — Catalog pass closed — decided
+
+This walk of names, place, omits, surface, seed, and the junk-drawer rule
+is **closed**. Further questions are a **new area**, not more keys on the
+generic fixture.
+
+Rejected: unpack stage/series immediately; jump to Q46 wire in this
+question.
+
+**Supersedes:** none.
