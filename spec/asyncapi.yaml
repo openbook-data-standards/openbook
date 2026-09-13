@@ -10,6 +10,8 @@ info:
     contract is `spec/openbook.md` §8. MQTT is not required; any transport that
     can name these topics MAY carry the same envelope. Pull (`since=`) is not
     described here. Messages are the OpenBook change envelope, not CloudEvents.
+    JSON is the required v1 encoding (Q88). Additional encodings are not
+    described here.
   externalDocs:
     description: OpenBook specification
     url: https://openbook-data-standards.github.io/openbook/spec.html

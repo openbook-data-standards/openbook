@@ -137,8 +137,9 @@ a neutral body.
   dual-form idea OpenBook uses for ids (short slug on the wire, formal URN in
   the spec).
 - **GRIB / BUFR** — binary, table-driven, self-describing formats for volume
-  data. Efficient but need the tables. OpenBook stays readable JSON in v1; a
-  binary encoding could become an optional transport binding later, as GTFS
-  did with protobuf.
+  data. Efficient but need the tables. OpenBook’s required v1 encoding is
+  JSON; additional encodings MAY exist later as optional bindings generated
+  from the JSON Schemas (Q88; same pattern as OpenRTB JSON default /
+  protobuf optional). No `.proto` in this repo in v1.
 - **NWS API** — JSON-LD + GeoJSON payloads: web-standard encodings rather than
   bespoke ones.

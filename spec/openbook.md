@@ -35,6 +35,11 @@ It standardises the data contract only.
 - **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
+- **Encoding** — JSON is the required v1 encoding (Q88). The schemas,
+  examples, discovery document, corpus, validator, and AsyncAPI describe
+  this encoding. Additional encodings MAY exist later as optional bindings
+  generated from the JSON Schemas; they are not in this repo in v1 and
+  they do not replace JSON.
 - **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
   Decimal odds only (MUST be strictly greater than 1); American and
   fractional forms are presentation.

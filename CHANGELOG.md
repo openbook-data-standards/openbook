@@ -11,6 +11,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Q88** — JSON (`application/json`) is the required v1 encoding; additional
+  encodings MAY exist later as optional bindings; scaffolding stays JSON
+  ([`docs/decisions.md`](docs/decisions.md)).
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
 - **Q33** — Level L delivery/recovery: all eight guarantees MUST

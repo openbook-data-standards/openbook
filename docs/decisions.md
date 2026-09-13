@@ -924,3 +924,25 @@ Rejected: unpack stage/series immediately; jump to Q46 wire in this
 question.
 
 **Supersedes:** none.
+
+## Q88 — JSON is the v1 encoding; other encodings are not forbidden — decided (A)
+
+The required v1 encoding is **JSON** (`application/json`). The spec, JSON
+Schemas, examples, discovery document, conformance corpus, validator, site,
+and AsyncAPI `defaultContentType` describe this encoding only. OpenBook
+scaffolding does not ship `.proto`, SBE, or another codec in v1.
+
+Additional encodings (protobuf, SBE, or anything else) **MAY** exist later
+as optional bindings, generated from the existing JSON Schemas — the same
+pattern OpenRTB uses (JSON default, protobuf optional). This log does **not**
+forbid them and does not require them.
+
+A later encoding is a new binding of the same objects, not a second data
+model. Decimal strings (**Q39**), Merge Patch (**Q8**), and RFC 3339 (**Q9**)
+stay the contract.
+
+Rejected: protobuf/SBE as the v1 encoding; JSON-only forever; shipping
+`.proto` now; leaving this as unnumbered industry-pattern prose.
+
+**Supersedes:** none of Q8/Q39/Q40. Pins `docs/industry-patterns.md` “JSON in
+v1; binary later”.
