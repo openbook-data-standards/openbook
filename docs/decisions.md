@@ -898,3 +898,15 @@ the person. No ISO.
 Rejected: seed on the catalog person; omit; seed only on the stage.
 
 **Supersedes:** none of Q22.
+
+## Q86 — Generic fixture extras — decided (stop here)
+
+The generic fixture’s extra named fields stop at **`surface`** (Q84) and
+**`seed`** on the participant row (Q85). No `metadata` bag. Racing draw,
+cricket toss, playoff series state are **not** more keys on every fixture.
+They wait for stage, a later live object, or a sport-specific slice. Vendor
+junk stays `x_` (**Q37**).
+
+Rejected: keep bolting optionals onto fixture; a `metadata` object.
+
+**Supersedes:** none. Closes the “leftover” list from Q82 as *not on fixture*.
