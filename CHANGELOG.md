@@ -11,6 +11,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Security model** — [`SECURITY.md`](SECURITY.md) states what the standard
+  secures (closed schemas, canonical-id integrity) and what it delegates to
+  deployments (TLS, authn/authz, rate limiting, schema-fetch integrity).
+- **Feed monitoring** — [`spec/openbook.md`](spec/openbook.md) §5.3 names the
+  liveness, continuity, freshness, and conformance signals a consumer alarms on.
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
 - **Q33** — Level L delivery/recovery: all eight guarantees MUST
