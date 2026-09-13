@@ -831,3 +831,12 @@ Home/away is fixture **role** (**Q22**).
 Rejected: optional or required home Place on the club.
 
 **Supersedes:** none of Q62.
+
+## Q79 — Manager / coach — decided (omit for now)
+
+No coach object. Add a role later if manager markets need it (**Q35** never
+reuse names).
+
+Rejected: optional or required coach now.
+
+**Supersedes:** none.

@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q78**. This patch is log only. Do not change
+Questions recorded through **Q79**. This patch is log only. Do not change
 schemas until asked.
 
 ## Later PRs (decided, not built)
@@ -18,6 +18,6 @@ schemas until asked.
 
 - (none parked from this walk)
 
-## Done (Q32–Q78)
+## Done (Q32–Q79)
 
-Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place · **Q64** IANA `timeZone` · **Q66** fixture `name` · **Q68** `inLanguage` · **Q69** city+territory · **Q70** WGS 84 · **Q71** no capacity · **Q72** league men/women/mixed/open · **Q73** league ageGroup · **Q74** no DOB · **Q75** no height/weight · **Q76** position free string · **Q77** no kit · **Q78** no team home venue.
+Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place · **Q64** IANA `timeZone` · **Q66** fixture `name` · **Q68** `inLanguage` · **Q69** city+territory · **Q70** WGS 84 · **Q71** no capacity · **Q72** league men/women/mixed/open · **Q73** league ageGroup · **Q74** no DOB · **Q75** no height/weight · **Q76** position free string · **Q77** no kit · **Q78** no team home venue · **Q79** no coach.
