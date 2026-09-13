@@ -61,7 +61,7 @@ the idea, not the encoding), **later** (optional, after 1.0), **rejected**.
 - **FIX (incl. 5.0 SP2 market data, session T11)** — **shape only**.
   Incremental New/Change/Delete, sequence, heartbeat, open spec / private
   engines. Rejected: tag=value or SBE as the v1 encoding; client TestRequest
-  pair (Q46); a required session layer.
+  pair (Q46); a required session layer (Q60).
 - **ISO 20022** — **rejected as the wire** (Q59). Useful as a reminder that money,
   identity and syntax should be separable. Does not fit as OpenBook’s
   encoding, naming, or governance.

@@ -147,7 +147,7 @@ guarantees, not JSON Schema.
    true`**. Sequence still increases (Q47).
 7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once
    / exactly-once). MQTT is not required; other transports MUST name the
-   equivalent.
+   equivalent. There is no FIX session layer and no client TestRequest (Q60).
 8. **Dedup key** is `(publisher, sequence)`. Consumers MUST ignore duplicates.
 
 ### 5.2 Feed operations (Q41, Q48, Q49)

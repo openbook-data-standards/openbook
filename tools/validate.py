@@ -282,6 +282,13 @@ if money.get("required") == ["amount"] and money_props == {"amount"} and money.g
 else:
     fail("Q59 money must be {amount} only with additionalProperties false")
 
+ACTIONS = {"snapshot", "create", "update", "delete", "change", "snapshotComplete", "heartbeat"}
+action_enum = set(schemas["common.schema.json"]["$defs"]["action"]["enum"])
+if action_enum == ACTIONS:
+    ok("Q60 action enum is publication actions only (no TestRequest)")
+else:
+    fail(f"Q60 action enum drifted: {sorted(action_enum)}")
+
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")
 print("conformant: all checks passed")

@@ -52,7 +52,7 @@
 </ul>
 <h3 id="financial-market-data-messaging">Financial / market-data messaging</h3>
 <ul>
-<li><strong>FIX (incl. 5.0 SP2 market data, session T11)</strong> — <strong>shape only</strong>. Incremental New/Change/Delete, sequence, heartbeat, open spec / private engines. Rejected: tag=value or SBE as the v1 encoding; client TestRequest pair (Q46); a required session layer.</li>
+<li><strong>FIX (incl. 5.0 SP2 market data, session T11)</strong> — <strong>shape only</strong>. Incremental New/Change/Delete, sequence, heartbeat, open spec / private engines. Rejected: tag=value or SBE as the v1 encoding; client TestRequest pair (Q46); a required session layer (Q60).</li>
 <li><strong>ISO 20022</strong> — <strong>rejected as the wire</strong> (Q59). Useful as a reminder that money, identity and syntax should be separable. Does not fit as OpenBook’s encoding, naming, or governance.</li>
 <li><strong>OpenRTB 2.6</strong> — <strong>adopted</strong> as the governance precedent (open spec, private engines, JSON, skip-unknown <code>ext</code>). Rejected: request/response auction, numeric enumerations, JSON numbers for money.</li>
 </ul>

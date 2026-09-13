@@ -683,3 +683,14 @@ Rejected: generate OpenBook from an ISO 20022 repository; `{amount, currency}`
 on every money object; abbreviated JSON.
 
 **Supersedes:** none of Q44; names the protocol-comparison rejection.
+
+## Q60 — FIX session never — decided
+
+OpenBook is a publication format. Heartbeat is publisher-emitted on the
+same stream (`action: heartbeat`, Q46). There is no session layer: no
+client TestRequest, ResendRequest, or GapFill.
+
+Rejected: FIX T11 as required; client ping to force a heartbeat.
+
+**Supersedes:** none of Q46; names the session rejection from the protocol
+comparison.

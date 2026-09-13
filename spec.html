@@ -93,7 +93,7 @@ player                      publisher-own; roster membership of a person in a te
 <li><strong>Caught-up (push).</strong> After snapshot + replay, the publisher MUST emit <code>action: snapshotComplete</code> on that stream, with <code>changes: {}</code>. Pull has no marker; the HTTP response *is* the batch (Q46).</li>
 <li><strong>Bounded heartbeats (push).</strong> The same stream carries <code>action: heartbeat</code> (<code>changes: {}</code>). The publisher record MUST declare <code>heartbeatMs</code> (maximum silence, milliseconds). Quiet longer than that, the consumer SHOULD treat the feed as down (Q46).</li>
 <li>If intermediate ticks are dropped, that change MUST carry <strong><code>conflated: true</code></strong>. Sequence still increases (Q47).</li>
-<li><strong>QoS 0 / 1 / 2</strong> are the delivery vocabulary (at-most-once / at-least-once / exactly-once). MQTT is not required; other transports MUST name the equivalent.</li>
+<li><strong>QoS 0 / 1 / 2</strong> are the delivery vocabulary (at-most-once / at-least-once / exactly-once). MQTT is not required; other transports MUST name the equivalent. There is no FIX session layer and no client TestRequest (Q60).</li>
 <li><strong>Dedup key</strong> is <code>(publisher, sequence)</code>. Consumers MUST ignore duplicates.</li>
 </ol>
 <h3 id="5-2-feed-operations-q41-q48-q49">5.2 Feed operations (Q41, Q48, Q49)</h3>

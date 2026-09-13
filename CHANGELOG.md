@@ -12,6 +12,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Invalid corpus `json-patch-changes.json`.
 - **Q59** — ISO 20022 never the model; money stays `{amount}` in
   `baseCurrency`. Invalid corpus `money-with-currency.json`.
+- **Q60** — FIX session never; heartbeat is publisher-emitted.
+  Invalid corpus `fix-test-request.json`.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
   comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
   Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire

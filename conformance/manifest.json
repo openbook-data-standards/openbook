@@ -40,6 +40,10 @@
     {
       "path": "conformance/invalid/money-with-currency.json",
       "reason": "money is amount in baseCurrency; no per-object currency (Q44, Q59)"
+    },
+    {
+      "path": "conformance/invalid/fix-test-request.json",
+      "reason": "no FIX session; heartbeat is publisher-emitted, never TestRequest (Q60)"
     }
   ]
 }
