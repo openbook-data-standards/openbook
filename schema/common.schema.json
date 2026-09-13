@@ -112,6 +112,35 @@
       ],
       "description": "A fact set by the publisher; never inferred from presentation order."
     },
+    "deprecation": {
+      "type": "object",
+      "required": [
+        "name",
+        "reason",
+        "replacement",
+        "sunset"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replacement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sunset": {
+          "type": "string",
+          "format": "date",
+          "description": "Inclusive last date the name may appear on the live wire; removal only at MAJOR (Q36)."
+        }
+      }
+    },
     "jsonld": {
       "properties": {
         "@context": {},

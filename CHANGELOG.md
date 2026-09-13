@@ -12,8 +12,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   ([`spec/openbook.md`](spec/openbook.md) §5.1).
 - **Q34** — catch-all `unknown`/`other`; consumers MUST tolerate unrecognised
   values.
-- **Q35** — never reuse ids, list-values, or field names once frozen;
-  registry [`vocabularies/deprecated.md`](vocabularies/deprecated.md).
+- **Q35** — never reuse frozen ids, list-values, or field names;
+  [`vocabularies/deprecated.md`](vocabularies/deprecated.md).
+- **Q36** — machine-readable deprecation (reason, replacement, sunset);
+  removal only at MAJOR after the window.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

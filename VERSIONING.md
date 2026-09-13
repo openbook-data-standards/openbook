@@ -32,8 +32,9 @@ machine schema-diff gate is not part of this decision.
 - Consumers **MUST** ignore unknown `x_`-prefixed fields, so MINOR additions never
   break an older consumer.
 - Canonical ids, list-values and field names are permanent once shipped in a
-  frozen version. They are deprecated, never deleted or re-pointed, and
-  **never reused** for a new meaning (Q35).
+  frozen version. They are deprecated with reason + replacement + sunset,
+  never re-pointed, and **never reused** (Q35, Q36). Removal from the live
+  set is only at MAJOR, after the window.
 - Pre-1.0 (`0.x`) the wire may still change between MINOR versions; the `-draft`
   suffix marks a version that is not yet frozen. Q32 is the intended 1.0
   contract; it is not a 0.x freeze.

@@ -422,3 +422,17 @@ Rejected: ids-only; reuse allowed at MAJOR; leave CONTRIBUTING as ids-only.
 
 **Supersedes:** CONTRIBUTING “ids are stable” by extending it to field names
 and list-values.
+
+## Q36 — Deprecation — decided (marker + window; remove only at MAJOR)
+
+A deprecation is machine-readable: `name`, `reason`, `replacement`, `sunset`
+(date). It applies to fields, list-values, and message types. A window is
+REQUIRED; removal from the live set only at MAJOR, and only after sunset.
+The string still MUST NOT be reused (Q35).
+
+The registry is [`../vocabularies/deprecated.json`](../vocabularies/deprecated.json);
+the shape is `common.schema.json#/$defs/deprecation`.
+
+Rejected: CHANGELOG-only; no window; never remove even at MAJOR.
+
+**Supersedes:** the “removal is a later question” line in Q35.

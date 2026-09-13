@@ -50,7 +50,8 @@ equivalent spellings: **short on the wire** (`sport:soccer`, `market:total`,
 (`urn:openbook:sport:soccer`). Lowercase, `:`-separated, `-` inside a segment.
 Once published in a frozen version, never re-pointed, removed, or
 **reassigned**; only deprecated (Q35). Field names and list-values take the
-same promise.
+same promise. Deprecation is `name` + `reason` + `replacement` + `sunset`;
+removal from the live set only at MAJOR after the window (Q36).
 
 ### 3.2 Publisher-own ids — the entities
 Leagues, seasons, stages, fixtures, participants, players and venues carry the

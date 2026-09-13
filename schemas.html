@@ -224,6 +224,35 @@
       ],
       &quot;description&quot;: &quot;A fact set by the publisher; never inferred from presentation order.&quot;
     },
+    &quot;deprecation&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;name&quot;,
+        &quot;reason&quot;,
+        &quot;replacement&quot;,
+        &quot;sunset&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;minLength&quot;: 1
+        },
+        &quot;reason&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;minLength&quot;: 1
+        },
+        &quot;replacement&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;minLength&quot;: 1
+        },
+        &quot;sunset&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;format&quot;: &quot;date&quot;,
+          &quot;description&quot;: &quot;Inclusive last date the name may appear on the live wire; removal only at MAJOR (Q36).&quot;
+        }
+      }
+    },
     &quot;jsonld&quot;: {
       &quot;properties&quot;: {
         &quot;@context&quot;: {},
