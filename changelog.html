@@ -35,7 +35,9 @@
 <ul>
 <li><strong>Q57</strong> — v1 encoding is JSON; protobuf / FIX SBE / GRIB are later generated bindings, not a second model. Validator check 8.</li>
 <li><strong>Q58</strong> — JSON Patch (RFC 6902) never; <code>changes</code> is a Merge Patch object. Invalid corpus <code>json-patch-changes.json</code>.</li>
+<li><strong>Q59</strong> — ISO 20022 never the model; money stays <code>{amount}</code> in <code>baseCurrency</code>. Invalid corpus <code>money-with-currency.json</code>.</li>
 <li><strong>Q60</strong> — FIX session never; heartbeat is publisher-emitted. Invalid corpus <code>fix-test-request.json</code>.</li>
+<li><strong>Q61</strong> — discovery is flat; no GBFS nested wrapper. Invalid corpus <code>discovery-gbfs-wrapper.json</code>.</li>
 <li><a href="protocol-comparison.html"><code>docs/protocol-comparison.md</code></a> — technical comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire (what is adopted, shape-only, later, or rejected).</li>
 </ul>
 <h3 id="changed">Changed</h3>

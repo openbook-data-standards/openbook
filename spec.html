@@ -99,7 +99,7 @@ player                      publisher-own; roster membership of a person in a te
 <h3 id="5-2-feed-operations-q41-q48-q49">5.2 Feed operations (Q41, Q48, Q49)</h3>
 <ul>
 <li>Live documents SHOULD declare <strong><code>ttl</code></strong>: integer seconds, GBFS (Q48). Optional on the publisher record; required on the discovery document.</li>
-<li>A publisher SHOULD offer <strong>one discovery URL</strong> that returns <code>{ lastUpdated, ttl, feeds: [{ name, url }] }</code> (<a href="schema/discovery.schema.json"><code>../schema/discovery.schema.json</code></a>). Snapshot, stream, and any publisher-hosted API docs are named feeds. The <code>publisher</code> object stays identity, not the catalog (Q49).</li>
+<li>A publisher SHOULD offer <strong>one discovery URL</strong> that returns <code>{ lastUpdated, ttl, feeds: [{ name, url }] }</code> (<a href="schema/discovery.schema.json"><code>../schema/discovery.schema.json</code></a>). Snapshot, stream, and any publisher-hosted API docs are named feeds. The <code>publisher</code> object stays identity, not the catalog (Q49). There is no nested GBFS data wrapper (Q61).</li>
 <li>A publisher MAY <strong>co-serve</strong> more than one OpenBook version at the same time (distinct URLs or topics per <code>openbookVersion</code>).</li>
 </ul>
 <p>Two independent implementations (a producer and a consumer; not <a href="../tools/validate.py"><code>../tools/validate.py</code></a>) are required to <strong>freeze 1.0</strong>, not to ship a 0.x minor.</p>

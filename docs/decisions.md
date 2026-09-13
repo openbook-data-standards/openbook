@@ -694,3 +694,13 @@ Rejected: FIX T11 as required; client ping to force a heartbeat.
 
 **Supersedes:** none of Q46; names the session rejection from the protocol
 comparison.
+
+## Q61 — Discovery is flat; no GBFS data wrapper — decided
+
+Discovery is `{ lastUpdated, ttl, feeds }` (Q49). It is not GBFS’s
+`{ last_updated, ttl, version, data: { feeds } }` wrapper. snake_case and a
+nested data object are never the OpenBook discovery document.
+
+Rejected: nest feeds under data; require a GBFS version field on discovery.
+
+**Supersedes:** none of Q49; names the wrapper rejection.

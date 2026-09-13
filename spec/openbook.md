@@ -158,7 +158,8 @@ guarantees, not JSON Schema.
   `{ lastUpdated, ttl, feeds: [{ name, url }] }`
   ([`../schema/discovery.schema.json`](../schema/discovery.schema.json)).
   Snapshot, stream, and any publisher-hosted API docs are named feeds. The
-  `publisher` object stays identity, not the catalog (Q49).
+  `publisher` object stays identity, not the catalog (Q49). There is no nested
+  GBFS data wrapper (Q61).
 - A publisher MAY **co-serve** more than one OpenBook version at the same
   time (distinct URLs or topics per `openbookVersion`).
 

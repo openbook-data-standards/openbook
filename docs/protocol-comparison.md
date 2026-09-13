@@ -42,7 +42,7 @@ the idea, not the encoding), **later** (optional, after 1.0), **rejected**.
   publisher-agnostic feed. Rejected: protobuf as v1 encoding (Q57); full-state
   re-send every poll; POSIX epoch times as the only clock.
 - **GBFS 3.0** — **adopted** for ops: `ttl`, one discovery URL, co-serve
-  versions (Q41/Q48/Q49). Rejected: nested `data` wrapper, snake_case, a
+  versions (Q41/Q48/Q49). Rejected: nested data wrapper (Q61), snake_case, a
   required file-name enum for every feed.
 
 ### Live pub/sub

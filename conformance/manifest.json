@@ -44,6 +44,10 @@
     {
       "path": "conformance/invalid/fix-test-request.json",
       "reason": "no FIX session; heartbeat is publisher-emitted, never TestRequest (Q60)"
+    },
+    {
+      "path": "conformance/invalid/discovery-gbfs-wrapper.json",
+      "reason": "discovery is flat lastUpdated/ttl/feeds, not a nested GBFS data wrapper (Q61)"
     }
   ]
 }

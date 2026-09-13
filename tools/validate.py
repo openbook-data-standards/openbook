@@ -289,6 +289,12 @@ if action_enum == ACTIONS:
 else:
     fail(f"Q60 action enum drifted: {sorted(action_enum)}")
 
+disc = schemas["discovery.schema.json"]
+if set(disc.get("required", [])) == {"lastUpdated", "ttl", "feeds"} and "data" not in disc.get("properties", {}) and disc.get("additionalProperties") is False:
+    ok("Q61 discovery is flat (no nested data wrapper)")
+else:
+    fail("Q61 discovery must be lastUpdated, ttl, feeds with additionalProperties false")
+
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")
 print("conformant: all checks passed")
