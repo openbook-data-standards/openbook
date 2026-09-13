@@ -600,9 +600,12 @@ Rejected: extend `publisher` with `feeds[]`; `.well-known/openbook` pointing onl
 
 **Supersedes:** Q41 “discovery document shape are later”.
 
-## Q50 — Docs-vs-schema name CI — decided (later PR, one-way)
+## Q50 — Docs-vs-schema name CI — decided (one-way)
 
-If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR. Extra schema fields are allowed. **Later PR**, not this patch. 0.x still uses review until that job exists.
+If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR.
+Extra schema fields are allowed. Scanned: `spec/openbook.md`, `spec/asyncapi.yaml`,
+`docs/building-blocks.md`, `docs/still-to-do.md`. The decision log is history
+and is not scanned. Implemented in [`../tools/validate.py`](../tools/validate.py).
 
 Rejected: never (CONTRIBUTING only); bidirectional (every schema field named in the spec); CI on this patch.
 
