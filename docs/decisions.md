@@ -771,3 +771,12 @@ No capacity field. Seat count is not a price-feed fact. No ISO.
 Rejected: optional or required capacity.
 
 **Supersedes:** none of Q62.
+
+## Q72 — Competition sex category — decided
+
+Optional on the **league**: `men` · `women` · `mixed` · `open`. Vocab, not
+ISO 5218. Not a field on the person.
+
+Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
+
+**Supersedes:** none.
