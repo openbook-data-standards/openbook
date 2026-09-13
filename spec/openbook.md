@@ -162,6 +162,23 @@ Two independent implementations (a producer and a consumer; not
 [`../tools/validate.py`](../tools/validate.py)) are required to **freeze
 1.0**, not to ship a 0.x minor.
 
+### 5.3 Monitoring a feed
+
+The §5.1 guarantees are also the signals a consumer watches to know a feed is
+healthy, not only what it replays:
+
+- **Liveness** — silence longer than the publisher's declared `heartbeatMs`
+  (§5.1.5) SHOULD raise an alarm. Quiet is not dead only up to that bound.
+- **Continuity** — a gap, reorder, or duplicate in per-fixture `sequence`
+  (§5.1.3, §5.1.8) is observable and SHOULD be surfaced, never hidden.
+- **Freshness** — `datePublished` / `dateModified` and the discovery document's
+  `lastUpdated` and `ttl` (§5.2) bound how old a live feed may be before a
+  consumer treats it as stale.
+- **Conformance** — a consumer MAY run the conformance corpus
+  ([`../conformance/`](../conformance/)) against a live feed continuously — the
+  same runner CI uses — to catch a producer drifting off-spec. Conformance is a
+  monitoring tool, not only a release gate.
+
 ## 5a. Status: three questions, three fields
 
 - **Fixture status** — *is the event happening?* `eventStatus`: scheduled ·
