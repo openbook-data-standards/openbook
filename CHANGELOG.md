@@ -51,6 +51,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   only.
 - **Q60** — season `name` is display; dates are Q9. Stage `name` + optional
   dates. Publisher `name` + optional `registeredName`.
+- **Q62** — fixture `location` stays nested Place; GeoNames optional; no
+  first-class venue object in this walk.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 

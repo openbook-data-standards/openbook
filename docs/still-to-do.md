@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q60**. This patch is log only. Do not change
+Questions recorded through **Q62**. This patch is log only. Do not change
 schemas until asked.
 
 ## Later PRs (decided, not built)
@@ -14,9 +14,8 @@ schemas until asked.
 
 ## Next question (not decided)
 
-- **Venue location** — GeoNames vs schema.org Place vs first-class venue
-  object (Q61 B).
+- (none parked from this walk)
 
-## Done (Q32–Q60)
+## Done (Q32–Q62)
 
-Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher.
+Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place.

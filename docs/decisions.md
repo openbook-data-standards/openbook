@@ -704,3 +704,15 @@ schema. No ISO pattern for “Matchday 7”.
 Rejected: required stage-name grammar.
 
 **Supersedes:** none.
+
+## Q62 — Venue location — decided (nested Place)
+
+Fixture `location` stays a nested schema.org **Place**: `name`,
+`addressLocality`, `territory` (**Q10**), `sameAs`. GeoNames or Wikidata MAY
+sit on `sameAs` / `identifier`. Stadium **name** has no ISO. City is on the
+venue (Sportradar), not the team.
+
+Rejected: GeoNames required; a first-class catalog `venue` object in this
+walk.
+
+**Supersedes:** none of Q10 or Q59.
