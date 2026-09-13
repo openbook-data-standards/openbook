@@ -495,3 +495,19 @@ Rejected: schema-only / self-certify; a blessed language library as the gate.
 
 **Supersedes:** GOVERNANCE “reference tooling published later” by naming
 the corpus now. The two-implementation 1.0 gate is a later question.
+
+## Q41 — GBFS-style ops; two implementations at 1.0 only — decided
+
+Three feed-ops principles, after GBFS: a cache lifetime (`ttl` in GBFS
+terms), **one discovery URL** that lists a publisher's feeds, and publishers
+MAY **co-serve** more than one OpenBook version. Field names and the
+discovery document shape are later.
+
+Two independent implementations — one **producer** and one **consumer**,
+neither of which is the in-repo runner — are the **1.0 freeze** gate
+only. They are not required per MINOR, and not during 0.x.
+
+Rejected: no two-implementation rule at all; two impls per MINOR; defer
+the ops principles until after 1.0.
+
+**Supersedes:** the last sentence of Q40.

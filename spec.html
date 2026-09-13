@@ -88,6 +88,14 @@ player                      publisher-own; roster membership of a person in a te
 <li><strong>QoS 0 / 1 / 2</strong> are the delivery vocabulary (at-most-once / at-least-once / exactly-once). MQTT is not required; other transports MUST name the equivalent.</li>
 <li><strong>Dedup key</strong> is <code>(publisher, sequence)</code>. Consumers MUST ignore duplicates.</li>
 </ol>
+<h3 id="5-2-feed-operations-q41">5.2 Feed operations (Q41)</h3>
+<p>Principles, not field names:</p>
+<ul>
+<li>Live documents SHOULD declare a <strong>cache lifetime</strong> (GBFS <code>ttl</code>). The OpenBook field name is a later question.</li>
+<li>A publisher SHOULD offer <strong>one discovery URL</strong> that lists the feeds it serves. The document shape is a later question.</li>
+<li>A publisher MAY <strong>co-serve</strong> more than one OpenBook version at the same time (distinct URLs or topics per <code>openbookVersion</code>).</li>
+</ul>
+<p>Two independent implementations (a producer and a consumer; not <a href="../tools/validate.py"><code>../tools/validate.py</code></a>) are required to <strong>freeze 1.0</strong>, not to ship a 0.x minor.</p>
 <h2 id="5a-status-three-questions-three-fields">5a. Status: three questions, three fields</h2>
 <ul>
 <li><strong>Fixture status</strong> — *is the event happening?* <code>eventStatus</code>: scheduled · delayed · live · paused · suspended · postponed · ended · cancelled, with an optional <code>statusReason</code>. <strong><code>ended</code> happens once.</strong></li>
@@ -142,7 +150,7 @@ openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record c
 </ul>
 <p>The gate is this spec, the JSON Schemas, and the language-agnostic corpus in <a href="conformance/"><code>../conformance/</code></a> (Q40). Valid cases MUST be accepted; invalid cases MUST be rejected. <a href="../tools/validate.py"><code>../tools/validate.py</code></a> is one runner, not a language oracle.</p>
 <h2 id="11-versioning">11. Versioning</h2>
-<p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version. Within a frozen major, compatibility is <strong>FULL-TRANSITIVE</strong> (Q32): minors only add optional fields; the required set does not shrink or grow.</p></article><p class="source">Source: spec/openbook.md</p>
+<p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version. Within a frozen major, compatibility is <strong>FULL-TRANSITIVE</strong> (Q32): minors only add optional fields; the required set does not shrink or grow. Freezing <strong>1.0</strong> requires two independent implementations (Q41).</p></article><p class="source">Source: spec/openbook.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">

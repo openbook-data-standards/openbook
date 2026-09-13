@@ -39,5 +39,8 @@ machine schema-diff gate is not part of this decision.
 - Pre-1.0 (`0.x`) the wire may still change between MINOR versions; the `-draft`
   suffix marks a version that is not yet frozen. Q32 is the intended 1.0
   contract; it is not a 0.x freeze.
+- **Freezing 1.0** requires two independent implementations: one producer and
+  one consumer, neither of which is [`tools/validate.py`](tools/validate.py)
+  (Q41). That gate does not apply to 0.x or to each MINOR.
 
 The current version is recorded in [`CHANGELOG.md`](CHANGELOG.md).

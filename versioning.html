@@ -44,6 +44,7 @@
 <li>Publishers validate strictly against the schema. Consumers <strong>MUST</strong> ignore unrecognized fields (including unknown <code>x_</code>-prefixed fields) so MINOR additions never break an older consumer (Q37).</li>
 <li>Canonical ids, list-values and field names are permanent once shipped in a frozen version. They are deprecated with reason + replacement + sunset, never re-pointed, and <strong>never reused</strong> (Q35, Q36). Removal from the live set is only at MAJOR, after the window.</li>
 <li>Pre-1.0 (<code>0.x</code>) the wire may still change between MINOR versions; the <code>-draft</code> suffix marks a version that is not yet frozen. Q32 is the intended 1.0 contract; it is not a 0.x freeze.</li>
+<li><strong>Freezing 1.0</strong> requires two independent implementations: one producer and one consumer, neither of which is <a href="tools/validate.py"><code>tools/validate.py</code></a> (Q41). That gate does not apply to 0.x or to each MINOR.</li>
 </ul>
 <p>The current version is recorded in <a href="changelog.html"><code>CHANGELOG.md</code></a>.</p></article><p class="source">Source: VERSIONING.md</p>
 </div></main>

@@ -40,6 +40,9 @@ committees:
 - Canonical ids are **stable**: once an id is published it is never re-pointed or
   reused, only deprecated.
 - Versioning follows [`VERSIONING.md`](VERSIONING.md).
+- **1.0 freeze** requires two independent implementations — one producer and
+  one consumer — that are not the in-repo validator (Q41). 0.x minors have
+  no two-implementation gate.
 
 ## What this is not
 

@@ -22,6 +22,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `{amount, currency}`; decimal odds only on the wire.
 - **Q40** — conformance gate is spec + schema + language-agnostic corpus
   ([`conformance/`](conformance/)); the Python validator is one runner.
+- **Q41** — GBFS-style ops principles (`ttl`, one discovery URL, co-serve
+  versions); two independent implementations freeze 1.0 only.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

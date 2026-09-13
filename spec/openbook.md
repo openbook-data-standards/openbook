@@ -140,6 +140,21 @@ guarantees, not JSON Schema.
    equivalent.
 8. **Dedup key** is `(publisher, sequence)`. Consumers MUST ignore duplicates.
 
+### 5.2 Feed operations (Q41)
+
+Principles, not field names:
+
+- Live documents SHOULD declare a **cache lifetime** (GBFS `ttl`). The
+  OpenBook field name is a later question.
+- A publisher SHOULD offer **one discovery URL** that lists the feeds it
+  serves. The document shape is a later question.
+- A publisher MAY **co-serve** more than one OpenBook version at the same
+  time (distinct URLs or topics per `openbookVersion`).
+
+Two independent implementations (a producer and a consumer; not
+[`../tools/validate.py`](../tools/validate.py)) are required to **freeze
+1.0**, not to ship a 0.x minor.
+
 ## 5a. Status: three questions, three fields
 
 - **Fixture status** — *is the event happening?* `eventStatus`: scheduled ·
@@ -283,4 +298,5 @@ is one runner, not a language oracle.
 Semantic versioning per [`../VERSIONING.md`](../VERSIONING.md). `-draft`
 marks an unfrozen version. Within a frozen major, compatibility is
 **FULL-TRANSITIVE** (Q32): minors only add optional fields; the required set
-does not shrink or grow.
+does not shrink or grow. Freezing **1.0** requires two independent
+implementations (Q41).
