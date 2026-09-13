@@ -1,0 +1,7 @@
+# Default owners for everything in the repo.
+# The specification and vocabularies are the sensitive parts — changes here
+# should always be reviewed.
+*                 @danhamilt
+/spec/            @danhamilt
+/schema/          @danhamilt
+/vocabularies/    @danhamilt

@@ -1,5 +1,15 @@
 # OpenBook — an open standard for sportsbook data
 
+<p>
+<a href="https://github.com/openbook-data-standards/openbook/actions/workflows/validate.yml"><img alt="validate" src="https://github.com/openbook-data-standards/openbook/actions/workflows/validate.yml/badge.svg"></a>
+<img alt="version" src="https://img.shields.io/badge/spec-v0.3.0--draft-276EF1">
+<img alt="status" src="https://img.shields.io/badge/status-draft-A8620A">
+<a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/spec%20license-CC%20BY%204.0-000000"></a>
+</p>
+
+**Homepage:** https://openbook-data-standards.github.io/openbook/
+
+
 **Status:** `v0.3.0-draft` · working draft, not yet published · started 2026-09-12
 **Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The document:** the OpenBook specification in [`spec/openbook.md`](spec/openbook.md)
 
