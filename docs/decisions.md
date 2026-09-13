@@ -780,3 +780,12 @@ ISO 5218. Not a field on the person.
 Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
 
 **Supersedes:** none.
+
+## Q73 — Age-grade competitions — decided
+
+Optional `ageGroup` on the **league** (`open`, `U21`, `U19`, …). Growable
+vocab (**Q34**). No ISO. Not date of birth on the person.
+
+Rejected: name-only; person DOB as the league key.
+
+**Supersedes:** none of Q72.
