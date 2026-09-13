@@ -37,8 +37,9 @@ key.
 ```
 openbook/  (this repository)
   README.md               ← you are here
+  index.html                ← project homepage (GitHub Pages)
   docs/
-    overview.html         ← the explainer report: model, industry comparison, sources
+    decisions.md            ← the design decision log
   spec/
     openbook.md           ← the normative reference specification
   schema/                 ← JSON Schema (draft 2020-12), the machine-normative field definitions
