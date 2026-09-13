@@ -11,6 +11,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Q93** — no spec-owned multi-publisher index; one discovery URL per
+  publisher (Q49); an aggregator is itself a publisher (Q1)
+  ([`docs/decisions.md`](docs/decisions.md)).
 - **Q92** — FIX session is not the OpenBook session; Q33/Q46 stand
   ([`docs/decisions.md`](docs/decisions.md)).
 - **Q91** — ISO 20022 is not the OpenBook model or encoding; Q13/Q38/Q44

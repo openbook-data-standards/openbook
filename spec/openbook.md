@@ -164,6 +164,7 @@ guarantees, not JSON Schema.
   Snapshot, stream, and any publisher-hosted API docs are named feeds. The
   `publisher` object stays identity, not the catalog (Q49).
   Documents are not wrapped in a GBFS-style outer container (Q89).
+  There is no spec-owned list of many publishers (Q93).
 - A publisher MAY **co-serve** more than one OpenBook version at the same
   time (distinct URLs or topics per `openbookVersion`).
 

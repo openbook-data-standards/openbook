@@ -998,3 +998,16 @@ FIX-session mapping document in this question; leave this unsaid because
 Q46 rejected a client TestRequest pair.
 
 **Supersedes:** none of Q46.
+
+## Q93 — No spec-owned multi-publisher manifest — decided (A)
+
+Each publisher has **one discovery URL** (**Q41** / **Q49**). That document
+lists that publisher's feeds, not other publishers. An aggregator is itself
+a publisher (**Q1**) and lists its own feeds. There is no spec-owned
+GBFS-style manifest of many publishers.
+
+Rejected: an OpenBook manifest of many publishers' discovery URLs; putting
+other publishers' discovery URLs on this publisher's discovery document;
+leave this unsaid because Q49 named one URL per publisher.
+
+**Supersedes:** none of Q1/Q49.
