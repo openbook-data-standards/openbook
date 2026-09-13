@@ -38,6 +38,9 @@ It standardises the data contract only.
 - **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
   Decimal odds only (MUST be strictly greater than 1); American and
   fractional forms are presentation.
+- **Encoding** — JSON in v1 (Q57). The schemas in [`../schema/`](../schema/)
+  are the model. A protobuf or FIX SBE binding, if ever, is generated from
+  those schemas and is not a second model. Not before 1.0.
 - **Text** — UTF-8; names keep their diacritics.
 - **Field names** — camelCase, and **schema.org's name wherever schema.org has
   the property**: `startDate`, `dateModified`, `datePublished`, `alternateName`,

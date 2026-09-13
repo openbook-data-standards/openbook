@@ -650,3 +650,16 @@ A CI schema-diff gate (required field added, re-type, remove) is a **later PR**,
 Rejected: run it on 0.x now; never; this patch.
 
 **Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
+
+## Q57 — v1 encoding is JSON; binary later — decided
+
+The v1 encoding is **JSON**. JSON Schema 2020-12 is the model; AsyncAPI
+describes the push as JSON. Protobuf (GTFS-Realtime), FIX Simple Binary
+Encoding, and GRIB/BUFR are **later** optional bindings, generated from these
+schemas — not a second hand-written model, and not shipped in this repo
+before 1.0.
+
+Rejected: protobuf as v1; SBE as v1; a parallel binary schema tree.
+
+**Supersedes:** none of Q8/Q42; names the encoding the protocol comparison
+left as “later”.

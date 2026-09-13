@@ -39,7 +39,7 @@ the idea, not the encoding), **later** (optional, after 1.0), **rejected**.
 ### Structural templates (catalog + live)
 
 - **GTFS / GTFS-Realtime** — **adopted** as the two-tier split and
-  publisher-agnostic feed. Rejected: protobuf as v1 encoding; full-state
+  publisher-agnostic feed. Rejected: protobuf as v1 encoding (Q57); full-state
   re-send every poll; POSIX epoch times as the only clock.
 - **GBFS 3.0** — **adopted** for ops: `ttl`, one discovery URL, co-serve
   versions (Q41/Q48/Q49). Rejected: nested `data` wrapper, snake_case, a
@@ -429,8 +429,8 @@ Avro resolution. Schema-diff CI is a later PR at 1.0+ (Q55).
   `type` duplicate `openbookVersion`, `sequence`, `publisher`,
   `object`/`action`. Wrapping would make every consumer depend on a second
   spec for no extra fact.
-- **Protobuf / SBE / GRIB** — later optional binding, same path GTFS took.
-  v1 JSON stays the source of truth; a binary encoding would be generated
+- **Protobuf / SBE / GRIB** — later optional binding (Q57), same path GTFS
+  took. v1 JSON stays the source of truth; a binary encoding would be generated
   from the schemas, not a second model.
 - **OpenAPI in this repo** — rejected (Q54). Pull shape is `since=` and 410;
   each publisher publishes their own OpenAPI. AsyncAPI for push stays.

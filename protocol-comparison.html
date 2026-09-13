@@ -40,7 +40,7 @@
 <p>Verdicts: <strong>adopted</strong> (on the wire or in the spec), <strong>shape only</strong> (we took the idea, not the encoding), <strong>later</strong> (optional, after 1.0), <strong>rejected</strong>.</p>
 <h3 id="structural-templates-catalog-live">Structural templates (catalog + live)</h3>
 <ul>
-<li><strong>GTFS / GTFS-Realtime</strong> — <strong>adopted</strong> as the two-tier split and publisher-agnostic feed. Rejected: protobuf as v1 encoding; full-state re-send every poll; POSIX epoch times as the only clock.</li>
+<li><strong>GTFS / GTFS-Realtime</strong> — <strong>adopted</strong> as the two-tier split and publisher-agnostic feed. Rejected: protobuf as v1 encoding (Q57); full-state re-send every poll; POSIX epoch times as the only clock.</li>
 <li><strong>GBFS 3.0</strong> — <strong>adopted</strong> for ops: <code>ttl</code>, one discovery URL, co-serve versions (Q41/Q48/Q49). Rejected: nested <code>data</code> wrapper, snake_case, a required file-name enum for every feed.</li>
 </ul>
 <h3 id="live-pub-sub">Live pub/sub</h3>
@@ -179,7 +179,7 @@
 <li><strong>RFC 7386 Merge Patch</strong> — adopted (Q8). Absent = unchanged, <code>null</code> = tombstone. Arrays replace wholesale, which is why odds diffs are outcome-level objects, not a patched array of numbers.</li>
 <li><strong>RFC 6902 JSON Patch</strong> — rejected. Pointer ops (<code>/outcomes/0/odds</code>) are brittle under reordering and unreadable on a tick.</li>
 <li><strong>CloudEvents</strong> — rejected (Q52). Required <code>specversion</code>, <code>id</code>, <code>source</code>, <code>type</code> duplicate <code>openbookVersion</code>, <code>sequence</code>, <code>publisher</code>, <code>object</code>/<code>action</code>. Wrapping would make every consumer depend on a second spec for no extra fact.</li>
-<li><strong>Protobuf / SBE / GRIB</strong> — later optional binding, same path GTFS took. v1 JSON stays the source of truth; a binary encoding would be generated from the schemas, not a second model.</li>
+<li><strong>Protobuf / SBE / GRIB</strong> — later optional binding (Q57), same path GTFS took. v1 JSON stays the source of truth; a binary encoding would be generated from the schemas, not a second model.</li>
 <li><strong>OpenAPI in this repo</strong> — rejected (Q54). Pull shape is <code>since=</code> and 410; each publisher publishes their own OpenAPI. AsyncAPI for push stays.</li>
 </ul>
 <hr>

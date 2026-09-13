@@ -15,6 +15,8 @@ Checks, in order:
   7. one-way name check (Q50): camelCase / property-like names in spec and
      selected docs MUST exist on a schema (properties, $defs, or enums). Extra
      schema fields are allowed. The decision log is history and is not scanned.
+  8. protocol-fit gates (Q57+): encoding and “never” verdicts the schemas
+     can prove.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -240,6 +242,32 @@ if missing_names:
         fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
 else:
     ok(f"{len(mentioned)} documented names present on a schema")
+
+print("8. protocol fit")
+# Q57 — v1 is JSON; no second encoding tree in this repo.
+asyncapi_path = os.path.join(ROOT, "spec", "asyncapi.yaml")
+asyncapi_text = open(asyncapi_path).read()
+if re.search(r"(?m)^defaultContentType:\s*application/json\s*$", asyncapi_text):
+    ok("Q57 AsyncAPI defaultContentType is JSON")
+else:
+    fail("Q57 AsyncAPI defaultContentType must be application/json")
+schema_files = [os.path.basename(p) for p in glob.glob(os.path.join(SCHEMA_DIR, "*"))]
+non_json = [n for n in schema_files if not n.endswith(".schema.json")]
+if non_json:
+    fail(f"Q57 schema/ must be *.schema.json only: {non_json}")
+else:
+    ok("Q57 schema/ is JSON Schema only")
+binary_hits = []
+for pat in ("**/*.proto", "**/*.sbe.xml"):
+    for p in glob.glob(os.path.join(ROOT, pat), recursive=True):
+        rel = os.path.relpath(p, ROOT)
+        if rel.split(os.sep)[0] == ".git":
+            continue
+        binary_hits.append(rel)
+if binary_hits:
+    fail(f"Q57 binary schema in repo before 1.0: {binary_hits}")
+else:
+    ok("Q57 no protobuf/SBE files in the spec repo")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")
