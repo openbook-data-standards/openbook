@@ -8,6 +8,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ### Added
 - **Q57** — v1 encoding is JSON; protobuf / FIX SBE / GRIB are later
   generated bindings, not a second model. Validator check 8.
+- **Q58** — JSON Patch (RFC 6902) never; `changes` is a Merge Patch object.
+  Invalid corpus `json-patch-changes.json`.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
   comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
   Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire

@@ -32,6 +32,10 @@
     {
       "path": "conformance/invalid/market-missing-limit.json",
       "reason": "priced market create/snapshot MUST carry limit (Q45)"
+    },
+    {
+      "path": "conformance/invalid/json-patch-changes.json",
+      "reason": "changes is a Merge Patch object, never a JSON Patch array (Q58)"
     }
   ]
 }

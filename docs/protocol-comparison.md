@@ -423,7 +423,7 @@ Avro resolution. Schema-diff CI is a later PR at 1.0+ (Q55).
 - **RFC 7386 Merge Patch** — adopted (Q8). Absent = unchanged, `null` =
   tombstone. Arrays replace wholesale, which is why odds diffs are
   outcome-level objects, not a patched array of numbers.
-- **RFC 6902 JSON Patch** — rejected. Pointer ops (`/outcomes/0/odds`) are
+- **RFC 6902 JSON Patch** — rejected (Q58). Pointer ops are
   brittle under reordering and unreadable on a tick.
 - **CloudEvents** — rejected (Q52). Required `specversion`, `id`, `source`,
   `type` duplicate `openbookVersion`, `sequence`, `publisher`,

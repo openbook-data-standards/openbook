@@ -81,7 +81,7 @@ player                      publisher-own; roster membership of a person in a te
 <li>Every object and message carries <strong><code>sequence</code></strong> — a monotonic integer the publisher's server issues per feed — and <strong><code>dateModified</code></strong>.</li>
 <li><strong>Push</strong> streams (§8) send changes only. <strong>Pull</strong> endpoints accept <code>since=&lt;sequence&gt;</code> and return only what changed after it. <code>since</code> is never a timestamp.</li>
 <li>A <strong>snapshot</strong> is the state as of a sequence, for initial load and recovery; a diff from zero, not a separate format.</li>
-<li><strong>Field-level granularity, JSON Merge Patch (RFC 7386) semantics</strong>: a change carries the object id plus only the fields that changed; absent = unchanged; <code>null</code> = removed. Consumers MUST merge and MUST NOT assume a message re-sends unchanged state.</li>
+<li><strong>Field-level granularity, JSON Merge Patch (RFC 7386) semantics</strong>: a change carries the object id plus only the fields that changed; absent = unchanged; <code>null</code> = removed. Consumers MUST merge and MUST NOT assume a message re-sends unchanged state. JSON Patch (RFC 6902) is never the change format (Q58).</li>
 <li><strong>Odds are push-first.</strong> Publishers SHOULD deliver <code>odds/change</code> by push and MAY additionally offer a <code>since=</code> pull. <code>market/snapshot</code> gives a fixture's current prices for initial load and recovery.</li>
 </ul>
 <h3 id="5-1-delivery-and-recovery-q33">5.1 Delivery and recovery (Q33)</h3>

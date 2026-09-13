@@ -663,3 +663,12 @@ Rejected: protobuf as v1; SBE as v1; a parallel binary schema tree.
 
 **Supersedes:** none of Q8/Q42; names the encoding the protocol comparison
 left as “later”.
+
+## Q58 — JSON Patch never — decided
+
+`changes` is a JSON **object** with Merge Patch semantics (Q8). RFC 6902 JSON
+Patch (an array of pointer ops) is never the OpenBook change format.
+
+Rejected: RFC 6902 as an alternative encoding; optional MAY Patch.
+
+**Supersedes:** none of Q8; puts the “never” on the corpus.

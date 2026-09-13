@@ -269,6 +269,12 @@ if binary_hits:
 else:
     ok("Q57 no protobuf/SBE files in the spec repo")
 
+changes_type = schemas["change.schema.json"].get("properties", {}).get("changes", {}).get("type")
+if changes_type == "object":
+    ok("Q58 changes is a Merge Patch object")
+else:
+    fail("Q58 change.schema.json changes must be type object (not a JSON Patch array)")
+
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")
 print("conformant: all checks passed")
