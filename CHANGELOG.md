@@ -6,6 +6,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Q32** — FULL-TRANSITIVE compatibility within a frozen major
+  ([`VERSIONING.md`](VERSIONING.md)).
+
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and
   **`grade`** (replaces `settlement`; Q27/Q28).
