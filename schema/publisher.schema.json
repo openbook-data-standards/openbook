@@ -76,6 +76,16 @@
     "email": {
       "type": "string"
     },
+    "heartbeatMs": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum silence on the push stream in milliseconds (Q46). Quiet longer than this, the consumer SHOULD treat the feed as down."
+    },
+    "ttl": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Cache lifetime in seconds (GBFS ttl, Q48). Optional on the publisher record; required on the discovery document."
+    },
     "@context": {},
     "@type": {
       "type": "string",

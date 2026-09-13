@@ -8,7 +8,7 @@ Checks, in order:
   4. every example in examples/ validates:
        - a message (has object+action) validates against change.schema.json, and its
          `changes` validates against the object's schema — in full for snapshot/create,
-         as a Merge Patch (required relaxed) for update/change
+         as a Merge Patch (required relaxed) for update/change/snapshotComplete/heartbeat
        - a document validates against the schema named by its file stem
   5. stream topics follow the fixture-first grammar  openbook/v1/<publisher>/<sport>/fixture/<id>/<object>/<action>
   6. conformance/manifest.json: valid paths exist; invalid cases are rejected
@@ -28,9 +28,9 @@ SCHEMA_DIR, EXAMPLE_DIR = os.path.join(ROOT, "schema"), os.path.join(ROOT, "exam
 OBJECT_SCHEMA = {"fixture": "fixture", "odds": "odds_change", "market": "market", "score": "score",
                  "grade": "grade", "league": "league", "season": "season", "stage": "stage",
                  "participant": "participant", "player": "player", "publisher": "publisher"}
-FIXTURE_TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/fixture/(?P<id>[^/#+]+)/(?P<object>fixture|odds|market|score|grade)/(?P<action>[a-z]+)$")
-ENTITY_TOPIC  = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/(?P<object>league|season|stage|participant|player)/(?P<id>[^/#+]+)/(?P<action>[a-z]+)$")
-PUB_TOPIC     = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/publisher/(?P<action>[a-z]+)$")
+FIXTURE_TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/fixture/(?P<id>[^/#+]+)/(?P<object>fixture|odds|market|score|grade)/(?P<action>[a-zA-Z]+)$")
+ENTITY_TOPIC  = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/(?P<object>league|season|stage|participant|player)/(?P<id>[^/#+]+)/(?P<action>[a-zA-Z]+)$")
+PUB_TOPIC     = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/publisher/(?P<action>[a-zA-Z]+)$")
 
 failures = []
 def fail(msg): failures.append(msg); print("  FAIL", msg)
@@ -81,7 +81,7 @@ def for_changes(schema, full):
     """A document schema as it applies to a message's `changes`. The envelope
     already carries openbookVersion/sequence/dateModified, so those are never
     required inside `changes`. For snapshot/create the rest stays required; for
-    update/change nothing is required (Merge Patch)."""
+    update/change/snapshotComplete/heartbeat nothing is required (Merge Patch)."""
     s = copy.deepcopy(schema); s.pop("$id", None)
     req = [] if not full else [r for r in s.get("required", []) if r not in ENVELOPE_FIELDS]
     if req: s["required"] = req
@@ -144,10 +144,12 @@ def check_topic(t):
 topics = sys.argv[sys.argv.index("--topic")+1:] if "--topic" in sys.argv else [
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/update",
+    "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/snapshotComplete",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/market/update",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/grade/create",
     "openbook/v1/acme-feeds/soccer/league/LG-17/update",
     "openbook/v1/acme-feeds/publisher/update",
+    "openbook/v1/acme-feeds/publisher/heartbeat",
 ]
 for t in topics:
     err = check_topic(t); fail(f"topic {t}: {err}") if err else ok(t)

@@ -566,7 +566,7 @@ Rejected: required on every tick; no inheritance; optional everywhere.
 
 ## Q46 — Caught-up, heartbeat, stale since — decided
 
-Wire names for Q33 items 4, 5, and 1. No schema in this patch.
+Wire names for Q33 items 4, 5, and 1.
 
 - **Caught-up (push MUST).** After snapshot + replay, emit `action: snapshotComplete`. Pull has **no** marker; the HTTP response is the batch.
 - **Heartbeat (push).** Same stream: `action: heartbeat`. Interval on the publisher record as `heartbeatMs`.

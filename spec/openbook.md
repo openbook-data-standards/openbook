@@ -124,33 +124,37 @@ A publisher that claims Level L MUST honour all eight. These are protocol
 guarantees, not JSON Schema.
 
 1. **Retention horizon `R`.** `since=N` with `N ≥ R` MUST return a complete,
-   ordered delta. `N < R` MUST NOT return a silently incomplete gap; the
-   publisher MUST send the client to a snapshot.
+   ordered delta. `N < R` MUST respond HTTP **410** with RFC 9457 Problem
+   Details pointing at the snapshot URL — not a 200 with a flag, and not a
+   silent full snapshot (Q46).
 2. **Snapshot is compaction; Merge Patch `null` is a tombstone.** Replaying
    snapshot + diffs MUST converge on the same document as a fresh snapshot.
 3. **Ordering is per fixture.** `sequence` is per publisher, strictly
    increasing, unique. For one fixture, messages appear in increasing
    sequence. Cross-fixture display order is not guaranteed.
-4. A **caught-up marker** MUST tell a consumer snapshot + replay is finished
-   and it is live.
-5. **Bounded heartbeats.** Quiet is not dead; the publisher MUST declare a
-   maximum silence. Longer than that, the consumer SHOULD treat the feed as
-   down.
-6. If intermediate ticks are dropped, the publisher MUST say so (**honest
-   conflation**).
+4. **Caught-up (push).** After snapshot + replay, the publisher MUST emit
+   `action: snapshotComplete` on that stream, with `changes: {}`. Pull has
+   no marker; the HTTP response *is* the batch (Q46).
+5. **Bounded heartbeats (push).** The same stream carries `action:
+   heartbeat` (`changes: {}`). The publisher record MUST declare
+   `heartbeatMs` (maximum silence, milliseconds). Quiet longer than that, the
+   consumer SHOULD treat the feed as down (Q46).
+6. If intermediate ticks are dropped, that change MUST carry **`conflated:
+   true`**. Sequence still increases (Q47).
 7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once
    / exactly-once). MQTT is not required; other transports MUST name the
    equivalent.
 8. **Dedup key** is `(publisher, sequence)`. Consumers MUST ignore duplicates.
 
-### 5.2 Feed operations (Q41)
+### 5.2 Feed operations (Q41, Q48, Q49)
 
-Principles, not field names:
-
-- Live documents SHOULD declare a **cache lifetime** (GBFS `ttl`). The
-  OpenBook field name is a later question.
-- A publisher SHOULD offer **one discovery URL** that lists the feeds it
-  serves. The document shape is a later question.
+- Live documents SHOULD declare **`ttl`**: integer seconds, GBFS (Q48).
+  Optional on the publisher record; required on the discovery document.
+- A publisher SHOULD offer **one discovery URL** that returns
+  `{ lastUpdated, ttl, feeds: [{ name, url }] }`
+  ([`../schema/discovery.schema.json`](../schema/discovery.schema.json)).
+  Snapshot, stream, and any publisher-hosted API docs are named feeds. The
+  `publisher` object stays identity, not the catalog (Q49).
 - A publisher MAY **co-serve** more than one OpenBook version at the same
   time (distinct URLs or topics per `openbookVersion`).
 
@@ -203,7 +207,9 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
 - **`publisher`** — who transmits, `baseCurrency` (ISO 4217, once per feed),
   and the `sources[]` the feed carries (`{id, name, sourceType: sportsbook |
   exchange | model}`). GTFS `agency.txt`. Another currency is another
-  subscription (Q44).
+  subscription (Q44). Level L MUST declare **`heartbeatMs`**. Optional
+  **`ttl`** (seconds) MAY also sit here; the discovery document is where
+  `ttl` is required (Q46, Q48).
 - **`sport`**, **`segment`**, **`marketType`**, **`side`** — shared
   vocabularies ([`../vocabularies/`](../vocabularies/)). A sport MAY carry a
   default `limit`.
@@ -259,19 +265,24 @@ entity           openbook / v1 / <publisher-id> / <sport> / <object> / <id> / <a
 publisher        openbook / v1 / <publisher-id> / publisher / <action>
 ```
 
-- **`<action>`** — `snapshot` · `create` · `update` · `delete`, plus
-  **`change`, used only by `odds`**.
+- **`<action>`** — the JSON enum token: `snapshot` · `create` · `update` ·
+  `delete`, plus **`change` (odds only)**, plus control actions
+  **`snapshotComplete`** and **`heartbeat`** (Q46). `snapshotComplete` is
+  camelCase on both topic and payload.
 - **`<sport>`** — the shared slug without prefix (`soccer`).
 - Rules (after WMO WIS2): lowercase, `-` inside a level, no dots, unique per
   level; `+` matches one level, `#` the rest; `v1` bumps only on a breaking
-  change to the grammar.
+  change to the grammar. Exception: `<action>` matches the JSON enum, so
+  `snapshotComplete` is mixed-case.
 
 ```
-openbook/v1/acme-feeds/soccer/fixture/EVT-88213/#              everything about one match
-openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change    one match's price moves
-openbook/v1/acme-feeds/soccer/fixture/+/odds/change            all soccer price moves, one publisher
-openbook/v1/+/soccer/fixture/+/score/update                    every soccer score update, every publisher
-openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record changed
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/#                         everything about one match
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change               one match's price moves
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/snapshotComplete    snapshot + replay finished
+openbook/v1/acme-feeds/soccer/fixture/+/odds/change                       all soccer price moves, one publisher
+openbook/v1/+/soccer/fixture/+/score/update                               every soccer score update, every publisher
+openbook/v1/acme-feeds/soccer/league/LG-17/update                         a league record changed
+openbook/v1/acme-feeds/publisher/heartbeat                                    feed-wide heartbeat
 ```
 
 The same grammar is described for tooling in
@@ -283,6 +294,8 @@ One envelope for every message ([`../schema/change.schema.json`](../schema/chang
 `sport`, `id`, and `changes` — a Merge Patch against the object's document
 schema. `odds/change` carries its `markets[]` diff in `changes`
 ([`odds_change.schema.json`](../schema/odds_change.schema.json)).
+`snapshotComplete` and `heartbeat` carry `changes: {}`. If intermediate ticks
+were dropped, that envelope MUST set **`conflated`: `true`** (Q47).
 `market/update` MAY carry `msgType` (`alert` · `update` · `cancel`), `reason`
 and `references[]` to prior sequences, after OASIS CAP 1.2. A void is a `market/update` to `void`; a corrected grade is `grade/delete` +
 `grade/create` with `supersedes`.

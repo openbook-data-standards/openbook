@@ -207,9 +207,11 @@
         "create",
         "update",
         "delete",
-        "change"
+        "change",
+        "snapshotComplete",
+        "heartbeat"
       ],
-      "description": "`change` is used only by `odds`."
+      "description": "`change` is used only by `odds`. `snapshotComplete` and `heartbeat` are control actions on the same stream (Q46)."
     },
     "msgType": {
       "enum": [

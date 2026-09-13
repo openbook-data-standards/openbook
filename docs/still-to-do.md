@@ -1,19 +1,14 @@
 # Still to do
 
-Phase B questions on this branch are recorded through **Q55**. **Q56** was
-log only: no schema, examples, or CI in this patch. Do not add wire names to
-schemas until that is asked.
+Phase B questions are recorded through **Q55**. Q46–Q49 are on the wire
+(this patch). **Q56** was log only: no schema, examples, or CI in that
+change.
 
 ## Later PRs (decided, not built)
 
 - **Q50** — one-way docs-vs-schema name CI (spec/docs names MUST exist on a
   schema).
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-
-## Not decided here
-
-- Wire/schema for Q46–Q49 (`snapshotComplete`, `heartbeat` / `heartbeatMs`,
-  410, `conflated`, `ttl`, discovery JSON).
 
 ## Done on this walk (Q32–Q55)
 
