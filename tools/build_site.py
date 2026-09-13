@@ -12,9 +12,6 @@ ROOT = Path(__file__).resolve().parents[1]
 NAV = [
     ("spec.html", "Spec"),
     ("vocabularies/", "Vocabularies"),
-    ("schemas.html", "Schemas"),
-    ("examples.html", "Examples"),
-    ("decisions.html", "Decisions"),
     ("https://github.com/openbook-data-standards/openbook", "GitHub"),
 ]
 
@@ -35,16 +32,18 @@ PAGE_MAP = {
     "../CONTRIBUTING.md": "contributing.html",
     "CHANGELOG.md": "changelog.html",
     "../CHANGELOG.md": "changelog.html",
-    "vocabularies/market_types.md": "vocabularies/market-types.html",
-    "../vocabularies/market_types.md": "vocabularies/market-types.html",
-    "vocabularies/sports.md": "vocabularies/sports.html",
-    "../vocabularies/sports.md": "vocabularies/sports.html",
-    "vocabularies/segments.md": "vocabularies/segments.html",
-    "../vocabularies/segments.md": "vocabularies/segments.html",
+    "vocabularies/market_types.md": "vocabularies/#market-types",
+    "../vocabularies/market_types.md": "vocabularies/#market-types",
+    "vocabularies/sports.md": "vocabularies/#sports",
+    "../vocabularies/sports.md": "vocabularies/#sports",
+    "vocabularies/segments.md": "vocabularies/#segments",
+    "../vocabularies/segments.md": "vocabularies/#segments",
     "../vocabularies/": "vocabularies/",
     "vocabularies/": "vocabularies/",
     "../schema/": "schemas.html",
     "schema/": "schemas.html",
+    "../examples/": "schemas.html#examples",
+    "examples/": "schemas.html#examples",
 }
 
 
@@ -181,7 +180,7 @@ def md_to_html(md: str, depth: int) -> tuple[str, list[tuple[str, str]]]:
     return "\n".join(out), toc
 
 
-LOGO = '''<svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+LOGO = '''<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
       <rect class="ink" x="2" y="8" width="4" height="4"/>
       <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
       <rect class="ink" x="2" y="20" width="4" height="4"/>
@@ -270,12 +269,15 @@ def schemas_page() -> str:
         "<p>Draft 2020-12. These files are the machine-normative field definitions. "
         "Each <code>$id</code> is this same URL on GitHub Pages.</p>"
         + "".join(blocks)
+        + '<h1 id="examples">Examples</h1>'
+        "<p>Worked documents that validate against the schemas.</p>"
+        + "".join(example_blocks())
         + "</article>"
     )
     return chrome("JSON Schemas", inner, 0, "schemas.html")
 
 
-def examples_page() -> str:
+def example_blocks() -> list[str]:
     blocks = []
     for path in sorted((ROOT / "examples").glob("*.json")):
         rel = f"examples/{path.name}"
@@ -285,31 +287,40 @@ def examples_page() -> str:
             f'<p><a href="{html.escape(rel, quote=True)}">{html.escape(rel)}</a></p>'
             f"<pre>{html.escape(path.read_text().rstrip())}</pre></section>"
         )
-    inner = (
-        '<p class="crumb"><a href="./">Home</a> · Examples</p>'
-        '<article class="doc"><h1>Examples</h1>'
-        "<p>Worked documents that validate against the schemas.</p>"
-        + "".join(blocks)
-        + "</article>"
+    return blocks
+
+
+def write_redirect(path: Path, url: str, canonical: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "<!DOCTYPE html>\n<html lang=\"en\"><head><meta charset=\"utf-8\">"
+        f'<meta http-equiv="refresh" content="0;url={html.escape(url, quote=True)}">'
+        f'<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/{html.escape(canonical, quote=True)}">'
+        f"<title>Moved</title></head><body>"
+        f'<p>Moved to <a href="{html.escape(url, quote=True)}">{html.escape(url)}</a>.</p>'
+        "</body></html>\n"
     )
-    return chrome("Examples", inner, 0, "examples.html")
 
 
 def vocab_index() -> str:
-    cards = [
-        ("market-types.html", "Market types", "What can be bet: moneyline, spread, total, player props, outrights."),
-        ("sports.html", "Sports", "Canonical sport:* ids."),
-        ("segments.html", "Segments", "Slices inside a match: halves, quarters, innings, sets."),
+    sections = [
+        (ROOT / "vocabularies/market_types.md", "market-types", "Market types", "vocabularies/market_types.md"),
+        (ROOT / "vocabularies/sports.md", "sports", "Sports", "vocabularies/sports.md"),
+        (ROOT / "vocabularies/segments.md", "segments", "Segments", "vocabularies/segments.md"),
     ]
-    lis = "".join(
-        f'<p><a href="{html.escape(href, quote=True)}"><strong>{html.escape(t)}</strong></a> — {html.escape(d)}</p>'
-        for href, t, d in cards
-    )
+    toc = "".join(f'<a href="#{sid}">{html.escape(label)}</a>' for _, sid, label, _ in sections)
+    parts = []
+    for src, sid, label, source_label in sections:
+        body, _ = md_to_html(src.read_text(), 1)
+        body = body.replace("<h1 ", "<h2 ", 1).replace("</h1>", "</h2>", 1)
+        parts.append(f'<section id="{html.escape(sid)}">{body}<p class="source">Source: {html.escape(source_label)}</p></section>')
     inner = (
         '<p class="crumb"><a href="../">Home</a> · Vocabularies</p>'
+        f'<nav class="toc"><strong>Contents</strong>{toc}</nav>'
         '<article class="doc"><h1>Controlled vocabularies</h1>'
-        "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec.</p>"
-        f"{lis}</article>"
+        "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments are on this page.</p>"
+        + "".join(parts)
+        + "</article>"
     )
     return chrome("Vocabularies", inner, 1, "vocabularies/")
 
@@ -323,12 +334,12 @@ def main() -> None:
     write_md_page(ROOT / "VERSIONING.md", ROOT / "versioning.html", 0, "versioning.html", "VERSIONING.md")
     write_md_page(ROOT / "CONTRIBUTING.md", ROOT / "contributing.html", 0, "contributing.html", "CONTRIBUTING.md")
     write_md_page(ROOT / "CHANGELOG.md", ROOT / "changelog.html", 0, "changelog.html", "CHANGELOG.md")
-    write_md_page(ROOT / "vocabularies/market_types.md", ROOT / "vocabularies/market-types.html", 1, "vocabularies/market-types.html", "vocabularies/market_types.md")
-    write_md_page(ROOT / "vocabularies/sports.md", ROOT / "vocabularies/sports.html", 1, "vocabularies/sports.html", "vocabularies/sports.md")
-    write_md_page(ROOT / "vocabularies/segments.md", ROOT / "vocabularies/segments.html", 1, "vocabularies/segments.html", "vocabularies/segments.md")
     (ROOT / "vocabularies/index.html").write_text(vocab_index())
+    write_redirect(ROOT / "vocabularies/market-types.html", "./#market-types", "vocabularies/#market-types")
+    write_redirect(ROOT / "vocabularies/sports.html", "./#sports", "vocabularies/#sports")
+    write_redirect(ROOT / "vocabularies/segments.html", "./#segments", "vocabularies/#segments")
     (ROOT / "schemas.html").write_text(schemas_page())
-    (ROOT / "examples.html").write_text(examples_page())
+    write_redirect(ROOT / "examples.html", "./schemas.html#examples", "schemas.html#examples")
     (ROOT / ".nojekyll").write_text("")
     print("wrote HTML pages")
 
