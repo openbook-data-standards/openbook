@@ -297,7 +297,7 @@ The same grammar is described for tooling in
 One envelope for every message ([`../schema/change.schema.json`](../schema/change.schema.json)):
 `openbookVersion`, `sequence`, `datePublished`, `publisher`, `object`, `action`,
 `sport`, `id`, and `changes` — a Merge Patch against the object's document
-schema. `odds/change` carries its `markets[]` diff in `changes`
+schema. CloudEvents attributes are never on this envelope (Q52, Q62). `odds/change` carries its `markets[]` diff in `changes`
 ([`odds_change.schema.json`](../schema/odds_change.schema.json)).
 `snapshotComplete` and `heartbeat` carry `changes: {}`. If intermediate ticks
 were dropped, that envelope MUST set **`conflated`: `true`** (Q47).

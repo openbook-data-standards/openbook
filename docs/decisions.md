@@ -704,3 +704,12 @@ nested data object are never the OpenBook discovery document.
 Rejected: nest feeds under data; require a GBFS version field on discovery.
 
 **Supersedes:** none of Q49; names the wrapper rejection.
+
+## Q62 — CloudEvents attributes never on the envelope — decided
+
+Q52 stands. The change envelope does not carry CloudEvents context attributes.
+Putting them on the message is a schema error, not an optional wrap.
+
+Rejected: optional MAY wrap; a second CloudEvents envelope.
+
+**Supersedes:** none of Q52; puts it on the corpus.

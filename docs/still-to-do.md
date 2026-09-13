@@ -1,16 +1,18 @@
 # Still to do
 
-Phase B questions are recorded through **Q61**. Q46–Q49 are on the wire.
+Phase B questions are recorded through **Q62**. Q46–Q49 are on the wire.
 **Q50** is the docs-vs-schema name check in `tools/validate.py`. **Q56** is
-claimed on other PRs (discovery MCP / display). **Q57** is on the validator
-(check 8). Protocol-fit leftover: CloudEvents corpus as Q62.
+claimed on other PRs (discovery MCP / display). **Q57–Q62** are on validator
+check 8 plus the invalid corpus.
 
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
 - **Q57 later** — generated protobuf / SBE binding, after 1.0.
+- GBFS-style multi-publisher manifest — later, if one operator publishes many
+  publishers.
 
-## Done on this walk (Q32–Q61)
+## Done on this walk (Q32–Q62)
 
 Q32 FULL-TRANSITIVE · Q33 eight MUST (prose) · Q34 unknown/other · Q35 never
 reuse · Q36 deprecation window · Q37 closed write / open read · Q38 camelCase
@@ -20,4 +22,4 @@ Q43 takedown = marketStatus + tombstone · Q44 `baseCurrency` · Q45 market
 Q47 `conflated` · Q48 `ttl` · Q49 GBFS discovery · Q50 name CI · Q51 no
 consumer schema · Q52 CloudEvents never · Q53 no DNS ids · Q54 no in-repo
 OpenAPI · Q55 schema-diff CI at 1.0 · Q57 JSON encoding (validator check 8) ·
-Q58 JSON Patch never (corpus) · Q59 ISO 20022 never (corpus) · Q60 FIX session never (corpus) · Q61 flat discovery (corpus).
+Q58 JSON Patch never (corpus) · Q59 ISO 20022 never (corpus) · Q60 FIX session never (corpus) · Q61 flat discovery (corpus) · Q62 CloudEvents never (corpus).

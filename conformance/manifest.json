@@ -48,6 +48,10 @@
     {
       "path": "conformance/invalid/discovery-gbfs-wrapper.json",
       "reason": "discovery is flat lastUpdated/ttl/feeds, not a nested GBFS data wrapper (Q61)"
+    },
+    {
+      "path": "conformance/invalid/cloudevents-wrap.json",
+      "reason": "CloudEvents attributes are never on the OpenBook envelope (Q52, Q62)"
     }
   ]
 }

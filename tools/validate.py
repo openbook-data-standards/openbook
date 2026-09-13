@@ -295,6 +295,12 @@ if set(disc.get("required", [])) == {"lastUpdated", "ttl", "feeds"} and "data" n
 else:
     fail("Q61 discovery must be lastUpdated, ttl, feeds with additionalProperties false")
 
+change_props = set(schemas["change.schema.json"].get("properties", {}))
+if "specversion" not in change_props and schemas["change.schema.json"].get("additionalProperties") is False:
+    ok("Q62 envelope has no CloudEvents attributes")
+else:
+    fail("Q62 change envelope must not include CloudEvents attributes")
+
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")
 print("conformant: all checks passed")

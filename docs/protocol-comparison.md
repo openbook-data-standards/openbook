@@ -425,8 +425,8 @@ Avro resolution. Schema-diff CI is a later PR at 1.0+ (Q55).
   outcome-level objects, not a patched array of numbers.
 - **RFC 6902 JSON Patch** — rejected (Q58). Pointer ops are
   brittle under reordering and unreadable on a tick.
-- **CloudEvents** — rejected (Q52). Required `specversion`, `id`, `source`,
-  `type` duplicate `openbookVersion`, `sequence`, `publisher`,
+- **CloudEvents** — rejected (Q52, Q62). Required CloudEvents context
+  attributes duplicate `openbookVersion`, `sequence`, `publisher`,
   `object`/`action`. Wrapping would make every consumer depend on a second
   spec for no extra fact.
 - **Protobuf / SBE / GRIB** — later optional binding (Q57), same path GTFS
