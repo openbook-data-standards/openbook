@@ -181,6 +181,17 @@ def md_to_html(md: str, depth: int) -> tuple[str, list[tuple[str, str]]]:
     return "\n".join(out), toc
 
 
+LOGO = '''<svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook'''
+
+
 def chrome(title: str, body: str, depth: int, current: str) -> str:
     root = "../" * depth if depth else "./"
     nav = []
@@ -194,7 +205,7 @@ def chrome(title: str, body: str, depth: int, current: str) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} — OpenBook</title>
-<meta name="theme-color" content="#e6d7b8">
+<meta name="theme-color" content="#0B1220">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/{html.escape(current, quote=True)}">
 <link rel="icon" href="{root}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{root}assets/site.css">
@@ -203,9 +214,7 @@ def chrome(title: str, body: str, depth: int, current: str) -> str:
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="{root}">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    {LOGO}
   </a>
   <nav>
     {"".join(nav)}
@@ -216,9 +225,7 @@ def chrome(title: str, body: str, depth: int, current: str) -> str:
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="{root}" style="margin-bottom:12px">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    {LOGO}
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
@@ -232,7 +239,7 @@ def write_md_page(src: Path, dest: Path, depth: int, current: str, source_label:
     toc_html = ""
     if toc:
         items = "".join(f'<a href="#{html.escape(sid, quote=True)}">{html.escape(label)}</a>' for sid, label in toc)
-        toc_html = f'<nav class="toc"><strong>On this sheet</strong>{items}</nav>'
+        toc_html = f'<nav class="toc"><strong>Contents</strong>{items}</nav>'
     home = "../" * depth if depth else "./"
     inner = f'<p class="crumb"><a href="{home}">Home</a> · {html.escape(source_label)}</p>{toc_html}<article class="doc">{html_body}</article><p class="source">Source: {html.escape(source_label)}</p>'
     title = re.sub(r"^# ", "", src.read_text().splitlines()[0])

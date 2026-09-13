@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Changelog — OpenBook</title>
-<meta name="theme-color" content="#e6d7b8">
+<meta name="theme-color" content="#0B1220">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/changelog.html">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./assets/site.css">
@@ -13,19 +13,28 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="./">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <nav>
     <a href="./spec.html">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="./schemas.html">Schemas</a><a href="./examples.html">Examples</a><a href="./decisions.html">Decisions</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · CHANGELOG.md</p><nav class="toc"><strong>On this sheet</strong><a href="#unreleased">[Unreleased]</a><a href="#0-3-0-draft-2026-09-12">[0.3.0-draft] — 2026-09-12</a><a href="#0-2-0-draft-2026-09-12">[0.2.0-draft] — 2026-09-12</a><a href="#0-1-0-draft-2026-09-12">[0.1.0-draft] — 2026-09-12</a></nav><article class="doc"><h1 id="changelog">Changelog</h1>
+<p class="crumb"><a href="./">Home</a> · CHANGELOG.md</p><nav class="toc"><strong>Contents</strong><a href="#unreleased">[Unreleased]</a><a href="#0-3-0-draft-2026-09-12">[0.3.0-draft] — 2026-09-12</a><a href="#0-2-0-draft-2026-09-12">[0.2.0-draft] — 2026-09-12</a><a href="#0-1-0-draft-2026-09-12">[0.1.0-draft] — 2026-09-12</a></nav><article class="doc"><h1 id="changelog">Changelog</h1>
 <p>All notable changes to the OpenBook standard are recorded here. Format follows Keep a Changelog; versioning follows <a href="versioning.html"><code>VERSIONING.md</code></a>.</p>
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
+<ul>
+<li><strong>Q32</strong> — FULL-TRANSITIVE compatibility within a frozen major (<a href="versioning.html"><code>VERSIONING.md</code></a>).</li>
+</ul>
 <ul>
 <li>Schemas for the objects the spec names but had no schema: <code>season</code>, <code>player</code> (roster membership), <code>market</code> (snapshot/update document), <code>score</code> (Q23) and <strong><code>grade</code></strong> (replaces <code>settlement</code>; Q27/Q28).</li>
 <li><strong>Three statuses</strong> (Q25/Q30): <code>eventStatus</code>, per-segment <code>segmentStatus</code> (<code>down</code> once, terminal), <code>marketStatus</code>; <code>statusReason</code> vocabulary.</li>
@@ -94,9 +103,15 @@
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
