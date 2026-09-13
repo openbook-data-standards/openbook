@@ -342,3 +342,25 @@ A downed segment's `status` / `downAt` are frozen. A correction is
 `score/update` with `correction: true` + `statusReason` (an erratum), and
 affected grades are `grade/delete` + new `grade/create` with `supersedes`.
 (Rejected: reopen → down again; absolutely immutable with no corrections.)
+
+## Q32 — Schema compatibility within a major — decided (FULL-TRANSITIVE)
+
+Once a major is **frozen** (1.0+), every minor of that major is readable by a
+consumer built against any other minor of that major, **both directions**,
+checked against **all** prior minors of that major — Confluent
+FULL + TRANSITIVE, adapted to JSON Schema as *instance* compatibility (JSON
+Schema has no Avro reader/writer resolution).
+
+- New fields MUST be optional or defaulted.
+- No field is re-typed or removed within a major.
+- The required set is permanent within a major (keep it small).
+- Adding a required field is a MAJOR.
+
+Rejected: BACKWARD only; FORWARD only; SemVer prose with no compatibility
+rule.
+
+**Consequences:** a CI schema-diff gate is a later Phase-B item, not this
+change. `additionalProperties: false` on publisher schemas stays until the
+strict-write / open-read question. Pre-1.0 `-draft` may still break.
+
+**Supersedes:** none of Q1–Q31; tightens [`../VERSIONING.md`](../VERSIONING.md).

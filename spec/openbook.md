@@ -236,4 +236,6 @@ New sports, segments and market types are proposed to the shared vocabularies.
 
 ## 11. Versioning
 Semantic versioning per [`../VERSIONING.md`](../VERSIONING.md). `-draft`
-marks an unfrozen version.
+marks an unfrozen version. Within a frozen major, compatibility is
+**FULL-TRANSITIVE** (Q32): minors only add optional fields; the required set
+does not shrink or grow.
