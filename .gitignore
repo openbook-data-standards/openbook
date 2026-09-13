@@ -1,0 +1,9 @@
+# Generated site HTML — built by tools/build_site.py and deployed by
+# .github/workflows/pages.yml. Only the hand-authored homepage is tracked.
+/*.html
+!/index.html
+/vocabularies/*.html
+/conformance/index.html
+
+# Local CI-simulation output (assembled by .github/workflows/pages.yml)
+/_site/
