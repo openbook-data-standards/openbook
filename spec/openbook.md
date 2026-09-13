@@ -31,17 +31,13 @@ It standardises the data contract only.
 - **Currency** — ISO 4217. Each feed MUST declare **`baseCurrency`** once
   on the publisher record (and on a full snapshot of that record). Incremental
   messages do not repeat it. Money is `{amount}` in that currency. Odds are
-  not money. Another currency is another subscription (Q44). ISO 20022 is
-  never the OpenBook model or JSON naming (Q59).
+  not money. Another currency is another subscription (Q44).
 - **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
 - **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
   Decimal odds only (MUST be strictly greater than 1); American and
   fractional forms are presentation.
-- **Encoding** — JSON in v1 (Q57). The schemas in [`../schema/`](../schema/)
-  are the model. A protobuf or FIX SBE binding, if ever, is generated from
-  those schemas and is not a second model. Not before 1.0.
 - **Text** — UTF-8; names keep their diacritics.
 - **Field names** — camelCase, and **schema.org's name wherever schema.org has
   the property**: `startDate`, `dateModified`, `datePublished`, `alternateName`,
@@ -117,7 +113,7 @@ player                      publisher-own; roster membership of a person in a te
 - **Field-level granularity, JSON Merge Patch (RFC 7386) semantics**: a change
   carries the object id plus only the fields that changed; absent = unchanged;
   `null` = removed. Consumers MUST merge and MUST NOT assume a message re-sends
-  unchanged state. JSON Patch (RFC 6902) is never the change format (Q58).
+  unchanged state.
 - **Odds are push-first.** Publishers SHOULD deliver `odds/change` by push and
   MAY additionally offer a `since=` pull. `market/snapshot` gives a fixture's
   current prices for initial load and recovery.
@@ -147,7 +143,7 @@ guarantees, not JSON Schema.
    true`**. Sequence still increases (Q47).
 7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once
    / exactly-once). MQTT is not required; other transports MUST name the
-   equivalent. There is no FIX session layer and no client TestRequest (Q60).
+   equivalent.
 8. **Dedup key** is `(publisher, sequence)`. Consumers MUST ignore duplicates.
 
 ### 5.2 Feed operations (Q41, Q48, Q49)
@@ -158,8 +154,7 @@ guarantees, not JSON Schema.
   `{ lastUpdated, ttl, feeds: [{ name, url }] }`
   ([`../schema/discovery.schema.json`](../schema/discovery.schema.json)).
   Snapshot, stream, and any publisher-hosted API docs are named feeds. The
-  `publisher` object stays identity, not the catalog (Q49). There is no nested
-  GBFS data wrapper (Q61).
+  `publisher` object stays identity, not the catalog (Q49).
 - A publisher MAY **co-serve** more than one OpenBook version at the same
   time (distinct URLs or topics per `openbookVersion`).
 
@@ -297,7 +292,7 @@ The same grammar is described for tooling in
 One envelope for every message ([`../schema/change.schema.json`](../schema/change.schema.json)):
 `openbookVersion`, `sequence`, `datePublished`, `publisher`, `object`, `action`,
 `sport`, `id`, and `changes` — a Merge Patch against the object's document
-schema. CloudEvents attributes are never on this envelope (Q52, Q62). `odds/change` carries its `markets[]` diff in `changes`
+schema. `odds/change` carries its `markets[]` diff in `changes`
 ([`odds_change.schema.json`](../schema/odds_change.schema.json)).
 `snapshotComplete` and `heartbeat` carry `changes: {}`. If intermediate ticks
 were dropped, that envelope MUST set **`conflated`: `true`** (Q47).

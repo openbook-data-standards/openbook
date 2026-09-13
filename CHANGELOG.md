@@ -6,18 +6,6 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
-- **Q57** — v1 encoding is JSON; protobuf / FIX SBE / GRIB are later
-  generated bindings, not a second model. Validator check 8.
-- **Q58** — JSON Patch (RFC 6902) never; `changes` is a Merge Patch object.
-  Invalid corpus `json-patch-changes.json`.
-- **Q59** — ISO 20022 never the model; money stays `{amount}` in
-  `baseCurrency`. Invalid corpus `money-with-currency.json`.
-- **Q60** — FIX session never; heartbeat is publisher-emitted.
-  Invalid corpus `fix-test-request.json`.
-- **Q61** — discovery is flat; no GBFS nested wrapper.
-  Invalid corpus `discovery-gbfs-wrapper.json`.
-- **Q62** — CloudEvents attributes never on the envelope (corpus for Q52).
-  Invalid corpus `cloudevents-wrap.json`.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
   comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
   Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire

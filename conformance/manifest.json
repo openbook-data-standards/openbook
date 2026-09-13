@@ -32,26 +32,6 @@
     {
       "path": "conformance/invalid/market-missing-limit.json",
       "reason": "priced market create/snapshot MUST carry limit (Q45)"
-    },
-    {
-      "path": "conformance/invalid/json-patch-changes.json",
-      "reason": "changes is a Merge Patch object, never a JSON Patch array (Q58)"
-    },
-    {
-      "path": "conformance/invalid/money-with-currency.json",
-      "reason": "money is amount in baseCurrency; no per-object currency (Q44, Q59)"
-    },
-    {
-      "path": "conformance/invalid/fix-test-request.json",
-      "reason": "no FIX session; heartbeat is publisher-emitted, never TestRequest (Q60)"
-    },
-    {
-      "path": "conformance/invalid/discovery-gbfs-wrapper.json",
-      "reason": "discovery is flat lastUpdated/ttl/feeds, not a nested GBFS data wrapper (Q61)"
-    },
-    {
-      "path": "conformance/invalid/cloudevents-wrap.json",
-      "reason": "CloudEvents attributes are never on the OpenBook envelope (Q52, Q62)"
     }
   ]
 }

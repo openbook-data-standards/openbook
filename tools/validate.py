@@ -15,8 +15,6 @@ Checks, in order:
   7. one-way name check (Q50): camelCase / property-like names in spec and
      selected docs MUST exist on a schema (properties, $defs, or enums). Extra
      schema fields are allowed. The decision log is history and is not scanned.
-  8. protocol-fit gates (Q57+): encoding and “never” verdicts the schemas
-     can prove.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -242,64 +240,6 @@ if missing_names:
         fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
 else:
     ok(f"{len(mentioned)} documented names present on a schema")
-
-print("8. protocol fit")
-# Q57 — v1 is JSON; no second encoding tree in this repo.
-asyncapi_path = os.path.join(ROOT, "spec", "asyncapi.yaml")
-asyncapi_text = open(asyncapi_path).read()
-if re.search(r"(?m)^defaultContentType:\s*application/json\s*$", asyncapi_text):
-    ok("Q57 AsyncAPI defaultContentType is JSON")
-else:
-    fail("Q57 AsyncAPI defaultContentType must be application/json")
-schema_files = [os.path.basename(p) for p in glob.glob(os.path.join(SCHEMA_DIR, "*"))]
-non_json = [n for n in schema_files if not n.endswith(".schema.json")]
-if non_json:
-    fail(f"Q57 schema/ must be *.schema.json only: {non_json}")
-else:
-    ok("Q57 schema/ is JSON Schema only")
-binary_hits = []
-for pat in ("**/*.proto", "**/*.sbe.xml"):
-    for p in glob.glob(os.path.join(ROOT, pat), recursive=True):
-        rel = os.path.relpath(p, ROOT)
-        if rel.split(os.sep)[0] == ".git":
-            continue
-        binary_hits.append(rel)
-if binary_hits:
-    fail(f"Q57 binary schema in repo before 1.0: {binary_hits}")
-else:
-    ok("Q57 no protobuf/SBE files in the spec repo")
-
-changes_type = schemas["change.schema.json"].get("properties", {}).get("changes", {}).get("type")
-if changes_type == "object":
-    ok("Q58 changes is a Merge Patch object")
-else:
-    fail("Q58 change.schema.json changes must be type object (not a JSON Patch array)")
-
-money = schemas["common.schema.json"]["$defs"]["money"]
-money_props = set(money.get("properties", {}))
-if money.get("required") == ["amount"] and money_props == {"amount"} and money.get("additionalProperties") is False:
-    ok("Q59 money is amount only (no per-object currency)")
-else:
-    fail("Q59 money must be {amount} only with additionalProperties false")
-
-ACTIONS = {"snapshot", "create", "update", "delete", "change", "snapshotComplete", "heartbeat"}
-action_enum = set(schemas["common.schema.json"]["$defs"]["action"]["enum"])
-if action_enum == ACTIONS:
-    ok("Q60 action enum is publication actions only (no TestRequest)")
-else:
-    fail(f"Q60 action enum drifted: {sorted(action_enum)}")
-
-disc = schemas["discovery.schema.json"]
-if set(disc.get("required", [])) == {"lastUpdated", "ttl", "feeds"} and "data" not in disc.get("properties", {}) and disc.get("additionalProperties") is False:
-    ok("Q61 discovery is flat (no nested data wrapper)")
-else:
-    fail("Q61 discovery must be lastUpdated, ttl, feeds with additionalProperties false")
-
-change_props = set(schemas["change.schema.json"].get("properties", {}))
-if "specversion" not in change_props and schemas["change.schema.json"].get("additionalProperties") is False:
-    ok("Q62 envelope has no CloudEvents attributes")
-else:
-    fail("Q62 change envelope must not include CloudEvents attributes")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

@@ -39,10 +39,10 @@ the idea, not the encoding), **later** (optional, after 1.0), **rejected**.
 ### Structural templates (catalog + live)
 
 - **GTFS / GTFS-Realtime** — **adopted** as the two-tier split and
-  publisher-agnostic feed. Rejected: protobuf as v1 encoding (Q57); full-state
+  publisher-agnostic feed. Rejected: protobuf as v1 encoding; full-state
   re-send every poll; POSIX epoch times as the only clock.
 - **GBFS 3.0** — **adopted** for ops: `ttl`, one discovery URL, co-serve
-  versions (Q41/Q48/Q49). Rejected: nested data wrapper (Q61), snake_case, a
+  versions (Q41/Q48/Q49). Rejected: nested `data` wrapper, snake_case, a
   required file-name enum for every feed.
 
 ### Live pub/sub
@@ -61,8 +61,8 @@ the idea, not the encoding), **later** (optional, after 1.0), **rejected**.
 - **FIX (incl. 5.0 SP2 market data, session T11)** — **shape only**.
   Incremental New/Change/Delete, sequence, heartbeat, open spec / private
   engines. Rejected: tag=value or SBE as the v1 encoding; client TestRequest
-  pair (Q46); a required session layer (Q60).
-- **ISO 20022** — **rejected as the wire** (Q59). Useful as a reminder that money,
+  pair (Q46); a required session layer.
+- **ISO 20022** — **rejected as the wire**. Useful as a reminder that money,
   identity and syntax should be separable. Does not fit as OpenBook’s
   encoding, naming, or governance.
 - **OpenRTB 2.6** — **adopted** as the governance precedent (open spec,
@@ -423,14 +423,14 @@ Avro resolution. Schema-diff CI is a later PR at 1.0+ (Q55).
 - **RFC 7386 Merge Patch** — adopted (Q8). Absent = unchanged, `null` =
   tombstone. Arrays replace wholesale, which is why odds diffs are
   outcome-level objects, not a patched array of numbers.
-- **RFC 6902 JSON Patch** — rejected (Q58). Pointer ops are
+- **RFC 6902 JSON Patch** — rejected. Pointer ops (`/outcomes/0/odds`) are
   brittle under reordering and unreadable on a tick.
-- **CloudEvents** — rejected (Q52, Q62). Required CloudEvents context
-  attributes duplicate `openbookVersion`, `sequence`, `publisher`,
+- **CloudEvents** — rejected (Q52). Required `specversion`, `id`, `source`,
+  `type` duplicate `openbookVersion`, `sequence`, `publisher`,
   `object`/`action`. Wrapping would make every consumer depend on a second
   spec for no extra fact.
-- **Protobuf / SBE / GRIB** — later optional binding (Q57), same path GTFS
-  took. v1 JSON stays the source of truth; a binary encoding would be generated
+- **Protobuf / SBE / GRIB** — later optional binding, same path GTFS took.
+  v1 JSON stays the source of truth; a binary encoding would be generated
   from the schemas, not a second model.
 - **OpenAPI in this repo** — rejected (Q54). Pull shape is `since=` and 410;
   each publisher publishes their own OpenAPI. AsyncAPI for push stays.
