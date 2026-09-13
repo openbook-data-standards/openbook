@@ -336,7 +336,7 @@ live · paused · down) and market status (`marketStatus`: open · suspended ·
 closed · void) are three fields answering three questions. Graded is not a
 market status; it is the `grade` object.
 
-## Q31 — Corrections without settling twice — proposed
+## Q31 — Corrections without settling twice — decided (a: erratum)
 
 A downed segment's `status` / `downAt` are frozen. A correction is
 `score/update` with `correction: true` + `statusReason` (an erratum), and
