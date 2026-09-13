@@ -736,3 +736,12 @@ No ISO. The facts are `participants[]` and `startDate`. schema.org
 Rejected: required composed title; forbid the field.
 
 **Supersedes:** none.
+
+## Q68 — Feed language — decided
+
+Optional `inLanguage` on the **publisher** (ISO 639-1). A bare `name` is in
+that language. Other languages use `names`. schema.org `inLanguage`.
+
+Rejected: `name` is always English; no feed language.
+
+**Supersedes:** none of Q11.
