@@ -98,6 +98,9 @@ grouped by what each one is used for, with the reason it was chosen.
 - AsyncAPI — https://www.asyncapi.com · OpenAPI — https://spec.openapis.org
 - RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org
 - GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/
+- FIX Protocol — https://www.fixtrading.org/standards/
+- ISO 20022 — https://www.iso20022.org/
+- OpenRTB — https://iabtechlab.com/standards/openrtb/
 - OsmChange — https://wiki.openstreetmap.org/wiki/OsmChange · Planet diffs —
   https://wiki.openstreetmap.org/wiki/Planet.osm/diffs
 - WIS2 guide — https://wmo-im.github.io/wis2-guide/guide/wis2-guide-APPROVED.html ·
