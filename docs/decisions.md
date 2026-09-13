@@ -763,3 +763,11 @@ EPSG:4326). Not required.
 Rejected: no coordinates; required on every Place.
 
 **Supersedes:** none of Q62.
+
+## Q71 — Venue capacity — decided (omit)
+
+No capacity field. Seat count is not a price-feed fact. No ISO.
+
+Rejected: optional or required capacity.
+
+**Supersedes:** none of Q62.
