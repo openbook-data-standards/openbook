@@ -33,11 +33,11 @@
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="changed">Changed</h3>
 <ul>
-<li><strong>Q11</strong> — names are camelCase: <code>shortName</code>, <code>alternateName</code>, <code>nameLatin</code>, <code>givenName</code> / <code>familyName</code> (not <code>short_name</code> / <code>aliases</code> / <code>name_latin</code>). Schema, spec, and examples now match Q11 / Q57–Q87 (team <code>location</code> / <code>nickname</code> / <code>registeredName</code>; team-only <code>abbreviation</code>; Place <code>timeZone</code> / <code>latitude</code> / <code>longitude</code>; publisher <code>inLanguage</code>; league <code>sexCategory</code> / <code>ageGroup</code>; fixture <code>surface</code> and participant <code>seed</code>).</li>
+<li><strong>Q11</strong> — names on the participant: required <code>name</code>; optional <code>shortName</code>, <code>names</code>, <code>nameLatin</code>, <code>alternateName</code>. Teams MAY add <code>location</code>, <code>nickname</code>, <code>registeredName</code>, <code>abbreviation</code>. Persons MAY add <code>givenName</code> / <code>familyName</code>; no <code>abbreviation</code>. Fixture <code>participants[]</code> copies <code>name</code>. <code>player</code> has no name fields.</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>
-<li><code>localName</code>, <code>additionalName</code>, <code>honorificPrefix</code>, <code>honorificSuffix</code> on participant (pre-1.0; Q11 / Q57). Native script is <code>nameLatin</code>.</li>
+<li><code>localName</code>, <code>additionalName</code>, <code>honorificPrefix</code>, <code>honorificSuffix</code> on participant (pre-1.0; Q11). Native script is <code>nameLatin</code>.</li>
 </ul>
 <h3 id="added">Added</h3>
 <ul>
@@ -90,7 +90,7 @@
 <li><strong>Q85</strong> — optional <code>seed</code> on the fixture participant row.</li>
 <li><strong>Q86</strong> — generic fixture extras stop at surface + seed; no metadata bag.</li>
 <li><strong>Q87</strong> — catalog pass closed; next work is a new area, not more fixture keys.</li>
-<li><a href="docs/still-to-do.md"><code>docs/still-to-do.md</code></a> — Q11 on the wire; Q55 remains a later PR (1.0+).</li>
+<li><a href="docs/still-to-do.md"><code>docs/still-to-do.md</code></a> — Q11 names on the wire; Q55 remains a later PR (1.0+).</li>
 </ul>
 <ul>
 <li>Schemas for the objects the spec names but had no schema: <code>season</code>, <code>player</code> (roster membership), <code>market</code> (snapshot/update document), <code>score</code> (Q23) and <strong><code>grade</code></strong> (replaces <code>settlement</code>; Q27/Q28).</li>

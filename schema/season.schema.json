@@ -33,8 +33,7 @@
       "$ref": "common.schema.json#/$defs/ownId"
     },
     "name": {
-      "type": "string",
-      "description": "Display label (2025/26, F1 2026). Machine bounds are startDate / endDate (Q60)."
+      "type": "string"
     },
     "alternateName": {
       "$ref": "common.schema.json#/$defs/alternateName"

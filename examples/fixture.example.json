@@ -15,8 +15,6 @@
     "name": "Premier League",
     "territory": "GB-ENG",
     "competitionType": "league",
-    "sexCategory": "men",
-    "ageGroup": "open",
     "sameAs": "https://www.wikidata.org/entity/Q9448"
   },
   "season": {
@@ -53,12 +51,8 @@
     "name": "Emirates Stadium",
     "addressLocality": "London",
     "territory": "GB-ENG",
-    "timeZone": "Europe/London",
-    "latitude": 51.555,
-    "longitude": -0.108,
     "sameAs": "https://www.wikidata.org/entity/Q19478"
   },
-  "surface": "grass",
   "identifier": [
     {
       "propertyID": "sportradar",

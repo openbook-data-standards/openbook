@@ -6,16 +6,15 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Changed
-- **Q11** — names are camelCase: `shortName`, `alternateName`, `nameLatin`,
-  `givenName` / `familyName` (not `short_name` / `aliases` / `name_latin`).
-  Schema, spec, and examples now match Q11 / Q57–Q87 (team
-  `location` / `nickname` / `registeredName`; team-only `abbreviation`;
-  Place `timeZone` / `latitude` / `longitude`; publisher `inLanguage`;
-  league `sexCategory` / `ageGroup`; fixture `surface` and participant `seed`).
+- **Q11** — names on the participant: required `name`; optional `shortName`,
+  `names`, `nameLatin`, `alternateName`. Teams MAY add `location`,
+  `nickname`, `registeredName`, `abbreviation`. Persons MAY add `givenName`
+  / `familyName`; no `abbreviation`. Fixture `participants[]` copies `name`.
+  `player` has no name fields.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
-  participant (pre-1.0; Q11 / Q57). Native script is `nameLatin`.
+  participant (pre-1.0; Q11). Native script is `nameLatin`.
 
 ### Added
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
@@ -90,8 +89,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q85** — optional `seed` on the fixture participant row.
 - **Q86** — generic fixture extras stop at surface + seed; no metadata bag.
 - **Q87** — catalog pass closed; next work is a new area, not more fixture keys.
-- [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 on the wire; Q55 remains a
-  later PR (1.0+).
+- [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 names on the wire; Q55
+  remains a later PR (1.0+).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

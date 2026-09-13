@@ -4,7 +4,6 @@
   "sequence": 1,
   "dateModified": "2026-09-19T12:00:00Z",
   "name": "Acme Feeds",
-  "inLanguage": "en",
   "baseCurrency": "GBP",
   "heartbeatMs": 5000,
   "ttl": 60,
