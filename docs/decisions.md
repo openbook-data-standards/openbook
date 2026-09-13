@@ -822,3 +822,12 @@ No kit or colour fields. Presentation, not a price fact.
 Rejected: optional hex; required.
 
 **Supersedes:** none of Q62.
+
+## Q78 — Team home stadium — decided (omit)
+
+No home-venue on the team. The match venue is fixture `location` (**Q62**).
+Home/away is fixture **role** (**Q22**).
+
+Rejected: optional or required home Place on the club.
+
+**Supersedes:** none of Q62.

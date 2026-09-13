@@ -65,6 +65,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q75** — no height/weight; number/position stay on `player`.
 - **Q76** — `player.position` free string; no ISO; vocab later.
 - **Q77** — no kit/colour fields.
+- **Q78** — no home stadium on the team; match venue is fixture location.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 
