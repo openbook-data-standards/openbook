@@ -28,7 +28,7 @@
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · JSON Schemas</p><nav class="page-toc"><strong>On this page</strong><a href="#change">change</a><a href="#common">common</a><a href="#discovery">discovery</a><a href="#fixture">fixture</a><a href="#grade">grade</a><a href="#league">league</a><a href="#market">market</a><a href="#market_type">market_type</a><a href="#odds_change">odds_change</a><a href="#participant">participant</a><a href="#player">player</a><a href="#publisher">publisher</a><a href="#region">region</a><a href="#score">score</a><a href="#season">season</a><a href="#sport">sport</a><a href="#stage">stage</a><a href="#examples">examples</a></nav><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
+<p class="crumb"><a href="./">Home</a> · JSON Schemas</p><nav class="page-toc"><strong>On this page</strong><a href="#change">change</a><a href="#common">common</a><a href="#discovery">discovery</a><a href="#fixture">fixture</a><a href="#grade">grade</a><a href="#league">league</a><a href="#lineup">lineup</a><a href="#market">market</a><a href="#market_type">market_type</a><a href="#odds_change">odds_change</a><a href="#participant">participant</a><a href="#player">player</a><a href="#publisher">publisher</a><a href="#region">region</a><a href="#score">score</a><a href="#season">season</a><a href="#sport">sport</a><a href="#stage">stage</a><a href="#examples">examples</a></nav><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook change envelope&quot;,
@@ -430,6 +430,7 @@
         &quot;stage&quot;,
         &quot;participant&quot;,
         &quot;player&quot;,
+        &quot;lineup&quot;,
         &quot;publisher&quot;
       ]
     },
@@ -1048,6 +1049,48 @@
     },
     &quot;identifier&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="lineup"><h2>OpenBook lineup</h2><p>Starting players for one fixture (Q80). Roster player ids only. Not on the catalog fixture. No formation, substitutions, or predicted lineup (Q82).</p><p><a href="schema/lineup.schema.json">lineup.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, player</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/lineup.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook lineup&quot;,
+  &quot;description&quot;: &quot;Starting players for one fixture (Q80). Roster player ids only. Not on the catalog fixture. No formation, substitutions, or predicted lineup (Q82).&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;fixture&quot;,
+    &quot;player&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;player&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+      },
+      &quot;description&quot;: &quot;Roster player ids that started (Q80).&quot;
     }
   },
   &quot;patternProperties&quot;: {
@@ -2127,6 +2170,42 @@
   &quot;action&quot;: &quot;heartbeat&quot;,
   &quot;sport&quot;: &quot;unknown&quot;,
   &quot;changes&quot;: {}
+}</pre></section><section class="schema-block" id="lineup.example"><h2>lineup.example.json</h2><p><a href="examples/lineup.example.json">examples/lineup.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 105500,
+  &quot;datePublished&quot;: &quot;2026-09-19T14:00:00Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;lineup&quot;,
+  &quot;action&quot;: &quot;update&quot;,
+  &quot;sport&quot;: &quot;soccer&quot;,
+  &quot;id&quot;: &quot;EVT-88213&quot;,
+  &quot;changes&quot;: {
+    &quot;fixture&quot;: &quot;EVT-88213&quot;,
+    &quot;player&quot;: [
+      &quot;PL-1&quot;,
+      &quot;PL-2&quot;,
+      &quot;PL-3&quot;,
+      &quot;PL-4&quot;,
+      &quot;PL-5&quot;,
+      &quot;PL-6&quot;,
+      &quot;PL-7&quot;,
+      &quot;PL-8&quot;,
+      &quot;PL-9&quot;,
+      &quot;PL-10&quot;,
+      &quot;PL-11&quot;,
+      &quot;PL-12&quot;,
+      &quot;PL-13&quot;,
+      &quot;PL-14&quot;,
+      &quot;PL-15&quot;,
+      &quot;PL-16&quot;,
+      &quot;PL-17&quot;,
+      &quot;PL-18&quot;,
+      &quot;PL-19&quot;,
+      &quot;PL-20&quot;,
+      &quot;PL-21&quot;,
+      &quot;PL-22&quot;
+    ]
+  }
 }</pre></section><section class="schema-block" id="market.example"><h2>market.example.json</h2><p><a href="examples/market.example.json">examples/market.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 104880,

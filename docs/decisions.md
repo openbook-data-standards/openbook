@@ -844,12 +844,15 @@ Rejected: optional or required coach now.
 
 **Supersedes:** none.
 
-## Q80 — Match lineup — decided (later live object)
+## Q80 — Match lineup — decided (lineup object)
 
-`player` is **roster** (season membership). Starting XI is a **later live
-object**, not fields on the catalog fixture.
+`player` is **roster** (season membership). Starting XI is a live **`lineup`**
+object, fixture-keyed, not fields on the catalog fixture. The ids are roster
+**`player`** ids. Formation, substitutions, and predicted lineup stay omitted
+(**Q82**).
 
-Rejected: starter ids on the fixture now; never a match XI.
+Rejected: starter ids on the fixture now; never a match XI; person ids
+without the roster row.
 
 **Supersedes:** none. Spec already says `player` is for lineups/props; match
 XI is not the roster row.

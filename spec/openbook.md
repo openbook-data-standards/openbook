@@ -270,6 +270,9 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   `scores[]` — **one line per participant × unit** (`goals`, `corners`,
   `sets`, `games`, `runs`, `hits`…) with `total` and `bySegment`. The sport /
   league declares its `primaryUnit`. `server` for racket sports.
+- **`lineup`** — starting roster `player` ids for one `fixture` (Q80). Not
+  on the catalog fixture. No formation, substitutions, or predicted lineup
+  (Q82).
 - **`grade`** — the book's judgement for one market × one source, graded from
   a `down` segment: `gradeId`, `segment`, `marketType`, `line`, `basis` (the
   unit graded on — Pinnacle's *resultingUnit*, generalised), `basedOn` (the
@@ -285,7 +288,7 @@ single subscription.
 
 ```
 fixture-scoped   openbook / v1 / <publisher-id> / <sport> / fixture / <fixture-id> / <object> / <action>
-                 object ∈ fixture · odds · market · score · grade
+                 object ∈ fixture · odds · market · score · grade · lineup
 entity           openbook / v1 / <publisher-id> / <sport> / <object> / <id> / <action>
                  object ∈ league · season · stage · participant · player
 publisher        openbook / v1 / <publisher-id> / publisher / <action>

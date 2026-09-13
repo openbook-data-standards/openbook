@@ -32,7 +32,7 @@ channels:
       fixtureId:
         description: Publisher's fixture id.
       object:
-        description: fixture · odds · market · score · grade
+        description: fixture · odds · market · score · grade · lineup
       action:
         description: snapshot · create · update · delete · change · snapshotComplete · heartbeat
     messages:

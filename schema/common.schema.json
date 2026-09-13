@@ -308,6 +308,7 @@
         "stage",
         "participant",
         "player",
+        "lineup",
         "publisher"
       ]
     },

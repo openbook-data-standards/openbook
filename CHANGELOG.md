@@ -17,6 +17,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `mixed` · `open`) and `ageGroup`; fixture `surface`; participant `seed`.
 - **Q88** — optional `throws` and `bats` on `player` (`left` · `right` ·
   `both`).
+- **Q80** — `lineup` live object: fixture-keyed roster `player` ids.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
