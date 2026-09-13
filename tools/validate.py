@@ -74,9 +74,17 @@ for name, s in schemas.items():
     for p in walk(s): fail(f"{name}: inline enum at {p} — move it to common.schema.json $defs")
 ok("checked")
 
-def relaxed(schema):
-    """Merge-Patch view of a document schema: nothing is required, but every present field must be valid."""
-    s = copy.deepcopy(schema); s.pop("required", None); s.pop("$id", None)
+ENVELOPE_FIELDS = ("openbookVersion", "sequence", "dateModified")
+
+def for_changes(schema, full):
+    """A document schema as it applies to a message's `changes`. The envelope
+    already carries openbookVersion/sequence/dateModified, so those are never
+    required inside `changes`. For snapshot/create the rest stays required; for
+    update/change nothing is required (Merge Patch)."""
+    s = copy.deepcopy(schema); s.pop("$id", None)
+    req = [] if not full else [r for r in s.get("required", []) if r not in ENVELOPE_FIELDS]
+    if req: s["required"] = req
+    else: s.pop("required", None)
     return s
 
 print("4. examples validate")
@@ -92,7 +100,7 @@ for path in sorted(glob.glob(f"{EXAMPLE_DIR}/*.json")):
         if target:
             s = schemas[f"{target}.schema.json"]
             full = doc["action"] in ("snapshot", "create") and doc["object"] != "odds"
-            v = validator(s if full else relaxed(s))
+            v = validator(for_changes(s, full))
             for e in sorted(v.iter_errors(doc["changes"]), key=lambda e: e.path):
                 fail(f"{name}: changes vs {target} ({'full' if full else 'patch'}): {e.message} at /changes/{'/'.join(map(str,e.path))}")
         if not errs: ok(f"{name}  ({doc['object']}/{doc['action']})")
