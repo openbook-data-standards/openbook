@@ -676,22 +676,3 @@ parallel betting schema; shipping MCP `server.json` schema in this repo
 **Supersedes:** Q49 “named feeds” by adding `kind` / `schemaUrl` / `id`
 and naming MCP/plugin. Q52 (no wrap) and Q54 (foreign docs stay at their
 own URL) stand.
-
-## Q57 — Publisher repo scaffold — decided (non-normative)
-
-Yes: this repo ships [`../tools/scaffold.py`](../tools/scaffold.py), a
-starter that writes a publisher *repository tree* — `publisher` +
-discovery, optional MCP `server.json` body at `.well-known/mcp.json`,
-optional plugin manifest — so Q56 is mechanical. `--git` only runs
-`git init`. It does **not** emit odds, run a server, or wrap MCP.
-
-The scaffold is **not the spec**. Generated OpenBook documents MUST
-validate; generated MCP/plugin files are foreign manifests (Q54/Q56).
-A GitHub template organisation-repo is unnecessary while the generator
-lives here.
-
-Rejected: a second GitHub template repository as the only starter; a
-feed engine or MCP SDK in this spec repo; making the scaffold a 1.0
-conformance implementation.
-
-**Supersedes:** none of Q56. Names the starter Q56 implied.

@@ -73,4 +73,3 @@ openbook/  (this repository)
   examples/               ← valid worked documents (also the valid corpus)
   conformance/            ← language-agnostic corpus (manifest + invalid cases)
   tools/validate.py       ← one runner; not a language oracle
-  tools/scaffold.py      ← non-normative publisher repo starter (Q57)

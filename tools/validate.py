@@ -15,8 +15,6 @@ Checks, in order:
   7. one-way name check (Q50): camelCase / property-like names in spec and
      selected docs MUST exist on a schema (properties, $defs, or enums). Extra
      schema fields are allowed. The decision log is history and is not scanned.
-  8. tools/scaffold.py (Q57): the starter publisher tree it writes still
-     produces valid OpenBook documents; MCP/plugin manifests are present.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -242,42 +240,6 @@ if missing_names:
         fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
 else:
     ok(f"{len(mentioned)} documented names present on a schema")
-
-print("8. scaffold starter (Q57, non-normative)")
-import shutil, subprocess, tempfile
-td = tempfile.mkdtemp(prefix="openbook-scaffold-")
-try:
-    sc = os.path.join(ROOT, "tools", "scaffold.py")
-    r = subprocess.run(
-        [sys.executable, sc, "--id", "acme-feeds", "--name", "Acme Feeds",
-         "--out", td, "--mcp", "--plugin"],
-        capture_output=True, text=True,
-    )
-    if r.returncode:
-        fail(f"scaffold.py exited {r.returncode}: {(r.stderr or r.stdout).strip()}")
-    else:
-        for rel in ("openbook/publisher.json", "openbook/discovery.json"):
-            path = os.path.join(td, rel)
-            errs = instance_errors(path)
-            for e in errs:
-                fail(f"scaffold {rel}: {e}")
-            if not errs:
-                ok(rel)
-        mcp = os.path.join(td, ".well-known", "mcp.json")
-        plugin = os.path.join(td, "plugins", "openbook", "plugin.json")
-        for path, keys in ((mcp, ("$schema", "name", "remotes")), (plugin, ("$schema", "name"))):
-            rel = os.path.relpath(path, td)
-            if not os.path.isfile(path):
-                fail(f"scaffold missing {rel}")
-                continue
-            doc = json.load(open(path))
-            missing = [k for k in keys if k not in doc]
-            if missing:
-                fail(f"scaffold {rel} missing {missing}")
-            else:
-                ok(rel)
-finally:
-    shutil.rmtree(td, ignore_errors=True)
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

@@ -191,11 +191,6 @@ second betting model.
   payload. Tools MAY name OpenBook `object` / `action` pairs; they MUST
   NOT replace `market`, `odds`, `score`, or `grade` with a parallel schema.
   Vendor extras stay `x_`-prefixed (Q37).
-- A **non-normative** publisher starter (identity, discovery, optional MCP
-  and plugin manifests; optional git init) is
-  [`../tools/scaffold.py`](../tools/scaffold.py) (Q57). It is not a feed
-  engine and not part of the conformance gate except that CI checks the
-  files it writes still validate.
 
 Two independent implementations (a producer and a consumer; not
 [`../tools/validate.py`](../tools/validate.py)) are required to **freeze
