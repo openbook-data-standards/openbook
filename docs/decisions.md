@@ -436,3 +436,21 @@ the shape is `common.schema.json#/$defs/deprecation`.
 Rejected: CHANGELOG-only; no window; never remove even at MAJOR.
 
 **Supersedes:** the “removal is a later question” line in Q35.
+
+## Q37 — Strict when you write, open when you read — decided
+
+Publishers validate **strictly** against the schema (catch typos). Consumers
+MUST ignore unrecognized **fields**, whether `x_`-prefixed or added in a
+later minor. `x_` remains reserved for vendor-specific extras.
+
+Rejected: closed-when-you-read (MINORs break old validators); open-when-you-write
+(typos become data).
+
+**Consequences:** shipped schemas keep `additionalProperties: false` +
+`patternProperties: ^x_` as the **publisher** contract. A consumer that
+validates incoming documents MUST ignore unknown properties (or use a
+consumer-view schema). That split is the JSON Schema form of Protobuf “skip
+unknown.”
+
+**Supersedes:** §9 / VERSIONING “ignore unknown `x_`-prefixed fields” by
+widening ignore to all unrecognized fields.

@@ -254,14 +254,16 @@ and `references[]` to prior sequences, after OASIS CAP 1.2. A void is a `market/
 `grade/create` with `supersedes`.
 
 ## 9. Extensions
-Publishers MAY add `x_`-prefixed fields; consumers MUST ignore unknown ones.
-Growable lists (`sport:*`, `market:*`, `segment:*`, `side`, `scoreUnit`,
-`statusReason`) have a catch-all (`unknown` / `other`). A conformant
-consumer MUST accept unrecognised values (carry them; MUST NOT crash). Adding
-a market type is not a breaking change (Q34). Publishers SHOULD use the
-catch-all rather than inventing an id; publisher-side validation MAY warn.
-New sports, segments and market types are also proposed to the shared
-vocabularies.
+Publishers MAY add `x_`-prefixed fields for vendor-specific extras.
+Publishers validate **strictly** against the schema (closed when you write).
+Consumers MUST ignore unrecognized **fields**, whether `x_`-prefixed or added
+in a later minor (Q37). Growable lists (`sport:*`, `market:*`, `segment:*`,
+`side`, `scoreUnit`, `statusReason`) have a catch-all (`unknown` / `other`).
+A conformant consumer MUST accept unrecognised **values** (carry them; MUST
+NOT crash). Adding a market type is not a breaking change (Q34). Publishers
+SHOULD use the catch-all rather than inventing an id; publisher-side
+validation MAY warn. New sports, segments and market types are also proposed
+to the shared vocabularies.
 
 ## 10. Conformance
 - **Level R** — reference documents validate and carry the §6 facts.

@@ -29,8 +29,9 @@ machine schema-diff gate is not part of this decision.
 
 - Every object and message carries `openbook_version`, the version it was
   produced against.
-- Consumers **MUST** ignore unknown `x_`-prefixed fields, so MINOR additions never
-  break an older consumer.
+- Publishers validate strictly against the schema. Consumers **MUST** ignore
+  unrecognized fields (including unknown `x_`-prefixed fields) so MINOR
+  additions never break an older consumer (Q37).
 - Canonical ids, list-values and field names are permanent once shipped in a
   frozen version. They are deprecated with reason + replacement + sunset,
   never re-pointed, and **never reused** (Q35, Q36). Removal from the live
