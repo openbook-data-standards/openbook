@@ -191,6 +191,7 @@ NAME_DOCS = (
     os.path.join(ROOT, "spec", "asyncapi.yaml"),
     os.path.join(ROOT, "docs", "building-blocks.md"),
     os.path.join(ROOT, "docs", "still-to-do.md"),
+    os.path.join(ROOT, "docs", "using.md"),
 )
 
 def schema_names():

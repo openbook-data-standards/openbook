@@ -47,6 +47,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (`schema/discovery.schema.json`).
 - **Q50** — one-way docs-vs-schema name CI in `tools/validate.py` (spec/docs
   names MUST exist on a schema; extra schema fields allowed).
+- [`docs/using.md`](docs/using.md) — how to read, validate, publish, and
+  consume (site page `using.html`).
 - **Q51** — no consumer-view schema file.
 - **Q52** — CloudEvents wrap never.
 - **Q53** — DNS-style ids never; Q4/Q5 stand.

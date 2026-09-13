@@ -5,6 +5,9 @@ in [`../conformance/`](../conformance/), not a language oracle (Q40).
 Run it to check that the schemas are sound, the examples conform, invalid
 corpus cases are rejected, and stream topics follow the grammar.
 
+The human guide is [`docs/using.md`](../docs/using.md) (on the site as
+[Using OpenBook](https://openbook-data-standards.github.io/openbook/using.html)).
+
 ```bash
 pip install 'jsonschema>=4.18' referencing
 python3 tools/validate.py

@@ -262,7 +262,7 @@
 <p>Rejected: extend <code>publisher</code> with <code>feeds[]</code>; <code>.well-known/openbook</code> pointing only at OpenAPI/AsyncAPI; prose-only with no JSON shape.</p>
 <p><strong>Supersedes:</strong> Q41 “discovery document shape are later”.</p>
 <h2 id="q50-docs-vs-schema-name-ci-decided-one-way">Q50 — Docs-vs-schema name CI — decided (one-way)</h2>
-<p>If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR. Extra schema fields are allowed. Scanned: <code>spec/openbook.md</code>, <code>spec/asyncapi.yaml</code>, <code>docs/building-blocks.md</code>, <code>docs/still-to-do.md</code>. The decision log is history and is not scanned. Implemented in <a href="../tools/validate.py"><code>../tools/validate.py</code></a>.</p>
+<p>If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR. Extra schema fields are allowed. Scanned: <code>spec/openbook.md</code>, <code>spec/asyncapi.yaml</code>, <code>docs/building-blocks.md</code>, <code>docs/still-to-do.md</code>, <code>docs/using.md</code>. The decision log is history and is not scanned. Implemented in <a href="../tools/validate.py"><code>../tools/validate.py</code></a>.</p>
 <p>Rejected: never (CONTRIBUTING only); bidirectional (every schema field named in the spec); CI on this patch.</p>
 <p><strong>Supersedes:</strong> Q38 “a CI check … is a later item” by naming the rule.</p>
 <h2 id="q51-consumer-view-schema-decided-none">Q51 — Consumer-view schema — decided (none)</h2>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Using OpenBook — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/using.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./spec.html">Spec</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · docs/using.md</p><nav class="page-toc"><strong>On this page</strong><a href="#1-read-the-contract">1. Read the contract</a><a href="#2-check-documents">2. Check documents</a><a href="#3-publish">3. Publish</a><a href="#4-consume">4. Consume</a><a href="#5-conformance">5. Conformance</a></nav><article class="doc"><h1 id="using-openbook">Using OpenBook</h1>
+<p>OpenBook is a <strong>data contract</strong>, not a library. You emit JSON that matches the schemas, or you consume that JSON. This page is the short path; the normative rules are in <a href="spec.html"><code>../spec/openbook.md</code></a>.</p>
+<h2 id="1-read-the-contract">1. Read the contract</h2>
+<ul>
+<li>Spec — <a href="../spec.html"><code>spec.html</code></a> (<code>spec/openbook.md</code>)</li>
+<li>Vocabularies — sports, market types, segments</li>
+<li>Schemas and worked examples — <a href="../schemas.html"><code>schemas.html</code></a></li>
+<li>Push topics — <a href="spec/asyncapi.yaml"><code>../spec/asyncapi.yaml</code></a></li>
+</ul>
+<h2 id="2-check-documents">2. Check documents</h2>
+<p>From a clone of this repository:</p>
+<pre>pip install &#x27;jsonschema&gt;=4.18&#x27; referencing
+python3 tools/validate.py
+python3 tools/validate.py --topic openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change</pre>
+<p>Exit code 0 means the <strong>repo</strong> is conformant (schemas, examples, topics, and the Q50 name check). CI runs the same command. Pointing the runner at *your* feed directory (<code>--examples &lt;dir&gt;</code>) is not built yet; until then, validate your JSON against the files in <a href="schemas.html"><code>../schema/</code></a> with any draft 2020-12 implementation.</p>
+<h2 id="3-publish">3. Publish</h2>
+<ol>
+<li>Serve a <strong>discovery</strong> document (<a href="schema/discovery.schema.json"><code>discovery.schema.json</code></a>): <code>{ lastUpdated, ttl, feeds: [{ name, url }] }</code>. Snapshot, stream, and any API docs you host are named feeds. The <code>publisher</code> object stays identity, not the catalog.</li>
+<li>Put <strong><code>heartbeatMs</code></strong> on the publisher record (Level L). Optional <strong><code>ttl</code></strong> may sit there too; discovery is where <code>ttl</code> is required.</li>
+<li>Name streams fixture-first:</li>
+</ol>
+<p>   ``<code>    openbook/v1/&lt;publisher&gt;/&lt;sport&gt;/fixture/&lt;id&gt;/&lt;object&gt;/&lt;action&gt;    </code>``</p>
+<p>   <code>&lt;action&gt;</code> is the JSON enum token (<code>snapshotComplete</code> is camelCase on    topic and payload).</p>
+<ol>
+<li>Every message is one envelope: <code>openbookVersion</code>, <code>sequence</code>, <code>datePublished</code>, <code>publisher</code>, <code>object</code>, <code>action</code>, <code>sport</code>, <code>changes</code> (JSON Merge Patch). Control actions <code>snapshotComplete</code> and <code>heartbeat</code> carry <code>changes: {}</code>.</li>
+<li>After snapshot + replay on push, emit <code>snapshotComplete</code>. Pull has no marker; the HTTP body *is* the batch.</li>
+<li>Keep sending <code>heartbeat</code> on that stream. Quiet longer than <code>heartbeatMs</code>, the consumer SHOULD treat the feed as down.</li>
+<li>If you skip ticks, that change carries <code>conflated: true</code>. Sequence still increases.</li>
+<li>Pull <code>since=&lt;sequence&gt;</code>. If <code>since</code> is older than retention <code>R</code>, respond HTTP <strong>410</strong> with RFC 9457 Problem Details pointing at the snapshot URL — not a silent full snapshot.</li>
+</ol>
+<p>Worked messages live in <a href="schemas.html#examples"><code>../examples/</code></a> (<code>heartbeat</code>, <code>snapshot_complete</code>, <code>discovery</code>, <code>odds_change_conflated</code>).</p>
+<h2 id="4-consume">4. Consume</h2>
+<ul>
+<li>Merge <code>changes</code> per RFC 7386 (absent = unchanged, <code>null</code> = removed).</li>
+<li>Ignore unrecognised <strong>fields</strong> (Q37) and unrecognised growable <strong>values</strong> (Q34).</li>
+<li>Dedup on <code>(publisher, sequence)</code>.</li>
+<li>Honour <code>conflated</code>. After <code>heartbeatMs</code> of silence, treat the stream as down.</li>
+<li>On pull <strong>410</strong>, fetch the snapshot URL from the Problem Details body, then resume with <code>since</code>.</li>
+</ul>
+<h2 id="5-conformance">5. Conformance</h2>
+<p>A publisher or consumer is OpenBook-conformant when it accepts every <strong>valid</strong> case and rejects every <strong>invalid</strong> case in <a href="conformance/"><code>../conformance/</code></a> (Q40). <code>tools/validate.py</code> is one runner, not a language oracle. Freezing <strong>1.0</strong> still needs two independent implementations, neither of which is that runner (Q41).</p></article><p class="source">Source: docs/using.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>

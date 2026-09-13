@@ -24,6 +24,8 @@ PAGE_MAP = {
     "../docs/decisions.md": "decisions.html",
     "docs/building-blocks.md": "building-blocks.html",
     "../docs/building-blocks.md": "building-blocks.html",
+    "docs/using.md": "using.html",
+    "../docs/using.md": "using.html",
     "docs/industry-patterns.md": "industry-patterns.html",
     "../docs/industry-patterns.md": "industry-patterns.html",
     "GOVERNANCE.md": "governance.html",
@@ -345,6 +347,7 @@ def main() -> None:
     write_md_page(ROOT / "spec/openbook.md", ROOT / "spec.html", 0, "spec.html", "spec/openbook.md")
     write_md_page(ROOT / "docs/decisions.md", ROOT / "decisions.html", 0, "decisions.html", "docs/decisions.md")
     write_md_page(ROOT / "docs/building-blocks.md", ROOT / "building-blocks.html", 0, "building-blocks.html", "docs/building-blocks.md")
+    write_md_page(ROOT / "docs/using.md", ROOT / "using.html", 0, "using.html", "docs/using.md")
     write_md_page(ROOT / "docs/industry-patterns.md", ROOT / "industry-patterns.html", 0, "industry-patterns.html", "docs/industry-patterns.md")
     write_md_page(ROOT / "GOVERNANCE.md", ROOT / "governance.html", 0, "governance.html", "GOVERNANCE.md")
     write_md_page(ROOT / "VERSIONING.md", ROOT / "versioning.html", 0, "versioning.html", "VERSIONING.md")

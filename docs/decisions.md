@@ -604,7 +604,7 @@ Rejected: extend `publisher` with `feeds[]`; `.well-known/openbook` pointing onl
 
 If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR.
 Extra schema fields are allowed. Scanned: `spec/openbook.md`, `spec/asyncapi.yaml`,
-`docs/building-blocks.md`, `docs/still-to-do.md`. The decision log is history
+`docs/building-blocks.md`, `docs/still-to-do.md`, `docs/using.md`. The decision log is history
 and is not scanned. Implemented in [`../tools/validate.py`](../tools/validate.py).
 
 Rejected: never (CONTRIBUTING only); bidirectional (every schema field named in the spec); CI on this patch.
