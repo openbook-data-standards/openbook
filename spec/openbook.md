@@ -109,6 +109,31 @@ player                      publisher-own; roster membership of a person in a te
   MAY additionally offer a `since=` pull. `market/snapshot` gives a fixture's
   current prices for initial load and recovery.
 
+### 5.1 Delivery and recovery (Q33)
+
+A publisher that claims Level L MUST honour all eight. These are protocol
+guarantees, not JSON Schema.
+
+1. **Retention horizon `R`.** `since=N` with `N ≥ R` MUST return a complete,
+   ordered delta. `N < R` MUST NOT return a silently incomplete gap; the
+   publisher MUST send the client to a snapshot.
+2. **Snapshot is compaction; Merge Patch `null` is a tombstone.** Replaying
+   snapshot + diffs MUST converge on the same document as a fresh snapshot.
+3. **Ordering is per fixture.** `sequence` is per publisher, strictly
+   increasing, unique. For one fixture, messages appear in increasing
+   sequence. Cross-fixture display order is not guaranteed.
+4. A **caught-up marker** MUST tell a consumer snapshot + replay is finished
+   and it is live.
+5. **Bounded heartbeats.** Quiet is not dead; the publisher MUST declare a
+   maximum silence. Longer than that, the consumer SHOULD treat the feed as
+   down.
+6. If intermediate ticks are dropped, the publisher MUST say so (**honest
+   conflation**).
+7. **QoS 0 / 1 / 2** are the delivery vocabulary (at-most-once / at-least-once
+   / exactly-once). MQTT is not required; other transports MUST name the
+   equivalent.
+8. **Dedup key** is `(publisher, sequence)`. Consumers MUST ignore duplicates.
+
 ## 5a. Status: three questions, three fields
 
 - **Fixture status** — *is the event happening?* `eventStatus`: scheduled ·
@@ -232,7 +257,8 @@ New sports, segments and market types are proposed to the shared vocabularies.
 ## 10. Conformance
 - **Level R** — reference documents validate and carry the §6 facts.
 - **Level L** — messages validate, carry `sequence`, reference only known ids,
-  honour Merge Patch semantics, and deliver `odds/change` by push.
+  honour Merge Patch semantics, deliver `odds/change` by push, and honour
+  §5.1.
 
 ## 11. Versioning
 Semantic versioning per [`../VERSIONING.md`](../VERSIONING.md). `-draft`

@@ -8,6 +8,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ### Added
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
+- **Q33** — Level L delivery/recovery: all eight guarantees MUST
+  ([`spec/openbook.md`](spec/openbook.md) §5.1).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

@@ -364,3 +364,27 @@ change. `additionalProperties: false` on publisher schemas stays until the
 strict-write / open-read question. Pre-1.0 `-draft` may still break.
 
 **Supersedes:** none of Q1–Q31; tightens [`../VERSIONING.md`](../VERSIONING.md).
+
+## Q33 — Delivery and recovery — decided (all eight MUST)
+
+Level L is a contract, not a sketch. A conformant live publisher MUST:
+
+1. Advertise a retention horizon `R`; `since ≥ R` is complete and ordered;
+   `since < R` is not a silent hole (send the client to a snapshot).
+2. Treat snapshot as compaction and Merge Patch `null` as a tombstone;
+   snapshot + diffs MUST converge.
+3. Keep `sequence` unique and increasing per publisher; guarantee order
+   **per fixture**.
+4. Emit a caught-up marker after snapshot + replay.
+5. Bound heartbeats (quiet ≠ dead).
+6. Flag conflation when ticks are dropped.
+7. Use QoS 0/1/2 as vocabulary (MQTT not required).
+8. Dedup on `(publisher, sequence)`.
+
+Rejected: a thinner MUST set; leaving the wire as a sketch.
+
+**Consequences:** names of the caught-up message, heartbeat interval field,
+and how pull returns “too old” are later items. This change is spec prose.
+
+**Supersedes:** Q8/Q17 on snapshot-for-recovery by making completeness
+normative.
