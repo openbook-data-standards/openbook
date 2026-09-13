@@ -1,0 +1,81 @@
+{
+  "@id": "https://openbook-data-standards.github.io/openbook/context.jsonld",
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://openbook-data-standards.github.io/openbook/ns#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "SportsEvent": "schema:SportsEvent",
+    "SportsTeam": "schema:SportsTeam",
+    "SportsOrganization": "schema:SportsOrganization",
+    "Person": "schema:Person",
+    "Place": "schema:Place",
+    "PostalAddress": "schema:PostalAddress",
+    "Organization": "schema:Organization",
+    "OrganizationRole": "schema:OrganizationRole",
+    "PropertyValue": "schema:PropertyValue",
+    "Country": "schema:Country",
+    "AdministrativeArea": "schema:AdministrativeArea",
+    "Event": "schema:Event",
+
+    "name": "schema:name",
+    "names": {
+      "@id": "schema:name",
+      "@container": "@language"
+    },
+    "alternateName": {
+      "@id": "schema:alternateName",
+      "@container": "@set"
+    },
+    "startDate": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "endDate": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "dateModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "datePublished": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:dateTime"
+    },
+    "sameAs": {
+      "@id": "schema:sameAs",
+      "@type": "@id"
+    },
+    "identifier": {
+      "@id": "schema:identifier",
+      "@container": "@set"
+    },
+    "propertyID": "schema:propertyID",
+    "value": "schema:value",
+    "superEvent": "schema:superEvent",
+    "organizer": "schema:organizer",
+    "location": {
+      "@id": "schema:location",
+      "@context": {
+        "territory": "schema:addressCountry"
+      }
+    },
+    "addressLocality": "schema:addressLocality",
+    "eventStatus": "schema:eventStatus",
+    "sport": "schema:sport",
+    "participants": {
+      "@id": "schema:competitor",
+      "@container": "@set"
+    },
+    "familyName": "schema:familyName",
+    "givenName": "schema:givenName",
+    "additionalName": "schema:additionalName",
+    "honorificPrefix": "schema:honorificPrefix",
+    "honorificSuffix": "schema:honorificSuffix",
+    "url": "schema:url",
+    "email": "schema:email",
+    "openbookVersion": "schema:schemaVersion"
+  }
+}

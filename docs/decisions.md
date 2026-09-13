@@ -342,3 +342,26 @@ A downed segment's `status` / `downAt` are frozen. A correction is
 `score/update` with `correction: true` + `statusReason` (an erratum), and
 affected grades are `grade/delete` + new `grade/create` with `supersedes`.
 (Rejected: reopen → down again; absolutely immutable with no corrections.)
+
+## Q32 — JSON-LD `@context` — decided (a: one published context)
+
+Publish **one JSON-LD context** at
+`https://openbook-data-standards.github.io/openbook/context.jsonld`. A
+document that carries that `@context` (and the `@type` the object already
+maps to) is the OpenBook payload **and** schema.org JSON-LD — the same
+framing as GTFS: the feed is the standard, not a second export.
+
+- Field names on the wire do not change (Q13 d / Q22). `participants[]`
+  stays the source of truth; the context maps it to schema.org `competitor`.
+  `homeTeam` / `awayTeam` remain derivable from `role`, not wire fields.
+- Terms that already *are* schema.org (`startDate`, `dateModified`, `sameAs`,
+  `identifier`, `location`, `familyName`, …) compact to `https://schema.org/…`.
+- OpenBook-only terms (`sequence`, `territory`, `role`, `competitionType`,
+  `cutoffDate`, …) live under
+  `https://openbook-data-standards.github.io/openbook/ns#` via `@vocab`.
+  Publisher-own `id` is **not** mapped to JSON-LD `@id` (it is not an IRI).
+- Stream envelopes (`object` / `action` / `changes`) are OpenBook messages,
+  not schema.org objects. They MAY omit `@context`.
+- Rejected: pointing `@context` at `https://schema.org` alone (unmapped keys
+  become fake schema.org IRIs); a parallel schema.org-only export (two
+  payloads).

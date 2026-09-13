@@ -18,7 +18,10 @@
   "properties": {
     "@context": {},
     "@type": {
-      "type": "string"
+      "type": "string",
+      "examples": [
+        "SportsOrganization"
+      ]
     },
     "openbookVersion": {
       "$ref": "common.schema.json#/$defs/openbookVersion"

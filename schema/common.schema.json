@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/common.schema.json",
   "title": "OpenBook common definitions",
-  "description": "Field names are camelCase and follow schema.org where a property exists (startDate, dateModified, alternateName, sameAs, identifier, superEvent). Every document MAY carry JSON-LD @context / @type.",
+  "description": "Field names are camelCase and follow schema.org where a property exists (startDate, dateModified, alternateName, sameAs, identifier, superEvent). Every document MAY carry JSON-LD @context / @type; the published context is https://openbook-data-standards.github.io/openbook/context.jsonld.",
   "$defs": {
     "openbookVersion": {
       "type": "string",
@@ -54,6 +54,12 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "@type": {
+            "type": "string",
+            "examples": [
+              "PropertyValue"
+            ]
+          },
           "propertyID": {
             "type": "string",
             "examples": [

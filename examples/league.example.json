@@ -1,0 +1,13 @@
+{
+  "@context": "https://openbook-data-standards.github.io/openbook/context.jsonld",
+  "@type": "SportsOrganization",
+  "openbookVersion": "0.3.0-draft",
+  "id": "LG-17",
+  "sequence": 104000,
+  "dateModified": "2026-09-01T09:00:00Z",
+  "name": "Premier League",
+  "sport": "sport:soccer",
+  "territory": "GB-ENG",
+  "competitionType": "league",
+  "sameAs": "https://www.wikidata.org/entity/Q9448"
+}

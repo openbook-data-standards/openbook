@@ -1,5 +1,5 @@
 {
-  "@context": "https://schema.org",
+  "@context": "https://openbook-data-standards.github.io/openbook/context.jsonld",
   "@type": "SportsEvent",
   "openbookVersion": "0.3.0-draft",
   "id": "EVT-88213",
@@ -11,6 +11,7 @@
     "name": "Soccer"
   },
   "league": {
+    "@type": "SportsOrganization",
     "id": "LG-17",
     "name": "Premier League",
     "territory": "GB-ENG",
@@ -31,6 +32,7 @@
   "eventStatus": "scheduled",
   "participants": [
     {
+      "@type": "SportsTeam",
       "id": "T-3",
       "name": "Arsenal",
       "territory": "GB-ENG",
@@ -39,6 +41,7 @@
       "sameAs": "https://www.wikidata.org/entity/Q9617"
     },
     {
+      "@type": "SportsTeam",
       "id": "T-11",
       "name": "Manchester City",
       "territory": "GB-ENG",
@@ -48,6 +51,7 @@
     }
   ],
   "location": {
+    "@type": "Place",
     "name": "Emirates Stadium",
     "addressLocality": "London",
     "territory": "GB-ENG",
@@ -55,6 +59,7 @@
   },
   "identifier": [
     {
+      "@type": "PropertyValue",
       "propertyID": "sportradar",
       "value": "sr:match:8412480"
     }

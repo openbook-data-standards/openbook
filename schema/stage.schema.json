@@ -16,7 +16,10 @@
   "properties": {
     "@context": {},
     "@type": {
-      "type": "string"
+      "type": "string",
+      "examples": [
+        "Event"
+      ]
     },
     "openbookVersion": {
       "$ref": "common.schema.json#/$defs/openbookVersion"

@@ -72,6 +72,12 @@
         "territory": {
           "$ref": "common.schema.json#/$defs/territory"
         },
+        "@type": {
+          "type": "string",
+          "examples": [
+            "SportsOrganization"
+          ]
+        },
         "competitionType": {
           "$ref": "common.schema.json#/$defs/competitionType"
         },
@@ -133,6 +139,13 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "@type": {
+            "type": "string",
+            "examples": [
+              "SportsTeam",
+              "Person"
+            ]
+          },
           "id": {
             "$ref": "common.schema.json#/$defs/ownId"
           },
@@ -161,6 +174,12 @@
       "additionalProperties": false,
       "description": "schema.org Place",
       "properties": {
+        "@type": {
+          "type": "string",
+          "examples": [
+            "Place"
+          ]
+        },
         "name": {
           "type": "string"
         },

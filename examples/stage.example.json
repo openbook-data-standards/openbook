@@ -1,4 +1,6 @@
 {
+  "@context": "https://openbook-data-standards.github.io/openbook/context.jsonld",
+  "@type": "Event",
   "openbookVersion": "0.3.0-draft",
   "id": "ST-QF",
   "sequence": 104010,

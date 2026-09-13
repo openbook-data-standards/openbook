@@ -38,7 +38,12 @@ It standardises the data contract only.
   `sameAs`, `identifier`, `superEvent`, `organizer`, `location`. Small shared
   vocabularies are `*Type` fields: `competitionType`, `participantType`,
   `marketType`, `stageType`, `sourceType`. Documents MAY carry JSON-LD
-  `@context` / `@type`, so an OpenBook document is also valid schema.org data.
+  `@context` / `@type`. The published context is
+  [`https://openbook-data-standards.github.io/openbook/context.jsonld`](https://openbook-data-standards.github.io/openbook/context.jsonld):
+  it maps OpenBook field names onto schema.org types and properties
+  (`SportsEvent`, `SportsTeam`, `Person`, `competitor`, `startDate`, …) and
+  keeps OpenBook-only terms in the OpenBook namespace. A fixture document with
+  that `@context` is the OpenBook payload and is also schema.org JSON-LD.
 - Every object and message carries `openbookVersion`.
 
 ## 3. Identifiers

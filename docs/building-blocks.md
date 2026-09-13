@@ -32,8 +32,11 @@ grouped by what each one is used for, with the reason it was chosen.
   them.
 - **schema.org** `SportsEvent` / `SportsTeam` / `SportsOrganization` /
   `Person` — the sports vocabulary Google structured data uses. OpenBook
-  aligns field names with it where it can (`homeTeam`, `awayTeam`,
-  `startDate`, `location`, `alternateName`). See Q13.
+  aligns field names with it where it can (`startDate`, `location`,
+  `alternateName`; `homeTeam` / `awayTeam` are derived from `role`). The
+  published JSON-LD context
+  ([`../context.jsonld`](../context.jsonld)) maps those terms onto
+  schema.org IRIs (Q13, Q32).
 
 ## Identifiers and schemas
 

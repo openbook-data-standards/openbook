@@ -6,6 +6,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- JSON-LD `@context` at [`context.jsonld`](context.jsonld) (Q32). A fixture
+  (and other core documents) that names that context is OpenBook *and*
+  schema.org JSON-LD. Examples: `fixture`, `participant`, `league`, `stage`.
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and
   **`grade`** (replaces `settlement`; Q27/Q28).
