@@ -5,6 +5,13 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Added
+- Schemas for the objects the spec names but had no schema: `season`, `player`
+  (roster membership), `market` (snapshot/update document), `score` (Q23,
+  proposed) and `settlement` (Q24, proposed).
+- `vocabularies/segments.md` — per-sport segment ids.
+- Examples: `score.example.json`, `settlement.example.json`.
+
 ## [0.3.0-draft] — 2026-09-12
 
 Breaking rename of the live wire around decisions Q14–Q21. Not frozen.

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/market.schema.json",
+  "title": "OpenBook market",
+  "description": "A fixture's market as priced by ONE source \u2014 the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.",
+  "type": "object",
+  "required": [
+    "openbookVersion",
+    "sequence",
+    "dateModified",
+    "fixture",
+    "marketType",
+    "source",
+    "provenance",
+    "status",
+    "outcomes"
+  ],
+  "properties": {
+    "@context": {},
+    "@type": {
+      "type": "string"
+    },
+    "openbookVersion": {
+      "$ref": "common.schema.json#/$defs/openbookVersion"
+    },
+    "sequence": {
+      "$ref": "common.schema.json#/$defs/sequence"
+    },
+    "dateModified": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "fixture": {
+      "$ref": "common.schema.json#/$defs/ownId"
+    },
+    "marketType": {
+      "$ref": "common.schema.json#/$defs/sharedId"
+    },
+    "segment": {
+      "$ref": "common.schema.json#/$defs/sharedId"
+    },
+    "line": {
+      "type": "number"
+    },
+    "source": {
+      "$ref": "common.schema.json#/$defs/ownId"
+    },
+    "provenance": {
+      "$ref": "common.schema.json#/$defs/provenance"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/marketStatus"
+    },
+    "isMain": {
+      "type": "boolean",
+      "description": "The main line among alternates."
+    },
+    "outcomes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "side"
+        ],
+        "additionalProperties": false,
+        "patternProperties": {
+          "^x_": {}
+        },
+        "properties": {
+          "side": {
+            "$ref": "common.schema.json#/$defs/side"
+          },
+          "participant": {
+            "$ref": "common.schema.json#/$defs/ownId",
+            "description": "Required when side = participant."
+          },
+          "odds": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "exclusiveMinimum": 1.0,
+            "description": "Decimal. null = removed."
+          },
+          "line": {
+            "type": "number"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x_": {}
+  },
+  "additionalProperties": false
+}

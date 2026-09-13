@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/score.schema.json",
+  "title": "OpenBook score (proposed, Q23)",
+  "description": "The live state of a fixture: status, current segment, clock, and scores per participant overall and per segment. One producer, one shape, one signal (score/update).",
+  "type": "object",
+  "required": [
+    "openbookVersion",
+    "sequence",
+    "dateModified",
+    "fixture",
+    "eventStatus",
+    "scores"
+  ],
+  "properties": {
+    "@context": {},
+    "@type": {
+      "type": "string"
+    },
+    "openbookVersion": {
+      "$ref": "common.schema.json#/$defs/openbookVersion"
+    },
+    "sequence": {
+      "$ref": "common.schema.json#/$defs/sequence"
+    },
+    "dateModified": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "fixture": {
+      "$ref": "common.schema.json#/$defs/ownId"
+    },
+    "eventStatus": {
+      "$ref": "common.schema.json#/$defs/eventStatus"
+    },
+    "segment": {
+      "$ref": "common.schema.json#/$defs/sharedId",
+      "description": "The segment currently in progress."
+    },
+    "clock": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Elapsed and remaining are integer seconds within the current segment; display is the broadcast string.",
+      "properties": {
+        "elapsed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "remaining": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "running": {
+          "type": "boolean"
+        },
+        "display": {
+          "type": "string",
+          "examples": [
+            "45:00+2",
+            "Q3 07:12"
+          ]
+        }
+      }
+    },
+    "scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "participant",
+          "total"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "participant": {
+            "$ref": "common.schema.json#/$defs/ownId"
+          },
+          "total": {
+            "type": "number"
+          },
+          "bySegment": {
+            "type": "object",
+            "description": "segment id \u2192 score in that segment",
+            "additionalProperties": {
+              "type": "number"
+            }
+          },
+          "stats": {
+            "type": "object",
+            "description": "Sport-specific counts the publisher carries (cards, corners, fouls, hits, aces\u2026).",
+            "additionalProperties": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "server": {
+      "$ref": "common.schema.json#/$defs/ownId",
+      "description": "Racket sports: participant serving."
+    }
+  },
+  "patternProperties": {
+    "^x_": {}
+  },
+  "additionalProperties": false
+}

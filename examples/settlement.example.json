@@ -1,0 +1,30 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 106001,
+  "datePublished": "2026-09-19T16:02:40Z",
+  "publisher": "acme-feeds",
+  "object": "settlement",
+  "action": "create",
+  "sport": "soccer",
+  "id": "EVT-88213",
+  "changes": {
+    "settlementId": "STL-77120",
+    "fixture": "EVT-88213",
+    "source": "acme-book",
+    "marketType": "market:total",
+    "segment": "segment:soccer:full-time",
+    "line": 2.5,
+    "dateSettled": "2026-09-19T16:02:40Z",
+    "basis": "final score 2-1",
+    "outcomes": [
+      {
+        "side": "over",
+        "result": "win"
+      },
+      {
+        "side": "under",
+        "result": "lose"
+      }
+    ]
+  }
+}
