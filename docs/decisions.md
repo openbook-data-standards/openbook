@@ -1011,3 +1011,14 @@ other publishers' discovery URLs on this publisher's discovery document;
 leave this unsaid because Q49 named one URL per publisher.
 
 **Supersedes:** none of Q1/Q49.
+
+## Q94 — Protocol-fit pass closed — decided
+
+This walk of encoding, wrappers, patch language, ISO 20022, FIX session,
+and discovery index is **closed**. Further questions are a **new area**,
+not more take/don't-take pins from that comparison list.
+
+Rejected: keep minting never-X questions from memory; unpack another
+protocol in this question.
+
+**Supersedes:** none.

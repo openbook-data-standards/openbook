@@ -11,6 +11,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `short_name` / `aliases` / `name_latin`).
 
 ### Added
+- **Q94** — protocol-fit pass closed; next work is a new area, not more
+  take/don't-take pins from that comparison list
+  ([`docs/decisions.md`](docs/decisions.md)).
 - **Q93** — no spec-owned multi-publisher index; one discovery URL per
   publisher (Q49); an aggregator is itself a publisher (Q1)
   ([`docs/decisions.md`](docs/decisions.md)).
