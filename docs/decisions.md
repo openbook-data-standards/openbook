@@ -745,3 +745,12 @@ that language. Other languages use `names`. schema.org `inLanguage`.
 Rejected: `name` is always English; no feed language.
 
 **Supersedes:** none of Q11.
+
+## Q69 — Place address — decided
+
+`addressLocality` (city string) + `territory` (**Q10**). No street, no
+postal code. City name has no ISO; GeoNames remains optional (**Q62**).
+
+Rejected: full PostalAddress; required UN/LOCODE.
+
+**Supersedes:** none of Q62.

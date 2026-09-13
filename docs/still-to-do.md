@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q68**. This patch is log only. Do not change
+Questions recorded through **Q69**. This patch is log only. Do not change
 schemas until asked.
 
 ## Later PRs (decided, not built)
@@ -17,6 +17,6 @@ schemas until asked.
 
 - (none parked from this walk)
 
-## Done (Q32–Q62)
+## Done (Q32–Q68)
 
-Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place · **Q64** IANA `timeZone` · **Q66** fixture `name` · **Q68** `inLanguage`.
+Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place · **Q64** IANA `timeZone` · **Q66** fixture `name` · **Q68** `inLanguage` · **Q69** city+territory.
