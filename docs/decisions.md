@@ -879,3 +879,13 @@ Not in this omit (later questions): pitch **surface**, **seed**, racing
 Rejected: keep asking those encyclopedia fields one by one.
 
 **Supersedes:** none; does not reopen Q74/Q75.
+
+## Q84 — Playing surface — decided
+
+Optional `surface` on the **fixture**: `grass` · `clay` · `hard` · `turf` ·
+`ice` · `indoor` · … Growable vocab (**Q34**). No ISO. This match’s court,
+not the club’s usual lawn.
+
+Rejected: Place only; omit; required on every fixture.
+
+**Supersedes:** none of Q62. Not in the Q82 omit list.
