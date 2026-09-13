@@ -18,8 +18,9 @@ the market taxonomy no one else has published.
 
 ## Rules that don't bend
 
-- **Ids are stable.** Never re-point or reuse a published canonical id; deprecate
-  instead.
+- **Ids, list-values and field names are stable** once shipped in a frozen
+  version (Q35). Never re-point or reuse a published name; deprecate instead.
+  Retired names go in [`vocabularies/deprecated.md`](vocabularies/deprecated.md).
 - **No abbreviations** in canonical names (`reference_sport`, not `ref_sport`).
 - **No provider ids as canonical ids.** A provider mapping goes on the `source`
   record.

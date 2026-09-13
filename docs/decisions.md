@@ -404,3 +404,21 @@ Rejected: catch-all but reject surprise values; no catch-all; closed lists
 as breaking.
 
 **Supersedes:** nothing; refines Q4 vocabularies and §9.
+
+## Q35 — Stability — decided (permanent; never reuse)
+
+Once shipped in a **frozen** version, an id, list-value, or field name is never
+removed, moved, re-typed, or **reassigned**. Fixes are new aliases. Retired
+names live in [`../vocabularies/deprecated.md`](../vocabularies/deprecated.md)
+(empty until something is retired). “Never reuse” survives MAJOR: the string
+is not given a new meaning. Removal of a name from the *live* set is a later
+deprecation-window question.
+
+Cautionary: ISO 3166 `CS` reuse. Model: Unicode stability.
+
+Rejected: ids-only; reuse allowed at MAJOR; leave CONTRIBUTING as ids-only.
+
+**Consequences:** pre-1.0 `-draft` is not this promise yet (`VERSIONING.md`).
+
+**Supersedes:** CONTRIBUTING “ids are stable” by extending it to field names
+and list-values.

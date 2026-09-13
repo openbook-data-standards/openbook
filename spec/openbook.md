@@ -48,7 +48,9 @@ Sports, segments, market types and sides use ids owned by the standard, in two
 equivalent spellings: **short on the wire** (`sport:soccer`, `market:total`,
 `segment:soccer:1st-half`, `side:home`) and **formal in the spec**
 (`urn:openbook:sport:soccer`). Lowercase, `:`-separated, `-` inside a segment.
-Once published, never re-pointed; only deprecated.
+Once published in a frozen version, never re-pointed, removed, or
+**reassigned**; only deprecated (Q35). Field names and list-values take the
+same promise.
 
 ### 3.2 Publisher-own ids — the entities
 Leagues, seasons, stages, fixtures, participants, players and venues carry the
