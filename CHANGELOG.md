@@ -67,6 +67,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q77** — no kit/colour fields.
 - **Q78** — no home stadium on the team; match venue is fixture location.
 - **Q79** — no coach/manager object for now.
+- **Q80** — match XI is a later live object; `player` stays roster.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 

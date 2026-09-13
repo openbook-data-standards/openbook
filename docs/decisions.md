@@ -840,3 +840,13 @@ reuse names).
 Rejected: optional or required coach now.
 
 **Supersedes:** none.
+
+## Q80 — Match lineup — decided (later live object)
+
+`player` is **roster** (season membership). Starting XI is a **later live
+object**, not fields on the catalog fixture.
+
+Rejected: starter ids on the fixture now; never a match XI.
+
+**Supersedes:** none. Spec already says `player` is for lineups/props; match
+XI is not the roster row.
