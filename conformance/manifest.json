@@ -18,6 +18,10 @@
     {
       "path": "conformance/invalid/missing-sequence.json",
       "reason": "every message carries sequence"
+    },
+    {
+      "path": "conformance/invalid/odds-zero.json",
+      "reason": "odds 0 is not a takedown; use marketStatus and/or Merge Patch null (Q43)"
     }
   ]
 }

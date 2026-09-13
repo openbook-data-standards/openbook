@@ -525,3 +525,16 @@ Rejected: deferring AsyncAPI as well; shipping CloudEvents in this change.
 
 **Supersedes:** building-blocks “CloudEvents under consideration” — now
 explicitly deferred.
+
+## Q43 — Off the board is marketStatus; tombstone is null; never odds 0 — decided
+
+Taking a market off the board is **`marketStatus`** (`suspended` · `closed`
+· `void`). Last odds MAY remain. Removing an outcome or `odds` field from
+the document is Merge Patch **`null`** (Q33 tombstone). `odds: "0"` is
+not a takedown; it is an illegal price (Q39).
+
+Rejected: requiring odds to be nulled whenever status is not `open`;
+`"0"` as a takedown synonym.
+
+**Supersedes:** none of Q33; names how takedown vs tombstone share the
+wire.

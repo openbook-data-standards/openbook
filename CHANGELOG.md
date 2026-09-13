@@ -27,6 +27,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q42** — AsyncAPI describes the push streams
   ([`spec/asyncapi.yaml`](spec/asyncapi.yaml)); CloudEvents and DNS-style
   ids deferred.
+- **Q43** — off the board is `marketStatus`; outcome removal is Merge Patch
+  `null`; `odds: "0"` is not a takedown.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

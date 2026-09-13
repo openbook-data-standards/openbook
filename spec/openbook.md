@@ -166,7 +166,10 @@ Two independent implementations (a producer and a consumer; not
   second down; a validator MUST reject one.
 - **Market status** — *can you bet it?* Per market per source: open ·
   suspended · closed · void, via `market/update`. Grading is not a market
-  status; it is the `grade` object.
+  status; it is the `grade` object. **Taking a market off the board is
+  `marketStatus`** (`suspended` · `closed` · `void`). Last odds MAY stay on
+  the document. Dropping an outcome or price from the snapshot is Merge
+  Patch **`null`** (tombstone). Never a sentinel price (`odds: "0"`).
 
 Rules: `eventStatus: ended` ⇒ every segment `down`. A market whose segment is
 `down` MUST be `closed` or `void`. A `grade` MAY only reference a `down`
