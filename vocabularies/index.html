@@ -12,8 +12,7 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
-  <a class="logo" href="../">
-    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <a class="logo" href="../"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
       <rect class="ink" x="2" y="8" width="4" height="4"/>
       <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
       <rect class="ink" x="2" y="20" width="4" height="4"/>
@@ -21,14 +20,15 @@
       <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
       <rect class="ink" x="8" y="20" width="8" height="4"/>
     </svg>
-    OpenBook
-  </a>
+    OpenBook</a>
   <nav>
-    <a href="../spec.html">Spec</a><a href="../vocabularies/" aria-current="page">Vocabularies</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    <a href="../spec.html">Spec</a>
+    <a href="../vocabularies/" aria-current="page">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="../">Home</a> · Vocabularies</p><nav class="toc"><strong>Contents</strong><a href="#market-types">Market types</a><a href="#sports">Sports</a><a href="#segments">Segments</a></nav><article class="doc"><h1>Controlled vocabularies</h1><p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments are on this page.</p><section id="market-types"><h2 id="openbook-controlled-vocabulary-market-types">OpenBook controlled vocabulary — market types</h2>
+<p class="crumb"><a href="../">Home</a> · Vocabularies</p><nav class="page-toc"><strong>On this page</strong><a href="#market-types">Market types</a><a href="#sports">Sports</a><a href="#segments">Segments</a></nav><article class="doc"><h1>Controlled vocabularies</h1><p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments are on this page.</p><section id="market-types"><h2 id="openbook-controlled-vocabulary-market-types">OpenBook controlled vocabulary — market types</h2>
 <p>Version <code>0.1.0-draft</code>. <strong>This is the core contribution of OpenBook</strong> — the cross-vendor market taxonomy that does not exist anywhere else today. Each entry is a canonical <code>market:*</code> id, its shape, and the sides its outcomes take. Segments (<code>1st-half</code>, <code>inning-1</code>, …) are applied separately via <code>reference_segment</code>, not baked into the market id.</p>
 <p>Format: <code>market:&lt;id&gt;</code> — Name · shape · sides.</p>
 <h2 id="main-lines">Main lines</h2>
