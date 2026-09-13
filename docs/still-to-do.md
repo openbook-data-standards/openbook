@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q84**. This patch is log only. Do not change
+Questions recorded through **Q85**. This patch is log only. Do not change
 schemas until asked.
 
 ## Later PRs (decided, not built)
@@ -10,7 +10,7 @@ schemas until asked.
 - **Q11/Q57–Q64 wire** — schema may still disagree (`location`/`nickname`/
   `registeredName`, team-only `abbreviation`, publisher `registeredName`,
   Place `timeZone`, publisher `inLanguage`, WGS 84, league sex category,
-  league ageGroup, fixture `surface`).
+  league ageGroup, fixture `surface`, fixture participant `seed`).
 - Wire/schema for Q46–Q49 (`snapshotComplete`, `heartbeat` / `heartbeatMs`,
   410, `conflated`, `ttl`, discovery JSON).
 - **Q80** — match lineup live object (not this log patch).
@@ -19,6 +19,6 @@ schemas until asked.
 
 - (none parked from this walk)
 
-## Done (Q32–Q84)
+## Done (Q32–Q85)
 
-Q32–Q55 · **Q11/Q57–Q82** catalog · **Q84** fixture surface.
+Q32–Q55 · **Q11/Q57–Q82** catalog · **Q84** fixture surface · **Q85** seed.

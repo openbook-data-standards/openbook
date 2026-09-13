@@ -72,6 +72,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q82** — omit encyclopedia fields (weather, TV, bios extras, stats dumps,
   etc.); Q74/Q75 stay omit.
 - **Q84** — optional fixture `surface` (grass/clay/hard/…).
+- **Q85** — optional `seed` on the fixture participant row.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 

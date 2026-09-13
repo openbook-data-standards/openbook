@@ -889,3 +889,12 @@ not the club’s usual lawn.
 Rejected: Place only; omit; required on every fixture.
 
 **Supersedes:** none of Q62. Not in the Q82 omit list.
+
+## Q85 — Tournament seed — decided
+
+Optional integer `seed` on the **fixture participant** row. This draw, not
+the person. No ISO.
+
+Rejected: seed on the catalog person; omit; seed only on the stage.
+
+**Supersedes:** none of Q22.
