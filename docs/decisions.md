@@ -797,3 +797,11 @@ No date of birth on the wire. Age-grade competitions are **Q73**. PII.
 Rejected: optional or required DOB.
 
 **Supersedes:** none.
+
+## Q75 — Height and weight — decided (omit)
+
+No height or weight. Shirt `number` and `position` stay on `player`.
+
+Rejected: optional SI measurements; required.
+
+**Supersedes:** none.

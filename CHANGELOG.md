@@ -62,6 +62,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q72** — optional league category men/women/mixed/open; not on the person.
 - **Q73** — optional league `ageGroup` (U21, …); growable vocab.
 - **Q74** — no date of birth on the wire.
+- **Q75** — no height/weight; number/position stay on `player`.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 
