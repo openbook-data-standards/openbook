@@ -110,6 +110,8 @@ footer strong{color:var(--fg);display:block;margin-bottom:6px}
 @media(max-width:760px){.schema-list{grid-template-columns:repeat(2,1fr)}}
 .schema-list a{display:block;border:1px solid var(--line);border-radius:4px;padding:10px 12px;text-decoration:none;color:var(--fg);font-family:"SFMono-Regular",Menlo,monospace;font-size:12px;background:var(--fill)}
 .schema-list a:hover{border-color:var(--accent);color:var(--accent)}
+.res{margin:10px 0 0;padding-left:18px;color:var(--fg2);font-size:14px}
+.res li{margin:7px 0}
 .skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#fff;padding:8px 12px}
 .skip:focus{left:8px;z-index:20}
 
