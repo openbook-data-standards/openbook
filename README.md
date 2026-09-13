@@ -6,7 +6,7 @@
 
 <p>
 <a href="https://github.com/openbook-data-standards/openbook/actions/workflows/validate.yml"><img alt="validate" src="https://github.com/openbook-data-standards/openbook/actions/workflows/validate.yml/badge.svg"></a>
-<img alt="version" src="https://img.shields.io/badge/spec-v0.3.0--draft-9B1C1C">
+<img alt="version" src="https://img.shields.io/badge/spec-v0.3.0--draft-276EF1">
 <img alt="status" src="https://img.shields.io/badge/status-draft-A8620A">
 <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/spec%20license-CC%20BY%204.0-000000"></a>
 </p>

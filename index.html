@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenBook — an open standard for sportsbook data</title>
 <meta name="description" content="OpenBook is an open, vendor-neutral standard for sportsbook & gambling data: a reference model, a live wire, and controlled vocabularies. One format any publisher emits odds in.">
-<meta name="theme-color" content="#e6d7b8">
+<meta name="theme-color" content="#0B1220">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/logo-icon.svg">
@@ -21,16 +21,19 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="./">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <nav>
     <a href="spec.html">Spec</a>
     <a href="vocabularies/">Vocabularies</a>
-    <a href="schemas.html">Schemas</a>
-    <a href="examples.html">Examples</a>
-    <a href="decisions.html">Decisions</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
@@ -38,14 +41,13 @@
 <main id="main">
 <div class="wrap">
 <section class="hero" style="border-top:none">
-  <span class="tag">v0.3.0-draft · the sheet the board is written on</span>
-  <h1>The book was paper. The <span class="a">open book</span> is the feed.</h1>
-  <p>Odds used to move on a ticket, in a room where everybody knew the clerk. OpenBook is that sheet as a standard — a catalogue, a live wire, and the names of the bets — so any house can publish and any desk can read.</p>
+  <h1>One open standard for sportsbook data.</h1>
+  <p>A reference model, a live wire, and controlled vocabularies — the format any sportsbook or feed emits odds in. Read it once, consume every publisher.</p>
   <div class="cta">
     <a class="btn primary" href="spec.html">Read the specification</a>
     <a class="btn secondary" href="#start">Get started</a>
-    <a class="btn secondary" href="schemas.html">JSON Schemas</a>
   </div>
+  <p class="ver"><a href="versioning.html">v0.3.0-draft</a></p>
   <div class="stats">
     <div><div class="n">16</div><div class="l">JSON schemas</div></div>
     <div><div class="n">25+</div><div class="l">market types</div></div>
@@ -57,7 +59,7 @@
 
 <section id="who" style="border-top:none;padding-top:0">
   <h2>Who it is for</h2>
-  <p class="lede">Same sheet whether you take the action, carry other houses, or read the prices. The engine stays in the back. The ticket is what travels.</p>
+  <p class="lede">Same format whether you run a book, carry many books, or consume odds. OpenBook is the data contract, not a pricing engine.</p>
   <div class="cols3">
     <div class="card"><h3>Sportsbooks</h3><p>Publish your own prices without inventing a private dump format. Keep the engine, models and pricing proprietary.</p></div>
     <div class="card"><h3>Feeds</h3><p>Carry many sources in one stream. Every price names its source and how it was obtained — licensed, scraped, or derived.</p></div>
@@ -78,8 +80,8 @@
 
 <section id="board" style="padding:0 0 56px;border-top:none">
   <div class="wrap">
-    <h2>A slip, not a dashboard.</h2>
-    <p class="lede">Fixture-first, the way a ticket names one game. Markets, prices and grades hang off that fixture. This is an example, not a live feed.</p>
+    <h2>Looks like a sportsbook. Travels as data.</h2>
+    <p class="lede">The live wire is fixture-first. One subscription follows a match; markets, prices and grades hang off that fixture. This board is an example, not a live feed.</p>
     <div class="board">
       <div class="hd">
         <div>
@@ -171,7 +173,7 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
     <span class="pill">segment:soccer:1st-half</span><span class="pill">segment:baseball:inning-1</span><span class="pill">segment:tennis:set-2</span>
     <span class="pill">side:over</span><span class="pill">sport:athletics</span>
   </div>
-  <p style="margin-top:22px"><a href="vocabularies/">Browse the vocabularies →</a></p>
+  <p style="margin-top:22px"><a href="vocabularies/">Market types, sports and segments →</a></p>
 </section>
 
 <section id="schemas">
@@ -194,19 +196,39 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
     <a href="schemas.html#season">season</a>
     <a href="schemas.html#sport">sport</a>
     <a href="schemas.html#stage">stage</a>
+    <a href="schemas.html#examples">examples</a>
   </div>
 </section>
 
-<section id="docs">
-  <h2>Documentation</h2>
-  <p class="lede">Normative spec first; decisions and patterns sit beside it so the why does not live only in chat history.</p>
-  <div class="cols3">
-    <div class="card"><h3><a href="spec.html">Specification</a></h3><p>The document. BCP 14 language. Where the spec and a schema disagree on a shipped field, the schema wins.</p></div>
-    <div class="card"><h3><a href="decisions.html">Decision log</a></h3><p>Every rule and why it exists. A newer decision wins until the spec and schemas catch up.</p></div>
-    <div class="card"><h3><a href="building-blocks.html">Building blocks</a></h3><p>CLDR, Wikidata, schema.org, JSON Merge Patch, MQTT, OpenAPI, AsyncAPI — what we reuse instead of inventing.</p></div>
-    <div class="card"><h3><a href="industry-patterns.html">Industry patterns</a></h3><p>How existing books and feeds already slice markets, segments and settlement — the map, not the standard.</p></div>
-    <div class="card"><h3><a href="governance.html">Governance</a></h3><p>Open spec, private engines. How change is proposed, and what will never be in scope.</p></div>
-    <div class="card"><h3><a href="versioning.html">Versioning</a></h3><p>SemVer for the standard. How drafts become 1.0, and how vocabularies deprecate instead of reuse.</p></div>
+<section id="resources">
+  <h2>Resources</h2>
+  <p class="lede">Readable copies of this repo, and the standards OpenBook is shaped after. We don't mint what already exists.</p>
+  <div class="cols2">
+    <div>
+      <h3>This standard</h3>
+      <ul class="res">
+        <li><a href="spec.html">Specification</a></li>
+        <li><a href="vocabularies/">Vocabularies</a></li>
+        <li><a href="schemas.html">JSON Schemas &amp; examples</a></li>
+        <li><a href="decisions.html">Decision log</a></li>
+        <li><a href="building-blocks.html">Building blocks</a></li>
+        <li><a href="industry-patterns.html">Industry patterns</a></li>
+        <li><a href="versioning.html">Versioning</a> · <a href="contributing.html">Contributing</a> · <a href="changelog.html">Changelog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>What it stands on</h3>
+      <ul class="res">
+        <li><a href="https://gtfs.org/">GTFS</a> — static catalog + live diffs</li>
+        <li><a href="https://www.fixtrading.org/standards/">FIX Protocol</a> — open financial messaging</li>
+        <li><a href="https://www.iso20022.org/">ISO 20022</a> — financial message repository</li>
+        <li><a href="https://json-schema.org/">JSON Schema</a> · <a href="https://spec.openapis.org/oas/latest.html">OpenAPI</a> · <a href="https://www.asyncapi.com/">AsyncAPI</a></li>
+        <li><a href="https://schema.org/">schema.org</a> · <a href="https://www.wikidata.org/">Wikidata</a></li>
+        <li><a href="https://mqtt.org/">MQTT</a> (ISO/IEC 20922) · <a href="https://cloudevents.io/">CloudEvents</a></li>
+        <li><a href="https://www.rfc-editor.org/rfc/rfc7386.html">RFC 7386</a> Merge Patch · <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a></li>
+        <li><a href="https://iabtechlab.com/standards/openrtb/">OpenRTB</a> — open spec, private engines</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -230,39 +252,22 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <div>OpenBook Data Standards — an open standard for sportsbook &amp; gambling data</div>
-  <div class="cols">
-    <div>
-      <strong>Standard</strong>
-      <div class="row">
-        <a href="spec.html">Spec</a>
-        <a href="schemas.html">Schemas</a>
-        <a href="vocabularies/">Vocabularies</a>
-        <a href="examples.html">Examples</a>
-      </div>
-    </div>
-    <div>
-      <strong>Project</strong>
-      <div class="row">
-        <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
-        <a href="governance.html">Governance</a>
-        <a href="contributing.html">Contributing</a>
-        <a href="https://github.com/openbook-data-standards/openbook/blob/main/LICENSE">CC BY 4.0</a>
-      </div>
-    </div>
-    <div>
-      <strong>Brand</strong>
-      <div class="row">
-        <a href="assets/logo.svg">Lockup</a>
-        <a href="assets/logo-mark.svg">Mark</a>
-        <a href="assets/logo-icon.svg">Icon</a>
-        <a href="assets/favicon.svg">Favicon</a>
-      </div>
-    </div>
+  <div class="row" style="margin-top:12px">
+    <a href="spec.html">Spec</a>
+    <a href="vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    <a href="https://github.com/openbook-data-standards/openbook/blob/main/LICENSE">CC BY 4.0</a>
   </div>
 </div></footer>
 </body>

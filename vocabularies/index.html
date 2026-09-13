@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vocabularies — OpenBook</title>
-<meta name="theme-color" content="#e6d7b8">
+<meta name="theme-color" content="#0B1220">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/vocabularies/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
@@ -13,22 +13,150 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="../">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <nav>
-    <a href="../spec.html">Spec</a><a href="../vocabularies/" aria-current="page">Vocabularies</a><a href="../schemas.html">Schemas</a><a href="../examples.html">Examples</a><a href="../decisions.html">Decisions</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    <a href="../spec.html">Spec</a><a href="../vocabularies/" aria-current="page">Vocabularies</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="../">Home</a> · Vocabularies</p><article class="doc"><h1>Controlled vocabularies</h1><p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec.</p><p><a href="market-types.html"><strong>Market types</strong></a> — What can be bet: moneyline, spread, total, player props, outrights.</p><p><a href="sports.html"><strong>Sports</strong></a> — Canonical sport:* ids.</p><p><a href="segments.html"><strong>Segments</strong></a> — Slices inside a match: halves, quarters, innings, sets.</p></article>
+<p class="crumb"><a href="../">Home</a> · Vocabularies</p><nav class="toc"><strong>Contents</strong><a href="#market-types">Market types</a><a href="#sports">Sports</a><a href="#segments">Segments</a></nav><article class="doc"><h1>Controlled vocabularies</h1><p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments are on this page.</p><section id="market-types"><h2 id="openbook-controlled-vocabulary-market-types">OpenBook controlled vocabulary — market types</h2>
+<p>Version <code>0.1.0-draft</code>. <strong>This is the core contribution of OpenBook</strong> — the cross-vendor market taxonomy that does not exist anywhere else today. Each entry is a canonical <code>market:*</code> id, its shape, and the sides its outcomes take. Segments (<code>1st-half</code>, <code>inning-1</code>, …) are applied separately via <code>reference_segment</code>, not baked into the market id.</p>
+<p>Format: <code>market:&lt;id&gt;</code> — Name · shape · sides.</p>
+<h2 id="main-lines">Main lines</h2>
+<ul>
+<li><code>market:moneyline</code> — Moneyline · binary/n-way · home, away, (draw)</li>
+<li><code>market:spread</code> — Point Spread / Handicap · handicap · home, away</li>
+<li><code>market:total</code> — Total (Over/Under) · over-under · over, under</li>
+<li><code>market:team-total</code> — Team Total · over-under · over, under (per participant)</li>
+<li><code>market:draw-no-bet</code> — Draw No Bet · binary · home, away</li>
+<li><code>market:double-chance</code> — Double Chance · n-way · home-or-draw, away-or-draw, home-or-away</li>
+</ul>
+<h2 id="score-props">Score props</h2>
+<ul>
+<li><code>market:correct-score</code> — Correct Score · correct-score · participant</li>
+<li><code>market:both-teams-to-score</code> — Both Teams To Score · yes-no · yes, no</li>
+<li><code>market:odd-even-total</code> — Total Odd/Even · yes-no · odd, even</li>
+<li><code>market:winning-margin</code> — Winning Margin · n-way · participant</li>
+<li><code>market:race-to</code> — Race To (N points) · binary · home, away</li>
+</ul>
+<h2 id="game-props">Game props</h2>
+<ul>
+<li><code>market:first-to-score</code> — First To Score · n-way · home, away, none</li>
+<li><code>market:will-there-be-overtime</code> — Overtime Yes/No · yes-no · yes, no</li>
+<li><code>market:half-time-full-time</code> — Half-Time/Full-Time · n-way · participant</li>
+</ul>
+<h2 id="player-props">Player props</h2>
+<ul>
+<li><code>market:player-points</code> — Player Points · over-under · over, under</li>
+<li><code>market:player-assists</code> — Player Assists · over-under · over, under</li>
+<li><code>market:player-rebounds</code> — Player Rebounds · over-under · over, under</li>
+<li><code>market:player-anytime-scorer</code> — Anytime Scorer · yes-no · yes, no</li>
+<li><code>market:player-passing-yards</code> — Passing Yards · over-under · over, under</li>
+<li><code>market:player-shots-on-target</code> — Shots On Target · over-under · over, under</li>
+</ul>
+<h2 id="outrights">Outrights</h2>
+<ul>
+<li><code>market:outright-winner</code> — Tournament / Outright Winner · n-way · participant</li>
+<li><code>market:to-make-final</code> — To Reach The Final · yes-no · yes, no</li>
+<li><code>market:group-winner</code> — Group Winner · n-way · participant</li>
+</ul>
+<h2 id="combinations">Combinations</h2>
+<ul>
+<li><code>market:same-game-parlay</code> — Same-Game Parlay · composite · (references other market outcomes)</li>
+<li><code>market:parlay</code> — Parlay / Accumulator · composite · (cross-fixture legs)</li>
+<li><code>market:unknown</code> — Catch-all when the market type is not in this list (Q34). Consumers MUST accept unrecognised <code>market:*</code> values.</li>
+</ul>
+<hr>
+<h3 id="notes">Notes</h3>
+<ul>
+<li><strong>Shape</strong> drives how a client renders and how a settlement grades — a <code>handicap</code> market always has a <code>line</code>; an <code>over-under</code> always has <code>over</code>/<code>under</code> outcomes and a <code>line</code>; <code>n-way</code> enumerates <code>participant</code> outcomes.</li>
+<li>A concrete priced selection is identified by <code>(fixture, marketType, segment, line, side)</code> — see the odds_change schema.</li>
+<li>This list is deliberately small in v0.1. It grows through <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>, with stable ids.</li>
+</ul><p class="source">Source: vocabularies/market_types.md</p></section><section id="sports"><h2 id="openbook-controlled-vocabulary-sports">OpenBook controlled vocabulary — sports</h2>
+<p>Version <code>0.1.0-draft</code>. Each entry is a canonical <code>sport:*</code> id and its display name. Additions go through the process in <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>; ids are stable and never re-pointed once published.</p>
+<ul>
+<li><code>sport:soccer</code> — Soccer</li>
+<li><code>sport:basketball</code> — Basketball</li>
+<li><code>sport:baseball</code> — Baseball</li>
+<li><code>sport:american-football</code> — American Football</li>
+<li><code>sport:ice-hockey</code> — Ice Hockey</li>
+<li><code>sport:tennis</code> — Tennis</li>
+<li><code>sport:golf</code> — Golf</li>
+<li><code>sport:mma</code> — Mixed Martial Arts</li>
+<li><code>sport:boxing</code> — Boxing</li>
+<li><code>sport:cricket</code> — Cricket</li>
+<li><code>sport:rugby-union</code> — Rugby Union</li>
+<li><code>sport:rugby-league</code> — Rugby League</li>
+<li><code>sport:volleyball</code> — Volleyball</li>
+<li><code>sport:table-tennis</code> — Table Tennis</li>
+<li><code>sport:esports</code> — Esports</li>
+<li><code>sport:athletics</code> — Athletics (track & field)</li>
+<li><code>sport:motorsport</code> — Motorsport</li>
+<li><code>sport:unknown</code> — Catch-all when the sport is not in this list (Q34). Publishers SHOULD use this rather than inventing an id. Consumers MUST still accept unrecognised <code>sport:*</code> values.</li>
+</ul>
+<h2 id="disciplines-sub-sport-granularity">Disciplines (sub-sport granularity)</h2>
+<p>Some sports carry disciplines beneath them. Athletics is the worked example — the point is that OpenBook names them readably, where a source like the Olympic Data Feed uses opaque codes (<code>ATH</code>, <code>ATM012</code>):</p>
+<ul>
+<li><code>athletics:100m</code></li>
+<li><code>athletics:110m-hurdles</code></li>
+<li><code>athletics:long-jump</code></li>
+<li><code>athletics:high-jump</code></li>
+<li><code>athletics:marathon</code></li>
+<li><code>athletics:decathlon</code></li>
+<li><code>athletics:4x100m-relay</code></li>
+</ul>
+<p>A multi-sport Games (the Olympics) is a <strong>competition</strong>, not a sport: <code>league:athletics:INT:olympics</code> with a season per Games (<code>season:league:athletics:INT:olympics:2024-paris</code>), and one league per sport contested.</p><p class="source">Source: vocabularies/sports.md</p></section><section id="segments"><h2 id="openbook-controlled-vocabulary-segments">OpenBook controlled vocabulary — segments</h2>
+<p>Version <code>0.3.0-draft</code>. A <strong>segment</strong> is a slice *inside a match*. Ids are <code>segment:&lt;sport&gt;:&lt;slice&gt;</code>; the formal form is <code>urn:openbook:segment:&lt;sport&gt;:&lt;slice&gt;</code>. Every sport has <code>full-time</code> (the whole contest as graded, including any overtime rules the league's <code>ruleset</code> states) and <code>regulation</code> where the distinction matters. Vendors number these differently (Pinnacle period 0 is the full contest — except in hockey); OpenBook names them.</p>
+<h2 id="soccer-segment-soccer">Soccer — <code>segment:soccer:</code></h2>
+<p><code>full-time</code> · <code>1st-half</code> · <code>2nd-half</code> · <code>regulation</code> · <code>extra-time</code> · <code>extra-time-1st-half</code> · <code>extra-time-2nd-half</code> · <code>penalties</code></p>
+<h2 id="basketball-segment-basketball">Basketball — <code>segment:basketball:</code></h2>
+<p><code>full-time</code> · <code>regulation</code> · <code>1st-half</code> · <code>2nd-half</code> · <code>1st-quarter</code> · <code>2nd-quarter</code> · <code>3rd-quarter</code> · <code>4th-quarter</code> · <code>overtime</code></p>
+<h2 id="american-football-segment-american-football">American football — <code>segment:american-football:</code></h2>
+<p><code>full-time</code> · <code>regulation</code> · <code>1st-half</code> · <code>2nd-half</code> · <code>1st-quarter</code> · <code>2nd-quarter</code> · <code>3rd-quarter</code> · <code>4th-quarter</code> · <code>overtime</code></p>
+<h2 id="ice-hockey-segment-ice-hockey">Ice hockey — <code>segment:ice-hockey:</code></h2>
+<p><code>full-time</code> (OT and shootout included) · <code>regulation</code> (60 minutes) · <code>1st-period</code> · <code>2nd-period</code> · <code>3rd-period</code> · <code>overtime</code> · <code>shootout</code></p>
+<h2 id="baseball-segment-baseball">Baseball — <code>segment:baseball:</code></h2>
+<p><code>full-time</code> · <code>1st-half</code> (innings 1–5) · <code>inning-1</code> … <code>inning-9</code> · <code>extra-innings</code> · <code>first-7-innings</code></p>
+<h2 id="tennis-segment-tennis">Tennis — <code>segment:tennis:</code></h2>
+<p><code>full-time</code> · <code>set-1</code> … <code>set-5</code> · <code>set-&lt;n&gt;-game-&lt;m&gt;</code> (per-game markets) · <code>tiebreak-&lt;n&gt;</code></p>
+<h2 id="volleyball-table-tennis-badminton-segment">Volleyball / table tennis / badminton — <code>segment:&lt;sport&gt;:</code></h2>
+<p><code>full-time</code> · <code>set-1</code> … <code>set-7</code> (volleyball to 5; table tennis to 7; badminton to 3)</p>
+<h2 id="mma-boxing-segment-mma-segment-boxing">MMA / boxing — <code>segment:mma:</code> · <code>segment:boxing:</code></h2>
+<p><code>full-time</code> · <code>round-1</code> … <code>round-12</code></p>
+<h2 id="golf-segment-golf">Golf — <code>segment:golf:</code></h2>
+<p><code>full-time</code> · <code>round-1</code> … <code>round-4</code> · <code>front-9</code> · <code>back-9</code> · <code>hole-1</code> … <code>hole-18</code></p>
+<h2 id="motorsport-segment-motorsport">Motorsport — <code>segment:motorsport:</code></h2>
+<p>Qualifying, Sprint and Race are separate <strong>fixtures</strong>; their internal slices: <code>full-session</code> · <code>q1</code> · <code>q2</code> · <code>q3</code> · <code>lap-&lt;n&gt;</code> · <code>first-lap</code></p>
+<h2 id="cricket-segment-cricket">Cricket — <code>segment:cricket:</code></h2>
+<p><code>full-match</code> · <code>1st-innings</code> · <code>2nd-innings</code> · <code>over-&lt;n&gt;</code> · <code>powerplay</code></p>
+<h2 id="rugby-union-league-segment-rugby-union-segment-rugby-league">Rugby (union & league) — <code>segment:rugby-union:</code> · <code>segment:rugby-league:</code></h2>
+<p><code>full-time</code> · <code>1st-half</code> · <code>2nd-half</code> · <code>regulation</code> · <code>extra-time</code></p>
+<h2 id="athletics-segment-athletics">Athletics — <code>segment:athletics:</code></h2>
+<p><code>final</code> · <code>heat-&lt;n&gt;</code> · <code>semi-final-&lt;n&gt;</code> · <code>attempt-&lt;n&gt;</code> (jumps/throws) · <code>lap-&lt;n&gt;</code></p>
+<hr>
+<p>Catch-all: <code>segment:unknown:unknown</code> (Q34). Consumers MUST accept unrecognised <code>segment:*</code> values.</p>
+<p>Additions go through <code>CONTRIBUTING.md</code>; ids are stable once published.</p><p class="source">Source: vocabularies/segments.md</p></section></article>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="../" style="margin-bottom:12px">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
