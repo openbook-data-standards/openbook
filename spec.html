@@ -140,6 +140,7 @@ openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record c
 <li><strong>Level R</strong> — reference documents validate and carry the §6 facts.</li>
 <li><strong>Level L</strong> — messages validate, carry <code>sequence</code>, reference only known ids, honour Merge Patch semantics, deliver <code>odds/change</code> by push, and honour §5.1.</li>
 </ul>
+<p>The gate is this spec, the JSON Schemas, and the language-agnostic corpus in <a href="conformance/"><code>../conformance/</code></a> (Q40). Valid cases MUST be accepted; invalid cases MUST be rejected. <a href="../tools/validate.py"><code>../tools/validate.py</code></a> is one runner, not a language oracle.</p>
 <h2 id="11-versioning">11. Versioning</h2>
 <p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version. Within a frozen major, compatibility is <strong>FULL-TRANSITIVE</strong> (Q32): minors only add optional fields; the required set does not shrink or grow.</p></article><p class="source">Source: spec/openbook.md</p>
 </div></main>

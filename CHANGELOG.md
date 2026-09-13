@@ -20,6 +20,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q38** — camelCase is canonical; current-doc snake_case drift fixed.
 - **Q39** — odds and lines are decimal strings; money is
   `{amount, currency}`; decimal odds only on the wire.
+- **Q40** — conformance gate is spec + schema + language-agnostic corpus
+  ([`conformance/`](conformance/)); the Python validator is one runner.
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

@@ -1,0 +1,26 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 1,
+  "datePublished": "2026-09-19T14:37:12Z",
+  "publisher": "acme-feeds",
+  "object": "odds",
+  "action": "change",
+  "sport": "soccer",
+  "id": "EVT-88213",
+  "changes": {
+    "markets": [
+      {
+        "marketType": "market:moneyline",
+        "segment": "segment:soccer:full-time",
+        "source": "pinnacle",
+        "provenance": "licensed",
+        "outcomes": [
+          {
+            "side": "home",
+            "odds": 2.1
+          }
+        ]
+      }
+    ]
+  }
+}

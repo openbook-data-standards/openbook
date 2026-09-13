@@ -482,3 +482,16 @@ Rejected: JSON numbers for odds/lines; deferring the money shape; strings for
 odds only.
 
 **Supersedes:** spec §2 “decimal is canonical” by fixing the JSON type.
+
+## Q40 — Spec, schema, validator, language-agnostic corpus — decided
+
+The conformance gate is the spec, the JSON Schemas, and a
+**language-agnostic corpus** ([`../conformance/`](../conformance/)).
+[`../tools/validate.py`](../tools/validate.py) is one runner. No language
+is an oracle. Reference libraries MAY exist later (Apache-2.0); they are
+not the spec.
+
+Rejected: schema-only / self-certify; a blessed language library as the gate.
+
+**Supersedes:** GOVERNANCE “reference tooling published later” by naming
+the corpus now. The two-implementation 1.0 gate is a later question.

@@ -274,6 +274,11 @@ to the shared vocabularies.
   honour Merge Patch semantics, deliver `odds/change` by push, and honour
   §5.1.
 
+The gate is this spec, the JSON Schemas, and the language-agnostic corpus
+in [`../conformance/`](../conformance/) (Q40). Valid cases MUST be
+accepted; invalid cases MUST be rejected. [`../tools/validate.py`](../tools/validate.py)
+is one runner, not a language oracle.
+
 ## 11. Versioning
 Semantic versioning per [`../VERSIONING.md`](../VERSIONING.md). `-draft`
 marks an unfrozen version. Within a frozen major, compatibility is

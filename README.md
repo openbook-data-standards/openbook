@@ -68,3 +68,6 @@ openbook/  (this repository)
     score.schema.json             live state: three statuses, clock, score lines per participant x unit x segment
     grade.schema.json             the book's grade of one market from a down segment; never edited
     season.schema.json · player.schema.json
+  examples/               ← valid worked documents (also the valid corpus)
+  conformance/            ← language-agnostic corpus (manifest + invalid cases)
+  tools/validate.py       ← one runner; not a language oracle

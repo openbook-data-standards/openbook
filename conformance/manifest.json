@@ -1,0 +1,23 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "valid": [
+    {"path": "examples/fixture.example.json"},
+    {"path": "examples/fixture_update.example.json"},
+    {"path": "examples/grade.example.json"},
+    {"path": "examples/market_update.example.json"},
+    {"path": "examples/odds_change.example.json"},
+    {"path": "examples/participant.example.json"},
+    {"path": "examples/score.example.json"},
+    {"path": "examples/stage.example.json"}
+  ],
+  "invalid": [
+    {
+      "path": "conformance/invalid/odds-as-number.json",
+      "reason": "odds must be a decimal string, not a JSON number (Q39)"
+    },
+    {
+      "path": "conformance/invalid/missing-sequence.json",
+      "reason": "every message carries sequence"
+    }
+  ]
+}

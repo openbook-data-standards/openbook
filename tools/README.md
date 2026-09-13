@@ -1,7 +1,9 @@
 # tools/validate.py
 
-The OpenBook validator. Run it to check that the schemas are sound, the
-examples conform, and stream topics follow the grammar.
+The OpenBook validator — **one runner** of the language-agnostic corpus
+in [`../conformance/`](../conformance/), not a language oracle (Q40).
+Run it to check that the schemas are sound, the examples conform, invalid
+corpus cases are rejected, and stream topics follow the grammar.
 
 ```bash
 pip install 'jsonschema>=4.18' referencing

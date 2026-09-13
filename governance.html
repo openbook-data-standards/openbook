@@ -28,7 +28,8 @@
 <ul>
 <li><strong>The specification</strong> (this folder) is published under <strong>CC BY 4.0</strong> — see <a href="LICENSE"><code>LICENSE</code></a>. Anyone may implement it, quote it, and build on it, with attribution.</li>
 <li><strong>Implementations</strong> — parsers, pricing engines, trading models, back-office — are each implementer's own and stay proprietary. Conformance is about the wire, not the engine.</li>
-<li>Any reference tooling published later (a validator, a conformance suite, reference adapters) will carry a permissive software licence (Apache-2.0) with a royalty-free patent grant, separate from the spec's CC BY licence.</li>
+<li>The <strong>conformance corpus</strong> (<a href="conformance/"><code>conformance/</code></a>) is part of the specification (CC BY 4.0): language-agnostic JSON cases any implementation MUST pass. The in-repo validator is one runner, not a language oracle (Q40).</li>
+<li>Reference libraries and extra runners, if published later, carry Apache-2.0 with a royalty-free patent grant, separate from the spec's CC BY licence.</li>
 </ul>
 <h2 id="how-it-s-governed-staged">How it's governed (staged)</h2>
 <p>Modelled on how live-data standards actually reached adoption, not on standards committees:</p>

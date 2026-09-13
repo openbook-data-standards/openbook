@@ -45,6 +45,10 @@ PAGE_MAP = {
     "vocabularies/": "vocabularies/",
     "../schema/": "schemas.html",
     "schema/": "schemas.html",
+    "../conformance/": "conformance/",
+    "conformance/": "conformance/",
+    "../conformance/README.md": "conformance/",
+    "conformance/README.md": "conformance/",
 }
 
 
@@ -322,6 +326,7 @@ def main() -> None:
     (ROOT / "vocabularies/index.html").write_text(vocab_index())
     (ROOT / "schemas.html").write_text(schemas_page())
     (ROOT / "examples.html").write_text(examples_page())
+    write_md_page(ROOT / "conformance/README.md", ROOT / "conformance/index.html", 1, "conformance/", "conformance/README.md")
     (ROOT / ".nojekyll").write_text("")
     print("wrote HTML pages")
 
