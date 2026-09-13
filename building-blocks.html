@@ -38,7 +38,7 @@
 <li><strong>ISO 8601 / RFC 3339</strong> — every timestamp, with an explicit offset (<code>2026-09-19T14:00:00Z</code>). RFC 3339 is the strict internet profile of ISO 8601 and is what parsers actually implement. See decision Q9.</li>
 <li><strong>IANA time-zone database</strong> — venue-local time names (<code>Europe/London</code>) where display needs them; never used in place of an offset on the wire.</li>
 <li><strong>Unicode / UTF-8</strong> — all text. Names keep their diacritics.</li>
-<li><strong>ISO 9 (Cyrillic) / ISO 843 (Greek)</strong> — how to transliterate when matching or sorting; the wire field for native script is <code>localName</code> (Q11).</li>
+<li><strong>ISO 9 (Cyrillic) / ISO 843 (Greek)</strong> — how to transliterate when matching or sorting; the wire field is <code>nameLatin</code> (Q11 / Q57).</li>
 </ul>
 <h2 id="neutral-identifiers-for-entities">Neutral identifiers for entities</h2>
 <ul>

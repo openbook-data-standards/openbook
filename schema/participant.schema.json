@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/participant.schema.json",
   "title": "OpenBook participant",
-  "description": "A competitor \u2014 a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names follow vCard/X.520 structure for persons and ODF's multiple display forms.",
+  "description": "A competitor — a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names: Q11 / Q57.",
   "type": "object",
   "required": [
     "openbookVersion",
@@ -47,7 +47,7 @@
     },
     "name": {
       "type": "string",
-      "description": "Full display name, UTF-8, diacritics kept."
+      "description": "Required popular/board name, UTF-8, diacritics kept."
     },
     "shortName": {
       "type": "string",
@@ -55,33 +55,36 @@
     },
     "abbreviation": {
       "type": "string",
-      "description": "3\u20134 characters: 'MCI'."
+      "description": "Teams only (Q11): 'MCI'."
+    },
+    "location": {
+      "type": "string",
+      "description": "Teams only. NFL-style market city; empty/omit when the board name has no city (Arsenal)."
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Teams only. NFL-style nickname (Giants); omit when unused."
+    },
+    "registeredName": {
+      "type": "string",
+      "description": "Teams only. Registry / FIFA international long name — not ISO."
     },
     "alternateName": {
       "$ref": "common.schema.json#/$defs/alternateName"
     },
-    "localName": {
-      "type": "string",
-      "description": "Name in the native script (ODF LocalName)."
-    },
     "names": {
       "$ref": "common.schema.json#/$defs/localizedNames"
     },
+    "nameLatin": {
+      "$ref": "common.schema.json#/$defs/nameLatin"
+    },
     "familyName": {
       "type": "string",
-      "description": "Individuals only (vCard N / X.520)."
+      "description": "Individuals only (vCard N / X.520 / schema.org)."
     },
     "givenName": {
-      "type": "string"
-    },
-    "additionalName": {
-      "type": "string"
-    },
-    "honorificPrefix": {
-      "type": "string"
-    },
-    "honorificSuffix": {
-      "type": "string"
+      "type": "string",
+      "description": "Individuals only (vCard N / X.520 / schema.org)."
     },
     "sameAs": {
       "$ref": "common.schema.json#/$defs/sameAs"
@@ -90,6 +93,46 @@
       "$ref": "common.schema.json#/$defs/identifier"
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "participantType": {
+            "const": "individual"
+          }
+        },
+        "required": [
+          "participantType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "abbreviation": false,
+          "location": false,
+          "nickname": false,
+          "registeredName": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "participantType": {
+            "const": "team"
+          }
+        },
+        "required": [
+          "participantType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "givenName": false,
+          "familyName": false
+        }
+      }
+    }
+  ],
   "patternProperties": {
     "^x_": {}
   },

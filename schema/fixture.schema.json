@@ -75,6 +75,18 @@
         "competitionType": {
           "$ref": "common.schema.json#/$defs/competitionType"
         },
+        "shortName": {
+          "type": "string"
+        },
+        "registeredName": {
+          "type": "string"
+        },
+        "sexCategory": {
+          "$ref": "common.schema.json#/$defs/sexCategory"
+        },
+        "ageGroup": {
+          "$ref": "common.schema.json#/$defs/ageGroup"
+        },
         "sameAs": {
           "$ref": "common.schema.json#/$defs/sameAs"
         }
@@ -152,28 +164,20 @@
           },
           "sameAs": {
             "$ref": "common.schema.json#/$defs/sameAs"
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "This draw's seed on the fixture participant row (Q85)."
           }
         }
       }
     },
     "location": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "schema.org Place",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "addressLocality": {
-          "type": "string"
-        },
-        "territory": {
-          "$ref": "common.schema.json#/$defs/territory"
-        },
-        "sameAs": {
-          "$ref": "common.schema.json#/$defs/sameAs"
-        }
-      }
+      "$ref": "common.schema.json#/$defs/place"
+    },
+    "surface": {
+      "$ref": "common.schema.json#/$defs/surface"
     },
     "identifier": {
       "$ref": "common.schema.json#/$defs/identifier"

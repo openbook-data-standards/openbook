@@ -167,7 +167,7 @@ Rejected: required city+nickname; legal name as the only `name`; Print/TV
 scoreboard copies from ODF; ISO numbers invented for nicknames.
 
 **Supersedes:** Q11 proposed (v0.3 snake_case list). CamelCase is Q38. Schema
-may still be ahead or behind this list until a later wire PR.
+and spec match this list.
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
