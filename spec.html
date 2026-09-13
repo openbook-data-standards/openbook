@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenBook — the specification — OpenBook</title>
-<meta name="theme-color" content="#e6d7b8">
+<meta name="theme-color" content="#0B1220">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/spec.html">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./assets/site.css">
@@ -13,16 +13,22 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="./">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <nav>
     <a href="./spec.html" aria-current="page">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="./schemas.html">Schemas</a><a href="./examples.html">Examples</a><a href="./decisions.html">Decisions</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · spec/openbook.md</p><nav class="toc"><strong>On this sheet</strong><a href="#1-what-openbook-is">1. What OpenBook is</a><a href="#2-conventions">2. Conventions</a><a href="#3-identifiers">3. Identifiers</a><a href="#4-the-hierarchy">4. The hierarchy</a><a href="#5-change-everything-is-diff-able">5. Change: everything is diff-able</a><a href="#5a-status-three-questions-three-fields">5a. Status: three questions, three fields</a><a href="#6-standard-facts-matching-across-publishers">6. Standard facts (matching across publishers)</a><a href="#7-objects">7. Objects</a><a href="#8-streams-fixture-first-then-object-action">8. Streams: fixture-first, then object / action</a><a href="#9-extensions">9. Extensions</a><a href="#10-conformance">10. Conformance</a><a href="#11-versioning">11. Versioning</a></nav><article class="doc"><h1 id="openbook-the-specification">OpenBook — the specification</h1>
+<p class="crumb"><a href="./">Home</a> · spec/openbook.md</p><nav class="toc"><strong>Contents</strong><a href="#1-what-openbook-is">1. What OpenBook is</a><a href="#2-conventions">2. Conventions</a><a href="#3-identifiers">3. Identifiers</a><a href="#4-the-hierarchy">4. The hierarchy</a><a href="#5-change-everything-is-diff-able">5. Change: everything is diff-able</a><a href="#5a-status-three-questions-three-fields">5a. Status: three questions, three fields</a><a href="#6-standard-facts-matching-across-publishers">6. Standard facts (matching across publishers)</a><a href="#7-objects">7. Objects</a><a href="#8-streams-fixture-first-then-object-action">8. Streams: fixture-first, then object / action</a><a href="#9-extensions">9. Extensions</a><a href="#10-conformance">10. Conformance</a><a href="#11-versioning">11. Versioning</a></nav><article class="doc"><h1 id="openbook-the-specification">OpenBook — the specification</h1>
 <p>The normative document defining the <strong>OpenBook</strong> standard. Version <code>0.3.0-draft</code> · 2026-09-12</p>
 <p>The JSON Schemas in <a href="schemas.html"><code>../schema/</code></a> are the machine-normative field definitions; where prose and schema disagree, the schema wins. Every rule here traces to a decision in <a href="decisions.html"><code>../docs/decisions.md</code></a>. Keywords <strong>MUST</strong>, <strong>SHOULD</strong>, <strong>MAY</strong> are used per RFC 2119.</p>
 <hr>
@@ -129,13 +135,19 @@ openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record c
 <li><strong>Level L</strong> — messages validate, carry <code>sequence</code>, reference only known ids, honour Merge Patch semantics, and deliver <code>odds/change</code> by push.</li>
 </ul>
 <h2 id="11-versioning">11. Versioning</h2>
-<p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version.</p></article><p class="source">Source: spec/openbook.md</p>
+<p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version. Within a frozen major, compatibility is <strong>FULL-TRANSITIVE</strong> (Q32): minors only add optional fields; the required set does not shrink or grow.</p></article><p class="source">Source: spec/openbook.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>

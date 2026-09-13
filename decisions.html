@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenBook — design decisions — OpenBook</title>
-<meta name="theme-color" content="#e6d7b8">
+<meta name="theme-color" content="#0B1220">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/decisions.html">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./assets/site.css">
@@ -13,16 +13,22 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="./">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <nav>
     <a href="./spec.html">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="./schemas.html">Schemas</a><a href="./examples.html">Examples</a><a href="./decisions.html" aria-current="page">Decisions</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · docs/decisions.md</p><nav class="toc"><strong>On this sheet</strong><a href="#q1-what-openbook-is-for-decided">Q1 — What OpenBook is for — decided</a><a href="#q2-how-consumers-know-two-publishers-mean-the-same-match-decided-c">Q2 — How consumers know two publishers mean the same match — decided (c)</a><a href="#q3-provenance-on-every-price-decided-a">Q3 — Provenance on every price — decided (a)</a><a href="#q4-which-ids-are-shared-which-are-publisher-own-decided-a">Q4 — Which ids are shared, which are publisher-own — decided (a)</a><a href="#q5-what-a-shared-id-looks-like-decided-both">Q5 — What a shared id looks like — decided (both)</a><a href="#q6-external-cross-reference-ids-decided-a">Q6 — External cross-reference ids — decided (a)</a><a href="#q7-standard-facts-every-fixture-carries-decided">Q7 — Standard facts every fixture carries — decided</a><a href="#q8-how-changes-are-sent-decided-c-generalised-granularity-e">Q8 — How changes are sent — decided (c, generalised) + granularity (e)</a><a href="#since-decided">since — decided</a><a href="#q9-timestamps-decided-a">Q9 — Timestamps — decided (a)</a><a href="#q10-countries-and-sub-national-teams-decided-cldr">Q10 — Countries and sub-national teams — decided (CLDR)</a><a href="#q11-names-proposed-implemented-in-v0-3">Q11 — Names — proposed (implemented in v0.3)</a><a href="#q12-shared-entity-id-decided-wikidata-qid">Q12 — Shared entity id — decided (Wikidata QID)</a><a href="#q13-field-name-alignment-with-schema-org-decided-d-full-alignment">Q13 — Field-name alignment with schema.org — decided (d: full alignment)</a><a href="#q14-stream-grammar-decided-object-action-keyed-by-fixture">Q14 — Stream grammar — decided (object / action, keyed by fixture)</a><a href="#q15-suspensions-re-opens-and-voids-decided-market-update">Q15 — Suspensions, re-opens and voids — decided (market/update)</a><a href="#q16-name-of-the-price-stream-decided-c">Q16 — Name of the price stream — decided (c)</a><a href="#q17-delivery-of-odds-decided-b">Q17 — Delivery of odds — decided (b)</a><a href="#q18-topic-tail-decided-a">Q18 — Topic tail — decided (a)</a><a href="#q19-league-vs-competition-decided-b">Q19 — League vs competition — decided (b)</a><a href="#q20-stages-decided-a-one-recursive-object">Q20 — Stages — decided (a: one recursive object)</a><a href="#q21-participants-belong-to-a-sport-decided-a">Q21 — Participants belong to a sport — decided (a)</a><a href="#naming-convention-decided">Naming convention — decided</a><a href="#q22-teams-and-individuals-are-both-participants-role-and-order-decided">Q22 — Teams and individuals are both participants; role and order — decided</a><a href="#naming-convention-revised-q13-d">Naming convention — revised (Q13 d)</a><a href="#q23-score-model-decided-a-everything">Q23 — Score model — decided (a: everything)</a><a href="#q24-settlement-model-superseded-by-q27-q28-q30-see-below">Q24 — Settlement model — superseded by Q27/Q28/Q30 (see below)</a><a href="#segments-vocabulary-added">Segments vocabulary — added</a><a href="#q25-fixture-status-decided-a">Q25 — Fixture status — decided (a)</a><a href="#q26-units-on-every-score-line-decided-a">Q26 — Units on every score line — decided (a)</a><a href="#q27-settlement-vs-grade-decided-two-things">Q27 — Settlement vs grade — decided (two things)</a><a href="#q28-down-once-decided-a">Q28 — &quot;Down&quot;, once — decided (a)</a><a href="#q29-topic-order-decided-a-fixture-first">Q29 — Topic order — decided (a: fixture-first)</a><a href="#q30-three-statuses-decided">Q30 — Three statuses — decided</a><a href="#q31-corrections-without-settling-twice-decided-a-erratum">Q31 — Corrections without settling twice — decided (a: erratum)</a></nav><article class="doc"><h1 id="openbook-design-decisions">OpenBook — design decisions</h1>
+<p class="crumb"><a href="./">Home</a> · docs/decisions.md</p><nav class="toc"><strong>Contents</strong><a href="#q1-what-openbook-is-for-decided">Q1 — What OpenBook is for — decided</a><a href="#q2-how-consumers-know-two-publishers-mean-the-same-match-decided-c">Q2 — How consumers know two publishers mean the same match — decided (c)</a><a href="#q3-provenance-on-every-price-decided-a">Q3 — Provenance on every price — decided (a)</a><a href="#q4-which-ids-are-shared-which-are-publisher-own-decided-a">Q4 — Which ids are shared, which are publisher-own — decided (a)</a><a href="#q5-what-a-shared-id-looks-like-decided-both">Q5 — What a shared id looks like — decided (both)</a><a href="#q6-external-cross-reference-ids-decided-a">Q6 — External cross-reference ids — decided (a)</a><a href="#q7-standard-facts-every-fixture-carries-decided">Q7 — Standard facts every fixture carries — decided</a><a href="#q8-how-changes-are-sent-decided-c-generalised-granularity-e">Q8 — How changes are sent — decided (c, generalised) + granularity (e)</a><a href="#since-decided">since — decided</a><a href="#q9-timestamps-decided-a">Q9 — Timestamps — decided (a)</a><a href="#q10-countries-and-sub-national-teams-decided-cldr">Q10 — Countries and sub-national teams — decided (CLDR)</a><a href="#q11-names-proposed-implemented-in-v0-3">Q11 — Names — proposed (implemented in v0.3)</a><a href="#q12-shared-entity-id-decided-wikidata-qid">Q12 — Shared entity id — decided (Wikidata QID)</a><a href="#q13-field-name-alignment-with-schema-org-decided-d-full-alignment">Q13 — Field-name alignment with schema.org — decided (d: full alignment)</a><a href="#q14-stream-grammar-decided-object-action-keyed-by-fixture">Q14 — Stream grammar — decided (object / action, keyed by fixture)</a><a href="#q15-suspensions-re-opens-and-voids-decided-market-update">Q15 — Suspensions, re-opens and voids — decided (market/update)</a><a href="#q16-name-of-the-price-stream-decided-c">Q16 — Name of the price stream — decided (c)</a><a href="#q17-delivery-of-odds-decided-b">Q17 — Delivery of odds — decided (b)</a><a href="#q18-topic-tail-decided-a">Q18 — Topic tail — decided (a)</a><a href="#q19-league-vs-competition-decided-b">Q19 — League vs competition — decided (b)</a><a href="#q20-stages-decided-a-one-recursive-object">Q20 — Stages — decided (a: one recursive object)</a><a href="#q21-participants-belong-to-a-sport-decided-a">Q21 — Participants belong to a sport — decided (a)</a><a href="#naming-convention-decided">Naming convention — decided</a><a href="#q22-teams-and-individuals-are-both-participants-role-and-order-decided">Q22 — Teams and individuals are both participants; role and order — decided</a><a href="#naming-convention-revised-q13-d">Naming convention — revised (Q13 d)</a><a href="#q23-score-model-decided-a-everything">Q23 — Score model — decided (a: everything)</a><a href="#q24-settlement-model-superseded-by-q27-q28-q30-see-below">Q24 — Settlement model — superseded by Q27/Q28/Q30 (see below)</a><a href="#segments-vocabulary-added">Segments vocabulary — added</a><a href="#q25-fixture-status-decided-a">Q25 — Fixture status — decided (a)</a><a href="#q26-units-on-every-score-line-decided-a">Q26 — Units on every score line — decided (a)</a><a href="#q27-settlement-vs-grade-decided-two-things">Q27 — Settlement vs grade — decided (two things)</a><a href="#q28-down-once-decided-a">Q28 — &quot;Down&quot;, once — decided (a)</a><a href="#q29-topic-order-decided-a-fixture-first">Q29 — Topic order — decided (a: fixture-first)</a><a href="#q30-three-statuses-decided">Q30 — Three statuses — decided</a><a href="#q31-corrections-without-settling-twice-decided-a-erratum">Q31 — Corrections without settling twice — decided (a: erratum)</a><a href="#q32-schema-compatibility-within-a-major-decided-full-transitive">Q32 — Schema compatibility within a major — decided (FULL-TRANSITIVE)</a></nav><article class="doc"><h1 id="openbook-design-decisions">OpenBook — design decisions</h1>
 <p>A running log of the decisions that shape the standard, in the order they were taken, each with the options that were on the table and why one won. The specification in <a href="spec.html"><code>../spec/openbook.md</code></a> is revised to match; where the two disagree, the newer decision here wins until the spec catches up (tracked in <a href="changelog.html"><code>../CHANGELOG.md</code></a>).</p>
 <p>Status key: <strong>decided</strong> · <strong>proposed</strong> (awaiting confirmation) · <strong>open</strong>.</p>
 <hr>
@@ -147,13 +153,30 @@
 <h2 id="q30-three-statuses-decided">Q30 — Three statuses — decided</h2>
 <p>Fixture status (<code>eventStatus</code>), segment status (<code>segmentStatus</code>: pending · live · paused · down) and market status (<code>marketStatus</code>: open · suspended · closed · void) are three fields answering three questions. Graded is not a market status; it is the <code>grade</code> object.</p>
 <h2 id="q31-corrections-without-settling-twice-decided-a-erratum">Q31 — Corrections without settling twice — decided (a: erratum)</h2>
-<p>A downed segment's <code>status</code> / <code>downAt</code> are frozen. A correction is <code>score/update</code> with <code>correction: true</code> + <code>statusReason</code> (an erratum), and affected grades are <code>grade/delete</code> + new <code>grade/create</code> with <code>supersedes</code>. (Rejected: reopen → down again; absolutely immutable with no corrections.)</p></article><p class="source">Source: docs/decisions.md</p>
+<p>A downed segment's <code>status</code> / <code>downAt</code> are frozen. A correction is <code>score/update</code> with <code>correction: true</code> + <code>statusReason</code> (an erratum), and affected grades are <code>grade/delete</code> + new <code>grade/create</code> with <code>supersedes</code>. (Rejected: reopen → down again; absolutely immutable with no corrections.)</p>
+<h2 id="q32-schema-compatibility-within-a-major-decided-full-transitive">Q32 — Schema compatibility within a major — decided (FULL-TRANSITIVE)</h2>
+<p>Once a major is <strong>frozen</strong> (1.0+), every minor of that major is readable by a consumer built against any other minor of that major, <strong>both directions</strong>, checked against <strong>all</strong> prior minors of that major — Confluent FULL + TRANSITIVE, adapted to JSON Schema as *instance* compatibility (JSON Schema has no Avro reader/writer resolution).</p>
+<ul>
+<li>New fields MUST be optional or defaulted.</li>
+<li>No field is re-typed or removed within a major.</li>
+<li>The required set is permanent within a major (keep it small).</li>
+<li>Adding a required field is a MAJOR.</li>
+</ul>
+<p>Rejected: BACKWARD only; FORWARD only; SemVer prose with no compatibility rule.</p>
+<p><strong>Consequences:</strong> a CI schema-diff gate is a later Phase-B item, not this change. <code>additionalProperties: false</code> on publisher schemas stays until the strict-write / open-read question. Pre-1.0 <code>-draft</code> may still break.</p>
+<p><strong>Supersedes:</strong> none of Q1–Q31; tightens <a href="versioning.html"><code>../VERSIONING.md</code></a>.</p></article><p class="source">Source: docs/decisions.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
-    <span class="name">OpenBook</span>
-    <span class="rule"></span>
-    <span class="sub">Open sportsbook standard</span>
+    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
