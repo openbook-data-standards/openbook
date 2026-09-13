@@ -17,6 +17,8 @@ the market taxonomy no one else has published.
    If the change makes a previously legal document illegal, add an **invalid**
    case under `conformance/invalid/`.
 4. Note the change in [`CHANGELOG.md`](CHANGELOG.md) under "Unreleased".
+   Names you put in `spec/openbook.md` (and the scanned docs pages) MUST exist
+   on a schema; `python3 tools/validate.py` checks that (Q50).
 
 ## Rules that don't bend
 

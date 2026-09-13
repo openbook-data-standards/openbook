@@ -13,8 +13,9 @@ python3 tools/validate.py --topic openbook/v1/acme-feeds/odds/change/soccer/EVT-
 ```
 
 Exit code 0 means conformant. CI runs it on every pull request
-(`.github/workflows/validate.yml`). To validate your own feed, point it at a
-folder of your documents and messages — coming as `--examples <dir>`.
+(`.github/workflows/validate.yml`). Step 7 is Q50: names in the spec (and a
+few docs pages) MUST exist on a schema. To validate your own feed, point it
+at a folder of your documents and messages — coming as `--examples <dir>`.
 
 `tools/build_site.py` turns the markdown spec, vocabularies, and docs into
 GitHub Pages HTML so the site can be read without opening GitHub.

@@ -5,6 +5,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Changed
+- **Q11** — names are decided camelCase, matching the participant schema:
+  `shortName`, `alternateName`, `localName`, `givenName` / `familyName` (not
+  `short_name` / `aliases` / `name_latin`).
+
 ### Added
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
@@ -33,12 +38,15 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   currency is another subscription.
 - **Q45** — priced markets MUST carry `limit`; sport/league defaults
   optional; most specific wins.
-- **Q46** — `snapshotComplete` on push; `heartbeat` + `heartbeatMs`; pull stale
-  `since` is HTTP 410 + RFC 9457 (log only; no schema in this patch).
-- **Q47** — `conflated: true` when ticks were dropped.
-- **Q48** — `ttl` seconds (GBFS).
-- **Q49** — GBFS-shaped discovery document.
-- **Q50** — later PR: one-way docs-vs-schema name CI.
+- **Q46** — `snapshotComplete` and `heartbeat` on the wire; publisher
+  `heartbeatMs`; pull stale `since` is HTTP 410 + RFC 9457.
+- **Q47** — optional envelope `conflated: true` when ticks were dropped.
+- **Q48** — `ttl` integer seconds (GBFS); optional on publisher, required on
+  discovery.
+- **Q49** — GBFS-shaped discovery document
+  (`schema/discovery.schema.json`).
+- **Q50** — one-way docs-vs-schema name CI in `tools/validate.py` (spec/docs
+  names MUST exist on a schema; extra schema fields allowed).
 - **Q51** — no consumer-view schema file.
 - **Q52** — CloudEvents wrap never.
 - **Q53** — DNS-style ids never; Q4/Q5 stand.
@@ -75,8 +83,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q85** — optional `seed` on the fixture participant row.
 - **Q86** — generic fixture extras stop at surface + seed; no metadata bag.
 - **Q87** — catalog pass closed; next work is a new area, not more fixture keys.
-- [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
-  built.
+- [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q55 remains a
+  later PR (1.0+).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and
@@ -100,15 +108,15 @@ Breaking rename of the live wire around decisions Q14–Q21. Not frozen.
   update · delete, plus `change` for odds only.
 - **One change envelope** (`schema/change.schema.json`) replaces the per-message
   schemas: `odds/change` replaces `odds_change`; `fixture/update` replaces
-  `fixture_change`; `market/update` (CAP-style `msg_type` / `references`)
+  `fixture_change`; `market/update` (CAP-style `msgType` / `references`)
   replaces `market_status`.
 - **Odds push-first**: `odds/change` SHOULD be pushed, a `since=` pull MAY be
   offered; `market/snapshot` for recovery.
-- **Hierarchy**: sport → league (`competition_type`, optional `organizer`) →
+- **Hierarchy**: sport → league (`competitionType`, optional `organizer`) →
   season → stage (open, Q20) → fixture → segment. **Participants belong to a
   sport**, not a league.
-- `*_type` naming for small vocabularies: `competition_type`,
-  `participant_type`, `market_type`, `stage_type`.
+- `*Type` naming for small vocabularies: `competitionType`,
+  `participantType`, `marketType`, `stageType`.
 
 - **Field names are camelCase and follow schema.org** (Q13 d): `startDate`,
   `dateModified`, `datePublished`, `alternateName`, `sameAs` (Wikidata URL,

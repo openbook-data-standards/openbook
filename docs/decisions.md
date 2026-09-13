@@ -77,7 +77,7 @@ required, never the canonical key.
 **Required:** publisher's own fixture id · sport (shared id + name) · league
 (own id + name + ISO country) · start time (ISO 8601) · participants (own id,
 canonical name, ISO country, role: home / away / ordinal) · `sequence` ·
-`updated_at`.
+`dateModified`.
 **Optional:** location (venue, city, country) · external ids · season / stage.
 
 ## Q8 — How changes are sent — decided (c, generalised) + granularity (e)
@@ -121,7 +121,7 @@ codes underneath (`GB`, `US`), ISO 3166-2 subdivisions for sub-national teams
 (`GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`, `US-PR`), plus CLDR's pragmatic
 extras (`XK` Kosovo, `EU`, `UN`) — and CLDR's **localized names in every
 language**, which is what every OS and browser already uses to spell country
-names. `ioc_code`, `fifa_code` and `wikidata` ride on the region record as
+names. `iocCode`, `fifaCode` and `sameAs` (Wikidata) ride on the region record as
 crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
 `GBR` without OpenBook adopting either.
 
@@ -207,7 +207,7 @@ sports vocabulary for free.
 
 ## Q15 — Suspensions, re-opens and voids — decided (market/update)
 
-`market/update` carries CAP-style `msg_type` (alert · update · cancel),
+`market/update` carries CAP-style `msgType` (alert · update · cancel),
 `reason`, and `references[]` to prior sequences. Voids and re-settles are
 `settlement/delete` + `settlement/create` (a new settlement id, never a
 mutation).
@@ -233,7 +233,7 @@ before the fixture; keying by league QID.)
 ## Q19 — League vs competition — decided (b)
 
 Keep **`league`** as the object name for any recurring competition, typed by
-**`competition_type`** (league · cup · tournament · series · exhibition). An
+**`competitionType`** (league · cup · tournament · series · exhibition). An
 optional `organizer` (the NBA, UEFA, the FIA) can be named, because one
 organizer runs several competitions (NBA season, NBA Cup, All-Star Game).
 (Considered: renaming the object to `competition`.)
@@ -254,8 +254,8 @@ Champions League in one week).
 
 ## Naming convention — decided
 
-Every small shared vocabulary is a `*_type` field: `competition_type`,
-`participant_type`, `market_type`, `stage_type`. No `kind` / `format`
+Every small shared vocabulary is a `*Type` field: `competitionType`,
+`participantType`, `marketType`, `stageType`. No `kind` / `format`
 synonyms.
 
 ## Q22 — Teams and individuals are both participants; role and order — decided
@@ -472,13 +472,13 @@ widening ignore to all unrecognized fields.
 ## Q38 — Naming is camelCase; remaining snake_case is drift — decided
 
 Canonical field names are camelCase, schema.org where a property exists
-(Q13). Snake_case in prose (`openbook_version`, envelope `timestamp`) is
-drift. A CI check that flags names in docs that are not on a schema is a
-later item.
+(Q13). Snake_case in prose is drift. A CI check that flags names in docs
+that are not on a schema is a later item (Q50).
 
-This change fixes current docs/spec/VERSIONING to match the schemas
-(`openbookVersion`, `datePublished`, `startDate`, `marketType`,
-`competitionType`). Historical Q1–Q31 entries are not rewritten.
+This change (and Q11) matches the schemas (`openbookVersion`,
+`datePublished`, `startDate`, `marketType`, `competitionType`,
+`shortName`, `msgType`). Older log entries that quote a superseded
+message name (`odds_change`, `settlement`) stay as history.
 
 Rejected: leave mixed spellings; CI in this same patch.
 
@@ -580,7 +580,7 @@ Rejected: required on every tick; no inheritance; optional everywhere.
 
 ## Q46 — Caught-up, heartbeat, stale since — decided
 
-Wire names for Q33 items 4, 5, and 1. No schema in this patch.
+Wire names for Q33 items 4, 5, and 1.
 
 - **Caught-up (push MUST).** After snapshot + replay, emit `action: snapshotComplete`. Pull has **no** marker; the HTTP response is the batch.
 - **Heartbeat (push).** Same stream: `action: heartbeat`. Interval on the publisher record as `heartbeatMs`.
@@ -614,9 +614,12 @@ Rejected: extend `publisher` with `feeds[]`; `.well-known/openbook` pointing onl
 
 **Supersedes:** Q41 “discovery document shape are later”.
 
-## Q50 — Docs-vs-schema name CI — decided (later PR, one-way)
+## Q50 — Docs-vs-schema name CI — decided (one-way)
 
-If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR. Extra schema fields are allowed. **Later PR**, not this patch. 0.x still uses review until that job exists.
+If spec/docs mention a field name, it MUST exist on a schema. CI fails the PR.
+Extra schema fields are allowed. Scanned: `spec/openbook.md`, `spec/asyncapi.yaml`,
+`docs/building-blocks.md`, `docs/still-to-do.md`. The decision log is history
+and is not scanned. Implemented in [`../tools/validate.py`](../tools/validate.py).
 
 Rejected: never (CONTRIBUTING only); bidirectional (every schema field named in the spec); CI on this patch.
 

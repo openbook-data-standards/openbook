@@ -21,6 +21,7 @@ channels:
     description: |
       Everything about one match is under `.../fixture/{fixtureId}/#`.
       `action` `change` is used only with `object` `odds`.
+      Control actions `snapshotComplete` and `heartbeat` use `changes: {}`.
     parameters:
       specVersion:
         description: Topic-grammar version. `v1` until a breaking change to the grammar.
@@ -33,7 +34,7 @@ channels:
       object:
         description: fixture · odds · market · score · grade
       action:
-        description: snapshot · create · update · delete · change
+        description: snapshot · create · update · delete · change · snapshotComplete · heartbeat
     messages:
       changeEnvelope:
         $ref: "#/components/messages/changeEnvelope"
@@ -53,7 +54,7 @@ channels:
       id:
         description: The object's own id.
       action:
-        description: snapshot · create · update · delete
+        description: snapshot · create · update · delete · snapshotComplete · heartbeat
     messages:
       changeEnvelope:
         $ref: "#/components/messages/changeEnvelope"
@@ -66,7 +67,7 @@ channels:
       publisherId:
         description: Publisher's own id.
       action:
-        description: snapshot · create · update · delete
+        description: snapshot · create · update · delete · snapshotComplete · heartbeat
     messages:
       changeEnvelope:
         $ref: "#/components/messages/changeEnvelope"

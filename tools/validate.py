@@ -8,10 +8,13 @@ Checks, in order:
   4. every example in examples/ validates:
        - a message (has object+action) validates against change.schema.json, and its
          `changes` validates against the object's schema — in full for snapshot/create,
-         as a Merge Patch (required relaxed) for update/change
+         as a Merge Patch (required relaxed) for update/change/snapshotComplete/heartbeat
        - a document validates against the schema named by its file stem
   5. stream topics follow the fixture-first grammar  openbook/v1/<publisher>/<sport>/fixture/<id>/<object>/<action>
   6. conformance/manifest.json: valid paths exist; invalid cases are rejected
+  7. one-way name check (Q50): camelCase / property-like names in spec and
+     selected docs MUST exist on a schema (properties, $defs, or enums). Extra
+     schema fields are allowed. The decision log is history and is not scanned.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -28,9 +31,9 @@ SCHEMA_DIR, EXAMPLE_DIR = os.path.join(ROOT, "schema"), os.path.join(ROOT, "exam
 OBJECT_SCHEMA = {"fixture": "fixture", "odds": "odds_change", "market": "market", "score": "score",
                  "grade": "grade", "league": "league", "season": "season", "stage": "stage",
                  "participant": "participant", "player": "player", "publisher": "publisher"}
-FIXTURE_TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/fixture/(?P<id>[^/#+]+)/(?P<object>fixture|odds|market|score|grade)/(?P<action>[a-z]+)$")
-ENTITY_TOPIC  = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/(?P<object>league|season|stage|participant|player)/(?P<id>[^/#+]+)/(?P<action>[a-z]+)$")
-PUB_TOPIC     = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/publisher/(?P<action>[a-z]+)$")
+FIXTURE_TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/fixture/(?P<id>[^/#+]+)/(?P<object>fixture|odds|market|score|grade)/(?P<action>[a-zA-Z]+)$")
+ENTITY_TOPIC  = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/(?P<object>league|season|stage|participant|player)/(?P<id>[^/#+]+)/(?P<action>[a-zA-Z]+)$")
+PUB_TOPIC     = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/publisher/(?P<action>[a-zA-Z]+)$")
 
 failures = []
 def fail(msg): failures.append(msg); print("  FAIL", msg)
@@ -81,7 +84,7 @@ def for_changes(schema, full):
     """A document schema as it applies to a message's `changes`. The envelope
     already carries openbookVersion/sequence/dateModified, so those are never
     required inside `changes`. For snapshot/create the rest stays required; for
-    update/change nothing is required (Merge Patch)."""
+    update/change/snapshotComplete/heartbeat nothing is required (Merge Patch)."""
     s = copy.deepcopy(schema); s.pop("$id", None)
     req = [] if not full else [r for r in s.get("required", []) if r not in ENVELOPE_FIELDS]
     if req: s["required"] = req
@@ -144,10 +147,12 @@ def check_topic(t):
 topics = sys.argv[sys.argv.index("--topic")+1:] if "--topic" in sys.argv else [
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/update",
+    "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/snapshotComplete",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/market/update",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/grade/create",
     "openbook/v1/acme-feeds/soccer/league/LG-17/update",
     "openbook/v1/acme-feeds/publisher/update",
+    "openbook/v1/acme-feeds/publisher/heartbeat",
 ]
 for t in topics:
     err = check_topic(t); fail(f"topic {t}: {err}") if err else ok(t)
@@ -171,6 +176,70 @@ for case in man["invalid"]:
         ok(f"{case['path']}  (rejected)")
     else:
         fail(f"{case['path']}: expected reject ({case.get('reason', '')}) but validated")
+
+print("7. docs names exist on a schema (Q50, one-way)")
+TICK = re.compile(r"`([^`]+)`")
+IDENT = re.compile(r"^[a-z][a-zA-Z0-9]*$")
+# Not JSON fields: protocol, literals, foreign vocab, ISO 639 examples.
+NOT_FIELDS = frozenset({
+    "http", "https", "urn", "null", "true", "false", "spec", "version",
+    "en", "es", "v1", "since",
+    "homeTeam", "awayTeam", "tools",
+})
+NAME_DOCS = (
+    os.path.join(ROOT, "spec", "openbook.md"),
+    os.path.join(ROOT, "spec", "asyncapi.yaml"),
+    os.path.join(ROOT, "docs", "building-blocks.md"),
+    os.path.join(ROOT, "docs", "still-to-do.md"),
+)
+
+def schema_names():
+    props, enums, defs, stems = set(), set(), set(), set()
+    def walk(o):
+        if isinstance(o, dict):
+            if "$defs" in o and isinstance(o["$defs"], dict):
+                defs.update(o["$defs"].keys())
+            if "properties" in o and isinstance(o["properties"], dict):
+                props.update(k for k in o["properties"] if not str(k).startswith("@"))
+            if "enum" in o and isinstance(o["enum"], list):
+                for x in o["enum"]:
+                    s = str(x)
+                    enums.add(s)
+                    enums.add(s.split(":")[-1])
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    for name, s in schemas.items():
+        stems.add(name.removesuffix(".schema.json"))
+        walk(s)
+    voc_dir = os.path.join(ROOT, "vocabularies")
+    voc_tick = re.compile(r"`((?:sport|market|segment|side):[a-z0-9:-]+)`")
+    for p in glob.glob(os.path.join(voc_dir, "*.md")):
+        for m in voc_tick.finditer(open(p).read()):
+            s = m.group(1)
+            enums.add(s)
+            enums.add(s.split(":")[-1])
+    return props | enums | defs | stems
+
+known_names = schema_names()
+mentioned = {}
+for path in NAME_DOCS:
+    rel = os.path.relpath(path, ROOT)
+    for i, line in enumerate(open(path), 1):
+        for raw in TICK.findall(line):
+            if "." in raw:
+                continue  # file / version ticks, not field names
+            tok = raw.split()[0].split("=")[0].split("/")[0].split(":")[0].rstrip("[]{}(),.*")
+            if IDENT.match(tok) and tok not in NOT_FIELDS:
+                mentioned.setdefault(tok, []).append(f"{rel}:{i}")
+missing_names = sorted(n for n in mentioned if n not in known_names)
+if missing_names:
+    for n in missing_names:
+        fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
+else:
+    ok(f"{len(mentioned)} documented names present on a schema")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

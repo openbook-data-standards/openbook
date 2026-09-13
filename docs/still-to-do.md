@@ -1,17 +1,16 @@
 # Still to do
 
 Questions recorded through **Q87**. Catalog pass closed. Log only.
+Q46–Q49 are on the wire. **Q50** is the docs-vs-schema name check in
+`tools/validate.py`.
 
 ## Later PRs (decided, not built)
 
-- **Q50** — one-way docs-vs-schema name CI.
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-- **Q11/Q57–Q64 wire** — schema may still disagree (`location`/`nickname`/
-  `registeredName`, team-only `abbreviation`, publisher `registeredName`,
-  Place `timeZone`, publisher `inLanguage`, WGS 84, league sex category,
-  league ageGroup, fixture `surface`, fixture participant `seed`).
-- Wire/schema for Q46–Q49 (`snapshotComplete`, `heartbeat` / `heartbeatMs`,
-  410, `conflated`, `ttl`, discovery JSON).
+- **Q11/Q57–Q64 wire** — schema may still disagree with the log (team
+  location/nickname/registered name, team-only abbreviation, publisher
+  registered name, Place time zone and language, WGS 84, league sex
+  category and age group, fixture surface, fixture participant seed).
 - **Q80** — match lineup live object (not this log patch).
 - Racing draw/stall, cricket toss, playoff series state — not on generic
   fixture (**Q86**); later stage / sport slice.

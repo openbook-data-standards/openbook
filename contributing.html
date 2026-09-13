@@ -12,8 +12,7 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
-  <a class="logo" href="./">
-    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
       <rect class="ink" x="2" y="8" width="4" height="4"/>
       <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
       <rect class="ink" x="2" y="20" width="4" height="4"/>
@@ -21,21 +20,22 @@
       <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
       <rect class="ink" x="8" y="20" width="8" height="4"/>
     </svg>
-    OpenBook
-  </a>
+    OpenBook</a>
   <nav>
-    <a href="./spec.html">Spec</a><a href="./vocabularies/">Vocabularies</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    <a href="./spec.html">Spec</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · CONTRIBUTING.md</p><nav class="toc"><strong>Contents</strong><a href="#proposing-a-change">Proposing a change</a><a href="#rules-that-don-t-bend">Rules that don&#x27;t bend</a><a href="#style">Style</a></nav><article class="doc"><h1 id="contributing-to-openbook">Contributing to OpenBook</h1>
+<p class="crumb"><a href="./">Home</a> · CONTRIBUTING.md</p><nav class="page-toc"><strong>On this page</strong><a href="#proposing-a-change">Proposing a change</a><a href="#rules-that-don-t-bend">Rules that don&#x27;t bend</a><a href="#style">Style</a></nav><article class="doc"><h1 id="contributing-to-openbook">Contributing to OpenBook</h1>
 <p>This is an early working draft. The most valuable contributions right now are to the <strong>vocabularies</strong> — especially <a href="vocabularies/#market-types"><code>vocabularies/market_types.md</code></a>, the market taxonomy no one else has published.</p>
 <h2 id="proposing-a-change">Proposing a change</h2>
 <ol>
 <li>Open an issue describing the change and the real-world feed(s) that motivate it. Vocabulary additions should cite at least one provider that carries the sport / market / segment.</li>
 <li>For a schema change, update the JSON Schema in <a href="schemas.html"><code>schema/</code></a> <strong>and</strong> the prose in <a href="spec.html"><code>spec/openbook.md</code></a> in the same change; the schema is machine-normative and must not drift from the prose.</li>
 <li>Add or update an example in <a href="schemas.html#examples"><code>examples/</code></a> that validates against the changed schema, and list it in <a href="conformance/manifest.json"><code>conformance/manifest.json</code></a>. If the change makes a previously legal document illegal, add an <strong>invalid</strong> case under <code>conformance/invalid/</code>.</li>
-<li>Note the change in <a href="changelog.html"><code>CHANGELOG.md</code></a> under "Unreleased".</li>
+<li>Note the change in <a href="changelog.html"><code>CHANGELOG.md</code></a> under "Unreleased". Names you put in <code>spec/openbook.md</code> (and the scanned docs pages) MUST exist on a schema; <code>python3 tools/validate.py</code> checks that (Q50).</li>
 </ol>
 <h2 id="rules-that-don-t-bend">Rules that don't bend</h2>
 <ul>

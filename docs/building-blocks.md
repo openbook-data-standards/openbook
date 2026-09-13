@@ -22,8 +22,8 @@ grouped by what each one is used for, with the reason it was chosen.
 - **IANA time-zone database** — venue-local time names (`Europe/London`) where
   display needs them; never used in place of an offset on the wire.
 - **Unicode / UTF-8** — all text. Names keep their diacritics.
-- **ISO 9 (Cyrillic) / ISO 843 (Greek)** — transliteration to Latin for the
-  optional `name_latin` field used in sorting and matching.
+- **ISO 9 (Cyrillic) / ISO 843 (Greek)** — how to transliterate when matching
+  or sorting; the wire field for native script is `localName` (Q11).
 
 ## Neutral identifiers for entities
 
@@ -53,12 +53,15 @@ grouped by what each one is used for, with the reason it was chosen.
 
 - **RFC 7386 JSON Merge Patch** — the semantics of every change message:
   absent = unchanged, `null` = removed. Decision Q8.
-- **OpenAPI 3.1** — describes the pull side (snapshot + `since=` endpoints).
+- **OpenAPI 3.1** — a publisher who offers HTTP publishes **their own** pull
+  docs; this repo does not ship `openapi.yaml` (Q54). Spec still names
+  `since=` and HTTP 410.
 - **AsyncAPI 3.0** — describes the push side (the change streams)
   ([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml); Q42).
-- **CloudEvents** — deferred (Q42). OpenBook's own change envelope is the
-  message; a CloudEvents wrap is not on the wire.
-- **RFC 9457 Problem Details** — the error format for the pull API.
+- **CloudEvents** — never (Q52). OpenBook's own change envelope is the
+  message.
+- **RFC 9457 Problem Details** — the error format for a stale `since`
+  (HTTP 410) and other pull errors.
 - **WIS2 topic hierarchy** (WMO) — the model for OpenBook's stream-naming grammar:
   fixed, versioned levels; lowercase, dash-separated, no dots. See Q14.
 - **CAP 1.2** (OASIS Common Alerting Protocol) — the model for suspension /
