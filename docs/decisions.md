@@ -850,3 +850,11 @@ Rejected: starter ids on the fixture now; never a match XI.
 
 **Supersedes:** none. Spec already says `player` is for lineups/props; match
 XI is not the roster row.
+
+## Q81 — Match officials — decided (omit for now)
+
+No referee object. Add later if those markets exist (**Q35**).
+
+Rejected: optional or required officials now.
+
+**Supersedes:** none.
