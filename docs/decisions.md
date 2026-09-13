@@ -650,3 +650,23 @@ A CI schema-diff gate (required field added, re-type, remove) is a **later PR**,
 Rejected: run it on 0.x now; never; this patch.
 
 **Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
+
+## Q56 — Display profile — decided (companion document)
+
+The serving spec stays the publisher wire (Q1, Q39): decimal `odds`,
+`sequence`, Merge Patch, fixture-first topics. A **display** document is a
+derived UI view of one fixture × source — labels, `displayOrder`, American /
+fractional / implied `displayOdds` — specified in
+[`../spec/display.md`](../spec/display.md) and
+[`../schema/display.schema.json`](../schema/display.schema.json).
+
+- Same ids as serving. `basedOn` is the serving sequence. Display MUST NOT
+  invent prices.
+- `profile: display` on the view; serving objects omit `profile`.
+- Not an `object`/`action` on the push grammar. Discovery MAY list a display
+  URL. Consumers MAY derive the view locally.
+
+Rejected: a second live protocol; putting American/fractional/`displayOrder`
+on serving markets; a consumer-view schema (Q51 stands).
+
+**Supersedes:** none of Q1 or Q39. Names where presentation lives.

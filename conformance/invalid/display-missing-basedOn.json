@@ -1,0 +1,21 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "profile": "display",
+  "dateModified": "2026-09-19T14:05:01Z",
+  "inLanguage": "en",
+  "oddsFormat": "american",
+  "fixture": "EVT-88213",
+  "source": "bigbook",
+  "markets": [
+    {
+      "marketType": "market:spread",
+      "status": "open",
+      "outcomes": [
+        {
+          "side": "home",
+          "odds": "1.91"
+        }
+      ]
+    }
+  ]
+}

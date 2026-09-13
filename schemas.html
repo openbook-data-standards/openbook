@@ -23,12 +23,13 @@
     OpenBook</a>
   <nav>
     <a href="./spec.html">Spec</a>
+    <a href="./display.html">Display</a>
     <a href="./vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · JSON Schemas</p><nav class="page-toc"><strong>On this page</strong><a href="#change">change</a><a href="#common">common</a><a href="#discovery">discovery</a><a href="#fixture">fixture</a><a href="#grade">grade</a><a href="#league">league</a><a href="#market">market</a><a href="#market_type">market_type</a><a href="#odds_change">odds_change</a><a href="#participant">participant</a><a href="#player">player</a><a href="#publisher">publisher</a><a href="#region">region</a><a href="#score">score</a><a href="#season">season</a><a href="#sport">sport</a><a href="#stage">stage</a><a href="#examples">examples</a></nav><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
+<p class="crumb"><a href="./">Home</a> · JSON Schemas</p><nav class="page-toc"><strong>On this page</strong><a href="#change">change</a><a href="#common">common</a><a href="#discovery">discovery</a><a href="#display">display</a><a href="#fixture">fixture</a><a href="#grade">grade</a><a href="#league">league</a><a href="#market">market</a><a href="#market_type">market_type</a><a href="#odds_change">odds_change</a><a href="#participant">participant</a><a href="#player">player</a><a href="#publisher">publisher</a><a href="#region">region</a><a href="#score">score</a><a href="#season">season</a><a href="#sport">sport</a><a href="#stage">stage</a><a href="#examples">examples</a></nav><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook change envelope&quot;,
@@ -477,6 +478,41 @@
         &quot;half-win&quot;,
         &quot;half-lose&quot;
       ]
+    },
+    &quot;profile&quot;: {
+      &quot;enum&quot;: [
+        &quot;display&quot;
+      ],
+      &quot;description&quot;: &quot;Document role. Serving objects omit this. Display documents MUST set `display` (Q56).&quot;
+    },
+    &quot;oddsFormat&quot;: {
+      &quot;enum&quot;: [
+        &quot;decimal&quot;,
+        &quot;american&quot;,
+        &quot;fractional&quot;,
+        &quot;implied&quot;
+      ],
+      &quot;description&quot;: &quot;How `displayOdds` is spelled. Canonical price remains decimal `odds` (Q39, Q56).&quot;
+    },
+    &quot;inLanguage&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[a-z]{2}$&quot;,
+      &quot;description&quot;: &quot;schema.org inLanguage \u2014 ISO 639-1 of the labels in this display document.&quot;
+    },
+    &quot;displayOdds&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;description&quot;: &quot;Presentation price in `oddsFormat`. Not a second price of record.&quot;
+    },
+    &quot;impliedProbability&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^(?:0(?:\\.[0-9]+)?|1(?:\\.0+)?)$&quot;,
+      &quot;description&quot;: &quot;Implied win probability as a decimal string in [0, 1]. Derived from decimal odds; not a price.&quot;
+    },
+    &quot;displayOrder&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 1,
+      &quot;description&quot;: &quot;UI sort among siblings. Presentation only; never a serving fact (Q56).&quot;
     }
   }
 }</pre></section><section class="schema-block" id="discovery"><h2>OpenBook discovery document</h2><p>One URL lists a publisher&#x27;s feeds (Q49). GBFS-shaped. The publisher object stays identity, not the catalog.</p><p><a href="schema/discovery.schema.json">discovery.schema.json</a> · required: <code>lastUpdated, ttl, feeds</code></p><pre>{
@@ -520,6 +556,157 @@
           &quot;url&quot;: {
             &quot;type&quot;: &quot;string&quot;,
             &quot;format&quot;: &quot;uri&quot;
+          }
+        }
+      }
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="display"><h2>OpenBook display document</h2><p>A derived UI view of one fixture × source (Q56). Same ids as the serving wire. Canonical prices stay decimal `odds`. American, fractional and implied forms live only here. Not an object/action on the push streams.</p><p><a href="schema/display.schema.json">display.schema.json</a> · required: <code>openbookVersion, profile, basedOn, dateModified, inLanguage, oddsFormat, fixture, source, markets</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/display.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook display document&quot;,
+  &quot;description&quot;: &quot;A derived UI view of one fixture \u00d7 source (Q56). Same ids as the serving wire. Canonical prices stay decimal `odds`. American, fractional and implied forms live only here. Not an object/action on the push streams.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;profile&quot;,
+    &quot;basedOn&quot;,
+    &quot;dateModified&quot;,
+    &quot;inLanguage&quot;,
+    &quot;oddsFormat&quot;,
+    &quot;fixture&quot;,
+    &quot;source&quot;,
+    &quot;markets&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;profile&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/profile&quot;
+    },
+    &quot;basedOn&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;,
+      &quot;description&quot;: &quot;The serving-feed sequence this view was built from. Display MUST NOT invent prices.&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;inLanguage&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/inLanguage&quot;
+    },
+    &quot;oddsFormat&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/oddsFormat&quot;
+    },
+    &quot;ttl&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 0,
+      &quot;description&quot;: &quot;Cache lifetime in seconds (Q48). Display views SHOULD be short-lived.&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;source&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;markets&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;minItems&quot;: 1,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+          &quot;marketType&quot;,
+          &quot;status&quot;,
+          &quot;outcomes&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;patternProperties&quot;: {
+          &quot;^x_&quot;: {}
+        },
+        &quot;properties&quot;: {
+          &quot;marketType&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+          },
+          &quot;segment&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
+          },
+          &quot;line&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
+          },
+          &quot;status&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketStatus&quot;
+          },
+          &quot;isMain&quot;: {
+            &quot;type&quot;: &quot;boolean&quot;
+          },
+          &quot;marketCategory&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketCategory&quot;
+          },
+          &quot;name&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;minLength&quot;: 1,
+            &quot;description&quot;: &quot;UI heading for this market in `inLanguage`.&quot;
+          },
+          &quot;displayOrder&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/displayOrder&quot;
+          },
+          &quot;outcomes&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;minItems&quot;: 1,
+            &quot;items&quot;: {
+              &quot;type&quot;: &quot;object&quot;,
+              &quot;required&quot;: [
+                &quot;side&quot;,
+                &quot;odds&quot;
+              ],
+              &quot;additionalProperties&quot;: false,
+              &quot;patternProperties&quot;: {
+                &quot;^x_&quot;: {}
+              },
+              &quot;properties&quot;: {
+                &quot;side&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
+                },
+                &quot;participant&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+                },
+                &quot;odds&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalOdds&quot;
+                },
+                &quot;line&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
+                },
+                &quot;displayOdds&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/displayOdds&quot;
+                },
+                &quot;impliedProbability&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/impliedProbability&quot;
+                },
+                &quot;name&quot;: {
+                  &quot;type&quot;: &quot;string&quot;,
+                  &quot;minLength&quot;: 1,
+                  &quot;description&quot;: &quot;UI label for this outcome in `inLanguage`.&quot;
+                },
+                &quot;displayOrder&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/displayOrder&quot;
+                },
+                &quot;selectionId&quot;: {
+                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+                  &quot;description&quot;: &quot;Optional publisher betslip id. Identity on the serving wire remains (source, fixture, marketType, segment, line, side).&quot;
+                },
+                &quot;active&quot;: {
+                  &quot;type&quot;: &quot;boolean&quot;
+                }
+              }
+            }
           }
         }
       }
@@ -1817,6 +2004,56 @@
     {
       &quot;name&quot;: &quot;docs&quot;,
       &quot;url&quot;: &quot;https://example.invalid/acme-feeds/docs&quot;
+    },
+    {
+      &quot;name&quot;: &quot;display&quot;,
+      &quot;url&quot;: &quot;https://example.invalid/acme-feeds/display&quot;
+    }
+  ]
+}</pre></section><section class="schema-block" id="display.example"><h2>display.example.json</h2><p><a href="examples/display.example.json">examples/display.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;profile&quot;: &quot;display&quot;,
+  &quot;basedOn&quot;: 104880,
+  &quot;dateModified&quot;: &quot;2026-09-19T14:05:01Z&quot;,
+  &quot;inLanguage&quot;: &quot;en&quot;,
+  &quot;oddsFormat&quot;: &quot;american&quot;,
+  &quot;ttl&quot;: 1,
+  &quot;fixture&quot;: &quot;EVT-88213&quot;,
+  &quot;source&quot;: &quot;bigbook&quot;,
+  &quot;markets&quot;: [
+    {
+      &quot;marketType&quot;: &quot;market:spread&quot;,
+      &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+      &quot;line&quot;: &quot;-0.5&quot;,
+      &quot;status&quot;: &quot;open&quot;,
+      &quot;isMain&quot;: true,
+      &quot;marketCategory&quot;: &quot;main-line&quot;,
+      &quot;name&quot;: &quot;Asian Handicap&quot;,
+      &quot;displayOrder&quot;: 2,
+      &quot;outcomes&quot;: [
+        {
+          &quot;side&quot;: &quot;home&quot;,
+          &quot;name&quot;: &quot;Arsenal -0.5&quot;,
+          &quot;odds&quot;: &quot;1.91&quot;,
+          &quot;line&quot;: &quot;-0.5&quot;,
+          &quot;displayOdds&quot;: &quot;-110&quot;,
+          &quot;impliedProbability&quot;: &quot;0.524&quot;,
+          &quot;displayOrder&quot;: 1,
+          &quot;selectionId&quot;: &quot;SEL-AH-H&quot;,
+          &quot;active&quot;: true
+        },
+        {
+          &quot;side&quot;: &quot;away&quot;,
+          &quot;name&quot;: &quot;Manchester City +0.5&quot;,
+          &quot;odds&quot;: &quot;1.95&quot;,
+          &quot;line&quot;: &quot;0.5&quot;,
+          &quot;displayOdds&quot;: &quot;+105&quot;,
+          &quot;impliedProbability&quot;: &quot;0.513&quot;,
+          &quot;displayOrder&quot;: 2,
+          &quot;selectionId&quot;: &quot;SEL-AH-A&quot;,
+          &quot;active&quot;: true
+        }
+      ]
     }
   ]
 }</pre></section><section class="schema-block" id="fixture.example"><h2>fixture.example.json</h2><p><a href="examples/fixture.example.json">examples/fixture.example.json</a></p><pre>{

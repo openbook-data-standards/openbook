@@ -55,7 +55,8 @@ openbook/  (this repository)
   docs/
     decisions.md            ← the design decision log
   spec/
-    openbook.md           ← the normative reference specification
+    openbook.md           ← the normative serving specification
+    display.md            ← display profile (Q56); derived UI view, not a second wire
     asyncapi.yaml         ← push streams (Q42); MQTT not required
   schema/                 ← JSON Schema (draft 2020-12), the machine-normative field definitions
     common.schema.json            shared $defs: ids, territory, wikidata, sequence, provenance
@@ -69,6 +70,7 @@ openbook/  (this repository)
     score.schema.json             live state: three statuses, clock, score lines per participant x unit x segment
     grade.schema.json             the book's grade of one market from a down segment; never edited
     season.schema.json · player.schema.json
+    display.schema.json           derived UI view of one fixture × source (Q56)
   examples/               ← valid worked documents (also the valid corpus)
   conformance/            ← language-agnostic corpus (manifest + invalid cases)
   tools/validate.py       ← one runner; not a language oracle

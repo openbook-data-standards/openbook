@@ -23,12 +23,13 @@
     OpenBook</a>
   <nav>
     <a href="./spec.html" aria-current="page">Spec</a>
+    <a href="./display.html">Display</a>
     <a href="./vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · spec/openbook.md</p><nav class="page-toc"><strong>On this page</strong><a href="#1-what-openbook-is">1. What OpenBook is</a><a href="#2-conventions">2. Conventions</a><a href="#3-identifiers">3. Identifiers</a><a href="#4-the-hierarchy">4. The hierarchy</a><a href="#5-change-everything-is-diff-able">5. Change: everything is diff-able</a><a href="#5a-status-three-questions-three-fields">5a. Status: three questions, three fields</a><a href="#6-standard-facts-matching-across-publishers">6. Standard facts (matching across publishers)</a><a href="#7-objects">7. Objects</a><a href="#8-streams-fixture-first-then-object-action">8. Streams: fixture-first, then object / action</a><a href="#9-extensions">9. Extensions</a><a href="#10-conformance">10. Conformance</a><a href="#11-versioning">11. Versioning</a></nav><article class="doc"><h1 id="openbook-the-specification">OpenBook — the specification</h1>
+<p class="crumb"><a href="./">Home</a> · spec/openbook.md</p><nav class="page-toc"><strong>On this page</strong><a href="#1-what-openbook-is">1. What OpenBook is</a><a href="#2-conventions">2. Conventions</a><a href="#3-identifiers">3. Identifiers</a><a href="#4-the-hierarchy">4. The hierarchy</a><a href="#5-change-everything-is-diff-able">5. Change: everything is diff-able</a><a href="#5a-status-three-questions-three-fields">5a. Status: three questions, three fields</a><a href="#6-standard-facts-matching-across-publishers">6. Standard facts (matching across publishers)</a><a href="#7-objects">7. Objects</a><a href="#8-streams-fixture-first-then-object-action">8. Streams: fixture-first, then object / action</a><a href="#9-extensions">9. Extensions</a><a href="#10-conformance">10. Conformance</a><a href="#11-versioning">11. Versioning</a><a href="#12-display-profile-q56">12. Display profile (Q56)</a></nav><article class="doc"><h1 id="openbook-the-specification">OpenBook — the specification</h1>
 <p>The normative document defining the <strong>OpenBook</strong> standard. Version <code>0.3.0-draft</code> · 2026-09-12</p>
 <p>The JSON Schemas in <a href="schemas.html"><code>../schema/</code></a> are the machine-normative field definitions; where prose and schema disagree, the schema wins. Every rule here traces to a decision in <a href="decisions.html"><code>../docs/decisions.md</code></a>. Keywords <strong>MUST</strong>, <strong>SHOULD</strong>, <strong>MAY</strong> are used per RFC 2119.</p>
 <hr>
@@ -46,7 +47,7 @@
 <li><strong>Currency</strong> — ISO 4217. Each feed MUST declare <strong><code>baseCurrency</code></strong> once on the publisher record (and on a full snapshot of that record). Incremental messages do not repeat it. Money is <code>{amount}</code> in that currency. Odds are not money. Another currency is another subscription (Q44).</li>
 <li><strong>Language</strong> — ISO 639-1.</li>
 <li><strong>Territory</strong> — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (<code>GB</code>), ISO 3166-2 for sub-national teams (<code>GB-ENG</code>, <code>US-PR</code>), CLDR extras (<code>XK</code>).</li>
-<li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation.</li>
+<li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation (<a href="display.html"><code>display.md</code></a>, Q56).</li>
 <li><strong>Text</strong> — UTF-8; names keep their diacritics.</li>
 <li><strong>Field names</strong> — camelCase, and <strong>schema.org's name wherever schema.org has the property</strong>: <code>startDate</code>, <code>dateModified</code>, <code>datePublished</code>, <code>alternateName</code>, <code>sameAs</code>, <code>identifier</code>, <code>superEvent</code>, <code>organizer</code>, <code>location</code>. Small shared vocabularies are <code>*Type</code> fields: <code>competitionType</code>, <code>participantType</code>, <code>marketType</code>, <code>stageType</code>, <code>sourceType</code>. Documents MAY carry JSON-LD <code>@context</code> / <code>@type</code>, so an OpenBook document is also valid schema.org data.</li>
 <li>Every object and message carries <code>openbookVersion</code>.</li>
@@ -159,7 +160,10 @@ openbook/v1/acme-feeds/publisher/heartbeat                                    fe
 </ul>
 <p>The gate is this spec, the JSON Schemas, and the language-agnostic corpus in <a href="conformance/"><code>../conformance/</code></a> (Q40). Valid cases MUST be accepted; invalid cases MUST be rejected. <a href="../tools/validate.py"><code>../tools/validate.py</code></a> is one runner, not a language oracle.</p>
 <h2 id="11-versioning">11. Versioning</h2>
-<p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version. Within a frozen major, compatibility is <strong>FULL-TRANSITIVE</strong> (Q32): minors only add optional fields; the required set does not shrink or grow. Freezing <strong>1.0</strong> requires two independent implementations (Q41).</p></article><p class="source">Source: spec/openbook.md</p>
+<p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version. Within a frozen major, compatibility is <strong>FULL-TRANSITIVE</strong> (Q32): minors only add optional fields; the required set does not shrink or grow. Freezing <strong>1.0</strong> requires two independent implementations (Q41).</p>
+<h2 id="12-display-profile-q56">12. Display profile (Q56)</h2>
+<p>This document is the <strong>serving</strong> contract. American and fractional odds, UI labels, and column order are presentation — they MUST NOT appear as facts on serving objects (Q39, §6).</p>
+<p>A derived <strong>display</strong> document is specified in <a href="display.html"><code>display.md</code></a>. It copies serving ids, MUST set <code>profile</code> to <code>display</code>, MUST cite the serving <code>sequence</code> as <code>basedOn</code>, and MAY add <code>inLanguage</code>, <code>oddsFormat</code>, <code>displayOdds</code>, <code>displayOrder</code>, and <code>selectionId</code>. Canonical <code>odds</code> stay decimal. Display is not an <code>object</code> / <code>action</code> on the push streams; a publisher MAY list a display URL on discovery.</p></article><p class="source">Source: spec/openbook.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">

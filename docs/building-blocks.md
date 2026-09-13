@@ -55,7 +55,8 @@ grouped by what each one is used for, with the reason it was chosen.
   absent = unchanged, `null` = removed. Decision Q8.
 - **OpenAPI 3.1** — a publisher who offers HTTP publishes **their own** pull
   docs; this repo does not ship `openapi.yaml` (Q54). Spec still names
-  `since=` and HTTP 410.
+  `since=` and HTTP 410. A display URL, if offered, is listed the same way
+  (Q56); it is not a second serving protocol.
 - **AsyncAPI 3.0** — describes the push side (the change streams)
   ([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml); Q42).
 - **CloudEvents** — never (Q52). OpenBook's own change envelope is the

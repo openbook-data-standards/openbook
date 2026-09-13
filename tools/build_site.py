@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 NAV = [
     ("spec.html", "Spec"),
+    ("display.html", "Display"),
     ("vocabularies/", "Vocabularies"),
     ("https://github.com/openbook-data-standards/openbook", "GitHub"),
 ]
@@ -18,6 +19,10 @@ NAV = [
 PAGE_MAP = {
     "spec/openbook.md": "spec.html",
     "../spec/openbook.md": "spec.html",
+    "spec/display.md": "display.html",
+    "../spec/display.md": "display.html",
+    "display.md": "display.html",
+    "openbook.md": "spec.html",
     "asyncapi.yaml": "spec/asyncapi.yaml",
     "../spec/asyncapi.yaml": "spec/asyncapi.yaml",
     "docs/decisions.md": "decisions.html",
@@ -208,6 +213,7 @@ def toc_nav(toc: list[tuple[str, str]] | None) -> str:
 def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str, str]] | None = None) -> str:
     root = "../" * depth if depth else "./"
     spec_cur = ' aria-current="page"' if current.rstrip("/") == "spec.html" else ""
+    disp_cur = ' aria-current="page"' if current.rstrip("/") == "display.html" else ""
     voc_cur = ' aria-current="page"' if current.rstrip("/") == "vocabularies" else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -226,6 +232,7 @@ def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str,
   <a class="logo" href="{root}">{LOGO}</a>
   <nav>
     <a href="{root}spec.html"{spec_cur}>Spec</a>
+    <a href="{root}display.html"{disp_cur}>Display</a>
     <a href="{root}vocabularies/"{voc_cur}>Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
@@ -343,6 +350,7 @@ def vocab_index() -> str:
 
 def main() -> None:
     write_md_page(ROOT / "spec/openbook.md", ROOT / "spec.html", 0, "spec.html", "spec/openbook.md")
+    write_md_page(ROOT / "spec/display.md", ROOT / "display.html", 0, "display.html", "spec/display.md")
     write_md_page(ROOT / "docs/decisions.md", ROOT / "decisions.html", 0, "decisions.html", "docs/decisions.md")
     write_md_page(ROOT / "docs/building-blocks.md", ROOT / "building-blocks.html", 0, "building-blocks.html", "docs/building-blocks.md")
     write_md_page(ROOT / "docs/industry-patterns.md", ROOT / "industry-patterns.html", 0, "industry-patterns.html", "docs/industry-patterns.md")

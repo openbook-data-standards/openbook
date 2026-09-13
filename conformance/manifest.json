@@ -13,6 +13,7 @@
     {"path": "examples/heartbeat.example.json"},
     {"path": "examples/snapshot_complete.example.json"},
     {"path": "examples/discovery.example.json"},
+    {"path": "examples/display.example.json"},
     {"path": "examples/score.example.json"},
     {"path": "examples/stage.example.json"}
   ],
@@ -32,6 +33,10 @@
     {
       "path": "conformance/invalid/market-missing-limit.json",
       "reason": "priced market create/snapshot MUST carry limit (Q45)"
+    },
+    {
+      "path": "conformance/invalid/display-missing-basedOn.json",
+      "reason": "display document MUST cite serving sequence as basedOn (Q56)"
     }
   ]
 }

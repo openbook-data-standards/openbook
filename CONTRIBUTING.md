@@ -10,7 +10,8 @@ the market taxonomy no one else has published.
    it. Vocabulary additions should cite at least one provider that carries the
    sport / market / segment.
 2. For a schema change, update the JSON Schema in [`schema/`](schema/) **and** the
-   prose in [`spec/openbook.md`](spec/openbook.md) in the same change; the schema
+   prose in [`spec/openbook.md`](spec/openbook.md) (or [`spec/display.md`](spec/display.md)
+   for the display profile) in the same change; the schema
    is machine-normative and must not drift from the prose.
 3. Add or update an example in [`examples/`](examples/) that validates against the
    changed schema, and list it in [`conformance/manifest.json`](conformance/manifest.json).

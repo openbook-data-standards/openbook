@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/display.schema.json",
+  "title": "OpenBook display document",
+  "description": "A derived UI view of one fixture \u00d7 source (Q56). Same ids as the serving wire. Canonical prices stay decimal `odds`. American, fractional and implied forms live only here. Not an object/action on the push streams.",
+  "type": "object",
+  "required": [
+    "openbookVersion",
+    "profile",
+    "basedOn",
+    "dateModified",
+    "inLanguage",
+    "oddsFormat",
+    "fixture",
+    "source",
+    "markets"
+  ],
+  "properties": {
+    "@context": {},
+    "@type": {
+      "type": "string"
+    },
+    "openbookVersion": {
+      "$ref": "common.schema.json#/$defs/openbookVersion"
+    },
+    "profile": {
+      "$ref": "common.schema.json#/$defs/profile"
+    },
+    "basedOn": {
+      "$ref": "common.schema.json#/$defs/sequence",
+      "description": "The serving-feed sequence this view was built from. Display MUST NOT invent prices."
+    },
+    "dateModified": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "inLanguage": {
+      "$ref": "common.schema.json#/$defs/inLanguage"
+    },
+    "oddsFormat": {
+      "$ref": "common.schema.json#/$defs/oddsFormat"
+    },
+    "ttl": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Cache lifetime in seconds (Q48). Display views SHOULD be short-lived."
+    },
+    "fixture": {
+      "$ref": "common.schema.json#/$defs/ownId"
+    },
+    "source": {
+      "$ref": "common.schema.json#/$defs/ownId"
+    },
+    "markets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "marketType",
+          "status",
+          "outcomes"
+        ],
+        "additionalProperties": false,
+        "patternProperties": {
+          "^x_": {}
+        },
+        "properties": {
+          "marketType": {
+            "$ref": "common.schema.json#/$defs/sharedId"
+          },
+          "segment": {
+            "$ref": "common.schema.json#/$defs/sharedId"
+          },
+          "line": {
+            "$ref": "common.schema.json#/$defs/decimalString"
+          },
+          "status": {
+            "$ref": "common.schema.json#/$defs/marketStatus"
+          },
+          "isMain": {
+            "type": "boolean"
+          },
+          "marketCategory": {
+            "$ref": "common.schema.json#/$defs/marketCategory"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "UI heading for this market in `inLanguage`."
+          },
+          "displayOrder": {
+            "$ref": "common.schema.json#/$defs/displayOrder"
+          },
+          "outcomes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "side",
+                "odds"
+              ],
+              "additionalProperties": false,
+              "patternProperties": {
+                "^x_": {}
+              },
+              "properties": {
+                "side": {
+                  "$ref": "common.schema.json#/$defs/side"
+                },
+                "participant": {
+                  "$ref": "common.schema.json#/$defs/ownId"
+                },
+                "odds": {
+                  "$ref": "common.schema.json#/$defs/decimalOdds"
+                },
+                "line": {
+                  "$ref": "common.schema.json#/$defs/decimalString"
+                },
+                "displayOdds": {
+                  "$ref": "common.schema.json#/$defs/displayOdds"
+                },
+                "impliedProbability": {
+                  "$ref": "common.schema.json#/$defs/impliedProbability"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "UI label for this outcome in `inLanguage`."
+                },
+                "displayOrder": {
+                  "$ref": "common.schema.json#/$defs/displayOrder"
+                },
+                "selectionId": {
+                  "$ref": "common.schema.json#/$defs/ownId",
+                  "description": "Optional publisher betslip id. Identity on the serving wire remains (source, fixture, marketType, segment, line, side)."
+                },
+                "active": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x_": {}
+  },
+  "additionalProperties": false
+}

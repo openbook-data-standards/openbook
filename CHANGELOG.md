@@ -5,6 +5,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Added
+- **Q56** — display profile: derived UI view (`spec/display.md`,
+  `schema/display.schema.json`). Serving wire unchanged.
+
 ### Changed
 - **Q11** — names are decided camelCase, matching the participant schema:
   `shortName`, `alternateName`, `localName`, `givenName` / `familyName` (not

@@ -23,6 +23,7 @@
     OpenBook</a>
   <nav>
     <a href="./spec.html">Spec</a>
+    <a href="./display.html">Display</a>
     <a href="./vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
@@ -33,7 +34,7 @@
 <h2 id="proposing-a-change">Proposing a change</h2>
 <ol>
 <li>Open an issue describing the change and the real-world feed(s) that motivate it. Vocabulary additions should cite at least one provider that carries the sport / market / segment.</li>
-<li>For a schema change, update the JSON Schema in <a href="schemas.html"><code>schema/</code></a> <strong>and</strong> the prose in <a href="spec.html"><code>spec/openbook.md</code></a> in the same change; the schema is machine-normative and must not drift from the prose.</li>
+<li>For a schema change, update the JSON Schema in <a href="schemas.html"><code>schema/</code></a> <strong>and</strong> the prose in <a href="spec.html"><code>spec/openbook.md</code></a> (or <a href="display.html"><code>spec/display.md</code></a> for the display profile) in the same change; the schema is machine-normative and must not drift from the prose.</li>
 <li>Add or update an example in <a href="schemas.html#examples"><code>examples/</code></a> that validates against the changed schema, and list it in <a href="conformance/manifest.json"><code>conformance/manifest.json</code></a>. If the change makes a previously legal document illegal, add an <strong>invalid</strong> case under <code>conformance/invalid/</code>.</li>
 <li>Note the change in <a href="changelog.html"><code>CHANGELOG.md</code></a> under "Unreleased". Names you put in <code>spec/openbook.md</code> (and the scanned docs pages) MUST exist on a schema; <code>python3 tools/validate.py</code> checks that (Q50).</li>
 </ol>

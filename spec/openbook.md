@@ -37,7 +37,7 @@ It standardises the data contract only.
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).
 - **Odds and lines** — decimal **strings** on the wire, not JSON numbers.
   Decimal odds only (MUST be strictly greater than 1); American and
-  fractional forms are presentation.
+  fractional forms are presentation ([`display.md`](display.md), Q56).
 - **Text** — UTF-8; names keep their diacritics.
 - **Field names** — camelCase, and **schema.org's name wherever schema.org has
   the property**: `startDate`, `dateModified`, `datePublished`, `alternateName`,
@@ -329,3 +329,16 @@ marks an unfrozen version. Within a frozen major, compatibility is
 **FULL-TRANSITIVE** (Q32): minors only add optional fields; the required set
 does not shrink or grow. Freezing **1.0** requires two independent
 implementations (Q41).
+
+## 12. Display profile (Q56)
+
+This document is the **serving** contract. American and fractional odds, UI
+labels, and column order are presentation — they MUST NOT appear as facts on
+serving objects (Q39, §6).
+
+A derived **display** document is specified in [`display.md`](display.md).
+It copies serving ids, MUST set `profile` to `display`, MUST cite the
+serving `sequence` as `basedOn`, and MAY add `inLanguage`, `oddsFormat`,
+`displayOdds`, `displayOrder`, and `selectionId`. Canonical `odds` stay
+decimal. Display is not an `object` / `action` on the push streams; a
+publisher MAY list a display URL on discovery.

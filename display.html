@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBook display profile — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/display.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./spec.html">Spec</a>
+    <a href="./display.html" aria-current="page">Display</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · spec/display.md</p><nav class="page-toc"><strong>On this page</strong><a href="#1-why-a-second-document">1. Why a second document</a><a href="#2-rules">2. Rules</a><a href="#3-document">3. Document</a><a href="#4-conformance">4. Conformance</a></nav><article class="doc"><h1 id="openbook-display-profile">OpenBook display profile</h1>
+<p>A derived <strong>UI view</strong> of serving data. Version <code>0.3.0-draft</code> · decision <strong>Q56</strong>. The JSON Schema in <a href="schema/display.schema.json"><code>../schema/display.schema.json</code></a> is machine-normative. Keywords <strong>MUST</strong>, <strong>SHOULD</strong>, <strong>MAY</strong> are used per RFC 2119.</p>
+<p>This is <strong>not</strong> a second serving protocol. The publisher wire stays in <a href="spec.html"><code>openbook.md</code></a>: decimal <code>odds</code>, <code>sequence</code>, Merge Patch, fixture-first topics. Display sits on top.</p>
+<hr>
+<h2 id="1-why-a-second-document">1. Why a second document</h2>
+<p>The serving wire is for <strong>importers</strong>: books, feeds, traders, regulators. A sportsbook screen, a TV board, and a mobile betslip need extra things that are <strong>not facts</strong>:</p>
+<ul>
+<li>American / fractional / implied spellings of the same decimal price (Q39).</li>
+<li>Labels in one language (<code>inLanguage</code>).</li>
+<li>A stable sort for tabs and columns (<code>displayOrder</code>).</li>
+<li>An optional betslip <code>selectionId</code>.</li>
+</ul>
+<p>KIBL’s flipped-participants / rotation / ordering hints and Pinnacle’s three price formats on the live API are the industry versions of this split. OpenBook keeps them <strong>off</strong> the serving objects so a feed’s presentation order is never a fact (§6 of the serving spec).</p>
+<h2 id="2-rules">2. Rules</h2>
+<ul>
+<li><strong>Same ids.</strong> <code>fixture</code>, <code>source</code>, <code>marketType</code>, <code>segment</code>, <code>line</code>, <code>side</code> are copied from serving. Display MUST NOT mint a parallel identity.</li>
+<li><strong><code>basedOn</code></strong> is the serving <code>sequence</code> this view was built from. A display document MUST NOT invent or round a price that is not on that sequence.</li>
+<li><strong>Canonical price stays <code>odds</code></strong> (decimal string, strictly greater than 1). <code>displayOdds</code> is how that price is <strong>shown</strong> under <code>oddsFormat</code> (<code>decimal</code> · <code>american</code> · <code>fractional</code> · <code>implied</code>).</li>
+<li><strong><code>profile</code> MUST be <code>display</code>.</strong> Serving documents omit <code>profile</code>.</li>
+<li><strong>Not on the push grammar.</strong> Display is not an <code>object</code> / <code>action</code>. Do not publish <code>…/fixture/&lt;id&gt;/display/…</code> topics. A publisher MAY list a display URL on the discovery document (<code>name</code> + <code>url</code>) next to snapshot and stream.</li>
+<li><strong>Anyone MAY derive it.</strong> A consumer MAY build a display document locally from a serving snapshot. A publisher MAY also emit one. Both MUST cite <code>basedOn</code>.</li>
+<li><strong>Q37 still applies.</strong> Strict when you write this schema; readers ignore unknown fields. No separate consumer-view schema (Q51).</li>
+</ul>
+<h2 id="3-document">3. Document</h2>
+<p>One document is <strong>one fixture × one source</strong>, in one <code>inLanguage</code> and one <code>oddsFormat</code>. Switching language or odds format is another document (same pattern as another <code>baseCurrency</code> being another subscription).</p>
+<p>Required: <code>openbookVersion</code>, <code>profile</code>, <code>basedOn</code>, <code>dateModified</code>, <code>inLanguage</code>, <code>oddsFormat</code>, <code>fixture</code>, <code>source</code>, <code>markets[]</code>.</p>
+<p>Each market MAY carry <code>name</code>, <code>marketCategory</code>, <code>isMain</code>, <code>displayOrder</code>. Each outcome MUST carry serving <code>side</code> + <code>odds</code>, and MAY carry <code>name</code>, <code>displayOdds</code>, <code>impliedProbability</code>, <code>displayOrder</code>, <code>selectionId</code>.</p>
+<p><code>ttl</code> SHOULD be short (often <code>1</code>) so a UI does not freeze a stale board.</p>
+<h2 id="4-conformance">4. Conformance</h2>
+<p>A display document is OpenBook-conformant when it validates against <a href="schema/display.schema.json"><code>display.schema.json</code></a> and the rules in §2. Level R / Level L in the serving spec are unchanged: they describe the publisher feed, not this view.</p></article><p class="source">Source: spec/display.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>

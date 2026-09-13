@@ -13,6 +13,10 @@
     {
       "name": "docs",
       "url": "https://example.invalid/acme-feeds/docs"
+    },
+    {
+      "name": "display",
+      "url": "https://example.invalid/acme-feeds/display"
     }
   ]
 }

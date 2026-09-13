@@ -1,0 +1,47 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "profile": "display",
+  "basedOn": 104880,
+  "dateModified": "2026-09-19T14:05:01Z",
+  "inLanguage": "en",
+  "oddsFormat": "american",
+  "ttl": 1,
+  "fixture": "EVT-88213",
+  "source": "bigbook",
+  "markets": [
+    {
+      "marketType": "market:spread",
+      "segment": "segment:soccer:full-time",
+      "line": "-0.5",
+      "status": "open",
+      "isMain": true,
+      "marketCategory": "main-line",
+      "name": "Asian Handicap",
+      "displayOrder": 2,
+      "outcomes": [
+        {
+          "side": "home",
+          "name": "Arsenal -0.5",
+          "odds": "1.91",
+          "line": "-0.5",
+          "displayOdds": "-110",
+          "impliedProbability": "0.524",
+          "displayOrder": 1,
+          "selectionId": "SEL-AH-H",
+          "active": true
+        },
+        {
+          "side": "away",
+          "name": "Manchester City +0.5",
+          "odds": "1.95",
+          "line": "0.5",
+          "displayOdds": "+105",
+          "impliedProbability": "0.513",
+          "displayOrder": 2,
+          "selectionId": "SEL-AH-A",
+          "active": true
+        }
+      ]
+    }
+  ]
+}

@@ -188,6 +188,7 @@ NOT_FIELDS = frozenset({
 })
 NAME_DOCS = (
     os.path.join(ROOT, "spec", "openbook.md"),
+    os.path.join(ROOT, "spec", "display.md"),
     os.path.join(ROOT, "spec", "asyncapi.yaml"),
     os.path.join(ROOT, "docs", "building-blocks.md"),
     os.path.join(ROOT, "docs", "still-to-do.md"),
