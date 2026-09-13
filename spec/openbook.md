@@ -31,7 +31,8 @@ It standardises the data contract only.
 - **Currency** — ISO 4217. Each feed MUST declare **`baseCurrency`** once
   on the publisher record (and on a full snapshot of that record). Incremental
   messages do not repeat it. Money is `{amount}` in that currency. Odds are
-  not money. Another currency is another subscription (Q44).
+  not money. Another currency is another subscription (Q44). ISO 20022 is
+  never the OpenBook model or JSON naming (Q59).
 - **Language** — ISO 639-1.
 - **Territory** — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (`GB`),
   ISO 3166-2 for sub-national teams (`GB-ENG`, `US-PR`), CLDR extras (`XK`).

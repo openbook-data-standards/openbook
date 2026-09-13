@@ -36,6 +36,10 @@
     {
       "path": "conformance/invalid/json-patch-changes.json",
       "reason": "changes is a Merge Patch object, never a JSON Patch array (Q58)"
+    },
+    {
+      "path": "conformance/invalid/money-with-currency.json",
+      "reason": "money is amount in baseCurrency; no per-object currency (Q44, Q59)"
     }
   ]
 }

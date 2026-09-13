@@ -275,6 +275,13 @@ if changes_type == "object":
 else:
     fail("Q58 change.schema.json changes must be type object (not a JSON Patch array)")
 
+money = schemas["common.schema.json"]["$defs"]["money"]
+money_props = set(money.get("properties", {}))
+if money.get("required") == ["amount"] and money_props == {"amount"} and money.get("additionalProperties") is False:
+    ok("Q59 money is amount only (no per-object currency)")
+else:
+    fail("Q59 money must be {amount} only with additionalProperties false")
+
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")
 print("conformant: all checks passed")

@@ -43,7 +43,7 @@
 <h2 id="2-conventions">2. Conventions</h2>
 <ul>
 <li><strong>Time</strong> — RFC 3339 (ISO 8601 with an explicit offset), everywhere.</li>
-<li><strong>Currency</strong> — ISO 4217. Each feed MUST declare <strong><code>baseCurrency</code></strong> once on the publisher record (and on a full snapshot of that record). Incremental messages do not repeat it. Money is <code>{amount}</code> in that currency. Odds are not money. Another currency is another subscription (Q44).</li>
+<li><strong>Currency</strong> — ISO 4217. Each feed MUST declare <strong><code>baseCurrency</code></strong> once on the publisher record (and on a full snapshot of that record). Incremental messages do not repeat it. Money is <code>{amount}</code> in that currency. Odds are not money. Another currency is another subscription (Q44). ISO 20022 is never the OpenBook model or JSON naming (Q59).</li>
 <li><strong>Language</strong> — ISO 639-1.</li>
 <li><strong>Territory</strong> — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (<code>GB</code>), ISO 3166-2 for sub-national teams (<code>GB-ENG</code>, <code>US-PR</code>), CLDR extras (<code>XK</code>).</li>
 <li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation.</li>

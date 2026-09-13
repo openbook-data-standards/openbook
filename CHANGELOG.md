@@ -10,6 +10,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   generated bindings, not a second model. Validator check 8.
 - **Q58** — JSON Patch (RFC 6902) never; `changes` is a Merge Patch object.
   Invalid corpus `json-patch-changes.json`.
+- **Q59** — ISO 20022 never the model; money stays `{amount}` in
+  `baseCurrency`. Invalid corpus `money-with-currency.json`.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
   comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
   Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire

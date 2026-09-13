@@ -672,3 +672,14 @@ Patch (an array of pointer ops) is never the OpenBook change format.
 Rejected: RFC 6902 as an alternative encoding; optional MAY Patch.
 
 **Supersedes:** none of Q8; puts the “never” on the corpus.
+
+## Q59 — ISO 20022 never the model — decided
+
+ISO 20022 is not OpenBook’s metamodel, repository, or JSON naming.
+Money is `{amount}` in the feed’s `baseCurrency` (Q44). No per-object
+currency field, no abbreviated property names.
+
+Rejected: generate OpenBook from an ISO 20022 repository; `{amount, currency}`
+on every money object; abbreviated JSON.
+
+**Supersedes:** none of Q44; names the protocol-comparison rejection.
