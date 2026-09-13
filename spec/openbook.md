@@ -51,6 +51,10 @@ It standardises the data contract only.
   vocabularies are `*Type` fields: `competitionType`, `participantType`,
   `marketType`, `stageType`, `sourceType`. Documents MAY carry JSON-LD
   `@context` / `@type`, so an OpenBook document is also valid schema.org data.
+- **Bounds** — shared primitives are length- and size-bounded (id, decimal, and
+  name lengths; alias and identifier list sizes) in
+  [`../schema/common.schema.json`](../schema/common.schema.json), so a conformant
+  parser rejects oversized input instead of trusting it.
 - Every object and message carries `openbookVersion`.
 
 ## 3. Identifiers

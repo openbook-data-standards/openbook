@@ -24,6 +24,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   participant (pre-1.0; Q11). Native script is `nameLatin`.
 
 ### Added
+- **Input bounds** — shared primitives in
+  [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
+  `maxItems`, so conformant parsers reject oversized input; covered by
+  `conformance/invalid/alternate-name-too-long.json`.
 - **Q95** — protocol-fit pass closed; next work is a new area, not more
   take/don't-take pins from that comparison list
   ([`docs/decisions.md`](docs/decisions.md)).
