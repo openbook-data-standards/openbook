@@ -167,7 +167,7 @@ Rejected: required city+nickname; legal name as the only `name`; Print/TV
 scoreboard copies from ODF; ISO numbers invented for nicknames.
 
 **Supersedes:** Q11 proposed (v0.3 snake_case list). CamelCase is Q38. Schema
-may still be ahead or behind this list until a later wire PR.
+and spec match this names list.
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
@@ -777,8 +777,8 @@ Rejected: optional or required capacity.
 
 ## Q72 — Competition sex category — decided
 
-Optional on the **league**: `men` · `women` · `mixed` · `open`. Vocab, not
-ISO 5218. Not a field on the person.
+Optional on the **league** as **`gender`**: `men` · `women` · `mixed` ·
+`open`. Vocab, not ISO 5218. Not a field on the person.
 
 Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
 
@@ -924,3 +924,14 @@ Rejected: unpack stage/series immediately; jump to Q46 wire in this
 question.
 
 **Supersedes:** none.
+
+## Q88 — Throwing/shooting and batting hand — decided
+
+Optional on **`player`** (roster), not the person: **`throws`** (throwing or
+shooting) and **`bats`**. Each is `left` · `right` · `both`. No ISO.
+`both` is switch / either hand.
+
+Rejected: one `hand` field; ISO 5218-style sex codes; person-level FIFA
+Gender as a stand-in.
+
+**Supersedes:** none of Q75/Q76.

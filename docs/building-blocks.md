@@ -23,7 +23,7 @@ grouped by what each one is used for, with the reason it was chosen.
   display needs them; never used in place of an offset on the wire.
 - **Unicode / UTF-8** — all text. Names keep their diacritics.
 - **ISO 9 (Cyrillic) / ISO 843 (Greek)** — how to transliterate when matching
-  or sorting; the wire field for native script is `localName` (Q11).
+  or sorting; the wire field is `nameLatin` (Q11 / Q57).
 
 ## Neutral identifiers for entities
 

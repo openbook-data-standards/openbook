@@ -118,6 +118,116 @@
       },
       "description": "Per-language names keyed by ISO 639-1."
     },
+    "nameLatin": {
+      "type": "string",
+      "description": "Latin-script form. Method: ISO 9 (Cyrillic) or ISO 843 (Greek)."
+    },
+    "iso6391": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$",
+      "description": "ISO 639-1 language code (Q68)."
+    },
+    "timeZone": {
+      "type": "string",
+      "minLength": 1,
+      "description": "IANA time-zone database name (Europe/London). Display only; timestamps stay RFC 3339 with offset (Q9, Q64)."
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "WGS 84 latitude (Q70)."
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "WGS 84 longitude (Q70)."
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "schema.org Place (Q62). City + territory; no street or postal (Q69). No capacity (Q71).",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "registeredName": {
+          "type": "string"
+        },
+        "alternateName": {
+          "$ref": "#/$defs/alternateName"
+        },
+        "names": {
+          "$ref": "#/$defs/localizedNames"
+        },
+        "nameLatin": {
+          "$ref": "#/$defs/nameLatin"
+        },
+        "addressLocality": {
+          "type": "string"
+        },
+        "territory": {
+          "$ref": "#/$defs/territory"
+        },
+        "timeZone": {
+          "$ref": "#/$defs/timeZone"
+        },
+        "latitude": {
+          "$ref": "#/$defs/latitude"
+        },
+        "longitude": {
+          "$ref": "#/$defs/longitude"
+        },
+        "sameAs": {
+          "$ref": "#/$defs/sameAs"
+        },
+        "identifier": {
+          "$ref": "#/$defs/identifier"
+        }
+      },
+      "patternProperties": {
+        "^x_": {}
+      }
+    },
+    "surface": {
+      "enum": [
+        "grass",
+        "clay",
+        "hard",
+        "turf",
+        "ice",
+        "indoor",
+        "other"
+      ],
+      "description": "This fixture's playing surface (Q84)."
+    },
+    "gender": {
+      "enum": [
+        "men",
+        "women",
+        "mixed",
+        "open",
+        "other"
+      ],
+      "description": "Competition gender on the league, not the person (Q72). Vocab, not ISO 5218."
+    },
+    "ageGroup": {
+      "type": "string",
+      "minLength": 1,
+      "description": "League age grade (open, U21, U19, …). Growable vocab (Q73)."
+    },
+    "hand": {
+      "enum": [
+        "left",
+        "right",
+        "both"
+      ],
+      "description": "Throwing/shooting or batting side (Q88). No ISO."
+    },
     "side": {
       "enum": [
         "home",

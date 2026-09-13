@@ -25,6 +25,14 @@
     "name": {
       "type": "string"
     },
+    "registeredName": {
+      "type": "string",
+      "description": "Optional registry / legal name (Q60). ISO 17442 is the LEI id, not this string."
+    },
+    "inLanguage": {
+      "$ref": "common.schema.json#/$defs/iso6391",
+      "description": "Feed language (Q68). A bare name is in this language."
+    },
     "baseCurrency": {
       "$ref": "common.schema.json#/$defs/iso4217",
       "description": "This feed's accounting currency. Money `{amount}` is in this code. Another currency is another subscription (Q44)."

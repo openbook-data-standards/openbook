@@ -240,6 +240,116 @@
       },
       &quot;description&quot;: &quot;Per-language names keyed by ISO 639-1.&quot;
     },
+    &quot;nameLatin&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Latin-script form. Method: ISO 9 (Cyrillic) or ISO 843 (Greek).&quot;
+    },
+    &quot;iso6391&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[a-z]{2}$&quot;,
+      &quot;description&quot;: &quot;ISO 639-1 language code (Q68).&quot;
+    },
+    &quot;timeZone&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;description&quot;: &quot;IANA time-zone database name (Europe/London). Display only; timestamps stay RFC 3339 with offset (Q9, Q64).&quot;
+    },
+    &quot;latitude&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;minimum&quot;: -90,
+      &quot;maximum&quot;: 90,
+      &quot;description&quot;: &quot;WGS 84 latitude (Q70).&quot;
+    },
+    &quot;longitude&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;minimum&quot;: -180,
+      &quot;maximum&quot;: 180,
+      &quot;description&quot;: &quot;WGS 84 longitude (Q70).&quot;
+    },
+    &quot;place&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;additionalProperties&quot;: false,
+      &quot;description&quot;: &quot;schema.org Place (Q62). City + territory; no street or postal (Q69). No capacity (Q71).&quot;,
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;shortName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;registeredName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;alternateName&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/alternateName&quot;
+        },
+        &quot;names&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/localizedNames&quot;
+        },
+        &quot;nameLatin&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/nameLatin&quot;
+        },
+        &quot;addressLocality&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;territory&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/territory&quot;
+        },
+        &quot;timeZone&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/timeZone&quot;
+        },
+        &quot;latitude&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/latitude&quot;
+        },
+        &quot;longitude&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/longitude&quot;
+        },
+        &quot;sameAs&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/sameAs&quot;
+        },
+        &quot;identifier&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/identifier&quot;
+        }
+      },
+      &quot;patternProperties&quot;: {
+        &quot;^x_&quot;: {}
+      }
+    },
+    &quot;surface&quot;: {
+      &quot;enum&quot;: [
+        &quot;grass&quot;,
+        &quot;clay&quot;,
+        &quot;hard&quot;,
+        &quot;turf&quot;,
+        &quot;ice&quot;,
+        &quot;indoor&quot;,
+        &quot;other&quot;
+      ],
+      &quot;description&quot;: &quot;This fixture&#x27;s playing surface (Q84).&quot;
+    },
+    &quot;gender&quot;: {
+      &quot;enum&quot;: [
+        &quot;men&quot;,
+        &quot;women&quot;,
+        &quot;mixed&quot;,
+        &quot;open&quot;,
+        &quot;other&quot;
+      ],
+      &quot;description&quot;: &quot;Competition gender on the league, not the person (Q72). Vocab, not ISO 5218.&quot;
+    },
+    &quot;ageGroup&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;description&quot;: &quot;League age grade (open, U21, U19, …). Growable vocab (Q73).&quot;
+    },
+    &quot;hand&quot;: {
+      &quot;enum&quot;: [
+        &quot;left&quot;,
+        &quot;right&quot;,
+        &quot;both&quot;
+      ],
+      &quot;description&quot;: &quot;Throwing/shooting or batting side (Q88). No ISO.&quot;
+    },
     &quot;side&quot;: {
       &quot;enum&quot;: [
         &quot;home&quot;,
@@ -606,6 +716,18 @@
         &quot;competitionType&quot;: {
           &quot;$ref&quot;: &quot;common.schema.json#/$defs/competitionType&quot;
         },
+        &quot;shortName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;registeredName&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;gender&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/gender&quot;
+        },
+        &quot;ageGroup&quot;: {
+          &quot;$ref&quot;: &quot;common.schema.json#/$defs/ageGroup&quot;
+        },
         &quot;sameAs&quot;: {
           &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
         }
@@ -683,28 +805,20 @@
           },
           &quot;sameAs&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
+          },
+          &quot;seed&quot;: {
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;minimum&quot;: 1,
+            &quot;description&quot;: &quot;This draw&#x27;s seed on the fixture participant row (Q85).&quot;
           }
         }
       }
     },
     &quot;location&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;description&quot;: &quot;schema.org Place&quot;,
-      &quot;properties&quot;: {
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
-        },
-        &quot;addressLocality&quot;: {
-          &quot;type&quot;: &quot;string&quot;
-        },
-        &quot;territory&quot;: {
-          &quot;$ref&quot;: &quot;common.schema.json#/$defs/territory&quot;
-        },
-        &quot;sameAs&quot;: {
-          &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
-        }
-      }
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/place&quot;
+    },
+    &quot;surface&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/surface&quot;
     },
     &quot;identifier&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
@@ -847,11 +961,26 @@
     &quot;name&quot;: {
       &quot;type&quot;: &quot;string&quot;
     },
+    &quot;shortName&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;registeredName&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
     &quot;alternateName&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
     },
     &quot;names&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/localizedNames&quot;
+    },
+    &quot;nameLatin&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/nameLatin&quot;
+    },
+    &quot;gender&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/gender&quot;
+    },
+    &quot;ageGroup&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ageGroup&quot;
     },
     &quot;sport&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sharedId&quot;
@@ -1195,11 +1324,11 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="participant"><h2>OpenBook participant</h2><p>A competitor — a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names follow vCard/X.520 structure for persons and ODF&#x27;s multiple display forms.</p><p><a href="schema/participant.schema.json">participant.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, territory, participantType, sport, sameAs</code></p><pre>{
+}</pre></section><section class="schema-block" id="participant"><h2>OpenBook participant</h2><p>A competitor — a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names: Q11 / Q57.</p><p><a href="schema/participant.schema.json">participant.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, territory, participantType, sport, sameAs</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/participant.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook participant&quot;,
-  &quot;description&quot;: &quot;A competitor \u2014 a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names follow vCard/X.520 structure for persons and ODF&#x27;s multiple display forms.&quot;,
+  &quot;description&quot;: &quot;A competitor — a team OR an individual (schema.org SportsTeam / Person). Belongs to a SPORT, never to a league. Publisher-own id; sameAs (Wikidata) as the shared entity id. Names: Q11 / Q57.&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;openbookVersion&quot;,
@@ -1244,7 +1373,7 @@
     },
     &quot;name&quot;: {
       &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;Full display name, UTF-8, diacritics kept.&quot;
+      &quot;description&quot;: &quot;Required popular/board name, UTF-8, diacritics kept.&quot;
     },
     &quot;shortName&quot;: {
       &quot;type&quot;: &quot;string&quot;,
@@ -1252,33 +1381,36 @@
     },
     &quot;abbreviation&quot;: {
       &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;3\u20134 characters: &#x27;MCI&#x27;.&quot;
+      &quot;description&quot;: &quot;Teams only (Q11): &#x27;MCI&#x27;.&quot;
+    },
+    &quot;location&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Teams only. NFL-style market city; empty/omit when the board name has no city (Arsenal).&quot;
+    },
+    &quot;nickname&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Teams only. NFL-style nickname (Giants); omit when unused.&quot;
+    },
+    &quot;registeredName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Teams only. Registry / FIFA international long name — not ISO.&quot;
     },
     &quot;alternateName&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
     },
-    &quot;localName&quot;: {
-      &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;Name in the native script (ODF LocalName).&quot;
-    },
     &quot;names&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/localizedNames&quot;
     },
+    &quot;nameLatin&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/nameLatin&quot;
+    },
     &quot;familyName&quot;: {
       &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;Individuals only (vCard N / X.520).&quot;
+      &quot;description&quot;: &quot;Individuals only (vCard N / X.520 / schema.org).&quot;
     },
     &quot;givenName&quot;: {
-      &quot;type&quot;: &quot;string&quot;
-    },
-    &quot;additionalName&quot;: {
-      &quot;type&quot;: &quot;string&quot;
-    },
-    &quot;honorificPrefix&quot;: {
-      &quot;type&quot;: &quot;string&quot;
-    },
-    &quot;honorificSuffix&quot;: {
-      &quot;type&quot;: &quot;string&quot;
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Individuals only (vCard N / X.520 / schema.org).&quot;
     },
     &quot;sameAs&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/sameAs&quot;
@@ -1287,6 +1419,46 @@
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
     }
   },
+  &quot;allOf&quot;: [
+    {
+      &quot;if&quot;: {
+        &quot;properties&quot;: {
+          &quot;participantType&quot;: {
+            &quot;const&quot;: &quot;individual&quot;
+          }
+        },
+        &quot;required&quot;: [
+          &quot;participantType&quot;
+        ]
+      },
+      &quot;then&quot;: {
+        &quot;properties&quot;: {
+          &quot;abbreviation&quot;: false,
+          &quot;location&quot;: false,
+          &quot;nickname&quot;: false,
+          &quot;registeredName&quot;: false
+        }
+      }
+    },
+    {
+      &quot;if&quot;: {
+        &quot;properties&quot;: {
+          &quot;participantType&quot;: {
+            &quot;const&quot;: &quot;team&quot;
+          }
+        },
+        &quot;required&quot;: [
+          &quot;participantType&quot;
+        ]
+      },
+      &quot;then&quot;: {
+        &quot;properties&quot;: {
+          &quot;givenName&quot;: false,
+          &quot;familyName&quot;: false
+        }
+      }
+    }
+  ],
   &quot;patternProperties&quot;: {
     &quot;^x_&quot;: {}
   },
@@ -1337,6 +1509,14 @@
       &quot;type&quot;: &quot;integer&quot;,
       &quot;minimum&quot;: 0
     },
+    &quot;throws&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/hand&quot;,
+      &quot;description&quot;: &quot;Throwing or shooting hand (Q88).&quot;
+    },
+    &quot;bats&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/hand&quot;,
+      &quot;description&quot;: &quot;Batting side (Q88). both = switch.&quot;
+    },
     &quot;startDate&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
     },
@@ -1381,6 +1561,14 @@
     },
     &quot;name&quot;: {
       &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;registeredName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Optional registry / legal name (Q60). ISO 17442 is the LEI id, not this string.&quot;
+    },
+    &quot;inLanguage&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/iso6391&quot;,
+      &quot;description&quot;: &quot;Feed language (Q68). A bare name is in this language.&quot;
     },
     &quot;baseCurrency&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/iso4217&quot;,
@@ -1654,7 +1842,8 @@
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
     },
     &quot;name&quot;: {
-      &quot;type&quot;: &quot;string&quot;
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Display label (2025/26, F1 2026). Machine bounds are startDate / endDate (Q60).&quot;
     },
     &quot;alternateName&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/alternateName&quot;
@@ -1836,6 +2025,8 @@
     &quot;name&quot;: &quot;Premier League&quot;,
     &quot;territory&quot;: &quot;GB-ENG&quot;,
     &quot;competitionType&quot;: &quot;league&quot;,
+    &quot;gender&quot;: &quot;men&quot;,
+    &quot;ageGroup&quot;: &quot;open&quot;,
     &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q9448&quot;
   },
   &quot;season&quot;: {
@@ -1872,8 +2063,12 @@
     &quot;name&quot;: &quot;Emirates Stadium&quot;,
     &quot;addressLocality&quot;: &quot;London&quot;,
     &quot;territory&quot;: &quot;GB-ENG&quot;,
+    &quot;timeZone&quot;: &quot;Europe/London&quot;,
+    &quot;latitude&quot;: 51.555,
+    &quot;longitude&quot;: -0.108,
     &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q19478&quot;
   },
+  &quot;surface&quot;: &quot;grass&quot;,
   &quot;identifier&quot;: [
     {
       &quot;propertyID&quot;: &quot;sportradar&quot;,
@@ -2082,20 +2277,30 @@
   &quot;territory&quot;: &quot;ES&quot;,
   &quot;name&quot;: &quot;Carlos Alcaraz&quot;,
   &quot;shortName&quot;: &quot;C. Alcaraz&quot;,
-  &quot;abbreviation&quot;: &quot;ALC&quot;,
   &quot;familyName&quot;: &quot;Alcaraz&quot;,
   &quot;givenName&quot;: &quot;Carlos&quot;,
-  &quot;additionalName&quot;: &quot;Garfia&quot;,
   &quot;alternateName&quot;: [
     &quot;Carlos Alcaraz Garfia&quot;
   ],
   &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q63155283&quot;
+}</pre></section><section class="schema-block" id="player.example"><h2>player.example.json</h2><p><a href="examples/player.example.json">examples/player.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;id&quot;: &quot;PL-27&quot;,
+  &quot;sequence&quot;: 104100,
+  &quot;dateModified&quot;: &quot;2026-09-01T09:00:00Z&quot;,
+  &quot;participant&quot;: &quot;P-27&quot;,
+  &quot;team&quot;: &quot;T-NYY&quot;,
+  &quot;position&quot;: &quot;SS&quot;,
+  &quot;number&quot;: 2,
+  &quot;throws&quot;: &quot;right&quot;,
+  &quot;bats&quot;: &quot;both&quot;
 }</pre></section><section class="schema-block" id="publisher.example"><h2>publisher.example.json</h2><p><a href="examples/publisher.example.json">examples/publisher.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;id&quot;: &quot;acme-feeds&quot;,
   &quot;sequence&quot;: 1,
   &quot;dateModified&quot;: &quot;2026-09-19T12:00:00Z&quot;,
   &quot;name&quot;: &quot;Acme Feeds&quot;,
+  &quot;inLanguage&quot;: &quot;en&quot;,
   &quot;baseCurrency&quot;: &quot;GBP&quot;,
   &quot;heartbeatMs&quot;: 5000,
   &quot;ttl&quot;: 60,
