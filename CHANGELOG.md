@@ -5,6 +5,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Changed
+- **Q11** — names are decided camelCase, matching the participant schema:
+  `shortName`, `alternateName`, `localName`, `givenName` / `familyName` (not
+  `short_name` / `aliases` / `name_latin`).
+
 ### Added
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
@@ -69,15 +74,15 @@ Breaking rename of the live wire around decisions Q14–Q21. Not frozen.
   update · delete, plus `change` for odds only.
 - **One change envelope** (`schema/change.schema.json`) replaces the per-message
   schemas: `odds/change` replaces `odds_change`; `fixture/update` replaces
-  `fixture_change`; `market/update` (CAP-style `msg_type` / `references`)
+  `fixture_change`; `market/update` (CAP-style `msgType` / `references`)
   replaces `market_status`.
 - **Odds push-first**: `odds/change` SHOULD be pushed, a `since=` pull MAY be
   offered; `market/snapshot` for recovery.
-- **Hierarchy**: sport → league (`competition_type`, optional `organizer`) →
+- **Hierarchy**: sport → league (`competitionType`, optional `organizer`) →
   season → stage (open, Q20) → fixture → segment. **Participants belong to a
   sport**, not a league.
-- `*_type` naming for small vocabularies: `competition_type`,
-  `participant_type`, `market_type`, `stage_type`.
+- `*Type` naming for small vocabularies: `competitionType`,
+  `participantType`, `marketType`, `stageType`.
 
 - **Field names are camelCase and follow schema.org** (Q13 d): `startDate`,
   `dateModified`, `datePublished`, `alternateName`, `sameAs` (Wikidata URL,

@@ -31,6 +31,10 @@
 <p class="crumb"><a href="./">Home</a> · CHANGELOG.md</p><nav class="page-toc"><strong>On this page</strong><a href="#unreleased">[Unreleased]</a><a href="#0-3-0-draft-2026-09-12">[0.3.0-draft] — 2026-09-12</a><a href="#0-2-0-draft-2026-09-12">[0.2.0-draft] — 2026-09-12</a><a href="#0-1-0-draft-2026-09-12">[0.1.0-draft] — 2026-09-12</a></nav><article class="doc"><h1 id="changelog">Changelog</h1>
 <p>All notable changes to the OpenBook standard are recorded here. Format follows Keep a Changelog; versioning follows <a href="versioning.html"><code>VERSIONING.md</code></a>.</p>
 <h2 id="unreleased">[Unreleased]</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><strong>Q11</strong> — names are decided camelCase, matching the participant schema: <code>shortName</code>, <code>alternateName</code>, <code>localName</code>, <code>givenName</code> / <code>familyName</code> (not <code>short_name</code> / <code>aliases</code> / <code>name_latin</code>).</li>
+</ul>
 <h3 id="added">Added</h3>
 <ul>
 <li><strong>Q32</strong> — FULL-TRANSITIVE compatibility within a frozen major (<a href="versioning.html"><code>VERSIONING.md</code></a>).</li>
@@ -73,10 +77,10 @@
 <h3 id="changed">Changed</h3>
 <ul>
 <li><strong>Object/action streams</strong>: <code>openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;</code>, keyed by fixture for fixture-scoped objects. Actions: snapshot · create · update · delete, plus <code>change</code> for odds only.</li>
-<li><strong>One change envelope</strong> (<code>schema/change.schema.json</code>) replaces the per-message schemas: <code>odds/change</code> replaces <code>odds_change</code>; <code>fixture/update</code> replaces <code>fixture_change</code>; <code>market/update</code> (CAP-style <code>msg_type</code> / <code>references</code>) replaces <code>market_status</code>.</li>
+<li><strong>One change envelope</strong> (<code>schema/change.schema.json</code>) replaces the per-message schemas: <code>odds/change</code> replaces <code>odds_change</code>; <code>fixture/update</code> replaces <code>fixture_change</code>; <code>market/update</code> (CAP-style <code>msgType</code> / <code>references</code>) replaces <code>market_status</code>.</li>
 <li><strong>Odds push-first</strong>: <code>odds/change</code> SHOULD be pushed, a <code>since=</code> pull MAY be offered; <code>market/snapshot</code> for recovery.</li>
-<li><strong>Hierarchy</strong>: sport → league (<code>competition_type</code>, optional <code>organizer</code>) → season → stage (open, Q20) → fixture → segment. <strong>Participants belong to a sport</strong>, not a league.</li>
-<li><code>*_type</code> naming for small vocabularies: <code>competition_type</code>, <code>participant_type</code>, <code>market_type</code>, <code>stage_type</code>.</li>
+<li><strong>Hierarchy</strong>: sport → league (<code>competitionType</code>, optional <code>organizer</code>) → season → stage (open, Q20) → fixture → segment. <strong>Participants belong to a sport</strong>, not a league.</li>
+<li><code>*Type</code> naming for small vocabularies: <code>competitionType</code>, <code>participantType</code>, <code>marketType</code>, <code>stageType</code>.</li>
 </ul>
 <ul>
 <li><strong>Field names are camelCase and follow schema.org</strong> (Q13 d): <code>startDate</code>, <code>dateModified</code>, <code>datePublished</code>, <code>alternateName</code>, <code>sameAs</code> (Wikidata URL, replaces <code>wikidata</code>), <code>identifier</code> (PropertyValue list, replaces <code>external_ids</code>), <code>superEvent</code>, <code>eventStatus</code>, <code>location</code> (Place); <code>*Type</code> vocabularies. Documents may carry JSON-LD <code>@context</code> / <code>@type</code>.</li>

@@ -77,7 +77,7 @@ required, never the canonical key.
 **Required:** publisher's own fixture id · sport (shared id + name) · league
 (own id + name + ISO country) · start time (ISO 8601) · participants (own id,
 canonical name, ISO country, role: home / away / ordinal) · `sequence` ·
-`updated_at`.
+`dateModified`.
 **Optional:** location (venue, city, country) · external ids · season / stage.
 
 ## Q8 — How changes are sent — decided (c, generalised) + granularity (e)
@@ -121,7 +121,7 @@ codes underneath (`GB`, `US`), ISO 3166-2 subdivisions for sub-national teams
 (`GB-ENG`, `GB-SCT`, `GB-WLS`, `GB-NIR`, `US-PR`), plus CLDR's pragmatic
 extras (`XK` Kosovo, `EU`, `UN`) — and CLDR's **localized names in every
 language**, which is what every OS and browser already uses to spell country
-names. `ioc_code`, `fifa_code` and `wikidata` ride on the region record as
+names. `iocCode`, `fifaCode` and `sameAs` (Wikidata) ride on the region record as
 crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
 `GBR` without OpenBook adopting either.
 
@@ -136,7 +136,7 @@ crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
 - **e) CLDR** — chosen: ISO codes + the extras everyone actually needs +
   maintained localized names, for free.
 
-## Q11 — Names — proposed (implemented in v0.3)
+## Q11 — Names — decided (v0.3)
 
 There is **no ISO standard for team or person names.** The real standards
 nearby: **vCard (RFC 6350 / ITU X.520)** for a person's name structure
@@ -145,15 +145,15 @@ nearby: **vCard (RFC 6350 / ITU X.520)** for a person's name structure
 several display forms (`PrintName`, `TVName`, `TVInitialName`,
 `LocalFamilyName`…); and **finance**, which standardises *identity* (ISIN,
 LEI) and treats the name as a mutable attribute — our `sameAs` stance.
-Implemented shape:
+Wire names are camelCase (Q13 / Q38). Shape:
 
 - `name` — canonical display name, UTF-8, diacritics allowed.
-- `short_name`, `abbreviation` — optional.
-- `aliases[]` — the other spellings a book might use.
+- `shortName`, `abbreviation` — optional.
+- `alternateName[]` — other spellings a book might use (schema.org).
 - `names` — optional per-language variants keyed by ISO 639-1 (`en`, `es`).
-- `name_latin` — optional transliteration (ISO 9 for Cyrillic, ISO 843 for
-  Greek) for sorting and matching.
-- Persons: optional `given_name` / `family_name` (schema.org `Person`).
+- `localName` — optional name in the native script (ODF LocalName).
+- Persons: optional `givenName` / `familyName` / `additionalName` /
+  `honorificPrefix` / `honorificSuffix` (schema.org `Person` / vCard N).
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
@@ -193,7 +193,7 @@ sports vocabulary for free.
 
 ## Q15 — Suspensions, re-opens and voids — decided (market/update)
 
-`market/update` carries CAP-style `msg_type` (alert · update · cancel),
+`market/update` carries CAP-style `msgType` (alert · update · cancel),
 `reason`, and `references[]` to prior sequences. Voids and re-settles are
 `settlement/delete` + `settlement/create` (a new settlement id, never a
 mutation).
@@ -219,7 +219,7 @@ before the fixture; keying by league QID.)
 ## Q19 — League vs competition — decided (b)
 
 Keep **`league`** as the object name for any recurring competition, typed by
-**`competition_type`** (league · cup · tournament · series · exhibition). An
+**`competitionType`** (league · cup · tournament · series · exhibition). An
 optional `organizer` (the NBA, UEFA, the FIA) can be named, because one
 organizer runs several competitions (NBA season, NBA Cup, All-Star Game).
 (Considered: renaming the object to `competition`.)
@@ -240,8 +240,8 @@ Champions League in one week).
 
 ## Naming convention — decided
 
-Every small shared vocabulary is a `*_type` field: `competition_type`,
-`participant_type`, `market_type`, `stage_type`. No `kind` / `format`
+Every small shared vocabulary is a `*Type` field: `competitionType`,
+`participantType`, `marketType`, `stageType`. No `kind` / `format`
 synonyms.
 
 ## Q22 — Teams and individuals are both participants; role and order — decided
@@ -458,13 +458,13 @@ widening ignore to all unrecognized fields.
 ## Q38 — Naming is camelCase; remaining snake_case is drift — decided
 
 Canonical field names are camelCase, schema.org where a property exists
-(Q13). Snake_case in prose (`openbook_version`, envelope `timestamp`) is
-drift. A CI check that flags names in docs that are not on a schema is a
-later item.
+(Q13). Snake_case in prose is drift. A CI check that flags names in docs
+that are not on a schema is a later item (Q50).
 
-This change fixes current docs/spec/VERSIONING to match the schemas
-(`openbookVersion`, `datePublished`, `startDate`, `marketType`,
-`competitionType`). Historical Q1–Q31 entries are not rewritten.
+This change (and Q11) matches the schemas (`openbookVersion`,
+`datePublished`, `startDate`, `marketType`, `competitionType`,
+`shortName`, `msgType`). Older log entries that quote a superseded
+message name (`odds_change`, `settlement`) stay as history.
 
 Rejected: leave mixed spellings; CI in this same patch.
 

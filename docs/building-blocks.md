@@ -22,8 +22,8 @@ grouped by what each one is used for, with the reason it was chosen.
 - **IANA time-zone database** — venue-local time names (`Europe/London`) where
   display needs them; never used in place of an offset on the wire.
 - **Unicode / UTF-8** — all text. Names keep their diacritics.
-- **ISO 9 (Cyrillic) / ISO 843 (Greek)** — transliteration to Latin for the
-  optional `name_latin` field used in sorting and matching.
+- **ISO 9 (Cyrillic) / ISO 843 (Greek)** — how to transliterate when matching
+  or sorting; the wire field for native script is `localName` (Q11).
 
 ## Neutral identifiers for entities
 

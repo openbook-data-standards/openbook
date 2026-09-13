@@ -12,7 +12,6 @@ schemas until that is asked.
 
 ## Not decided here
 
-- **Q11** — still marked **proposed** in the log (names), older than this walk.
 - Wire/schema for Q46–Q49 (`snapshotComplete`, `heartbeat` / `heartbeatMs`,
   410, `conflated`, `ttl`, discovery JSON).
 
