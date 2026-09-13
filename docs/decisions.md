@@ -754,3 +754,12 @@ postal code. City name has no ISO; GeoNames remains optional (**Q62**).
 Rejected: full PostalAddress; required UN/LOCODE.
 
 **Supersedes:** none of Q62.
+
+## Q70 — Place coordinates — decided
+
+Optional `latitude` / `longitude` in **WGS 84** (schema.org GeoCoordinates,
+EPSG:4326). Not required.
+
+Rejected: no coordinates; required on every Place.
+
+**Supersedes:** none of Q62.

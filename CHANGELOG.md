@@ -57,6 +57,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q66** — fixture `name` optional display; participants + `startDate` are facts.
 - **Q68** — optional publisher `inLanguage` (ISO 639-1); bare `name` is in that language.
 - **Q69** — Place is city + Q10 territory; no street/postal.
+- **Q70** — optional WGS 84 lat/long on Place.
 - [`docs/still-to-do.md`](docs/still-to-do.md) — Q11 closed; Q46–Q49 wire not
   built.
 

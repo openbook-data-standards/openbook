@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q69**. This patch is log only. Do not change
+Questions recorded through **Q70**. This patch is log only. Do not change
 schemas until asked.
 
 ## Later PRs (decided, not built)
@@ -9,7 +9,7 @@ schemas until asked.
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
 - **Q11/Q57–Q64 wire** — schema may still disagree (`location`/`nickname`/
   `registeredName`, team-only `abbreviation`, publisher `registeredName`,
-  Place `timeZone`, publisher `inLanguage`).
+  Place `timeZone`, publisher `inLanguage`, WGS 84).
 - Wire/schema for Q46–Q49 (`snapshotComplete`, `heartbeat` / `heartbeatMs`,
   410, `conflated`, `ttl`, discovery JSON).
 
@@ -17,6 +17,6 @@ schemas until asked.
 
 - (none parked from this walk)
 
-## Done (Q32–Q68)
+## Done (Q32–Q70)
 
-Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place · **Q64** IANA `timeZone` · **Q66** fixture `name` · **Q68** `inLanguage` · **Q69** city+territory.
+Q32–Q55 · **Q11/Q57 names** · **Q59** other objects · **Q60** season/stage/publisher · **Q62** nested Place · **Q64** IANA `timeZone` · **Q66** fixture `name` · **Q68** `inLanguage` · **Q69** city+territory · **Q70** WGS 84.
