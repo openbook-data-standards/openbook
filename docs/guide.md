@@ -132,6 +132,33 @@ flowchart LR
 
 ---
 
+## A Saturday, in one story
+
+Arsenal vs Chelsea, Premier League, 15:00.
+
+**Before kick-off** the catalogue already says: this is soccer, this is the
+Premier League, these two clubs, this start time. The board is offering a
+moneyline, a spread, and a 2.5 total — three *kinds* of bet, each from a
+named book.
+
+**During the match** only the moving parts go out:
+
+1. A tick — the over 2.5 shortens from 1.90 to 1.95. One price, not a new
+   fixture list.
+2. A goal — the score object updates; the clock keeps running.
+3. The book takes a market off — that is a *status* on the market, not a
+   pretend price of zero.
+
+**At full time** the full-time slice is marked finished (once). Markets on
+that slice close. The book then *grades* each market: win, lose, void, or
+half. If the score was wrong, they send a correction — they do not blow the
+whistle twice.
+
+That is the whole model: a printed list, a board that ticks, a result that
+is graded once.
+
+---
+
 ## What you subscribe to
 
 Everything about one match hangs off that match. If you care about Arsenal vs
@@ -139,6 +166,20 @@ Chelsea, you follow that fixture: prices, score, markets coming off, grades.
 
 You do not need MQTT, or any particular pipe. OpenBook names the *message*,
 not the transport.
+
+---
+
+## Who should read what
+
+| You are… | Start here | Then |
+| --- | --- | --- |
+| Trading, ops, product, commercial | This guide | [Taxonomy](taxonomy.md) |
+| Matching teams and leagues across books | [Taxonomy](taxonomy.md) | Spec §3 and §6 |
+| Building a publisher or importer | [Specification](../spec/openbook.md) | [Schemas](../schema/) |
+| Asking *why* a rule exists | [Decision log](decisions.md) | — |
+
+OpenBook is **not** a pricing engine, a matching service, or a requirement
+to open your models. It is the shared shape of the file you emit.
 
 ---
 

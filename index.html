@@ -59,7 +59,17 @@
   </div>
 </section>
 
-<section id="who" style="border-top:none;padding-top:0">
+<section id="read" style="border-top:none;padding-top:0">
+  <h2>How to read this site</h2>
+  <p class="lede">Three tracks. Pick the one that matches how you work — the data contract itself does not change between them.</p>
+  <div class="cols3">
+    <div class="card"><div class="kicker ref">Start here</div><h3><a href="guide.html">Guide</a></h3><p>Plain language. What a publisher, a source and a fixture are. No RFC keywords. For trading, ops, product, commercial.</p></div>
+    <div class="card"><div class="kicker">Shared names</div><h3><a href="taxonomy.html">Taxonomy</a></h3><p>What a sport, segment, market type and side <em>mean</em>. The <a href="vocabularies/">id lists</a> are the computer spelling of the same lists.</p></div>
+    <div class="card"><div class="kicker live">Implement</div><h3><a href="spec.html">Specification</a></h3><p>The technical contract: MUST / SHOULD / MAY, schemas, streams. Tables and diagrams, still the same rules.</p></div>
+  </div>
+</section>
+
+<section id="who">
   <h2>Who it is for</h2>
   <p class="lede">Same format whether you run a book, carry many books, or consume odds. OpenBook is the data contract, not a pricing engine.</p>
   <div class="cols3">
@@ -168,7 +178,7 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 
 <section id="vocab">
   <h2>Controlled vocabularies</h2>
-  <p class="lede">The piece no one else publishes: readable, versioned ids for what can be bet and how a match is sliced. Short form on the wire, formal <code>urn:openbook:</code> in the spec.</p>
+  <p class="lede">The piece no one else publishes: shared names for what can be bet and how a match is sliced. Read the <a href="taxonomy.html">taxonomy</a> first; this list is the computer spelling.</p>
   <div class="pills">
     <span class="pill">market:moneyline</span><span class="pill">market:spread</span><span class="pill">market:total</span>
     <span class="pill">market:player-points</span><span class="pill">market:correct-score</span><span class="pill">market:outright-winner</span>

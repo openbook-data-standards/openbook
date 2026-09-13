@@ -276,7 +276,10 @@ presentation order is never a fact.
 ## 7. Objects
 
 Each reference document carries `openbookVersion`, `id`, `sequence`,
-`dateModified`; exact types in the schemas.
+`dateModified`; exact types in the schemas. Catalogue objects are the
+fixture list. Live objects are the board that keeps moving.
+
+### 7.1 Catalogue
 
 | Object | What it is |
 | --- | --- |
@@ -289,6 +292,11 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
 | `participant` | Own id, `participantType` (team · individual), `sport`, `territory`, `sameAs`. Required `name` (popular/board). Optional `shortName`, `names` (ISO 639-1), `nameLatin` (ISO 9 / ISO 843), `alternateName[]`. **Teams** MAY add `location` + `nickname`, `registeredName`, `abbreviation`. **Individuals** MAY add `givenName` / `familyName` (vCard RFC 6350 / ITU X.520); no `abbreviation`. No league field. Fixture `participants[]` copies `name` plus `role` and `order` |
 | `player` | Roster membership: own id, `participant` (the person), `team` (the team participant), `position`, `number`. Optional `throws` and `bats` (`left` · `right` · `both`). No name fields |
 | `fixture` | §6 plus `eventStatus`, `cutoffDate`, `superEvent` (a live event's pregame parent), optional display `name`, `location` (nested schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`, optional WGS 84 `latitude` / `longitude`), optional `surface` |
+
+### 7.2 Live
+
+| Object | What it is |
+| --- | --- |
 | `market` | A fixture's market as priced by one source: `fixture`, `marketType`, `segment`, `line`, `source`, `provenance` (`official` · `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's `baseCurrency` (required on the market document / snapshot), `outcomes[]` (`side`, `odds`, `line`, `active`). Identity: `(source, fixture, marketType, segment, line)`. Price-only ticks (`odds/change`) do not repeat `limit` unless it changed. **Most specific wins** (Q45): market `limit` → league `limit` → sport `limit`. A priced market MUST resolve to a limit |
 | `score` | `fixture`, `eventStatus` (+ `statusReason`), `segments[]` (each `segment`, `status`, `downAt`), `currentSegment`, `clock` (`elapsed` / `remaining` in integer seconds, `running`, broadcast `display`), and `scores[]` — **one line per participant × unit** (`goals`, `corners`, `sets`, `games`, `runs`, `hits`…) with `total` and `bySegment`. The sport / league declares its `primaryUnit`. `server` for racket sports |
 | `lineup` | Starting roster `player` ids for one `fixture` (Q80). Not on the catalog fixture. No formation, substitutions, or predicted lineup (Q82) |

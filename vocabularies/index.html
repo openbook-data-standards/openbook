@@ -22,7 +22,11 @@
     </svg>
     OpenBook</a>
   <nav>
-    <a href="../guide.html"">Guide</a><a href="../spec.html"">Spec</a><a href="../taxonomy.html"">Taxonomy</a><a href="../vocabularies/" aria-current="page"">Vocabularies</a><a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    <a href="../guide.html">Guide</a>
+    <a href="../spec.html">Spec</a>
+    <a href="../taxonomy.html">Taxonomy</a>
+    <a href="../vocabularies/" aria-current="page">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
@@ -49,37 +53,10 @@
 <li>This list is deliberately small in v0.1. It grows through <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>, with stable ids.</li>
 </ul><p class="source">Source: vocabularies/market_types.md</p></section><section id="sports"><h2 id="openbook-controlled-vocabulary-sports">OpenBook controlled vocabulary — sports</h2>
 <p>Version <code>0.1.0-draft</code>. Each entry is a canonical <code>sport:*</code> id and its display name. Human map: <a href="../taxonomy.html"><code>../docs/taxonomy.md</code></a>. Additions go through the process in <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>; ids are stable and never re-pointed once published.</p>
-<ul>
-<li><code>sport:soccer</code> — Soccer</li>
-<li><code>sport:basketball</code> — Basketball</li>
-<li><code>sport:baseball</code> — Baseball</li>
-<li><code>sport:american-football</code> — American Football</li>
-<li><code>sport:ice-hockey</code> — Ice Hockey</li>
-<li><code>sport:tennis</code> — Tennis</li>
-<li><code>sport:golf</code> — Golf</li>
-<li><code>sport:mma</code> — Mixed Martial Arts</li>
-<li><code>sport:boxing</code> — Boxing</li>
-<li><code>sport:cricket</code> — Cricket</li>
-<li><code>sport:rugby-union</code> — Rugby Union</li>
-<li><code>sport:rugby-league</code> — Rugby League</li>
-<li><code>sport:volleyball</code> — Volleyball</li>
-<li><code>sport:table-tennis</code> — Table Tennis</li>
-<li><code>sport:esports</code> — Esports</li>
-<li><code>sport:athletics</code> — Athletics (track & field)</li>
-<li><code>sport:motorsport</code> — Motorsport</li>
-<li><code>sport:unknown</code> — Catch-all when the sport is not in this list (Q34). Publishers SHOULD use this rather than inventing an id. Consumers MUST still accept unrecognised <code>sport:*</code> values.</li>
-</ul>
+<div class="table-wrap"><table><thead><tr><th>Id</th><th>Name</th></tr></thead><tbody><tr><td><code>sport:soccer</code></td><td>Soccer</td></tr><tr><td><code>sport:basketball</code></td><td>Basketball</td></tr><tr><td><code>sport:baseball</code></td><td>Baseball</td></tr><tr><td><code>sport:american-football</code></td><td>American Football</td></tr><tr><td><code>sport:ice-hockey</code></td><td>Ice Hockey</td></tr><tr><td><code>sport:tennis</code></td><td>Tennis</td></tr><tr><td><code>sport:golf</code></td><td>Golf</td></tr><tr><td><code>sport:mma</code></td><td>Mixed Martial Arts</td></tr><tr><td><code>sport:boxing</code></td><td>Boxing</td></tr><tr><td><code>sport:cricket</code></td><td>Cricket</td></tr><tr><td><code>sport:rugby-union</code></td><td>Rugby Union</td></tr><tr><td><code>sport:rugby-league</code></td><td>Rugby League</td></tr><tr><td><code>sport:volleyball</code></td><td>Volleyball</td></tr><tr><td><code>sport:table-tennis</code></td><td>Table Tennis</td></tr><tr><td><code>sport:esports</code></td><td>Esports</td></tr><tr><td><code>sport:athletics</code></td><td>Athletics (track & field)</td></tr><tr><td><code>sport:motorsport</code></td><td>Motorsport</td></tr><tr><td><code>sport:unknown</code></td><td>Catch-all when the sport is not in this list (Q34). Publishers SHOULD use this rather than inventing an id. Consumers MUST still accept unrecognised <code>sport:*</code> values.</td></tr></tbody></table></div>
 <h2 id="disciplines-sub-sport-granularity">Disciplines (sub-sport granularity)</h2>
 <p>Some sports carry disciplines beneath them. Athletics is the worked example — the point is that OpenBook names them readably, where a source like the Olympic Data Feed uses opaque codes (<code>ATH</code>, <code>ATM012</code>):</p>
-<ul>
-<li><code>athletics:100m</code></li>
-<li><code>athletics:110m-hurdles</code></li>
-<li><code>athletics:long-jump</code></li>
-<li><code>athletics:high-jump</code></li>
-<li><code>athletics:marathon</code></li>
-<li><code>athletics:decathlon</code></li>
-<li><code>athletics:4x100m-relay</code></li>
-</ul>
+<div class="table-wrap"><table><thead><tr><th>Id</th><th>Event</th></tr></thead><tbody><tr><td><code>athletics:100m</code></td><td>100 metres</td></tr><tr><td><code>athletics:110m-hurdles</code></td><td>110 metre hurdles</td></tr><tr><td><code>athletics:long-jump</code></td><td>Long jump</td></tr><tr><td><code>athletics:high-jump</code></td><td>High jump</td></tr><tr><td><code>athletics:marathon</code></td><td>Marathon</td></tr><tr><td><code>athletics:decathlon</code></td><td>Decathlon</td></tr><tr><td><code>athletics:4x100m-relay</code></td><td>4 × 100 m relay</td></tr></tbody></table></div>
 <p>A multi-sport Games (the Olympics) is a <strong>competition</strong>, not a sport: <code>league:athletics:INT:olympics</code> with a season per Games (<code>season:league:athletics:INT:olympics:2024-paris</code>), and one league per sport contested.</p><p class="source">Source: vocabularies/sports.md</p></section><section id="segments"><h2 id="openbook-controlled-vocabulary-segments">OpenBook controlled vocabulary — segments</h2>
 <p>Version <code>0.3.0-draft</code>. A <strong>segment</strong> is a slice <em>inside a match</em>. Ids are <code>segment:&lt;sport&gt;:&lt;slice&gt;</code>; the formal form is <code>urn:openbook:segment:&lt;sport&gt;:&lt;slice&gt;</code>. Every sport has <code>full-time</code> (the whole contest as graded, including any overtime rules the league's <code>ruleset</code> states) and <code>regulation</code> where the distinction matters. Vendors number these differently (Pinnacle period 0 is the full contest — except in hockey); OpenBook names them.</p>
 <p>For what a segment is in plain language, see <a href="../taxonomy.html"><code>../docs/taxonomy.md</code></a>.</p>

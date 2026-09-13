@@ -282,12 +282,14 @@ def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str,
     }
   });
 </script>"""
-    links = "".join(
-        f'<a href="{root}{href}"{nav_current(current, href)}">{label}</a>'
-        if not href.startswith("http")
-        else f'<a href="{href}">{label}</a>'
-        for href, label in NAV
-    )
+    parts = []
+    for href, label in NAV:
+        dest = href if href.startswith("http") else f"{root}{href}"
+        cur = nav_current(current, href) if not href.startswith("http") else ""
+        parts.append(
+            f'<a href="{html.escape(dest, quote=True)}"{cur}>{html.escape(label)}</a>'
+        )
+    links = "\n    ".join(parts)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -360,7 +362,7 @@ def schemas_page() -> str:
     toc.append(("examples", "examples"))
     inner = (
         '<p class="crumb"><a href="./">Home</a> · JSON Schemas</p>'
-        f"{toc_nav(toc)}"
+        f'<div class="page-layout">{toc_nav(toc)}'
         '<article class="doc"><h1>JSON Schemas</h1>'
         "<p>Draft 2020-12. These files are the machine-normative field definitions. "
         "Each <code>$id</code> is this same URL on GitHub Pages.</p>"
@@ -368,7 +370,7 @@ def schemas_page() -> str:
         + '<h1 id="examples">Examples</h1>'
         "<p>Worked documents that validate against the schemas.</p>"
         + "".join(example_blocks())
-        + "</article>"
+        + "</article></div>"
     )
     return chrome("JSON Schemas", inner, 0, "schemas.html", toc)
 

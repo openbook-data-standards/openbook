@@ -63,7 +63,7 @@ section .lede{color:var(--fg2);max-width:72ch;margin:10px 0 20px;font-size:16px}
 .card ul{margin:8px 0 0;padding-left:18px;color:var(--fg2);font-size:14px}
 .card li{margin:5px 0}
 .card code,.lede code,section p code,.doc code{background:var(--code);border:1px solid var(--line);border-radius:3px;padding:1px 5px;font-size:12px;color:var(--fg)}
-.kicker{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;color:var(--mute)}
 .kicker.ref{color:var(--accent)} .kicker.live{color:var(--pos)}
 
 pre.code,.doc pre{background:var(--code);border:1px solid var(--line);border-radius:4px;padding:16px 18px;overflow-x:auto;
