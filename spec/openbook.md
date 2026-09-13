@@ -109,6 +109,29 @@ player                      publisher-own; roster membership of a person in a te
   MAY additionally offer a `since=` pull. `market/snapshot` gives a fixture's
   current prices for initial load and recovery.
 
+## 5a. Status: three questions, three fields
+
+- **Fixture status** — *is the event happening?* `eventStatus`: scheduled ·
+  delayed · live · paused · suspended · postponed · ended · cancelled, with an
+  optional `statusReason`. **`ended` happens once.**
+- **Segment status** — *where is the match, and is this slice final?* Per
+  segment on the score: pending · live · paused · **down** (+ `downAt`).
+  **A segment goes down once. `down` is terminal** — there is no reopen and no
+  second down; a validator MUST reject one.
+- **Market status** — *can you bet it?* Per market per source: open ·
+  suspended · closed · void, via `market/update`. Grading is not a market
+  status; it is the `grade` object.
+
+Rules: `eventStatus: ended` ⇒ every segment `down`. A market whose segment is
+`down` MUST be `closed` or `void`. A `grade` MAY only reference a `down`
+segment.
+
+**Corrections without settling twice** *(proposed, Q31)*: a downed segment's
+`status` and `downAt` never change. A publisher correcting a result sends
+`score/update` with `correction: true` and a `statusReason` — an erratum, not a
+second settlement. Grades built on the old values are `grade/delete`d and
+re-issued with `supersedes`, pointing (`basedOn`) at the correction's sequence.
+
 ## 6. Standard facts (matching across publishers)
 
 Every fixture MUST carry: own `id` · `sport` (shared id + name) · `league`
@@ -150,36 +173,46 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
   `licensed` · `observed`), `status`, `outcomes[]` (`side`, `odds`, `line`,
   `active`). Identity: `(source, fixture, market_type, segment, line)`.
-- **`score`** — `fixture`, `state`, `clock`, `scores[]`.
-- **`settlement`** — per market/outcome `result` (`win` · `lose` · `void` ·
-  `half-win` · `half-lose`) with a `settlement_id`; a re-settle is a new id.
+- **`score`** — `fixture`, `eventStatus` (+ `statusReason`), `segments[]`
+  (each `segment`, `status`, `downAt`), `currentSegment`, `clock` (`elapsed` /
+  `remaining` in integer seconds, `running`, broadcast `display`), and
+  `scores[]` — **one line per participant × unit** (`goals`, `corners`,
+  `sets`, `games`, `runs`, `hits`…) with `total` and `bySegment`. The sport /
+  league declares its `primaryUnit`. `server` for racket sports.
+- **`grade`** — the book's judgement for one market × one source, graded from
+  a `down` segment: `gradeId`, `segment`, `marketType`, `line`, `basis` (the
+  unit graded on — Pinnacle's *resultingUnit*, generalised), `basedOn` (the
+  score sequence used), `outcomes[]` with `win` · `lose` · `void` · `half-win`
+  · `half-lose`. Never edited: a correction is `grade/delete` + a new grade
+  with `supersedes`.
 
-## 8. Streams: object / action
+## 8. Streams: fixture-first, then object / action
 
 Every message is **one object and one action**; topic and payload say the same
-thing.
+thing. Topics are fixture-first so that *everything about one match* is a
+single subscription.
 
-`openbook / v1 / <publisher-id> / <object> / <action> / <sport> / <id>`
+```
+fixture-scoped   openbook / v1 / <publisher-id> / <sport> / fixture / <fixture-id> / <object> / <action>
+                 object ∈ fixture · odds · market · score · grade
+entity           openbook / v1 / <publisher-id> / <sport> / <object> / <id> / <action>
+                 object ∈ league · season · stage · participant · player
+publisher        openbook / v1 / <publisher-id> / publisher / <action>
+```
 
-- **`<object>`** — `fixture` · `odds` · `market` · `score` · `settlement` ·
-  `league` · `season` · `stage` · `participant` · `player` · `publisher`.
 - **`<action>`** — `snapshot` · `create` · `update` · `delete`, plus
-  **`change`, used only by `odds`**: a price move is an event, not a document
-  edit.
+  **`change`, used only by `odds`**.
 - **`<sport>`** — the shared slug without prefix (`soccer`).
-- **`<id>`** — for fixture-scoped objects (`fixture`, `odds`, `market`,
-  `score`, `settlement`) the **fixture id**; otherwise the object's own id;
-  omitted for `publisher`.
 - Rules (after WMO WIS2): lowercase, `-` inside a level, no dots, unique per
   level; `+` matches one level, `#` the rest; `v1` bumps only on a breaking
   change to the grammar.
 
 ```
-openbook/v1/acme-feeds/odds/change/soccer/EVT-88213      one match's price moves
-openbook/v1/acme-feeds/odds/change/soccer/+              all soccer price moves, one publisher
-openbook/v1/+/fixture/update/soccer/#                    every fixture change, every publisher
-openbook/v1/acme-feeds/market/update/soccer/EVT-88213    suspensions / re-opens on one match
-openbook/v1/acme-feeds/league/update/soccer/LG-17        a league record changed
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/#              everything about one match
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change    one match's price moves
+openbook/v1/acme-feeds/soccer/fixture/+/odds/change            all soccer price moves, one publisher
+openbook/v1/+/soccer/fixture/+/score/update                    every soccer score update, every publisher
+openbook/v1/acme-feeds/soccer/league/LG-17/update              a league record changed
 ```
 
 ### 8.1 The change envelope
@@ -189,8 +222,8 @@ One envelope for every message ([`../schema/change.schema.json`](../schema/chang
 schema. `odds/change` carries its `markets[]` diff in `changes`
 ([`odds_change.schema.json`](../schema/odds_change.schema.json)).
 `market/update` MAY carry `msgType` (`alert` · `update` · `cancel`), `reason`
-and `references[]` to prior sequences, after OASIS CAP 1.2. A void or a
-re-settle is `settlement/delete` + `settlement/create`.
+and `references[]` to prior sequences, after OASIS CAP 1.2. A void is a `market/update` to `void`; a corrected grade is `grade/delete` +
+`grade/create` with `supersedes`.
 
 ## 9. Extensions
 Publishers MAY add `x_`-prefixed fields; consumers MUST ignore unknown ones.

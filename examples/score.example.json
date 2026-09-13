@@ -9,7 +9,20 @@
   "id": "EVT-88213",
   "changes": {
     "eventStatus": "live",
-    "segment": "segment:soccer:2nd-half",
+    "currentSegment": "segment:soccer:2nd-half",
+    "segments": [
+      {
+        "segment": "segment:soccer:1st-half",
+        "status": "down",
+        "downAt": "2026-09-19T14:47:30Z",
+        "order": 1
+      },
+      {
+        "segment": "segment:soccer:2nd-half",
+        "status": "live",
+        "order": 2
+      }
+    ],
     "clock": {
       "elapsed": 1320,
       "running": true,
@@ -18,26 +31,38 @@
     "scores": [
       {
         "participant": "T-3",
+        "unit": "goals",
         "total": 2,
         "bySegment": {
           "segment:soccer:1st-half": 1,
           "segment:soccer:2nd-half": 1
-        },
-        "stats": {
-          "corners": 5,
-          "yellowCards": 1
         }
       },
       {
         "participant": "T-11",
+        "unit": "goals",
         "total": 1,
         "bySegment": {
           "segment:soccer:1st-half": 1,
           "segment:soccer:2nd-half": 0
-        },
-        "stats": {
-          "corners": 3,
-          "yellowCards": 2
+        }
+      },
+      {
+        "participant": "T-3",
+        "unit": "corners",
+        "total": 5,
+        "bySegment": {
+          "segment:soccer:1st-half": 3,
+          "segment:soccer:2nd-half": 2
+        }
+      },
+      {
+        "participant": "T-11",
+        "unit": "corners",
+        "total": 3,
+        "bySegment": {
+          "segment:soccer:1st-half": 1,
+          "segment:soccer:2nd-half": 2
         }
       }
     ]
