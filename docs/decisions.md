@@ -789,3 +789,11 @@ vocab (**Q34**). No ISO. Not date of birth on the person.
 Rejected: name-only; person DOB as the league key.
 
 **Supersedes:** none of Q72.
+
+## Q74 — Date of birth — decided (omit)
+
+No date of birth on the wire. Age-grade competitions are **Q73**. PII.
+
+Rejected: optional or required DOB.
+
+**Supersedes:** none.
