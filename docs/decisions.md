@@ -167,7 +167,7 @@ Rejected: required city+nickname; legal name as the only `name`; Print/TV
 scoreboard copies from ODF; ISO numbers invented for nicknames.
 
 **Supersedes:** Q11 proposed (v0.3 snake_case list). CamelCase is Q38. Schema
-may still be ahead or behind this list until a later wire PR.
+and spec match this names list.
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
@@ -777,8 +777,8 @@ Rejected: optional or required capacity.
 
 ## Q72 — Competition sex category — decided
 
-Optional on the **league**: `men` · `women` · `mixed` · `open`. Vocab, not
-ISO 5218. Not a field on the person.
+Optional on the **league** as **`gender`**: `men` · `women` · `mixed` ·
+`open`. Vocab, not ISO 5218. Not a field on the person.
 
 Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
 
@@ -844,12 +844,15 @@ Rejected: optional or required coach now.
 
 **Supersedes:** none.
 
-## Q80 — Match lineup — decided (later live object)
+## Q80 — Match lineup — decided (lineup object)
 
-`player` is **roster** (season membership). Starting XI is a **later live
-object**, not fields on the catalog fixture.
+`player` is **roster** (season membership). Starting XI is a live **`lineup`**
+object, fixture-keyed, not fields on the catalog fixture. The ids are roster
+**`player`** ids. Formation, substitutions, and predicted lineup stay omitted
+(**Q82**).
 
-Rejected: starter ids on the fixture now; never a match XI.
+Rejected: starter ids on the fixture now; never a match XI; person ids
+without the roster row.
 
 **Supersedes:** none. Spec already says `player` is for lineups/props; match
 XI is not the roster row.
@@ -925,7 +928,18 @@ question.
 
 **Supersedes:** none.
 
-## Q88 — JSON is the v1 encoding; other encodings are not forbidden — decided (A)
+## Q88 — Throwing/shooting and batting hand — decided
+
+Optional on **`player`** (roster), not the person: **`throws`** (throwing or
+shooting) and **`bats`**. Each is `left` · `right` · `both`. No ISO.
+`both` is switch / either hand.
+
+Rejected: one `hand` field; ISO 5218-style sex codes; person-level FIFA
+Gender as a stand-in.
+
+**Supersedes:** none of Q75/Q76.
+
+## Q89 — JSON is the v1 encoding; other encodings are not forbidden — decided (A)
 
 The required v1 encoding is **JSON** (`application/json`). The spec, JSON
 Schemas, examples, discovery document, conformance corpus, validator, site,
@@ -947,7 +961,7 @@ Rejected: protobuf/SBE as the v1 encoding; JSON-only forever; shipping
 **Supersedes:** none of Q8/Q39/Q40. Pins `docs/industry-patterns.md` “JSON in
 v1; binary later”.
 
-## Q89 — No GBFS-style data wrapper — decided (A)
+## Q90 — No GBFS-style data wrapper — decided (A)
 
 GBFS wraps every file in `last_updated` / `ttl` / `version` / `data`.
 OpenBook does not. Discovery is `{ lastUpdated, ttl, feeds }` at the root
@@ -961,7 +975,7 @@ Rejected: wrap HTTP pull only; wrap every message including MQTT / WebSocket
 **Supersedes:** none of Q49. GBFS-shaped means `ttl` and the discovery
 fields, not the GBFS file envelope.
 
-## Q90 — JSON Patch (RFC 6902) — decided (never)
+## Q91 — JSON Patch (RFC 6902) — decided (never)
 
 Change semantics stay **JSON Merge Patch (RFC 7386)** (**Q8**). RFC 6902
 JSON Patch is **not** an alternate change encoding, on pull or on sockets.
@@ -969,10 +983,10 @@ JSON Patch is **not** an alternate change encoding, on pull or on sockets.
 Rejected: optional second patch language; JSON Patch on HTTP pull only;
 leave RFC 6902 unsaid because Q8 named Merge Patch.
 
-**Supersedes:** none of Q8. Same kind of pin as Q52 (envelope) and Q89
+**Supersedes:** none of Q8. Same kind of pin as Q52 (envelope) and Q90
 (no second wrapper).
 
-## Q91 — ISO 20022 is not the OpenBook model or encoding — decided (never)
+## Q92 — ISO 20022 is not the OpenBook model or encoding — decided (never)
 
 The wire stays JSON Schema, schema.org-aligned camelCase (**Q13** / **Q38**),
 and Q44 money (`{amount}` plus feed `baseCurrency`). ISO 20022 XML and the
@@ -985,12 +999,12 @@ named names and money.
 
 **Supersedes:** none of Q13/Q38/Q44.
 
-## Q92 — FIX session is not the OpenBook session — decided (never)
+## Q93 — FIX session is not the OpenBook session — decided (never)
 
 Session and recovery stay **Q33** / **Q46**: `snapshotComplete`,
 `heartbeat` + `heartbeatMs`, stale `since` is HTTP 410. FIX Logon /
 Heartbeat / TestRequest / Logout, and sequence reset, are **not** the
-OpenBook session. A later SBE binding (**Q88**) would still carry OpenBook
+OpenBook session. A later SBE binding (**Q89**) would still carry OpenBook
 heartbeats, not FIX Logon.
 
 Rejected: adopt FIX TestRequest / Heartbeat / Logout on the socket; add a
@@ -999,7 +1013,7 @@ Q46 rejected a client TestRequest pair.
 
 **Supersedes:** none of Q46.
 
-## Q93 — No spec-owned multi-publisher manifest — decided (A)
+## Q94 — No spec-owned multi-publisher manifest — decided (A)
 
 Each publisher has **one discovery URL** (**Q41** / **Q49**). That document
 lists that publisher's feeds, not other publishers. An aggregator is itself
@@ -1012,7 +1026,7 @@ leave this unsaid because Q49 named one URL per publisher.
 
 **Supersedes:** none of Q1/Q49.
 
-## Q94 — Protocol-fit pass closed — decided
+## Q95 — Protocol-fit pass closed — decided
 
 This walk of encoding, wrappers, patch language, ISO 20022, FIX session,
 and discovery index is **closed**. Further questions are a **new area**,

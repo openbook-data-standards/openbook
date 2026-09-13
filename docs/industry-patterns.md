@@ -139,7 +139,7 @@ a neutral body.
 - **GRIB / BUFR** — binary, table-driven, self-describing formats for volume
   data. Efficient but need the tables. OpenBook’s required v1 encoding is
   JSON; additional encodings MAY exist later as optional bindings generated
-  from the JSON Schemas (Q88; same pattern as OpenRTB JSON default /
+  from the JSON Schemas (Q89; same pattern as OpenRTB JSON default /
   protobuf optional). No `.proto` in this repo in v1.
 - **NWS API** — JSON-LD + GeoJSON payloads: web-standard encodings rather than
   bespoke ones.

@@ -28,6 +28,8 @@ PAGE_MAP = {
     "../docs/industry-patterns.md": "industry-patterns.html",
     "GOVERNANCE.md": "governance.html",
     "../GOVERNANCE.md": "governance.html",
+    "SECURITY.md": "security.html",
+    "../SECURITY.md": "security.html",
     "VERSIONING.md": "versioning.html",
     "../VERSIONING.md": "versioning.html",
     "CONTRIBUTING.md": "contributing.html",
@@ -347,6 +349,7 @@ def main() -> None:
     write_md_page(ROOT / "docs/building-blocks.md", ROOT / "building-blocks.html", 0, "building-blocks.html", "docs/building-blocks.md")
     write_md_page(ROOT / "docs/industry-patterns.md", ROOT / "industry-patterns.html", 0, "industry-patterns.html", "docs/industry-patterns.md")
     write_md_page(ROOT / "GOVERNANCE.md", ROOT / "governance.html", 0, "governance.html", "GOVERNANCE.md")
+    write_md_page(ROOT / "SECURITY.md", ROOT / "security.html", 0, "security.html", "SECURITY.md")
     write_md_page(ROOT / "VERSIONING.md", ROOT / "versioning.html", 0, "versioning.html", "VERSIONING.md")
     write_md_page(ROOT / "CONTRIBUTING.md", ROOT / "contributing.html", 0, "contributing.html", "CONTRIBUTING.md")
     write_md_page(ROOT / "CHANGELOG.md", ROOT / "changelog.html", 0, "changelog.html", "CHANGELOG.md")
