@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenBook — an open standard for sportsbook data</title>
-<meta name="description" content="OpenBook is an open, vendor-neutral standard for sportsbook & gambling data: a reference model, a live wire, and controlled vocabularies. One format any publisher emits odds in.">
+<meta name="description" content="An open standard for sportsbook data. Vendor-neutral. A reference model, a live wire, and controlled vocabularies for sportsbook &amp; gambling data. One format any sportsbook or feed emits odds in; read it once, consume every publisher.">
 <meta name="theme-color" content="#0B1220">
 <link rel="canonical" href="https://openbook-data-standards.github.io/openbook/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/logo-icon.svg">
 <link rel="stylesheet" href="assets/site.css">
 <meta property="og:title" content="OpenBook — an open standard for sportsbook data">
-<meta property="og:description" content="A reference model, a live wire, and controlled vocabularies. One format any publisher emits odds in.">
+<meta property="og:description" content="Vendor-neutral. A reference model, a live wire, and controlled vocabularies for sportsbook &amp; gambling data. One format any sportsbook or feed emits odds in; read it once, consume every publisher.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://openbook-data-standards.github.io/openbook/">
 <meta property="og:image" content="https://openbook-data-standards.github.io/openbook/assets/logo-icon.svg">
@@ -44,11 +44,11 @@
 <main id="main">
 <div class="wrap">
 <section class="hero" style="border-top:none">
-  <h1>One open standard for sportsbook data.</h1>
-  <p>A reference model, a live wire, and controlled vocabularies — the format any sportsbook or feed emits odds in. Read it once, consume every publisher.</p>
+  <h1>An open standard for sportsbook data.</h1>
+  <p>Vendor-neutral. A reference model, a live wire, and controlled vocabularies for sportsbook &amp; gambling data. One format any sportsbook or feed emits odds in; read it once, consume every publisher.</p>
   <div class="cta">
-    <a class="btn primary" href="guide.html">Read the guide</a>
-    <a class="btn secondary" href="examples.html">Examples</a>
+    <a class="btn primary" href="spec.html">Specification</a>
+    <a class="btn secondary" href="schemas.html">JSON Schemas</a>
   </div>
   <p class="ver"><a href="versioning.html">v0.3.0-draft</a></p>
   <div class="stats">
@@ -62,31 +62,31 @@
 
 <section id="read" style="border-top:none;padding-top:0">
   <h2>How to read this site</h2>
-  <p class="lede">Three tracks. Pick the one that matches how you work — the data contract itself does not change between them.</p>
+  <p class="lede">The data contract does not change between tracks. The specification is normative. Taxonomy and the guide are the plain-language reading.</p>
   <div class="cols3">
-    <div class="card"><div class="kicker ref">Start here</div><h3><a href="guide.html">Guide</a></h3><p>Plain language. What a publisher, a source and a fixture are. No RFC keywords. For trading, ops, product, commercial.</p></div>
-    <div class="card"><div class="kicker">Shared names</div><h3><a href="taxonomy.html">Taxonomy</a></h3><p>What a sport, segment, market type and side <em>mean</em>. The <a href="vocabularies/">id lists</a> are the computer spelling of the same lists.</p></div>
-    <div class="card"><div class="kicker live">Implement</div><h3><a href="spec.html">Specification</a></h3><p>The technical contract: MUST / SHOULD / MAY, schemas, streams. Tables and diagrams, still the same rules.</p></div>
+    <div class="card"><div class="kicker live">Normative</div><h3><a href="spec.html">Specification</a></h3><p>RFC 2119 MUST / SHOULD / MAY, streams, and the rules the schemas encode. Where prose and schema disagree, the schema wins.</p></div>
+    <div class="card"><div class="kicker ref">Machine-normative</div><h3><a href="schemas.html">Schemas</a> · <a href="vocabularies/">Vocabularies</a></h3><p>JSON Schema draft 2020-12, and the id lists for sports, market types, segments and sides. Validate with <code>python3 tools/validate.py</code>.</p></div>
+    <div class="card"><div class="kicker">Informative</div><h3><a href="taxonomy.html">Taxonomy</a> · <a href="guide.html">Guide</a></h3><p>Shared lists and a walkthrough in plain language. No RFC keywords. For trading, ops, product, commercial.</p></div>
   </div>
 </section>
 
 <section id="who">
   <h2>Who it is for</h2>
-  <p class="lede">Same format whether you run a book, carry many books, or consume odds. OpenBook is the data contract, not a pricing engine.</p>
+  <p class="lede">Same format whether you publish, carry many sources, or consume. OpenBook is the data contract, not a pricing engine.</p>
   <div class="cols3">
-    <div class="card"><h3>Sportsbooks</h3><p>Publish your own prices without inventing a private dump format. Keep the engine, models and pricing proprietary.</p></div>
-    <div class="card"><h3>Feeds</h3><p>Carry many sources in one stream. Every price names its source and how it was obtained — licensed, scraped, or derived.</p></div>
-    <div class="card"><h3>Consumers</h3><p>One importer for every publisher: traders, screen operators, researchers, regulators, and downstream books.</p></div>
+    <div class="card"><h3>Publishers</h3><p>Emit your own prices in the shared format. Keep the engine, models and pricing proprietary.</p></div>
+    <div class="card"><h3>Feeds</h3><p>Carry many sources in one stream. Every price names its <code>source</code> and <code>provenance</code> — licensed, scraped, or derived.</p></div>
+    <div class="card"><h3>Consumers</h3><p>One importer for every publisher. The wire is the same regardless of who transmits.</p></div>
   </div>
 </section>
 
 <section id="why">
   <h2>The problem it solves</h2>
-  <p class="lede">Every book and feed ships odds in its own shape, so every consumer writes a bespoke integration per source, and no neutral cross-vendor market taxonomy exists. OpenBook is the shared contract — like GTFS for transit — so a publisher emits once and any consumer reads it with one importer.</p>
+  <p class="lede">Every book and feed ships odds in its own shape, so every consumer writes a bespoke integration per source, and no neutral cross-vendor market taxonomy exists. OpenBook is the shared contract — like GTFS for transit or OpenRTB for ad-tech — so a publisher emits once and any consumer reads it with one importer.</p>
   <div class="cols3">
     <div class="card"><h3>Publisher-neutral</h3><p>A book publishing its own odds, or a feed carrying many books' odds — same format. Every price carries its source and how it was obtained.</p></div>
-    <div class="card"><h3>Live by default</h3><p>Prices, scores and grades stream as diffs with a monotonic sequence — modelled on live transit feeds and MQTT, not a REST endpoint you poll.</p></div>
-    <div class="card"><h3>Built on real standards</h3><p>ISO 8601, ISO 4217, CLDR territories, Wikidata ids, schema.org field names, JSON Merge Patch. Nothing reinvented.</p></div>
+    <div class="card"><h3>Live by default</h3><p>Prices, scores and grades stream as diffs with a monotonic <code>sequence</code> — RFC 7386 Merge Patch, not a REST endpoint you poll.</p></div>
+    <div class="card"><h3>Built on real standards</h3><p>RFC 3339, ISO 4217, CLDR territories, Wikidata ids, schema.org field names, JSON Schema 2020-12. Nothing reinvented.</p></div>
   </div>
 </section>
 </div>
@@ -179,7 +179,7 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 
 <section id="vocab">
   <h2>Controlled vocabularies</h2>
-  <p class="lede">The piece no one else publishes: shared names for what can be bet and how a match is sliced. Read the <a href="taxonomy.html">taxonomy</a> first; this list is the computer spelling.</p>
+  <p class="lede">Shared ids owned by the standard. The <a href="taxonomy.html">taxonomy</a> is the human map; this list is the computer spelling.</p>
   <div class="pills">
     <span class="pill">market:moneyline</span><span class="pill">market:spread</span><span class="pill">market:total</span>
     <span class="pill">market:player-points</span><span class="pill">market:correct-score</span><span class="pill">market:outright-winner</span>
@@ -220,12 +220,12 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
     <div>
       <h3>This standard</h3>
       <ul class="res">
-        <li><a href="guide.html">Guide</a> — plain language</li>
+        <li><a href="spec.html">Specification</a> — the technical contract</li>
+        <li><a href="schemas.html">JSON Schemas</a></li>
+        <li><a href="vocabularies/">Vocabularies</a> — the id lists</li>
         <li><a href="examples.html">Examples</a> — one match, in order</li>
         <li><a href="taxonomy.html">Taxonomy</a> — shared lists, human map</li>
-        <li><a href="spec.html">Specification</a> — the technical contract</li>
-        <li><a href="vocabularies/">Vocabularies</a> — the id lists</li>
-        <li><a href="schemas.html">JSON Schemas</a></li>
+        <li><a href="guide.html">Guide</a> — plain language</li>
         <li><a href="decisions.html">Decision log</a></li>
         <li><a href="building-blocks.html">Building blocks</a></li>
         <li><a href="industry-patterns.html">Industry patterns</a></li>
@@ -253,8 +253,8 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 <section id="start">
   <h2>Get started</h2>
   <div class="steps">
-    <div class="s"><span class="num">1</span><div>Start with the <a href="guide.html">guide</a> (plain language) and the <a href="taxonomy.html">taxonomy</a>. Implementers then read the <a href="spec.html">specification</a> and <a href="decisions.html">decision log</a>.</div></div>
-    <div class="s"><span class="num">2</span><div>Validate against the <a href="schemas.html">JSON Schemas</a> (draft 2020-12): <code>python3 tools/validate.py</code>.</div></div>
+    <div class="s"><span class="num">1</span><div>Implementers: the <a href="spec.html">specification</a>, <a href="schemas.html">JSON Schemas</a> and <a href="decisions.html">decision log</a>. Plain-language tracks are the <a href="taxonomy.html">taxonomy</a> and <a href="guide.html">guide</a>.</div></div>
+    <div class="s"><span class="num">2</span><div>Validate against the schemas (draft 2020-12): <code>python3 tools/validate.py</code>.</div></div>
     <div class="s"><span class="num">3</span><div>Map your feed in: keep your own ids, add the standard facts, attach a Wikidata <code>sameAs</code> where one exists.</div></div>
     <div class="s"><span class="num">4</span><div>Publish — a book's own odds, or a feed carrying many books. Same format either way.</div></div>
   </div>
@@ -263,7 +263,7 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 
 <section id="open">
   <h2>Open spec, private engines</h2>
-  <p class="lede">OpenBook standardises the data contract — schemas and vocabularies — and nothing else. How a book produces, models or prices its data stays entirely its own. The specification is CC BY 4.0; implementations may be fully proprietary. This is how OpenRTB, FIX and GTFS reached adoption.</p>
+  <p class="lede">Like GTFS for transit or OpenRTB for ad-tech: the data contract is open, and every implementation behind it stays the implementer's own. The specification is CC BY 4.0; implementations may be fully proprietary.</p>
 </section>
 </div>
 </main>
@@ -280,7 +280,7 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
     </svg>
     OpenBook
   </a>
-  <div>OpenBook Data Standards — an open standard for sportsbook &amp; gambling data</div>
+  <div>OpenBook Data Standards — an open standard for sportsbook data</div>
   <div class="row" style="margin-top:12px">
     <a href="guide.html">Guide</a>
     <a href="examples.html">Examples</a>
