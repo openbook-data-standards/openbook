@@ -1256,3 +1256,19 @@ No new field names in this pick. Wire waits for the names.
 
 **Supersedes:** none of Q98. Completes “every shape on corners” for
 selections.
+
+## Q105 — Prop outcome names — decided (A)
+
+- Correct score: **`homeTotal`**, **`awayTotal`** (JSON numbers, same as
+  `scores[].total`). `side: other` is the unlisted bucket.
+- HT/FT: **`halfTime`**, **`fullTime`**, each a `side` of `home` · `away` ·
+  `draw`.
+- Winning margin: existing **`participant`** + **`line`**. Plus-bands
+  (`3+`) are `side: other` until a band is named.
+- Player over/under: **`player`** (roster own id).
+- `side` tokens to add: **`odd`**, **`even`**, **`none`**,
+  **`home-or-draw`**, **`away-or-draw`**, **`home-or-away`**.
+
+Rejected: `homeScore` / `awayScore`; contestant string; `playerId`.
+
+**Supersedes:** Q104 “names later”.

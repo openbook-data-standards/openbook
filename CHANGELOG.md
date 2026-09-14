@@ -51,6 +51,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q103** — market `limit` is enough; Get Line is out of scope (log only).
 - **Q104** — typed prop outcomes (CS two counts, HT/FT two results, player
   on the outcome). Field names not in this pick (log only).
+- **Q105** — names: `homeTotal` / `awayTotal`; `halfTime` / `fullTime`;
+  `player` on the outcome; `side` tokens odd, even, none, home-or-draw,
+  away-or-draw, home-or-away (log only).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
