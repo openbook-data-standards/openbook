@@ -49,6 +49,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
+- **Homepage copy** — hero is “an open standard for sportsbook data”;
+  the subhead is vendor-neutral plus sportsbook & gambling data
+  (reference model and vocabularies). Specification / schemas
+  first; taxonomy and guide marked informative. Same layout and
+  colour. No wire change.
 - **Maps leftover on the spec** (Q181–Q189, Q199–Q203, Q215, Q218–Q257)
   — public market keys onto existing OpenBook ids, or the unknown
   catch-all plus a reason. Directory [`maps/`](maps/). First file
