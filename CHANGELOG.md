@@ -159,6 +159,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   wired in this pick.
 - **Q188** — fingerprint is leftover English only. No new field.
   Publisher-own id stays canonical. Not wired in this pick.
+- **Q189** — when the recipe exists it is named for fingerprint, in the
+  register leftover, not inside the vocab lists. No file in this pick.
+  Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

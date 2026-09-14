@@ -2279,3 +2279,15 @@ Rejected: required field on the fixture; optional field on the fixture;
 drop the leftover.
 
 **Supersedes:** none of Q171 (join key still; this is not a wire field).
+
+## Q189 — Where the fingerprint recipe lives — decided (A)
+
+When the recipe exists it is **named for fingerprint**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/`; spec only with no separate file ever;
+stop this leftover.
+
+**Supersedes:** none of Q188.
