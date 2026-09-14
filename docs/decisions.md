@@ -1511,3 +1511,81 @@ Not wired in this pick.
 Rejected: a new book feed walk; stop until plus-bands merge.
 
 **Supersedes:** Q117 “pass closed” as the next area, not the prop extras.
+
+## Q127 — Player id always on yes/no player rows — decided (A)
+
+Every yes/no player row has `player`. Same rule as player over/under
+(Q115).
+
+Not wired in this pick.
+
+Rejected: optional on some yes/no rows.
+
+**Supersedes:** none of Q115 or Q126.
+
+## Q128 — Leftover other is not used on yes/no player boards — decided (A)
+
+Yes/no player rows are only `yes` / `no` for a named player. Leftover
+`other` is not used on these boards.
+
+Not wired in this pick.
+
+Rejected: `other` allowed (someone else, or unlisted).
+
+**Supersedes:** none of Q124 (winning-margin leftover still allowed).
+
+## Q129 — No is optional on yes/no player boards — decided (A)
+
+They may list only `yes`. `no` is optional.
+
+Not wired in this pick.
+
+Rejected: both `yes` and `no` required for each named player.
+
+**Supersedes:** none of Q128.
+
+## Q130 — Yes/no player is one market, many rows — decided (A)
+
+A yes/no player board is **one market** with many named-player rows.
+Same idea as Q107 for correct score / HT/FT / winning margin.
+
+Not wired in this pick.
+
+Rejected: one market per player.
+
+**Supersedes:** none of Q107 (player over/under still has its number on
+the market).
+
+## Q131 — Yes/no player market omits line — decided (A)
+
+A yes/no player market has no `line`. Anytime scorer / to score has no
+threshold like player over/under (the 24.5).
+
+Not wired in this pick.
+
+Rejected: keep a market `line`.
+
+**Supersedes:** none of Q107 (player over/under still has its number).
+
+## Q132 — Yes/no player pass closed — decided (A)
+
+Names and row rules for yes/no player rows stop here: same `player` id
+as over/under; always present; leftover `other` is not used; `no` is
+optional; one market, many rows; no market `line`. Wire waits until
+implement. No new field.
+
+Later pick wired those extras (spec, pairing, example). No new field.
+
+Rejected: keep asking yes/no player questions in this pass.
+
+**Supersedes:** Q126 as an open walk (the area is decided; the pass is
+closed).
+
+## Q133 — Stop this spec walk — decided (A)
+
+No new board until named. Q86 stays parked (needs a payload). Yes/no
+player row rules are written in this pick (no new field).
+
+Rejected: unpark Q86; a new book-feed walk.
+
+**Supersedes:** Q132 as an open “what is next”.

@@ -46,7 +46,7 @@ For what these words mean without ids, see
 | `market:player-points` | Player Points | over-under | over, under |
 | `market:player-assists` | Player Assists | over-under | over, under |
 | `market:player-rebounds` | Player Rebounds | over-under | over, under |
-| `market:player-anytime-scorer` | Anytime Scorer | yes-no | yes, no |
+| `market:player-anytime-scorer` | Anytime Scorer | yes-no | player + yes (no optional); no leftover other; no market line |
 | `market:player-passing-yards` | Passing Yards | over-under | over, under |
 | `market:player-shots-on-target` | Shots On Target | over-under | over, under |
 
@@ -72,7 +72,8 @@ For what these words mean without ids, see
 
 - **Shape** drives how a client renders and how a settlement grades — a
   `handicap` market always has a `line`; an `over-under` always has `over`/`under`
-  outcomes and a `line`; `n-way` enumerates `participant` outcomes.
+  outcomes and a `line`; `n-way` enumerates `participant` outcomes. A yes/no
+  player board (anytime scorer) has `player` on each row and omits market `line`.
 - A concrete priced selection is identified by
   `(fixture, marketType, segment, line, side, basis)` — see the odds_change
   schema. `basis` is what the market counts (goals, corners); it is not a new

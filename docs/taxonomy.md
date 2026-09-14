@@ -129,7 +129,9 @@ not the leftover), double-chance home-or-draw / away-or-draw / home-or-away.
 Leftover unlisted scores and unlisted remainder on winning margin are `other`.
 Correct score also carries `homeTotal` / `awayTotal`. HT/FT carries
 `halfTime` / `fullTime`. Winning margin is `participant` plus outcome `line`
-or `atLeast`; leftover `other`. Player over/under names `player`.
+or `atLeast`; leftover `other`. Player over/under names `player`. Yes/no
+player (anytime scorer) names `player` plus `yes` / `no` (`no` optional);
+leftover `other` is not used; no market `line`.
 
 ---
 

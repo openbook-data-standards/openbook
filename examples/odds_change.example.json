@@ -146,6 +146,24 @@
             "odds": "1.40"
           }
         ]
+      },
+      {
+        "marketType": "market:player-anytime-scorer",
+        "segment": "segment:soccer:full-time",
+        "source": "acme-book",
+        "provenance": "official",
+        "outcomes": [
+          {
+            "side": "yes",
+            "player": "PL-9",
+            "odds": "3.40"
+          },
+          {
+            "side": "yes",
+            "player": "PL-11",
+            "odds": "4.20"
+          }
+        ]
       }
     ]
   }
