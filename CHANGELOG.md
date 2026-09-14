@@ -27,6 +27,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q91** — spec only: period offline is a `marketStatus` fan-out; settled
   stays segment `down` + `grade`. No new fields.
 - **Q92** — no parlay/teaser flags on the fixture (log only).
+- **Q93** — one fixture; `eventStatus` is live. `superEvent` is not a
+  live/pregame pair.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

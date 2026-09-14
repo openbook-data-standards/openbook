@@ -1013,3 +1013,14 @@ Rejected: `parlayRestriction` / `altTeaser` on the fixture; flags on
 each market for “may be parlayed.”
 
 **Supersedes:** none of Q89.
+
+## Q93 — One fixture — decided (C)
+
+Pregame and live are **one fixture**. `eventStatus` is scheduled / live /
+ended. No second id. No `parentId`. `superEvent` is not a live→pregame
+pair (that was a Pinnacle clone).
+
+Rejected: two fixtures linked by `superEvent`; copying `parentId`; a
+corners child event (corners is `basis` on the same fixture, Q90).
+
+**Supersedes:** the walk note that pregame and live are separate fixtures.

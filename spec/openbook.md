@@ -257,8 +257,11 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
 - **`player`** — roster membership: own id, `participant` (the person),
   `team` (the team participant), `position`, `number`. Optional `throws`
   and `bats` (`left` · `right` · `both`). No name fields.
-- **`fixture`** — §6 plus `eventStatus`, `cutoffDate`, `superEvent` (a live
-  event's pregame parent), optional display `name`, `location` (nested
+- **`fixture`** — §6 plus `eventStatus`, `cutoffDate`, optional
+  `superEvent` (schema.org; **not** a live/pregame pair — Q93: one fixture,
+  `eventStatus` is live), optional display `name`, `location` (nested
+  schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`,
+  optional WGS 84 `latitude` / `longitude`), optional `surface`.
   schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`,
   optional WGS 84 `latitude` / `longitude`), optional `surface`.
 - **`market`** — a fixture's market as priced by one source: `fixture`,

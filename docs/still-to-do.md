@@ -17,7 +17,7 @@ answered. Do not invent names.
 ### Already in OpenBook (spine)
 
 - Sports, leagues, fixtures, participants, start time, cutoff
-- Pregame vs live as separate fixtures; parent live event (`superEvent`)
+- One fixture; `eventStatus` is live (Q93). Not a second live id.
 - Segments (Pinnacle period numbers map here; do not copy their integers)
 - Markets and decimal odds; moneyline / spread / total
 - Grade; what was graded on (Pinnacle resulting unit → existing `basis`)
@@ -34,12 +34,13 @@ answered. Do not invent names.
 
 - **Q90** — optional `basis` on `market` and `odds/change`.
 - **Q91** — spec prose only (four places; no new fields).
+- **Q93** — one fixture; `eventStatus` is live. `superEvent` is not a
+  live/pregame pair.
 
 ### Not decided yet (walk these; do not invent)
 
-1. **Live pairing** — confirm `superEvent`; do not add a second model.
-2. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
-3. **Get Line** — confirm market `limit` is enough.
+1. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
+2. **Get Line** — confirm market `limit` is enough.
 
 ### Not in the Pinnacle Lines fixture schema
 
@@ -53,8 +54,8 @@ payload has them. Do not add them to cover “all sports.”
 
 ## Next question (not decided)
 
-- Live pairing: confirm `superEvent`.
+- Sports catalog: Pinnacle sport list vs OpenBook sport ids.
 
-## Done (Q32–Q92)
+## Done (Q32–Q93)
 
-Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled · **Q92** omit parlay flags.
+Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled · **Q92** omit parlay flags · **Q93** one fixture.
