@@ -1435,3 +1435,14 @@ Not wired in this pick.
 Rejected: reuse `line` as the floor.
 
 **Supersedes:** Q105 “until a band is named”; Q118 “name later”.
+
+## Q120 — Plus-band is who plus atLeast — decided (A)
+
+A plus-band row always has **`participant`** and **`atLeast`**. It is
+not leftover `other`.
+
+Not wired in this pick.
+
+Rejected: who or `atLeast` missing on that row.
+
+**Supersedes:** Q113 leftover for named plus-bands.
