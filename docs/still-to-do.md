@@ -120,3 +120,4 @@ pass closed.
 **Q156** — stop this spec walk.
 **Q157** — toss elected then best-of this pass.
 **Q158** — elected sits on existing `toss`.
+**Q159** — one token, bat or bowl.
