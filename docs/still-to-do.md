@@ -1,13 +1,13 @@
 # Still to do
 
-Questions recorded through **Q146**. Catalog pass closed and on the wire.
+Questions recorded through **Q147**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
 closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q118–Q125**) and on the wire. Yes/no player pass closed
 (**Q126–Q132**) and on the wire. Q86 leftovers pass closed
-(**Q134–Q146**); object names wait.
+(**Q134–Q146**); object names wait. Spec walk stopped (**Q147**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
@@ -59,6 +59,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q133** — stop this spec walk (superseded as the next area by Q134).
 - **Q134–Q146** — Q86 leftovers: homes locked; two catalog objects for
   stall and toss; series lead a new live object; pass closed; names wait.
+- **Q147** — stop this spec walk.
 
 ### Parked
 
@@ -72,9 +73,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- What is next?
+- None. This spec walk stopped (**Q147**).
 
-## Done (Q32–Q146)
+## Done (Q32–Q147)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -95,3 +96,4 @@ pass closed.
 **Q126–Q132** — player on yes/no rows; pass closed; on the wire.
 **Q133** — stop this spec walk.
 **Q134–Q146** — Q86 leftovers; homes locked; pass closed; names wait.
+**Q147** — stop this spec walk.

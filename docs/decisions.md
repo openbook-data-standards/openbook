@@ -1735,3 +1735,12 @@ Homes stop here. Object names and wire wait. No new field.
 Rejected: keep going; name the objects now.
 
 **Supersedes:** Q145 as an open walk (homes closed; this closes the pass).
+
+## Q147 — Stop this spec walk — decided (A)
+
+No new board until named. Object names for stall, toss, and series lead
+wait. Wire waits.
+
+Rejected: name those objects now; a new area.
+
+**Supersedes:** Q146 as an open “what is next”.
