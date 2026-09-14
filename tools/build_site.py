@@ -10,7 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 NAV = [
+    ("guide.html", "Guide"),
     ("spec.html", "Spec"),
+    ("taxonomy.html", "Taxonomy"),
     ("vocabularies/", "Vocabularies"),
     ("https://github.com/openbook-data-standards/openbook", "GitHub"),
 ]
@@ -18,6 +20,10 @@ NAV = [
 PAGE_MAP = {
     "spec/openbook.md": "spec.html",
     "../spec/openbook.md": "spec.html",
+    "docs/guide.md": "guide.html",
+    "../docs/guide.md": "guide.html",
+    "docs/taxonomy.md": "taxonomy.html",
+    "../docs/taxonomy.md": "taxonomy.html",
     "asyncapi.yaml": "spec/asyncapi.yaml",
     "../spec/asyncapi.yaml": "spec/asyncapi.yaml",
     "docs/decisions.md": "decisions.html",
@@ -32,6 +38,8 @@ PAGE_MAP = {
     "industry-patterns.md": "industry-patterns.html",
     "GOVERNANCE.md": "governance.html",
     "../GOVERNANCE.md": "governance.html",
+    "SECURITY.md": "security.html",
+    "../SECURITY.md": "security.html",
     "VERSIONING.md": "versioning.html",
     "../VERSIONING.md": "versioning.html",
     "CONTRIBUTING.md": "contributing.html",
@@ -92,6 +100,7 @@ def inline(md: str, depth: int) -> str:
 
     md = re.sub(r"`([^`]+)`", code, md)
     md = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", md)
+    md = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", md)
     return md
 
 
@@ -129,13 +138,48 @@ def md_to_html(md: str, depth: int) -> tuple[str, list[tuple[str, str]]]:
         line = lines[i]
         if line.startswith("```"):
             close_lists()
+            lang = line[3:].strip()
             i += 1
             buf = []
             while i < len(lines) and not lines[i].startswith("```"):
                 buf.append(lines[i])
                 i += 1
-            i += 1
-            out.append("<pre>" + html.escape("\n".join(buf)) + "</pre>")
+            if i < len(lines):
+                i += 1
+            body = "\n".join(buf)
+            if lang == "mermaid":
+                out.append(f'<pre class="mermaid">{html.escape(body)}</pre>')
+            else:
+                out.append("<pre>" + html.escape(body) + "</pre>")
+            continue
+        if line.strip().startswith("|") and line.strip().count("|") >= 2:
+            close_lists()
+            rows = []
+            while i < len(lines) and lines[i].strip().startswith("|") and lines[i].strip().count("|") >= 2:
+                rows.append(lines[i])
+                i += 1
+            parsed: list[list[str]] = []
+            for raw in rows:
+                cells = [c.strip() for c in raw.strip().strip("|").split("|")]
+                if parsed and all(re.match(r"^:?-{3,}:?$", c) for c in cells):
+                    continue
+                parsed.append(cells)
+            if parsed:
+                head, body_rows = parsed[0], parsed[1:]
+                thead = "<thead><tr>" + "".join(f"<th>{inline(c, depth)}</th>" for c in head) + "</tr></thead>"
+                tbody = "<tbody>" + "".join(
+                    "<tr>" + "".join(f"<td>{inline(c, depth)}</td>" for c in row) + "</tr>"
+                    for row in body_rows
+                ) + "</tbody>"
+                out.append(f'<div class="table-wrap"><table>{thead}{tbody}</table></div>')
+            continue
+        if line.startswith(">"):
+            close_lists()
+            quotes = []
+            while i < len(lines) and lines[i].startswith(">"):
+                quotes.append(re.sub(r"^>\s?", "", lines[i]))
+                i += 1
+            out.append("<blockquote>" + inline(" ".join(quotes), depth) + "</blockquote>")
             continue
         if line.strip() == "---":
             close_lists()
@@ -182,7 +226,7 @@ def md_to_html(md: str, depth: int) -> tuple[str, list[tuple[str, str]]]:
         close_lists()
         para = [line]
         i += 1
-        while i < len(lines) and lines[i].strip() and not lines[i].startswith("#") and not lines[i].startswith("```") and not lines[i].startswith("- ") and not lines[i].startswith("* ") and not re.match(r"^\d+\. ", lines[i]) and lines[i].strip() != "---":
+        while i < len(lines) and lines[i].strip() and not lines[i].startswith("#") and not lines[i].startswith("```") and not lines[i].startswith("- ") and not lines[i].startswith("* ") and not lines[i].startswith(">") and not lines[i].strip().startswith("|") and not re.match(r"^\d+\. ", lines[i]) and lines[i].strip() != "---":
             para.append(lines[i])
             i += 1
         out.append("<p>" + inline(" ".join(para), depth) + "</p>")
@@ -209,10 +253,47 @@ def toc_nav(toc: list[tuple[str, str]] | None) -> str:
     return f'<nav class="page-toc"><strong>On this page</strong>{links}</nav>'
 
 
+def nav_current(current: str, href: str) -> str:
+    cur = current.rstrip("/")
+    dest = href.rstrip("/")
+    return ' aria-current="page"' if cur == dest else ""
+
+
 def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str, str]] | None = None) -> str:
     root = "../" * depth if depth else "./"
-    spec_cur = ' aria-current="page"' if current.rstrip("/") == "spec.html" else ""
-    voc_cur = ' aria-current="page"' if current.rstrip("/") == "vocabularies" else ""
+    mermaid = ""
+    if 'class="mermaid"' in body:
+        mermaid = """
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "dark",
+    securityLevel: "strict",
+    themeVariables: {
+      background: "#0f141e",
+      primaryColor: "#15233f",
+      primaryTextColor: "#f4f7fb",
+      primaryBorderColor: "#4c8dff",
+      lineColor: "#8b93b0",
+      secondaryColor: "#1c2438",
+      tertiaryColor: "#171d2b",
+      mainBkg: "#171d2b",
+      nodeBorder: "#4c8dff",
+      clusterBkg: "#171d2b",
+      titleColor: "#f4f7fb",
+      edgeLabelBackground: "#171d2b"
+    }
+  });
+</script>"""
+    parts = []
+    for href, label in NAV:
+        dest = href if href.startswith("http") else f"{root}{href}"
+        cur = nav_current(current, href) if not href.startswith("http") else ""
+        parts.append(
+            f'<a href="{html.escape(dest, quote=True)}"{cur}>{html.escape(label)}</a>'
+        )
+    links = "\n    ".join(parts)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -229,9 +310,7 @@ def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str,
 <header class="top"><div class="wrap">
   <a class="logo" href="{root}">{LOGO}</a>
   <nav>
-    <a href="{root}spec.html"{spec_cur}>Spec</a>
-    <a href="{root}vocabularies/"{voc_cur}>Vocabularies</a>
-    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+    {links}
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
@@ -243,6 +322,7 @@ def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str,
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
+{mermaid}
 </body>
 </html>
 """
@@ -253,8 +333,10 @@ def write_md_page(src: Path, dest: Path, depth: int, current: str, source_label:
     home = "../" * depth if depth else "./"
     inner = (
         f'<p class="crumb"><a href="{home}">Home</a> · {html.escape(source_label)}</p>'
+        f'<div class="page-layout">'
         f"{toc_nav(toc)}"
         f'<article class="doc">{html_body}</article>'
+        f"</div>"
         f'<p class="source">Source: {html.escape(source_label)}</p>'
     )
     title = re.sub(r"^# ", "", src.read_text().splitlines()[0])
@@ -284,7 +366,7 @@ def schemas_page() -> str:
     toc.append(("examples", "examples"))
     inner = (
         '<p class="crumb"><a href="./">Home</a> · JSON Schemas</p>'
-        f"{toc_nav(toc)}"
+        f'<div class="page-layout">{toc_nav(toc)}'
         '<article class="doc"><h1>JSON Schemas</h1>'
         "<p>Draft 2020-12. These files are the machine-normative field definitions. "
         "Each <code>$id</code> is this same URL on GitHub Pages.</p>"
@@ -292,7 +374,7 @@ def schemas_page() -> str:
         + '<h1 id="examples">Examples</h1>'
         "<p>Worked documents that validate against the schemas.</p>"
         + "".join(example_blocks())
-        + "</article>"
+        + "</article></div>"
     )
     return chrome("JSON Schemas", inner, 0, "schemas.html", toc)
 
@@ -328,7 +410,7 @@ def vocab_index() -> str:
         (ROOT / "vocabularies/sports.md", "sports", "Sports", "vocabularies/sports.md"),
         (ROOT / "vocabularies/segments.md", "segments", "Segments", "vocabularies/segments.md"),
     ]
-    toc_items = [(sid, label) for _, sid, label, _ in sections]
+    toc_items = [("how-to-read", "How to read")] + [(sid, label) for _, sid, label, _ in sections]
     parts = []
     for src, sid, label, source_label in sections:
         body, _ = md_to_html(src.read_text(), 1)
@@ -336,22 +418,30 @@ def vocab_index() -> str:
         parts.append(f'<section id="{html.escape(sid)}">{body}<p class="source">Source: {html.escape(source_label)}</p></section>')
     inner = (
         '<p class="crumb"><a href="../">Home</a> · Vocabularies</p>'
+        f'<div class="page-layout">'
         f"{toc_nav(toc_items)}"
         '<article class="doc"><h1>Controlled vocabularies</h1>'
-        "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments are on this page.</p>"
+        '<section id="how-to-read"><p>This page is the <strong>id list</strong> '
+        "computers use. For what the words mean in plain language, start with the "
+        '<a href="../taxonomy.html">taxonomy</a>. The technical contract is the '
+        '<a href="../spec.html">specification</a>.</p>'
+        "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments follow.</p></section>"
         + "".join(parts)
-        + "</article>"
+        + "</article></div>"
     )
     return chrome("Vocabularies", inner, 1, "vocabularies/", toc_items)
 
 
 def main() -> None:
+    write_md_page(ROOT / "docs/guide.md", ROOT / "guide.html", 0, "guide.html", "docs/guide.md")
+    write_md_page(ROOT / "docs/taxonomy.md", ROOT / "taxonomy.html", 0, "taxonomy.html", "docs/taxonomy.md")
     write_md_page(ROOT / "spec/openbook.md", ROOT / "spec.html", 0, "spec.html", "spec/openbook.md")
     write_md_page(ROOT / "docs/decisions.md", ROOT / "decisions.html", 0, "decisions.html", "docs/decisions.md")
     write_md_page(ROOT / "docs/building-blocks.md", ROOT / "building-blocks.html", 0, "building-blocks.html", "docs/building-blocks.md")
     write_md_page(ROOT / "docs/industry-patterns.md", ROOT / "industry-patterns.html", 0, "industry-patterns.html", "docs/industry-patterns.md")
     write_md_page(ROOT / "docs/protocol-comparison.md", ROOT / "protocol-comparison.html", 0, "protocol-comparison.html", "docs/protocol-comparison.md")
     write_md_page(ROOT / "GOVERNANCE.md", ROOT / "governance.html", 0, "governance.html", "GOVERNANCE.md")
+    write_md_page(ROOT / "SECURITY.md", ROOT / "security.html", 0, "security.html", "SECURITY.md")
     write_md_page(ROOT / "VERSIONING.md", ROOT / "versioning.html", 0, "versioning.html", "VERSIONING.md")
     write_md_page(ROOT / "CONTRIBUTING.md", ROOT / "contributing.html", 0, "contributing.html", "CONTRIBUTING.md")
     write_md_page(ROOT / "CHANGELOG.md", ROOT / "changelog.html", 0, "changelog.html", "CHANGELOG.md")

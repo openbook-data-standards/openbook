@@ -1,0 +1,15 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 104001,
+  "datePublished": "2026-09-19T13:05:00Z",
+  "publisher": "acme-feeds",
+  "object": "participant",
+  "action": "update",
+  "sport": "tennis",
+  "id": "P-77",
+  "changes": {
+    "alternateName": [
+      "Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia Carlos Alcaraz Garfia"
+    ]
+  }
+}

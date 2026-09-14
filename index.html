@@ -32,7 +32,9 @@
     OpenBook
   </a>
   <nav>
+    <a href="guide.html">Guide</a>
     <a href="spec.html">Spec</a>
+    <a href="taxonomy.html">Taxonomy</a>
     <a href="vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
@@ -44,8 +46,8 @@
   <h1>One open standard for sportsbook data.</h1>
   <p>A reference model, a live wire, and controlled vocabularies — the format any sportsbook or feed emits odds in. Read it once, consume every publisher.</p>
   <div class="cta">
-    <a class="btn primary" href="spec.html">Read the specification</a>
-    <a class="btn secondary" href="#start">Get started</a>
+    <a class="btn primary" href="guide.html">Read the guide</a>
+    <a class="btn secondary" href="spec.html">Specification</a>
   </div>
   <p class="ver"><a href="versioning.html">v0.3.0-draft</a></p>
   <div class="stats">
@@ -57,7 +59,17 @@
   </div>
 </section>
 
-<section id="who" style="border-top:none;padding-top:0">
+<section id="read" style="border-top:none;padding-top:0">
+  <h2>How to read this site</h2>
+  <p class="lede">Three tracks. Pick the one that matches how you work — the data contract itself does not change between them.</p>
+  <div class="cols3">
+    <div class="card"><div class="kicker ref">Start here</div><h3><a href="guide.html">Guide</a></h3><p>Plain language. What a publisher, a source and a fixture are. No RFC keywords. For trading, ops, product, commercial.</p></div>
+    <div class="card"><div class="kicker">Shared names</div><h3><a href="taxonomy.html">Taxonomy</a></h3><p>What a sport, segment, market type and side <em>mean</em>. The <a href="vocabularies/">id lists</a> are the computer spelling of the same lists.</p></div>
+    <div class="card"><div class="kicker live">Implement</div><h3><a href="spec.html">Specification</a></h3><p>The technical contract: MUST / SHOULD / MAY, schemas, streams. Tables and diagrams, still the same rules.</p></div>
+  </div>
+</section>
+
+<section id="who">
   <h2>Who it is for</h2>
   <p class="lede">Same format whether you run a book, carry many books, or consume odds. OpenBook is the data contract, not a pricing engine.</p>
   <div class="cols3">
@@ -166,7 +178,7 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 
 <section id="vocab">
   <h2>Controlled vocabularies</h2>
-  <p class="lede">The piece no one else publishes: readable, versioned ids for what can be bet and how a match is sliced. Short form on the wire, formal <code>urn:openbook:</code> in the spec.</p>
+  <p class="lede">The piece no one else publishes: shared names for what can be bet and how a match is sliced. Read the <a href="taxonomy.html">taxonomy</a> first; this list is the computer spelling.</p>
   <div class="pills">
     <span class="pill">market:moneyline</span><span class="pill">market:spread</span><span class="pill">market:total</span>
     <span class="pill">market:player-points</span><span class="pill">market:correct-score</span><span class="pill">market:outright-winner</span>
@@ -207,8 +219,10 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
     <div>
       <h3>This standard</h3>
       <ul class="res">
-        <li><a href="spec.html">Specification</a></li>
-        <li><a href="vocabularies/">Vocabularies</a></li>
+        <li><a href="guide.html">Guide</a> — plain language</li>
+        <li><a href="taxonomy.html">Taxonomy</a> — shared lists, human map</li>
+        <li><a href="spec.html">Specification</a> — the technical contract</li>
+        <li><a href="vocabularies/">Vocabularies</a> — the id lists</li>
         <li><a href="schemas.html">JSON Schemas &amp; examples</a></li>
         <li><a href="decisions.html">Decision log</a></li>
         <li><a href="building-blocks.html">Building blocks</a></li>
@@ -236,7 +250,7 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
 <section id="start">
   <h2>Get started</h2>
   <div class="steps">
-    <div class="s"><span class="num">1</span><div>Read the <a href="spec.html">specification</a> and the <a href="decisions.html">decision log</a> — every rule and why it exists.</div></div>
+    <div class="s"><span class="num">1</span><div>Start with the <a href="guide.html">guide</a> (plain language) and the <a href="taxonomy.html">taxonomy</a>. Implementers then read the <a href="spec.html">specification</a> and <a href="decisions.html">decision log</a>.</div></div>
     <div class="s"><span class="num">2</span><div>Validate against the <a href="schemas.html">JSON Schemas</a> (draft 2020-12): <code>python3 tools/validate.py</code>.</div></div>
     <div class="s"><span class="num">3</span><div>Map your feed in: keep your own ids, add the standard facts, attach a Wikidata <code>sameAs</code> where one exists.</div></div>
     <div class="s"><span class="num">4</span><div>Publish — a book's own odds, or a feed carrying many books. Same format either way.</div></div>
@@ -265,7 +279,9 @@ openbook/v1/acme-feeds/soccer/fixture/EVT-88213/<span class="k">#</span>
   </a>
   <div>OpenBook Data Standards — an open standard for sportsbook &amp; gambling data</div>
   <div class="row" style="margin-top:12px">
+    <a href="guide.html">Guide</a>
     <a href="spec.html">Spec</a>
+    <a href="taxonomy.html">Taxonomy</a>
     <a href="vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
     <a href="https://github.com/openbook-data-standards/openbook/blob/main/LICENSE">CC BY 4.0</a>

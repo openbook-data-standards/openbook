@@ -12,11 +12,62 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
-- **Q11** — names are decided camelCase, matching the participant schema:
-  `shortName`, `alternateName`, `localName`, `givenName` / `familyName` (not
-  `short_name` / `aliases` / `name_latin`).
+- **Docs readability** — three tracks: a non-technical
+  [`docs/guide.md`](docs/guide.md), a human
+  [`docs/taxonomy.md`](docs/taxonomy.md) for shared lists, and a
+  table-and-diagram rewrite of [`spec/openbook.md`](spec/openbook.md)
+  (no wire change). Vocabularies stay the id lists. Guide has a Saturday
+  walkthrough; the decision log has a theme map; homepage has a reading
+  path. Still site/docs only.
+- **Q11** — names on the participant: required `name`; optional `shortName`,
+  `names`, `nameLatin`, `alternateName`. Teams MAY add `location`,
+  `nickname`, `registeredName`, `abbreviation`. Persons MAY add `givenName`
+  / `familyName`; no `abbreviation`. Fixture `participants[]` copies `name`.
+  `player` has no name fields.
+- Logged catalog answers on the wire: league/venue `shortName` /
+  `registeredName`; Place `timeZone`, `latitude`, `longitude`; publisher
+  `inLanguage` / `registeredName`; league `gender` (`men` · `women` ·
+  `mixed` · `open`) and `ageGroup`; fixture `surface`; participant `seed`.
+- **Q88** — optional `throws` and `bats` on `player` (`left` · `right` ·
+  `both`).
+- **Q80** — `lineup` live object: fixture-keyed roster `player` ids.
+
+### Removed
+- `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
+  participant (pre-1.0; Q11). Native script is `nameLatin`.
 
 ### Added
+- **Input bounds** — shared primitives in
+  [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
+  `maxItems`, so conformant parsers reject oversized input; covered by
+  `conformance/invalid/alternate-name-too-long.json`.
+- **Q96** — vendor mapping, starter CLI, and translate ABC are **not**
+  this spec; planned names openbook-starter / openbook-translate
+  ([`docs/decisions.md`](docs/decisions.md)). Repos not created in this
+  change.
+- **Q95** — protocol-fit pass closed; next work is a new area, not more
+  take/don't-take pins from that comparison list
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q94** — no spec-owned multi-publisher index; one discovery URL per
+  publisher (Q49); an aggregator is itself a publisher (Q1)
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q93** — FIX session is not the OpenBook session; Q33/Q46 stand
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q92** — ISO 20022 is not the OpenBook model or encoding; Q13/Q38/Q44
+  stand ([`docs/decisions.md`](docs/decisions.md)).
+- **Q91** — JSON Patch (RFC 6902) is never an alternate change encoding; Merge
+  Patch (Q8) stands ([`docs/decisions.md`](docs/decisions.md)).
+- **Q90** — no GBFS-style data wrapper; discovery stays `{ lastUpdated, ttl,
+  feeds }` at the root (Q49); objects and change messages stay themselves
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q89** — JSON (`application/json`) is the required v1 encoding; additional
+  encodings MAY exist later as optional bindings; scaffolding stays JSON
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Security model** — [`SECURITY.md`](SECURITY.md) states what the standard
+  secures (closed schemas, canonical-id integrity) and what it delegates to
+  deployments (TLS, authn/authz, rate limiting, schema-fetch integrity).
+- **Feed monitoring** — [`spec/openbook.md`](spec/openbook.md) §5.3 names the
+  liveness, continuity, freshness, and conformance signals a consumer alarms on.
 - **Q32** — FULL-TRANSITIVE compatibility within a frozen major
   ([`VERSIONING.md`](VERSIONING.md)).
 - **Q33** — Level L delivery/recovery: all eight guarantees MUST
@@ -58,7 +109,42 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q53** — DNS-style ids never; Q4/Q5 stand.
 - **Q54** — no OpenAPI file in this repo; `since=` / 410 stay in the spec.
 - **Q55** — later PR: schema-diff CI at 1.0+ only.
-- [`docs/still-to-do.md`](docs/still-to-do.md) — Q55 remains a later PR (1.0+).
+- **Q56** — MCP servers and additional plugins are discovery feeds
+  (`kind` `mcp` / `plugin`, plus `id` / `schemaUrl`). OpenBook does not wrap
+  MCP or ship its schema; payloads stay OpenBook documents.
+- **Q11 / Q57** — names decided (log only): board `name`; optional team
+  location/nickname/registeredName; person given/family; `shortName`; team-only
+  `abbreviation`; `names` / `nameLatin`; fixture copies `name`. Cite ISO or none.
+- **Q59** — league/venue use the team name package; sport/market/segment `name`
+  only.
+- **Q60** — season `name` is display; dates are Q9. Stage `name` + optional
+  dates. Publisher `name` + optional `registeredName`.
+- **Q62** — fixture `location` stays nested Place; GeoNames optional; no
+  first-class venue object in this walk.
+- **Q64** — optional IANA `timeZone` on Place; timestamps stay Q9.
+- **Q66** — fixture `name` optional display; participants + `startDate` are facts.
+- **Q68** — optional publisher `inLanguage` (ISO 639-1); bare `name` is in that language.
+- **Q69** — Place is city + Q10 territory; no street/postal.
+- **Q70** — optional WGS 84 lat/long on Place.
+- **Q71** — no venue capacity field.
+- **Q72** — optional league category men/women/mixed/open; not on the person.
+- **Q73** — optional league `ageGroup` (U21, …); growable vocab.
+- **Q74** — no date of birth on the wire.
+- **Q75** — no height/weight; number/position stay on `player`.
+- **Q76** — `player.position` free string; no ISO; vocab later.
+- **Q77** — no kit/colour fields.
+- **Q78** — no home stadium on the team; match venue is fixture location.
+- **Q79** — no coach/manager object for now.
+- **Q80** — match XI is a later live object; `player` stays roster.
+- **Q81** — no referee/officials for now.
+- **Q82** — omit encyclopedia fields (weather, TV, bios extras, stats dumps,
+  etc.); Q74/Q75 stay omit.
+- **Q84** — optional fixture `surface` (grass/clay/hard/…).
+- **Q85** — optional `seed` on the fixture participant row.
+- **Q86** — generic fixture extras stop at surface + seed; no metadata bag.
+- **Q87** — catalog pass closed; next work is a new area, not more fixture keys.
+- [`docs/still-to-do.md`](docs/still-to-do.md) — catalog names/place/`gender`
+  on the wire; Q55 remains a later PR (1.0+).
 
 - Schemas for the objects the spec names but had no schema: `season`, `player`
   (roster membership), `market` (snapshot/update document), `score` (Q23) and

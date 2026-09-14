@@ -1,20 +1,26 @@
 # Still to do
 
-Phase B questions are recorded through **Q55**. Q46–Q49 are on the wire.
-**Q50** is the docs-vs-schema name check in `tools/validate.py`. **Q56** was
-log only: no schema, examples, or CI in that change.
+Questions recorded through **Q96**. Catalog pass closed and on the wire.
+**Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
+Protocol-fit pass closed (Q89–Q95). Log only.
+Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
+`tools/validate.py`.
 
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
+- Racing draw/stall, cricket toss, playoff series state — not on generic
+  fixture (**Q86**); later stage / sport slice.
 
-## Done on this walk (Q32–Q55)
+## Next question (not decided)
 
-Q32 FULL-TRANSITIVE · Q33 eight MUST (prose) · Q34 unknown/other · Q35 never
-reuse · Q36 deprecation window · Q37 closed write / open read · Q38 camelCase
-· Q39 decimal strings · Q40 corpus · Q41 GBFS principles · Q42 AsyncAPI ·
-Q43 takedown = marketStatus + tombstone · Q44 `baseCurrency` · Q45 market
-`limit` / most-specific-wins · Q46 `snapshotComplete` / `heartbeat` / 410 ·
-Q47 `conflated` · Q48 `ttl` · Q49 GBFS discovery · Q50 name CI · Q51 no
-consumer schema · Q52 CloudEvents never · Q53 no DNS ids · Q54 no in-repo
-OpenAPI · Q55 schema-diff CI at 1.0.
+- (none parked from this walk)
+
+## Done (Q32–Q96)
+
+Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
+**Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
+Patch; not ISO 20022; not FIX session; no spec-owned multi-publisher index;
+protocol-fit pass closed.
+**Q96** — vendor mapping / starter / translate packages are not this spec
+(pointer only; those repos are not in this change).

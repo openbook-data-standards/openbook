@@ -15,7 +15,7 @@
 
 
 **Status:** `v0.3.0-draft` · working draft, not yet published · started 2026-09-12
-**Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The document:** the OpenBook specification in [`spec/openbook.md`](spec/openbook.md)
+**Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The documents:** [plain-language guide](docs/guide.md) · [taxonomy](docs/taxonomy.md) · [specification](spec/openbook.md)
 
 OpenBook is an open standard for exchanging **sportsbook & gambling data** —
 the reference catalog (sports, leagues, fixtures, markets) and the live wire
@@ -53,6 +53,8 @@ openbook/  (this repository)
   README.md               ← you are here
   index.html                ← project homepage (GitHub Pages)
   docs/
+    guide.md              ← plain-language walkthrough (non-normative)
+    taxonomy.md           ← shared lists explained without wire rules
     decisions.md            ← the design decision log
     protocol-comparison.md   ← GTFS, GBFS, MQTT, FIX, ISO 20022, OpenRTB, … vs OpenBook
   spec/
@@ -70,6 +72,7 @@ openbook/  (this repository)
     score.schema.json             live state: three statuses, clock, score lines per participant x unit x segment
     grade.schema.json             the book's grade of one market from a down segment; never edited
     season.schema.json · player.schema.json
+    discovery.schema.json         one URL lists snapshot, stream, docs, MCP, plugins (Q49, Q56)
   examples/               ← valid worked documents (also the valid corpus)
   conformance/            ← language-agnostic corpus (manifest + invalid cases)
   tools/validate.py       ← one runner; not a language oracle

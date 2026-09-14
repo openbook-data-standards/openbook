@@ -6,6 +6,7 @@
   "$defs": {
     "openbookVersion": {
       "type": "string",
+      "maxLength": 64,
       "examples": [
         "0.3.0-draft"
       ]
@@ -23,6 +24,7 @@
     "decimalString": {
       "type": "string",
       "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+      "maxLength": 40,
       "description": "Exact decimal as a string, not a JSON number (Q39)."
     },
     "decimalOdds": {
@@ -31,6 +33,7 @@
         "null"
       ],
       "pattern": "^(?:1\\.(?:0*[1-9][0-9]*)|[2-9][0-9]*(?:\\.[0-9]+)?|[1-9][0-9]+(?:\\.[0-9]+)?)$",
+      "maxLength": 40,
       "description": "Decimal odds as a decimal string. MUST be strictly greater than 1. null = tombstone (Merge Patch removed). Never a sentinel (not \"0\"). American and fractional forms are presentation only."
     },
     "money": {
@@ -57,11 +60,13 @@
     "sharedId": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9-]*(:[a-z0-9-]+)+$",
+      "maxLength": 128,
       "description": "Short form of a shared id (sport:soccer). Formal form: urn:openbook:sport:soccer."
     },
     "ownId": {
       "type": "string",
       "minLength": 1,
+      "maxLength": 128,
       "description": "The publisher's own id, unique within the publisher."
     },
     "territory": {
@@ -75,10 +80,12 @@
         "null"
       ],
       "pattern": "^https://www\\.wikidata\\.org/entity/Q[0-9]+$",
+      "maxLength": 128,
       "description": "schema.org sameAs \u2192 the Wikidata entity URL. The shared entity id: required when one exists, null otherwise."
     },
     "identifier": {
       "type": "array",
+      "maxItems": 100,
       "description": "schema.org identifier as PropertyValue list \u2014 external cross-reference ids.",
       "items": {
         "type": "object",
@@ -90,21 +97,25 @@
         "properties": {
           "propertyID": {
             "type": "string",
+            "maxLength": 128,
             "examples": [
               "sportradar",
               "opta"
             ]
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           }
         }
       }
     },
     "alternateName": {
       "type": "array",
+      "maxItems": 100,
       "items": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 256
       },
       "description": "schema.org alternateName \u2014 aliases and other spellings."
     },
@@ -114,9 +125,120 @@
         "pattern": "^[a-z]{2}$"
       },
       "additionalProperties": {
-        "type": "string"
+        "type": "string",
+        "maxLength": 256
       },
       "description": "Per-language names keyed by ISO 639-1."
+    },
+    "nameLatin": {
+      "type": "string",
+      "description": "Latin-script form. Method: ISO 9 (Cyrillic) or ISO 843 (Greek)."
+    },
+    "iso6391": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$",
+      "description": "ISO 639-1 language code (Q68)."
+    },
+    "timeZone": {
+      "type": "string",
+      "minLength": 1,
+      "description": "IANA time-zone database name (Europe/London). Display only; timestamps stay RFC 3339 with offset (Q9, Q64)."
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "WGS 84 latitude (Q70)."
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "WGS 84 longitude (Q70)."
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "schema.org Place (Q62). City + territory; no street or postal (Q69). No capacity (Q71).",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "registeredName": {
+          "type": "string"
+        },
+        "alternateName": {
+          "$ref": "#/$defs/alternateName"
+        },
+        "names": {
+          "$ref": "#/$defs/localizedNames"
+        },
+        "nameLatin": {
+          "$ref": "#/$defs/nameLatin"
+        },
+        "addressLocality": {
+          "type": "string"
+        },
+        "territory": {
+          "$ref": "#/$defs/territory"
+        },
+        "timeZone": {
+          "$ref": "#/$defs/timeZone"
+        },
+        "latitude": {
+          "$ref": "#/$defs/latitude"
+        },
+        "longitude": {
+          "$ref": "#/$defs/longitude"
+        },
+        "sameAs": {
+          "$ref": "#/$defs/sameAs"
+        },
+        "identifier": {
+          "$ref": "#/$defs/identifier"
+        }
+      },
+      "patternProperties": {
+        "^x_": {}
+      }
+    },
+    "surface": {
+      "enum": [
+        "grass",
+        "clay",
+        "hard",
+        "turf",
+        "ice",
+        "indoor",
+        "other"
+      ],
+      "description": "This fixture's playing surface (Q84)."
+    },
+    "gender": {
+      "enum": [
+        "men",
+        "women",
+        "mixed",
+        "open",
+        "other"
+      ],
+      "description": "Competition gender on the league, not the person (Q72). Vocab, not ISO 5218."
+    },
+    "ageGroup": {
+      "type": "string",
+      "minLength": 1,
+      "description": "League age grade (open, U21, U19, …). Growable vocab (Q73)."
+    },
+    "hand": {
+      "enum": [
+        "left",
+        "right",
+        "both"
+      ],
+      "description": "Throwing/shooting or batting side (Q88). No ISO."
     },
     "side": {
       "enum": [
@@ -158,15 +280,18 @@
       "properties": {
         "name": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 128
         },
         "reason": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 512
         },
         "replacement": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 128
         },
         "sunset": {
           "type": "string",
@@ -198,6 +323,7 @@
         "stage",
         "participant",
         "player",
+        "lineup",
         "publisher"
       ]
     },
@@ -264,6 +390,16 @@
         "exchange",
         "model"
       ]
+    },
+    "feedKind": {
+      "enum": [
+        "snapshot",
+        "stream",
+        "docs",
+        "mcp",
+        "plugin"
+      ],
+      "description": "What a discovery feed entry is (Q56). snapshot/stream/docs are the OpenBook feed; mcp and plugin point at another standard's manifest, not an OpenBook document."
     },
     "stageType": {
       "enum": [

@@ -22,13 +22,15 @@
     </svg>
     OpenBook</a>
   <nav>
+    <a href="./guide.html">Guide</a>
     <a href="./spec.html">Spec</a>
+    <a href="./taxonomy.html">Taxonomy</a>
     <a href="./vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · CHANGELOG.md</p><nav class="page-toc"><strong>On this page</strong><a href="#unreleased">[Unreleased]</a><a href="#0-3-0-draft-2026-09-12">[0.3.0-draft] — 2026-09-12</a><a href="#0-2-0-draft-2026-09-12">[0.2.0-draft] — 2026-09-12</a><a href="#0-1-0-draft-2026-09-12">[0.1.0-draft] — 2026-09-12</a></nav><article class="doc"><h1 id="changelog">Changelog</h1>
+<p class="crumb"><a href="./">Home</a> · CHANGELOG.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#unreleased">[Unreleased]</a><a href="#0-3-0-draft-2026-09-12">[0.3.0-draft] — 2026-09-12</a><a href="#0-2-0-draft-2026-09-12">[0.2.0-draft] — 2026-09-12</a><a href="#0-1-0-draft-2026-09-12">[0.1.0-draft] — 2026-09-12</a></nav><article class="doc"><h1 id="changelog">Changelog</h1>
 <p>All notable changes to the OpenBook standard are recorded here. Format follows Keep a Changelog; versioning follows <a href="versioning.html"><code>VERSIONING.md</code></a>.</p>
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
@@ -37,10 +39,28 @@
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
-<li><strong>Q11</strong> — names are decided camelCase, matching the participant schema: <code>shortName</code>, <code>alternateName</code>, <code>localName</code>, <code>givenName</code> / <code>familyName</code> (not <code>short_name</code> / <code>aliases</code> / <code>name_latin</code>).</li>
+<li><strong>Docs readability</strong> — three tracks: a non-technical <a href="guide.html"><code>docs/guide.md</code></a>, a human <a href="taxonomy.html"><code>docs/taxonomy.md</code></a> for shared lists, and a table-and-diagram rewrite of <a href="spec.html"><code>spec/openbook.md</code></a> (no wire change). Vocabularies stay the id lists. Guide has a Saturday walkthrough; the decision log has a theme map; homepage has a reading path. Still site/docs only.</li>
+<li><strong>Q11</strong> — names on the participant: required <code>name</code>; optional <code>shortName</code>, <code>names</code>, <code>nameLatin</code>, <code>alternateName</code>. Teams MAY add <code>location</code>, <code>nickname</code>, <code>registeredName</code>, <code>abbreviation</code>. Persons MAY add <code>givenName</code> / <code>familyName</code>; no <code>abbreviation</code>. Fixture <code>participants[]</code> copies <code>name</code>. <code>player</code> has no name fields.</li>
+<li>Logged catalog answers on the wire: league/venue <code>shortName</code> / <code>registeredName</code>; Place <code>timeZone</code>, <code>latitude</code>, <code>longitude</code>; publisher <code>inLanguage</code> / <code>registeredName</code>; league <code>gender</code> (<code>men</code> · <code>women</code> · <code>mixed</code> · <code>open</code>) and <code>ageGroup</code>; fixture <code>surface</code>; participant <code>seed</code>.</li>
+<li><strong>Q88</strong> — optional <code>throws</code> and <code>bats</code> on <code>player</code> (<code>left</code> · <code>right</code> · <code>both</code>).</li>
+<li><strong>Q80</strong> — <code>lineup</code> live object: fixture-keyed roster <code>player</code> ids.</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li><code>localName</code>, <code>additionalName</code>, <code>honorificPrefix</code>, <code>honorificSuffix</code> on participant (pre-1.0; Q11). Native script is <code>nameLatin</code>.</li>
 </ul>
 <h3 id="added">Added</h3>
 <ul>
+<li><strong>Input bounds</strong> — shared primitives in <a href="schema/common.schema.json"><code>schema/common.schema.json</code></a> carry <code>maxLength</code> / <code>maxItems</code>, so conformant parsers reject oversized input; covered by <code>conformance/invalid/alternate-name-too-long.json</code>.</li>
+<li><strong>Q95</strong> — protocol-fit pass closed; next work is a new area, not more take/don't-take pins from that comparison list (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
+<li><strong>Q94</strong> — no spec-owned multi-publisher index; one discovery URL per publisher (Q49); an aggregator is itself a publisher (Q1) (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
+<li><strong>Q93</strong> — FIX session is not the OpenBook session; Q33/Q46 stand (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
+<li><strong>Q92</strong> — ISO 20022 is not the OpenBook model or encoding; Q13/Q38/Q44 stand (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
+<li><strong>Q91</strong> — JSON Patch (RFC 6902) is never an alternate change encoding; Merge Patch (Q8) stands (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
+<li><strong>Q90</strong> — no GBFS-style data wrapper; discovery stays <code>{ lastUpdated, ttl, feeds }</code> at the root (Q49); objects and change messages stay themselves (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
+<li><strong>Q89</strong> — JSON (<code>application/json</code>) is the required v1 encoding; additional encodings MAY exist later as optional bindings; scaffolding stays JSON (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
+<li><strong>Security model</strong> — <a href="security.html"><code>SECURITY.md</code></a> states what the standard secures (closed schemas, canonical-id integrity) and what it delegates to deployments (TLS, authn/authz, rate limiting, schema-fetch integrity).</li>
+<li><strong>Feed monitoring</strong> — <a href="spec.html"><code>spec/openbook.md</code></a> §5.3 names the liveness, continuity, freshness, and conformance signals a consumer alarms on.</li>
 <li><strong>Q32</strong> — FULL-TRANSITIVE compatibility within a frozen major (<a href="versioning.html"><code>VERSIONING.md</code></a>).</li>
 <li><strong>Q33</strong> — Level L delivery/recovery: all eight guarantees MUST (<a href="spec.html"><code>spec/openbook.md</code></a> §5.1).</li>
 <li><strong>Q34</strong> — catch-all <code>unknown</code>/<code>other</code>; consumers MUST tolerate unrecognised values.</li>
@@ -65,7 +85,33 @@
 <li><strong>Q53</strong> — DNS-style ids never; Q4/Q5 stand.</li>
 <li><strong>Q54</strong> — no OpenAPI file in this repo; <code>since=</code> / 410 stay in the spec.</li>
 <li><strong>Q55</strong> — later PR: schema-diff CI at 1.0+ only.</li>
-<li><a href="docs/still-to-do.md"><code>docs/still-to-do.md</code></a> — Q55 remains a later PR (1.0+).</li>
+<li><strong>Q56</strong> — MCP servers and additional plugins are discovery feeds (<code>kind</code> <code>mcp</code> / <code>plugin</code>, plus <code>id</code> / <code>schemaUrl</code>). OpenBook does not wrap MCP or ship its schema; payloads stay OpenBook documents.</li>
+<li><strong>Q11 / Q57</strong> — names decided (log only): board <code>name</code>; optional team location/nickname/registeredName; person given/family; <code>shortName</code>; team-only <code>abbreviation</code>; <code>names</code> / <code>nameLatin</code>; fixture copies <code>name</code>. Cite ISO or none.</li>
+<li><strong>Q59</strong> — league/venue use the team name package; sport/market/segment <code>name</code> only.</li>
+<li><strong>Q60</strong> — season <code>name</code> is display; dates are Q9. Stage <code>name</code> + optional dates. Publisher <code>name</code> + optional <code>registeredName</code>.</li>
+<li><strong>Q62</strong> — fixture <code>location</code> stays nested Place; GeoNames optional; no first-class venue object in this walk.</li>
+<li><strong>Q64</strong> — optional IANA <code>timeZone</code> on Place; timestamps stay Q9.</li>
+<li><strong>Q66</strong> — fixture <code>name</code> optional display; participants + <code>startDate</code> are facts.</li>
+<li><strong>Q68</strong> — optional publisher <code>inLanguage</code> (ISO 639-1); bare <code>name</code> is in that language.</li>
+<li><strong>Q69</strong> — Place is city + Q10 territory; no street/postal.</li>
+<li><strong>Q70</strong> — optional WGS 84 lat/long on Place.</li>
+<li><strong>Q71</strong> — no venue capacity field.</li>
+<li><strong>Q72</strong> — optional league category men/women/mixed/open; not on the person.</li>
+<li><strong>Q73</strong> — optional league <code>ageGroup</code> (U21, …); growable vocab.</li>
+<li><strong>Q74</strong> — no date of birth on the wire.</li>
+<li><strong>Q75</strong> — no height/weight; number/position stay on <code>player</code>.</li>
+<li><strong>Q76</strong> — <code>player.position</code> free string; no ISO; vocab later.</li>
+<li><strong>Q77</strong> — no kit/colour fields.</li>
+<li><strong>Q78</strong> — no home stadium on the team; match venue is fixture location.</li>
+<li><strong>Q79</strong> — no coach/manager object for now.</li>
+<li><strong>Q80</strong> — match XI is a later live object; <code>player</code> stays roster.</li>
+<li><strong>Q81</strong> — no referee/officials for now.</li>
+<li><strong>Q82</strong> — omit encyclopedia fields (weather, TV, bios extras, stats dumps, etc.); Q74/Q75 stay omit.</li>
+<li><strong>Q84</strong> — optional fixture <code>surface</code> (grass/clay/hard/…).</li>
+<li><strong>Q85</strong> — optional <code>seed</code> on the fixture participant row.</li>
+<li><strong>Q86</strong> — generic fixture extras stop at surface + seed; no metadata bag.</li>
+<li><strong>Q87</strong> — catalog pass closed; next work is a new area, not more fixture keys.</li>
+<li><a href="docs/still-to-do.md"><code>docs/still-to-do.md</code></a> — catalog names/place/<code>gender</code> on the wire; Q55 remains a later PR (1.0+).</li>
 </ul>
 <ul>
 <li>Schemas for the objects the spec names but had no schema: <code>season</code>, <code>player</code> (roster membership), <code>market</code> (snapshot/update document), <code>score</code> (Q23) and <strong><code>grade</code></strong> (replaces <code>settlement</code>; Q27/Q28).</li>
@@ -131,7 +177,7 @@
 <li>JSON Schemas for <code>reference_sport</code>, <code>fixture</code>, <code>market_type</code>, <code>odds_change</code>.</li>
 <li>Controlled vocabularies (starter): sports (with athletics disciplines), market types.</li>
 <li>Governance model (open spec / closed code, staged governance), versioning rules, contributing guide, and validating examples.</li>
-</ul></article><p class="source">Source: CHANGELOG.md</p>
+</ul></article></div><p class="source">Source: CHANGELOG.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
@@ -147,5 +193,6 @@
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
+
 </body>
 </html>

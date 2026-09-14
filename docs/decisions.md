@@ -1,12 +1,32 @@
 # OpenBook — design decisions
 
 A running log of the decisions that shape the standard, in the order they were
-taken, each with the options that were on the table and why one won. The
-specification in [`../spec/openbook.md`](../spec/openbook.md) is revised to
-match; where the two disagree, the newer decision here wins until the spec
-catches up (tracked in [`../CHANGELOG.md`](../CHANGELOG.md)).
+taken, each with the options that were on the table and why one won.
+
+> **This is not the spec.** Current rules live in
+> [`../spec/openbook.md`](../spec/openbook.md). Meanings of sports, bets and
+> slices live in [`taxonomy.md`](taxonomy.md). This log is *why* those rules
+> exist. Where the two disagree, the newer decision here wins until the spec
+> catches up (tracked in [`../CHANGELOG.md`](../CHANGELOG.md)).
 
 Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
+
+## Map (jump to a theme)
+
+| Theme | Questions |
+| --- | --- |
+| What OpenBook is | Q1 · Q2 · Q3 |
+| Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
+| Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
+| Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 |
+| Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
+| Money and limits | Q39 · Q44 · Q45 |
+| Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
+| What we omit | Q71–Q82 · Q86 · Q87 |
+| Tooling around the spec | Q96 |
+
+The entries below stay in the order they were taken.
 
 ---
 
@@ -136,24 +156,38 @@ crosswalks, so a football consumer reads `ENG` and an Olympic consumer reads
 - **e) CLDR** — chosen: ISO codes + the extras everyone actually needs +
   maintained localized names, for free.
 
-## Q11 — Names — decided (v0.3)
+## Q11 — Names — decided (Q57 unpack)
 
-There is **no ISO standard for team or person names.** The real standards
-nearby: **vCard (RFC 6350 / ITU X.520)** for a person's name structure
-(family · given · additional · prefix · suffix — also schema.org's
-`familyName` etc.); the **Olympic Data Feed**, which gives every athlete
-several display forms (`PrintName`, `TVName`, `TVInitialName`,
-`LocalFamilyName`…); and **finance**, which standardises *identity* (ISIN,
-LEI) and treats the name as a mutable attribute — our `sameAs` stance.
-Wire names are camelCase (Q13 / Q38). Shape:
+There is **no ISO** for a display name. Cite a real standard when one exists;
+if none exists, say so (Q57d). Identity is **Q12** (Wikidata), not the string.
+Names are mutable. FIFA/ODF/Sportradar/GLEIF all split **id** from **many
+labels**.
 
-- `name` — canonical display name, UTF-8, diacritics allowed.
-- `shortName`, `abbreviation` — optional.
-- `alternateName[]` — other spellings a book might use (schema.org).
-- `names` — optional per-language variants keyed by ISO 639-1 (`en`, `es`).
-- `localName` — optional name in the native script (ODF LocalName).
-- Persons: optional `givenName` / `familyName` / `additionalName` /
-  `honorificPrefix` / `honorificSuffix` (schema.org `Person` / vCard N).
+**Catalog `participant` vs fixture vs `player` (looks correct):** a
+participant is a team or an individual (Q21/Q22). Fixture `participants[]` is
+that same id plus **role** and **order**, and **copies `name`** so a snapshot
+reads without a join. `player` is roster only (person on team); it has **no**
+name fields.
+
+**Teams:** `name` required (popular/board). Optional: `location` + `nickname`
+(NFL `market`/`name`; empty for Arsenal), `registeredName` (FIFA
+international long / registry — not ISO), `shortName`, `abbreviation`.
+Sportradar soccer is `name`/`short_name`/`abbreviation` with city on the
+**venue**, not the team. NFL uses the split.
+
+**Persons:** `name` is popular/board (`Erling Haaland`, `Ronaldinho`).
+Optional `givenName` / `familyName` (vCard RFC 6350 / ITU X.520, schema.org).
+Optional `shortName`. No `abbreviation`.
+
+**Both:** optional `names` keyed by **ISO 639-1**; optional `nameLatin`
+(method: **ISO 9** Cyrillic, **ISO 843** Greek); other spellings in
+`alternateName` (schema.org).
+
+Rejected: required city+nickname; legal name as the only `name`; Print/TV
+scoreboard copies from ODF; ISO numbers invented for nicknames.
+
+**Supersedes:** Q11 proposed (v0.3 snake_case list). CamelCase is Q38. Schema
+and spec match this names list.
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
@@ -650,3 +684,443 @@ A CI schema-diff gate (required field added, re-type, remove) is a **later PR**,
 Rejected: run it on 0.x now; never; this patch.
 
 **Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
+
+## Q56 — MCP and plugins are discovery feeds, not a second wire — decided
+
+A publisher MAY advertise **additional surfaces** (an MCP server, an Agent
+Plugin, other client tooling) on the **same discovery document** as the
+OpenBook feeds (Q49). Each entry is still `{ name, url }`. Optional
+**`kind`** (`snapshot` · `stream` · `docs` · `mcp` · `plugin`), **`id`**,
+and **`schemaUrl`** say what the URL is.
+
+- `mcp` and `plugin` URLs point at **that surface's own manifest**, not an
+  OpenBook document. OpenBook does not wrap MCP, does not ship MCP or Agent
+  Plugins schemas, and does not add `mcp` to `objectType` or the topic
+  grammar.
+- An MCP/plugin that exposes OpenBook data uses OpenBook document shapes as
+  the payload. That is the data standard for adding a plugin: advertise it
+  on discovery; keep the wire.
+
+Rejected: inline `mcpServers` in discovery (duplicates MCP's own config);
+a new live `object` for MCP; `.well-known/openbook-mcp` as a second
+discovery URL; wrapping change messages as MCP-only payloads with a
+parallel betting schema; shipping MCP `server.json` schema in this repo
+(same as Q54 for OpenAPI).
+
+**Supersedes:** Q49 “named feeds” by adding `kind` / `schemaUrl` / `id`
+and naming MCP/plugin. Q52 (no wrap) and Q54 (foreign docs stay at their
+own URL) stand.
+## Q57 — Name fields unpacked — decided (closes Q11)
+
+Walk: participant vs `player` vs fixture row; team strings; person strings;
+citation rule. Recorded as **Q11 decided**. No schema in this patch.
+
+**Q57d:** every field cites a real standard or **none**. Same rule for other
+objects later. ISO 639-1, ISO 9, ISO 843, ISO 3166/CLDR (Q10), vCard, schema.org
+`alternateName` are real. Display `name`, `nickname`, `abbreviation` have
+**no ISO**.
+
+Rejected: invent ISO numbers; drop fields that lack ISO.
+
+**Supersedes:** Q11 “proposed”.
+
+## Q59 — Names on other objects — decided
+
+League and venue use the **team** name package (`name` plus optional
+`shortName` / `registeredName`; venue city is not a nickname). Territory
+stays **Q10**. Sport, market type, and segment are **`name` only** (vocab
+lists).
+
+Rejected: copy city+nickname onto vocab slugs; unpack league names as a
+totally different model.
+
+**Supersedes:** none of Q11; extends it.
+
+## Q60 — Season, stage, publisher names — decided
+
+**Season:** `name` is display (`2025/26`, `F1 2026`). There is no ISO for
+that label. The machine is `startDate` / `endDate` (**Q9** RFC 3339).
+Rejected: required ISO 8601 interval string (duplicates the dates); required
+`startYear` as a fake season code.
+
+**Stage:** `name` only; optional `startDate` / `endDate` as already in the
+schema. No ISO pattern for “Matchday 7”.
+
+**Publisher:** `name` plus optional `registeredName`. ISO 17442 is the LEI
+(the id), not the name string.
+
+Rejected: required stage-name grammar.
+
+**Supersedes:** none.
+
+## Q62 — Venue location — decided (nested Place)
+
+Fixture `location` stays a nested schema.org **Place**: `name`,
+`addressLocality`, `territory` (**Q10**), `sameAs`. GeoNames or Wikidata MAY
+sit on `sameAs` / `identifier`. Stadium **name** has no ISO. City is on the
+venue (Sportradar), not the team.
+
+Rejected: GeoNames required; a first-class catalog `venue` object in this
+walk.
+
+**Supersedes:** none of Q10 or Q59.
+
+## Q64 — IANA time zone on Place — decided
+
+Optional `timeZone` (`Europe/London`) from the **IANA time-zone database**.
+Every timestamp remains RFC 3339 with an explicit offset (**Q9**). The zone
+is display (“stadium clock”); it does not replace the offset.
+
+Rejected: no TZ field; TZ required on every location.
+
+**Supersedes:** none of Q9.
+
+## Q66 — Fixture name — decided
+
+`name` on a fixture is an **optional** display string (“Arsenal vs Chelsea”).
+No ISO. The facts are `participants[]` and `startDate`. schema.org
+`SportsEvent.name`.
+
+Rejected: required composed title; forbid the field.
+
+**Supersedes:** none.
+
+## Q68 — Feed language — decided
+
+Optional `inLanguage` on the **publisher** (ISO 639-1). A bare `name` is in
+that language. Other languages use `names`. schema.org `inLanguage`.
+
+Rejected: `name` is always English; no feed language.
+
+**Supersedes:** none of Q11.
+
+## Q69 — Place address — decided
+
+`addressLocality` (city string) + `territory` (**Q10**). No street, no
+postal code. City name has no ISO; GeoNames remains optional (**Q62**).
+
+Rejected: full PostalAddress; required UN/LOCODE.
+
+**Supersedes:** none of Q62.
+
+## Q70 — Place coordinates — decided
+
+Optional `latitude` / `longitude` in **WGS 84** (schema.org GeoCoordinates,
+EPSG:4326). Not required.
+
+Rejected: no coordinates; required on every Place.
+
+**Supersedes:** none of Q62.
+
+## Q71 — Venue capacity — decided (omit)
+
+No capacity field. Seat count is not a price-feed fact. No ISO.
+
+Rejected: optional or required capacity.
+
+**Supersedes:** none of Q62.
+
+## Q72 — Competition sex category — decided
+
+Optional on the **league** as **`gender`**: `men` · `women` · `mixed` ·
+`open`. Vocab, not ISO 5218. Not a field on the person.
+
+Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
+
+**Supersedes:** none.
+
+## Q73 — Age-grade competitions — decided
+
+Optional `ageGroup` on the **league** (`open`, `U21`, `U19`, …). Growable
+vocab (**Q34**). No ISO. Not date of birth on the person.
+
+Rejected: name-only; person DOB as the league key.
+
+**Supersedes:** none of Q72.
+
+## Q74 — Date of birth — decided (omit)
+
+No date of birth on the wire. Age-grade competitions are **Q73**. PII.
+
+Rejected: optional or required DOB.
+
+**Supersedes:** none.
+
+## Q75 — Height and weight — decided (omit)
+
+No height or weight. Shirt `number` and `position` stay on `player`.
+
+Rejected: optional SI measurements; required.
+
+**Supersedes:** none.
+
+## Q76 — Player position — decided (free string)
+
+`player.position` stays an optional free string. No ISO. Unknown values
+are tolerated (**Q34**). A per-sport vocab is later, not this walk.
+
+Rejected: required shared position ids now; drop the field.
+
+**Supersedes:** none.
+
+## Q77 — Team colours / kit — decided (omit)
+
+No kit or colour fields. Presentation, not a price fact.
+
+Rejected: optional hex; required.
+
+**Supersedes:** none of Q62.
+
+## Q78 — Team home stadium — decided (omit)
+
+No home-venue on the team. The match venue is fixture `location` (**Q62**).
+Home/away is fixture **role** (**Q22**).
+
+Rejected: optional or required home Place on the club.
+
+**Supersedes:** none of Q62.
+
+## Q79 — Manager / coach — decided (omit for now)
+
+No coach object. Add a role later if manager markets need it (**Q35** never
+reuse names).
+
+Rejected: optional or required coach now.
+
+**Supersedes:** none.
+
+## Q80 — Match lineup — decided (lineup object)
+
+`player` is **roster** (season membership). Starting XI is a live **`lineup`**
+object, fixture-keyed, not fields on the catalog fixture. The ids are roster
+**`player`** ids. Formation, substitutions, and predicted lineup stay omitted
+(**Q82**).
+
+Rejected: starter ids on the fixture now; never a match XI; person ids
+without the roster row.
+
+**Supersedes:** none. Spec already says `player` is for lineups/props; match
+XI is not the roster row.
+
+## Q81 — Match officials — decided (omit for now)
+
+No referee object. Add later if those markets exist (**Q35**).
+
+Rejected: optional or required officials now.
+
+**Supersedes:** none.
+
+## Q82 — Encyclopedia fields — decided (omit)
+
+Omit from OpenBook (not a price feed). Presentation, PII, or another
+sport’s wiki. **Q74 / Q75 stay omit** (DOB, height/weight).
+
+Omit includes: venue roof, pitch size, attendance, weather; team mascot,
+owner, founded, social, photos, stock ticker, LEI, rivalries, derby flag,
+retired numbers; person nationality besides territory, passport names, salary,
+transfer fee, draft pick, agent, headshot; formation, substitutions, VAR,
+ball type; TV/streaming/radio, hashtags, sponsors, ticket price, prize
+money; xG/possession/shots, ranking tables, medal tables; coverage flags,
+predicted lineup, highlight clips. Kit, home stadium, coach, officials,
+capacity already omitted in Q71/Q77–Q79/Q81.
+
+Not in this omit (later questions): pitch **surface**, **seed**, racing
+**draw/stall**, cricket **toss**, playoff **series state**.
+
+Rejected: keep asking those encyclopedia fields one by one.
+
+**Supersedes:** none; does not reopen Q74/Q75.
+
+## Q84 — Playing surface — decided
+
+Optional `surface` on the **fixture**: `grass` · `clay` · `hard` · `turf` ·
+`ice` · `indoor` · … Growable vocab (**Q34**). No ISO. This match’s court,
+not the club’s usual lawn.
+
+Rejected: Place only; omit; required on every fixture.
+
+**Supersedes:** none of Q62. Not in the Q82 omit list.
+
+## Q85 — Tournament seed — decided
+
+Optional integer `seed` on the **fixture participant** row. This draw, not
+the person. No ISO.
+
+Rejected: seed on the catalog person; omit; seed only on the stage.
+
+**Supersedes:** none of Q22.
+
+## Q86 — Generic fixture extras — decided (stop here)
+
+The generic fixture’s extra named fields stop at **`surface`** (Q84) and
+**`seed`** on the participant row (Q85). No `metadata` bag. Racing draw,
+cricket toss, playoff series state are **not** more keys on every fixture.
+They wait for stage, a later live object, or a sport-specific slice. Vendor
+junk stays `x_` (**Q37**).
+
+Rejected: keep bolting optionals onto fixture; a `metadata` object.
+
+**Supersedes:** none. Closes the “leftover” list from Q82 as *not on fixture*.
+
+## Q87 — Catalog pass closed — decided
+
+This walk of names, place, omits, surface, seed, and the junk-drawer rule
+is **closed**. Further questions are a **new area**, not more keys on the
+generic fixture.
+
+Rejected: unpack stage/series immediately; jump to Q46 wire in this
+question.
+
+**Supersedes:** none.
+
+## Q88 — Throwing/shooting and batting hand — decided
+
+Optional on **`player`** (roster), not the person: **`throws`** (throwing or
+shooting) and **`bats`**. Each is `left` · `right` · `both`. No ISO.
+`both` is switch / either hand.
+
+Rejected: one `hand` field; ISO 5218-style sex codes; person-level FIFA
+Gender as a stand-in.
+
+**Supersedes:** none of Q75/Q76.
+
+## Q89 — JSON is the v1 encoding; other encodings are not forbidden — decided (A)
+
+The required v1 encoding is **JSON** (`application/json`). The spec, JSON
+Schemas, examples, discovery document, conformance corpus, validator, site,
+and AsyncAPI `defaultContentType` describe this encoding only. OpenBook
+scaffolding does not ship `.proto`, SBE, or another codec in v1.
+
+Additional encodings (protobuf, SBE, or anything else) **MAY** exist later
+as optional bindings, generated from the existing JSON Schemas — the same
+pattern OpenRTB uses (JSON default, protobuf optional). This log does **not**
+forbid them and does not require them.
+
+A later encoding is a new binding of the same objects, not a second data
+model. Decimal strings (**Q39**), Merge Patch (**Q8**), and RFC 3339 (**Q9**)
+stay the contract.
+
+Rejected: protobuf/SBE as the v1 encoding; JSON-only forever; shipping
+`.proto` now; leaving this as unnumbered industry-pattern prose.
+
+**Supersedes:** none of Q8/Q39/Q40. Pins `docs/industry-patterns.md` “JSON in
+v1; binary later”.
+
+## Q90 — No GBFS-style data wrapper — decided (A)
+
+GBFS wraps every file in `last_updated` / `ttl` / `version` / `data`.
+OpenBook does not. Discovery is `{ lastUpdated, ttl, feeds }` at the root
+(**Q49**). Object documents and change messages are the object (**Q8**).
+They are not nested under a GBFS-style data member, on HTTP pull or on
+sockets.
+
+Rejected: wrap HTTP pull only; wrap every message including MQTT / WebSocket
+/ SSE; leave this unsaid because Q49 named discovery.
+
+**Supersedes:** none of Q49. GBFS-shaped means `ttl` and the discovery
+fields, not the GBFS file envelope.
+
+## Q91 — JSON Patch (RFC 6902) — decided (never)
+
+Change semantics stay **JSON Merge Patch (RFC 7386)** (**Q8**). RFC 6902
+JSON Patch is **not** an alternate change encoding, on pull or on sockets.
+
+Rejected: optional second patch language; JSON Patch on HTTP pull only;
+leave RFC 6902 unsaid because Q8 named Merge Patch.
+
+**Supersedes:** none of Q8. Same kind of pin as Q52 (envelope) and Q90
+(no second wrapper).
+
+## Q92 — ISO 20022 is not the OpenBook model or encoding — decided (never)
+
+The wire stays JSON Schema, schema.org-aligned camelCase (**Q13** / **Q38**),
+and Q44 money (`{amount}` plus feed `baseCurrency`). ISO 20022 XML and the
+ISO 20022 JSON trial are **not** the OpenBook encoding. They do not rename
+money fields and they do not replace JSON Schema.
+
+Rejected: adopt the ISO 20022 JSON trial money shape; add an ISO 20022
+mapping document in this question; leave ISO 20022 unsaid because Q13/Q38/Q44
+named names and money.
+
+**Supersedes:** none of Q13/Q38/Q44.
+
+## Q93 — FIX session is not the OpenBook session — decided (never)
+
+Session and recovery stay **Q33** / **Q46**: `snapshotComplete`,
+`heartbeat` + `heartbeatMs`, stale `since` is HTTP 410. FIX Logon /
+Heartbeat / TestRequest / Logout, and sequence reset, are **not** the
+OpenBook session. A later SBE binding (**Q89**) would still carry OpenBook
+heartbeats, not FIX Logon.
+
+Rejected: adopt FIX TestRequest / Heartbeat / Logout on the socket; add a
+FIX-session mapping document in this question; leave this unsaid because
+Q46 rejected a client TestRequest pair.
+
+**Supersedes:** none of Q46.
+
+## Q94 — No spec-owned multi-publisher manifest — decided (A)
+
+Each publisher has **one discovery URL** (**Q41** / **Q49**). That document
+lists that publisher's feeds, not other publishers. An aggregator is itself
+a publisher (**Q1**) and lists its own feeds. There is no spec-owned
+GBFS-style manifest of many publishers.
+
+Rejected: an OpenBook manifest of many publishers' discovery URLs; putting
+other publishers' discovery URLs on this publisher's discovery document;
+leave this unsaid because Q49 named one URL per publisher.
+
+**Supersedes:** none of Q1/Q49.
+
+## Q95 — Protocol-fit pass closed — decided
+
+This walk of encoding, wrappers, patch language, ISO 20022, FIX session,
+and discovery index is **closed**. Further questions are a **new area**,
+not more take/don't-take pins from that comparison list.
+
+Rejected: keep minting never-X questions from memory; unpack another
+protocol in this question.
+
+**Supersedes:** none.
+
+## Q96 — Vendor mapping and starter are not this spec — decided
+
+OpenBook is the **target language**. Mapping 487 / KIBL / Optic / LinePros /
+MollyBet (or any unknown inbound) onto it is **not** the specification,
+the way FHIR keeps concept maps beside Patient and GTFS does not ship a
+vendor translator.
+
+Planned Python tooling (not in this repo; names only, repos not created
+in this change):
+
+- **openbook-starter** — copyable example + CLI `openbook start`. Writes
+  documents only under `openbook/`: publisher, discovery, `snapshot.json`
+  (the publisher document). Discovery lists only URLs that exist
+  (snapshot, not placeholder stream/docs). Identity: flags, prompt if
+  missing; `--no-input` for scripts. One default source
+  `{publisher-id}-book`. `--base-url` or prompt. `openbook/README.md`
+  only. Refuse if `openbook/` exists unless `--force`. Apache-2.0.
+  Python 3.11. v1 CLI is `start` only. Optional extra
+  `openbook-starter[translations]` depends on openbook-translate; `start`
+  does not edit the caller's pyproject. Game-props / player-props /
+  futures packages wait.
+- **openbook-translate** — ABC: one record, sync `translate` (vendor →
+  OpenBook documents) and `reverse` (OpenBook → vendor bytes + optional
+  dict). Inbound: raw bytes + optional parsed dict + source id. Unmapped:
+  quarantine (raw + reason), not raise/skip. Success MUST carry native id
+  on `identifier` so reverse can round-trip. Official implementer is a
+  synthetic **acme** adapter for contract tests. Community MAY publish
+  `openbook-translate-kibl` etc.; this project will not. Vendored copy of
+  `schema/*.json` plus an `openbook-spec-version` stamp; `update` CI goes
+  red when the spec moved (notify only; no git writes from a cluster).
+  Apache-2.0 code; schemas remain CC BY with NOTICE.
+
+No auto-rewrite of feed JSON when the spec moves (0.x-draft will move
+often). `openbook start` MAY write `.github/workflows/openbook-update.yml`:
+daily cron + `workflow_dispatch` is the check; the *meaning* is protocol
+change; the job fails (GitHub CI red), it does not commit.
+
+Rejected: Django-cookiecutter of a sportsbook in the spec repo; in-cluster
+commits; official vendor adapters; a second reverse-only package; putting
+adapter classes in `spec/openbook.md`.
+
+**Supersedes:** none of Q1/Q6/Q49/Q56. Mapping stays off the wire.
