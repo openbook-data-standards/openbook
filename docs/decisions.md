@@ -1393,3 +1393,14 @@ Not wired in this pick.
 Rejected: the id missing on that row.
 
 **Supersedes:** none of Q108.
+
+## Q116 — None is not the leftover — decided (A)
+
+`none` is a real listed selection (nobody scores / no booking). Leftover
+stays `other` (unlisted score, plus-bands until named).
+
+Not wired in this pick.
+
+Rejected: `none` as the leftover bucket.
+
+**Supersedes:** none of Q105.
