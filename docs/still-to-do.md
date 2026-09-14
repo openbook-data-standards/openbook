@@ -23,4 +23,5 @@ Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`
 Patch; not ISO 20022; not FIX session; no spec-owned multi-publisher index;
 protocol-fit pass closed.
 **Q96** — vendor mapping / starter / translate packages are not this spec
-(pointer only; those repos are not in this change).
+(pointer only; those repos are not in this change). Same GitHub org as the
+spec, private for now.

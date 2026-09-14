@@ -1090,7 +1090,10 @@ the way FHIR keeps concept maps beside Patient and GTFS does not ship a
 vendor translator.
 
 Planned Python tooling (not in this repo; names only, repos not created
-in this change):
+in this change). GitHub: **openbook-data-standards** (same org as the spec),
+**private** until we choose to open them:
+
+- **openbook-starter** — copyable example + CLI `openbook start`. Writes
 
 - **openbook-starter** — copyable example + CLI `openbook start`. Writes
   documents only under `openbook/`: publisher, discovery, `snapshot.json`
