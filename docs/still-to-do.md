@@ -3,11 +3,12 @@
 **Working on: maps leftover (Q181–).** Public key plus an existing
 OpenBook id, or the unknown catch-all plus a reason (**Q185**). Reason
 required only on the unknown catch-all (**Q186**). One directory named
-for maps, not inside the vocab lists (**Q182**, **Q183**). First public
-list name waits (**Q184**). Not a wire change. No file now. Not Q55.
-Not position token lists.
+for maps, not inside the vocab lists (**Q182**, **Q183**). One file per
+public list when files exist (**Q187**). First public list name waits
+(**Q184**). Not a wire change. No file now. Not Q55. Not position token
+lists.
 
-Questions recorded through **Q186**. Catalog pass closed and on the wire.
+Questions recorded through **Q187**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -34,9 +35,10 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 **Maps leftover — this is the open walk.** Public key plus an existing
 OpenBook id, or the unknown catch-all plus a reason (**Q181**, **Q185**).
 Reason required only on the unknown catch-all (**Q186**). One directory
-named for maps, not inside the vocab lists (**Q182**, **Q183**). Cite at
-least one public taxonomy. First public list name waits (**Q184**). Not
-a wire change. No file now.
+named for maps, not inside the vocab lists (**Q182**, **Q183**). One
+file per public list when files exist (**Q187**). Cite at least one
+public taxonomy. First public list name waits (**Q184**). Not a wire
+change. No file now.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -142,6 +144,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q184** — first public list name waits; no file in this pick; do not invent a taxonomy.
 - **Q185** — map row: public key plus existing OpenBook id, or unknown catch-all plus a reason; no file in this pick.
 - **Q186** — reason required only when the landing is the unknown catch-all; no file in this pick.
+- **Q187** — one file per public list when files exist; name still waits (**Q184**); no file in this pick.
 
 ### Parked
 
@@ -159,9 +162,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q187.** When files exist, one file per public list, or one file for all lists? Rec: one file per public list, same as vocab lists; name still waits (**Q184**); no file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q188.** When files exist, what encoding? Rec: JSON, same as the shared vocab lists; name still waits (**Q184**); no file now. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q186)
+## Done (Q32–Q187)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -206,3 +209,4 @@ feed list beside the validator. Not on the wire.
 **Q184** — first public list name waits; do not invent a taxonomy.
 **Q185** — map row: public key plus existing OpenBook id, or unknown plus a reason.
 **Q186** — reason required only when the landing is the unknown catch-all.
+**Q187** — one file per public list when files exist; name still waits.

@@ -154,6 +154,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   in this pick.
 - **Q186** — the reason is required only when the landing is the unknown
   catch-all. No file in this pick. Not wired in this pick.
+- **Q187** — when files exist: one file per public list. First public
+  list name still waits. No file in this pick. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

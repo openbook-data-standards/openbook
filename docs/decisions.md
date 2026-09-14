@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q186 |
+| Maps leftover | Q181–Q187 |
 
 The entries below stay in the order they were taken.
 
@@ -2267,3 +2267,16 @@ Rejected: reason on every row; reason never required; stop this leftover.
 
 **Supersedes:** none of Q185 (row contents stay; this is when the reason
 applies).
+
+## Q187 — One file per public list — decided (A)
+
+When files exist: **one file per public list**. The first public list
+name still waits (**Q184**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: one file that holds every public list; park file count; stop
+this leftover.
+
+**Supersedes:** none of Q182 (directory stays; this is how many files
+sit in it).
