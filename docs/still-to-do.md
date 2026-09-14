@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q183**. Catalog pass closed and on the wire.
+Questions recorded through **Q184**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -25,8 +25,10 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 ## Goal (this walk)
 
 **Q171 leftovers in this repo (Q182).** Prefix file first (`propertyID`
-schemes) (**Q183**). Fingerprint recipe, corpus case, and anchor policy
-wait. No file. No new wire field. Not maps. Not position token lists.
+schemes) (**Q183**). Named for prefixes, in the register leftover, not
+inside the vocab lists (**Q184**). Fingerprint recipe, corpus case, and
+anchor policy wait. No file. No new wire field. Not maps. Not position
+token lists.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -128,6 +130,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q180** — stop this spec walk. Shape logged. Token lists wait.
 - **Q182** — Q171 leftovers in this repo this walk. Files wait. No new wire field.
 - **Q183** — prefix file first (`propertyID` schemes); fingerprint, corpus, and anchors wait; no file in this pick.
+- **Q184** — named for prefixes, in the register leftover, not inside the vocab lists; no file in this pick.
 
 ### Parked
 
@@ -145,11 +148,11 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q184.** When the prefix file exists, where does it live? Rec: named for prefixes, in the register leftover, not inside the vocab lists; no file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q185.** How are prefix tokens spelled on `propertyID`? Rec: same family as the existing examples on that field; not the Q5 sport/market short form; the list waits. A pasted letter is not implement. Wire is a separate ask.
 
 Sitting (not this walk): maps leftover; position token lists; Q55.
 
-## Done (Q32–Q183)
+## Done (Q32–Q184)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -190,3 +193,4 @@ feed list beside the validator. Not on the wire.
 **Q180** — stop this spec walk; token lists wait.
 **Q182** — Q171 leftovers in this repo this walk; files wait; no new wire field.
 **Q183** — prefix file first; fingerprint, corpus, and anchors wait; no file now.
+**Q184** — named for prefixes, in the register leftover, not inside the vocab lists; no file now.

@@ -2218,3 +2218,15 @@ this pick.
 
 **Supersedes:** none of Q182 (walk stays; this is which leftover
 first).
+
+## Q184 — Where the prefix file lives — decided (A)
+
+When the file exists it is **named for prefixes**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/` next to sports; closed enum in
+`common.schema.json`; stop this leftover.
+
+**Supersedes:** none of Q183.
