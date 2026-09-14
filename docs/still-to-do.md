@@ -1,6 +1,11 @@
 # Still to do
 
-Questions recorded through **Q124**. Catalog pass closed and on the wire.
+Questions recorded through **Q125**. Catalog pass closed and on the wire.
+**Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
+Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
+not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
+closed (**Q104–Q117**) and on the wire. Plus-band pass closed (**Q118–Q125**);
+not wired.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -8,7 +13,7 @@ closed (**Q104–Q117**) and on the wire.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
-## Goal (this walk)
+## Goal (this walk — closed)
 
 **Name winning-margin plus-bands.** Exact margins already use `participant`
 + outcome `line`. Plus-band extra named; not wired.
@@ -38,6 +43,7 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 - **Q122** — atLeast on market, odds/change, and grade. Not wired.
 - **Q123** — pass not closed.
 - **Q124** — leftover other still allowed on winning margin.
+- **Q125** — plus-band pass closed. Not wired.
 ### Parked
 
 - **Q86** — racing stall, cricket toss, playoff series until a payload.
@@ -49,9 +55,9 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 ## Next question (not decided)
 
-- Close this plus-band pass?
+- Say implement to put atLeast on the wire.
 
-## Done (Q32–Q124)
+## Done (Q32–Q125)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -72,3 +78,4 @@ pass closed.
 **Q122** — atLeast on market, odds/change, and grade (not built).
 **Q123** — plus-band pass not closed.
 **Q124** — leftover other still allowed on winning margin.
+**Q125** — plus-band pass closed. Not wired.

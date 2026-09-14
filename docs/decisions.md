@@ -1490,3 +1490,12 @@ Not wired in this pick.
 Rejected: only exact `line` rows and `atLeast` rows; no leftover.
 
 **Supersedes:** none of Q116.
+
+## Q125 — Plus-band pass closed — decided (A)
+
+Names and row rules for plus-bands stop here. Wire waits until
+implement (`atLeast` on `market`, `odds/change`, and `grade`, Q122).
+
+Rejected: keep asking plus-band questions in this pass.
+
+**Supersedes:** Q123 (pass not closed).
