@@ -1658,3 +1658,14 @@ Not wired in this pick. Live object name waits.
 Rejected: `stage` only; live only (drop the round from `stage`).
 
 **Supersedes:** none of Q138.
+
+## Q140 — Live series lead is a new live object — decided (A)
+
+The series lead is a **new** live object. `score` stays this game’s
+points. Not on the fixture.
+
+Not wired in this pick. Object name waits.
+
+Rejected: put the lead on `score`; put the lead on the fixture.
+
+**Supersedes:** none of Q139.

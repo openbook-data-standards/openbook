@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q139**. Catalog pass closed and on the wire.
+Questions recorded through **Q140**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -59,6 +59,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q137** — each leftover its own home.
 - **Q138** — stall and toss are sport slices; series is not.
 - **Q139** — series round on `stage`; the lead is live.
+- **Q140** — live series lead is a new live object (not `score`).
 
 ### Parked
 
@@ -70,9 +71,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Is live series lead a new live object (not `score`)?
+- Where does racing stall live?
 
-## Done (Q32–Q139)
+## Done (Q32–Q140)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -98,3 +99,4 @@ pass closed.
 **Q137** — each leftover its own home.
 **Q138** — stall and toss are sport slices; series is not.
 **Q139** — series round on `stage`; the lead is live.
+**Q140** — live series lead is a new live object (not `score`).
