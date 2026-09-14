@@ -7,6 +7,6 @@
     { "key": "odds-provider-id-properties", "pattern": "Sportradar|Genius Sports|Betfair|Kalshi", "roadmap": "Wikidata property proposals, Q1 2027" }
   ],
   "pages": [
-    { "key": "event-wagering-testing-standard", "url": "https://gaminglabs.com/gli-standards/", "pattern": "GLI-33[^<]{0,80}v[0-9]+\\.[0-9]+", "roadmap": "regulator door, Year 2" }
+    { "key": "event-wagering-testing-standard", "url": "https://gaminglabs.com/gli-standards/", "pattern": "GLI-33-Event-Wagering-Systems-v[0-9]+\\.[0-9]+", "roadmap": "regulator door, Year 2" }
   ]
 }
