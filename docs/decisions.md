@@ -19,7 +19,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
 | Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
 | Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
-| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 |
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
@@ -1750,3 +1750,15 @@ Later pick wired those objects.
 Rejected: name those objects now; a new area.
 
 **Supersedes:** Q146 as an open “what is next”.
+
+## Q148 — Series win counts this walk — decided (A)
+
+This walk fills the live series lead with **win counts**. Names wait.
+Toss elected bat/bowl stays waiting. Not Q55.
+
+Not wired in this pick.
+
+Rejected: toss elected this walk; both in this pass; a new area.
+
+**Supersedes:** Q147 “no new board until named”; Q146 “win counts wait”
+as the next area (toss elected still waits).

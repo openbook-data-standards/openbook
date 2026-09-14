@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q147**. Catalog pass closed and on the wire.
+Questions recorded through **Q148**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -8,13 +8,13 @@ closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q118–Q125**) and on the wire. Yes/no player pass closed
 (**Q126–Q132**) and on the wire. Q86 leftovers pass closed
 (**Q134–Q146**) and on the wire (`stall`, `toss`, live `series`). Spec
-walk stopped (**Q147**).
+walk stopped (**Q147**), then unparked for series win counts (**Q148**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Q86 leftovers. Homes on the wire. Spec walk stopped (**Q147**).
+**Live series win counts.** Names wait. Toss elected still waits.
 
 ## Goal (previous — Q86 leftovers, closed)
 
@@ -60,7 +60,8 @@ over/under. No new market type. No new field. On the wire.
   (already true on the schema).
 - **Q118** — plus-band walk.
 - **Q133** — stop this spec walk (superseded as the next area by Q134).
-- **Q147** — stop this spec walk.
+- **Q147** — stop this spec walk (superseded as the next area by Q148).
+- **Q148** — series win counts this walk; names wait.
 
 ### Parked
 
@@ -72,9 +73,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This spec walk stopped (**Q147**).
+- How win counts sit on live `series` (rows vs root numbers vs `score`).
 
-## Done (Q32–Q147)
+## Done (Q32–Q148)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -97,3 +98,4 @@ pass closed.
 **Q134–Q146** — Q86 leftovers; `stall` / `toss` / live `series` on the wire;
 pass closed.
 **Q147** — stop this spec walk.
+**Q148** — series win counts this walk.

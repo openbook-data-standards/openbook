@@ -77,6 +77,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   who won); live `series` (fixture-keyed lead; `stage` is the printed
   round). Not on the generic fixture. Not `score`. Not `competitionType`
   series. Win counts and elected bat/bowl wait. Spec walk stopped.
+- **Q148** — this walk is live series win counts. Names wait. Toss elected
+  still waits. Not wired in this pick.
 
 
 ### Removed
