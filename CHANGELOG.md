@@ -6,6 +6,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Prefix file** — [`register/prefixes.json`](register/prefixes.json)
+  lists plain `propertyID` tokens already on this spec, plus an unknown
+  bucket (Q267). Not on the odds wire.
 - **Pinned fixture example** — [`examples/fixture.example.json`](examples/fixture.example.json)
   is the pin the optional fixture join recipe is checked against when
   that recipe exists (Q259). Recipe text waits. No new wire field.
@@ -302,6 +305,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q258–Q261** — pinned fixture example is
   [`examples/fixture.example.json`](examples/fixture.example.json). Recipe
   text waits. No new wire field.
+- **Q262–Q267** — prefix file
+  [`register/prefixes.json`](register/prefixes.json). Plain tokens already
+  on this spec, plus unknown. Not on the odds wire.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

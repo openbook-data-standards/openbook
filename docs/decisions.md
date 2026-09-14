@@ -25,7 +25,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
 | What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q236 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q261 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q267 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
 | Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q257 |
 
@@ -3177,5 +3177,75 @@ Spec and the examples page name that file as the pin. No register
 directory in this pick. No new JSON field.
 
 **Supersedes:** none of Q197 (recipe file still waits).
+
+## Q262 — Next leftover is the prefix file — decided (A)
+
+The next leftover is the **prefix file** (`propertyID` schemes). Only
+tokens already on this spec’s examples, plus the unknown bucket. Do not
+invent a full prefix catalog. Recipe text still waits.
+
+Not a new wire field.
+
+Rejected: invent a long prefix list; write the join recipe; wait.
+
+**Supersedes:** Q261 “no register directory in this pick” as an open
+wait on the prefix file.
+
+## Q263 — Prefix file lives in the register leftover — decided (A)
+
+The file lives in the register leftover, not inside the vocab lists
+(**Q192**). Directory: [`register/`](../register/).
+
+Not a new wire field.
+
+Rejected: inside vocabularies; closed enum on the common schema; wait.
+
+**Supersedes:** none of Q192.
+
+## Q264 — File named for prefixes — decided (A)
+
+The file is named for prefixes: [`register/prefixes.json`](../register/prefixes.json).
+
+Not a new wire field.
+
+Rejected: a generic name; inside maps; wait.
+
+**Supersedes:** none of Q192.
+
+## Q265 — JSON array of plain tokens — decided (A)
+
+The file is a **JSON array of plain strings**. No new object keys. Not
+Q5 short form.
+
+Not a new wire field.
+
+Rejected: object rows; Q5 short form; wait.
+
+**Supersedes:** none of Q193.
+
+## Q266 — Unknown bucket is in the file — decided (A)
+
+The unknown bucket is in the file (**Q194**). `propertyID` stays a
+string.
+
+Not a new wire field.
+
+Rejected: no unknown token; invent other as the catch-all; wait.
+
+**Supersedes:** none of Q194.
+
+## Q267 — Only tokens already on this spec — decided (A)
+
+Tokens in this pick are the existing `propertyID` examples on the schema
+plus the sample fixture, and the unknown bucket. Do not invent further
+schemes.
+
+Not a new wire field.
+
+Rejected: invent more schemes now; empty file; wait.
+
+**Supersedes:** Q216 as “no prefix file at all” (contents are not
+invented; they were already examples).
+
 
 

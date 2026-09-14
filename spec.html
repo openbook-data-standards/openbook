@@ -62,7 +62,7 @@
 <h3 id="3-3-shared-entity-id-sameas-wikidata">3.3 Shared entity id — <code>sameAs</code> (Wikidata)</h3>
 <p>For leagues, participants, venues and territories, <strong><code>sameAs</code></strong> holds the Wikidata entity URL (<code>https://www.wikidata.org/entity/Q9617</code>) — the shared cross-publisher entity id: <strong>REQUIRED when one exists, <code>null</code> when it does not</strong>. A string to pin, never a runtime dependency.</p>
 <h3 id="3-4-external-ids-identifier">3.4 External ids — <code>identifier</code></h3>
-<p>Any object MAY carry <code>identifier</code>: a list of schema.org <code>PropertyValue</code> (<code>{propertyID, value}</code>). Optional, never canonical.</p>
+<p>Any object MAY carry <code>identifier</code>: a list of schema.org <code>PropertyValue</code> (<code>{propertyID, value}</code>). Optional, never canonical. Scheme tokens for <code>propertyID</code> live in <a href="register/prefixes.json"><code>register/prefixes.json</code></a> (Q191–Q194, Q262–Q267). That list is growable and includes an unknown bucket. <code>propertyID</code> stays a string. This is not a feed document and is not on the odds wire.</p>
 <p>The optional fixture join recipe is not on the wire and is not written yet (Q171, Q196, Q216). When it exists it is checked against one pinned example: <a href="examples/fixture.example.json"><code>examples/fixture.example.json</code></a> (Q198, Q259). Publisher-own id stays canonical.</p>
 <h3 id="3-5-maps-onto-public-taxonomies">3.5 Maps onto public taxonomies</h3>
 <p>Public market and segment keys map onto existing OpenBook ids, or onto the unknown catch-all with a reason (Q181, Q185). This is not a feed document and is not on the odds wire.</p>

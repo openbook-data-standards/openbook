@@ -1,10 +1,11 @@
 # Still to do
 
-**Working on: pinned fixture example (Q258–Q261).** The pin is
-[`examples/fixture.example.json`](../examples/fixture.example.json).
-Recipe text waits. No new wire field. Stay `0.3.0-draft`. Q55 parked.
+**Working on: prefix file (Q262–Q267).** [`register/prefixes.json`](../register/prefixes.json)
+is a JSON array of plain `propertyID` tokens already on this spec, plus
+the unknown bucket. Recipe text waits. No new wire field. Stay
+`0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q261**. Catalog pass closed and on the wire.
+Questions recorded through **Q267**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -52,11 +53,19 @@ row (**Q249**). File is `maps/betfair.json` (**Q252**, **Q257**).
 (**Q254**). Maps-keys leftover done (**Q255**). Stay `0.3.0-draft`
 (**Q256**). First maps file built (**Q257**). Next leftover is the pinned
 fixture example (**Q258**). Pin is the existing sample fixture (**Q259**).
-Do not write the recipe (**Q260**). Spec names the pin (**Q261**).
+Do not write the recipe (**Q260**). Spec names the pin (**Q261**). Prefix
+file built (**Q262–Q267**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
+
+**Prefix file (Q262–Q267).** [`register/prefixes.json`](../register/prefixes.json)
+is a JSON array of plain `propertyID` tokens already on this spec, plus
+the unknown bucket. Recipe text waits. No new wire field. Stay
+`0.3.0-draft`. Not Q55.
+
+## Goal (previous — pinned fixture example, closed)
 
 **Pinned fixture example (Q258–Q261).** The pin is
 [`examples/fixture.example.json`](../examples/fixture.example.json).
@@ -297,6 +306,13 @@ over/under. No new market type. No new field. On the wire.
 - **Q259** — the pin is the existing sample fixture.
 - **Q260** — do not write the fingerprint recipe.
 - **Q261** — spec and examples page name the pin; no new field.
+- **Q262** — next leftover is the prefix file; do not invent a full catalog.
+- **Q263** — file lives in the register leftover.
+- **Q264** — file named for prefixes.
+- **Q265** — JSON array of plain strings; no new object keys.
+- **Q266** — unknown bucket is in the file; `propertyID` stays a string.
+- **Q267** — only tokens already on this spec, plus unknown.
+
 
 ### Parked
 
@@ -305,8 +321,8 @@ over/under. No new market type. No new field. On the wire.
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-- **Q171** — namespace prefix file; fixture fingerprint recipe;
-  anchor policy prose. Pinned fixture example is named (Q259).
+- **Q171** — fixture fingerprint recipe; anchor policy prose.
+  Prefix file and pinned fixture example are in this repo.
 - **Q172** — profile repositories (prediction-market, reporting,
   integrity, register) that pin a core major.
 - **Q173** — hosted validator and a feed list beside it, not on
@@ -314,9 +330,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question:** none on this leftover (**Q261**). Recipe text still waits. A pasted letter is not implement.
+**Next question:** none on this leftover (**Q267**). Recipe text still waits. A pasted letter is not implement.
 
-## Done (Q32–Q261)
+## Done (Q32–Q267)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -436,3 +452,9 @@ feed list beside the validator. Not on the wire.
 **Q259** — the pin is the existing sample fixture.
 **Q260** — do not write the fingerprint recipe.
 **Q261** — spec names the pin.
+**Q262** — prefix file next.
+**Q263** — in the register leftover.
+**Q264** — named for prefixes.
+**Q265** — JSON array of plain strings.
+**Q266** — unknown bucket in the file.
+**Q267** — only tokens already on this spec, plus unknown.

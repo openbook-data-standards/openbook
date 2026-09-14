@@ -17,6 +17,8 @@ Checks, in order:
      schema fields are allowed. The decision log is history and is not scanned.
   8. maps/*.json is a JSON array of map rows (schema/maps.schema.json);
      publicKey is unique in a file; named landings must not carry reason.
+  9. register/prefixes.json is a JSON array of plain propertyID tokens
+     (schema/prefixes.schema.json) and includes the unknown bucket.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -281,6 +283,32 @@ else:
             ok("conformance/invalid/maps-reason-on-named.json  (rejected)")
         else:
             fail("conformance/invalid/maps-reason-on-named.json: expected reject but validated")
+
+print("9. prefix file")
+pref_schema_name = "prefixes.schema.json"
+pref_path = os.path.join(ROOT, "register", "prefixes.json")
+if pref_schema_name not in schemas:
+    fail("schema/prefixes.schema.json missing")
+elif not os.path.isfile(pref_path):
+    fail("register/prefixes.json missing")
+else:
+    pref_v = validator(schemas[pref_schema_name])
+    pref_doc = json.load(open(pref_path))
+    pref_errs = sorted(pref_v.iter_errors(pref_doc), key=lambda e: list(e.path))
+    if pref_errs:
+        for e in pref_errs:
+            fail(f"register/prefixes.json: {e.message} at /{'/'.join(map(str, e.path))}")
+    elif "unknown" not in pref_doc:
+        fail("register/prefixes.json: missing unknown bucket")
+    else:
+        ok("register/prefixes.json")
+    bad_pref = os.path.join(ROOT, "conformance", "invalid", "prefixes-missing-unknown.json")
+    if os.path.isfile(bad_pref):
+        bad_doc = json.load(open(bad_pref))
+        if "unknown" not in bad_doc:
+            ok("conformance/invalid/prefixes-missing-unknown.json  (rejected)")
+        else:
+            fail("conformance/invalid/prefixes-missing-unknown.json: expected missing unknown")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

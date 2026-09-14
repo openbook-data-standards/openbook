@@ -114,6 +114,11 @@ def rewrite_href(href: str, depth: int) -> str:
         while cleaned.startswith("../"):
             cleaned = cleaned[3:]
         return ("../" * depth) + cleaned + frag
+    if "/register/" in path or path.startswith("register/"):
+        cleaned = path
+        while cleaned.startswith("../"):
+            cleaned = cleaned[3:]
+        return ("../" * depth) + cleaned + frag
     if path.startswith("http") or path.startswith("mailto:"):
         return href
     return href

@@ -98,7 +98,11 @@ not**. A string to pin, never a runtime dependency.
 ### 3.4 External ids — `identifier`
 
 Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
-(`{propertyID, value}`). Optional, never canonical.
+(`{propertyID, value}`). Optional, never canonical. Scheme tokens for
+`propertyID` live in [`register/prefixes.json`](../register/prefixes.json)
+(Q191–Q194, Q262–Q267). That list is growable and includes an unknown
+bucket. `propertyID` stays a string. This is not a feed document and is
+not on the odds wire.
 
 The optional fixture join recipe is not on the wire and is not written
 yet (Q171, Q196, Q216). When it exists it is checked against one pinned
