@@ -67,6 +67,14 @@
     {
       "path": "conformance/invalid/series-wins-one-row.json",
       "reason": "series wins is exactly two rows (Q150)"
+    },
+    {
+      "path": "conformance/invalid/toss-missing-elected.json",
+      "reason": "toss elected is required (Q160)"
+    },
+    {
+      "path": "conformance/invalid/series-needed-zero.json",
+      "reason": "series needed is ≥ 1 when present (Q165)"
     }
   ]
 }

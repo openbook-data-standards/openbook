@@ -11,37 +11,34 @@ closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 walk stopped (**Q147**), then unparked for series win counts (**Q148**).
 Series win-count pass closed (**Q148–Q155**) and on the wire (`wins`). Spec
 walk stopped (**Q156**), then unparked for toss elected then best-of
-(**Q157**). Toss-elected and best-of pass closed (**Q157–Q166**); not on
-the wire. Spec walk stopped (**Q167**).
+(**Q157**). Toss-elected and best-of pass closed (**Q157–Q166**) and on
+the wire (`elected`, `needed`). Spec walk stopped (**Q167**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Toss elected and best-of. Spec walk stopped (**Q167**).
-Leftover English at implement. Not wired.
+**Closed.** Toss elected and best-of on the wire (`elected`, `needed`).
+Spec walk stopped (**Q167**).
 
 ## Goal (previous — toss elected and best-of, closed)
 
-Elected: on `toss`; required bat-or-bowl token; leftover English at
-implement. Best-of: optional leftover English on live `series`; wins
-needed to take the series; ≥ 1 when present; not `total`.
-
-## Goal (previous — series win counts, closed)
+Elected: on `toss`; required `elected` (`bat` · `bowl`). Best-of:
+optional `needed` on live `series`; wins needed to take the series; ≥ 1
+when present; not `total`.
 
 ## Goal (previous — series win counts, closed)
 
 Exactly two rows on live `series`, both required; same `participant` ids
 as this fixture. A win ticks when this game is down. The number is games
-won (integer, 0 allowed) on `total`. Array name is `wins`. Toss elected
-still waits.
+won (integer, 0 allowed) on `total`. Array name is `wins`.
 
 ## Goal (previous — Q86 leftovers, closed)
 
 Racing `stall` and cricket `toss`: two catalog objects. Playoff series:
 round on `stage`; live `series` is the lead. Not more keys on every
-fixture. Win counts on the wire (**Q148–Q155**). Elected bat/bowl and
-best-of decided **Q157–Q166** (not wired).
+fixture. Win counts on the wire (**Q148–Q155**). Elected `elected` and
+`needed` on the wire (**Q157–Q166**).
 
 ## Goal (previous — yes/no player, closed)
 
@@ -70,6 +67,8 @@ over/under. No new market type. No new field. On the wire.
   pass closed.
 - **Q148–Q155** — live `series` `wins` (exactly two rows; `participant` +
   `total`); pass closed.
+- **Q157–Q166** — `elected` on `toss` (`bat` · `bowl`); optional `needed`
+  on live `series`; pass closed.
 
 ### Log only
 
@@ -85,18 +84,6 @@ over/under. No new market type. No new field. On the wire.
 - **Q133** — stop this spec walk (superseded as the next area by Q134).
 - **Q147** — stop this spec walk (superseded as the next area by Q148).
 - **Q156** — stop this spec walk (superseded as the next area by Q157).
-- **Q157** — toss elected then best-of this pass; elected first; names wait.
-- **Q158** — elected sits on existing `toss`.
-- **Q159** — one token, bat or bowl; field name leftover English at
-  implement.
-- **Q160** — elected required on `toss`.
-- **Q161** — elected rules closed; then best-of.
-- **Q162** — best-of sits on live `series`.
-- **Q163** — the number is wins needed to take the series.
-- **Q164** — optional leftover English on `series`; not `total`; not
-  `line`.
-- **Q165** — wins needed ≥ 1 when present.
-- **Q166** — this pass closed; not wired.
 - **Q167** — stop this spec walk.
 
 ### Parked
@@ -136,14 +123,5 @@ pass closed.
 **Q147** — stop this spec walk.
 **Q148–Q155** — series win counts on the wire (`wins`).
 **Q156** — stop this spec walk.
-**Q157** — toss elected then best-of this pass.
-**Q158** — elected sits on existing `toss`.
-**Q159** — one token, bat or bowl.
-**Q160** — elected required on `toss`.
-**Q161** — elected rules closed.
-**Q162** — best-of sits on live `series`.
-**Q163** — wins needed to take the series.
-**Q164** — optional leftover English on `series`.
-**Q165** — wins needed ≥ 1 when present.
-**Q166** — this pass closed.
+**Q157–Q166** — toss `elected` and series `needed` on the wire.
 **Q167** — stop this spec walk.

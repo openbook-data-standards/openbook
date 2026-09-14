@@ -106,23 +106,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   each `participant` + `total` (games won, integer, 0 allowed). A win
   ticks when this game is down. Spec walk stopped. Toss elected and
   best-of length wait.
-- **Q157** — this pass is toss elected first, then best-of length. Names
-  wait. Not wired in this pick.
-- **Q158** — elected sits on existing `toss`. Names wait. Not wired.
-- **Q159** — elected is one token, bat or bowl. Field name leftover English
-  at implement. Not wired.
-- **Q160** — elected is required on `toss`. Not wired.
-- **Q161** — elected rules closed; then best-of. Field leftover English at
-  implement. Not wired.
-- **Q162** — best-of sits on live `series`. Names wait. Not wired.
-- **Q163** — the number is wins needed to take the series (first to N).
-  Names wait. Not wired.
-- **Q164** — optional leftover English on live `series` at implement; not
-  `total`; not `line`. Not wired.
-- **Q165** — wins needed ≥ 1 when present. Not wired.
-- **Q166** — toss-elected and best-of pass closed. Leftover English at
-  implement. Not wired.
-- **Q167** — stop this spec walk. Wire waits.
+- **Q157–Q167** — toss `elected` (`bat` · `bowl`, required leftover
+  English) and optional `needed` on live `series` (wins needed to take
+  the series, integer ≥ 1). Not `total`. Not `line`. Spec walk stopped.
 
 
 ### Removed

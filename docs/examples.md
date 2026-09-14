@@ -131,10 +131,10 @@ the match stream above; the conflated tick sits between `104871` and `104880`.
 | [`stage.example.json`](../examples/stage.example.json) | 104010 | A named slice of a season |
 | [`player.example.json`](../examples/player.example.json) | 104100 | Roster membership |
 | [`stall.example.json`](../examples/stall.example.json) | 104110 | Racing gate (`order`) |
-| [`toss.example.json`](../examples/toss.example.json) | 104120 | Who won the cricket toss |
+| [`toss.example.json`](../examples/toss.example.json) | 104120 | Who won the cricket toss; `elected` bat |
 | [`odds_change_conflated.example.json`](../examples/odds_change_conflated.example.json) | 104872 | A tick that skipped intermediates (`conflated: true`) |
 | [`lineup.example.json`](../examples/lineup.example.json) | 105500 | Starting `player` ids for one fixture |
-| [`series.example.json`](../examples/series.example.json) | 105510 | Live series lead; round on `stage`; two `wins` rows |
+| [`series.example.json`](../examples/series.example.json) | 105510 | Live series lead; round on `stage`; two `wins` rows; `needed` 4 |
 
 Invalid cases (must be rejected) live in [`../conformance/invalid/`](../conformance/).
 Run `python3 tools/validate.py`.

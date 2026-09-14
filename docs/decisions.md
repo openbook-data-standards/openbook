@@ -1905,6 +1905,8 @@ implement. Not player `bats`. Not `side`. Not two flags.
 
 Not wired in this pick.
 
+Later pick wired leftover English **`elected`** (`bat` · `bowl`).
+
 Rejected: reuse `bats`; reuse `side`; two flags.
 
 **Supersedes:** none of Q88 or Q158 (`bats` stays handedness; elected
@@ -1968,6 +1970,8 @@ implement. Not `total`. Not `line`. Not `atLeast`. Not required.
 
 Not wired in this pick.
 
+Later pick wired leftover English **`needed`**.
+
 Rejected: required leftover English; reuse `total` on the `series`
 root; reuse `atLeast`.
 
@@ -2005,6 +2009,8 @@ No new board until named. Elected and best-of stay logged. Leftover
 English at implement. Wire waits.
 
 Not wired in this pick.
+
+Later pick wired `elected` and `needed`.
 
 Rejected: name leftover English now; a new area; wire now.
 

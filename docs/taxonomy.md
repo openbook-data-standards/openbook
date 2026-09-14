@@ -197,8 +197,10 @@ Some rows carry a little more than a side:
 
 A few things that look like sides are not. A racing **stall** is its own
 object (the gate number is an order, not a side). The cricket **toss** is its
-own object (who won it). A live **series** is the playoff lead, not this
-game’s score: exactly two `wins` rows (`participant` + `total` games won).
+own object (who won it, plus required `elected` `bat` · `bowl`). A live
+**series** is the playoff lead, not this game’s score: exactly two `wins`
+rows (`participant` + `total` games won); optional `needed` (wins needed
+to take the series).
 
 ---
 

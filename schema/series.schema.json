@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/series.schema.json",
   "title": "OpenBook series (live lead)",
-  "description": "Live playoff series lead (Q86 leftovers, Q139–Q140, Q148–Q155). Not this game's score. Not competitionType series. Round stays on stage (seriesGame). wins is leftover English (Q154): exactly two rows, this fixture's participants, total is games won (integer, 0 allowed). A win ticks when this game is down.",
+  "description": "Live playoff series lead (Q86 leftovers, Q139–Q140, Q148–Q155, Q162–Q165). Not this game's score. Not competitionType series. Round stays on stage (seriesGame). wins is leftover English (Q154): exactly two rows, this fixture's participants, total is games won (integer, 0 allowed). A win ticks when this game is down. needed is leftover English (Q164): optional wins needed to take the series (integer ≥ 1).",
   "type": "object",
   "required": [
     "openbookVersion",
@@ -58,6 +58,11 @@
           }
         }
       }
+    },
+    "needed": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Wins needed to take the series (Q163–Q165). Leftover English. Optional. Not total. Not line."
     }
   },
   "patternProperties": {

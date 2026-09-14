@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/toss.schema.json",
   "title": "OpenBook toss",
-  "description": "Cricket toss: who won the coin (Q86 leftovers, Q142–Q144). Not on the generic fixture. Not score. Not a new live object. participant is who won. Elected bat/bowl not in this pick.",
+  "description": "Cricket toss: who won the coin and what they elected (Q86 leftovers, Q142–Q144, Q157–Q160). Not on the generic fixture. Not score. Not a new live object. participant is who won. elected is leftover English: required bat or bowl.",
   "type": "object",
   "required": [
     "openbookVersion",
@@ -10,7 +10,8 @@
     "sequence",
     "dateModified",
     "fixture",
-    "participant"
+    "participant",
+    "elected"
   ],
   "properties": {
     "@context": {},
@@ -36,6 +37,10 @@
     "participant": {
       "$ref": "common.schema.json#/$defs/ownId",
       "description": "Who won the toss."
+    },
+    "elected": {
+      "$ref": "common.schema.json#/$defs/elected",
+      "description": "What the winner elected (Q159–Q160). Required."
     }
   },
   "patternProperties": {
