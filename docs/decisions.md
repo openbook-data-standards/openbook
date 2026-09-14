@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q219 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q220 |
 
 The entries below stay in the order they were taken.
 
@@ -2679,3 +2679,17 @@ exchange; file name waits until keys exist; stop this leftover.
 
 **Supersedes:** none of Q187 (one file per list stays; this is that the
 file is named for the list in Q218).
+
+## Q220 — Public key leftover English — decided (A)
+
+The public key is leftover English: **the exchange’s market type id**.
+Do not invent a JSON name. JSON object keys still wait (**Q189**). No
+file in this pick.
+
+Not wired in this pick.
+
+Rejected: the exchange’s market name, not the id; public-key leftover
+English waits; stop this leftover.
+
+**Supersedes:** none of Q185 (row contents stay; this is what the public
+key is).

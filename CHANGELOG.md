@@ -243,6 +243,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   No JSON object keys. No file. Not wired in this pick.
 - **Q219** — when a file exists it is named for that public list. JSON
   object keys still wait. No file. Not wired in this pick.
+- **Q220** — public key leftover English: the exchange’s market type
+  id. JSON object keys still wait. No file. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
