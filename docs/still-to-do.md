@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q180**. Catalog pass closed and on the wire.
+Questions recorded through **Q182**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -18,14 +18,15 @@ walk stopped (**Q169**), then Q76 position vocab unparked (**Q170**).
 Roadmap pass closed (**Q171–Q173**): register not an entity database;
 profiles are separate specifications; feed list is validator tooling.
 Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
-(**Q180**).
+(**Q180**), then Q171 leftovers in this repo unparked (**Q182**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Stopped (Q180).** Position-vocab shape is logged. Token lists wait.
-No file.
+**Q171 leftovers in this repo (Q182).** Prefix file; fixture fingerprint
+recipe and a corpus case; anchor policy prose. Files wait. No new wire
+field. Not maps. Not position token lists.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -125,6 +126,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q178** — catch-all same pattern as segments (**Q34**); lists wait.
 - **Q179** — named for positions, same folder as the other shared lists; no file in this pick.
 - **Q180** — stop this spec walk. Shape logged. Token lists wait.
+- **Q182** — Q171 leftovers in this repo this walk. Files wait. No new wire field.
 
 ### Parked
 
@@ -142,10 +144,11 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This spec walk stopped (**Q180**). Resume when token lists are unparked, or when you pick the next leftover.
-- Sitting (not this walk): maps in a crosswalks directory: public market / segment keys onto existing OpenBook ids, or the unknown catch-all with a reason. Cite at least one public taxonomy. Not a wire change.
+**Next question: Q183.** Which Q171 leftover first? Rec: the prefix file (`propertyID` schemes); fingerprint recipe, corpus case, and anchor policy wait. No file in this pick. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q180)
+Sitting (not this walk): maps leftover; position token lists; Q55.
+
+## Done (Q32–Q182)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -184,3 +187,4 @@ feed list beside the validator. Not on the wire.
 **Q178** — catch-all same pattern as segments; lists wait.
 **Q179** — named for positions, same folder as the other shared lists; no file now.
 **Q180** — stop this spec walk; token lists wait.
+**Q182** — Q171 leftovers in this repo this walk; files wait; no new wire field.

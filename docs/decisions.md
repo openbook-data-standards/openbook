@@ -2192,3 +2192,16 @@ Not wired in this pick.
 Rejected: start listing tokens now; unpark Q55; cut a new draft version.
 
 **Supersedes:** Q179 as an open “what is next” (shape stays).
+
+## Q182 — Q171 leftovers this walk — decided
+
+This walk is the **Q171 leftovers that live in this repo**: namespace
+prefix file; fixture fingerprint recipe and a corpus case; anchor
+policy prose. Not maps. Not position token lists. Not Q55. Not Q172
+profile repositories. No new wire field.
+
+Not wired in this pick. Files wait.
+
+Rejected: maps leftover; stay stopped; unpark Q55; Q172 other repos.
+
+**Supersedes:** Q180 as an open “what is next” (position shape stays).

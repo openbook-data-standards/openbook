@@ -139,6 +139,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Not wired in this pick.
 - **Q180** — position-vocab shape is logged. Token lists wait. Spec walk
   stopped. Not Q55. Not a version cut. Not wired in this pick.
+- **Q182** — this walk is the Q171 leftovers that live in this repo:
+  prefix file; fixture fingerprint recipe and a corpus case; anchor
+  policy prose. Not maps. Not a new wire field. Files wait. Not wired
+  in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
