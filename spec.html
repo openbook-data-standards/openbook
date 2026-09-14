@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBook — the specification — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/spec.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./spec.html" aria-current="page">Spec</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · spec/openbook.md</p><nav class="page-toc"><strong>On this page</strong><a href="#1-what-openbook-is">1. What OpenBook is</a><a href="#2-conventions">2. Conventions</a><a href="#3-identifiers">3. Identifiers</a><a href="#4-the-hierarchy">4. The hierarchy</a><a href="#5-change-everything-is-diff-able">5. Change: everything is diff-able</a><a href="#5a-status-three-questions-three-fields">5a. Status: three questions, three fields</a><a href="#6-standard-facts-matching-across-publishers">6. Standard facts (matching across publishers)</a><a href="#7-objects">7. Objects</a><a href="#8-streams-fixture-first-then-object-action">8. Streams: fixture-first, then object / action</a><a href="#9-extensions">9. Extensions</a><a href="#10-conformance">10. Conformance</a><a href="#11-versioning">11. Versioning</a></nav><article class="doc"><h1 id="openbook-the-specification">OpenBook — the specification</h1>
+<p>The normative document defining the <strong>OpenBook</strong> standard. Version <code>0.3.0-draft</code> · 2026-09-12</p>
+<p>The JSON Schemas in <a href="schemas.html"><code>../schema/</code></a> are the machine-normative field definitions; where prose and schema disagree, the schema wins. Every rule here traces to a decision in <a href="decisions.html"><code>../docs/decisions.md</code></a>. Keywords <strong>MUST</strong>, <strong>SHOULD</strong>, <strong>MAY</strong> are used per RFC 2119.</p>
+<hr>
+<h2 id="1-what-openbook-is">1. What OpenBook is</h2>
+<p>OpenBook is <strong>one shared format any publisher emits sportsbook data in</strong>, the way any transit agency publishes GTFS. It applies whenever odds that originate from a sportsbook are emitted externally — by the sportsbook itself or by a feed that carries them.</p>
+<ul>
+<li>A <strong>publisher</strong> is whoever transmits an OpenBook feed.</li>
+<li>A <strong>source</strong> is whose odds a price is. Every price carries its source; one feed MAY carry many sources (as one GTFS feed carries many agencies).</li>
+<li>A <strong>consumer</strong> reads any number of OpenBook feeds with one importer.</li>
+</ul>
+<p>OpenBook is independent of any sportsbook, data provider or software vendor. It standardises the data contract only.</p>
+<h2 id="2-conventions">2. Conventions</h2>
+<ul>
+<li><strong>Time</strong> — RFC 3339 (ISO 8601 with an explicit offset), everywhere.</li>
+<li><strong>Currency</strong> — ISO 4217. Each feed MUST declare <strong><code>baseCurrency</code></strong> once on the publisher record (and on a full snapshot of that record). Incremental messages do not repeat it. Money is <code>{amount}</code> in that currency. Odds are not money. Another currency is another subscription (Q44). ISO 20022 XML and the ISO 20022 JSON trial are not the OpenBook encoding (Q92).</li>
+<li><strong>Language</strong> — ISO 639-1.</li>
+<li><strong>Territory</strong> — Unicode CLDR territory codes: ISO 3166-1 alpha-2 (<code>GB</code>), ISO 3166-2 for sub-national teams (<code>GB-ENG</code>, <code>US-PR</code>), CLDR extras (<code>XK</code>).</li>
+<li><strong>Encoding</strong> — JSON is the required v1 encoding (Q89). The schemas, examples, discovery document, corpus, validator, and AsyncAPI describe this encoding. Additional encodings MAY exist later as optional bindings generated from the JSON Schemas; they are not in this repo in v1 and they do not replace JSON.</li>
+<li><strong>Odds and lines</strong> — decimal <strong>strings</strong> on the wire, not JSON numbers. Decimal odds only (MUST be strictly greater than 1); American and fractional forms are presentation.</li>
+<li><strong>Text</strong> — UTF-8; names keep their diacritics.</li>
+<li><strong>Field names</strong> — camelCase, and <strong>schema.org's name wherever schema.org has the property</strong>: <code>startDate</code>, <code>dateModified</code>, <code>datePublished</code>, <code>alternateName</code>, <code>sameAs</code>, <code>identifier</code>, <code>superEvent</code>, <code>organizer</code>, <code>location</code>. Small shared vocabularies are <code>*Type</code> fields: <code>competitionType</code>, <code>participantType</code>, <code>marketType</code>, <code>stageType</code>, <code>sourceType</code>. Documents MAY carry JSON-LD <code>@context</code> / <code>@type</code>, so an OpenBook document is also valid schema.org data.</li>
+<li><strong>Bounds</strong> — shared primitives are length- and size-bounded (id, decimal, and name lengths; alias and identifier list sizes) in <a href="schema/common.schema.json"><code>../schema/common.schema.json</code></a>, so a conformant parser rejects oversized input instead of trusting it.</li>
+<li>Every object and message carries <code>openbookVersion</code>.</li>
+</ul>
+<h2 id="3-identifiers">3. Identifiers</h2>
+<h3 id="3-1-shared-ids-the-vocabularies">3.1 Shared ids — the vocabularies</h3>
+<p>Sports, segments, market types and sides use ids owned by the standard, in two equivalent spellings: <strong>short on the wire</strong> (<code>sport:soccer</code>, <code>market:total</code>, <code>segment:soccer:1st-half</code>, <code>side:home</code>) and <strong>formal in the spec</strong> (<code>urn:openbook:sport:soccer</code>). Lowercase, <code>:</code>-separated, <code>-</code> inside a segment. Once published in a frozen version, never re-pointed, removed, or <strong>reassigned</strong>; only deprecated (Q35). Field names and list-values take the same promise. Deprecation is <code>name</code> + <code>reason</code> + <code>replacement</code> + <code>sunset</code>; removal from the live set only at MAJOR after the window (Q36).</p>
+<h3 id="3-2-publisher-own-ids-the-entities">3.2 Publisher-own ids — the entities</h3>
+<p>Leagues, seasons, stages, fixtures, participants, players and venues carry the <strong>publisher's own id</strong>, unique within that publisher. OpenBook mints none.</p>
+<h3 id="3-3-shared-entity-id-sameas-wikidata">3.3 Shared entity id — <code>sameAs</code> (Wikidata)</h3>
+<p>For leagues, participants, venues and territories, <strong><code>sameAs</code></strong> holds the Wikidata entity URL (<code>https://www.wikidata.org/entity/Q9617</code>) — the shared cross-publisher entity id: <strong>REQUIRED when one exists, <code>null</code> when it does not</strong>. A string to pin, never a runtime dependency.</p>
+<h3 id="3-4-external-ids-identifier">3.4 External ids — <code>identifier</code></h3>
+<p>Any object MAY carry <code>identifier</code>: a list of schema.org <code>PropertyValue</code> (<code>{propertyID, value}</code>). Optional, never canonical.</p>
+<h2 id="4-the-hierarchy">4. The hierarchy</h2>
+<pre>sport                       shared vocabulary
+  └ league                  publisher-own; competitionType: league · cup · tournament · series · exhibition
+      └ season              publisher-own; one edition (2025-26, F1 2026)
+          └ stage           publisher-own; a named slice of a season; RECURSIVE (parent) with stageType
+              └ fixture     publisher-own; the priced event
+                  └ segment shared vocabulary; a slice INSIDE a match (1st half, set 3, Q1)
+participant                 publisher-own; a TEAM or an INDIVIDUAL; belongs to a SPORT, linked to leagues only through fixtures
+player                      publisher-own; roster membership of a person in a team (lineups, player props)</pre>
+<ul>
+<li>A <strong>league</strong> is any recurring competition — the Premier League, the FA Cup, the NBA Cup, the F1 World Championship — typed by <code>competitionType</code>. It MAY name an <code>organizer</code> (the NBA, UEFA, the FIA): one organizer runs several competitions.</li>
+<li>A <strong>participant</strong> is a team *or* an individual (<code>participantType</code>); a tennis player, an F1 driver, a golfer is a participant. It belongs to a sport, never to a league: the same team plays the league, the cup and the continental competition in one week. <code>player</code> exists only as roster membership.</li>
+<li>A <strong>stage</strong> is recursive: Champions League → *Knockout* (phase) → *Quarter-final* (round) → *Leg 2* (leg); NBA → *Playoffs* (phase) → *Conference Semifinals* (round) → *Game 3* (seriesGame). A fixture names its <strong>leaf</strong> stage; the chain is walked via <code>parent</code>.</li>
+<li>In Formula 1, Qualifying, Sprint and Race are three <strong>fixtures</strong> in one round; their sessions (Q1/Q2/Q3) are <strong>segments</strong>.</li>
+</ul>
+<h2 id="5-change-everything-is-diff-able">5. Change: everything is diff-able</h2>
+<ul>
+<li>Every object and message carries <strong><code>sequence</code></strong> — a monotonic integer the publisher's server issues per feed — and <strong><code>dateModified</code></strong>.</li>
+<li><strong>Push</strong> streams (§8) send changes only. <strong>Pull</strong> endpoints accept <code>since=&lt;sequence&gt;</code> and return only what changed after it. <code>since</code> is never a timestamp.</li>
+<li>A <strong>snapshot</strong> is the state as of a sequence, for initial load and recovery; a diff from zero, not a separate format.</li>
+<li><strong>Field-level granularity, JSON Merge Patch (RFC 7386) semantics</strong>: a change carries the object id plus only the fields that changed; absent = unchanged; <code>null</code> = removed. Consumers MUST merge and MUST NOT assume a message re-sends unchanged state. JSON Patch (RFC 6902) is not an alternate change encoding (Q91).</li>
+<li><strong>Odds are push-first.</strong> Publishers SHOULD deliver <code>odds/change</code> by push and MAY additionally offer a <code>since=</code> pull. <code>market/snapshot</code> gives a fixture's current prices for initial load and recovery.</li>
+</ul>
+<h3 id="5-1-delivery-and-recovery-q33">5.1 Delivery and recovery (Q33)</h3>
+<p>A publisher that claims Level L MUST honour all eight. These are protocol guarantees, not JSON Schema.</p>
+<ol>
+<li><strong>Retention horizon <code>R</code>.</strong> <code>since=N</code> with <code>N ≥ R</code> MUST return a complete, ordered delta. <code>N &lt; R</code> MUST respond HTTP <strong>410</strong> with RFC 9457 Problem Details pointing at the snapshot URL — not a 200 with a flag, and not a silent full snapshot (Q46).</li>
+<li><strong>Snapshot is compaction; Merge Patch <code>null</code> is a tombstone.</strong> Replaying snapshot + diffs MUST converge on the same document as a fresh snapshot.</li>
+<li><strong>Ordering is per fixture.</strong> <code>sequence</code> is per publisher, strictly increasing, unique. For one fixture, messages appear in increasing sequence. Cross-fixture display order is not guaranteed.</li>
+<li><strong>Caught-up (push).</strong> After snapshot + replay, the publisher MUST emit <code>action: snapshotComplete</code> on that stream, with <code>changes: {}</code>. Pull has no marker; the HTTP response *is* the batch (Q46).</li>
+<li><strong>Bounded heartbeats (push).</strong> The same stream carries <code>action: heartbeat</code> (<code>changes: {}</code>). The publisher record MUST declare <code>heartbeatMs</code> (maximum silence, milliseconds). Quiet longer than that, the consumer SHOULD treat the feed as down (Q46). FIX session (Logon / Heartbeat / TestRequest / Logout) is not the OpenBook session (Q93).</li>
+<li>If intermediate ticks are dropped, that change MUST carry <strong><code>conflated: true</code></strong>. Sequence still increases (Q47).</li>
+<li><strong>QoS 0 / 1 / 2</strong> are the delivery vocabulary (at-most-once / at-least-once / exactly-once). MQTT is not required; other transports MUST name the equivalent.</li>
+<li><strong>Dedup key</strong> is <code>(publisher, sequence)</code>. Consumers MUST ignore duplicates.</li>
+</ol>
+<h3 id="5-2-feed-operations-q41-q48-q49">5.2 Feed operations (Q41, Q48, Q49)</h3>
+<ul>
+<li>Live documents SHOULD declare <strong><code>ttl</code></strong>: integer seconds, GBFS (Q48). Optional on the publisher record; required on the discovery document.</li>
+<li>A publisher SHOULD offer <strong>one discovery URL</strong> that returns <code>{ lastUpdated, ttl, feeds: [{ name, url }] }</code> (<a href="schema/discovery.schema.json"><code>../schema/discovery.schema.json</code></a>). Snapshot, stream, and any publisher-hosted API docs are named feeds. The <code>publisher</code> object stays identity, not the catalog (Q49). Documents are not wrapped in a GBFS-style outer container (Q90). There is no spec-owned list of many publishers (Q94).</li>
+<li>A publisher MAY <strong>co-serve</strong> more than one OpenBook version at the same time (distinct URLs or topics per <code>openbookVersion</code>).</li>
+</ul>
+<p>Two independent implementations (a producer and a consumer; not <a href="../tools/validate.py"><code>../tools/validate.py</code></a>) are required to <strong>freeze 1.0</strong>, not to ship a 0.x minor.</p>
+<h3 id="5-3-monitoring-a-feed">5.3 Monitoring a feed</h3>
+<p>The §5.1 guarantees are also the signals a consumer watches to know a feed is healthy, not only what it replays:</p>
+<ul>
+<li><strong>Liveness</strong> — silence longer than the publisher's declared <code>heartbeatMs</code> (§5.1.5) SHOULD raise an alarm. Quiet is not dead only up to that bound.</li>
+<li><strong>Continuity</strong> — a gap, reorder, or duplicate in per-fixture <code>sequence</code> (§5.1.3, §5.1.8) is observable and SHOULD be surfaced, never hidden.</li>
+<li><strong>Freshness</strong> — <code>datePublished</code> / <code>dateModified</code> and the discovery document's <code>lastUpdated</code> and <code>ttl</code> (§5.2) bound how old a live feed may be before a consumer treats it as stale.</li>
+<li><strong>Conformance</strong> — a consumer MAY run the conformance corpus (<a href="conformance/"><code>../conformance/</code></a>) against a live feed continuously — the same runner CI uses — to catch a producer drifting off-spec. Conformance is a monitoring tool, not only a release gate.</li>
+</ul>
+<h2 id="5a-status-three-questions-three-fields">5a. Status: three questions, three fields</h2>
+<ul>
+<li><strong>Fixture status</strong> — *is the event happening?* <code>eventStatus</code>: scheduled · delayed · live · paused · suspended · postponed · ended · cancelled, with an optional <code>statusReason</code>. <strong><code>ended</code> happens once.</strong></li>
+<li><strong>Segment status</strong> — *where is the match, and is this slice final?* Per segment on the score: pending · live · paused · <strong>down</strong> (+ <code>downAt</code>). <strong>A segment goes down once. <code>down</code> is terminal</strong> — there is no reopen and no second down; a validator MUST reject one.</li>
+<li><strong>Market status</strong> — *can you bet it?* Per market per source: open · suspended · closed · void, via <code>market/update</code>. Grading is not a market status; it is the <code>grade</code> object. <strong>Taking a market off the board is <code>marketStatus</code></strong> (<code>suspended</code> · <code>closed</code> · <code>void</code>). Last odds MAY stay on the document. Dropping an outcome or price from the snapshot is Merge Patch <strong><code>null</code></strong> (tombstone). Never a sentinel price (<code>odds: &quot;0&quot;</code>).</li>
+</ul>
+<p>Rules: <code>eventStatus: ended</code> ⇒ every segment <code>down</code>. A market whose segment is <code>down</code> MUST be <code>closed</code> or <code>void</code>. A <code>grade</code> MAY only reference a <code>down</code> segment.</p>
+<p><strong>Corrections without settling twice</strong> (Q31): a downed segment's <code>status</code> and <code>downAt</code> never change. A publisher correcting a result sends <code>score/update</code> with <code>correction: true</code> and a <code>statusReason</code> — an erratum, not a second settlement. Grades built on the old values are <code>grade/delete</code>d and re-issued with <code>supersedes</code>, pointing (<code>basedOn</code>) at the correction's sequence.</p>
+<h2 id="6-standard-facts-matching-across-publishers">6. Standard facts (matching across publishers)</h2>
+<p>Every fixture MUST carry: own <code>id</code> · <code>sport</code> (shared id + name) · <code>league</code> (own id + name + territory + <code>competitionType</code>) · <code>startDate</code> · <code>participants[]</code> (own id, name, territory, <strong><code>role</code></strong>: home · away · neutral, <strong>and <code>order</code></strong>, always present) · <code>sequence</code> · <code>dateModified</code>; and MAY carry <code>season</code>, <code>stage</code>, <code>location</code>, <code>surface</code>, <code>identifier</code>. Fixture <code>participants[]</code> MAY carry <code>seed</code>. Consumers match on sport + league (name, territory) + start_time + participants (names, territories), and on Wikidata QIDs when both sides have them. <code>role</code> and <code>order</code> are facts the publisher asserts; the sign of a handicap is derived from them. A feed's presentation order is never a fact.</p>
+<h2 id="7-objects">7. Objects</h2>
+<p>Each reference document carries <code>openbookVersion</code>, <code>id</code>, <code>sequence</code>, <code>dateModified</code>; exact types in the schemas.</p>
+<ul>
+<li><strong><code>publisher</code></strong> — who transmits, <code>baseCurrency</code> (ISO 4217, once per feed), and the <code>sources[]</code> the feed carries (<code>{id, name, sourceType: sportsbook | exchange | model}</code>). GTFS <code>agency.txt</code>. Another currency is another subscription (Q44). Level L MUST declare <strong><code>heartbeatMs</code></strong>. Optional <strong><code>ttl</code></strong> (seconds) MAY also sit here; the discovery document is where <code>ttl</code> is required (Q46, Q48). Optional <code>registeredName</code> (Q60) and <code>inLanguage</code> (ISO 639-1, Q68).</li>
+<li><strong><code>sport</code></strong>, <strong><code>segment</code></strong>, <strong><code>marketType</code></strong>, <strong><code>side</code></strong> — shared vocabularies (<a href="vocabularies/"><code>../vocabularies/</code></a>). A sport MAY carry a default <code>limit</code>. Sport, market type, and segment are <strong><code>name</code> only</strong> (Q59).</li>
+<li><strong><code>region</code></strong> — <code>id</code> = CLDR territory code; <code>name</code>, <code>names{lang}</code>, <code>superEvent</code>, crosswalks <code>iocCode</code>, <code>fifaCode</code>, <code>sameAs</code>.</li>
+<li><strong><code>league</code></strong> — own id, <code>name</code>, <code>sport</code>, <code>territory</code>, <code>competitionType</code>, optional <code>organizer</code>, <code>ruleset</code>, <code>sameAs</code>, optional <code>limit</code>. Team-style names: optional <code>shortName</code>, <code>registeredName</code> (Q59). Optional <code>gender</code> (<code>men</code> · <code>women</code> · <code>mixed</code> · <code>open</code>) and <code>ageGroup</code> (Q72, Q73).</li>
+<li><strong><code>season</code></strong> — own id, <code>league</code>, <code>name</code> (display), <code>startDate</code>, <code>endDate</code> (Q60 / Q9).</li>
+<li><strong><code>stage</code></strong> — own id, <code>season</code>, <code>name</code>, <code>parent</code>, <code>stageType</code> (phase · group · round · matchday · leg · seriesGame), <code>order</code>, optional <code>startDate</code> / <code>endDate</code>.</li>
+<li><strong><code>participant</code></strong> — own id, <code>participantType</code> (team · individual), <code>sport</code>, <code>territory</code>, <code>sameAs</code>. Required <code>name</code> (popular/board). Optional <code>shortName</code>, <code>names</code> (ISO 639-1), <code>nameLatin</code> (ISO 9 / ISO 843), <code>alternateName[]</code>. <strong>Teams</strong> MAY add <code>location</code> + <code>nickname</code>, <code>registeredName</code>, <code>abbreviation</code>. <strong>Individuals</strong> MAY add <code>givenName</code> / <code>familyName</code> (vCard RFC 6350 / ITU X.520); no <code>abbreviation</code>. No league field. Fixture <code>participants[]</code> copies <code>name</code> plus <code>role</code> and <code>order</code>.</li>
+<li><strong><code>player</code></strong> — roster membership: own id, <code>participant</code> (the person), <code>team</code> (the team participant), <code>position</code>, <code>number</code>. Optional <code>throws</code> and <code>bats</code> (<code>left</code> · <code>right</code> · <code>both</code>). No name fields.</li>
+<li><strong><code>fixture</code></strong> — §6 plus <code>eventStatus</code>, <code>cutoffDate</code>, <code>superEvent</code> (a live event's pregame parent), optional display <code>name</code>, <code>location</code> (nested schema.org Place: <code>addressLocality</code> + <code>territory</code>, optional IANA <code>timeZone</code>, optional WGS 84 <code>latitude</code> / <code>longitude</code>), optional <code>surface</code>.</li>
+<li><strong><code>market</code></strong> — a fixture's market as priced by one source: <code>fixture</code>, <code>marketType</code>, <code>segment</code>, <code>line</code>, <code>source</code>, <code>provenance</code> (<code>official</code> · <code>licensed</code> · <code>observed</code>), <code>status</code>, <strong><code>limit</code></strong> <code>{amount}</code> in the feed's <code>baseCurrency</code> (required on the market document / snapshot), <code>outcomes[]</code> (<code>side</code>, <code>odds</code>, <code>line</code>, <code>active</code>). Identity: <code>(source, fixture, marketType, segment, line)</code>. Price-only ticks (<code>odds/change</code>) do not repeat <code>limit</code> unless it changed. <strong>Most specific wins</strong> (Q45): market <code>limit</code> → league <code>limit</code> → sport <code>limit</code>. A priced market MUST resolve to a limit.</li>
+<li><strong><code>score</code></strong> — <code>fixture</code>, <code>eventStatus</code> (+ <code>statusReason</code>), <code>segments[]</code> (each <code>segment</code>, <code>status</code>, <code>downAt</code>), <code>currentSegment</code>, <code>clock</code> (<code>elapsed</code> / <code>remaining</code> in integer seconds, <code>running</code>, broadcast <code>display</code>), and <code>scores[]</code> — <strong>one line per participant × unit</strong> (<code>goals</code>, <code>corners</code>, <code>sets</code>, <code>games</code>, <code>runs</code>, <code>hits</code>…) with <code>total</code> and <code>bySegment</code>. The sport / league declares its <code>primaryUnit</code>. <code>server</code> for racket sports.</li>
+<li><strong><code>lineup</code></strong> — starting roster <code>player</code> ids for one <code>fixture</code> (Q80). Not on the catalog fixture. No formation, substitutions, or predicted lineup (Q82).</li>
+<li><strong><code>grade</code></strong> — the book's judgement for one market × one source, graded from a <code>down</code> segment: <code>gradeId</code>, <code>segment</code>, <code>marketType</code>, <code>line</code>, <code>basis</code> (the unit graded on — Pinnacle's *resultingUnit*, generalised), <code>basedOn</code> (the score sequence used), <code>outcomes[]</code> with <code>win</code> · <code>lose</code> · <code>void</code> · <code>half-win</code> · <code>half-lose</code>. Never edited: a correction is <code>grade/delete</code> + a new grade with <code>supersedes</code>.</li>
+</ul>
+<h2 id="8-streams-fixture-first-then-object-action">8. Streams: fixture-first, then object / action</h2>
+<p>Every message is <strong>one object and one action</strong>; topic and payload say the same thing. Topics are fixture-first so that *everything about one match* is a single subscription.</p>
+<pre>fixture-scoped   openbook / v1 / &lt;publisher-id&gt; / &lt;sport&gt; / fixture / &lt;fixture-id&gt; / &lt;object&gt; / &lt;action&gt;
+                 object ∈ fixture · odds · market · score · grade · lineup
+entity           openbook / v1 / &lt;publisher-id&gt; / &lt;sport&gt; / &lt;object&gt; / &lt;id&gt; / &lt;action&gt;
+                 object ∈ league · season · stage · participant · player
+publisher        openbook / v1 / &lt;publisher-id&gt; / publisher / &lt;action&gt;</pre>
+<ul>
+<li><strong><code>&lt;action&gt;</code></strong> — the JSON enum token: <code>snapshot</code> · <code>create</code> · <code>update</code> · <code>delete</code>, plus <strong><code>change</code> (odds only)</strong>, plus control actions <strong><code>snapshotComplete</code></strong> and <strong><code>heartbeat</code></strong> (Q46). <code>snapshotComplete</code> is camelCase on both topic and payload.</li>
+<li><strong><code>&lt;sport&gt;</code></strong> — the shared slug without prefix (<code>soccer</code>).</li>
+<li>Rules (after WMO WIS2): lowercase, <code>-</code> inside a level, no dots, unique per level; <code>+</code> matches one level, <code>#</code> the rest; <code>v1</code> bumps only on a breaking change to the grammar. Exception: <code>&lt;action&gt;</code> matches the JSON enum, so <code>snapshotComplete</code> is mixed-case.</li>
+</ul>
+<pre>openbook/v1/acme-feeds/soccer/fixture/EVT-88213/#                         everything about one match
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/odds/change               one match&#x27;s price moves
+openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/snapshotComplete    snapshot + replay finished
+openbook/v1/acme-feeds/soccer/fixture/+/odds/change                       all soccer price moves, one publisher
+openbook/v1/+/soccer/fixture/+/score/update                               every soccer score update, every publisher
+openbook/v1/acme-feeds/soccer/league/LG-17/update                         a league record changed
+openbook/v1/acme-feeds/publisher/heartbeat                                    feed-wide heartbeat</pre>
+<p>The same grammar is described for tooling in <a href="spec/asyncapi.yaml"><code>asyncapi.yaml</code></a> (Q42). MQTT is not required.</p>
+<h3 id="8-1-the-change-envelope">8.1 The change envelope</h3>
+<p>One envelope for every message (<a href="schema/change.schema.json"><code>../schema/change.schema.json</code></a>): <code>openbookVersion</code>, <code>sequence</code>, <code>datePublished</code>, <code>publisher</code>, <code>object</code>, <code>action</code>, <code>sport</code>, <code>id</code>, and <code>changes</code> — a Merge Patch against the object's document schema. <code>odds/change</code> carries its <code>markets[]</code> diff in <code>changes</code> (<a href="schema/odds_change.schema.json"><code>odds_change.schema.json</code></a>). <code>snapshotComplete</code> and <code>heartbeat</code> carry <code>changes: {}</code>. If intermediate ticks were dropped, that envelope MUST set <strong><code>conflated</code>: <code>true</code></strong> (Q47). <code>market/update</code> MAY carry <code>msgType</code> (<code>alert</code> · <code>update</code> · <code>cancel</code>), <code>reason</code> and <code>references[]</code> to prior sequences, after OASIS CAP 1.2. A void is a <code>market/update</code> to <code>void</code>; a corrected grade is <code>grade/delete</code> + <code>grade/create</code> with <code>supersedes</code>.</p>
+<h2 id="9-extensions">9. Extensions</h2>
+<p>Publishers MAY add <code>x_</code>-prefixed fields for vendor-specific extras. Publishers validate <strong>strictly</strong> against the schema (closed when you write). Consumers MUST ignore unrecognized <strong>fields</strong>, whether <code>x_</code>-prefixed or added in a later minor (Q37). Growable lists (<code>sport:*</code>, <code>market:*</code>, <code>segment:*</code>, <code>side</code>, <code>scoreUnit</code>, <code>statusReason</code>) have a catch-all (<code>unknown</code> / <code>other</code>). A conformant consumer MUST accept unrecognised <strong>values</strong> (carry them; MUST NOT crash). Adding a market type is not a breaking change (Q34). Publishers SHOULD use the catch-all rather than inventing an id; publisher-side validation MAY warn. New sports, segments and market types are also proposed to the shared vocabularies.</p>
+<h2 id="10-conformance">10. Conformance</h2>
+<ul>
+<li><strong>Level R</strong> — reference documents validate and carry the §6 facts.</li>
+<li><strong>Level L</strong> — messages validate, carry <code>sequence</code>, reference only known ids, honour Merge Patch semantics, deliver <code>odds/change</code> by push, and honour §5.1.</li>
+</ul>
+<p>The gate is this spec, the JSON Schemas, and the language-agnostic corpus in <a href="conformance/"><code>../conformance/</code></a> (Q40). Valid cases MUST be accepted; invalid cases MUST be rejected. <a href="../tools/validate.py"><code>../tools/validate.py</code></a> is one runner, not a language oracle.</p>
+<h2 id="11-versioning">11. Versioning</h2>
+<p>Semantic versioning per <a href="versioning.html"><code>../VERSIONING.md</code></a>. <code>-draft</code> marks an unfrozen version. Within a frozen major, compatibility is <strong>FULL-TRANSITIVE</strong> (Q32): minors only add optional fields; the required set does not shrink or grow. Freezing <strong>1.0</strong> requires two independent implementations (Q41).</p></article><p class="source">Source: spec/openbook.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>
