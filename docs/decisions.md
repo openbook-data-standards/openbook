@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q192 |
+| Maps leftover | Q181–Q193 |
 
 The entries below stay in the order they were taken.
 
@@ -2347,3 +2347,14 @@ Rejected: optional on a mapped id; park; stop this leftover.
 
 **Supersedes:** none of Q186 (required-on-unknown stays; this is that
 a mapped id does not carry a reason).
+
+## Q193 — Public key at most once per file — decided (A)
+
+In one file, the same public key appears **at most once**. The first
+public list name still waits (**Q184**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: duplicates allowed; uniqueness waits; stop this leftover.
+
+**Supersedes:** none of Q190 (array of rows stays; this is uniqueness).

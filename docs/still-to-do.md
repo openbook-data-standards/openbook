@@ -6,10 +6,11 @@ only on the unknown catch-all (**Q186**, **Q192**); leftover English,
 not a token list (**Q191**). One directory named for maps, not inside
 the vocab lists (**Q182**, **Q183**). One JSON file per public list when
 files exist (**Q187**, **Q188**): a JSON array of row objects (**Q190**);
-object keys wait (**Q189**). First public list name waits (**Q184**).
-Not a wire change. No file now. Not Q55. Not position token lists.
+object keys wait (**Q189**); a public key at most once per file
+(**Q193**). First public list name waits (**Q184**). Not a wire change.
+No file now. Not Q55. Not position token lists.
 
-Questions recorded through **Q192**. Catalog pass closed and on the wire.
+Questions recorded through **Q193**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -39,9 +40,9 @@ Reason only on the unknown catch-all (**Q186**, **Q192**); leftover
 English, not a token list (**Q191**). One directory named for maps, not
 inside the vocab lists (**Q182**, **Q183**). One JSON file per public
 list when files exist (**Q187**, **Q188**): a JSON array of row objects
-(**Q190**); object keys wait (**Q189**). Cite at least one public
-taxonomy. First public list name waits (**Q184**). Not a wire change.
-No file now.
+(**Q190**); object keys wait (**Q189**); a public key at most once per
+file (**Q193**). Cite at least one public taxonomy. First public list
+name waits (**Q184**). Not a wire change. No file now.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -153,6 +154,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q190** — when files exist, a JSON array of row objects; keys wait; name waits; no file in this pick.
 - **Q191** — reason is leftover English (a free string); do not invent a reason list; no file in this pick.
 - **Q192** — reason forbidden when the landing is an existing OpenBook id; no file in this pick.
+- **Q193** — in one file, a public key at most once; no file in this pick.
 
 ### Parked
 
@@ -170,9 +172,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q193.** In one file, may the same public key appear more than once? Rec: no; at most once; no file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q194.** Does row order in the file matter? Rec: no; do not invent a sort; no file now. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q192)
+## Done (Q32–Q193)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -223,3 +225,4 @@ feed list beside the validator. Not on the wire.
 **Q190** — when files exist, a JSON array of row objects.
 **Q191** — reason is leftover English (a free string); not a token list.
 **Q192** — reason forbidden when the landing is an existing OpenBook id.
+**Q193** — in one file, a public key at most once.

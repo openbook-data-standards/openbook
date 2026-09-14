@@ -168,6 +168,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   invent a reason list. No file in this pick. Not wired in this pick.
 - **Q192** — when the landing is an existing OpenBook id, a reason is
   forbidden. No file in this pick. Not wired in this pick.
+- **Q193** — in one file, a public key appears at most once. No file in
+  this pick. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
