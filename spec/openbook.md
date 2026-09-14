@@ -100,6 +100,31 @@ not**. A string to pin, never a runtime dependency.
 Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
 (`{propertyID, value}`). Optional, never canonical.
 
+### 3.5 Maps onto public taxonomies
+
+Public market and segment keys map onto existing OpenBook ids, or onto
+the unknown catch-all with a reason (Q181, Q185). This is not a feed
+document and is not on the odds wire.
+
+When files exist:
+
+- They live in **one directory named for maps**, not inside the vocab
+  lists (Q182, Q183).
+- **One JSON file per public list** (Q187, Q188).
+- Each file is a **JSON array of row objects** (Q199). JSON object keys
+  wait; do not invent names (Q189). Row meaning stays leftover English:
+  public key plus an existing OpenBook id, **or** the unknown catch-all
+  plus a reason.
+- A reason is leftover English (a free string), not a token list
+  (Q200). It is required only on the unknown catch-all and **forbidden**
+  when the landing is an existing OpenBook id (Q186, Q201).
+- In one file, a public key appears **at most once** (Q202). Row order
+  is not significant (Q203).
+
+The first public list name waits. Do not invent a taxonomy. No directory
+and no file until that name exists (Q184, Q215). Cite at least one
+public taxonomy when a list is named.
+
 ## 4. The hierarchy
 
 ```mermaid
