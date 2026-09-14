@@ -24,10 +24,11 @@ For what these words mean without ids, see
 
 | Id | Name | Shape | Sides |
 | --- | --- | --- | --- |
-| `market:correct-score` | Correct Score | correct-score | participant |
+| `market:correct-score` | Correct Score | correct-score | homeTotal / awayTotal; leftover other |
+
 | `market:both-teams-to-score` | Both Teams To Score | yes-no | yes, no |
 | `market:odd-even-total` | Total Odd/Even | yes-no | odd, even |
-| `market:winning-margin` | Winning Margin | n-way | participant |
+| `market:winning-margin` | Winning Margin | n-way | participant + outcome line; leftover other |
 | `market:race-to` | Race To (N points) | binary | home, away |
 
 ## Game props
@@ -36,7 +37,7 @@ For what these words mean without ids, see
 | --- | --- | --- | --- |
 | `market:first-to-score` | First To Score | n-way | home, away, none |
 | `market:will-there-be-overtime` | Overtime Yes/No | yes-no | yes, no |
-| `market:half-time-full-time` | Half-Time/Full-Time | n-way | participant |
+| `market:half-time-full-time` | Half-Time/Full-Time | n-way | halfTime + fullTime (home, away, draw) |
 
 ## Player props
 

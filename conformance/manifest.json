@@ -4,6 +4,7 @@
     {"path": "examples/fixture.example.json"},
     {"path": "examples/fixture_update.example.json"},
     {"path": "examples/grade.example.json"},
+    {"path": "examples/grade_htft.example.json"},
     {"path": "examples/lineup.example.json"},
     {"path": "examples/market.example.json"},
     {"path": "examples/market_update.example.json"},
@@ -42,6 +43,14 @@
     {
       "path": "conformance/invalid/alternate-name-too-long.json",
       "reason": "shared primitives are length-bounded; an alternateName over maxLength is rejected"
+    },
+    {
+      "path": "conformance/invalid/htft-missing-full-time.json",
+      "reason": "HT/FT row always has both halfTime and fullTime (Q110)"
+    },
+    {
+      "path": "conformance/invalid/prop-row-mix.json",
+      "reason": "a row does not mix boards (Q114)"
     }
   ]
 }

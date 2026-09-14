@@ -1404,3 +1404,13 @@ Not wired in this pick.
 Rejected: `none` as the leftover bucket.
 
 **Supersedes:** none of Q105.
+
+## Q117 — Prop-row pass closed — decided (A)
+
+Names and row rules for typed prop outcomes stop here. Plus-bands stay
+`side: other` until a band is named. Wire is Q105–Q116 on `market`,
+`odds/change`, and `grade`.
+
+Rejected: keep asking row-rule questions in this pass.
+
+**Supersedes:** Q106 “not wired in this pick”.
