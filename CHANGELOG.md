@@ -85,6 +85,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   participants. Not wired.
 - **Q151** — a win ticks when this game is down; not while live. Not
   wired.
+- **Q152** — the number is games won; integer; 0 allowed; no draw column.
+  Not wired.
 
 
 ### Removed
