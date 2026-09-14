@@ -5,6 +5,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Added
+- **Examples page** — [`docs/examples.md`](docs/examples.md) walks the
+  existing `examples/` documents in story order (GTFS-style sample feed,
+  not a sandbox). No wire change.
+
 ### Changed
 - **Docs readability** — three tracks: a non-technical
   [`docs/guide.md`](docs/guide.md), a human

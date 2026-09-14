@@ -155,7 +155,8 @@ half. If the score was wrong, they send a correction — they do not blow the
 whistle twice.
 
 That is the whole model: a printed list, a board that ticks, a result that
-is graded once.
+is graded once. The same story as JSON — on a real sample fixture — is the
+[examples page](examples.md).
 
 ---
 
@@ -175,7 +176,7 @@ not the transport.
 | --- | --- | --- |
 | Trading, ops, product, commercial | This guide | [Taxonomy](taxonomy.md) |
 | Matching teams and leagues across books | [Taxonomy](taxonomy.md) | Spec §3 and §6 |
-| Building a publisher or importer | [Specification](../spec/openbook.md) | [Schemas](../schema/) |
+| Building a publisher or importer | [Specification](../spec/openbook.md) | [Examples](examples.md) then [Schemas](../schema/) |
 | Asking *why* a rule exists | [Decision log](decisions.md) | — |
 
 OpenBook is **not** a pricing engine, a matching service, or a requirement
@@ -188,6 +189,7 @@ to open your models. It is the shared shape of the file you emit.
 | If you want… | Read |
 | --- | --- |
 | Shared names for sports, bets, slices | [Taxonomy](taxonomy.md) then the [id lists](../vocabularies/) |
+| The same story as JSON | [Examples](examples.md) |
 | The rules implementers must follow | [The specification](../spec/openbook.md) |
 | Why a rule exists | [Decision log](decisions.md) |
 | Machine-checkable shapes | [JSON Schemas](../schema/) |

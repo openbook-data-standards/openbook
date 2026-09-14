@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBook in plain language — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/guide.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./guide.html" aria-current="page">Guide</a>
+    <a href="./examples.html">Examples</a>
+    <a href="./spec.html">Spec</a>
+    <a href="./taxonomy.html">Taxonomy</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · docs/guide.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#what-it-is">What it is</a><a href="#two-layers-like-a-matchday-board">Two layers, like a matchday board</a><a href="#how-a-match-is-organised">How a match is organised</a><a href="#three-kinds-of-what-s-going-on">Three kinds of “what’s going on?”</a><a href="#a-saturday-in-one-story">A Saturday, in one story</a><a href="#what-you-subscribe-to">What you subscribe to</a><a href="#who-should-read-what">Who should read what</a><a href="#where-to-go-next">Where to go next</a></nav><article class="doc"><h1 id="openbook-in-plain-language">OpenBook in plain language</h1>
+<p>This page is for people who need to <strong>understand</strong> OpenBook, not implement it. No RFC keywords. No topic grammar. Those live in the <a href="spec.html">specification</a>.</p>
+<p>The shared lists of sports, bet types, and match slices live in the <a href="taxonomy.md">taxonomy</a> — separate again, so you can talk about “what a total is” without talking about JSON.</p>
+<hr>
+<h2 id="what-it-is">What it is</h2>
+<p>OpenBook is a <strong>shared way to write down sportsbook data</strong> so that:</p>
+<ul>
+<li>a sportsbook can publish its own prices</li>
+<li>a feed can carry many books in one stream</li>
+<li>a consumer (trader, screen, researcher, regulator, another book) can read every publisher with <strong>one</strong> importer</li>
+</ul>
+<p>It is only the data contract. How a book prices, models, or hedges stays private. Think of a bus timetable standard: every agency publishes the same <em>shape</em> of file; nobody has to reveal how they schedule the buses.</p>
+<pre class="mermaid">flowchart LR
+  book[Sportsbook] --&gt; feed[OpenBook feed]
+  aggregator[Odds feed] --&gt; feed
+  feed --&gt; trader[Trader]
+  feed --&gt; screen[Screen / TV]
+  feed --&gt; other[Another book]</pre>
+<p>Three roles:</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th>Everyday meaning</th></tr></thead><tbody><tr><td>Publisher</td><td>Whoever <em>transmits</em> the feed (a book, or a company that carries books)</td></tr><tr><td>Source</td><td>Whose odds a price actually is — every price names this</td></tr><tr><td>Consumer</td><td>Whoever <em>reads</em> feeds</td></tr></tbody></table></div>
+<p>One feed may carry many sources, the way one transit file can list many bus operators.</p>
+<hr>
+<h2 id="two-layers-like-a-matchday-board">Two layers, like a matchday board</h2>
+<div class="table-wrap"><table><thead><tr><th>Layer</th><th>What it is</th><th>Sportsbook feel</th></tr></thead><tbody><tr><td>Catalogue</td><td>The durable facts: which league, which teams, which match, which kind of bet</td><td>The printed fixture list</td></tr><tr><td>Live wire</td><td>Only what <em>changed</em>: a price tick, a goal, a market coming off</td><td>The board that keeps updating</td></tr></tbody></table></div>
+<p>You do not re-send the whole board every time Arsenal’s moneyline moves a tick. You send the tick. If someone joins late, they get a <strong>snapshot</strong> (the board as it stands) and then the ticks from that point on.</p>
+<pre class="mermaid">flowchart TB
+  snap[Snapshot: the board as it is] --&gt; replay[Catch-up ticks]
+  replay --&gt; live[Live ticks]</pre>
+<hr>
+<h2 id="how-a-match-is-organised">How a match is organised</h2>
+<p>A <strong>fixture</strong> is the thing you price: Arsenal vs Chelsea, Saturday 15:00.</p>
+<p>Around it:</p>
+<pre class="mermaid">flowchart TB
+  sport[Sport: soccer] --&gt; league[League: Premier League]
+  league --&gt; season[Season: 2025-26]
+  season --&gt; stage[Stage: Matchday 8]
+  stage --&gt; fixture[Fixture: Arsenal vs Chelsea]
+  fixture --&gt; segment[Segments: 1st half, 2nd half, full time]
+  sport --&gt; team[Participants: Arsenal, Chelsea]</pre>
+<ul>
+<li>A <strong>league</strong> is any recurring competition — league, cup, tournament, series. The FA Cup and the Premier League are both leagues in this sense.</li>
+<li>A <strong>participant</strong> is a team <em>or</em> a person (a tennis player, a driver). The same club can play the league and the cup in one week, so participants belong to a sport, not to a single league.</li>
+<li>A <strong>player</strong> is roster membership: this person, in this team, this number.</li>
+<li>A <strong>segment</strong> is a <em>slice inside</em> the match (first half, set 3, Q1). It is not a separate match.</li>
+</ul>
+<p>Formula 1 is the useful exception: Qualifying, Sprint and Race are three <strong>fixtures</strong> in one round. Q1 / Q2 / Q3 are segments of Qualifying.</p>
+<p>The shared names for sports, segments and bet types are the <a href="taxonomy.md">taxonomy</a>. Team names and match ids stay the publisher’s own; OpenBook does not mint those.</p>
+<hr>
+<h2 id="three-kinds-of-what-s-going-on">Three kinds of “what’s going on?”</h2>
+<p>These are easy to mix up. They answer three different questions.</p>
+<div class="table-wrap"><table><thead><tr><th>Question</th><th>Everyday</th><th>Example</th></tr></thead><tbody><tr><td>Is the event happening?</td><td>Fixture status</td><td>scheduled → live → ended</td></tr><tr><td>Where is the match, and is this slice finished?</td><td>Segment status</td><td>1st half live; full time <strong>down</strong> (final)</td></tr><tr><td>Can you still bet this market?</td><td>Market status</td><td>open / suspended / closed / void</td></tr></tbody></table></div>
+<p><strong>Down</strong> on a segment means that slice is finished for grading. It happens once. A wrong score later is an <em>erratum</em> (a correction), not a second whistle.</p>
+<p>Taking a market off the board is a market status — not a fake price of zero.</p>
+<pre class="mermaid">flowchart LR
+  subgraph match [The match]
+    scheduled --&gt; live --&gt; ended
+  end
+  subgraph slice [A slice of the match]
+    pending --&gt; playing[live]
+    playing --&gt; down[down: final]
+  end
+  subgraph board [This bet]
+    open --&gt; suspended
+    open --&gt; closed
+    open --&gt; voided[void]
+  end</pre>
+<hr>
+<h2 id="a-saturday-in-one-story">A Saturday, in one story</h2>
+<p>Arsenal vs Chelsea, Premier League, 15:00.</p>
+<p><strong>Before kick-off</strong> the catalogue already says: this is soccer, this is the Premier League, these two clubs, this start time. The board is offering a moneyline, a spread, and a 2.5 total — three <em>kinds</em> of bet, each from a named book.</p>
+<p><strong>During the match</strong> only the moving parts go out:</p>
+<ol>
+<li>A tick — the over 2.5 shortens from 1.90 to 1.95. One price, not a new fixture list.</li>
+<li>A goal — the score object updates; the clock keeps running.</li>
+<li>The book takes a market off — that is a <em>status</em> on the market, not a pretend price of zero.</li>
+</ol>
+<p><strong>At full time</strong> the full-time slice is marked finished (once). Markets on that slice close. The book then <em>grades</em> each market: win, lose, void, or half. If the score was wrong, they send a correction — they do not blow the whistle twice.</p>
+<p>That is the whole model: a printed list, a board that ticks, a result that is graded once. The same story as JSON — on a real sample fixture — is the <a href="examples.md">examples page</a>.</p>
+<hr>
+<h2 id="what-you-subscribe-to">What you subscribe to</h2>
+<p>Everything about one match hangs off that match. If you care about Arsenal vs Chelsea, you follow that fixture: prices, score, markets coming off, grades.</p>
+<p>You do not need MQTT, or any particular pipe. OpenBook names the <em>message</em>, not the transport.</p>
+<hr>
+<h2 id="who-should-read-what">Who should read what</h2>
+<div class="table-wrap"><table><thead><tr><th>You are…</th><th>Start here</th><th>Then</th></tr></thead><tbody><tr><td>Trading, ops, product, commercial</td><td>This guide</td><td><a href="taxonomy.md">Taxonomy</a></td></tr><tr><td>Matching teams and leagues across books</td><td><a href="taxonomy.md">Taxonomy</a></td><td>Spec §3 and §6</td></tr><tr><td>Building a publisher or importer</td><td><a href="spec.html">Specification</a></td><td><a href="examples.md">Examples</a> then <a href="schemas.html">Schemas</a></td></tr><tr><td>Asking <em>why</em> a rule exists</td><td><a href="decisions.md">Decision log</a></td><td>—</td></tr></tbody></table></div>
+<p>OpenBook is <strong>not</strong> a pricing engine, a matching service, or a requirement to open your models. It is the shared shape of the file you emit.</p>
+<hr>
+<h2 id="where-to-go-next">Where to go next</h2>
+<div class="table-wrap"><table><thead><tr><th>If you want…</th><th>Read</th></tr></thead><tbody><tr><td>Shared names for sports, bets, slices</td><td><a href="taxonomy.md">Taxonomy</a> then the <a href="vocabularies/">id lists</a></td></tr><tr><td>The same story as JSON</td><td><a href="examples.md">Examples</a></td></tr><tr><td>The rules implementers must follow</td><td><a href="spec.html">The specification</a></td></tr><tr><td>Why a rule exists</td><td><a href="decisions.md">Decision log</a></td></tr><tr><td>Machine-checkable shapes</td><td><a href="schemas.html">JSON Schemas</a></td></tr></tbody></table></div></article></div><p class="source">Source: docs/guide.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "dark",
+    securityLevel: "strict",
+    themeVariables: {
+      background: "#0f141e",
+      primaryColor: "#15233f",
+      primaryTextColor: "#f4f7fb",
+      primaryBorderColor: "#4c8dff",
+      lineColor: "#8b93b0",
+      secondaryColor: "#1c2438",
+      tertiaryColor: "#171d2b",
+      mainBkg: "#171d2b",
+      nodeBorder: "#4c8dff",
+      clusterBkg: "#171d2b",
+      titleColor: "#f4f7fb",
+      edgeLabelBackground: "#171d2b"
+    }
+  });
+</script>
+</body>
+</html>

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 NAV = [
     ("guide.html", "Guide"),
+    ("examples.html", "Examples"),
     ("spec.html", "Spec"),
     ("taxonomy.html", "Taxonomy"),
     ("vocabularies/", "Vocabularies"),
@@ -22,8 +23,8 @@ PAGE_MAP = {
     "../spec/openbook.md": "spec.html",
     "docs/guide.md": "guide.html",
     "../docs/guide.md": "guide.html",
-    "docs/taxonomy.md": "taxonomy.html",
-    "../docs/taxonomy.md": "taxonomy.html",
+    "docs/examples.md": "examples.html",
+    "../docs/examples.md": "examples.html",
     "asyncapi.yaml": "spec/asyncapi.yaml",
     "../spec/asyncapi.yaml": "spec/asyncapi.yaml",
     "docs/decisions.md": "decisions.html",
@@ -52,8 +53,8 @@ PAGE_MAP = {
     "vocabularies/": "vocabularies/",
     "../schema/": "schemas.html",
     "schema/": "schemas.html",
-    "../examples/": "schemas.html#examples",
-    "examples/": "schemas.html#examples",
+    "../examples/": "examples.html",
+    "examples/": "examples.html",
     "../conformance/": "conformance/",
     "conformance/": "conformance/",
     "../conformance/README.md": "conformance/",
@@ -132,6 +133,15 @@ def md_to_html(md: str, depth: int) -> tuple[str, list[tuple[str, str]]]:
 
     while i < len(lines):
         line = lines[i]
+        if line.strip().startswith("<!-- include:") and line.strip().endswith("-->"):
+            close_lists()
+            rel = line.strip()[len("<!-- include:") :].removesuffix("-->").strip()
+            src = ROOT / rel
+            if not src.is_file() or not src.resolve().is_relative_to(ROOT):
+                raise FileNotFoundError(f"include not found: {rel}")
+            out.append("<pre>" + html.escape(src.read_text().rstrip()) + "</pre>")
+            i += 1
+            continue
         if line.startswith("```"):
             close_lists()
             lang = line[3:].strip()
@@ -367,8 +377,9 @@ def schemas_page() -> str:
         "<p>Draft 2020-12. These files are the machine-normative field definitions. "
         "Each <code>$id</code> is this same URL on GitHub Pages.</p>"
         + "".join(blocks)
-        + '<h1 id="examples">Examples</h1>'
-        "<p>Worked documents that validate against the schemas.</p>"
+        + '<h1 id="examples">Examples (raw files)</h1>'
+        '<p>The story-order walkthrough is the <a href="examples.html">examples page</a>. '
+        "These are the same files, listed for implementers.</p>"
         + "".join(example_blocks())
         + "</article></div>"
     )
@@ -430,6 +441,7 @@ def vocab_index() -> str:
 
 def main() -> None:
     write_md_page(ROOT / "docs/guide.md", ROOT / "guide.html", 0, "guide.html", "docs/guide.md")
+    write_md_page(ROOT / "docs/examples.md", ROOT / "examples.html", 0, "examples.html", "docs/examples.md")
     write_md_page(ROOT / "docs/taxonomy.md", ROOT / "taxonomy.html", 0, "taxonomy.html", "docs/taxonomy.md")
     write_md_page(ROOT / "spec/openbook.md", ROOT / "spec.html", 0, "spec.html", "spec/openbook.md")
     write_md_page(ROOT / "docs/decisions.md", ROOT / "decisions.html", 0, "decisions.html", "docs/decisions.md")
@@ -445,7 +457,6 @@ def main() -> None:
     write_redirect(ROOT / "vocabularies/sports.html", "./#sports", "vocabularies/#sports")
     write_redirect(ROOT / "vocabularies/segments.html", "./#segments", "vocabularies/#segments")
     (ROOT / "schemas.html").write_text(schemas_page())
-    write_redirect(ROOT / "examples.html", "./schemas.html#examples", "schemas.html#examples")
     write_md_page(ROOT / "conformance/README.md", ROOT / "conformance/index.html", 1, "conformance/", "conformance/README.md")
     (ROOT / ".nojekyll").write_text("")
     print("wrote HTML pages")

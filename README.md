@@ -15,7 +15,7 @@
 
 
 **Status:** `v0.3.0-draft` · working draft, not yet published · started 2026-09-12
-**Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The documents:** [plain-language guide](docs/guide.md) · [taxonomy](docs/taxonomy.md) · [specification](spec/openbook.md)
+**Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The documents:** [plain-language guide](docs/guide.md) · [examples](docs/examples.md) · [taxonomy](docs/taxonomy.md) · [specification](spec/openbook.md)
 
 OpenBook is an open standard for exchanging **sportsbook & gambling data** —
 the reference catalog (sports, leagues, fixtures, markets) and the live wire
@@ -54,6 +54,7 @@ openbook/  (this repository)
   index.html                ← project homepage (GitHub Pages)
   docs/
     guide.md              ← plain-language walkthrough (non-normative)
+    examples.md           ← one match, in order (GTFS-style sample feed)
     taxonomy.md           ← shared lists explained without wire rules
     decisions.md            ← the design decision log
   spec/

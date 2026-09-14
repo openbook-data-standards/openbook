@@ -22,13 +22,16 @@
     </svg>
     OpenBook</a>
   <nav>
+    <a href="./guide.html">Guide</a>
+    <a href="./examples.html">Examples</a>
     <a href="./spec.html">Spec</a>
+    <a href="./taxonomy.html">Taxonomy</a>
     <a href="./vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · VERSIONING.md</p><nav class="page-toc"><strong>On this page</strong><a href="#compatibility-within-a-frozen-major-q32">Compatibility within a frozen major (Q32)</a><a href="#rules">Rules</a></nav><article class="doc"><h1 id="versioning">Versioning</h1>
+<p class="crumb"><a href="./">Home</a> · VERSIONING.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#compatibility-within-a-frozen-major-q32">Compatibility within a frozen major (Q32)</a><a href="#rules">Rules</a></nav><article class="doc"><h1 id="versioning">Versioning</h1>
 <p>OpenBook uses semantic versioning: <code>MAJOR.MINOR.PATCH</code>.</p>
 <ul>
 <li><strong>MAJOR</strong> — a breaking change to the wire: a field removed or retyped, a required field added, a canonical id semantics change.</li>
@@ -43,7 +46,7 @@
 <li>No field is re-typed or removed within a major.</li>
 <li>The required set is permanent within a major (keep it small).</li>
 </ul>
-<p>This is the Confluent Schema Registry FULL + TRANSITIVE *idea*, adapted to JSON Schema (instance compatibility, not Avro reader/writer resolution). A machine schema-diff gate is not part of this decision.</p>
+<p>This is the Confluent Schema Registry FULL + TRANSITIVE <em>idea</em>, adapted to JSON Schema (instance compatibility, not Avro reader/writer resolution). A machine schema-diff gate is not part of this decision.</p>
 <h2 id="rules">Rules</h2>
 <ul>
 <li>Every object and message carries <code>openbookVersion</code>, the version it was produced against.</li>
@@ -52,7 +55,7 @@
 <li>Pre-1.0 (<code>0.x</code>) the wire may still change between MINOR versions; the <code>-draft</code> suffix marks a version that is not yet frozen. Q32 is the intended 1.0 contract; it is not a 0.x freeze.</li>
 <li><strong>Freezing 1.0</strong> requires two independent implementations: one producer and one consumer, neither of which is <a href="tools/validate.py"><code>tools/validate.py</code></a> (Q41). That gate does not apply to 0.x or to each MINOR.</li>
 </ul>
-<p>The current version is recorded in <a href="changelog.html"><code>CHANGELOG.md</code></a>.</p></article><p class="source">Source: VERSIONING.md</p>
+<p>The current version is recorded in <a href="changelog.html"><code>CHANGELOG.md</code></a>.</p></article></div><p class="source">Source: VERSIONING.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
@@ -68,5 +71,6 @@
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
+
 </body>
 </html>
