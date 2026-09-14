@@ -121,6 +121,24 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `position`. Token lists wait. Not Q55. Not a version cut. Not wired
   in this pick.
 
+- **Q174** — keep optional `position`; growable per-sport shared ids;
+  unknown tokens tolerated (Q34). Not a closed world list. Not a second
+  field. Not ISO. Token lists wait. Not wired in this pick.
+- **Q175** — when tokens exist: one vocab file like the other shared
+  lists. Schema `position` stays a string. Not a closed enum. No file in
+  this pick. Token lists wait. Not wired in this pick.
+- **Q176** — position ids use the Q5 short-form family, with the sport
+  in the id like segments. Prefix and tokens wait. Not wired in this
+  pick.
+- **Q177** — first word of position ids is `position`. Tokens wait. Not
+  wired in this pick.
+- **Q178** — catch-all same pattern as segments (Q34). Token lists wait.
+  Not wired in this pick.
+- **Q179** — when the file exists it is named for positions, same folder
+  as the other shared lists. No file in this pick. Token lists wait.
+  Not wired in this pick.
+- **Q180** — position-vocab shape is logged. Token lists wait. Spec walk
+  stopped. Not Q55. Not a version cut. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

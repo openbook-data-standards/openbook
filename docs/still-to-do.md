@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q173**. Catalog pass closed and on the wire.
+Questions recorded through **Q180**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -17,16 +17,30 @@ next leftover was unnamed (**Q168**). Named leftovers exhausted; spec
 walk stopped (**Q169**), then Q76 position vocab unparked (**Q170**).
 Roadmap pass closed (**Q171–Q173**): register not an entity database;
 profiles are separate specifications; feed list is validator tooling.
+Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
+(**Q180**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
+**Stopped (Q180).** Position-vocab shape is logged. Token lists wait.
+No file.
+
+## Goal (previous — Q76 position vocab shape, closed)
+
+**Per-sport position vocab (Q76).** Field stays `position`. Growable
+per-sport shared ids (**Q174**). One vocab file when lists exist,
+named for positions (**Q175**, **Q179**). Short-form like Q5; sport in
+the id like segments (**Q176**). First word is `position` (**Q177**).
+Catch-all like segments (**Q178**). Token lists wait. No file.
+
+## Goal (previous — roadmap, closed)
+
 **Closed.** Roadmap logged. Register is prefixes + optional fixture
 fingerprint + anchors, not an OpenBook-run entity database (**Q171**).
 Profiles are separate specifications (**Q172**). Feed list lives beside
-the validator (**Q173**). Q76 position vocab stays the leftover walk
-(**Q170**); token lists wait. No wire change.
+the validator (**Q173**). No wire change.
 
 ## Goal (previous — named leftovers, closed)
 
@@ -103,6 +117,13 @@ over/under. No new market type. No new field. On the wire.
 - **Q171** — register, not registry.
 - **Q172** — profiles are separate specifications.
 - **Q173** — feed list beside the validator (Q94 stands).
+- **Q174** — keep optional `position`; growable per-sport shared ids; unknown OK (**Q34**); not a second field; not ISO; token lists wait.
+- **Q175** — one vocab file like the other shared lists; schema `position` stays a string; no enum; no file in this pick.
+- **Q176** — short-form family as Q5; sport in the id like segments; prefix and tokens wait.
+- **Q177** — first word is `position`; tokens wait.
+- **Q178** — catch-all same pattern as segments (**Q34**); lists wait.
+- **Q179** — named for positions, same folder as the other shared lists; no file in this pick.
+- **Q180** — stop this spec walk. Shape logged. Token lists wait.
 
 ### Parked
 
@@ -120,16 +141,12 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- **Q174** — first product question of the Q76 position-vocab walk.
-  Rec: keep existing optional `position`; growable per-sport shared
-  ids; unknown tokens tolerated (Q34); not one closed world list; not
-  a second field; not ISO; token lists wait. A pasted letter is not
-  implement. Wire is a separate ask.
-- Maps in a crosswalks directory: public market / segment keys onto
-  existing OpenBook ids, or the unknown catch-all with a reason. Cite at
-  least one public taxonomy. Not a wire change.
+- None. This spec walk stopped (**Q180**). Resume when token lists are
+  unparked, or when you pick the next leftover. Maps in a crosswalks
+  directory wait (public market / segment keys onto existing OpenBook
+  ids, or the unknown catch-all with a reason).
 
-## Done (Q32–Q173)
+## Done (Q32–Q180)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -161,3 +178,5 @@ pass closed.
 **Q170** — Q76 per-sport position vocab this walk; field stays `position`; token lists wait.
 **Q171–Q173** — roadmap: register not a registry; profiles separate;
 feed list beside the validator. Not on the wire.
+**Q174–Q179** — Q76 position-vocab shape logged; token lists wait; no file.
+**Q180** — stop this spec walk.
