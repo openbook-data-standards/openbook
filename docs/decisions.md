@@ -1613,3 +1613,14 @@ Rejected: series only; stall only; toss only.
 
 **Supersedes:** none of Q134 (the leftovers list). Says the pass is all
 three, not one first.
+
+## Q136 — Still not keys on every fixture — decided (A)
+
+Stall, toss, and series stay off the generic fixture. Keep Q86. Home is
+stage, a live object, or a sport slice, decided per leftover.
+
+Not wired in this pick.
+
+Rejected: reopen Q86; put them on the generic fixture.
+
+**Supersedes:** none of Q86 (same rule, now for this walk).
