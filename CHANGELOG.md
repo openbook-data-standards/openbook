@@ -241,6 +241,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q218** — first public list leftover English: market types from a
   public exchange already cited in this spec (Betfair Stream). No rows.
   No JSON object keys. No file. Not wired in this pick.
+- **Q219** — when a file exists it is named for that public list. JSON
+  object keys still wait. No file. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

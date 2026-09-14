@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q219 |
 
 The entries below stay in the order they were taken.
 
@@ -2666,3 +2666,16 @@ first; name still waits.
 
 **Supersedes:** Q184 “first public list name waits” (this is the leftover
 English name); Q210 as an open wait; Q217 as an open “what is next”.
+
+## Q219 — File named for that public list — decided (A)
+
+When a file exists it is **named for that public list**. JSON object
+keys still wait (**Q189**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: a generic leftover-English name that does not name the
+exchange; file name waits until keys exist; stop this leftover.
+
+**Supersedes:** none of Q187 (one file per list stays; this is that the
+file is named for the list in Q218).
