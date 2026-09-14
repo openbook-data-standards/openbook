@@ -1325,3 +1325,14 @@ Rejected: the full `side` list on those two fields.
 
 **Supersedes:** Q105 “each a side of home · away · draw” (same three,
 now exclusive).
+
+## Q110 — HT/FT is always a pair — decided (A)
+
+An HT/FT row always has both `halfTime` and `fullTime`. A listed
+result is a pair (home then draw, away then home, …).
+
+Not wired in this pick.
+
+Rejected: one of the two missing.
+
+**Supersedes:** none of Q109.
