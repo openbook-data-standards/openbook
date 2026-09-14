@@ -26,6 +26,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
+| Position vocab | Q76 · Q170 · Q174–Q180 |
 
 The entries below stay in the order they were taken.
 
@@ -2105,3 +2106,89 @@ Rejected: a spec-owned manifest of many publishers on discovery; no list
 of known feeds anywhere.
 
 **Supersedes:** none of Q94.
+
+## Q174 — Position vocab shape — decided (A)
+
+Keep existing optional `position`. Growable per-sport shared ids.
+Unknown tokens tolerated (**Q34**). Not one closed world list. Not a
+second field. Not ISO. Token lists wait.
+
+Not wired in this pick.
+
+Rejected: free string forever with no shared ids; required shared ids
+now; drop `position`.
+
+**Supersedes:** Q76 “optional free string” as the end state (same field;
+shared ids when listed).
+
+## Q175 — Where position tokens live — decided (A)
+
+When tokens exist: **one vocab file**, same family as the other shared
+lists. Schema `position` stays a string. Not a closed enum. No file in
+this pick. Token lists wait.
+
+Not wired in this pick.
+
+Rejected: enum in `common.schema.json`; spec leftover English only; one
+file per sport now.
+
+**Supersedes:** none of Q174 (shape stays; this is where lists go).
+
+## Q176 — How position ids are spelled — decided (A)
+
+Same short-form family as **Q5**, with the sport in the id like
+segments. Prefix and tokens wait.
+
+Not wired in this pick.
+
+Rejected: bare codes with no sport in the id; formal URN only; stop
+this leftover.
+
+**Supersedes:** none of Q175.
+
+## Q177 — First word of position ids — decided (A)
+
+The first word matches the field: `position`. Tokens wait.
+
+Not wired in this pick.
+
+Rejected: reuse `sport`; no first word; leave unset and stop.
+
+**Supersedes:** Q176 “prefix waits”.
+
+## Q178 — Position catch-all — decided (A)
+
+Same pattern as segments (**Q34**): unknown in the sport slot and the
+token slot. Token lists wait.
+
+Not wired in this pick.
+
+Rejected: `other` like some schema enums; no catch-all id; stop this
+leftover.
+
+**Supersedes:** none of Q177.
+
+## Q179 — Position list file name — decided (A)
+
+When the file exists it is **named for positions**, same folder as the
+other shared lists. No file in this pick. Token lists wait.
+
+Not wired in this pick.
+
+Rejected: put the rows in `sports`; put the rows in `segments`; stop
+this leftover.
+
+**Supersedes:** none of Q175 (still one file; this is its leftover
+English name).
+
+## Q180 — Stop this spec walk — decided (A)
+
+Position-vocab shape is logged. Token lists wait. This walk **stops**.
+Not Q55. Not a version cut. Not inventing the first sport’s tokens.
+No file. No new field.
+
+Not wired in this pick.
+
+Rejected: start listing tokens now; unpark Q55; cut a new draft version.
+
+**Supersedes:** Q179 as an open “what is next” (shape stays).
