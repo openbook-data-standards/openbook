@@ -1580,3 +1580,12 @@ Rejected: keep asking yes/no player questions in this pass.
 
 **Supersedes:** Q126 as an open walk (the area is decided; the pass is
 closed).
+
+## Q133 — Stop this spec walk — decided (A)
+
+No new board until named. Q86 stays parked (needs a payload). Yes/no
+player row rules are written in this pick (no new field).
+
+Rejected: unpark Q86; a new book-feed walk.
+
+**Supersedes:** Q132 as an open “what is next”.

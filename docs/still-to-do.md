@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q132**. Catalog pass closed and on the wire.
+Questions recorded through **Q133**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -46,6 +46,7 @@ until implement.
 - **Q126–Q132** — player on yes/no rows: same player id; always present;
   leftover `other` not used; `no` optional; one market, many rows; no
   market `line`; pass closed.
+- **Q133** — stop this spec walk. No new board until named.
 
 ### Parked
 
@@ -60,9 +61,9 @@ until implement.
 
 ## Next question (not decided)
 
-- What is next?
+- None. This spec walk stopped (**Q133**).
 
-## Done (Q32–Q132)
+## Done (Q32–Q133)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -81,3 +82,4 @@ pass closed.
 `odds/change`, and `grade`; who + `atLeast`; not exact `line`; leftover
 `other` still allowed; pass closed.
 **Q126–Q132** — player on yes/no rows; pass closed; not on the wire.
+**Q133** — stop this spec walk.
