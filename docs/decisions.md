@@ -1414,3 +1414,12 @@ Names and row rules for typed prop outcomes stop here. Plus-bands stay
 Rejected: keep asking row-rule questions in this pass.
 
 **Supersedes:** Q106 “not wired in this pick”.
+
+## Q118 — Next area is plus-bands — decided (A)
+
+This walk names winning-margin plus-bands (`3+`). They stay `side: other`
+until the name in a later Q. Not wired in this pick.
+
+Rejected: a new feed walk; stop for a Q86 payload.
+
+**Supersedes:** Q117 “until a band is named” (this is that walk).
