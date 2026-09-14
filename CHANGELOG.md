@@ -35,6 +35,20 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q88** — optional `throws` and `bats` on `player` (`left` · `right` ·
   `both`).
 - **Q80** — `lineup` live object: fixture-keyed roster `player` ids.
+- Plan: cover the Pinnacle Lines API
+  ([`docs/still-to-do.md`](docs/still-to-do.md)). No wire change in that note.
+- **Q97** — Pinnacle specials are markets; no new object (log only).
+- **Q98** — optional `basis` on `market` and `odds/change` (same `scoreUnit`
+  list as score/grade). Omit = sport/league `primaryUnit`. Identity includes
+  `basis`. Not a new `market:*` id.
+- **Q99** — spec only: period offline is a `marketStatus` fan-out; settled
+  stays segment `down` + `grade`. No new fields.
+- **Q100** — no parlay/teaser flags on the fixture (log only).
+- **Q101** — one fixture; `eventStatus` is live. `superEvent` is not a
+  live/pregame pair.
+- **Q102** — keep `sport:*` ids; map vendor integers with `identifier` /
+  `sameAs` (log only).
+- **Q103** — market `limit` is enough; Get Line is out of scope (log only).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

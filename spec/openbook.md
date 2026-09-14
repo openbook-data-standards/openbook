@@ -286,7 +286,12 @@ flowchart TB
 
 Rules: `eventStatus: ended` ⇒ every segment `down`. A market whose segment is
 `down` MUST be `closed` or `void`. A `grade` MAY only reference a `down`
-segment.
+segment. `segmentStatus: paused` is halt on the field, not odds offline.
+A period taken off the board is a fan-out of `marketStatus` on markets with
+that `segment` (Q99). Prefer the affected markets; bulk only when the book
+took the whole period down. Progress lives on `score`, not on odds. There
+is no betting-open flag on the fixture or the segment. Graded is the `grade`
+object, not `marketStatus`.
 
 **Corrections without settling twice** (Q31): a downed segment's
 `status` and `downAt` never change. A publisher correcting a result sends
@@ -330,16 +335,17 @@ fixture list. Live objects are the board that keeps moving.
 | `stage` | Own id, `season`, `name`, `parent`, `stageType` (phase · group · round · matchday · leg · seriesGame), `order`, optional `startDate` / `endDate` |
 | `participant` | Own id, `participantType` (team · individual), `sport`, `territory`, `sameAs`. Required `name` (popular/board). Optional `shortName`, `names` (ISO 639-1), `nameLatin` (ISO 9 / ISO 843), `alternateName[]`. **Teams** MAY add `location` + `nickname`, `registeredName`, `abbreviation`. **Individuals** MAY add `givenName` / `familyName` (vCard RFC 6350 / ITU X.520); no `abbreviation`. No league field. Fixture `participants[]` copies `name` plus `role` and `order` |
 | `player` | Roster membership: own id, `participant` (the person), `team` (the team participant), `position`, `number`. Optional `throws` and `bats` (`left` · `right` · `both`). No name fields |
-| `fixture` | §6 plus `eventStatus`, `cutoffDate`, `superEvent` (a live event's pregame parent), optional display `name`, `location` (nested schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`, optional WGS 84 `latitude` / `longitude`), optional `surface` |
+| `fixture` | §6 plus `eventStatus`, `cutoffDate`, optional `superEvent` (schema.org; **not** a live/pregame pair — Q101: one fixture, `eventStatus` is live), optional display `name`, `location` (nested schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`, optional WGS 84 `latitude` / `longitude`), optional `surface` |
 
 ### 7.2 Live
 
 | Object | What it is |
 | --- | --- |
-| `market` | A fixture's market as priced by one source: `fixture`, `marketType`, `segment`, `line`, `source`, `provenance` (`official` · `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's `baseCurrency` (required on the market document / snapshot), `outcomes[]` (`side`, `odds`, `line`, `active`). Identity: `(source, fixture, marketType, segment, line)`. Price-only ticks (`odds/change`) do not repeat `limit` unless it changed. **Most specific wins** (Q45): market `limit` → league `limit` → sport `limit`. A priced market MUST resolve to a limit |
+| `market` | A fixture's market as priced by one source: `fixture`, `marketType`, `segment`, `line`, `source`, `provenance` (`official` · `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's `baseCurrency` (required on the market document / snapshot), `outcomes[]` (`side`, `odds`, `line`, `active`). Optional `basis` (same `scoreUnit` list as score/grade). If omitted, sport/league `primaryUnit`. Not a new market type (Q98). Identity: `(source, fixture, marketType, segment, line, basis)`. Price-only ticks (`odds/change`) do not repeat `limit` unless it changed. **Most specific wins** (Q45): market `limit` → league `limit` → sport `limit`. A priced market MUST resolve to a limit |
 | `score` | `fixture`, `eventStatus` (+ `statusReason`), `segments[]` (each `segment`, `status`, `downAt`), `currentSegment`, `clock` (`elapsed` / `remaining` in integer seconds, `running`, broadcast `display`), and `scores[]` — **one line per participant × unit** (`goals`, `corners`, `sets`, `games`, `runs`, `hits`…) with `total` and `bySegment`. The sport / league declares its `primaryUnit`. `server` for racket sports |
 | `lineup` | Starting roster `player` ids for one `fixture` (Q80). Not on the catalog fixture. No formation, substitutions, or predicted lineup (Q82) |
 | `grade` | The book's judgement for one market × one source, graded from a `down` segment: `gradeId`, `segment`, `marketType`, `line`, `basis` (the unit graded on — Pinnacle's *resultingUnit*, generalised), `basedOn` (the score sequence used), `outcomes[]` with `win` · `lose` · `void` · `half-win` · `half-lose`. Never edited: a correction is `grade/delete` + a new grade with `supersedes` |
+
 
 ## 8. Streams: fixture-first, then object / action
 

@@ -1124,3 +1124,112 @@ commits; official vendor adapters; a second reverse-only package; putting
 adapter classes in `spec/openbook.md`.
 
 **Supersedes:** none of Q1/Q6/Q49/Q56. Mapping stays off the wire.
+
+## Q97 — Pinnacle specials — decided (markets)
+
+A Pinnacle special that is one priced question (contestants, cutoff) is an
+OpenBook **market** on a fixture. No new object. HT/FT is one n-way, not an
+SGP. SGP/parlay is combining markets.
+
+Rejected: a Pinnacle-only specials object; treat HT/FT as a same-game parlay.
+
+**Supersedes:** none of the market vocabulary.
+
+## Q98 — Market unit classifier — decided (optional `basis`)
+
+A market is **shape × unit × segment**, not a new type per unit.
+
+- **`marketType`** is the shape (`market:total`, `market:correct-score`,
+  `market:draw-no-bet`, `market:half-time-full-time`, `market:moneyline`, …).
+  A 3-way moneyline is `market:moneyline` with a draw side, not a new id.
+- **`basis`** is what it counts — the same `scoreUnit` list as score and
+  grade (`corners`, `goals`, `runs`, …). Optional on the priced market. If
+  omitted, sport/league `primaryUnit` (the sport default: goals, points,
+  runs, …).
+- **`segment`** is the slice (`1st-half`, full game, first five innings, …).
+
+Same fixture. Identity: `(source, fixture, marketType, segment, line, basis)`.
+Grade already requires `basis`; the priced market names the same thing.
+
+Rejected: `market:corner-total` / `market:corner-dnb` and friends; Pinnacle
+cloned “Corners” events; required `basis` on every goals market.
+
+This decision does **not** add new `scoreUnit` values. `bookings` and
+home-runs stay until a payload names them.
+
+**Supersedes:** none. Completes Q26 for priced markets.
+
+## Q99 — Statuses and settled — decided (keep the four places)
+
+Four jobs, four places. No new fields.
+
+- **Event lifecycle** — `eventStatus` on fixture and score.
+- **Match progress** — `score` only: `currentSegment`, `segmentStatus`
+  (`pending` · `live` · `paused` · `down`), `clock`, `scores[]`. Not on
+  odds. `paused` is halt on the field, not odds offline.
+- **Betting** — per-market `marketStatus` (`open` · `suspended` ·
+  `closed` · `void`). A period going offline is a fan-out: those markets
+  with that `segment` change status (Sportradar `bet_stop`). Prefer
+  touching only the affected markets; bulk only when the book took the
+  whole period down. Outcome `active` stays on the outcome.
+- **Book’s call** — the `grade` object. Not a market status.
+
+Pinnacle `/fixtures/settled` period rows map to a segment going `down`
+once (Q28) with final `bySegment` numbers. Pinnacle `/bets` maps to
+`grade`. Deleted event is `fixture/delete`, not a fake settled period.
+Corrections stay Q31 (`score` erratum; `grade/delete` + new grade with
+`supersedes`).
+
+Rejected: betting-open on the fixture; a stored betting flag on the
+segment (Pinnacle period `status` as state); `marketStatus: settled`;
+a `settlement` object / `settlementId`; progress fields on the odds
+envelope.
+
+**Supersedes:** none of Q25 / Q27–Q31 / Q43. Confirms that mapping for
+the Pinnacle Lines walk.
+
+## Q100 — Parlay / teaser flags — decided (omit)
+
+Do not put parlay or teaser flags on the fixture. If a book publishes a
+parlay or same-game parlay, it is a **market** (`market:parlay` /
+`market:same-game-parlay`). Whether two lines may be combined is book
+policy (Pinnacle `/line/parlay`, Bets API) — out of scope.
+
+Rejected: `parlayRestriction` / `altTeaser` on the fixture; flags on
+each market for “may be parlayed.”
+
+**Supersedes:** none of Q97.
+
+## Q101 — One fixture — decided (C)
+
+Pregame and live are **one fixture**. `eventStatus` is scheduled / live /
+ended. No second id. No `parentId`. `superEvent` is not a live→pregame
+pair (that was a Pinnacle clone).
+
+Rejected: two fixtures linked by `superEvent`; copying `parentId`; a
+corners child event (corners is `basis` on the same fixture, Q98).
+
+**Supersedes:** the walk note that pregame and live are separate fixtures.
+
+## Q102 — Sports catalog — decided (A)
+
+OpenBook sport ids stay `sport:*` (`sport:soccer`, `sport:unknown`, …).
+A vendor integer (Pinnacle `sportId`) maps with `identifier` / `sameAs`.
+Add a sport to the vocab when it is priced, not by dumping `/sports`.
+Consumers MUST accept unrecognised `sport:*` values (Q34).
+
+Rejected: Pinnacle sport integers as OpenBook ids; import their full list
+now.
+
+**Supersedes:** none of the sports vocabulary.
+
+## Q103 — Get Line — decided (A)
+
+Market `limit` is enough on the feed (Q45). Pinnacle `/line` is a ticket
+check before placing — Bets API, out of scope. No second limit object, no
+min-stake field in this pick.
+
+Rejected: copying Get Line onto the market; adding min stake as well as
+max `limit`.
+
+**Supersedes:** none of Q45.

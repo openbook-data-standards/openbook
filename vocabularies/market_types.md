@@ -73,6 +73,8 @@ For what these words mean without ids, see
   `handicap` market always has a `line`; an `over-under` always has `over`/`under`
   outcomes and a `line`; `n-way` enumerates `participant` outcomes.
 - A concrete priced selection is identified by
-  `(fixture, marketType, segment, line, side)` — see the odds_change schema.
+  `(fixture, marketType, segment, line, side, basis)` — see the odds_change
+  schema. `basis` is what the market counts (goals, corners); it is not a new
+  `market:*` id.
 - This list is deliberately small in v0.1. It grows through
   [`../CONTRIBUTING.md`](../CONTRIBUTING.md), with stable ids.

@@ -50,7 +50,7 @@
 <h3 id="notes">Notes</h3>
 <ul>
 <li><strong>Shape</strong> drives how a client renders and how a settlement grades — a <code>handicap</code> market always has a <code>line</code>; an <code>over-under</code> always has <code>over</code>/<code>under</code> outcomes and a <code>line</code>; <code>n-way</code> enumerates <code>participant</code> outcomes.</li>
-<li>A concrete priced selection is identified by <code>(fixture, marketType, segment, line, side)</code> — see the odds_change schema.</li>
+<li>A concrete priced selection is identified by <code>(fixture, marketType, segment, line, side, basis)</code> — see the odds_change schema. <code>basis</code> is what the market counts (goals, corners); it is not a new <code>market:*</code> id.</li>
 <li>This list is deliberately small in v0.1. It grows through <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>, with stable ids.</li>
 </ul><p class="source">Source: vocabularies/market_types.md</p></section><section id="sports"><h2 id="openbook-controlled-vocabulary-sports">OpenBook controlled vocabulary — sports</h2>
 <p>Version <code>0.1.0-draft</code>. Each entry is a canonical <code>sport:*</code> id and its display name. Human map: <a href="../taxonomy.html"><code>../docs/taxonomy.md</code></a>. Additions go through the process in <a href="../contributing.html"><code>../CONTRIBUTING.md</code></a>; ids are stable and never re-pointed once published.</p>

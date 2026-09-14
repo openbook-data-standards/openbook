@@ -30,6 +30,7 @@
         "marketType": "market:total",
         "segment": "segment:soccer:full-time",
         "line": "2.5",
+        "basis": "corners",
         "source": "acme-book",
         "provenance": "official",
         "outcomes": [
