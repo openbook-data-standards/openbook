@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q230 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q230 · Q237–Q239 |
 
 The entries below stay in the order they were taken.
 
@@ -2911,3 +2911,45 @@ Rejected: keep asking wait questions; name the next leftover now; wait.
 
 **Supersedes:** the open wait pass as the next leftover question
 (**Q217** as an open close is already history; this is this pass).
+
+## Q237 — Next leftover is JSON object keys — decided (A)
+
+The next leftover is **JSON object keys for the first maps file**. That
+unblocks the file. Do not invent the names in this pick. Do not invent
+rows. Do not unpark the Q171 recipe or position tokens.
+
+Not wired in this pick.
+
+Rejected: pinned fixture example; fingerprint recipe; wait.
+
+**Supersedes:** Q236 as an open “no further leftover questions”; Q231 as
+an open unnamed wait; Q232 as “keys are not the next leftover” (keys
+are this leftover; names still wait until a later question on this
+walk).
+
+## Q238 — Three leftover-English slots — decided (A)
+
+The three leftover-English slots stay **public key, landing, and
+reason**. Do not invent JSON names in this pick. No fourth slot.
+
+Not wired in this pick.
+
+Rejected: drop reason as a key leftover; add a fourth leftover-English
+slot; wait.
+
+**Supersedes:** none of Q185 (row contents stay; this is the three
+slots this walk will name).
+
+## Q239 — Name JSON keys on this walk, later question — decided (A)
+
+**Name the JSON keys on this walk, in a later question.** This pick
+does not invent the names. A file cannot exist until keys exist
+(**Q225**). Rows still wait.
+
+Not wired in this pick.
+
+Rejected: leftover English only, never name JSON keys; invent the three
+names in this pick; wait.
+
+**Supersedes:** none of Q189 (names still wait until that later
+question).

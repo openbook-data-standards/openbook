@@ -278,6 +278,12 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   pick.
 - **Q236** — this question pass closes. No further leftover questions
   until a leftover is named. Not wired in this pick.
+- **Q237** — next leftover is JSON object keys for the first maps
+  file. Names wait until a later question. Not wired in this pick.
+- **Q238** — three leftover-English slots: public key, landing, and
+  reason. Do not invent JSON names in this pick. Not wired in this pick.
+- **Q239** — name the JSON keys on this walk, in a later question. This
+  pick does not invent names. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

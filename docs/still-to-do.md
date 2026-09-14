@@ -1,14 +1,12 @@
 # Still to do
 
-**Working on: question pass closed (Q236).** First public maps list
-leftover English is logged (**Q218–Q230**). JSON object keys wait. Rows
-wait. No maps directory or file until keys exist. Next leftover unnamed
-(**Q231**, **Q234**). Do not invent JSON object keys (**Q232**). Do not
-unpark the Q171 recipe or prefix-file contents (**Q233**). Stay
-`0.3.0-draft` (**Q235**). Q55 parked. No further leftover questions
-until a leftover is named.
+**Working on: maps JSON object keys (Q237–).** Three leftover-English
+slots: public key, landing, and reason (**Q238**). Name the JSON keys
+on this walk, in a later question (**Q239**). This pick does not invent
+the names. Rows wait. No maps directory or file until keys exist. Stay
+`0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q236**. Catalog pass closed and on the wire.
+Questions recorded through **Q239**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -45,16 +43,25 @@ closes until JSON object keys exist (**Q230**). Next leftover unnamed;
 wait (**Q231**). Do not invent JSON object keys (**Q232**). Do not unpark
 the Q171 recipe or prefix-file contents (**Q233**). Named leftovers
 exhausted; stay stopped (**Q234**). Stay `0.3.0-draft` (**Q235**).
-Question pass closed (**Q236**).
+Question pass closed (**Q236**). Next leftover is JSON object keys for
+the first maps file (**Q237**). Three leftover-English slots: public
+key, landing, and reason (**Q238**). Name JSON keys on this walk, in a
+later question (**Q239**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
+**Maps JSON object keys (Q237–).** Three leftover-English slots: public
+key, landing, and reason. Name the JSON keys on this walk, in a later
+question. Do not invent names in the picks already logged. Rows wait.
+No file until keys exist. Stay `0.3.0-draft`. Not Q55.
+
+## Goal (previous — wait pass, closed)
+
 **Closed (Q236).** First public maps list leftover English is logged.
-JSON object keys wait. Rows wait. No maps directory or file until keys
-exist. Next leftover unnamed. Stay `0.3.0-draft`. No further leftover
-questions until a leftover is named. Not Q55.
+JSON object keys wait until this leftover. Rows wait. No maps directory
+or file until keys exist. Stay `0.3.0-draft`.
 
 ## Goal (previous — first public maps list, closed)
 
@@ -247,6 +254,9 @@ over/under. No new market type. No new field. On the wire.
 - **Q234** — named leftovers on this walk exhausted; stay stopped.
 - **Q235** — stay `0.3.0-draft`. Not a version cut.
 - **Q236** — this question pass closes. No further leftover questions until a leftover is named.
+- **Q237** — next leftover is JSON object keys for the first maps file; names wait until a later question; no file.
+- **Q238** — three leftover-English slots: public key, landing, and reason; do not invent JSON names in this pick.
+- **Q239** — name the JSON keys on this walk, in a later question; this pick does not invent names.
 
 ### Parked
 
@@ -264,9 +274,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question:** none until a leftover is named (**Q236**). A pasted letter is not implement. Wire is a separate ask.
+**Next questions: Q240–Q242.** JSON name for the public-key slot; JSON name for the landing slot; JSON name for the reason slot. Recs in chat. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q236)
+## Done (Q32–Q239)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -361,3 +371,6 @@ feed list beside the validator. Not on the wire.
 **Q234** — named leftovers on this walk exhausted; stay stopped.
 **Q235** — stay `0.3.0-draft`.
 **Q236** — this question pass closes.
+**Q237** — next leftover is JSON object keys for the first maps file.
+**Q238** — three leftover-English slots: public key, landing, and reason.
+**Q239** — name JSON keys on this walk, in a later question.
