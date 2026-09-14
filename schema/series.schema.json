@@ -2,14 +2,15 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openbook-data-standards.github.io/openbook/schema/series.schema.json",
   "title": "OpenBook series (live lead)",
-  "description": "Live playoff series lead (Q86 leftovers, Q139–Q140). Not this game's score. Not competitionType series. Round stays on stage (seriesGame). Win counts wait.",
+  "description": "Live playoff series lead (Q86 leftovers, Q139–Q140, Q148–Q155). Not this game's score. Not competitionType series. Round stays on stage (seriesGame). wins is leftover English (Q154): exactly two rows, this fixture's participants, total is games won (integer, 0 allowed). A win ticks when this game is down.",
   "type": "object",
   "required": [
     "openbookVersion",
     "sequence",
     "dateModified",
     "fixture",
-    "stage"
+    "stage",
+    "wins"
   ],
   "properties": {
     "@context": {},
@@ -32,6 +33,31 @@
     "stage": {
       "$ref": "common.schema.json#/$defs/ownId",
       "description": "The printed round (seriesGame)."
+    },
+    "wins": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Exactly two rows (Q150). Leftover English (Q154). Not scores. Not participants.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "participant",
+          "total"
+        ],
+        "properties": {
+          "participant": {
+            "$ref": "common.schema.json#/$defs/ownId",
+            "description": "This fixture's series side."
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Games won in this series (Q152–Q153). Not this game's points."
+          }
+        }
+      }
     }
   },
   "patternProperties": {

@@ -134,7 +134,7 @@ the match stream above; the conflated tick sits between `104871` and `104880`.
 | [`toss.example.json`](../examples/toss.example.json) | 104120 | Who won the cricket toss |
 | [`odds_change_conflated.example.json`](../examples/odds_change_conflated.example.json) | 104872 | A tick that skipped intermediates (`conflated: true`) |
 | [`lineup.example.json`](../examples/lineup.example.json) | 105500 | Starting `player` ids for one fixture |
-| [`series.example.json`](../examples/series.example.json) | 105510 | Live series lead; round on `stage` |
+| [`series.example.json`](../examples/series.example.json) | 105510 | Live series lead; round on `stage`; two `wins` rows |
 
 Invalid cases (must be rejected) live in [`../conformance/invalid/`](../conformance/).
 Run `python3 tools/validate.py`.

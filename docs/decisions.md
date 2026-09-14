@@ -1835,6 +1835,8 @@ The two-row array is leftover English at implement. Not camelCase. Not
 
 Not wired in this pick.
 
+Later pick wired leftover English **`wins`**.
+
 Rejected: reuse `scores`; reuse `participants`; name the array in this
 pick.
 
@@ -1850,6 +1852,8 @@ waits. Best-of length not this pass.
 
 Not wired in this pick.
 
+Later pick wired `wins` (exactly two rows; `participant` + `total`).
+
 Rejected: keep going (best-of length); stop this spec walk in this pick;
 toss elected next.
 
@@ -1862,6 +1866,8 @@ English at implement. Wire waits. Toss elected waits. Best-of length
 waits.
 
 Not wired in this pick.
+
+Later pick wired `wins`.
 
 Rejected: name the array now; a new area; toss elected next.
 

@@ -9,28 +9,28 @@ closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q126–Q132**) and on the wire. Q86 leftovers pass closed
 (**Q134–Q146**) and on the wire (`stall`, `toss`, live `series`). Spec
 walk stopped (**Q147**), then unparked for series win counts (**Q148**).
-Series win-count pass closed (**Q148–Q155**); not on the wire. Spec
+Series win-count pass closed (**Q148–Q155**) and on the wire (`wins`). Spec
 walk stopped (**Q156**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Live series win counts. Spec walk stopped (**Q156**). Array
-leftover English at implement. Not wired.
+**Closed.** Live series win counts on the wire (`wins`). Spec walk stopped
+(**Q156**).
 
 ## Goal (previous — series win counts, closed)
 
 Exactly two rows on live `series`, both required; same `participant` ids
 as this fixture. A win ticks when this game is down. The number is games
-won (integer, 0 allowed) on `total`. Array name leftover English at
-implement. Toss elected still waits.
+won (integer, 0 allowed) on `total`. Array name is `wins`. Toss elected
+still waits.
 
 ## Goal (previous — Q86 leftovers, closed)
 
 Racing `stall` and cricket `toss`: two catalog objects. Playoff series:
 round on `stage`; live `series` is the lead. Not more keys on every
-fixture. Win counts decided **Q148–Q155** (not wired). Elected bat/bowl
+fixture. Win counts on the wire (**Q148–Q155**). Elected bat/bowl
 waits.
 
 ## Goal (previous — yes/no player, closed)
@@ -58,6 +58,8 @@ over/under. No new market type. No new field. On the wire.
   market `line`; pass closed.
 - **Q134–Q146** — `stall` and `toss` catalog objects; live `series` lead;
   pass closed.
+- **Q148–Q155** — live `series` `wins` (exactly two rows; `participant` +
+  `total`); pass closed.
 
 ### Log only
 
@@ -72,16 +74,6 @@ over/under. No new market type. No new field. On the wire.
 - **Q118** — plus-band walk.
 - **Q133** — stop this spec walk (superseded as the next area by Q134).
 - **Q147** — stop this spec walk (superseded as the next area by Q148).
-- **Q148** — series win counts this walk; names wait.
-- **Q149** — one row per series side; same `participant` as this fixture;
-  count names wait.
-- **Q150** — exactly two rows, both required.
-- **Q151** — a win ticks when this game is down.
-- **Q152** — the number is games won; integer; 0 allowed; no draw column.
-- **Q153** — count field is `total`; array name waits.
-- **Q154** — array name leftover English at implement; not `scores`; not
-  `participants`.
-- **Q155** — series win-count pass closed; not wired.
 - **Q156** — stop this spec walk.
 
 ### Parked
@@ -119,12 +111,5 @@ pass closed.
 **Q134–Q146** — Q86 leftovers; `stall` / `toss` / live `series` on the wire;
 pass closed.
 **Q147** — stop this spec walk.
-**Q148** — series win counts this walk.
-**Q149** — one row per series side on live `series`.
-**Q150** — exactly two rows, both required.
-**Q151** — a win ticks when this game is down.
-**Q152** — the number is games won.
-**Q153** — count field is `total`.
-**Q154** — array name leftover English at implement.
-**Q155** — series win-count pass closed.
+**Q148–Q155** — series win counts on the wire (`wins`).
 **Q156** — stop this spec walk.

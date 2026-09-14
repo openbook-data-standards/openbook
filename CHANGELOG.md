@@ -77,22 +77,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   who won); live `series` (fixture-keyed lead; `stage` is the printed
   round). Not on the generic fixture. Not `score`. Not `competitionType`
   series. Win counts and elected bat/bowl wait. Spec walk stopped.
-- **Q148** — this walk is live series win counts. Names wait. Toss elected
-  still waits. Not wired in this pick.
-- **Q149** — win counts are one row per series side on live `series`; same
-  `participant` ids as this fixture. Count names wait. Not wired.
-- **Q150** — exactly two rows, both required; this fixture’s two
-  participants. Not wired.
-- **Q151** — a win ticks when this game is down; not while live. Not
-  wired.
-- **Q152** — the number is games won; integer; 0 allowed; no draw column.
-  Not wired.
-- **Q153** — each row’s count is `total`. Array name waits. Not wired.
-- **Q154** — array name leftover English at implement; not `scores`; not
-  `participants`. Not wired.
-- **Q155** — series win-count pass closed. Array leftover English at
-  implement. Not wired.
-- **Q156** — stop this spec walk. Wire waits.
+- **Q148–Q156** — live `series` win counts on the wire: required `wins`
+  (exactly two rows; leftover English, not `scores` / `participants`);
+  each `participant` + `total` (games won, integer, 0 allowed). A win
+  ticks when this game is down. Spec walk stopped. Toss elected and
+  best-of length wait.
 
 
 ### Removed

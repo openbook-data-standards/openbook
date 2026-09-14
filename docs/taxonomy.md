@@ -134,7 +134,7 @@ player (anytime scorer) names `player` plus `yes` / `no` (`no` optional);
 leftover `other` is not used; no market `line`. Racing stall is its own
 catalog object (`order` is the gate). Cricket toss is its own catalog
 object (who won). Live `series` is the playoff lead, not this game’s
-`score`.
+`score`: exactly two `wins` rows (`participant` + `total` games won).
 
 ---
 

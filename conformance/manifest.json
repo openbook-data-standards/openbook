@@ -62,6 +62,10 @@
     {
       "path": "conformance/invalid/player-yes-with-line.json",
       "reason": "yes/no player row has player and not outcome line (Q127, Q131)"
+    },
+    {
+      "path": "conformance/invalid/series-wins-one-row.json",
+      "reason": "series wins is exactly two rows (Q150)"
     }
   ]
 }
