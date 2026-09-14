@@ -83,6 +83,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `participant` ids as this fixture. Count names wait. Not wired.
 - **Q150** — exactly two rows, both required; this fixture’s two
   participants. Not wired.
+- **Q151** — a win ticks when this game is down; not while live. Not
+  wired.
 
 
 ### Removed

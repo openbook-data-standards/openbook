@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q150**. Catalog pass closed and on the wire.
+Questions recorded through **Q151**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -15,8 +15,8 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 ## Goal (this walk)
 
 **Live series win counts.** Exactly two rows on live `series`, both
-required; same `participant` ids as this fixture. Count names wait. Toss
-elected still waits.
+required; same `participant` ids as this fixture. A win ticks when this
+game is down. Count names wait. Toss elected still waits.
 
 ## Goal (previous — Q86 leftovers, closed)
 
@@ -67,6 +67,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q149** — one row per series side; same `participant` as this fixture;
   count names wait.
 - **Q150** — exactly two rows, both required.
+- **Q151** — a win ticks when this game is down.
 
 ### Parked
 
@@ -78,9 +79,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- When a win ticks (this game down vs while live).
+- What the number counts (games won vs draws / `unit`).
 
-## Done (Q32–Q150)
+## Done (Q32–Q151)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -106,3 +107,4 @@ pass closed.
 **Q148** — series win counts this walk.
 **Q149** — one row per series side on live `series`.
 **Q150** — exactly two rows, both required.
+**Q151** — a win ticks when this game is down.

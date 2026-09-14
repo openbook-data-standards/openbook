@@ -19,7 +19,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
 | Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
 | Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
-| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 · Q149 · Q150 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 · Q149 · Q150 · Q151 |
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
@@ -1789,3 +1789,16 @@ third row.
 
 **Supersedes:** none of Q149 (same rows; this locks count and
 required).
+
+## Q151 — Win ticks when this game is down — decided (A)
+
+Completed games only. This fixture is not in the count until it is
+down. Not while the game is live. Not a second live scoreboard (Q140).
+When it ticks is specified (not left open). No extra live-mark field.
+
+Not wired in this pick. Count names wait.
+
+Rejected: include this game while live; a separate live mark; leave
+when it ticks unspecified.
+
+**Supersedes:** none of Q140 or Q150.
