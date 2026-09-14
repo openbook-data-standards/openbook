@@ -177,6 +177,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   this pick.
 - **Q196** — next leftover unnamed; wait. Not Q55. Not wired in this
   pick.
+- **Q197** — named leftovers on this walk exhausted; stay stopped. Not
+  Q55. Not a version cut. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

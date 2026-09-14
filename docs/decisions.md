@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 · Q195 · Q196 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 · Q195 · Q196 · Q197 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
@@ -2395,3 +2395,17 @@ position token lists or naming the first maps public list.
 
 **Supersedes:** Q195 as an open “what is next” (the stop stays; the next
 leftover is still unnamed).
+
+## Q197 — Named leftovers exhausted; stop — decided (A)
+
+Named leftovers on this walk are **exhausted**. Stay **stopped**. Not
+Q55. Not a version cut. Not inventing a list. Same pick as **Q169**
+after **Q168**.
+
+Not wired in this pick.
+
+Rejected: keep waiting with no extra stop; unpark Q171 later or Q172 /
+Q173; invent a leftover or unpark Q55.
+
+**Supersedes:** Q196 “next leftover unnamed; wait” (the pick is: nothing
+left on this walk’s leftover list; stop).
