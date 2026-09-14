@@ -2205,3 +2205,16 @@ Not wired in this pick. Files wait.
 Rejected: maps leftover; stay stopped; unpark Q55; Q172 other repos.
 
 **Supersedes:** Q180 as an open “what is next” (position shape stays).
+
+## Q183 — Prefix file first — decided (A)
+
+The **prefix file** is first (`propertyID` schemes). Fingerprint recipe,
+corpus case, and anchor policy wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: fingerprint recipe first; anchor policy first; all three in
+this pick.
+
+**Supersedes:** none of Q182 (walk stays; this is which leftover
+first).

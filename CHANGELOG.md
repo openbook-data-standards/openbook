@@ -143,6 +143,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   prefix file; fixture fingerprint recipe and a corpus case; anchor
   policy prose. Not maps. Not a new wire field. Files wait. Not wired
   in this pick.
+- **Q183** — prefix file first (`propertyID` schemes). Fingerprint
+  recipe, corpus case, and anchor policy wait. No file in this pick.
+  Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
