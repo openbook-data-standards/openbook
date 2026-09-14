@@ -147,6 +147,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   this pick.
 - **Q183** — that directory is named for maps. No file in this pick.
   First public list waits. Not wired in this pick.
+- **Q184** — first public list name waits. No file in this pick. Do not
+  invent a taxonomy. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

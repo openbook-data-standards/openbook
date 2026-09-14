@@ -2229,3 +2229,16 @@ Not wired in this pick.
 Rejected: named for crosswalks; name waits; stop this leftover.
 
 **Supersedes:** none of Q182.
+
+## Q184 — First public list waits — decided (A)
+
+The first public list **name waits**. No file in this pick. Do not
+invent a taxonomy.
+
+Not wired in this pick.
+
+Rejected: pick a list already cited in this spec as this pick; map
+OpenBook ids onto themselves; stop this leftover.
+
+**Supersedes:** none of Q183 (directory name stays; the first list is
+still unnamed).

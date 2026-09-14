@@ -3,10 +3,10 @@
 **Working on: maps leftover (Q181–).** Public market / segment keys onto
 existing OpenBook ids, or the unknown catch-all with a reason. One
 directory named for maps, not inside the vocab lists (**Q182**,
-**Q183**). Not a wire change. No file now. First public list waits.
-Not Q55. Not position token lists.
+**Q183**). First public list name waits (**Q184**). Not a wire change.
+No file now. Not Q55. Not position token lists.
 
-Questions recorded through **Q183**. Catalog pass closed and on the wire.
+Questions recorded through **Q184**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -33,8 +33,8 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 **Maps leftover — this is the open walk.** Public market / segment keys
 onto existing OpenBook ids, or the unknown catch-all with a reason
 (**Q181**). One directory named for maps, not inside the vocab lists
-(**Q182**, **Q183**). Cite at least one public taxonomy. Not a wire
-change. No file now. First public list waits.
+(**Q182**, **Q183**). Cite at least one public taxonomy. First public
+list name waits (**Q184**). Not a wire change. No file now.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -137,6 +137,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q181** — maps leftover this walk. Not a wire change. No file in this pick.
 - **Q182** — one maps directory, not inside the vocab lists; no file in this pick; first public list waits.
 - **Q183** — directory named for maps; no file in this pick; first public list waits.
+- **Q184** — first public list name waits; no file in this pick; do not invent a taxonomy.
 
 ### Parked
 
@@ -154,9 +155,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q184.** First public list to map? Rec: name waits; no file this pick; do not invent a taxonomy. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q185.** When a map row exists, what is on it? Rec: public key plus an existing OpenBook id, or the unknown catch-all plus a reason; no file now. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q183)
+## Done (Q32–Q184)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -198,3 +199,4 @@ feed list beside the validator. Not on the wire.
 **Q181** — maps leftover this walk; not a wire change; no file now.
 **Q182** — one maps directory, not inside the vocab lists; no file now.
 **Q183** — directory named for maps; no file now; first public list waits.
+**Q184** — first public list name waits; do not invent a taxonomy.
