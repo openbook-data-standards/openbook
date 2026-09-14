@@ -2027,3 +2027,17 @@ Rejected: unpark Q55; cut `0.4.0-draft` as this walk; stop again.
 
 **Supersedes:** Q167 “no new board until named” as the next board (the
 area is still unnamed).
+
+## Q169 — Named leftovers exhausted; stop — decided
+
+I pick. Named leftovers on this spec are **done** (catalog through
+`elected` / `needed`). This walk **stops**. Not Q55. Not a version cut.
+Not coach/officials (Q79 / Q81 omit until those markets exist). Not Q96.
+No new field.
+
+Not wired in this pick.
+
+Rejected: invent a new encyclopedia walk; unpark Q55; cut `0.4.0-draft`.
+
+**Supersedes:** Q168 “name waits” (the pick is: nothing named left;
+stop).
