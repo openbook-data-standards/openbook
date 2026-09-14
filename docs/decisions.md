@@ -2206,3 +2206,15 @@ Rejected: Q171 later leftover; Q172 profile repositories; stay stopped.
 
 **Supersedes:** Q180 as an open “what is next” (position shape stays;
 this is a new leftover).
+
+## Q182 — Where map files live — decided (A)
+
+When files exist: **one maps directory**, not inside the vocab lists.
+No file in this pick. First public list waits.
+
+Not wired in this pick.
+
+Rejected: put the maps inside the vocab lists; spec leftover English
+only; one file that holds every public list.
+
+**Supersedes:** none of Q181.

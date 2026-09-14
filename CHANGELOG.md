@@ -142,6 +142,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q181** — this walk is the maps leftover. Public market / segment
   keys onto existing OpenBook ids, or the unknown catch-all with a
   reason. Not a wire change. No file in this pick.
+- **Q182** — when files exist: one maps directory, not inside the vocab
+  lists. No file in this pick. First public list waits. Not wired in
+  this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
