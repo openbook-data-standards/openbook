@@ -1,18 +1,20 @@
 # Still to do
 
-Questions recorded through **Q131**. Catalog pass closed and on the wire.
+Questions recorded through **Q132**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
 closed (**Q104–Q117**) and on the wire. Plus-band pass closed
-(**Q118–Q125**) and on the wire.
+(**Q118–Q125**) and on the wire. Yes/no player pass closed
+(**Q126–Q132**); not on the wire.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Player on yes/no rows** (anytime scorer / to score). Same `player` id as
-over/under. No new market type.
+**Closed.** Player on yes/no rows (anytime scorer / to score). Same
+`player` id as over/under. No new market type. No new field. Wire waits
+until implement.
 
 ## Goal (previous — plus-bands, closed)
 
@@ -41,12 +43,9 @@ over/under. No new market type.
 - **Q111** — listing `order` / `seed` stay 1; `sequence` may be 0
   (already true on the schema).
 - **Q118** — plus-band walk.
-- **Q126** — player on yes/no rows. Same player id.
-- **Q127** — player id always on those rows (same as Q115).
-- **Q128** — leftover `other` is not used on yes/no player boards.
-- **Q129** — `no` is optional; they may list only `yes`.
-- **Q130** — one market, many named-player rows.
-- **Q131** — no market `line` (unlike player over/under).
+- **Q126–Q132** — player on yes/no rows: same player id; always present;
+  leftover `other` not used; `no` optional; one market, many rows; no
+  market `line`; pass closed.
 
 ### Parked
 
@@ -56,12 +55,14 @@ over/under. No new market type.
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
+- **Q126–Q132** — yes/no player row rules (spec / examples wait until
+  implement). No new field.
 
 ## Next question (not decided)
 
-- Close this yes/no player pass here?
+- What is next?
 
-## Done (Q32–Q131)
+## Done (Q32–Q132)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -79,9 +80,4 @@ pass closed.
 **Q119–Q125** — plus-bands on the wire: `atLeast` on `market`,
 `odds/change`, and `grade`; who + `atLeast`; not exact `line`; leftover
 `other` still allowed; pass closed.
-**Q126** — player on yes/no rows.
-**Q127** — player id always on those rows.
-**Q128** — leftover `other` is not used on yes/no player boards.
-**Q129** — `no` is optional.
-**Q130** — one market, many named-player rows.
-**Q131** — no market `line` on yes/no player.
+**Q126–Q132** — player on yes/no rows; pass closed; not on the wire.

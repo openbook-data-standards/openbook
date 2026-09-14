@@ -1566,3 +1566,17 @@ Not wired in this pick.
 Rejected: keep a market `line`.
 
 **Supersedes:** none of Q107 (player over/under still has its number).
+
+## Q132 — Yes/no player pass closed — decided (A)
+
+Names and row rules for yes/no player rows stop here: same `player` id
+as over/under; always present; leftover `other` is not used; `no` is
+optional; one market, many rows; no market `line`. Wire waits until
+implement. No new field.
+
+Not wired in this pick.
+
+Rejected: keep asking yes/no player questions in this pass.
+
+**Supersedes:** Q126 as an open walk (the area is decided; the pass is
+closed).
