@@ -35,11 +35,26 @@
     "name": {
       "type": "string"
     },
+    "shortName": {
+      "type": "string"
+    },
+    "registeredName": {
+      "type": "string"
+    },
     "alternateName": {
       "$ref": "common.schema.json#/$defs/alternateName"
     },
     "names": {
       "$ref": "common.schema.json#/$defs/localizedNames"
+    },
+    "nameLatin": {
+      "$ref": "common.schema.json#/$defs/nameLatin"
+    },
+    "gender": {
+      "$ref": "common.schema.json#/$defs/gender"
+    },
+    "ageGroup": {
+      "$ref": "common.schema.json#/$defs/ageGroup"
     },
     "sport": {
       "$ref": "common.schema.json#/$defs/sharedId"

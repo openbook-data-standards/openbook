@@ -63,7 +63,7 @@ section .lede{color:var(--fg2);max-width:72ch;margin:10px 0 20px;font-size:16px}
 .card ul{margin:8px 0 0;padding-left:18px;color:var(--fg2);font-size:14px}
 .card li{margin:5px 0}
 .card code,.lede code,section p code,.doc code{background:var(--code);border:1px solid var(--line);border-radius:3px;padding:1px 5px;font-size:12px;color:var(--fg)}
-.kicker{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;color:var(--mute)}
 .kicker.ref{color:var(--accent)} .kicker.live{color:var(--pos)}
 
 pre.code,.doc pre{background:var(--code);border:1px solid var(--line);border-radius:4px;padding:16px 18px;overflow-x:auto;
@@ -113,7 +113,13 @@ footer strong{color:var(--fg);display:block;margin-bottom:6px}
 .crumb a{color:var(--fg2);text-decoration:none}
 .crumb a:hover{color:var(--fg)}
 .source{font-size:13px;color:var(--mute);margin:32px 0 0}
-.doc{max-width:46rem}
+.page-layout{display:block}
+@media(min-width:1000px){
+  .wrap.page{max-width:1180px}
+  .page-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;align-items:start}
+  .page-toc{position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;margin:0}
+}
+.doc{max-width:none}
 .doc h1{font-size:clamp(28px,4vw,36px);margin-bottom:12px}
 .doc h2{font-size:20px;margin:36px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
 .doc h3{font-size:16px;margin:24px 0 8px}
@@ -122,6 +128,13 @@ footer strong{color:var(--fg);display:block;margin-bottom:6px}
 .doc ul,.doc ol{margin:0 0 16px;padding-left:22px}
 .doc li{margin:6px 0}
 .doc blockquote{margin:0 0 16px;padding:12px 16px;border-left:3px solid var(--accent);background:var(--fill);border-radius:0 4px 4px 0}
+.table-wrap{overflow-x:auto;margin:0 0 20px;border:1px solid var(--line);border-radius:4px}
+.doc table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.45}
+.doc th,.doc td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.doc th{color:var(--mute);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;background:var(--fill)}
+.doc tr:last-child td{border-bottom:none}
+.doc td{color:var(--fg2)}
+.doc pre.mermaid{background:var(--fill);border:1px solid var(--line);border-radius:4px;padding:16px;margin:16px 0;text-align:center;overflow:auto}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
 .page-toc{margin:0 0 32px}
 .page-toc strong{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
