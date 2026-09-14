@@ -1,0 +1,12 @@
+{
+  "_comment": "Targets for the external-watch workflow. This is the one place provider names live for the roadmap alerts; milestones and issues stay vendor-independent. Each target maps to a Year-1 or Year-2 roadmap item.",
+  "github_releases": [
+    { "key": "community-entity-register", "repo": "withqwerty/reep", "roadmap": "anchor policy, Q1 2027" }
+  ],
+  "wikidata_external_id_labels": [
+    { "key": "odds-provider-id-properties", "pattern": "Sportradar|Genius Sports|Betfair|Kalshi", "roadmap": "Wikidata property proposals, Q1 2027" }
+  ],
+  "pages": [
+    { "key": "event-wagering-testing-standard", "url": "https://gaminglabs.com/gli-standards/", "pattern": "GLI-33-Event-Wagering-Systems-v[0-9]+\\.[0-9]+", "roadmap": "regulator door, Year 2" }
+  ]
+}

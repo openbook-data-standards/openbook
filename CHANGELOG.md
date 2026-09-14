@@ -161,14 +161,40 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   in this pick.
 - **Q189** — JSON object keys wait. Do not invent names. Row meaning
   stays leftover English. No file in this pick. Not wired in this pick.
-- **Q190** — when files exist: a JSON array of row objects. Keys still
+- **Q190** — this walk is the Q171 leftovers that live in this repo:
+  prefix file; fixture fingerprint recipe and a corpus case; anchor
+  policy prose. Not maps. Not a new wire field. Files wait. Not wired
+  in this pick.
+- **Q191** — prefix file first (`propertyID` schemes). Fingerprint
+  recipe, corpus case, and anchor policy wait. No file in this pick.
+  Not wired in this pick.
+- **Q192** — when the file exists it is named for prefixes, in the
+  register leftover, not inside the vocab lists. No file in this pick.
+  Not wired in this pick.
+- **Q193** — prefix tokens are plain like the existing `propertyID`
+  examples. Not the Q5 short form. The list waits. Not wired in this
+  pick.
+- **Q194** — prefix catch-all is an unknown bucket (Q34). List waits.
+  `propertyID` stays a string. Not wired in this pick.
+- **Q195** — prefix-file shape is logged. The list waits. Next leftover
+  in this walk is the fingerprint recipe. No file in this pick. Not
+  wired in this pick.
+- **Q196** — fingerprint is leftover English only. No new field.
+  Publisher-own id stays canonical. Not wired in this pick.
+- **Q197** — when the recipe exists it is named for fingerprint, in the
+  register leftover, not inside the vocab lists. No file in this pick.
+  Not wired in this pick.
+- **Q198** — fingerprint location is logged. Recipe text waits. Next
+  leftover in this walk is the corpus case. No file in this pick. Not
+  wired in this pick.
+- **Q199** — when files exist: a JSON array of row objects. Keys still
   wait. First public list name still waits. No file in this pick. Not
   wired in this pick.
-- **Q191** — the reason is leftover English (a free string). Do not
+- **Q200** — the reason is leftover English (a free string). Do not
   invent a reason list. No file in this pick. Not wired in this pick.
-- **Q192** — when the landing is an existing OpenBook id, a reason is
+- **Q201** — when the landing is an existing OpenBook id, a reason is
   forbidden. No file in this pick. Not wired in this pick.
-- **Q193** — in one file, a public key appears at most once. No file in
+- **Q202** — in one file, a public key appears at most once. No file in
   this pick. Not wired in this pick.
 
 ### Removed

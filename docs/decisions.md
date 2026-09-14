@@ -2307,7 +2307,117 @@ this leftover.
 **Supersedes:** none of Q188 (JSON stays; this is that the keys are
 unnamed).
 
-## Q190 — JSON array of row objects — decided (A)
+## Q190 — Q171 leftovers this walk — decided
+
+This walk is the **Q171 leftovers that live in this repo**: namespace
+prefix file; fixture fingerprint recipe and a corpus case; anchor
+policy prose. Not maps. Not position token lists. Not Q55. Not Q172
+profile repositories. No new wire field.
+
+Not wired in this pick. Files wait.
+
+Rejected: maps leftover; stay stopped; unpark Q55; Q172 other repos.
+
+**Supersedes:** Q180 as an open “what is next” (position shape stays).
+
+## Q191 — Prefix file first — decided (A)
+
+The **prefix file** is first (`propertyID` schemes). Fingerprint recipe,
+corpus case, and anchor policy wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: fingerprint recipe first; anchor policy first; all three in
+this pick.
+
+**Supersedes:** none of Q190 (walk stays; this is which leftover
+first).
+
+## Q192 — Where the prefix file lives — decided (A)
+
+When the file exists it is **named for prefixes**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/` next to sports; closed enum in
+`common.schema.json`; stop this leftover.
+
+**Supersedes:** none of Q191.
+
+## Q193 — How prefix tokens are spelled — decided (A)
+
+Plain tokens like the existing `propertyID` examples. Not the Q5
+`sport:` / `market:` short form. Not a formal URN only. The list waits.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: Q5 short form with a kind in front; formal URN only; stop
+this leftover.
+
+**Supersedes:** none of Q192.
+
+## Q194 — Prefix catch-all — decided (A)
+
+Same Q34 growable-list idea: an **unknown** bucket. The list waits.
+`propertyID` stays a string.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: no catch-all id; `other` like some schema enums; stop this
+leftover.
+
+**Supersedes:** none of Q193.
+
+## Q195 — Prefix shape done; fingerprint next — decided (A)
+
+Prefix-file shape is logged. The list waits. Next leftover in this walk
+is the **fingerprint recipe**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: start listing prefixes now; stop this walk; unpark Q55.
+
+**Supersedes:** Q191 “fingerprint waits” as the next leftover (prefix
+shape stays).
+
+## Q196 — Fingerprint is leftover English — decided (A)
+
+The fingerprint is a **leftover English recipe only**. No new field.
+Publisher-own id stays canonical (**Q171**). Join key, never the object
+id.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: required field on the fixture; optional field on the fixture;
+drop the leftover.
+
+**Supersedes:** none of Q171 (join key still; this is not a wire field).
+
+## Q197 — Where the fingerprint recipe lives — decided (A)
+
+When the recipe exists it is **named for fingerprint**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/`; spec only with no separate file ever;
+stop this leftover.
+
+**Supersedes:** none of Q196.
+
+## Q198 — Fingerprint location done; corpus next — decided (A)
+
+Fingerprint location is logged. Recipe text waits. Next leftover in
+this walk is the **corpus case**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: write the recipe steps now; stop this walk; unpark Q55.
+
+**Supersedes:** Q197 as an open “what is next” (location stays).
+
+## Q199 — JSON array of row objects — decided (A)
 
 When files exist: a **JSON array of row objects**. Keys still wait
 (**Q189**). The first public list name still waits (**Q184**). No file
@@ -2321,7 +2431,7 @@ waits; stop this leftover.
 **Supersedes:** none of Q189 (keys still wait; this is the document
 shape).
 
-## Q191 — Reason is leftover English — decided (A)
+## Q200 — Reason is leftover English — decided (A)
 
 The reason is **leftover English** (a free string). Do not invent a
 reason list. Required only on the unknown catch-all (**Q186**). No file
@@ -2335,7 +2445,7 @@ leftover.
 **Supersedes:** none of Q186 (when it is required stays; this is that
 the reason is not a token list).
 
-## Q192 — Reason forbidden on a mapped id — decided (A)
+## Q201 — Reason forbidden on a mapped id — decided (A)
 
 When the landing is an existing OpenBook id, a reason is **forbidden**.
 The reason is only for the unknown catch-all (**Q186**). No file in
@@ -2348,7 +2458,7 @@ Rejected: optional on a mapped id; park; stop this leftover.
 **Supersedes:** none of Q186 (required-on-unknown stays; this is that
 a mapped id does not carry a reason).
 
-## Q193 — Public key at most once per file — decided (A)
+## Q202 — Public key at most once per file — decided (A)
 
 In one file, the same public key appears **at most once**. The first
 public list name still waits (**Q184**). No file in this pick.
@@ -2357,4 +2467,4 @@ Not wired in this pick.
 
 Rejected: duplicates allowed; uniqueness waits; stop this leftover.
 
-**Supersedes:** none of Q190 (array of rows stays; this is uniqueness).
+**Supersedes:** none of Q199 (array of rows stays; this is uniqueness).
