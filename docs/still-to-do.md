@@ -3,11 +3,12 @@
 **Working on: maps first public list (Q218–).** Leftover English: market
 types from a public exchange already cited in this spec (Betfair
 Stream). When a file exists it is named for that list (**Q219**). Public
-key leftover English: the exchange’s market type id (**Q220**). Do not
+key leftover English: the exchange’s market type id (**Q220**). Landing
+leftover English: an existing OpenBook market type id (**Q221**). Do not
 invent rows or JSON object keys (**Q189**). No file. Not a registry.
 Stay `0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q220**. Catalog pass closed and on the wire.
+Questions recorded through **Q221**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -33,17 +34,19 @@ maps directory or file until a list is named (**Q215**). Do not invent
 the Q171 recipe (**Q216**). Question pass closed (**Q217**). First public
 list leftover English named (**Q218**). File named for that list
 (**Q219**). Public key leftover English: the exchange’s market type id
-(**Q220**).
+(**Q220**). Landing leftover English: an existing OpenBook market type
+id (**Q221**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**First public maps list — leftover English (Q218–Q220).** Market types
+**First public maps list — leftover English (Q218–Q221).** Market types
 from a public exchange already cited in this spec (Betfair Stream).
 When a file exists it is named for that list. Public key leftover
-English: the exchange’s market type id. Do not invent rows or JSON
-object keys. No file. Not a registry. Not Q55.
+English: the exchange’s market type id. Landing leftover English: an
+existing OpenBook market type id. Do not invent rows or JSON object
+keys. No file. Not a registry. Not Q55.
 
 ## Goal (previous — maps leftover, closed)
 
@@ -208,6 +211,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q218** — first public list leftover English: market types from a public exchange already cited (Betfair Stream); no rows; no JSON keys; no file.
 - **Q219** — when a file exists it is named for that public list; keys wait; no file.
 - **Q220** — public key leftover English: the exchange’s market type id; JSON names wait; no file.
+- **Q221** — landing leftover English: an existing OpenBook market type id; not a fixture; not a registry; JSON names wait; no file.
 
 ### Parked
 
@@ -225,9 +229,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q221.** Is the landing leftover English an existing OpenBook market type id? Rec: yes; not a fixture; not a registry; JSON names still wait; no file now. A pasted letter is not implement. Wire is a separate ask.
+**Next questions: Q222–Q224.** Unknown-catch-all landing leftover English; whether this first list lands only on a market type id; JSON object keys still wait. Recs in chat. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q220)
+## Done (Q32–Q221)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -306,3 +310,4 @@ feed list beside the validator. Not on the wire.
 **Q218** — first public list leftover English: market types from a public exchange already cited (Betfair Stream); no file.
 **Q219** — when a file exists it is named for that public list.
 **Q220** — public key leftover English: the exchange’s market type id.
+**Q221** — landing leftover English: an existing OpenBook market type id.

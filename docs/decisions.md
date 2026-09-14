@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q220 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q221 |
 
 The entries below stay in the order they were taken.
 
@@ -2693,3 +2693,18 @@ English waits; stop this leftover.
 
 **Supersedes:** none of Q185 (row contents stay; this is what the public
 key is).
+
+## Q221 — Landing leftover English — decided (A)
+
+The landing is leftover English: **an existing OpenBook market type id**.
+Not a fixture. Not a registry of fixtures, teams, or players. Do not
+invent a JSON name. JSON object keys still wait (**Q189**). No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: a fixture id; a registry entity; landing leftover English
+waits.
+
+**Supersedes:** none of Q185 (row contents stay; this is what the landing
+is for this first list).

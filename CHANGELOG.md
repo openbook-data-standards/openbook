@@ -245,6 +245,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   object keys still wait. No file. Not wired in this pick.
 - **Q220** — public key leftover English: the exchange’s market type
   id. JSON object keys still wait. No file. Not wired in this pick.
+- **Q221** — landing leftover English: an existing OpenBook market type
+  id. Not a fixture. Not a registry. JSON object keys still wait. No
+  file. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
