@@ -15,6 +15,8 @@ Checks, in order:
   7. one-way name check (Q50): camelCase / property-like names in spec and
      selected docs MUST exist on a schema (properties, $defs, or enums). Extra
      schema fields are allowed. The decision log is history and is not scanned.
+  8. maps/*.json is a JSON array of map rows (schema/maps.schema.json);
+     publicKey is unique in a file; named landings must not carry reason.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
@@ -245,6 +247,40 @@ if missing_names:
         fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
 else:
     ok(f"{len(mentioned)} documented names present on a schema")
+
+print("8. maps files")
+maps_schema_name = "maps.schema.json"
+if maps_schema_name not in schemas:
+    fail("schema/maps.schema.json missing")
+else:
+    maps_v = validator(schemas[maps_schema_name])
+    maps_dir = os.path.join(ROOT, "maps")
+    map_paths = sorted(glob.glob(os.path.join(maps_dir, "*.json")))
+    if not map_paths:
+        fail("maps/ has no JSON files")
+    for path in map_paths:
+        rel = os.path.relpath(path, ROOT)
+        doc = json.load(open(path))
+        errs = sorted(maps_v.iter_errors(doc), key=lambda e: list(e.path))
+        if errs:
+            for e in errs:
+                fail(f"{rel}: {e.message} at /{'/'.join(map(str, e.path))}")
+        elif not isinstance(doc, list):
+            fail(f"{rel}: maps file must be a JSON array")
+        else:
+            keys = [row.get("publicKey") for row in doc if isinstance(row, dict)]
+            if len(keys) != len(set(keys)):
+                fail(f"{rel}: publicKey must be unique in one file")
+            else:
+                ok(rel)
+    bad_maps = os.path.join(ROOT, "conformance", "invalid", "maps-reason-on-named.json")
+    if os.path.isfile(bad_maps):
+        bad_doc = json.load(open(bad_maps))
+        bad_errs = list(maps_v.iter_errors(bad_doc))
+        if bad_errs:
+            ok("conformance/invalid/maps-reason-on-named.json  (rejected)")
+        else:
+            fail("conformance/invalid/maps-reason-on-named.json: expected reject but validated")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

@@ -1,0 +1,7 @@
+[
+  {
+    "publicKey": "MATCH_ODDS",
+    "id": "market:moneyline",
+    "reason": "named landings must not carry a reason"
+  }
+]

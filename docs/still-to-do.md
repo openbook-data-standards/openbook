@@ -1,12 +1,11 @@
 # Still to do
 
-**Working on: maps JSON object keys (Q237–).** Three leftover-English
-slots: public key, landing, and reason (**Q238**). JSON names: camelCase
-leftover English for the public-key slot (**Q240**); landing is `id`
-(**Q241**); reason is `reason` (**Q242**). Rows wait. No maps directory
-or file until a later pick. Stay `0.3.0-draft`. Q55 parked.
+**Working on: first maps file is on disk (Q257).** `publicKey` / `id` /
+`reason` are on [`schema/maps.schema.json`](../schema/maps.schema.json).
+First public list: [`maps/betfair.json`](../maps/betfair.json). Not on the
+odds wire. Stay `0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q242**. Catalog pass closed and on the wire.
+Questions recorded through **Q257**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -48,16 +47,26 @@ the first maps file (**Q237**). Three leftover-English slots: public
 key, landing, and reason (**Q238**). Name JSON keys on this walk, in a
 later question (**Q239**). JSON names: camelCase leftover English for
 the public-key slot (**Q240**); landing is `id` (**Q241**); reason is
-`reason` (**Q242**).
+`reason` (**Q242**). Types and required flags (**Q243–Q248**). Closed
+row (**Q249**). File is `maps/betfair.json` (**Q252**, **Q257**).
+`publicKey` is on the maps schema (**Q253**). Spec §3.5 names the keys
+(**Q254**). Maps-keys leftover done (**Q255**). Stay `0.3.0-draft`
+(**Q256**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
+**First maps file (Q237–Q257).** `publicKey`, `id`, and `reason` on
+[`schema/maps.schema.json`](../schema/maps.schema.json). First public
+list is [`maps/betfair.json`](../maps/betfair.json). Spec §3.5 names the
+keys. Not on the odds wire. Stay `0.3.0-draft`. Not Q55.
+
+## Goal (previous — maps JSON object keys, closed)
+
 **Maps JSON object keys (Q237–Q242).** Three leftover-English slots:
 public key, landing, and reason. JSON names: camelCase leftover English
-for the public-key slot; landing is `id`; reason is `reason`. Rows
-wait. No file until a later pick. Stay `0.3.0-draft`. Not Q55.
+for the public-key slot; landing is `id`; reason is `reason`.
 
 ## Goal (previous — wait pass, closed)
 
@@ -262,6 +271,21 @@ over/under. No new market type. No new field. On the wire.
 - **Q240** — public-key JSON name is camelCase leftover English; do not overload identifier; no file.
 - **Q241** — landing JSON name is `id`; no file.
 - **Q242** — reason JSON name is `reason`; no file.
+- **Q243** — `publicKey` is a string.
+- **Q244** — landing `id` is a string.
+- **Q245** — `reason` is a free string.
+- **Q246** — `publicKey` required on every row.
+- **Q247** — landing `id` required on every row.
+- **Q248** — `reason` only on `market:unknown`; forbidden on a named id.
+- **Q249** — closed row; no extra keys.
+- **Q250** — no empty maps directory.
+- **Q251** — not a complete dump of the exchange.
+- **Q252** — file named `maps/betfair.json`.
+- **Q253** — `publicKey` is on the maps schema.
+- **Q254** — spec §3.5 names the keys.
+- **Q255** — maps-keys leftover done.
+- **Q256** — stay `0.3.0-draft`.
+- **Q257** — first maps file built.
 
 ### Parked
 
@@ -279,9 +303,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next questions: Q243–Q257.** Types, required, closed row, directory/file still wait, filename waits, scanned docs wait, leftover closes. Rec A on each; mark any that are not A. A pasted letter is not implement. Wire is a separate ask.
+**Next question:** none on this leftover (**Q255**). A pasted letter is not implement. Wire is a separate ask only for the odds wire; the maps file is in this repo.
 
-## Done (Q32–Q242)
+## Done (Q32–Q257)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -382,3 +406,18 @@ feed list beside the validator. Not on the wire.
 **Q240** — public-key JSON name is camelCase leftover English.
 **Q241** — landing JSON name is `id`.
 **Q242** — reason JSON name is `reason`.
+**Q243** — `publicKey` is a string.
+**Q244** — landing `id` is a string.
+**Q245** — `reason` is a free string.
+**Q246** — `publicKey` required on every row.
+**Q247** — landing `id` required on every row.
+**Q248** — `reason` only on the unknown catch-all.
+**Q249** — closed row.
+**Q250** — no empty maps directory.
+**Q251** — not a complete dump of the exchange.
+**Q252** — file named for that public list.
+**Q253** — `publicKey` is on the maps schema.
+**Q254** — spec §3.5 names the keys.
+**Q255** — maps-keys leftover done.
+**Q256** — stay `0.3.0-draft`.
+**Q257** — first maps file built.

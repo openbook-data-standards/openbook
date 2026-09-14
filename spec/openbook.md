@@ -109,21 +109,28 @@ document and is not on the odds wire.
 When files exist:
 
 - They live in **one directory named for maps**, not inside the vocab
-  lists (Q182, Q183).
-- **One JSON file per public list** (Q187, Q188).
-- Each file is a **JSON array of row objects** (Q199). JSON object keys
-  wait; do not invent names (Q189). Row meaning stays leftover English:
-  public key plus an existing OpenBook id, **or** the unknown catch-all
-  plus a reason.
-- A reason is leftover English (a free string), not a token list
-  (Q200). It is required only on the unknown catch-all and **forbidden**
-  when the landing is an existing OpenBook id (Q186, Q201).
-- In one file, a public key appears **at most once** (Q202). Row order
-  is not significant (Q203).
+  lists (Q182, Q183): [`maps/`](../maps/).
+- **One JSON file per public list** (Q187, Q188). The first public list
+  is market types from a public exchange already cited in this spec
+  (Betfair Stream) (Q218). That file is
+  [`maps/betfair.json`](../maps/betfair.json).
+- Each file is a **JSON array of row objects** (Q199) matching
+  [`schema/maps.schema.json`](../schema/maps.schema.json). Each row has
+  `publicKey` (the exchange’s market type id) and `id` (an existing
+  OpenBook market type id), or `id` `market:unknown` plus `reason`
+  (Q185, Q220–Q223, Q240–Q242).
+- `publicKey`, `id`, and `reason` are strings. `publicKey` and `id` are
+  required on every row. `reason` is required only when `id` is
+  `market:unknown` and **forbidden** when `id` is a named OpenBook market
+  type (Q186, Q201, Q243–Q248). Extra keys are forbidden (Q249).
+- In one file, a `publicKey` appears **at most once** (Q202). Many
+  public keys MAY share one `id` (Q226). Row order is not significant
+  (Q203). A public key not in the file is unmapped, not the unknown
+  catch-all (Q228).
+- This is not a complete dump of that exchange. Rows that cannot land on
+  a named OpenBook market type use `market:unknown` plus `reason`.
 
-The first public list name waits. Do not invent a taxonomy. No directory
-and no file until that name exists (Q184, Q215). Cite at least one
-public taxonomy when a list is named.
+The maps file is not a feed document and is not on the odds wire.
 
 ## 4. The hierarchy
 

@@ -6,6 +6,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Maps file** — [`maps/betfair.json`](maps/betfair.json) maps Betfair
+  market type ids onto existing OpenBook `market:*` ids, or
+  `market:unknown` plus `reason`. Schema
+  [`schema/maps.schema.json`](schema/maps.schema.json). Not on the odds
+  wire (Q257).
 - [`docs/roadmap.md`](docs/roadmap.md) — three-year direction
   (non-normative). **Q171** register, not an entity database;
   **Q172** profiles as separate specifications; **Q173** feed list
@@ -33,16 +38,13 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
-- **Maps leftover on the spec** (Q181–Q189, Q199–Q203, Q215) — public
-  market / segment keys onto existing OpenBook ids, or the unknown
-  catch-all plus a reason. One directory named for maps when files
-  exist, not inside the vocab lists; one JSON file per public list;
-  array of row objects; object keys wait; reason only on the unknown
-  catch-all; public key at most once; order not significant. First
-  public list name waits. No directory and no file until then. Not a
+- **Maps leftover on the spec** (Q181–Q189, Q199–Q203, Q215, Q218–Q257)
+  — public market keys onto existing OpenBook ids, or the unknown
+  catch-all plus a reason. Directory [`maps/`](maps/). First file
+  [`maps/betfair.json`](maps/betfair.json). Row keys `publicKey`, `id`,
+  `reason` on [`schema/maps.schema.json`](schema/maps.schema.json). Not a
   feed document; not on the odds wire.
-  [`spec/openbook.md`](spec/openbook.md) §3.5;
-  [`docs/roadmap.md`](docs/roadmap.md).
+  [`spec/openbook.md`](spec/openbook.md) §3.5.
 - **Wording** — Q171 leftover **corpus case** is **pinned fixture
   example** (one example fixture the fingerprint recipe is checked
   against). Not the Q40 conformance corpus. Same decisions. No new
@@ -289,6 +291,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q241** — landing JSON name is `id`. No file. Not wired in this pick.
 - **Q242** — reason JSON name is `reason`. No file. Not wired in this
   pick.
+- **Q243–Q249** — maps row types and required flags: strings; `publicKey`
+  and `id` on every row; `reason` only on `market:unknown`; closed shape.
+- **Q250–Q257** — first maps file [`maps/betfair.json`](maps/betfair.json);
+  `publicKey` on [`schema/maps.schema.json`](schema/maps.schema.json); spec
+  §3.5 names the keys. Not on the odds wire. Stay `0.3.0-draft`.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

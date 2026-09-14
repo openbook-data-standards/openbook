@@ -1,0 +1,119 @@
+[
+  {
+    "publicKey": "ANYTIME_GOAL_SCORER",
+    "id": "market:player-anytime-scorer"
+  },
+  {
+    "publicKey": "ASIAN_HANDICAP",
+    "id": "market:spread"
+  },
+  {
+    "publicKey": "BOTH_TEAMS_TO_SCORE",
+    "id": "market:both-teams-to-score"
+  },
+  {
+    "publicKey": "COMBINED_TOTAL",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "CORRECT_SCORE",
+    "id": "market:correct-score"
+  },
+  {
+    "publicKey": "DOUBLE_CHANCE",
+    "id": "market:double-chance"
+  },
+  {
+    "publicKey": "DRAW_NO_BET",
+    "id": "market:draw-no-bet"
+  },
+  {
+    "publicKey": "FIRST_GOAL_SCORER",
+    "id": "market:player-first-scorer"
+  },
+  {
+    "publicKey": "FIRST_HALF_GOALS_05",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "FIRST_HALF_GOALS_15",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "FIRST_HALF_GOALS_25",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "HALF_TIME",
+    "id": "market:moneyline"
+  },
+  {
+    "publicKey": "HALF_TIME_FULL_TIME",
+    "id": "market:half-time-full-time"
+  },
+  {
+    "publicKey": "HALF_TIME_SCORE",
+    "id": "market:correct-score"
+  },
+  {
+    "publicKey": "HANDICAP",
+    "id": "market:spread"
+  },
+  {
+    "publicKey": "MATCH_ODDS",
+    "id": "market:moneyline"
+  },
+  {
+    "publicKey": "ODD_OR_EVEN",
+    "id": "market:odd-even-total"
+  },
+  {
+    "publicKey": "OVER_UNDER_05",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_15",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_25",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_35",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_45",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_55",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_65",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_75",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "OVER_UNDER_85",
+    "id": "market:total"
+  },
+  {
+    "publicKey": "PLACE",
+    "id": "market:unknown",
+    "reason": "Place is not an OpenBook market type; OpenBook has no place board."
+  },
+  {
+    "publicKey": "TO_QUALIFY",
+    "id": "market:to-qualify"
+  },
+  {
+    "publicKey": "WINNER",
+    "id": "market:outright-winner"
+  }
+]

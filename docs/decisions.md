@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q230 · Q237–Q242 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q257 |
 
 The entries below stay in the order they were taken.
 
@@ -2993,3 +2993,145 @@ Rejected: a different camelCase leftover English; no JSON name; wait.
 **Supersedes:** Q189 as an open wait on this name (the reason slot is
 named). The three JSON names exist. Directory and file rules stay
 until the next picks (**Q225**, **Q227**).
+
+## Q243 — Public key is a string — decided (A)
+
+In a maps row, `publicKey` is a **string**.
+
+Not wired on the odds wire.
+
+Rejected: a number; string or number; wait.
+
+**Supersedes:** none of Q240 (the name stays; this is the type).
+
+## Q244 — Landing id is a string — decided (A)
+
+In a maps row, landing `id` is a **string**.
+
+Not wired on the odds wire.
+
+Rejected: a number; an object; wait.
+
+**Supersedes:** none of Q241.
+
+## Q245 — Reason is a free string — decided (A)
+
+In a maps row, `reason` is a **free string**, not a token list.
+
+Not wired on the odds wire.
+
+Rejected: a token list; an object; wait.
+
+**Supersedes:** none of Q200.
+
+## Q246 — Public key required on every row — decided (A)
+
+Every maps row **must** include `publicKey`.
+
+Not wired on the odds wire.
+
+Rejected: optional; only on unknown rows; wait.
+
+**Supersedes:** none of Q240.
+
+## Q247 — Landing id required on every row — decided (A)
+
+Every maps row **must** include `id`.
+
+Not wired on the odds wire.
+
+Rejected: optional; only on named landings; wait.
+
+**Supersedes:** none of Q241.
+
+## Q248 — Reason only on the unknown catch-all — decided (A)
+
+`reason` is required only when `id` is `market:unknown`, and
+**forbidden** when `id` is a named OpenBook market type (Q186, Q201).
+
+Not wired on the odds wire.
+
+Rejected: reason on every row; no reason field; wait.
+
+**Supersedes:** none of Q186 or Q201 (JSON carries the same rule).
+
+## Q249 — Closed row shape — decided (A)
+
+A maps row has only `publicKey`, `id`, and `reason`. **No extra keys.**
+
+Not wired on the odds wire.
+
+Rejected: extra keys allowed; a fourth key; wait.
+
+**Supersedes:** none of Q238.
+
+## Q250 — No empty maps directory — decided (A)
+
+No empty maps directory. The directory exists when a file with rows
+exists.
+
+**Supersedes:** none of Q225 (keys exist; this is that the directory waits
+on rows, not on keys).
+
+## Q251 — Do not invent a complete public list — decided (A)
+
+Do not invent a complete dump of the exchange. Rows in the file are
+public market type ids from that list mapped onto existing OpenBook ids,
+or the unknown catch-all plus a reason.
+
+Rejected: invent Betfair rows with no public key; empty array file;
+wait.
+
+**Supersedes:** Q227 as “no file at all” once Q257 builds the file.
+
+## Q252 — File named for that public list — decided (A)
+
+The file is **named for that public list**: `maps/betfair.json`.
+
+Rejected: a generic name that does not name the list; wait.
+
+**Supersedes:** Q219 as leftover English (this is the filename).
+
+## Q253 — Public-key name on a schema — decided (B)
+
+`publicKey` is a property on [`schema/maps.schema.json`](../schema/maps.schema.json)
+so scanned docs may tick it (Q50).
+
+Rejected: keep it out of the schema; tick it in still-to-do with no
+schema; wait.
+
+**Supersedes:** keeping the name out of scanned docs until a schema
+exists (the schema is this pick).
+
+## Q254 — Spec §3.5 names the keys — decided (B)
+
+Update spec §3.5 now. The schema is in the same change (Q253) so Q50
+holds.
+
+Rejected: leave §3.5 saying keys wait; drop §3.5; wait.
+
+**Supersedes:** Q189 as spec prose (“keys wait”).
+
+## Q255 — Maps-keys leftover done — decided (A)
+
+Names, types, required flags, spec, schema, and the first file are this
+pick. This leftover is **done**.
+
+Rejected: keep asking key questions; wait.
+
+## Q256 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Rejected: cut 0.3.0; cut 1.0; wait.
+
+**Supersedes:** none of Q211.
+
+## Q257 — Build the maps file — decided (B)
+
+Build [`maps/betfair.json`](../maps/betfair.json). Not on the odds wire.
+
+Rejected: separate ask later; schema with no file; wait.
+
+**Supersedes:** Q225 / Q250 as an open wait on a file with rows.
+
