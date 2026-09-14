@@ -23,8 +23,9 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 |
-| Tooling around the spec | Q96 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 |
+| Tooling around the spec | Q96 · Q172 · Q173 |
+| Register (not a registry) | Q2 · Q171 |
 
 The entries below stay in the order they were taken.
 
@@ -2054,3 +2055,53 @@ Rejected: stay stopped (Q169); unpark Q55; Q79/Q81.
 
 **Supersedes:** Q169 “named leftovers exhausted; stop”; Q76 “a per-sport
 vocab is later, not this walk”.
+
+## Q171 — Register, not registry — decided (A)
+
+Q2 option (b) stays rejected as an **OpenBook-run entity database**.
+Matching still uses publisher-own ids + standard facts + `sameAs` when a
+Wikidata entity exists.
+
+Chosen, as a cheap centre that nobody has to host as a database:
+
+- a spec-owned **namespace register** of scheme prefixes (publisher,
+  provider, exchange), used as `identifier` `propertyID`; first-come,
+  never reused; retire and redirect only
+- an optional **fixture fingerprint** derived from birth facts frozen at
+  first publication (sport, league anchor, start to the minute UTC,
+  ordered participant anchors, `competitionType`); publisher-own id
+  stays canonical; the fingerprint is a join key, never the object id
+- an **anchor policy**: `sameAs` accepts Wikidata, and MAY name one
+  community register per sport when one exists
+
+Rejected: keep Q2 closed with no register at all; fingerprint as the
+canonical id; OpenBook mints player, team or league ids.
+
+Not on the wire in this pick. Prefix file, fingerprint recipe and
+corpus case wait.
+
+**Supersedes:** none of Q2 (option b remains rejected), Q4, Q6 or Q94.
+
+## Q172 — Profiles are separate specifications — decided (A)
+
+Regulator reporting, a prediction-market bridge, integrity alerts and
+the register (Q171) live in **their own repositories**. Each pins a core
+major and a vocabulary release. None redefine a core field. Core stays
+the public odds wire.
+
+Rejected: those shapes inside `spec/openbook.md`; those shapes as `x_`
+extensions; one repo that models every audience.
+
+**Supersedes:** none of Q1, Q52, Q54, Q56 or Q96.
+
+## Q173 — Feed list lives beside the validator, not on the wire — decided (A)
+
+A list of known OpenBook feeds and their conformance status is
+**validator tooling**, not a document on the wire. Each publisher still
+has one discovery URL (Q49). An aggregator is itself a publisher (Q1)
+and lists its own feeds. Q94 stands.
+
+Rejected: a spec-owned manifest of many publishers on discovery; no list
+of known feeds anywhere.
+
+**Supersedes:** none of Q94.

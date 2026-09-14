@@ -34,6 +34,14 @@ committees:
    existing body) only if the ecosystem asks for it. An ISO number is an outcome,
    not a starting move.
 
+The 1.0 freeze target is **2027-Q3** (release candidate) / **2027-Q4**
+(frozen). After 1.0, every functional change needs a committed producer
+and a committed consumer before it is adopted. A working group, when it
+forms, is one seat per employer. Regulator reporting, prediction-market
+bridging, integrity alerts and a federated register are **separate
+specifications** that pin a core major (Q172). Direction:
+[`docs/roadmap.md`](docs/roadmap.md).
+
 ## Change control
 
 - Vocabularies and schemas change through [`CONTRIBUTING.md`](CONTRIBUTING.md).

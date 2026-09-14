@@ -473,7 +473,33 @@ Does **not** fit — do not reopen:
 - JSON numbers for odds or money.
 - Timestamp cursors.
 - Numeric market-type tables with specifier strings.
-- A central entity registry (Q2 rejected option b).
+- An OpenBook-run central entity database (Q2 rejected option b; the
+  federated register is Q171).
+
+---
+
+
+## 16. Studied after the first pass
+
+Verdicts stay the same four words: **adopted**, **shape only**, **later**,
+**rejected**. None of these go on the v1 wire in this pick.
+
+| What | Verdict |
+| --- | --- |
+| LSports Trade360 (public market-id table; prediction markets as fixtures) | **shape only** — another numeric market table; map with `identifier`, do not copy the integers |
+| The Odds API / OpticOdds / SportsDataIO market keys | **later** — publish maps onto OpenBook ids; those keys stay theirs |
+| Kalshi Series→Event→Market; Polymarket condition / token | **later** — a profile (Q172), `sourceType` exchange; their APIs have no team / league / game fields |
+| CEN EN 17531; Brazil SIGAP; Italy ADM palinsesto / PSQF | **later** — a reporting profile that *carries* OpenBook ids inside bet records; OpenBook is not those XSDs |
+| GLI-33 v1.1 | **later** — cites no feed format; an open odds / settlement schema is what a v2 could reference |
+| IPTC Sport Schema / SportsML-G2 | **rejected as the wire** — news markup, no odds; map outward if a publisher already speaks it |
+| Reep (community football entity register) | **shape only** — an anchor a feed MAY put on `sameAs` (Q171); OpenBook does not run it |
+| FIGI / ROR / DOI / GS1 prefixes | **shape only** — prefix federation, never-reuse, resolver not custody (Q171) |
+| LEI / GLEIF | **rejected as the model** — per-id fee and a mandate; Q11 already split id from labels |
+| CAP-shaped integrity alert | **later** — a profile that *references* fixture + market ids; not a live object on this wire |
+
+Pinnacle’s public API closed 2025-07-23. The cursor and re-grade rules
+already adopted from it (Q8, Q97–Q103) stay. That closure is why a
+vendor-independent wire is the product, not a new dependency.
 
 ---
 
@@ -491,3 +517,11 @@ Does **not** fit — do not reopen:
 - ODF General Messages — https://odf.olympictech.org/
 - RFC 7386, RFC 6902, RFC 9457, RFC 8141 — https://www.rfc-editor.org
 - CloudEvents 1.0 — https://github.com/cloudevents/spec
+- LSports Trade360 — https://docs.lsports.eu/
+- Kalshi API — https://docs.kalshi.com/
+- Polymarket CLOB — https://docs.polymarket.com/
+- CEN EN 17531 — https://standards.cencenelec.eu/
+- GLI-33 Event Wagering Systems — https://gaminglabs.com/
+- IPTC Sport Schema — https://iptc.org/standards/sport-schema/
+- Reep — https://reep.football/
+- RFC 9562 UUID · RFC 8785 JCS — https://www.rfc-editor.org
