@@ -30,8 +30,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCHEMA_DIR, EXAMPLE_DIR = os.path.join(ROOT, "schema"), os.path.join(ROOT, "examples")
 OBJECT_SCHEMA = {"fixture": "fixture", "odds": "odds_change", "market": "market", "score": "score",
                  "grade": "grade", "league": "league", "season": "season", "stage": "stage",
-                 "participant": "participant", "player": "player", "publisher": "publisher"}
-FIXTURE_TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/fixture/(?P<id>[^/#+]+)/(?P<object>fixture|odds|market|score|grade)/(?P<action>[a-zA-Z]+)$")
+                 "participant": "participant", "player": "player", "publisher": "publisher",
+                 "lineup": "lineup"}
+FIXTURE_TOPIC = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/fixture/(?P<id>[^/#+]+)/(?P<object>fixture|odds|market|score|grade|lineup)/(?P<action>[a-zA-Z]+)$")
 ENTITY_TOPIC  = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/(?P<sport>[a-z0-9-]+)/(?P<object>league|season|stage|participant|player)/(?P<id>[^/#+]+)/(?P<action>[a-zA-Z]+)$")
 PUB_TOPIC     = re.compile(r"^openbook/v1/(?P<publisher>[a-z0-9][a-z0-9-]*)/publisher/(?P<action>[a-zA-Z]+)$")
 
@@ -150,6 +151,7 @@ topics = sys.argv[sys.argv.index("--topic")+1:] if "--topic" in sys.argv else [
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/fixture/snapshotComplete",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/market/update",
     "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/grade/create",
+    "openbook/v1/acme-feeds/soccer/fixture/EVT-88213/lineup/update",
     "openbook/v1/acme-feeds/soccer/league/LG-17/update",
     "openbook/v1/acme-feeds/publisher/update",
     "openbook/v1/acme-feeds/publisher/heartbeat",
@@ -184,7 +186,7 @@ IDENT = re.compile(r"^[a-z][a-zA-Z0-9]*$")
 NOT_FIELDS = frozenset({
     "http", "https", "urn", "null", "true", "false", "spec", "version",
     "en", "es", "v1", "since",
-    "homeTeam", "awayTeam", "tools",
+    "homeTeam", "awayTeam", "tools", "openbook",
 })
 NAME_DOCS = (
     os.path.join(ROOT, "spec", "openbook.md"),

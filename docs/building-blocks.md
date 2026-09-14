@@ -15,7 +15,7 @@ grouped by what each one is used for, with the reason it was chosen.
 - **ISO 639-1** — language codes for per-language name variants (`en`, `es`).
 - **ISO 4217** — `baseCurrency` once on the publisher / feed (Q44). Money
   on that feed is `{amount}` in that code; incremental messages do not
-  repeat currency.
+  repeat currency. ISO 20022 is not the OpenBook encoding (Q92).
 - **ISO 8601 / RFC 3339** — every timestamp, with an explicit offset
   (`2026-09-19T14:00:00Z`). RFC 3339 is the strict internet profile of ISO 8601
   and is what parsers actually implement. See decision Q9.
@@ -23,7 +23,7 @@ grouped by what each one is used for, with the reason it was chosen.
   display needs them; never used in place of an offset on the wire.
 - **Unicode / UTF-8** — all text. Names keep their diacritics.
 - **ISO 9 (Cyrillic) / ISO 843 (Greek)** — how to transliterate when matching
-  or sorting; the wire field for native script is `localName` (Q11).
+  or sorting; the wire field is `nameLatin` (Q11 / Q57).
 
 ## Neutral identifiers for entities
 
@@ -51,15 +51,32 @@ grouped by what each one is used for, with the reason it was chosen.
 
 ## The wire
 
+- **JSON** — the required v1 encoding (Q89). Additional encodings MAY exist
+  later as optional bindings; this repo’s scaffolding stays JSON.
 - **RFC 7386 JSON Merge Patch** — the semantics of every change message:
-  absent = unchanged, `null` = removed. Decision Q8.
+  absent = unchanged, `null` = removed. Decision Q8. JSON Patch (RFC 6902)
+  is never an alternate (Q91).
 - **OpenAPI 3.1** — a publisher who offers HTTP publishes **their own** pull
   docs; this repo does not ship `openapi.yaml` (Q54). Spec still names
-  `since=` and HTTP 410.
+  `since=` and HTTP 410. Discovery `kind` `docs` lists those URLs (Q56).
+- **MCP (Model Context Protocol)** — a client/tooling surface, not a
+  second sportsbook wire. Discovery `kind` `mcp` points at the server's
+  own manifest (MCP Registry `server.json` / `/.well-known/mcp.json`).
+  Connection, packages and remotes stay in that document (Q56).
+- **Vendor mapping** — not this spec (Q96). Inbound books stay unknown;
+  OpenBook is the output language. Planned separate Apache-2.0 packages
+  (openbook-starter, openbook-translate). Native ids on a successful map
+  use `identifier`. FHIR-style concept maps sit beside the resource, not
+  inside it.
+- **Agent Plugins** — optional plugin-directory format (`plugin.json` plus
+  fixed component locations). Discovery `kind` `plugin` points at the
+  manifest; OpenBook does not fork the layout (Q56).
 - **AsyncAPI 3.0** — describes the push side (the change streams)
   ([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml); Q42).
 - **CloudEvents** — never (Q52). OpenBook's own change envelope is the
   message.
+- **FIX session** — never (Q93). Recovery is Q33/Q46, not FIX Logon /
+  TestRequest.
 - **RFC 9457 Problem Details** — the error format for a stale `since`
   (HTTP 410) and other pull errors.
 - **WIS2 topic hierarchy** (WMO) — the model for OpenBook's stream-naming grammar:
@@ -99,10 +116,15 @@ grouped by what each one is used for, with the reason it was chosen.
 - CloudEvents — https://github.com/cloudevents/spec · CNCF —
   https://www.cncf.io/projects/cloudevents/
 - AsyncAPI — https://www.asyncapi.com · OpenAPI — https://spec.openapis.org
+- MCP Registry `server.json` —
+  https://github.com/modelcontextprotocol/registry · schema —
+  https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json
+- Agent Plugins — https://agent-plugins.org
 - RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org
 - GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/
-- FIX Protocol — https://www.fixtrading.org/standards/
-- ISO 20022 — https://www.iso20022.org/
+- FIX Protocol — https://www.fixtrading.org/standards/ (not the OpenBook
+  session; Q93)
+- ISO 20022 — https://www.iso20022.org/ (not the OpenBook encoding; Q92)
 - OpenRTB — https://iabtechlab.com/standards/openrtb/
 - OsmChange — https://wiki.openstreetmap.org/wiki/OsmChange · Planet diffs —
   https://wiki.openstreetmap.org/wiki/Planet.osm/diffs

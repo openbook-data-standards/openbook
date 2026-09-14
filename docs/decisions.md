@@ -1,12 +1,32 @@
 # OpenBook — design decisions
 
 A running log of the decisions that shape the standard, in the order they were
-taken, each with the options that were on the table and why one won. The
-specification in [`../spec/openbook.md`](../spec/openbook.md) is revised to
-match; where the two disagree, the newer decision here wins until the spec
-catches up (tracked in [`../CHANGELOG.md`](../CHANGELOG.md)).
+taken, each with the options that were on the table and why one won.
+
+> **This is not the spec.** Current rules live in
+> [`../spec/openbook.md`](../spec/openbook.md). Meanings of sports, bets and
+> slices live in [`taxonomy.md`](taxonomy.md). This log is *why* those rules
+> exist. Where the two disagree, the newer decision here wins until the spec
+> catches up (tracked in [`../CHANGELOG.md`](../CHANGELOG.md)).
 
 Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
+
+## Map (jump to a theme)
+
+| Theme | Questions |
+| --- | --- |
+| What OpenBook is | Q1 · Q2 · Q3 |
+| Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
+| Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
+| Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 |
+| Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
+| Money and limits | Q39 · Q44 · Q45 |
+| Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
+| What we omit | Q71–Q82 · Q86 · Q87 |
+| Tooling around the spec | Q96 |
+
+The entries below stay in the order they were taken.
 
 ---
 
@@ -167,7 +187,7 @@ Rejected: required city+nickname; legal name as the only `name`; Print/TV
 scoreboard copies from ODF; ISO numbers invented for nicknames.
 
 **Supersedes:** Q11 proposed (v0.3 snake_case list). CamelCase is Q38. Schema
-may still be ahead or behind this list until a later wire PR.
+and spec match this names list.
 
 ## Q12 — Shared entity id — decided (Wikidata QID)
 
@@ -665,6 +685,31 @@ Rejected: run it on 0.x now; never; this patch.
 
 **Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
 
+## Q56 — MCP and plugins are discovery feeds, not a second wire — decided
+
+A publisher MAY advertise **additional surfaces** (an MCP server, an Agent
+Plugin, other client tooling) on the **same discovery document** as the
+OpenBook feeds (Q49). Each entry is still `{ name, url }`. Optional
+**`kind`** (`snapshot` · `stream` · `docs` · `mcp` · `plugin`), **`id`**,
+and **`schemaUrl`** say what the URL is.
+
+- `mcp` and `plugin` URLs point at **that surface's own manifest**, not an
+  OpenBook document. OpenBook does not wrap MCP, does not ship MCP or Agent
+  Plugins schemas, and does not add `mcp` to `objectType` or the topic
+  grammar.
+- An MCP/plugin that exposes OpenBook data uses OpenBook document shapes as
+  the payload. That is the data standard for adding a plugin: advertise it
+  on discovery; keep the wire.
+
+Rejected: inline `mcpServers` in discovery (duplicates MCP's own config);
+a new live `object` for MCP; `.well-known/openbook-mcp` as a second
+discovery URL; wrapping change messages as MCP-only payloads with a
+parallel betting schema; shipping MCP `server.json` schema in this repo
+(same as Q54 for OpenAPI).
+
+**Supersedes:** Q49 “named feeds” by adding `kind` / `schemaUrl` / `id`
+and naming MCP/plugin. Q52 (no wrap) and Q54 (foreign docs stay at their
+own URL) stand.
 ## Q57 — Name fields unpacked — decided (closes Q11)
 
 Walk: participant vs `player` vs fixture row; team strings; person strings;
@@ -777,8 +822,8 @@ Rejected: optional or required capacity.
 
 ## Q72 — Competition sex category — decided
 
-Optional on the **league**: `men` · `women` · `mixed` · `open`. Vocab, not
-ISO 5218. Not a field on the person.
+Optional on the **league** as **`gender`**: `men` · `women` · `mixed` ·
+`open`. Vocab, not ISO 5218. Not a field on the person.
 
 Rejected: person-level FIFA Gender; both; omit (would hide WSL vs EPL).
 
@@ -844,12 +889,15 @@ Rejected: optional or required coach now.
 
 **Supersedes:** none.
 
-## Q80 — Match lineup — decided (later live object)
+## Q80 — Match lineup — decided (lineup object)
 
-`player` is **roster** (season membership). Starting XI is a **later live
-object**, not fields on the catalog fixture.
+`player` is **roster** (season membership). Starting XI is a live **`lineup`**
+object, fixture-keyed, not fields on the catalog fixture. The ids are roster
+**`player`** ids. Formation, substitutions, and predicted lineup stay omitted
+(**Q82**).
 
-Rejected: starter ids on the fixture now; never a match XI.
+Rejected: starter ids on the fixture now; never a match XI; person ids
+without the roster row.
 
 **Supersedes:** none. Spec already says `player` is for lineups/props; match
 XI is not the roster row.
@@ -924,3 +972,155 @@ Rejected: unpack stage/series immediately; jump to Q46 wire in this
 question.
 
 **Supersedes:** none.
+
+## Q88 — Throwing/shooting and batting hand — decided
+
+Optional on **`player`** (roster), not the person: **`throws`** (throwing or
+shooting) and **`bats`**. Each is `left` · `right` · `both`. No ISO.
+`both` is switch / either hand.
+
+Rejected: one `hand` field; ISO 5218-style sex codes; person-level FIFA
+Gender as a stand-in.
+
+**Supersedes:** none of Q75/Q76.
+
+## Q89 — JSON is the v1 encoding; other encodings are not forbidden — decided (A)
+
+The required v1 encoding is **JSON** (`application/json`). The spec, JSON
+Schemas, examples, discovery document, conformance corpus, validator, site,
+and AsyncAPI `defaultContentType` describe this encoding only. OpenBook
+scaffolding does not ship `.proto`, SBE, or another codec in v1.
+
+Additional encodings (protobuf, SBE, or anything else) **MAY** exist later
+as optional bindings, generated from the existing JSON Schemas — the same
+pattern OpenRTB uses (JSON default, protobuf optional). This log does **not**
+forbid them and does not require them.
+
+A later encoding is a new binding of the same objects, not a second data
+model. Decimal strings (**Q39**), Merge Patch (**Q8**), and RFC 3339 (**Q9**)
+stay the contract.
+
+Rejected: protobuf/SBE as the v1 encoding; JSON-only forever; shipping
+`.proto` now; leaving this as unnumbered industry-pattern prose.
+
+**Supersedes:** none of Q8/Q39/Q40. Pins `docs/industry-patterns.md` “JSON in
+v1; binary later”.
+
+## Q90 — No GBFS-style data wrapper — decided (A)
+
+GBFS wraps every file in `last_updated` / `ttl` / `version` / `data`.
+OpenBook does not. Discovery is `{ lastUpdated, ttl, feeds }` at the root
+(**Q49**). Object documents and change messages are the object (**Q8**).
+They are not nested under a GBFS-style data member, on HTTP pull or on
+sockets.
+
+Rejected: wrap HTTP pull only; wrap every message including MQTT / WebSocket
+/ SSE; leave this unsaid because Q49 named discovery.
+
+**Supersedes:** none of Q49. GBFS-shaped means `ttl` and the discovery
+fields, not the GBFS file envelope.
+
+## Q91 — JSON Patch (RFC 6902) — decided (never)
+
+Change semantics stay **JSON Merge Patch (RFC 7386)** (**Q8**). RFC 6902
+JSON Patch is **not** an alternate change encoding, on pull or on sockets.
+
+Rejected: optional second patch language; JSON Patch on HTTP pull only;
+leave RFC 6902 unsaid because Q8 named Merge Patch.
+
+**Supersedes:** none of Q8. Same kind of pin as Q52 (envelope) and Q90
+(no second wrapper).
+
+## Q92 — ISO 20022 is not the OpenBook model or encoding — decided (never)
+
+The wire stays JSON Schema, schema.org-aligned camelCase (**Q13** / **Q38**),
+and Q44 money (`{amount}` plus feed `baseCurrency`). ISO 20022 XML and the
+ISO 20022 JSON trial are **not** the OpenBook encoding. They do not rename
+money fields and they do not replace JSON Schema.
+
+Rejected: adopt the ISO 20022 JSON trial money shape; add an ISO 20022
+mapping document in this question; leave ISO 20022 unsaid because Q13/Q38/Q44
+named names and money.
+
+**Supersedes:** none of Q13/Q38/Q44.
+
+## Q93 — FIX session is not the OpenBook session — decided (never)
+
+Session and recovery stay **Q33** / **Q46**: `snapshotComplete`,
+`heartbeat` + `heartbeatMs`, stale `since` is HTTP 410. FIX Logon /
+Heartbeat / TestRequest / Logout, and sequence reset, are **not** the
+OpenBook session. A later SBE binding (**Q89**) would still carry OpenBook
+heartbeats, not FIX Logon.
+
+Rejected: adopt FIX TestRequest / Heartbeat / Logout on the socket; add a
+FIX-session mapping document in this question; leave this unsaid because
+Q46 rejected a client TestRequest pair.
+
+**Supersedes:** none of Q46.
+
+## Q94 — No spec-owned multi-publisher manifest — decided (A)
+
+Each publisher has **one discovery URL** (**Q41** / **Q49**). That document
+lists that publisher's feeds, not other publishers. An aggregator is itself
+a publisher (**Q1**) and lists its own feeds. There is no spec-owned
+GBFS-style manifest of many publishers.
+
+Rejected: an OpenBook manifest of many publishers' discovery URLs; putting
+other publishers' discovery URLs on this publisher's discovery document;
+leave this unsaid because Q49 named one URL per publisher.
+
+**Supersedes:** none of Q1/Q49.
+
+## Q95 — Protocol-fit pass closed — decided
+
+This walk of encoding, wrappers, patch language, ISO 20022, FIX session,
+and discovery index is **closed**. Further questions are a **new area**,
+not more take/don't-take pins from that comparison list.
+
+Rejected: keep minting never-X questions from memory; unpack another
+protocol in this question.
+
+**Supersedes:** none.
+
+## Q96 — Vendor mapping and starter are not this spec — decided
+
+OpenBook is the **target language**. Mapping 487 / KIBL / Optic / LinePros /
+MollyBet (or any unknown inbound) onto it is **not** the specification,
+the way FHIR keeps concept maps beside Patient and GTFS does not ship a
+vendor translator.
+
+Planned Python tooling (not in this repo; names only, repos not created
+in this change):
+
+- **openbook-starter** — copyable example + CLI `openbook start`. Writes
+  documents only under `openbook/`: publisher, discovery, `snapshot.json`
+  (the publisher document). Discovery lists only URLs that exist
+  (snapshot, not placeholder stream/docs). Identity: flags, prompt if
+  missing; `--no-input` for scripts. One default source
+  `{publisher-id}-book`. `--base-url` or prompt. `openbook/README.md`
+  only. Refuse if `openbook/` exists unless `--force`. Apache-2.0.
+  Python 3.11. v1 CLI is `start` only. Optional extra
+  `openbook-starter[translations]` depends on openbook-translate; `start`
+  does not edit the caller's pyproject. Game-props / player-props /
+  futures packages wait.
+- **openbook-translate** — ABC: one record, sync `translate` (vendor →
+  OpenBook documents) and `reverse` (OpenBook → vendor bytes + optional
+  dict). Inbound: raw bytes + optional parsed dict + source id. Unmapped:
+  quarantine (raw + reason), not raise/skip. Success MUST carry native id
+  on `identifier` so reverse can round-trip. Official implementer is a
+  synthetic **acme** adapter for contract tests. Community MAY publish
+  `openbook-translate-kibl` etc.; this project will not. Vendored copy of
+  `schema/*.json` plus an `openbook-spec-version` stamp; `update` CI goes
+  red when the spec moved (notify only; no git writes from a cluster).
+  Apache-2.0 code; schemas remain CC BY with NOTICE.
+
+No auto-rewrite of feed JSON when the spec moves (0.x-draft will move
+often). `openbook start` MAY write `.github/workflows/openbook-update.yml`:
+daily cron + `workflow_dispatch` is the check; the *meaning* is protocol
+change; the job fails (GitHub CI red), it does not commit.
+
+Rejected: Django-cookiecutter of a sportsbook in the spec repo; in-cluster
+commits; official vendor adapters; a second reverse-only package; putting
+adapter classes in `spec/openbook.md`.
+
+**Supersedes:** none of Q1/Q6/Q49/Q56. Mapping stays off the wire.

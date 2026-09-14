@@ -3,6 +3,11 @@
 OpenBook is an **important public open-source standard**. Treat it as frozen
 unless a human has explicitly asked you to implement a named change.
 
+## Do not invent anything
+
+**Number one rule.** If a field name, object, enum, ISO, or behaviour was not
+asked and answered, do not add it. Ask. Wait.
+
 ## Never change unless told
 
 Do **not** edit spec, schemas, examples, vocabularies, conformance, site HTML,
