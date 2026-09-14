@@ -1372,3 +1372,14 @@ Not wired in this pick.
 Rejected: who or the number missing on a listed row.
 
 **Supersedes:** none of Q107.
+
+## Q114 — A row does not mix boards — decided (A)
+
+A row only carries the extras for that board. Correct-score totals do
+not appear on an HT/FT row, and so on.
+
+Not wired in this pick.
+
+Rejected: mixing extras from different boards on one row.
+
+**Supersedes:** none of Q105–Q113.
