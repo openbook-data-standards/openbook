@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q143**. Catalog pass closed and on the wire.
+Questions recorded through **Q144**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -64,6 +64,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q141** — stall is not on the generic fixture or `participant` row.
 - **Q142** — toss is not on the generic fixture.
 - **Q143** — stall and toss are new catalog objects (not `sport`, not live).
+- **Q144** — two catalog objects, not one bag.
 
 ### Parked
 
@@ -75,9 +76,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Stall and toss: two catalog objects, or one?
+- Close home rules here? Object names later.
 
-## Done (Q32–Q143)
+## Done (Q32–Q144)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -107,3 +108,4 @@ pass closed.
 **Q141** — stall not on generic fixture or `participant`.
 **Q142** — toss not on the generic fixture.
 **Q143** — stall and toss are new catalog objects.
+**Q144** — two catalog objects, not one bag.

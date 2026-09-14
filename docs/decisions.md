@@ -1701,3 +1701,14 @@ Not wired in this pick.
 Rejected: extra keys on `sport`; no new objects.
 
 **Supersedes:** none of Q142.
+
+## Q144 — Stall and toss are two catalog objects — decided (A)
+
+Two catalog objects. Each leftover its own home (Q137). Not one object
+that holds both.
+
+Not wired in this pick. Object names wait.
+
+Rejected: one catalog object that holds both.
+
+**Supersedes:** none of Q137 or Q143.
