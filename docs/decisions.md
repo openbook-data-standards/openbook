@@ -1511,3 +1511,14 @@ Not wired in this pick.
 Rejected: a new book feed walk; stop until plus-bands merge.
 
 **Supersedes:** Q117 “pass closed” as the next area, not the prop extras.
+
+## Q127 — Player id always on yes/no player rows — decided (A)
+
+Every yes/no player row has `player`. Same rule as player over/under
+(Q115).
+
+Not wired in this pick.
+
+Rejected: optional on some yes/no rows.
+
+**Supersedes:** none of Q115 or Q126.
