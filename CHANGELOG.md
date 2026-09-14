@@ -79,6 +79,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   series. Win counts and elected bat/bowl wait. Spec walk stopped.
 - **Q148** — this walk is live series win counts. Names wait. Toss elected
   still waits. Not wired in this pick.
+- **Q149** — win counts are one row per series side on live `series`; same
+  `participant` ids as this fixture. Count names wait. Not wired.
 
 
 ### Removed
