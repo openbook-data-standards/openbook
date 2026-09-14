@@ -2192,3 +2192,17 @@ Not wired in this pick.
 Rejected: start listing tokens now; unpark Q55; cut a new draft version.
 
 **Supersedes:** Q179 as an open “what is next” (shape stays).
+
+## Q181 — Maps leftover this walk — decided (A)
+
+This walk is the sitting **maps leftover**: public market / segment keys
+onto existing OpenBook ids, or the unknown catch-all with a reason.
+Cite at least one public taxonomy. Not a wire change. Not Q55. Not
+position token lists.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: Q171 later leftover; Q172 profile repositories; stay stopped.
+
+**Supersedes:** Q180 as an open “what is next” (position shape stays;
+this is a new leftover).

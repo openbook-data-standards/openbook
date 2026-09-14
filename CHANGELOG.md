@@ -139,6 +139,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Not wired in this pick.
 - **Q180** — position-vocab shape is logged. Token lists wait. Spec walk
   stopped. Not Q55. Not a version cut. Not wired in this pick.
+- **Q181** — this walk is the maps leftover. Public market / segment
+  keys onto existing OpenBook ids, or the unknown catch-all with a
+  reason. Not a wire change. No file in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
