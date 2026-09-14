@@ -972,3 +972,32 @@ This decision does **not** add new `scoreUnit` values. `bookings` and
 home-runs stay until a payload names them.
 
 **Supersedes:** none. Completes Q26 for priced markets.
+
+## Q91 — Statuses and settled — decided (keep the four places)
+
+Four jobs, four places. No new fields.
+
+- **Event lifecycle** — `eventStatus` on fixture and score.
+- **Match progress** — `score` only: `currentSegment`, `segmentStatus`
+  (`pending` · `live` · `paused` · `down`), `clock`, `scores[]`. Not on
+  odds. `paused` is halt on the field, not odds offline.
+- **Betting** — per-market `marketStatus` (`open` · `suspended` ·
+  `closed` · `void`). A period going offline is a fan-out: those markets
+  with that `segment` change status (Sportradar `bet_stop`). Prefer
+  touching only the affected markets; bulk only when the book took the
+  whole period down. Outcome `active` stays on the outcome.
+- **Book’s call** — the `grade` object. Not a market status.
+
+Pinnacle `/fixtures/settled` period rows map to a segment going `down`
+once (Q28) with final `bySegment` numbers. Pinnacle `/bets` maps to
+`grade`. Deleted event is `fixture/delete`, not a fake settled period.
+Corrections stay Q31 (`score` erratum; `grade/delete` + new grade with
+`supersedes`).
+
+Rejected: betting-open on the fixture; a stored betting flag on the
+segment (Pinnacle period `status` as state); `marketStatus: settled`;
+a `settlement` object / `settlementId`; progress fields on the odds
+envelope.
+
+**Supersedes:** none of Q25 / Q27–Q31 / Q43. Confirms that mapping for
+the Pinnacle Lines walk.

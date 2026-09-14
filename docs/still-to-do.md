@@ -30,17 +30,17 @@ answered. Do not invent names.
 - **Q89** — Pinnacle specials are **markets**. No new object.
 - **Q90** — optional `basis` on every market (same `scoreUnit` list). Same
   `market:*` ids. Omit = sport/league `primaryUnit`. Not a new type.
+- **Q91** — four places, no new fields. Progress on `score`; betting is
+  `marketStatus`; settled = segment `down` + `grade` (Q27–Q31). Team
+  totals and draw sides already in the vocab.
 
 ### Not decided yet (walk these; do not invent)
 
-1. **Odds envelope** — team totals and draw sides (vocab already has them);
-   period status on the odds call vs fixture `eventStatus`.
-2. **Parlay / teaser flags on the event** — whether the event may be
+1. **Parlay / teaser flags on the event** — whether the event may be
    parlayed, same-event parlay period list, alternative teaser points.
-3. **Live pairing** — confirm `superEvent`; do not add a second model.
-4. **Settled fixtures** — period settlement vs grade delete/create.
-5. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
-6. **Get Line** — confirm market `limit` is enough.
+2. **Live pairing** — confirm `superEvent`; do not add a second model.
+3. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
+4. **Get Line** — confirm market `limit` is enough.
 
 ### Not in the Pinnacle Lines fixture schema
 
@@ -54,8 +54,8 @@ payload has them. Do not add them to cover “all sports.”
 
 ## Next question (not decided)
 
-- Odds envelope: team totals / draw sides, and period status vs `eventStatus`.
+- Parlay / teaser flags on the event.
 
-## Done (Q32–Q90)
+## Done (Q32–Q91)
 
-Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis`.
+Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled.
