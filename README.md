@@ -58,6 +58,7 @@ openbook/  (this repository)
     taxonomy.md           ← shared lists explained without wire rules
     decisions.md            ← the design decision log
     protocol-comparison.md   ← GTFS, GBFS, MQTT, FIX, ISO 20022, OpenRTB, … vs OpenBook
+    roadmap.md               ← three-year direction (non-normative)
   spec/
     openbook.md           ← the normative reference specification
     asyncapi.yaml         ← push streams (Q42); MQTT not required

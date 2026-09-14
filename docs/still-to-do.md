@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q170**. Catalog pass closed and on the wire.
+Questions recorded through **Q173**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -15,13 +15,18 @@ walk stopped (**Q156**), then unparked for toss elected then best-of
 the wire (`elected`, `needed`). Spec walk stopped (**Q167**), then the
 next leftover was unnamed (**Q168**). Named leftovers exhausted; spec
 walk stopped (**Q169**), then Q76 position vocab unparked (**Q170**).
+Roadmap pass closed (**Q171–Q173**): register not an entity database;
+profiles are separate specifications; feed list is validator tooling.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Per-sport position vocab (Q76).** Field stays `position`. Token lists
-wait.
+**Closed.** Roadmap logged. Register is prefixes + optional fixture
+fingerprint + anchors, not an OpenBook-run entity database (**Q171**).
+Profiles are separate specifications (**Q172**). Feed list lives beside
+the validator (**Q173**). Q76 position vocab stays the leftover walk
+(**Q170**); token lists wait. No wire change.
 
 ## Goal (previous — named leftovers, closed)
 
@@ -95,6 +100,9 @@ over/under. No new market type. No new field. On the wire.
 - **Q168** — next leftover unnamed; wait.
 - **Q169** — named leftovers exhausted; stop this spec walk (superseded by Q170).
 - **Q170** — this walk is Q76 per-sport position vocab. Field stays `position`. Token lists wait.
+- **Q171** — register, not registry.
+- **Q172** — profiles are separate specifications.
+- **Q173** — feed list beside the validator (Q94 stands).
 
 ### Parked
 
@@ -103,12 +111,25 @@ over/under. No new market type. No new field. On the wire.
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
+- **Q171** — namespace prefix file; fixture fingerprint recipe and a
+  corpus case; anchor policy prose.
+- **Q172** — profile repositories (prediction-market, reporting,
+  integrity, register) that pin a core major.
+- **Q173** — hosted validator and a feed list beside it, not on
+  discovery.
 
 ## Next question (not decided)
 
-**Next question: Q171.** First real product question of the Q76 position-vocab walk. Rec: keep existing optional `position`; growable per-sport shared ids; unknown tokens tolerated (Q34); not one closed world list; not a second field; not ISO; token lists wait. A pasted letter is not implement. Wire is a separate ask.
+- **Q174** — first product question of the Q76 position-vocab walk.
+  Rec: keep existing optional `position`; growable per-sport shared
+  ids; unknown tokens tolerated (Q34); not one closed world list; not
+  a second field; not ISO; token lists wait. A pasted letter is not
+  implement. Wire is a separate ask.
+- Maps in a crosswalks directory: public market / segment keys onto
+  existing OpenBook ids, or the unknown catch-all with a reason. Cite at
+  least one public taxonomy. Not a wire change.
 
-## Done (Q32–Q170)
+## Done (Q32–Q173)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -138,3 +159,5 @@ pass closed.
 **Q168** — next leftover unnamed; wait.
 **Q169** — named leftovers exhausted; stop.
 **Q170** — Q76 per-sport position vocab this walk; field stays `position`; token lists wait.
+**Q171–Q173** — roadmap: register not a registry; profiles separate;
+feed list beside the validator. Not on the wire.

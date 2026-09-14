@@ -43,6 +43,9 @@ PAGE_MAP = {
     "docs/protocol-comparison.md": "protocol-comparison.html",
     "../docs/protocol-comparison.md": "protocol-comparison.html",
     "protocol-comparison.md": "protocol-comparison.html",
+    "docs/roadmap.md": "roadmap.html",
+    "../docs/roadmap.md": "roadmap.html",
+    "roadmap.md": "roadmap.html",
     "industry-patterns.md": "industry-patterns.html",
     "GOVERNANCE.md": "governance.html",
     "../GOVERNANCE.md": "governance.html",
@@ -505,6 +508,7 @@ def main() -> None:
     write_md_page(ROOT / "docs/building-blocks.md", ROOT / "building-blocks.html", 0, "building-blocks.html", "docs/building-blocks.md")
     write_md_page(ROOT / "docs/industry-patterns.md", ROOT / "industry-patterns.html", 0, "industry-patterns.html", "docs/industry-patterns.md")
     write_md_page(ROOT / "docs/protocol-comparison.md", ROOT / "protocol-comparison.html", 0, "protocol-comparison.html", "docs/protocol-comparison.md")
+    write_md_page(ROOT / "docs/roadmap.md", ROOT / "roadmap.html", 0, "roadmap.html", "docs/roadmap.md")
     write_md_page(ROOT / "GOVERNANCE.md", ROOT / "governance.html", 0, "governance.html", "GOVERNANCE.md")
     write_md_page(ROOT / "SECURITY.md", ROOT / "security.html", 0, "security.html", "SECURITY.md")
     write_md_page(ROOT / "VERSIONING.md", ROOT / "versioning.html", 0, "versioning.html", "VERSIONING.md")

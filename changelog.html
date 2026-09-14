@@ -36,6 +36,7 @@
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
 <ul>
+<li><a href="roadmap.html"><code>docs/roadmap.md</code></a> — three-year direction (non-normative). <strong>Q171</strong> register, not an entity database; <strong>Q172</strong> profiles as separate specifications; <strong>Q173</strong> feed list beside the validator, not on discovery (Q94 stands). No wire change.</li>
 <li><strong>Vocabularies</strong> — every row in <a href="vocabularies/#sports"><code>vocabularies/sports.md</code></a>, <a href="vocabularies/#segments"><code>vocabularies/segments.md</code></a> and <a href="vocabularies/#market-types"><code>vocabularies/market_types.md</code></a> carries a description and settlement rule. Sports grow to what mainstream books price (futsal, badminton, handball, field hockey, snooker, darts, cycling, Australian rules, swimming, skiing, lacrosse, esports titles as disciplines). Every sport names <code>full-time</code> as the whole contest as graded. Market types include common score, game, player, and outright boards. Human map: <a href="taxonomy.html"><code>docs/taxonomy.md</code></a>.</li>
 <li><strong><code>composite</code> market shape</strong> — parlays and same-game parlays are that shape (legs are other market outcomes). Schema, spec, and <a href="examples/market_type.example.json"><code>examples/market_type.example.json</code></a>.</li>
 <li><strong>Examples page</strong> — <a href="examples.html"><code>docs/examples.md</code></a> walks the existing <code>examples/</code> documents in <code>sequence</code> order (GTFS-style sample feed, not a sandbox). <code>publisher.example.json</code> lists <code>bigbook</code> so it matches the market and odds samples. No wire change.</li>
@@ -43,6 +44,8 @@
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
+<li><a href="protocol-comparison.html"><code>docs/protocol-comparison.md</code></a> §15 last bullet names the rejected thing (an OpenBook-run entity database); §16 records protocols studied after the first pass.</li>
+<li><a href="governance.html"><code>GOVERNANCE.md</code></a> — 1.0 target quarter, post-1.0 producer+consumer rule, one seat per employer, link to the roadmap.</li>
 <li><strong>Segments: one whole-contest word.</strong> Cricket and motorsport use <code>full-time</code> (draft ids <code>full-match</code> / <code>full-session</code> dropped); athletics gains <code>full-time</code>. Never frozen, so no deprecation entry (Q35).</li>
 <li><code>market:odd-even-total</code> is shape <code>n-way</code> (sides <code>odd</code> / <code>even</code>), not <code>yes-no</code>; <code>market:moneyline</code> is shape <code>n-way</code> (two- or three-way).</li>
 <li><a href="taxonomy.html"><code>docs/taxonomy.md</code></a>: Side as a table, complete segment families, market families named by <code>marketCategory</code>.</li>

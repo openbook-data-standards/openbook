@@ -6,6 +6,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- [`docs/roadmap.md`](docs/roadmap.md) — three-year direction
+  (non-normative). **Q171** register, not an entity database;
+  **Q172** profiles as separate specifications; **Q173** feed list
+  beside the validator, not on discovery (Q94 stands). No wire change.
 - **Vocabularies** — every row in
   [`vocabularies/sports.md`](vocabularies/sports.md),
   [`vocabularies/segments.md`](vocabularies/segments.md) and
@@ -29,6 +33,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
+- [`docs/protocol-comparison.md`](docs/protocol-comparison.md) §15 last
+  bullet names the rejected thing (an OpenBook-run entity database);
+  §16 records protocols studied after the first pass.
+- [`GOVERNANCE.md`](GOVERNANCE.md) — 1.0 target quarter, post-1.0
+  producer+consumer rule, one seat per employer, link to the roadmap.
 - **Segments: one whole-contest word.** Cricket and motorsport use
   `full-time` (draft ids `full-match` / `full-session` dropped); athletics
   gains `full-time`. Never frozen, so no deprecation entry (Q35).

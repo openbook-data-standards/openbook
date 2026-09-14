@@ -31,7 +31,7 @@
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#1-openbook-in-one-paragraph"><span class="n">1</span>OpenBook</a><a href="#2-fit-at-a-glance"><span class="n">2</span>Fit at a glance</a><a href="#3-gtfs-gtfs-realtime"><span class="n">3</span>GTFS / GTFS-Realtime</a><a href="#4-gbfs-3-0"><span class="n">4</span>GBFS 3.0</a><a href="#5-mqtt-5-0-and-iso-iec-20922"><span class="n">5</span>MQTT 5.0 and ISO/IEC 20922</a><a href="#6-wmo-wis-2-0"><span class="n">6</span>WMO WIS 2.0</a><a href="#7-fix-protocol"><span class="n">7</span>FIX Protocol</a><a href="#8-iso-20022"><span class="n">8</span>ISO 20022</a><a href="#9-openrtb-2-6"><span class="n">9</span>OpenRTB 2.6</a><a href="#10-betfair-exchange-stream"><span class="n">10</span>Betfair Exchange Stream</a><a href="#11-sportradar-unified-odds-feed"><span class="n">11</span>Sportradar Unified Odds Feed</a><a href="#12-pinnacle-ps3838-and-kibl"><span class="n">12</span>Pinnacle / PS3838 and KIBL</a><a href="#13-openstreetmap-cap-odf-confluent"><span class="n">13</span>OpenStreetMap</a><a href="#14-encodings-openbook-considered-and-parked"><span class="n">14</span>Encodings OpenBook considered and parked</a><a href="#15-what-fits-ours-the-short-list"><span class="n">15</span>What fits ours — the short list</a><a href="#sources"><span class="n"></span>Sources</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · docs/protocol-comparison.md</p><article class="doc"><h1 id="protocol-comparison-technical-specs-and-what-fits-openbook">Protocol comparison — technical specs, and what fits OpenBook</h1>
+<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#1-openbook-in-one-paragraph"><span class="n">1</span>OpenBook</a><a href="#2-fit-at-a-glance"><span class="n">2</span>Fit at a glance</a><a href="#3-gtfs-gtfs-realtime"><span class="n">3</span>GTFS / GTFS-Realtime</a><a href="#4-gbfs-3-0"><span class="n">4</span>GBFS 3.0</a><a href="#5-mqtt-5-0-and-iso-iec-20922"><span class="n">5</span>MQTT 5.0 and ISO/IEC 20922</a><a href="#6-wmo-wis-2-0"><span class="n">6</span>WMO WIS 2.0</a><a href="#7-fix-protocol"><span class="n">7</span>FIX Protocol</a><a href="#8-iso-20022"><span class="n">8</span>ISO 20022</a><a href="#9-openrtb-2-6"><span class="n">9</span>OpenRTB 2.6</a><a href="#10-betfair-exchange-stream"><span class="n">10</span>Betfair Exchange Stream</a><a href="#11-sportradar-unified-odds-feed"><span class="n">11</span>Sportradar Unified Odds Feed</a><a href="#12-pinnacle-ps3838-and-kibl"><span class="n">12</span>Pinnacle / PS3838 and KIBL</a><a href="#13-openstreetmap-cap-odf-confluent"><span class="n">13</span>OpenStreetMap</a><a href="#14-encodings-openbook-considered-and-parked"><span class="n">14</span>Encodings OpenBook considered and parked</a><a href="#15-what-fits-ours-the-short-list"><span class="n">15</span>What fits ours — the short list</a><a href="#16-studied-after-the-first-pass"><span class="n">16</span>Studied after the first pass</a><a href="#sources"><span class="n"></span>Sources</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · docs/protocol-comparison.md</p><article class="doc"><h1 id="protocol-comparison-technical-specs-and-what-fits-openbook">Protocol comparison — technical specs, and what fits OpenBook</h1>
 <p>A working review of the live-data and market-data protocols OpenBook is shaped after, plus the highly regarded ones it cites but had not compared at spec level. Betting-vendor APIs stay in <a href="industry-patterns.html"><code>industry-patterns.md</code></a>. This page is the technology comparison: encoding, identity, diffs, recovery, topics, money, versioning, and governance.</p>
 <p>Status: documentation only. Nothing here reopens a decided Q. Where a foreign idea fits and is already on the wire, the decision is named. Where it fits later (optional encoding, ops extras), it is marked <strong>later</strong>. Where it does not fit, the reason is the OpenBook job: <strong>one shared publication format</strong>, not a session protocol, not a committee repository, not an auction.</p>
 <hr>
@@ -218,8 +218,13 @@
 <li>JSON numbers for odds or money.</li>
 <li>Timestamp cursors.</li>
 <li>Numeric market-type tables with specifier strings.</li>
-<li>A central entity registry (Q2 rejected option b).</li>
+<li>An OpenBook-run central entity database (Q2 rejected option b; the federated register is Q171).</li>
 </ul>
+<hr>
+<h2 id="16-studied-after-the-first-pass">16. Studied after the first pass</h2>
+<p>Verdicts stay the same four words: <strong>adopted</strong>, <strong>shape only</strong>, <strong>later</strong>, <strong>rejected</strong>. None of these go on the v1 wire in this pick.</p>
+<div class="table-wrap"><table><thead><tr><th>What</th><th>Verdict</th></tr></thead><tbody><tr><td>LSports Trade360 (public market-id table; prediction markets as fixtures)</td><td><strong>shape only</strong> — another numeric market table; map with <code>identifier</code>, do not copy the integers</td></tr><tr><td>The Odds API / OpticOdds / SportsDataIO market keys</td><td><strong>later</strong> — publish maps onto OpenBook ids; those keys stay theirs</td></tr><tr><td>Kalshi Series→Event→Market; Polymarket condition / token</td><td><strong>later</strong> — a profile (Q172), <code>sourceType</code> exchange; their APIs have no team / league / game fields</td></tr><tr><td>CEN EN 17531; Brazil SIGAP; Italy ADM palinsesto / PSQF</td><td><strong>later</strong> — a reporting profile that <em>carries</em> OpenBook ids inside bet records; OpenBook is not those XSDs</td></tr><tr><td>GLI-33 v1.1</td><td><strong>later</strong> — cites no feed format; an open odds / settlement schema is what a v2 could reference</td></tr><tr><td>IPTC Sport Schema / SportsML-G2</td><td><strong>rejected as the wire</strong> — news markup, no odds; map outward if a publisher already speaks it</td></tr><tr><td>Reep (community football entity register)</td><td><strong>shape only</strong> — an anchor a feed MAY put on <code>sameAs</code> (Q171); OpenBook does not run it</td></tr><tr><td>FIGI / ROR / DOI / GS1 prefixes</td><td><strong>shape only</strong> — prefix federation, never-reuse, resolver not custody (Q171)</td></tr><tr><td>LEI / GLEIF</td><td><strong>rejected as the model</strong> — per-id fee and a mandate; Q11 already split id from labels</td></tr><tr><td>CAP-shaped integrity alert</td><td><strong>later</strong> — a profile that <em>references</em> fixture + market ids; not a live object on this wire</td></tr></tbody></table></div>
+<p>Pinnacle’s public API closed 2025-07-23. The cursor and re-grade rules already adopted from it (Q8, Q97–Q103) stay. That closure is why a vendor-independent wire is the product, not a new dependency.</p>
 <hr>
 <h2 id="sources">Sources</h2>
 <ul>
@@ -235,6 +240,14 @@
 <li>ODF General Messages — https://odf.olympictech.org/</li>
 <li>RFC 7386, RFC 6902, RFC 9457, RFC 8141 — https://www.rfc-editor.org</li>
 <li>CloudEvents 1.0 — https://github.com/cloudevents/spec</li>
+<li>LSports Trade360 — https://docs.lsports.eu/</li>
+<li>Kalshi API — https://docs.kalshi.com/</li>
+<li>Polymarket CLOB — https://docs.polymarket.com/</li>
+<li>CEN EN 17531 — https://standards.cencenelec.eu/</li>
+<li>GLI-33 Event Wagering Systems — https://gaminglabs.com/</li>
+<li>IPTC Sport Schema — https://iptc.org/standards/sport-schema/</li>
+<li>Reep — https://reep.football/</li>
+<li>RFC 9562 UUID · RFC 8785 JCS — https://www.rfc-editor.org</li>
 </ul></article></div></div><p class="source">Source: docs/protocol-comparison.md</p>
 </div></main>
 <footer><div class="wrap">
