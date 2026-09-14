@@ -1312,3 +1312,16 @@ Not wired in this pick.
 Rejected: id plus name on every price row.
 
 **Supersedes:** Q105 “roster own id” (same meaning, now explicit).
+
+## Q109 — HT/FT is home, away, or draw — decided (A)
+
+On a half-time/full-time row, `halfTime` and `fullTime` are only
+**home**, **away**, or **draw**. Not over, odd, other, or the rest of
+`side`.
+
+Not wired in this pick.
+
+Rejected: the full `side` list on those two fields.
+
+**Supersedes:** Q105 “each a side of home · away · draw” (same three,
+now exclusive).
