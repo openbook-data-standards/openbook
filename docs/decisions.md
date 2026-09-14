@@ -1624,3 +1624,14 @@ Not wired in this pick.
 Rejected: reopen Q86; put them on the generic fixture.
 
 **Supersedes:** none of Q86 (same rule, now for this walk).
+
+## Q137 — Each leftover its own home — decided (A)
+
+Stall, toss, and series each have their own home. Not one object that
+holds all three. Not all three on `stage`.
+
+Not wired in this pick.
+
+Rejected: one new live object for all three; all three on `stage`.
+
+**Supersedes:** none of Q136.

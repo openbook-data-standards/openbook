@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q136**. Catalog pass closed and on the wire.
+Questions recorded through **Q137**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -56,6 +56,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q134** — unpark Q86 leftovers.
 - **Q135** — all three leftovers in this pass.
 - **Q136** — still not keys on every fixture (keep Q86).
+- **Q137** — each leftover its own home.
 
 ### Parked
 
@@ -67,9 +68,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Do stall, toss, and series share one home, or each its own?
+- Are stall and toss sport-specific? Where does series live?
 
-## Done (Q32–Q136)
+## Done (Q32–Q137)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -92,3 +93,4 @@ pass closed.
 **Q134** — unpark Q86 leftovers.
 **Q135** — all three leftovers in this pass.
 **Q136** — still not keys on every fixture.
+**Q137** — each leftover its own home.
