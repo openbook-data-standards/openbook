@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 |
 | Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
@@ -1909,3 +1909,16 @@ Rejected: reuse `bats`; reuse `side`; two flags.
 
 **Supersedes:** none of Q88 or Q158 (`bats` stays handedness; elected
 is a different token on `toss`).
+
+## Q160 — Elected is required on toss — decided (A)
+
+Elected is **required** whenever `toss` is published. Who won and what
+they elected travel together. Not optional. Not leftover `other`.
+Required is specified.
+
+Not wired in this pick. Field name leftover English at implement (Q159).
+
+Rejected: optional; leftover `other` as a third token; leave required
+unspecified.
+
+**Supersedes:** none of Q159 (same one token; this locks required).
