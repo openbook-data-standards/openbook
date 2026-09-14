@@ -1,0 +1,64 @@
+name: external-watch
+# Watches the things outside this repo that the roadmap depends on and comments
+# on the "Roadmap watch" issue only when the observed state changed since the
+# last external-watch comment. Weekly. Never writes to git.
+#
+#   - Reep (reep.football): latest release tag of withqwerty/reep — the football
+#     entity register the anchor policy leans on.
+#   - Wikidata: external-id properties whose label names Sportradar, Genius
+#     Sports, Betfair or Kalshi — none exist today; the Q1 2027 milestone
+#     proposes them.
+#   - GLI-33: the Event Wagering Systems standard version listed on the GLI
+#     standards page — still v1.1 (2019); a v2 is a regulator door.
+on:
+  schedule:
+    - cron: "30 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+    steps:
+      - name: Observe
+        id: obs
+        run: |
+          reep=$(curl -fsSL -H "Accept: application/vnd.github+json" \
+                 "https://api.github.com/repos/withqwerty/reep/releases/latest" 2>/dev/null \
+                 | jq -r '.tag_name // "none"' || echo "unreachable")
+          q='SELECT ?p ?pLabel WHERE { ?p wikibase:propertyType wikibase:ExternalId . ?p rdfs:label ?pLabel FILTER(LANG(?pLabel)="en") FILTER(REGEX(?pLabel,"Sportradar|Genius Sports|Betfair|Kalshi","i")) }'
+          wd=$(curl -fsSL -G "https://query.wikidata.org/sparql" --data-urlencode "query=$q" \
+               -H "Accept: application/sparql-results+json" -H "User-Agent: openbook-external-watch/1.0" 2>/dev/null \
+               | jq -r '[.results.bindings[] | "\(.p.value | sub(".*/";"")) \(.pLabel.value)"] | sort | join("; ")' || echo "unreachable")
+          [ -n "$wd" ] || wd="none"
+          gli=$(curl -fsSL "https://gaminglabs.com/gli-standards/" 2>/dev/null \
+                | grep -oiE 'GLI-33[^<]{0,80}v[0-9]+\.[0-9]+' | head -1 | sed 's/  */ /g' || true)
+          [ -n "$gli" ] || gli="not parsed"
+          {
+            echo "state<<EOF"
+            printf 'reep-latest-release: %s\nwikidata-betting-id-properties: %s\ngli-33: %s\n' "$reep" "$wd" "$gli"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+      - name: Compare with the last external-watch comment
+        id: cmp
+        run: |
+          n=$(gh issue list -R "$REPO" --label alert --state open --search "Roadmap watch in:title" --json number -q '.[0].number')
+          [ -n "$n" ] || { echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; }
+          echo "number=$n" >> "$GITHUB_OUTPUT"
+          last=$(gh api "repos/$REPO/issues/$n/comments?per_page=100" \
+                 --jq '[.[] | select(.body | startswith("**External watch"))] | last | .body // ""' \
+                 | sed -n '/^```/,/^```/p' | sed '1d;$d')
+          now="${{ steps.obs.outputs.state }}"
+          if [ "$last" = "$now" ]; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Comment on change
+        if: steps.cmp.outputs.changed == 'true'
+        run: |
+          gh issue comment -R "$REPO" "${{ steps.cmp.outputs.number }}" --body "$(printf '**External watch, %s** @danhamilt — observed state changed.\n\n```\n%s\n```' "$(date -u +%F)" "${{ steps.obs.outputs.state }}")"
