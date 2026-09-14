@@ -275,13 +275,29 @@ LOGO = '''<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
     </svg>
     OpenBook'''
 
+def toc_entry(text: str) -> tuple[str | None, str]:
+    """Short TOC label: keep '5. Change', drop the slogan after ':' or '('."""
+    plain = re.sub(r"<[^>]+>", "", text).strip()
+    numbered = re.match(r"^(\d+[a-z]?)\.\s+(.+)$", plain, re.I)
+    if numbered:
+        title = re.split(r"\s*[:(,]", numbered.group(2), 1)[0].strip()
+        return numbered.group(1), title or numbered.group(2)
+    return None, re.split(r"\s*[:(,]", plain, 1)[0].strip() or plain
+
+
 def toc_nav(toc: list[tuple[str, str]] | None) -> str:
     if not toc:
         return ""
-    links = "".join(
-        f'<a href="#{html.escape(sid, quote=True)}">{html.escape(label)}</a>' for sid, label in toc
-    )
-    return f'<nav class="page-toc"><strong>On this page</strong>{links}</nav>'
+    links = []
+    for sid, label in toc:
+        num, title = toc_entry(label)
+        inner = (
+            f'<span class="n">{html.escape(num)}</span>{html.escape(title)}'
+            if num
+            else html.escape(title)
+        )
+        links.append(f'<a href="#{html.escape(sid, quote=True)}">{inner}</a>')
+    return f'<nav class="page-toc"><strong>On this page</strong>{"".join(links)}</nav>'
 
 
 def nav_current(current: str, href: str) -> str:

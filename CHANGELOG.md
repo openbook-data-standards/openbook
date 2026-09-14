@@ -16,6 +16,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
+- **Site nav** — shorter on-this-page labels (drop the slogan after `:` /
+  `(`); numbered TOC rows align; top nav uses a current-page chip. Spec
+  headings unchanged.
 - **Docs readability** — three tracks: a non-technical
   [`docs/guide.md`](docs/guide.md), a human
   [`docs/taxonomy.md`](docs/taxonomy.md) for shared lists, and a
