@@ -661,7 +661,10 @@
         "participant",
         "player",
         "lineup",
-        "publisher"
+        "publisher",
+        "stall",
+        "toss",
+        "series"
       ]
     },
     "action": {

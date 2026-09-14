@@ -1732,6 +1732,10 @@ Rejected: name the objects in this pick.
 
 Homes stop here. Object names and wire wait. No new field.
 
+Later pick wired leftover words as object types: catalog `stall` and
+`toss`; live `series` (the lead, not `competitionType` series). Gate is
+existing `order`. Win counts and elected bat/bowl wait.
+
 Rejected: keep going; name the objects now.
 
 **Supersedes:** Q145 as an open walk (homes closed; this closes the pass).
@@ -1740,6 +1744,8 @@ Rejected: keep going; name the objects now.
 
 No new board until named. Object names for stall, toss, and series lead
 wait. Wire waits.
+
+Later pick wired those objects.
 
 Rejected: name those objects now; a new area.
 

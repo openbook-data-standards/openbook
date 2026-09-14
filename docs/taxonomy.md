@@ -131,7 +131,10 @@ Correct score also carries `homeTotal` / `awayTotal`. HT/FT carries
 `halfTime` / `fullTime`. Winning margin is `participant` plus outcome `line`
 or `atLeast`; leftover `other`. Player over/under names `player`. Yes/no
 player (anytime scorer) names `player` plus `yes` / `no` (`no` optional);
-leftover `other` is not used; no market `line`.
+leftover `other` is not used; no market `line`. Racing stall is its own
+catalog object (`order` is the gate). Cricket toss is its own catalog
+object (who won). Live `series` is the playoff lead, not this game’s
+`score`.
 
 ---
 

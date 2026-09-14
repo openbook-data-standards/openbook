@@ -7,19 +7,20 @@ not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
 closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q118–Q125**) and on the wire. Yes/no player pass closed
 (**Q126–Q132**) and on the wire. Q86 leftovers pass closed
-(**Q134–Q146**); object names wait. Spec walk stopped (**Q147**).
+(**Q134–Q146**) and on the wire (`stall`, `toss`, live `series`). Spec
+walk stopped (**Q147**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Q86 leftovers. Homes locked. Names and wire wait.
+**Closed.** Q86 leftovers. Homes on the wire. Spec walk stopped (**Q147**).
 
 ## Goal (previous — Q86 leftovers, closed)
 
-Racing stall and cricket toss: two new catalog objects (names wait).
-Playoff series: round on `stage`; lead is a new live object (name waits).
-Not more keys on every fixture.
+Racing `stall` and cricket `toss`: two catalog objects. Playoff series:
+round on `stage`; live `series` is the lead. Not more keys on every
+fixture. Win counts and elected bat/bowl wait.
 
 ## Goal (previous — yes/no player, closed)
 
@@ -44,6 +45,8 @@ over/under. No new market type. No new field. On the wire.
 - **Q126–Q132** — player on yes/no rows: same player id; always present;
   leftover `other` not used; `no` optional; one market, many rows; no
   market `line`; pass closed.
+- **Q134–Q146** — `stall` and `toss` catalog objects; live `series` lead;
+  pass closed.
 
 ### Log only
 
@@ -57,19 +60,15 @@ over/under. No new market type. No new field. On the wire.
   (already true on the schema).
 - **Q118** — plus-band walk.
 - **Q133** — stop this spec walk (superseded as the next area by Q134).
-- **Q134–Q146** — Q86 leftovers: homes locked; two catalog objects for
-  stall and toss; series lead a new live object; pass closed; names wait.
 - **Q147** — stop this spec walk.
 
 ### Parked
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-- **Q134–Q146** — object names for stall, toss, and series lead.
 
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-- **Q134–Q146** — stall, toss, and series-lead objects (names first).
 
 ## Next question (not decided)
 
@@ -95,5 +94,6 @@ pass closed.
 `other` still allowed; pass closed.
 **Q126–Q132** — player on yes/no rows; pass closed; on the wire.
 **Q133** — stop this spec walk.
-**Q134–Q146** — Q86 leftovers; homes locked; pass closed; names wait.
+**Q134–Q146** — Q86 leftovers; `stall` / `toss` / live `series` on the wire;
+pass closed.
 **Q147** — stop this spec walk.

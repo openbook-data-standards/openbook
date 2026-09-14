@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbook-data-standards.github.io/openbook/schema/series.schema.json",
+  "title": "OpenBook series (live lead)",
+  "description": "Live playoff series lead (Q86 leftovers, Q139–Q140). Not this game's score. Not competitionType series. Round stays on stage (seriesGame). Win counts wait.",
+  "type": "object",
+  "required": [
+    "openbookVersion",
+    "sequence",
+    "dateModified",
+    "fixture",
+    "stage"
+  ],
+  "properties": {
+    "@context": {},
+    "@type": {
+      "type": "string"
+    },
+    "openbookVersion": {
+      "$ref": "common.schema.json#/$defs/openbookVersion"
+    },
+    "sequence": {
+      "$ref": "common.schema.json#/$defs/sequence"
+    },
+    "dateModified": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "fixture": {
+      "$ref": "common.schema.json#/$defs/ownId",
+      "description": "This game in the series."
+    },
+    "stage": {
+      "$ref": "common.schema.json#/$defs/ownId",
+      "description": "The printed round (seriesGame)."
+    }
+  },
+  "patternProperties": {
+    "^x_": {}
+  },
+  "additionalProperties": false
+}
