@@ -394,7 +394,7 @@
       &quot;description&quot;: &quot;HT/FT halfTime and fullTime only (Q109).&quot;
     },
     &quot;propOutcomePairing&quot;: {
-      &quot;description&quot;: &quot;Row rules Q110, Q112, Q114, Q119–Q121. Listed CS both totals; HT/FT both halves; plus-band is participant + atLeast, not line; no mix of boards.&quot;,
+      &quot;description&quot;: &quot;Row rules Q110, Q112, Q114, Q119–Q121, Q126–Q131. Listed CS both totals; HT/FT both halves; plus-band is participant + atLeast, not line; yes/no player has player and not leftover other or outcome line; no mix of boards.&quot;,
       &quot;allOf&quot;: [
         {
           &quot;if&quot;: {
@@ -572,6 +572,44 @@
               ]
             }
           }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;player&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;properties&quot;: {
+              &quot;side&quot;: {
+                &quot;not&quot;: {
+                  &quot;const&quot;: &quot;other&quot;
+                }
+              }
+            }
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;player&quot;
+            ],
+            &quot;properties&quot;: {
+              &quot;side&quot;: {
+                &quot;enum&quot;: [
+                  &quot;yes&quot;,
+                  &quot;no&quot;
+                ]
+              }
+            }
+          },
+          &quot;then&quot;: {
+            &quot;not&quot;: {
+              &quot;required&quot;: [
+                &quot;line&quot;
+              ]
+            }
+          }
         }
       ]
     },
@@ -617,7 +655,7 @@
         },
         &quot;player&quot;: {
           &quot;$ref&quot;: &quot;#/$defs/ownId&quot;,
-          &quot;description&quot;: &quot;Player over/under: OpenBook player id only (Q108, Q115).&quot;
+          &quot;description&quot;: &quot;Player over/under and yes/no player rows: OpenBook player id only (Q108, Q115, Q126, Q127).&quot;
         },
         &quot;atLeast&quot;: {
           &quot;type&quot;: &quot;number&quot;,
@@ -2724,6 +2762,24 @@
           {
             &quot;side&quot;: &quot;other&quot;,
             &quot;odds&quot;: &quot;1.40&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:player-anytime-scorer&quot;,
+        &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+        &quot;source&quot;: &quot;acme-book&quot;,
+        &quot;provenance&quot;: &quot;official&quot;,
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;yes&quot;,
+            &quot;player&quot;: &quot;PL-9&quot;,
+            &quot;odds&quot;: &quot;3.40&quot;
+          },
+          {
+            &quot;side&quot;: &quot;yes&quot;,
+            &quot;player&quot;: &quot;PL-11&quot;,
+            &quot;odds&quot;: &quot;4.20&quot;
           }
         ]
       }
