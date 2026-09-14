@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q114**. Catalog pass closed and on the wire.
+Questions recorded through **Q115**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**).
@@ -38,6 +38,7 @@ Not the Pinnacle Bets API.
 - **Q112** — listed correct score always has both totals.
 - **Q113** — listed winning margin always has who and the number.
 - **Q114** — a row does not mix boards.
+- **Q115** — player over/under always has the player id.
 
 ### Parked
 
@@ -50,9 +51,9 @@ Not the Pinnacle Bets API.
 
 ## Next question (not decided)
 
-- On a player over/under row, must the player id always be present?
+- Is none the leftover bucket, or a real selection (nobody scores)?
 
-## Done (Q32–Q114)
+## Done (Q32–Q115)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -75,3 +76,4 @@ built).
 **Q112** — listed correct score always has both totals.
 **Q113** — listed winning margin always has who and the number.
 **Q114** — a row does not mix boards.
+**Q115** — player over/under always has the player id.

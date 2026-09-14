@@ -1383,3 +1383,13 @@ Not wired in this pick.
 Rejected: mixing extras from different boards on one row.
 
 **Supersedes:** none of Q105–Q113.
+
+## Q115 — Player over/under always names the player — decided (A)
+
+Every player over/under row has `player` (the OpenBook id, Q108).
+
+Not wired in this pick.
+
+Rejected: the id missing on that row.
+
+**Supersedes:** none of Q108.
