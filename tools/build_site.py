@@ -275,13 +275,36 @@ LOGO = '''<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
     </svg>
     OpenBook'''
 
+def toc_entry(text: str) -> tuple[str | None, str]:
+    """Short TOC label: keep '5. Change', drop the slogan after ':' or '('."""
+    plain = re.sub(r"<[^>]+>", "", text).strip()
+    numbered = re.match(r"^(\d+[a-z]?)\.\s+(.+)$", plain, re.I)
+    if numbered:
+        title = re.split(r"\s*[:(,]", numbered.group(2), 1)[0].strip()
+        return numbered.group(1), title or numbered.group(2)
+    return None, re.split(r"\s*[:(,]", plain, 1)[0].strip() or plain
+
+
 def toc_nav(toc: list[tuple[str, str]] | None) -> str:
     if not toc:
         return ""
-    links = "".join(
-        f'<a href="#{html.escape(sid, quote=True)}">{html.escape(label)}</a>' for sid, label in toc
+    links = []
+    for sid, label in toc:
+        num, title = toc_entry(label)
+        n = html.escape(num) if num else ""
+        inner = f'<span class="n">{n}</span>{html.escape(title)}'
+        links.append(f'<a href="#{html.escape(sid, quote=True)}">{inner}</a>')
+    return f'<nav class="page-toc"><strong>On this page</strong>{"".join(links)}</nav>'
+
+
+def page_frame(crumb: str, toc: list[tuple[str, str]] | None, article: str, source: str | None = None) -> str:
+    src = f'<p class="source">{source}</p>' if source else ""
+    return (
+        f'<div class="page-layout">'
+        f"{toc_nav(toc)}"
+        f'<div class="page-main">{crumb}<article class="doc">{article}</article></div>'
+        f"</div>{src}"
     )
-    return f'<nav class="page-toc"><strong>On this page</strong>{links}</nav>'
 
 
 def nav_current(current: str, href: str) -> str:
@@ -362,13 +385,11 @@ def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str,
 def write_md_page(src: Path, dest: Path, depth: int, current: str, source_label: str) -> None:
     html_body, toc = md_to_html(src.read_text(), depth)
     home = "../" * depth if depth else "./"
-    inner = (
-        f'<p class="crumb"><a href="{home}">Home</a> · {html.escape(source_label)}</p>'
-        f'<div class="page-layout">'
-        f"{toc_nav(toc)}"
-        f'<article class="doc">{html_body}</article>'
-        f"</div>"
-        f'<p class="source">Source: {html.escape(source_label)}</p>'
+    inner = page_frame(
+        f'<p class="crumb"><a href="{home}">Home</a> · {html.escape(source_label)}</p>',
+        toc,
+        html_body,
+        f"Source: {html.escape(source_label)}",
     )
     title = re.sub(r"^# ", "", src.read_text().splitlines()[0])
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -395,18 +416,17 @@ def schemas_page() -> str:
             f"<pre>{html.escape(path.read_text().rstrip())}</pre></section>"
         )
     toc.append(("examples", "examples"))
-    inner = (
-        '<p class="crumb"><a href="./">Home</a> · JSON Schemas</p>'
-        f'<div class="page-layout">{toc_nav(toc)}'
-        '<article class="doc"><h1>JSON Schemas</h1>'
+    inner = page_frame(
+        '<p class="crumb"><a href="./">Home</a> · JSON Schemas</p>',
+        toc,
+        "<h1>JSON Schemas</h1>"
         "<p>Draft 2020-12. These files are the machine-normative field definitions. "
         "Each <code>$id</code> is this same URL on GitHub Pages.</p>"
         + "".join(blocks)
         + '<h1 id="examples">Examples (raw files)</h1>'
         '<p>The sequence-order walkthrough is the <a href="examples.html">examples page</a>. '
         "These are the same files, listed for implementers.</p>"
-        + "".join(example_blocks())
-        + "</article></div>"
+        + "".join(example_blocks()),
     )
     return chrome("JSON Schemas", inner, 0, "schemas.html", toc)
 
@@ -448,18 +468,16 @@ def vocab_index() -> str:
         body, _ = md_to_html(src.read_text(), 1)
         body = body.replace("<h1 ", "<h2 ", 1).replace("</h1>", "</h2>", 1)
         parts.append(f'<section id="{html.escape(sid)}">{body}<p class="source">Source: {html.escape(source_label)}</p></section>')
-    inner = (
-        '<p class="crumb"><a href="../">Home</a> · Vocabularies</p>'
-        f'<div class="page-layout">'
-        f"{toc_nav(toc_items)}"
-        '<article class="doc"><h1>Controlled vocabularies</h1>'
+    inner = page_frame(
+        '<p class="crumb"><a href="../">Home</a> · Vocabularies</p>',
+        toc_items,
+        "<h1>Controlled vocabularies</h1>"
         '<section id="how-to-read"><p>This page is the <strong>id list</strong> '
         "computers use. For what the words mean in plain language, start with the "
         '<a href="../taxonomy.html">taxonomy</a>. The technical contract is the '
         '<a href="../spec.html">specification</a>.</p>'
         "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments follow.</p></section>"
-        + "".join(parts)
-        + "</article></div>"
+        + "".join(parts),
     )
     return chrome("Vocabularies", inner, 1, "vocabularies/", toc_items)
 

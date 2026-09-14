@@ -31,7 +31,7 @@
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · docs/taxonomy.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#what-is-shared-vs-what-a-publisher-owns">What is shared vs what a publisher owns</a><a href="#sport">Sport</a><a href="#league-season-stage">League, season, stage</a><a href="#segment">Segment</a><a href="#market-type-vs-a-priced-market">Market type vs a priced market</a><a href="#side">Side</a><a href="#matching-the-same-match-across-publishers">Matching the same match across publishers</a><a href="#where-the-lists-live">Where the lists live</a></nav><article class="doc"><h1 id="taxonomy-the-shared-lists-in-plain-language">Taxonomy — the shared lists, in plain language</h1>
+<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#what-is-shared-vs-what-a-publisher-owns"><span class="n"></span>What is shared vs what a publisher owns</a><a href="#sport"><span class="n"></span>Sport</a><a href="#league-season-stage"><span class="n"></span>League</a><a href="#segment"><span class="n"></span>Segment</a><a href="#market-type-vs-a-priced-market"><span class="n"></span>Market type vs a priced market</a><a href="#side"><span class="n"></span>Side</a><a href="#matching-the-same-match-across-publishers"><span class="n"></span>Matching the same match across publishers</a><a href="#where-the-lists-live"><span class="n"></span>Where the lists live</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · docs/taxonomy.md</p><article class="doc"><h1 id="taxonomy-the-shared-lists-in-plain-language">Taxonomy — the shared lists, in plain language</h1>
 <p>This page is the <strong>human</strong> map of OpenBook’s shared names. It is not the technical contract (that is the <a href="spec.html">spec</a>) and it is not the full id list (that is <a href="vocabularies/">vocabularies</a>).</p>
 <p>Use this when you need to agree what a word means — product, trading, ops, legal — before anyone opens a schema.</p>
 <hr>
@@ -71,7 +71,7 @@
 <hr>
 <h2 id="side">Side</h2>
 <p>Which outcome of a market. Home / away / draw on a moneyline. Over / under on a total. A named participant on an outright.</p>
-<p>Sides are a small shared list. A priced market then lists its outcomes as “this side, at these odds.”</p>
+<p>Sides are a small shared list. A priced market then lists its outcomes as “this side, at these odds.” Extra tokens: odd / even, none (nobody scores — not the leftover), double-chance home-or-draw / away-or-draw / home-or-away. Leftover unlisted scores and unnamed plus-bands are <code>other</code>. Correct score also carries <code>homeTotal</code> / <code>awayTotal</code>. HT/FT carries <code>halfTime</code> / <code>fullTime</code>. Player over/under names <code>player</code>.</p>
 <hr>
 <h2 id="matching-the-same-match-across-publishers">Matching the same match across publishers</h2>
 <p>Publishers keep their own match ids. Consumers match on:</p>
@@ -86,7 +86,7 @@
 <hr>
 <h2 id="where-the-lists-live">Where the lists live</h2>
 <div class="table-wrap"><table><thead><tr><th>List</th><th>File</th></tr></thead><tbody><tr><td>Market types</td><td><a href="vocabularies/#market-types"><code>vocabularies/market_types.md</code></a></td></tr><tr><td>Sports</td><td><a href="vocabularies/#sports"><code>vocabularies/sports.md</code></a></td></tr><tr><td>Segments</td><td><a href="vocabularies/#segments"><code>vocabularies/segments.md</code></a></td></tr></tbody></table></div>
-<p>To add or deprecate an id, see <a href="contributing.html">CONTRIBUTING</a>.</p></article></div><p class="source">Source: docs/taxonomy.md</p>
+<p>To add or deprecate an id, see <a href="contributing.html">CONTRIBUTING</a>.</p></article></div></div><p class="source">Source: docs/taxonomy.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
