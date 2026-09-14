@@ -24,6 +24,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
 | What we omit | Q71–Q82 · Q86 · Q87 |
+| Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
 
@@ -684,6 +685,31 @@ Rejected: run it on 0.x now; never; this patch.
 
 **Supersedes:** Q32 “a CI schema-diff gate is a later Phase-B item” by naming when.
 
+## Q56 — MCP and plugins are discovery feeds, not a second wire — decided
+
+A publisher MAY advertise **additional surfaces** (an MCP server, an Agent
+Plugin, other client tooling) on the **same discovery document** as the
+OpenBook feeds (Q49). Each entry is still `{ name, url }`. Optional
+**`kind`** (`snapshot` · `stream` · `docs` · `mcp` · `plugin`), **`id`**,
+and **`schemaUrl`** say what the URL is.
+
+- `mcp` and `plugin` URLs point at **that surface's own manifest**, not an
+  OpenBook document. OpenBook does not wrap MCP, does not ship MCP or Agent
+  Plugins schemas, and does not add `mcp` to `objectType` or the topic
+  grammar.
+- An MCP/plugin that exposes OpenBook data uses OpenBook document shapes as
+  the payload. That is the data standard for adding a plugin: advertise it
+  on discovery; keep the wire.
+
+Rejected: inline `mcpServers` in discovery (duplicates MCP's own config);
+a new live `object` for MCP; `.well-known/openbook-mcp` as a second
+discovery URL; wrapping change messages as MCP-only payloads with a
+parallel betting schema; shipping MCP `server.json` schema in this repo
+(same as Q54 for OpenAPI).
+
+**Supersedes:** Q49 “named feeds” by adding `kind` / `schemaUrl` / `id`
+and naming MCP/plugin. Q52 (no wrap) and Q54 (foreign docs stay at their
+own URL) stand.
 ## Q57 — Name fields unpacked — decided (closes Q11)
 
 Walk: participant vs `player` vs fixture row; team strings; person strings;
@@ -1055,3 +1081,46 @@ Rejected: keep minting never-X questions from memory; unpack another
 protocol in this question.
 
 **Supersedes:** none.
+
+## Q96 — Vendor mapping and starter are not this spec — decided
+
+OpenBook is the **target language**. Mapping 487 / KIBL / Optic / LinePros /
+MollyBet (or any unknown inbound) onto it is **not** the specification,
+the way FHIR keeps concept maps beside Patient and GTFS does not ship a
+vendor translator.
+
+Planned Python tooling (not in this repo; names only, repos not created
+in this change):
+
+- **openbook-starter** — copyable example + CLI `openbook start`. Writes
+  documents only under `openbook/`: publisher, discovery, `snapshot.json`
+  (the publisher document). Discovery lists only URLs that exist
+  (snapshot, not placeholder stream/docs). Identity: flags, prompt if
+  missing; `--no-input` for scripts. One default source
+  `{publisher-id}-book`. `--base-url` or prompt. `openbook/README.md`
+  only. Refuse if `openbook/` exists unless `--force`. Apache-2.0.
+  Python 3.11. v1 CLI is `start` only. Optional extra
+  `openbook-starter[translations]` depends on openbook-translate; `start`
+  does not edit the caller's pyproject. Game-props / player-props /
+  futures packages wait.
+- **openbook-translate** — ABC: one record, sync `translate` (vendor →
+  OpenBook documents) and `reverse` (OpenBook → vendor bytes + optional
+  dict). Inbound: raw bytes + optional parsed dict + source id. Unmapped:
+  quarantine (raw + reason), not raise/skip. Success MUST carry native id
+  on `identifier` so reverse can round-trip. Official implementer is a
+  synthetic **acme** adapter for contract tests. Community MAY publish
+  `openbook-translate-kibl` etc.; this project will not. Vendored copy of
+  `schema/*.json` plus an `openbook-spec-version` stamp; `update` CI goes
+  red when the spec moved (notify only; no git writes from a cluster).
+  Apache-2.0 code; schemas remain CC BY with NOTICE.
+
+No auto-rewrite of feed JSON when the spec moves (0.x-draft will move
+often). `openbook start` MAY write `.github/workflows/openbook-update.yml`:
+daily cron + `workflow_dispatch` is the check; the *meaning* is protocol
+change; the job fails (GitHub CI red), it does not commit.
+
+Rejected: Django-cookiecutter of a sportsbook in the spec repo; in-cluster
+commits; official vendor adapters; a second reverse-only package; putting
+adapter classes in `spec/openbook.md`.
+
+**Supersedes:** none of Q1/Q6/Q49/Q56. Mapping stays off the wire.

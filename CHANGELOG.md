@@ -35,6 +35,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
   `maxItems`, so conformant parsers reject oversized input; covered by
   `conformance/invalid/alternate-name-too-long.json`.
+- **Q96** — vendor mapping, starter CLI, and translate ABC are **not**
+  this spec; planned names openbook-starter / openbook-translate
+  ([`docs/decisions.md`](docs/decisions.md)). Repos not created in this
+  change.
 - **Q95** — protocol-fit pass closed; next work is a new area, not more
   take/don't-take pins from that comparison list
   ([`docs/decisions.md`](docs/decisions.md)).
@@ -99,6 +103,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q53** — DNS-style ids never; Q4/Q5 stand.
 - **Q54** — no OpenAPI file in this repo; `since=` / 410 stay in the spec.
 - **Q55** — later PR: schema-diff CI at 1.0+ only.
+- **Q56** — MCP servers and additional plugins are discovery feeds
+  (`kind` `mcp` / `plugin`, plus `id` / `schemaUrl`). OpenBook does not wrap
+  MCP or ship its schema; payloads stay OpenBook documents.
 - **Q11 / Q57** — names decided (log only): board `name`; optional team
   location/nickname/registeredName; person given/family; `shortName`; team-only
   `abbreviation`; `names` / `nameLatin`; fixture copies `name`. Cite ISO or none.
