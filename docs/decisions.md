@@ -1272,3 +1272,16 @@ selections.
 Rejected: `homeScore` / `awayScore`; contestant string; `playerId`.
 
 **Supersedes:** Q104 “names later”.
+
+## Q106 — Wire Q105 — decided (A)
+
+The Q105 fields and `side` tokens go on **`market`**, **`odds/change`**,
+and **`grade`** outcomes. Same extras on all three so a grade can name
+the same selection the market priced.
+
+Not wired in this pick.
+
+Rejected: market-only (grade cannot match); a new object for prop
+selections.
+
+**Supersedes:** Q105 “not wired”.
