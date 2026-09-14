@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q169**. Catalog pass closed and on the wire.
+Questions recorded through **Q170**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -12,16 +12,21 @@ walk stopped (**Q147**), then unparked for series win counts (**Q148**).
 Series win-count pass closed (**Q148–Q155**) and on the wire (`wins`). Spec
 walk stopped (**Q156**), then unparked for toss elected then best-of
 (**Q157**). Toss-elected and best-of pass closed (**Q157–Q166**) and on
-the wire (`elected`, `needed`). Spec walk stopped (**Q167**), then a new
-area waits to be named (**Q168**). Named leftovers exhausted; spec walk
-stopped (**Q169**).
+the wire (`elected`, `needed`). Spec walk stopped (**Q167**), then the
+next leftover was unnamed (**Q168**). Named leftovers exhausted; spec
+walk stopped (**Q169**), then Q76 position vocab unparked (**Q170**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Named leftovers on this spec are done. Spec walk stopped
-(**Q169**).
+**Per-sport position vocab (Q76).** Field stays `position`. Token lists
+wait.
+
+## Goal (previous — named leftovers, closed)
+
+Named leftovers through `elected` / `needed` were treated as done
+(**Q169**), then Q76 vocab unparked.
 
 ## Goal (previous — toss elected and best-of, closed)
 
@@ -87,8 +92,9 @@ over/under. No new market type. No new field. On the wire.
 - **Q147** — stop this spec walk (superseded as the next area by Q148).
 - **Q156** — stop this spec walk (superseded as the next area by Q157).
 - **Q167** — stop this spec walk (superseded as the next area by Q168).
-- **Q168** — new area you name; name waits.
-- **Q169** — named leftovers exhausted; stop this spec walk.
+- **Q168** — next leftover unnamed; wait.
+- **Q169** — named leftovers exhausted; stop this spec walk (superseded by Q170).
+- **Q170** — this walk is Q76 per-sport position vocab. Field stays `position`. Token lists wait.
 
 ### Parked
 
@@ -100,9 +106,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This spec walk stopped (**Q169**).
+**Next question: Q171.** First real product question of the Q76 position-vocab walk. Rec: keep existing optional `position`; growable per-sport shared ids; unknown tokens tolerated (Q34); not one closed world list; not a second field; not ISO; token lists wait. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q169)
+## Done (Q32–Q170)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -129,5 +135,6 @@ pass closed.
 **Q156** — stop this spec walk.
 **Q157–Q166** — toss `elected` and series `needed` on the wire.
 **Q167** — stop this spec walk.
-**Q168** — new area you name.
+**Q168** — next leftover unnamed; wait.
 **Q169** — named leftovers exhausted; stop.
+**Q170** — Q76 per-sport position vocab this walk; field stays `position`; token lists wait.

@@ -105,10 +105,12 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q157–Q167** — toss `elected` (`bat` · `bowl`, required leftover
   English) and optional `needed` on live `series` (wins needed to take
   the series, integer ≥ 1). Not `total`. Not `line`. Spec walk stopped.
-- **Q168** — this walk is a new area you name. Name waits. Not Q55. Not
-  wired in this pick.
+- **Q168** — next leftover unnamed; wait. Not Q55. Not wired in this pick.
 - **Q169** — named leftovers on this spec are done. Spec walk stopped.
   Not Q55. Not a version cut.
+- **Q170** — this walk is Q76 per-sport position vocab. Field stays
+  `position`. Token lists wait. Not Q55. Not a version cut. Not wired
+  in this pick.
 
 
 ### Removed
