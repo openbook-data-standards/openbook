@@ -884,8 +884,10 @@
         &quot;handicap&quot;,
         &quot;exact-value&quot;,
         &quot;correct-score&quot;,
-        &quot;yes-no&quot;
-      ]
+        &quot;yes-no&quot;,
+        &quot;composite&quot;
+      ],
+      &quot;description&quot;: &quot;How a market type is structured. composite = legs that reference other market outcomes (parlay, same-game parlay).&quot;
     },
     &quot;marketCategory&quot;: {
       &quot;enum&quot;: [
@@ -2732,6 +2734,15 @@
       &quot;active&quot;: true
     }
   ]
+}</pre></section><section class="schema-block" id="market_type.example"><h2>market_type.example.json</h2><p><a href="examples/market_type.example.json">examples/market_type.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;id&quot;: &quot;market:parlay&quot;,
+  &quot;name&quot;: &quot;Parlay / Accumulator&quot;,
+  &quot;genre&quot;: &quot;combination&quot;,
+  &quot;shape&quot;: &quot;composite&quot;,
+  &quot;category&quot;: &quot;parlay-special&quot;,
+  &quot;sequence&quot;: 104900,
+  &quot;dateModified&quot;: &quot;2026-09-19T14:00:00Z&quot;
 }</pre></section><section class="schema-block" id="market_update.example"><h2>market_update.example.json</h2><p><a href="examples/market_update.example.json">examples/market_update.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 105330,
