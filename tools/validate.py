@@ -109,7 +109,7 @@ def instance_errors(path):
             target = None
         if target and "changes" in doc:
             s = schemas[f"{target}.schema.json"]
-            full = doc["action"] in ("snapshot", "create") and doc["object"] != "odds"
+            full = doc["action"] in ("snapshot", "create")
             v = validator(for_changes(s, full))
             for e in sorted(v.iter_errors(doc["changes"]), key=lambda e: e.path):
                 out.append(f"{name}: changes vs {target} ({'full' if full else 'patch'}): {e.message} at /changes/{'/'.join(map(str, e.path))}")
