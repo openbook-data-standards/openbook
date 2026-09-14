@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taxonomy — the shared lists, in plain language — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/taxonomy.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./guide.html">Guide</a>
+    <a href="./examples.html">Examples</a>
+    <a href="./spec.html">Spec</a>
+    <a href="./taxonomy.html" aria-current="page">Taxonomy</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · docs/taxonomy.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#what-is-shared-vs-what-a-publisher-owns">What is shared vs what a publisher owns</a><a href="#sport">Sport</a><a href="#league-season-stage">League, season, stage</a><a href="#segment">Segment</a><a href="#market-type-vs-a-priced-market">Market type vs a priced market</a><a href="#side">Side</a><a href="#matching-the-same-match-across-publishers">Matching the same match across publishers</a><a href="#where-the-lists-live">Where the lists live</a></nav><article class="doc"><h1 id="taxonomy-the-shared-lists-in-plain-language">Taxonomy — the shared lists, in plain language</h1>
+<p>This page is the <strong>human</strong> map of OpenBook’s shared names. It is not the technical contract (that is the <a href="spec.html">spec</a>) and it is not the full id list (that is <a href="vocabularies/">vocabularies</a>).</p>
+<p>Use this when you need to agree what a word means — product, trading, ops, legal — before anyone opens a schema.</p>
+<hr>
+<h2 id="what-is-shared-vs-what-a-publisher-owns">What is shared vs what a publisher owns</h2>
+<div class="table-wrap"><table><thead><tr><th>Shared by the standard (same everywhere)</th><th>Each publisher’s own</th></tr></thead><tbody><tr><td>Sport (soccer, tennis)</td><td>League id, season id, match id</td></tr><tr><td>Market type (moneyline, total, player points)</td><td>Team / player ids</td></tr><tr><td>Segment (1st half, set 3, Q1)</td><td>Venue id</td></tr><tr><td>Side (home, away, over, under)</td><td>How they spell “Man City”</td></tr><tr><td></td><td>Wikidata link, when they have one, so others can match</td></tr></tbody></table></div>
+<p>The shared ids look like <code>sport:soccer</code> or <code>market:total</code> on the wire. You do not need those spellings to <em>talk</em> about the taxonomy; they are how computers agree.</p>
+<p>Once a shared id is published in a frozen version, it is never reused for something else. If a name was a mistake, it is deprecated, not quietly repurposed.</p>
+<hr>
+<h2 id="sport">Sport</h2>
+<p>The game being played. Soccer, basketball, tennis. Not “the Olympics” — that is a competition (a league, in OpenBook’s terms) that contains many sports.</p>
+<p>A few sports have <strong>disciplines</strong> underneath (100 m, marathon). Those are still the same sport, sliced finer.</p>
+<p>Catch-all: when a publisher sees a sport that is not on the list yet, they should say “unknown” rather than invent a private code. The list grows by proposal.</p>
+<p>Full list: <a href="vocabularies/#sports">sports vocabulary</a>.</p>
+<hr>
+<h2 id="league-season-stage">League, season, stage</h2>
+<p>These are <em>competitions and their structure</em>, not the shared taxonomy of sports — but they sit next to it, so the words stay consistent.</p>
+<div class="table-wrap"><table><thead><tr><th>Word</th><th>Means</th><th>Example</th></tr></thead><tbody><tr><td>League</td><td>Any recurring competition</td><td>Premier League, FA Cup, F1 World Championship</td></tr><tr><td>Season</td><td>One edition</td><td>2025-26, F1 2026</td></tr><tr><td>Stage</td><td>A named slice of a season, and stages can nest</td><td>Knockout → quarter-final → leg 2</td></tr><tr><td>Fixture</td><td>The priced event</td><td>Arsenal vs Chelsea; F1 Race at Silverstone</td></tr><tr><td>Organizer</td><td>Who runs competitions</td><td>UEFA, NBA, FIA — one organizer, many leagues</td></tr></tbody></table></div>
+<hr>
+<h2 id="segment">Segment</h2>
+<p>A <strong>segment</strong> is a slice <em>inside</em> a match, used both for live state (“we are in the first half”) and for which slice a bet is on (“first-half total”).</p>
+<p>It is <strong>not</strong> a separate match. First half and full time of the same soccer game are two segments of one fixture.</p>
+<div class="table-wrap"><table><thead><tr><th>Sport family</th><th>Typical slices</th></tr></thead><tbody><tr><td>Soccer / rugby</td><td>1st half, 2nd half, full time, extra time, penalties</td></tr><tr><td>Basketball / American football</td><td>Quarters, halves, overtime</td></tr><tr><td>Ice hockey</td><td>Periods, overtime, shootout</td></tr><tr><td>Tennis / volleyball</td><td>Sets, sometimes games</td></tr><tr><td>Motorsport</td><td>Q1/Q2/Q3 are segments of the Qualifying <em>fixture</em></td></tr></tbody></table></div>
+<p>Every sport has a “whole contest as graded” slice (usually called full time).</p>
+<p>Full list: <a href="vocabularies/#segments">segments vocabulary</a>.</p>
+<hr>
+<h2 id="market-type-vs-a-priced-market">Market type vs a priced market</h2>
+<p>Easy to mix up:</p>
+<div class="table-wrap"><table><thead><tr><th>Word</th><th>Means</th><th>Example</th></tr></thead><tbody><tr><td>Market type</td><td>The <em>kind</em> of bet, shared</td><td>Total (over/under)</td></tr><tr><td>Market</td><td>That kind of bet, on this match, this slice, this line, from this book</td><td>Pinnacle’s 2.5 full-time total on EVT-88213</td></tr><tr><td>Side</td><td>Which selection</td><td>over, under, home, away</td></tr><tr><td>Line</td><td>The number on a handicap or total</td><td>2.5</td></tr></tbody></table></div>
+<p>The same market type can be offered on many segments (full time <em>and</em> first half) and many lines (2.5, 3.5). Those are different markets, one type.</p>
+<pre class="mermaid">flowchart LR
+  type[Market type: total] --&gt; m1[Full time, line 2.5]
+  type --&gt; m2[Full time, line 3.5]
+  type --&gt; m3[1st half, line 1.5]</pre>
+<h3 id="families-of-market-types">Families of market types</h3>
+<div class="table-wrap"><table><thead><tr><th>Family</th><th>What the customer is betting</th><th>Typical types</th></tr></thead><tbody><tr><td>Main lines</td><td>Who wins, the handicap, the total</td><td>moneyline, spread, total, team total</td></tr><tr><td>Score props</td><td>The exact or special score</td><td>correct score, BTTS, odd/even</td></tr><tr><td>Game props</td><td>Something about how the game unfolds</td><td>first to score, overtime yes/no</td></tr><tr><td>Player props</td><td>A person on the roster</td><td>player points, anytime scorer</td></tr><tr><td>Outrights</td><td>The competition, not one match</td><td>outright winner, group winner</td></tr><tr><td>Combinations</td><td>Several selections glued together</td><td>same-game parlay, accumulator</td></tr></tbody></table></div>
+<p>Full list with ids: <a href="vocabularies/#market-types">market types vocabulary</a>.</p>
+<hr>
+<h2 id="side">Side</h2>
+<p>Which outcome of a market. Home / away / draw on a moneyline. Over / under on a total. A named participant on an outright.</p>
+<p>Sides are a small shared list. A priced market then lists its outcomes as “this side, at these odds.”</p>
+<hr>
+<h2 id="matching-the-same-match-across-publishers">Matching the same match across publishers</h2>
+<p>Publishers keep their own match ids. Consumers match on:</p>
+<ul>
+<li>sport</li>
+<li>league name and territory</li>
+<li>start time</li>
+<li>participant names and territories</li>
+<li>and a Wikidata link when both sides have one (Arsenal F.C. is the same entity everywhere)</li>
+</ul>
+<p>Home/away is a fact the publisher asserts, not “whichever name came first in the file.”</p>
+<hr>
+<h2 id="where-the-lists-live">Where the lists live</h2>
+<div class="table-wrap"><table><thead><tr><th>List</th><th>File</th></tr></thead><tbody><tr><td>Market types</td><td><a href="vocabularies/#market-types"><code>vocabularies/market_types.md</code></a></td></tr><tr><td>Sports</td><td><a href="vocabularies/#sports"><code>vocabularies/sports.md</code></a></td></tr><tr><td>Segments</td><td><a href="vocabularies/#segments"><code>vocabularies/segments.md</code></a></td></tr></tbody></table></div>
+<p>To add or deprecate an id, see <a href="contributing.html">CONTRIBUTING</a>.</p></article></div><p class="source">Source: docs/taxonomy.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "dark",
+    securityLevel: "strict",
+    themeVariables: {
+      background: "#0f141e",
+      primaryColor: "#15233f",
+      primaryTextColor: "#f4f7fb",
+      primaryBorderColor: "#4c8dff",
+      lineColor: "#8b93b0",
+      secondaryColor: "#1c2438",
+      tertiaryColor: "#171d2b",
+      mainBkg: "#171d2b",
+      nodeBorder: "#4c8dff",
+      clusterBkg: "#171d2b",
+      titleColor: "#f4f7fb",
+      edgeLabelBackground: "#171d2b"
+    }
+  });
+</script>
+</body>
+</html>

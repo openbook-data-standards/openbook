@@ -5,7 +5,24 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Added
+- **Examples page** — [`docs/examples.md`](docs/examples.md) walks the
+  existing `examples/` documents in `sequence` order (GTFS-style sample feed,
+  not a sandbox). `publisher.example.json` lists `bigbook` so it matches the
+  market and odds samples. No wire change.
+- [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
+  comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
+  Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire
+  (what is adopted, shape-only, later, or rejected).
+
 ### Changed
+- **Docs readability** — three tracks: a non-technical
+  [`docs/guide.md`](docs/guide.md), a human
+  [`docs/taxonomy.md`](docs/taxonomy.md) for shared lists, and a
+  table-and-diagram rewrite of [`spec/openbook.md`](spec/openbook.md)
+  (no wire change). Vocabularies stay the id lists. Guide has a Saturday
+  walkthrough; the decision log has a theme map; homepage has a reading
+  path. Still site/docs only.
 - **Q11** — names on the participant: required `name`; optional `shortName`,
   `names`, `nameLatin`, `alternateName`. Teams MAY add `location`,
   `nickname`, `registeredName`, `abbreviation`. Persons MAY add `givenName`
@@ -20,24 +37,50 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q80** — `lineup` live object: fixture-keyed roster `player` ids.
 - Plan: cover the Pinnacle Lines API
   ([`docs/still-to-do.md`](docs/still-to-do.md)). No wire change in that note.
-- **Q89** — Pinnacle specials are markets; no new object (log only).
-- **Q90** — optional `basis` on `market` and `odds/change` (same `scoreUnit`
+- **Q97** — Pinnacle specials are markets; no new object (log only).
+- **Q98** — optional `basis` on `market` and `odds/change` (same `scoreUnit`
   list as score/grade). Omit = sport/league `primaryUnit`. Identity includes
   `basis`. Not a new `market:*` id.
-- **Q91** — spec only: period offline is a `marketStatus` fan-out; settled
+- **Q99** — spec only: period offline is a `marketStatus` fan-out; settled
   stays segment `down` + `grade`. No new fields.
-- **Q92** — no parlay/teaser flags on the fixture (log only).
-- **Q93** — one fixture; `eventStatus` is live. `superEvent` is not a
+- **Q100** — no parlay/teaser flags on the fixture (log only).
+- **Q101** — one fixture; `eventStatus` is live. `superEvent` is not a
   live/pregame pair.
-- **Q94** — keep `sport:*` ids; map vendor integers with `identifier` /
+- **Q102** — keep `sport:*` ids; map vendor integers with `identifier` /
   `sameAs` (log only).
-- **Q95** — market `limit` is enough; Get Line is out of scope (log only).
+- **Q103** — market `limit` is enough; Get Line is out of scope (log only).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
   participant (pre-1.0; Q11). Native script is `nameLatin`.
 
 ### Added
+- **Input bounds** — shared primitives in
+  [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
+  `maxItems`, so conformant parsers reject oversized input; covered by
+  `conformance/invalid/alternate-name-too-long.json`.
+- **Q96** — vendor mapping, starter CLI, and translate ABC are **not**
+  this spec; planned names openbook-starter / openbook-translate
+  ([`docs/decisions.md`](docs/decisions.md)). Repos not created in this
+  change.
+- **Q95** — protocol-fit pass closed; next work is a new area, not more
+  take/don't-take pins from that comparison list
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q94** — no spec-owned multi-publisher index; one discovery URL per
+  publisher (Q49); an aggregator is itself a publisher (Q1)
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q93** — FIX session is not the OpenBook session; Q33/Q46 stand
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q92** — ISO 20022 is not the OpenBook model or encoding; Q13/Q38/Q44
+  stand ([`docs/decisions.md`](docs/decisions.md)).
+- **Q91** — JSON Patch (RFC 6902) is never an alternate change encoding; Merge
+  Patch (Q8) stands ([`docs/decisions.md`](docs/decisions.md)).
+- **Q90** — no GBFS-style data wrapper; discovery stays `{ lastUpdated, ttl,
+  feeds }` at the root (Q49); objects and change messages stay themselves
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q89** — JSON (`application/json`) is the required v1 encoding; additional
+  encodings MAY exist later as optional bindings; scaffolding stays JSON
+  ([`docs/decisions.md`](docs/decisions.md)).
 - **Security model** — [`SECURITY.md`](SECURITY.md) states what the standard
   secures (closed schemas, canonical-id integrity) and what it delegates to
   deployments (TLS, authn/authz, rate limiting, schema-fetch integrity).
@@ -84,6 +127,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q53** — DNS-style ids never; Q4/Q5 stand.
 - **Q54** — no OpenAPI file in this repo; `since=` / 410 stay in the spec.
 - **Q55** — later PR: schema-diff CI at 1.0+ only.
+- **Q56** — MCP servers and additional plugins are discovery feeds
+  (`kind` `mcp` / `plugin`, plus `id` / `schemaUrl`). OpenBook does not wrap
+  MCP or ship its schema; payloads stay OpenBook documents.
 - **Q11 / Q57** — names decided (log only): board `name`; optional team
   location/nickname/registeredName; person given/family; `shortName`; team-only
   `abbreviation`; `names` / `nameLatin`; fixture copies `name`. Cite ISO or none.

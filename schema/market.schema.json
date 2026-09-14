@@ -44,7 +44,7 @@
     },
     "basis": {
       "$ref": "common.schema.json#/$defs/scoreUnit",
-      "description": "What this market counts (Q90). Same list as score/grade. If omitted, sport/league primaryUnit. Not a new market type."
+      "description": "What this market counts (Q98). Same list as score/grade. If omitted, sport/league primaryUnit. Not a new market type."
     },
     "source": {
       "$ref": "common.schema.json#/$defs/ownId"

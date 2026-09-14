@@ -19,6 +19,11 @@
       "id": "pinnacle",
       "name": "Pinnacle",
       "sourceType": "sportsbook"
+    },
+    {
+      "id": "bigbook",
+      "name": "Big Book",
+      "sourceType": "sportsbook"
     }
   ]
 }

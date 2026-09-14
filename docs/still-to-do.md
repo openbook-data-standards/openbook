@@ -1,55 +1,36 @@
 # Still to do
 
-## Goal
+Questions recorded through **Q103**. Catalog pass closed and on the wire.
+**Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
+Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
+not this spec. Pinnacle Lines walk closed (**Q97–Q103**).
+Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
+`tools/validate.py`.
+
+## Goal (this walk — closed)
 
 **Cover the Pinnacle Lines API in OpenBook.** If Pinnacle publishes it on
-that feed, OpenBook can carry it. This is a plan, not a wire change.
+that feed, OpenBook can carry it. Industry shape, not a Pinnacle clone.
+Not the Pinnacle Bets API.
 
-Source of truth: Pinnacle Lines OpenAPI (sports, leagues, fixtures, odds,
-specials, settled). Not a sports encyclopedia. Not the Pinnacle Bets API
-(placing tickets is out of scope: OpenBook is a publication format).
+### Wired
 
-Walk the feed in this order. Each row is decided only when asked and
-answered. Do not invent names.
+- **Q98** — optional `basis` on `market` and `odds/change`.
+- **Q99** — spec: four places; no new fields.
+- **Q101** — one fixture; `eventStatus` is live.
 
-## Pinnacle Lines API — coverage plan
+### Log only
 
-### Already in OpenBook (spine)
+- **Q97** — specials are markets.
+- **Q100** — no parlay/teaser flags on the fixture.
+- **Q102** — keep `sport:*` ids; map vendor integers with `identifier` /
+  `sameAs`.
+- **Q103** — market `limit` is enough; Get Line is out of scope.
 
-- Sports, leagues, fixtures, participants, start time, cutoff
-- One fixture; `eventStatus` is live (Q93). Not a second live id.
-- Segments (Pinnacle period numbers map here; do not copy their integers)
-- Markets and decimal odds; moneyline / spread / total
-- Grade; what was graded on (Pinnacle resulting unit → existing `basis`)
-- `since` cursor; snapshot then deltas
-- Publisher, discovery, heartbeat, lineup
-- Names, place, league gender, age group, surface, seed, throws/bats
+### Parked
 
-### Decided on this walk (not wired unless named)
-
-- **Q89** — Pinnacle specials are **markets**. No new object.
-- **Q92** — no parlay/teaser flags on the fixture.
-- **Q94** — keep `sport:*` ids; map vendor integers with `identifier` /
-  `sameAs`. Do not dump Pinnacle `/sports`.
-- **Q95** — market `limit` is enough; Get Line is out of scope.
-
-### Wired on this walk
-
-- **Q90** — optional `basis` on `market` and `odds/change`.
-- **Q91** — spec prose only (four places; no new fields).
-- **Q93** — one fixture; `eventStatus` is live. `superEvent` is not a
-  live/pregame pair.
-
-### Not decided yet (walk these; do not invent)
-
-This Lines API walk is **closed**. Parked: **Q86** (stall / toss / series
-until a payload). Later: **Q55** schema-diff CI at 1.0+.
-
-### Not in the Pinnacle Lines fixture schema
-
-Racing stall, cricket toss, and playoff series state are **not** on
-Pinnacle’s documented fixture. They stay parked (**Q86**) until a real
-payload has them. Do not add them to cover “all sports.”
+- **Q86** — racing stall, cricket toss, playoff series until a payload.
+- **Q55** — schema-diff CI for frozen majors only (1.0+).
 
 ## Later PRs (decided, not built)
 
@@ -59,6 +40,13 @@ payload has them. Do not add them to cover “all sports.”
 
 - This Lines walk is closed. Parked: **Q86**. Later: **Q55**.
 
-## Done (Q32–Q95)
+## Done (Q32–Q103)
 
-Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled · **Q92** omit parlay flags · **Q93** one fixture · **Q94** `sport:*` ids · **Q95** Get Line out of scope.
+Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
+**Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
+Patch; not ISO 20022; not FIX session; no spec-owned multi-publisher index;
+protocol-fit pass closed.
+**Q96** — vendor mapping / starter / translate packages are not this spec.
+**Q97–Q103** — Pinnacle Lines: specials are markets; optional `basis`;
+statuses/settled; omit parlay flags; one fixture; `sport:*` ids; Get Line
+out of scope.

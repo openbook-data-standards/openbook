@@ -4,6 +4,10 @@ A review of publicly documented sports-betting APIs, looking for patterns
 worth adopting and patterns to avoid. Vendor-neutral: every API here is
 public, and each is judged only on its design.
 
+The technology comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022,
+OpenRTB, Betfair streaming, Sportradar UOF, OsmChange, CAP and ODF — specs,
+not vendor APIs — is [`protocol-comparison.md`](protocol-comparison.md).
+
 ## KIBL Sports Outbound (docs.kibl.io/api) — OpenAPI 3.0.3, 71 endpoints
 
 **Worth adopting**
@@ -137,8 +141,9 @@ a neutral body.
   dual-form idea OpenBook uses for ids (short slug on the wire, formal URN in
   the spec).
 - **GRIB / BUFR** — binary, table-driven, self-describing formats for volume
-  data. Efficient but need the tables. OpenBook stays readable JSON in v1; a
-  binary encoding could become an optional transport binding later, as GTFS
-  did with protobuf.
+  data. Efficient but need the tables. OpenBook’s required v1 encoding is
+  JSON; additional encodings MAY exist later as optional bindings generated
+  from the JSON Schemas (Q89; same pattern as OpenRTB JSON default /
+  protobuf optional). No `.proto` in this repo in v1.
 - **NWS API** — JSON-LD + GeoJSON payloads: web-standard encodings rather than
   bespoke ones.

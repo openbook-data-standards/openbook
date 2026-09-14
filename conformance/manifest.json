@@ -34,6 +34,14 @@
     {
       "path": "conformance/invalid/market-missing-limit.json",
       "reason": "priced market create/snapshot MUST carry limit (Q45)"
+    },
+    {
+      "path": "conformance/invalid/discovery-unknown-kind.json",
+      "reason": "discovery kind is a closed vocabulary (Q56); unknown values are rejected on write"
+    },
+    {
+      "path": "conformance/invalid/alternate-name-too-long.json",
+      "reason": "shared primitives are length-bounded; an alternateName over maxLength is rejected"
     }
   ]
 }

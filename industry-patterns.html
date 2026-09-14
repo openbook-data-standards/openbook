@@ -22,18 +22,22 @@
     </svg>
     OpenBook</a>
   <nav>
+    <a href="./guide.html">Guide</a>
+    <a href="./examples.html">Examples</a>
     <a href="./spec.html">Spec</a>
+    <a href="./taxonomy.html">Taxonomy</a>
     <a href="./vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · docs/industry-patterns.md</p><nav class="page-toc"><strong>On this page</strong><a href="#kibl-sports-outbound-docs-kibl-io-api-openapi-3-0-3-71-endpoints">KIBL Sports Outbound (docs.kibl.io/api) — OpenAPI 3.0.3, 71 endpoints</a><a href="#pinnacle-ps3838-lines-api">Pinnacle / PS3838 Lines API</a><a href="#betfair-exchange-api-and-streaming">Betfair Exchange API and streaming</a><a href="#sportradar-unified-odds-feed">Sportradar Unified Odds Feed</a><a href="#gtfs-gtfs-realtime">GTFS / GTFS-Realtime</a><a href="#beyond-betting-openstreetmap-and-the-weather-system">Beyond betting — OpenStreetMap and the weather system</a></nav><article class="doc"><h1 id="industry-patterns-what-public-betting-apis-do-and-what-openbook-takes">Industry patterns — what public betting APIs do, and what OpenBook takes</h1>
+<p class="crumb"><a href="./">Home</a> · docs/industry-patterns.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#kibl-sports-outbound-docs-kibl-io-api-openapi-3-0-3-71-endpoints">KIBL Sports Outbound (docs.kibl.io/api) — OpenAPI 3.0.3, 71 endpoints</a><a href="#pinnacle-ps3838-lines-api">Pinnacle / PS3838 Lines API</a><a href="#betfair-exchange-api-and-streaming">Betfair Exchange API and streaming</a><a href="#sportradar-unified-odds-feed">Sportradar Unified Odds Feed</a><a href="#gtfs-gtfs-realtime">GTFS / GTFS-Realtime</a><a href="#beyond-betting-openstreetmap-and-the-weather-system">Beyond betting — OpenStreetMap and the weather system</a></nav><article class="doc"><h1 id="industry-patterns-what-public-betting-apis-do-and-what-openbook-takes">Industry patterns — what public betting APIs do, and what OpenBook takes</h1>
 <p>A review of publicly documented sports-betting APIs, looking for patterns worth adopting and patterns to avoid. Vendor-neutral: every API here is public, and each is judged only on its design.</p>
+<p>The technology comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair streaming, Sportradar UOF, OsmChange, CAP and ODF — specs, not vendor APIs — is <a href="protocol-comparison.html"><code>protocol-comparison.md</code></a>.</p>
 <h2 id="kibl-sports-outbound-docs-kibl-io-api-openapi-3-0-3-71-endpoints">KIBL Sports Outbound (docs.kibl.io/api) — OpenAPI 3.0.3, 71 endpoints</h2>
 <p><strong>Worth adopting</strong></p>
 <ul>
-<li><strong>Three families of endpoint</strong> — <code>/reference/*</code> (catalogs), <code>/mapping/*</code> (feed id ↔ canonical id, per <code>feed_source_id</code>) and <code>/info/*</code> (fixtures, markets, outcomes, states, lineups, injuries). This is exactly OpenBook's shared-vocab / mapping-record / live-tier split, running in production.</li>
+<li><strong>Three families of endpoint</strong> — <code>/reference/<em></code> (catalogs), <code>/mapping/</em></code> (feed id ↔ canonical id, per <code>feed_source_id</code>) and <code>/info/*</code> (fixtures, markets, outcomes, states, lineups, injuries). This is exactly OpenBook's shared-vocab / mapping-record / live-tier split, running in production.</li>
 <li><strong>Push/pull parity</strong> — every info row carries <code>routing_key</code>, the message topic it was published on, so the same row shape arrives by push and by pull. OpenBook: every object states the stream it belongs to.</li>
 <li><strong>Pull deltas</strong> — <code>since_last_updated</code> on fixtures, states, markets, outcomes, injuries and news. The "diffs everywhere" rule, in practice. (OpenBook uses a sequence cursor rather than a timestamp; see decisions.)</li>
 <li><strong>League ruleset</strong> — <code>clock_based</code>, <code>clock_ascending</code>, <code>score_based</code>, <code>segment_based</code>, <code>has_halftime</code>, <code>allow_ties</code>, <code>accepted_segments</code>, <code>final_eof_segment</code>. This is what lets a consumer validate scores and segments per league. OpenBook's <code>reference_league.ruleset</code> follows it.</li>
@@ -82,7 +86,7 @@
 <li><strong>Every object carries <code>id</code> + <code>version</code>; every edit belongs to a <code>changeset</code>.</strong> Version increments on each change — optimistic concurrency at planet scale. OpenBook's <code>sequence</code> + <code>dateModified</code> on every object is the same idea.</li>
 <li><strong>Minutely replication diffs</strong> in the <strong>OsmChange</strong> format: <code>&lt;create&gt;</code>, <code>&lt;modify&gt;</code>, <code>&lt;delete&gt;</code> blocks; each element carries <code>id</code>, <code>version</code>, <code>changeset</code>; a <code>delete</code> needs only those three; a replication <strong>state / sequence number</strong> tells a consumer where it is. This is "diffs everywhere" running for the whole planet since 2012. One conscious difference: OsmChange <code>modify</code> re-sends the whole element (object-level); OpenBook sends only the changed fields (JSON Merge Patch).</li>
 <li><strong><code>wikidata=Q…</code> tags</strong> on map objects — the cross-reference-by-QID pattern OpenBook adopts for entities (decision Q12).</li>
-<li>Licence: <strong>ODbL</strong> (share-alike) for the *data*. Note the distinction OpenBook keeps: the *specification* is CC BY; each publisher's *data* licence is its own.</li>
+<li>Licence: <strong>ODbL</strong> (share-alike) for the <em>data</em>. Note the distinction OpenBook keeps: the <em>specification</em> is CC BY; each publisher's <em>data</em> licence is its own.</li>
 </ul>
 <h3 id="the-weather-system-wmo-icao-oasis">The weather system (WMO, ICAO, OASIS)</h3>
 <ul>
@@ -90,9 +94,9 @@
 <li><strong>WIS2 topic hierarchy</strong> — a fixed, versioned topic grammar: <code>channel / version / system / centre-id / notification-type / data-policy / discipline / …</code>, e.g. <code>origin/a/wis2/ca-eccc-msc/data/core/weather/surface-based-observations/synop</code>. Rules: lowercase, dash-separated words, no dots, unique per level; a major version bump only on rename/removal, minor on additions. OpenBook should have the same kind of grammar for its streams (open decision Q14).</li>
 <li><strong>CAP 1.2 (OASIS Common Alerting Protocol)</strong> — the alert message standard: <code>alert</code> → <code>info</code> → <code>area</code>/<code>resource</code>; <code>msgType</code> of Alert / Update / Cancel / Ack / Error; <code>urgency</code>, <code>severity</code>, <code>certainty</code>; and <strong><code>references</code> to the prior message an update or cancel applies to</strong>. This is the right model for market suspensions, re-openings and voids (open decision Q15).</li>
 <li><strong>METAR / TAF</strong> — terse fixed-vocabulary text read by humans and machines for decades, now paired with machine forms (IWXXM XML, JSON APIs). The dual-form idea OpenBook uses for ids (short slug on the wire, formal URN in the spec).</li>
-<li><strong>GRIB / BUFR</strong> — binary, table-driven, self-describing formats for volume data. Efficient but need the tables. OpenBook stays readable JSON in v1; a binary encoding could become an optional transport binding later, as GTFS did with protobuf.</li>
+<li><strong>GRIB / BUFR</strong> — binary, table-driven, self-describing formats for volume data. Efficient but need the tables. OpenBook’s required v1 encoding is JSON; additional encodings MAY exist later as optional bindings generated from the JSON Schemas (Q89; same pattern as OpenRTB JSON default / protobuf optional). No <code>.proto</code> in this repo in v1.</li>
 <li><strong>NWS API</strong> — JSON-LD + GeoJSON payloads: web-standard encodings rather than bespoke ones.</li>
-</ul></article><p class="source">Source: docs/industry-patterns.md</p>
+</ul></article></div><p class="source">Source: docs/industry-patterns.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
@@ -108,5 +112,6 @@
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
+
 </body>
 </html>

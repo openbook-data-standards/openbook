@@ -29,7 +29,7 @@
           },
           "basis": {
             "$ref": "common.schema.json#/$defs/scoreUnit",
-            "description": "What this market counts (Q90). If omitted, sport/league primaryUnit."
+            "description": "What this market counts (Q98). If omitted, sport/league primaryUnit."
           },
           "status": {
             "$ref": "common.schema.json#/$defs/marketStatus"
