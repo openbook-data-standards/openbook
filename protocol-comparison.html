@@ -22,13 +22,15 @@
     </svg>
     OpenBook</a>
   <nav>
+    <a href="./guide.html">Guide</a>
     <a href="./spec.html">Spec</a>
+    <a href="./taxonomy.html">Taxonomy</a>
     <a href="./vocabularies/">Vocabularies</a>
     <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · docs/protocol-comparison.md</p><nav class="page-toc"><strong>On this page</strong><a href="#1-openbook-in-one-paragraph">1. OpenBook, in one paragraph</a><a href="#2-fit-at-a-glance">2. Fit at a glance</a><a href="#3-gtfs-gtfs-realtime">3. GTFS / GTFS-Realtime</a><a href="#4-gbfs-3-0">4. GBFS 3.0</a><a href="#5-mqtt-5-0-and-iso-iec-20922">5. MQTT 5.0 and ISO/IEC 20922</a><a href="#6-wmo-wis-2-0">6. WMO WIS 2.0</a><a href="#7-fix-protocol">7. FIX Protocol</a><a href="#8-iso-20022">8. ISO 20022</a><a href="#9-openrtb-2-6">9. OpenRTB 2.6</a><a href="#10-betfair-exchange-stream">10. Betfair Exchange Stream</a><a href="#11-sportradar-unified-odds-feed">11. Sportradar Unified Odds Feed</a><a href="#12-pinnacle-ps3838-and-kibl">12. Pinnacle / PS3838 and KIBL</a><a href="#13-openstreetmap-cap-odf-confluent">13. OpenStreetMap, CAP, ODF, Confluent</a><a href="#14-encodings-openbook-considered-and-parked">14. Encodings OpenBook considered and parked</a><a href="#15-what-fits-ours-the-short-list">15. What fits ours — the short list</a><a href="#sources">Sources</a></nav><article class="doc"><h1 id="protocol-comparison-technical-specs-and-what-fits-openbook">Protocol comparison — technical specs, and what fits OpenBook</h1>
+<p class="crumb"><a href="./">Home</a> · docs/protocol-comparison.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#1-openbook-in-one-paragraph">1. OpenBook, in one paragraph</a><a href="#2-fit-at-a-glance">2. Fit at a glance</a><a href="#3-gtfs-gtfs-realtime">3. GTFS / GTFS-Realtime</a><a href="#4-gbfs-3-0">4. GBFS 3.0</a><a href="#5-mqtt-5-0-and-iso-iec-20922">5. MQTT 5.0 and ISO/IEC 20922</a><a href="#6-wmo-wis-2-0">6. WMO WIS 2.0</a><a href="#7-fix-protocol">7. FIX Protocol</a><a href="#8-iso-20022">8. ISO 20022</a><a href="#9-openrtb-2-6">9. OpenRTB 2.6</a><a href="#10-betfair-exchange-stream">10. Betfair Exchange Stream</a><a href="#11-sportradar-unified-odds-feed">11. Sportradar Unified Odds Feed</a><a href="#12-pinnacle-ps3838-and-kibl">12. Pinnacle / PS3838 and KIBL</a><a href="#13-openstreetmap-cap-odf-confluent">13. OpenStreetMap, CAP, ODF, Confluent</a><a href="#14-encodings-openbook-considered-and-parked">14. Encodings OpenBook considered and parked</a><a href="#15-what-fits-ours-the-short-list">15. What fits ours — the short list</a><a href="#sources">Sources</a></nav><article class="doc"><h1 id="protocol-comparison-technical-specs-and-what-fits-openbook">Protocol comparison — technical specs, and what fits OpenBook</h1>
 <p>A working review of the live-data and market-data protocols OpenBook is shaped after, plus the highly regarded ones it cites but had not compared at spec level. Betting-vendor APIs stay in <a href="industry-patterns.html"><code>industry-patterns.md</code></a>. This page is the technology comparison: encoding, identity, diffs, recovery, topics, money, versioning, and governance.</p>
 <p>Status: documentation only. Nothing here reopens a decided Q. Where a foreign idea fits and is already on the wire, the decision is named. Where it fits later (optional encoding, ops extras), it is marked <strong>later</strong>. Where it does not fit, the reason is the OpenBook job: <strong>one shared publication format</strong>, not a session protocol, not a committee repository, not an auction.</p>
 <hr>
@@ -68,7 +70,7 @@
 <li><strong>OpenStreetMap / OsmChange</strong> — <strong>adopted</strong> for id+version, create/modify/ delete, replication sequence, Wikidata cross-refs, bottom-up vocabulary. Rejected: object-level re-send on modify (OpenBook is field-level Merge Patch).</li>
 <li><strong>OASIS CAP 1.2</strong> — <strong>adopted</strong> for <code>msgType</code> / <code>references</code> on <code>market/update</code> (Q15).</li>
 <li><strong>Olympic Data Feed (ODF)</strong> — <strong>adopted</strong> for person-name forms (Q11). Rejected: XML per-Games common codes as the shared id system.</li>
-<li><strong>Confluent Schema Registry FULL+TRANSITIVE</strong> — <strong>adopted</strong> as the compatibility *idea*, adapted to JSON Schema instances (Q32). Rejected: Avro reader/writer resolution as the gate.</li>
+<li><strong>Confluent Schema Registry FULL+TRANSITIVE</strong> — <strong>adopted</strong> as the compatibility <em>idea</em>, adapted to JSON Schema instances (Q32). Rejected: Avro reader/writer resolution as the gate.</li>
 <li><strong>Unicode stability / ISO 3166 reuse of CS</strong> — <strong>adopted</strong> as never-reuse (Q35).</li>
 </ul>
 <h3 id="explicitly-not-the-job">Explicitly not the job</h3>
@@ -81,7 +83,7 @@
 <h2 id="3-gtfs-gtfs-realtime">3. GTFS / GTFS-Realtime</h2>
 <p><strong>What it is.</strong> A static zip of CSV tables (agencies, routes, stops, trips, stop_times) plus a realtime protobuf <code>FeedMessage</code>: header + repeated <code>FeedEntity</code>, each of which is a <code>TripUpdate</code>, <code>VehiclePosition</code>, or <code>Alert</code>. Ids in the realtime layer are the same strings as the static files. Header <code>incrementality</code> is FULL or DIFFERENTIAL; in practice most agencies publish FULL. Timestamps are POSIX. Entities can be <code>is_deleted</code>. Extensions occupy protobuf field numbers 1000–1999.</p>
 <p><strong>Tech that matches OpenBook.</strong> Static catalog + live layer keyed to the same ids. Many agencies in one feed (<code>agency_id</code> → OpenBook <code>source</code> on a publisher). Publisher-agnostic: the spec does not care who produced the timetable. Alerts are a first-class live object (OpenBook folded that into <code>market/update</code> via CAP rather than a third payload type).</p>
-<p><strong>What we improved on.</strong> GTFS-RT’s common FULL poll re-sends the world. OpenBook’s snapshot is compaction; afterwards only Merge Patch diffs move (Q8/Q33). Epoch integers were considered and rejected for RFC 3339 everywhere (Q9). Protobuf is the right *later* encoding (GTFS itself started as CSV); it is not v1.</p>
+<p><strong>What we improved on.</strong> GTFS-RT’s common FULL poll re-sends the world. OpenBook’s snapshot is compaction; afterwards only Merge Patch diffs move (Q8/Q33). Epoch integers were considered and rejected for RFC 3339 everywhere (Q9). Protobuf is the right <em>later</em> encoding (GTFS itself started as CSV); it is not v1.</p>
 <p><strong>Fit.</strong> This is the structural template. Keep citing it. Do not take the protobuf or the poll-the-full-state habit.</p>
 <hr>
 <h2 id="4-gbfs-3-0">4. GBFS 3.0</h2>
@@ -128,11 +130,11 @@
 <p><strong>Tech that looks tempting.</strong> Syntax-agnostic model; JSON Schema 2020-12; money as a typed object; versioned message definitions.</p>
 <p><strong>Why it does not fit OpenBook’s wire.</strong></p>
 <ul>
-<li>OpenBook already chose JSON Schema 2020-12 <strong>without</strong> a separate abstract repository. The schemas in <code>schema/</code> *are* the model.</li>
+<li>OpenBook already chose JSON Schema 2020-12 <strong>without</strong> a separate abstract repository. The schemas in <code>schema/</code> <em>are</em> the model.</li>
 <li>Abbreviated names contradict Q13/Q38 (schema.org camelCase, full words).</li>
 <li><code>{amt, Ccy}</code> on every amount contradicts Q44 (<code>baseCurrency</code> once; incremental messages do not repeat currency).</li>
 <li>Committee registration contradicts staged governance (gravity play now, consortium later). An ISO number is an outcome, not a starting move (<a href="governance.html"><code>GOVERNANCE.md</code></a>).</li>
-<li>ISO 20022 is payment/securities *instructions*. OpenBook is a public market-data tape plus a sports catalog. Mapping odds into pacs/setr messages would be theatre.</li>
+<li>ISO 20022 is payment/securities <em>instructions</em>. OpenBook is a public market-data tape plus a sports catalog. Mapping odds into pacs/setr messages would be theatre.</li>
 </ul>
 <p><strong>Fit.</strong> Keep it on the “stands on” list as the warning: do not invent a private money model, and do not confuse a metamodel committee with a feed standard. Do not generate OpenBook from an ISO 20022 repository.</p>
 <hr>
@@ -151,12 +153,12 @@
 <p><strong>What it is.</strong> TLS socket / WebSocket. Subscribe, receive <code>ct=SUB_IMAGE</code> (replace cache where <code>img=true</code>), then deltas. Opaque <code>initialClk</code> / <code>clk</code> on every message including heartbeats; reconnect by sending them back for <code>RESUB_DELTA</code>. <code>heartbeatMs</code> on the subscription; server heartbeats have <code>ct=HEARTBEAT</code> and no data. <code>con=true</code> when ticks were folded. <code>conflateMs</code> is a requested (and sometimes forced) rate.</p>
 <p><strong>Tech that matches OpenBook.</strong> This is Q8’s change-delivery template and most of Q33/Q46/Q47: snapshot, then diffs; a caught-up marker (<code>snapshotComplete</code>, not inferred); <code>heartbeat</code> on the same stream; <code>conflated: true</code> when ticks were dropped; <code>heartbeatMs</code> on the publisher record.</p>
 <p><strong>What we changed.</strong> Integer <code>sequence</code> instead of opaque <code>clk</code> (Pinnacle’s cursor lesson, made sortable). Per-fixture ordering, not a global clock <code>pt</code>. Merge Patch field diffs instead of Betfair’s runner-ladder arrays. Caught-up is an explicit <code>action</code>, not “the SUB_IMAGE ended.”</p>
-<p><strong>Fit.</strong> Closest *betting* live wire. Already absorbed.</p>
+<p><strong>Fit.</strong> Closest <em>betting</em> live wire. Already absorbed.</p>
 <hr>
 <h2 id="11-sportradar-unified-odds-feed">11. Sportradar Unified Odds Feed</h2>
 <p><strong>What it is.</strong> AMQP feed plus HTTP recovery. Ids are URNs (<code>sr:match:8412480</code>). Markets are a numeric id plus <code>specifiers</code> (<code>total=2.5|quarternr=3</code>); identity is (market id + normal specifiers), not extended specifiers. Recovery is HTTP <code>initiate_request</code> (optionally <code>after=&lt;epoch ms&gt;</code>); replayed messages arrive on AMQP and end with XML <code>&lt;snapshot_complete request_id=…&gt;</code>. <code>odds_change</code> is the price message. A <code>market_mapping</code> layer points at legacy feeds. Producers (<code>liveodds</code>, <code>pre</code>, …) are separate products.</p>
 <p><strong>Tech that matches OpenBook.</strong> Namespaced ids (Q5 short form <code>sport:soccer</code>, formal <code>urn:openbook:sport:soccer</code>). Mapping as a first-class idea (Q6 <code>identifier</code>). <code>odds/change</code> as the reserved price action (Q16). <code>snapshotComplete</code> as the recovery terminator (Q46; Sportradar snake_case, OpenBook camelCase). Separate recovery from the live socket.</p>
-<p><strong>What we did not take.</strong> Numeric market tables — unreadable, proprietary, the thing an *open* vocabulary exists to replace. Specifiers that smuggle segment and line into a string; OpenBook makes <code>segment</code> and <code>line</code> fields on the market. Timestamp <code>after=</code> recovery (Q9 / <code>since</code> as sequence). Required AMQP. XML.</p>
+<p><strong>What we did not take.</strong> Numeric market tables — unreadable, proprietary, the thing an <em>open</em> vocabulary exists to replace. Specifiers that smuggle segment and line into a string; OpenBook makes <code>segment</code> and <code>line</code> fields on the market. Timestamp <code>after=</code> recovery (Q9 / <code>since</code> as sequence). Required AMQP. XML.</p>
 <p><strong>Fit.</strong> The public betting taxonomy to study, not to copy. OpenBook’s market vocabulary is the open counterpart, with segment as its own object.</p>
 <hr>
 <h2 id="12-pinnacle-ps3838-and-kibl">12. Pinnacle / PS3838 and KIBL</h2>
@@ -171,8 +173,8 @@
 <h2 id="13-openstreetmap-cap-odf-confluent">13. OpenStreetMap, CAP, ODF, Confluent</h2>
 <p><strong>OsmChange.</strong> <code>&lt;create&gt;</code> / <code>&lt;modify&gt;</code> / <code>&lt;delete&gt;</code> plus <code>id</code>, <code>version</code>, <code>changeset</code>, and a replication sequence. Planet-scale diffs since 2012. OpenBook’s object/action set is this, with Merge Patch instead of re-sending the whole element. Wikidata tags are Q12.</p>
 <p><strong>CAP 1.2.</strong> <code>msgType</code> Alert / Update / Cancel / Ack / Error and <code>references</code> to the message being amended. OpenBook uses <code>alert</code> · <code>update</code> · <code>cancel</code> on <code>market/update</code> (Q15). Ack/Error stay out: those are session, not publication.</p>
-<p><strong>ODF.</strong> Per-Games XML with <code>CompetitionCode</code>, <code>DocumentCode</code> (RSC), <code>DocumentType</code> (<code>DT_SCHEDULE</code>, <code>DT_PARTIC</code>, …), <code>Version</code>, <code>ModificationIndicator</code>. Person names: <code>PrintName</code>, <code>TVName</code>, <code>LocalFamilyName</code> / <code>LocalGivenName</code>. OpenBook took the name *forms* (Q11) and refused the common-code tables as the shared id (Wikidata + publisher-own + standard facts instead). ODF is the right model for a single organiser’s Games; it is the wrong model for every book on earth.</p>
-<p><strong>Confluent FULL+TRANSITIVE.</strong> Every schema in a subject is compatible with all others in both directions. OpenBook Q32 is that idea on JSON *instances*: minors only add optional fields; the required set is frozen. There is no Avro resolution. Schema-diff CI is a later PR at 1.0+ (Q55).</p>
+<p><strong>ODF.</strong> Per-Games XML with <code>CompetitionCode</code>, <code>DocumentCode</code> (RSC), <code>DocumentType</code> (<code>DT_SCHEDULE</code>, <code>DT_PARTIC</code>, …), <code>Version</code>, <code>ModificationIndicator</code>. Person names: <code>PrintName</code>, <code>TVName</code>, <code>LocalFamilyName</code> / <code>LocalGivenName</code>. OpenBook took the name <em>forms</em> (Q11) and refused the common-code tables as the shared id (Wikidata + publisher-own + standard facts instead). ODF is the right model for a single organiser’s Games; it is the wrong model for every book on earth.</p>
+<p><strong>Confluent FULL+TRANSITIVE.</strong> Every schema in a subject is compatible with all others in both directions. OpenBook Q32 is that idea on JSON <em>instances</em>: minors only add optional fields; the required set is frozen. There is no Avro resolution. Schema-diff CI is a later PR at 1.0+ (Q55).</p>
 <hr>
 <h2 id="14-encodings-openbook-considered-and-parked">14. Encodings OpenBook considered and parked</h2>
 <ul>
@@ -203,7 +205,7 @@
 <ul>
 <li>A generated protobuf or SBE binding of the same schemas.</li>
 <li>GBFS-style <code>manifest</code> if one operator publishes many publishers.</li>
-<li>MQTT 5 reason codes as an *equivalent* when the transport is MQTT (already allowed: “other transports MUST name the equivalent” of QoS).</li>
+<li>MQTT 5 reason codes as an <em>equivalent</em> when the transport is MQTT (already allowed: “other transports MUST name the equivalent” of QoS).</li>
 </ul>
 <p>Does <strong>not</strong> fit — do not reopen:</p>
 <ul>
@@ -232,7 +234,7 @@
 <li>ODF General Messages — https://odf.olympictech.org/</li>
 <li>RFC 7386, RFC 6902, RFC 9457, RFC 8141 — https://www.rfc-editor.org</li>
 <li>CloudEvents 1.0 — https://github.com/cloudevents/spec</li>
-</ul></article><p class="source">Source: docs/protocol-comparison.md</p>
+</ul></article></div><p class="source">Source: docs/protocol-comparison.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">
@@ -248,5 +250,6 @@
   </a>
   <div>Canonical text lives in the repository; this page is the readable copy.</div>
 </div></footer>
+
 </body>
 </html>
