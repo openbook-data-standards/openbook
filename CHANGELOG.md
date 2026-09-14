@@ -109,6 +109,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q157** — this pass is toss elected first, then best-of length. Names
   wait. Not wired in this pick.
 - **Q158** — elected sits on existing `toss`. Names wait. Not wired.
+- **Q159** — elected is one token, bat or bowl. Field name leftover English
+  at implement. Not wired.
 
 
 ### Removed
