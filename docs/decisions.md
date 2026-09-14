@@ -19,7 +19,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
 | Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
 | Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
-| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 · Q149 · Q150 · Q151 · Q152 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 · Q149 · Q150 · Q151 · Q152 · Q153 |
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
@@ -1814,3 +1814,16 @@ Rejected: a draw count; reuse `unit`; leave what it counts unspecified.
 
 **Supersedes:** none of Q151 (when it ticks stays; this says what
 ticks).
+
+## Q153 — Count field is total — decided (A)
+
+Each row’s count is **`total`**. Games won (Q152). Not a new count
+field. Not `line`. Array name waits.
+
+Not wired in this pick.
+
+Rejected: a new count field; reuse `line`; names still wait including
+`total`.
+
+**Supersedes:** Q148 / Q149 / Q152 “count names wait” for the count
+field (`total` is picked). Array name still waits.

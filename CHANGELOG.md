@@ -87,6 +87,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   wired.
 - **Q152** — the number is games won; integer; 0 allowed; no draw column.
   Not wired.
+- **Q153** — each row’s count is `total`. Array name waits. Not wired.
 
 
 ### Removed
