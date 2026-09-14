@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 · Q195 · Q196 · Q197 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157–Q170 · Q195–Q203 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
@@ -2409,3 +2409,75 @@ Q173; invent a leftover or unpark Q55.
 
 **Supersedes:** Q196 “next leftover unnamed; wait” (the pick is: nothing
 left on this walk’s leftover list; stop).
+
+## Q198 — Do not unpark Q171 later leftover — decided (A)
+
+Stay **stopped**. Do not unpark the Q171 later leftover as this walk.
+Ask later; do not invent the recipe. Not Q55.
+
+Not wired in this pick.
+
+Rejected: this next walk is Q171 later leftover; unpark only the prefix
+file; unpark Q55.
+
+**Supersedes:** none of Q171 (later leftover still sits; this walk does
+not take it).
+
+## Q199 — Do not unpark Q172 profile pointers — decided (A)
+
+Stay **stopped**. Do not unpark Q172 profile pointers as this walk.
+Profiles stay separate specifications (**Q172**). Not Q55.
+
+Not wired in this pick.
+
+Rejected: pointers in this spec as this walk; create profile repos now;
+unpark Q55.
+
+**Supersedes:** none of Q172.
+
+## Q200 — Do not unpark Q173 hosted validator — decided (A)
+
+Stay **stopped**. Do not unpark Q173 hosted validator and feed list as
+this walk. Not Q55.
+
+Not wired in this pick.
+
+Rejected: hosted validator this walk; feed list on discovery; unpark
+Q55.
+
+**Supersedes:** none of Q173.
+
+## Q201 — Position token lists still wait — decided (A)
+
+Stay **stopped**. Position token lists wait (**Q180**). Do not invent
+the first sport’s tokens. Not Q55.
+
+Not wired in this pick.
+
+Rejected: invent the first sport’s tokens now; name the first maps
+public list; unpark Q55.
+
+**Supersedes:** none of Q180 (token lists still wait).
+
+## Q202 — First maps public list name still waits — decided (A)
+
+Stay **stopped**. The first maps public list **name waits** (**Q184**).
+Do not invent a taxonomy. Not Q55.
+
+Not wired in this pick.
+
+Rejected: pick a list already cited in this spec as this pick; map
+OpenBook ids onto themselves; unpark Q55.
+
+**Supersedes:** none of Q184 (name still waits).
+
+## Q203 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Unreleased is the bucket. Not a version cut.
+Not Q55.
+
+Not wired in this pick.
+
+Rejected: cut `0.4.0-draft`; cut 1.0; unpark Q55.
+
+**Supersedes:** none of Q195 (the stop stays; this is the version).

@@ -179,6 +179,18 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   pick.
 - **Q197** — named leftovers on this walk exhausted; stay stopped. Not
   Q55. Not a version cut. Not wired in this pick.
+- **Q198** — do not unpark Q171 later leftover as this walk. Not Q55.
+  Not wired in this pick.
+- **Q199** — do not unpark Q172 profile pointers as this walk. Not Q55.
+  Not wired in this pick.
+- **Q200** — do not unpark Q173 hosted validator as this walk. Not Q55.
+  Not wired in this pick.
+- **Q201** — position token lists still wait. Not Q55. Not wired in this
+  pick.
+- **Q202** — first maps public list name still waits. Not Q55. Not wired
+  in this pick.
+- **Q203** — stay `0.3.0-draft`. Not a version cut. Not Q55. Not wired
+  in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
