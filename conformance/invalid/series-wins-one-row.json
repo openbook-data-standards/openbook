@@ -1,6 +1,6 @@
 {
   "openbookVersion": "0.3.0-draft",
-  "sequence": 105510,
+  "sequence": 1,
   "datePublished": "2026-09-19T14:00:00Z",
   "publisher": "acme-feeds",
   "object": "series",
@@ -14,10 +14,6 @@
       {
         "participant": "T-3",
         "total": 2
-      },
-      {
-        "participant": "T-11",
-        "total": 1
       }
     ]
   }

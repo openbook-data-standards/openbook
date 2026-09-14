@@ -19,7 +19,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
 | Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
 | Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
-| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 · Q149 · Q150 · Q151 · Q152 · Q153 · Q154 · Q155 · Q156 |
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
@@ -1750,3 +1750,125 @@ Later pick wired those objects.
 Rejected: name those objects now; a new area.
 
 **Supersedes:** Q146 as an open “what is next”.
+
+## Q148 — Series win counts this walk — decided (A)
+
+This walk fills the live series lead with **win counts**. Names wait.
+Toss elected bat/bowl stays waiting. Not Q55.
+
+Not wired in this pick.
+
+Rejected: toss elected this walk; both in this pass; a new area.
+
+**Supersedes:** Q147 “no new board until named”; Q146 “win counts wait”
+as the next area (toss elected still waits).
+
+## Q149 — Win counts are per-participant rows — decided (A)
+
+Win counts sit as **one row per series side** on live `series`. Same
+`participant` ids as this fixture. Count names wait. Not two root
+home/away numbers. Not `score`’s `scores[]`. Not on `score` (Q140).
+
+Not wired in this pick.
+
+Rejected: two numbers on the `series` root; reuse `scores[]` on
+`series`; reopen Q140.
+
+**Supersedes:** none of Q140 or Q148 (home stays live `series`; this
+picks the row shape).
+
+## Q150 — Exactly two rows, both required — decided (A)
+
+Exactly **two** rows. Both required. This fixture’s two participants.
+Not two-or-more. Not optional. Not leftover `other` as a third row.
+
+Not wired in this pick. Count names wait.
+
+Rejected: two or more sides; optional rows; leftover `other` as a
+third row.
+
+**Supersedes:** none of Q149 (same rows; this locks count and
+required).
+
+## Q151 — Win ticks when this game is down — decided (A)
+
+Completed games only. This fixture is not in the count until it is
+down. Not while the game is live. Not a second live scoreboard (Q140).
+When it ticks is specified (not left open). No extra live-mark field.
+
+Not wired in this pick. Count names wait.
+
+Rejected: include this game while live; a separate live mark; leave
+when it ticks unspecified.
+
+**Supersedes:** none of Q140 or Q150.
+
+## Q152 — The number is games won — decided (A)
+
+The number is **games won** in this series. Integer. 0 allowed. No draw
+column. Not `score`’s `unit`. What it counts is specified.
+
+Not wired in this pick. Count field names wait.
+
+Rejected: a draw count; reuse `unit`; leave what it counts unspecified.
+
+**Supersedes:** none of Q151 (when it ticks stays; this says what
+ticks).
+
+## Q153 — Count field is total — decided (A)
+
+Each row’s count is **`total`**. Games won (Q152). Not a new count
+field. Not `line`. Array name waits.
+
+Not wired in this pick.
+
+Rejected: a new count field; reuse `line`; names still wait including
+`total`.
+
+**Supersedes:** Q148 / Q149 / Q152 “count names wait” for the count
+field (`total` is picked). Array name still waits.
+
+## Q154 — Array name leftover English at implement — decided (A)
+
+The two-row array is leftover English at implement. Not camelCase. Not
+`scores`. Not `participants`.
+
+Not wired in this pick.
+
+Later pick wired leftover English **`wins`**.
+
+Rejected: reuse `scores`; reuse `participants`; name the array in this
+pick.
+
+**Supersedes:** Q153 “array name waits” as an open choice (leftover
+English at implement is the rule).
+
+## Q155 — Series win-count pass closed — decided (A)
+
+Pass closed. Two required rows on live `series`; `participant` +
+`total`; games won; ticks when this game is down. Array name leftover
+English at implement. No new field in this pick. Toss elected still
+waits. Best-of length not this pass.
+
+Not wired in this pick.
+
+Later pick wired `wins` (exactly two rows; `participant` + `total`).
+
+Rejected: keep going (best-of length); stop this spec walk in this pick;
+toss elected next.
+
+**Supersedes:** Q148 as an open walk (this closes the pass).
+
+## Q156 — Stop this spec walk — decided (A)
+
+No new board until named. Series win counts stay logged. Array leftover
+English at implement. Wire waits. Toss elected waits. Best-of length
+waits.
+
+Not wired in this pick.
+
+Later pick wired `wins`.
+
+Rejected: name the array now; a new area; toss elected next.
+
+**Supersedes:** Q155 as an open “what is next”.
