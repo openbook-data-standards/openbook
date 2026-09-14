@@ -948,3 +948,27 @@ SGP. SGP/parlay is combining markets.
 Rejected: a Pinnacle-only specials object; treat HT/FT as a same-game parlay.
 
 **Supersedes:** none of the market vocabulary.
+
+## Q90 — Market unit classifier — decided (optional `basis`)
+
+A market is **shape × unit × segment**, not a new type per unit.
+
+- **`marketType`** is the shape (`market:total`, `market:correct-score`,
+  `market:draw-no-bet`, `market:half-time-full-time`, `market:moneyline`, …).
+  A 3-way moneyline is `market:moneyline` with a draw side, not a new id.
+- **`basis`** is what it counts — the same `scoreUnit` list as score and
+  grade (`corners`, `goals`, `runs`, …). Optional on the priced market. If
+  omitted, sport/league `primaryUnit` (the sport default: goals, points,
+  runs, …).
+- **`segment`** is the slice (`1st-half`, full game, first five innings, …).
+
+Same fixture. Identity: `(source, fixture, marketType, segment, line, basis)`.
+Grade already requires `basis`; the priced market names the same thing.
+
+Rejected: `market:corner-total` / `market:corner-dnb` and friends; Pinnacle
+cloned “Corners” events; required `basis` on every goals market.
+
+This decision does **not** add new `scoreUnit` values. `bookings` and
+home-runs stay until a payload names them.
+
+**Supersedes:** none. Completes Q26 for priced markets.

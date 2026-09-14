@@ -28,19 +28,19 @@ answered. Do not invent names.
 ### Decided on this walk (not wired unless named)
 
 - **Q89** — Pinnacle specials are **markets**. No new object.
+- **Q90** — optional `basis` on every market (same `scoreUnit` list). Same
+  `market:*` ids. Omit = sport/league `primaryUnit`. Not a new type.
 
 ### Not decided yet (walk these; do not invent)
 
-1. **What a total counts** — goals vs corners vs bookings. Industry: one
-   fixture, not Pinnacle’s cloned event. Grade already has `basis`.
-2. **Odds envelope** — team totals and draw sides (vocab already has them);
+1. **Odds envelope** — team totals and draw sides (vocab already has them);
    period status on the odds call vs fixture `eventStatus`.
-3. **Parlay / teaser flags on the event** — whether the event may be
+2. **Parlay / teaser flags on the event** — whether the event may be
    parlayed, same-event parlay period list, alternative teaser points.
-4. **Live pairing** — confirm `superEvent`; do not add a second model.
-5. **Settled fixtures** — period settlement vs grade delete/create.
-6. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
-7. **Get Line** — confirm market `limit` is enough.
+3. **Live pairing** — confirm `superEvent`; do not add a second model.
+4. **Settled fixtures** — period settlement vs grade delete/create.
+5. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
+6. **Get Line** — confirm market `limit` is enough.
 
 ### Not in the Pinnacle Lines fixture schema
 
@@ -54,8 +54,8 @@ payload has them. Do not add them to cover “all sports.”
 
 ## Next question (not decided)
 
-- How a total names its unit (corners vs goals).
+- Odds envelope: team totals / draw sides, and period status vs `eventStatus`.
 
-## Done (Q32–Q89)
+## Done (Q32–Q90)
 
-Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets.
+Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis`.
