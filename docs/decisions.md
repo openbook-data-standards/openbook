@@ -1555,3 +1555,14 @@ Rejected: one market per player.
 
 **Supersedes:** none of Q107 (player over/under still has its number on
 the market).
+
+## Q131 — Yes/no player market omits line — decided (A)
+
+A yes/no player market has no `line`. Anytime scorer / to score has no
+threshold like player over/under (the 24.5).
+
+Not wired in this pick.
+
+Rejected: keep a market `line`.
+
+**Supersedes:** none of Q107 (player over/under still has its number).
