@@ -93,12 +93,28 @@ Leagues, seasons, stages, fixtures, participants, players and venues carry the
 For leagues, participants, venues and territories, **`sameAs`** holds the
 Wikidata entity URL (`https://www.wikidata.org/entity/Q9617`) — the shared
 cross-publisher entity id: **REQUIRED when one exists, `null` when it does
-not**. A string to pin, never a runtime dependency.
+not**. A string to pin, never a runtime dependency. Anchor policy prose:
+[`register/anchors.md`](../register/anchors.md) (Q171, Q272–Q273).
+`sameAs` MAY name one community register per sport when one exists; that
+list is not in this spec.
 
 ### 3.4 External ids — `identifier`
 
 Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
-(`{propertyID, value}`). Optional, never canonical.
+(`{propertyID, value}`). Optional, never canonical. Scheme tokens for
+`propertyID` live in [`register/prefixes.json`](../register/prefixes.json)
+(Q191–Q194, Q262–Q267). That list is growable and includes an unknown
+bucket. `propertyID` stays a string. This is not a feed document and is
+not on the odds wire.
+
+The optional fixture join recipe is not on the odds wire and is not a
+new field (Q171, Q196). Encoding, pin, and worked digest live in
+[`register/fingerprint.md`](../register/fingerprint.md) (Q197, Q268–Q271,
+Q280). Five UTF-8 LF lines (sport id, league anchor, start to the minute
+UTC, ordered participant anchors, `competitionType`), then SHA-256
+lowercase hex. The pin is
+[`examples/fixture.example.json`](../examples/fixture.example.json)
+(Q198, Q259). Publisher-own id stays canonical.
 
 ### 3.5 Maps onto public taxonomies
 
@@ -109,21 +125,28 @@ document and is not on the odds wire.
 When files exist:
 
 - They live in **one directory named for maps**, not inside the vocab
-  lists (Q182, Q183).
-- **One JSON file per public list** (Q187, Q188).
-- Each file is a **JSON array of row objects** (Q199). JSON object keys
-  wait; do not invent names (Q189). Row meaning stays leftover English:
-  public key plus an existing OpenBook id, **or** the unknown catch-all
-  plus a reason.
-- A reason is leftover English (a free string), not a token list
-  (Q200). It is required only on the unknown catch-all and **forbidden**
-  when the landing is an existing OpenBook id (Q186, Q201).
-- In one file, a public key appears **at most once** (Q202). Row order
-  is not significant (Q203).
+  lists (Q182, Q183): [`maps/`](../maps/).
+- **One JSON file per public list** (Q187, Q188). The first public list
+  is market types from a public exchange already cited in this spec
+  (Betfair Stream) (Q218). That file is
+  [`maps/betfair.json`](../maps/betfair.json).
+- Each file is a **JSON array of row objects** (Q199) matching
+  [`schema/maps.schema.json`](../schema/maps.schema.json). Each row has
+  `publicKey` (the exchange’s market type id) and `id` (an existing
+  OpenBook market type id), or `id` `market:unknown` plus `reason`
+  (Q185, Q220–Q223, Q240–Q242).
+- `publicKey`, `id`, and `reason` are strings. `publicKey` and `id` are
+  required on every row. `reason` is required only when `id` is
+  `market:unknown` and **forbidden** when `id` is a named OpenBook market
+  type (Q186, Q201, Q243–Q248). Extra keys are forbidden (Q249).
+- In one file, a `publicKey` appears **at most once** (Q202). Many
+  public keys MAY share one `id` (Q226). Row order is not significant
+  (Q203). A public key not in the file is unmapped, not the unknown
+  catch-all (Q228).
+- This is not a complete dump of that exchange. Rows that cannot land on
+  a named OpenBook market type use `market:unknown` plus `reason`.
 
-The first public list name waits. Do not invent a taxonomy. No directory
-and no file until that name exists (Q184, Q215). Cite at least one
-public taxonomy when a list is named.
+The maps file is not a feed document and is not on the odds wire.
 
 ## 4. The hierarchy
 
@@ -359,7 +382,7 @@ fixture list. Live objects are the board that keeps moving.
 | `season` | Own id, `league`, `name` (display), `startDate`, `endDate` (Q60 / Q9) |
 | `stage` | Own id, `season`, `name`, `parent`, `stageType` (phase · group · round · matchday · leg · seriesGame), `order`, optional `startDate` / `endDate` |
 | `participant` | Own id, `participantType` (team · individual), `sport`, `territory`, `sameAs`. Required `name` (popular/board). Optional `shortName`, `names` (ISO 639-1), `nameLatin` (ISO 9 / ISO 843), `alternateName[]`. **Teams** MAY add `location` + `nickname`, `registeredName`, `abbreviation`. **Individuals** MAY add `givenName` / `familyName` (vCard RFC 6350 / ITU X.520); no `abbreviation`. No league field. Fixture `participants[]` copies `name` plus `role` and `order` |
-| `player` | Roster membership: own id, `participant` (the person), `team` (the team participant), `position`, `number`. Optional `throws` and `bats` (`left` · `right` · `both`). No name fields |
+| `player` | Roster membership: own id, `participant` (the person), `team` (the team participant), `position` (`position:<sport>:<token>` in [`vocabularies/positions.md`](../vocabularies/positions.md); unknown tokens tolerated), `number`. Optional `throws` and `bats` (`left` · `right` · `both`). No name fields |
 | `stall` | Racing gate for one runner in one race (Q141–Q144): own id, `fixture`, `participant`, `order` (the gate, 1-based). Not on the generic fixture or `participant` row. No horse-racing sport id in this pick (`sport:unknown` if needed, Q34) |
 | `toss` | Cricket toss (Q142–Q144, Q157–Q160): own id, `fixture`, `participant` (who won), required `elected` (`bat` · `bowl`). Not on the generic fixture. Not `score`. `elected` is leftover English; not player `bats` |
 | `fixture` | §6 plus `eventStatus`, `cutoffDate`, optional `superEvent` (schema.org; **not** a live/pregame pair — Q101: one fixture, `eventStatus` is live), optional display `name`, `location` (nested schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`, optional WGS 84 `latitude` / `longitude`), optional `surface` |

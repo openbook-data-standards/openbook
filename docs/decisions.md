@@ -23,11 +23,11 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q236 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 · Q190–Q198 |
-| Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q279 |
+| Position vocab | Q76 · Q170 · Q174–Q180 · Q275 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q257 |
 
 The entries below stay in the order they were taken.
 
@@ -2651,3 +2651,776 @@ sitting leftovers; unpark Q55.
 
 **Supersedes:** Q205–Q216 as an open “what is next” (the stop stays;
 this pass is closed).
+
+## Q218 — First public list leftover English — decided (A)
+
+The first public list is leftover English: **market types from a public
+exchange already cited in this spec** (Betfair Stream). Do not invent
+rows. Do not invent JSON object keys (**Q189**). No file in this pick.
+Not a registry of fixtures, teams, or players.
+
+Not wired in this pick.
+
+Rejected: Sportradar UOF market types as this pick; sports or segments
+first; name still waits.
+
+**Supersedes:** Q184 “first public list name waits” (this is the leftover
+English name); Q210 as an open wait; Q217 as an open “what is next”.
+
+## Q219 — File named for that public list — decided (A)
+
+When a file exists it is **named for that public list**. JSON object
+keys still wait (**Q189**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: a generic leftover-English name that does not name the
+exchange; file name waits until keys exist; stop this leftover.
+
+**Supersedes:** none of Q187 (one file per list stays; this is that the
+file is named for the list in Q218).
+
+## Q220 — Public key leftover English — decided (A)
+
+The public key is leftover English: **the exchange’s market type id**.
+Do not invent a JSON name. JSON object keys still wait (**Q189**). No
+file in this pick.
+
+Not wired in this pick.
+
+Rejected: the exchange’s market name, not the id; public-key leftover
+English waits; stop this leftover.
+
+**Supersedes:** none of Q185 (row contents stay; this is what the public
+key is).
+
+## Q221 — Landing leftover English — decided (A)
+
+The landing is leftover English: **an existing OpenBook market type id**.
+Not a fixture. Not a registry of fixtures, teams, or players. Do not
+invent a JSON name. JSON object keys still wait (**Q189**). No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: a fixture id; a registry entity; landing leftover English
+waits.
+
+**Supersedes:** none of Q185 (row contents stay; this is what the landing
+is for this first list).
+
+## Q222 — Unknown-catch-all landing leftover English — decided (A)
+
+When a public key does not map to a named OpenBook market type, the
+landing leftover English is **the existing OpenBook unknown catch-all
+market type, plus a reason**. That catch-all is already on the
+market-types list. Do not invent a second unknown. Do not invent a JSON
+name. JSON object keys still wait (**Q189**). No file in this
+pick.
+
+Not wired in this pick.
+
+Rejected: no landing, reason only; skip unknown rows on this first
+list; wait.
+
+**Supersedes:** none of Q185 or Q186 (row contents and reason rule stay;
+this is which landing the unknown path uses).
+
+## Q223 — This first list lands only on a market type id — decided (A)
+
+For this first list, a row may land **only on an OpenBook market type
+id** (named or the unknown catch-all). Not a sport id. Not a segment id.
+JSON object keys still wait (**Q189**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: also a sport id; also a segment id; wait.
+
+**Supersedes:** none of Q218 or Q221 (list and landing stay; this is
+that sport and segment are a different map).
+
+## Q224 — JSON object keys still wait — decided (A)
+
+Leftover English stays. **JSON object keys still wait.** Do not invent
+names (**Q189**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: name the three keys now; stop this leftover; wait as a stall
+without restating Q189.
+
+**Supersedes:** none of Q189 (keys still wait; this restates it after
+the first-list leftover English).
+
+## Q225 — Directory and file wait until keys exist — decided (A)
+
+No maps directory and no file **until JSON object keys exist**. Naming
+the first list leftover English (**Q218**) does not unpark a directory
+while keys wait (**Q189**, **Q224**). Do not invent keys. No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: directory may exist now, file still waits; directory and file
+now; wait.
+
+**Supersedes:** Q215 as the current wait (list leftover English is
+named; directory and file now wait on keys, not on naming the list).
+
+## Q226 — Many public keys may share one landing — decided (A)
+
+Many public keys **may share one OpenBook market type id**. In one file,
+a public key at most once (**Q202**) stays. Do not invent rows. JSON
+object keys still wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: one landing at most once per file; wait; stop this leftover.
+
+**Supersedes:** none of Q202 (public key uniqueness stays; this is the
+other direction).
+
+## Q227 — Do not invent rows — decided (A)
+
+**Do not invent rows.** Rows wait. Leftover English only. No public-list
+ids in this pick. JSON object keys still wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: invent the rows now; skip this first list; wait as a stall
+without saying do not invent.
+
+**Supersedes:** none of Q218 (the list leftover English stays; this is
+that rows are not invented from it now).
+
+## Q228 — Omitted public key is unmapped — decided (A)
+
+A public key **not in the file** is leftover English **unmapped**. The
+unknown catch-all plus a reason is only for a **row that exists** and
+cannot land on a named OpenBook market type. Absence is not a row. Do
+not invent a silent default. JSON object keys still wait. No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: omitted public key is the unknown catch-all; wait; stop this
+leftover.
+
+**Supersedes:** none of Q222 (unknown path stays; this is that omission
+is not that path).
+
+## Q229 — No second public list this walk — decided (A)
+
+**No second public list this walk.** This leftover is the first list:
+market types from a public exchange already cited. Sport or segment is
+a different map. Do not invent a second list name. JSON object keys
+still wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: sports next on this walk; segments next on this walk; wait.
+
+**Supersedes:** none of Q218 (the first list stays; this is that a second
+list is not this walk).
+
+## Q230 — First-list leftover English closes until keys exist — decided (A)
+
+This first-list leftover English **closes** until a later question names
+JSON object keys. Keys wait. Rows wait. Directory waits. Do not invent
+keys, rows, a filename, or a directory.
+
+Not wired in this pick.
+
+Rejected: keep asking leftover English on this first list; name the
+JSON object keys now; wait.
+
+**Supersedes:** the open first-list leftover walk as the next question
+on that leftover (Q218 leftover English stays; further questions wait
+on keys).
+
+## Q231 — Next leftover unnamed; wait — decided (A)
+
+**Next leftover unnamed; wait.** Do not unpark the pinned fixture
+example, JSON object keys, or position token lists in this pick.
+
+Not wired in this pick.
+
+Rejected: pinned fixture example next; JSON object keys next; position
+token lists next.
+
+**Supersedes:** none of Q230 (first-list leftover stays closed until
+keys exist; this is that nothing else is named next).
+
+## Q232 — Do not invent JSON object keys as the next leftover — decided (A)
+
+**Do not invent JSON object keys.** Keys still wait (**Q189**, **Q224**,
+**Q230**). Closing the first-list leftover is not permission to name
+them.
+
+Not wired in this pick.
+
+Rejected: name the three keys now; skip maps keys forever; wait.
+
+**Supersedes:** none of Q189 (keys still wait; this is that they are not
+the next leftover).
+
+## Q233 — Do not unpark the Q171 recipe or prefix-file contents — decided (A)
+
+**Do not unpark.** Fingerprint recipe text waits. Prefix-file contents
+wait. Do not invent them (**Q216**).
+
+Not wired in this pick.
+
+Rejected: unpark the fingerprint recipe now; unpark prefix-file
+contents now; wait.
+
+**Supersedes:** none of Q216 (the wait stays; this is that this walk
+does not unpark them).
+
+## Q234 — Named leftovers exhausted; stay stopped — decided (A)
+
+**Named leftovers on this walk exhausted; stay stopped.** Do not invent
+a leftover. Do not unpark JSON object keys, the Q171 recipe, or
+position token lists in this pick.
+
+Not wired in this pick.
+
+Rejected: unpark a leftover anyway; name JSON object keys now; wait.
+
+**Supersedes:** none of Q231 (unnamed wait stays; this is that named
+leftovers on this walk are exhausted).
+
+## Q235 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Not wired in this pick.
+
+Rejected: cut 0.3.0 now; cut 1.0 now; wait.
+
+**Supersedes:** none of Q211 (still draft).
+
+## Q236 — This question pass closes — decided (A)
+
+**This question pass closes.** No further leftover questions until a
+leftover is named.
+
+Not wired in this pick.
+
+Rejected: keep asking wait questions; name the next leftover now; wait.
+
+**Supersedes:** the open wait pass as the next leftover question
+(**Q217** as an open close is already history; this is this pass).
+
+## Q237 — Next leftover is JSON object keys — decided (A)
+
+The next leftover is **JSON object keys for the first maps file**. That
+unblocks the file. Do not invent the names in this pick. Do not invent
+rows. Do not unpark the Q171 recipe or position tokens.
+
+Not wired in this pick.
+
+Rejected: pinned fixture example; fingerprint recipe; wait.
+
+**Supersedes:** Q236 as an open “no further leftover questions”; Q231 as
+an open unnamed wait; Q232 as “keys are not the next leftover” (keys
+are this leftover; names still wait until a later question on this
+walk).
+
+## Q238 — Three leftover-English slots — decided (A)
+
+The three leftover-English slots stay **public key, landing, and
+reason**. Do not invent JSON names in this pick. No fourth slot.
+
+Not wired in this pick.
+
+Rejected: drop reason as a key leftover; add a fourth leftover-English
+slot; wait.
+
+**Supersedes:** none of Q185 (row contents stay; this is the three
+slots this walk will name).
+
+## Q239 — Name JSON keys on this walk, later question — decided (A)
+
+**Name the JSON keys on this walk, in a later question.** This pick
+does not invent the names. A file cannot exist until keys exist
+(**Q225**). Rows still wait.
+
+Not wired in this pick.
+
+Rejected: leftover English only, never name JSON keys; invent the three
+names in this pick; wait.
+
+**Supersedes:** none of Q189 (names still wait until that later
+question).
+
+## Q240 — Public-key JSON name — decided (A)
+
+The JSON name for the public-key slot is **camelCase leftover English**
+(`publicKey`). Do not overload `identifier`. No file in this pick.
+Rows still wait.
+
+Not wired in this pick.
+
+Rejected: reuse `identifier`; reuse `value`; wait.
+
+**Supersedes:** Q189 as an open wait on this name (the public-key slot
+is named).
+
+## Q241 — Landing JSON name — decided (A)
+
+The JSON name for the landing slot is **`id`**. Landing leftover
+English is an existing OpenBook market type id. Do not invent a second
+id key. No file in this pick. Rows still wait.
+
+Not wired in this pick.
+
+Rejected: camelCase leftover English for landing; reuse `sameAs`; wait.
+
+**Supersedes:** Q189 as an open wait on this name (the landing slot is
+named).
+
+## Q242 — Reason JSON name — decided (A)
+
+The JSON name for the reason slot is **`reason`**. Reason leftover
+English is a free string. Do not invent a second reason key. No file
+in this pick. Rows still wait.
+
+Not wired in this pick.
+
+Rejected: a different camelCase leftover English; no JSON name; wait.
+
+**Supersedes:** Q189 as an open wait on this name (the reason slot is
+named). The three JSON names exist. Directory and file rules stay
+until the next picks (**Q225**, **Q227**).
+
+## Q243 — Public key is a string — decided (A)
+
+In a maps row, `publicKey` is a **string**.
+
+Not wired on the odds wire.
+
+Rejected: a number; string or number; wait.
+
+**Supersedes:** none of Q240 (the name stays; this is the type).
+
+## Q244 — Landing id is a string — decided (A)
+
+In a maps row, landing `id` is a **string**.
+
+Not wired on the odds wire.
+
+Rejected: a number; an object; wait.
+
+**Supersedes:** none of Q241.
+
+## Q245 — Reason is a free string — decided (A)
+
+In a maps row, `reason` is a **free string**, not a token list.
+
+Not wired on the odds wire.
+
+Rejected: a token list; an object; wait.
+
+**Supersedes:** none of Q200.
+
+## Q246 — Public key required on every row — decided (A)
+
+Every maps row **must** include `publicKey`.
+
+Not wired on the odds wire.
+
+Rejected: optional; only on unknown rows; wait.
+
+**Supersedes:** none of Q240.
+
+## Q247 — Landing id required on every row — decided (A)
+
+Every maps row **must** include `id`.
+
+Not wired on the odds wire.
+
+Rejected: optional; only on named landings; wait.
+
+**Supersedes:** none of Q241.
+
+## Q248 — Reason only on the unknown catch-all — decided (A)
+
+`reason` is required only when `id` is `market:unknown`, and
+**forbidden** when `id` is a named OpenBook market type (Q186, Q201).
+
+Not wired on the odds wire.
+
+Rejected: reason on every row; no reason field; wait.
+
+**Supersedes:** none of Q186 or Q201 (JSON carries the same rule).
+
+## Q249 — Closed row shape — decided (A)
+
+A maps row has only `publicKey`, `id`, and `reason`. **No extra keys.**
+
+Not wired on the odds wire.
+
+Rejected: extra keys allowed; a fourth key; wait.
+
+**Supersedes:** none of Q238.
+
+## Q250 — No empty maps directory — decided (A)
+
+No empty maps directory. The directory exists when a file with rows
+exists.
+
+**Supersedes:** none of Q225 (keys exist; this is that the directory waits
+on rows, not on keys).
+
+## Q251 — Do not invent a complete public list — decided (A)
+
+Do not invent a complete dump of the exchange. Rows in the file are
+public market type ids from that list mapped onto existing OpenBook ids,
+or the unknown catch-all plus a reason.
+
+Rejected: invent Betfair rows with no public key; empty array file;
+wait.
+
+**Supersedes:** Q227 as “no file at all” once Q257 builds the file.
+
+## Q252 — File named for that public list — decided (A)
+
+The file is **named for that public list**: `maps/betfair.json`.
+
+Rejected: a generic name that does not name the list; wait.
+
+**Supersedes:** Q219 as leftover English (this is the filename).
+
+## Q253 — Public-key name on a schema — decided (B)
+
+`publicKey` is a property on [`schema/maps.schema.json`](../schema/maps.schema.json)
+so scanned docs may tick it (Q50).
+
+Rejected: keep it out of the schema; tick it in still-to-do with no
+schema; wait.
+
+**Supersedes:** keeping the name out of scanned docs until a schema
+exists (the schema is this pick).
+
+## Q254 — Spec §3.5 names the keys — decided (B)
+
+Update spec §3.5 now. The schema is in the same change (Q253) so Q50
+holds.
+
+Rejected: leave §3.5 saying keys wait; drop §3.5; wait.
+
+**Supersedes:** Q189 as spec prose (“keys wait”).
+
+## Q255 — Maps-keys leftover done — decided (A)
+
+Names, types, required flags, spec, schema, and the first file are this
+pick. This leftover is **done**.
+
+Rejected: keep asking key questions; wait.
+
+## Q256 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Rejected: cut 0.3.0; cut 1.0; wait.
+
+**Supersedes:** none of Q211.
+
+## Q257 — Build the maps file — decided (B)
+
+Build [`maps/betfair.json`](../maps/betfair.json). Not on the odds wire.
+
+Rejected: separate ask later; schema with no file; wait.
+
+**Supersedes:** Q225 / Q250 as an open wait on a file with rows.
+
+## Q258 — Next leftover is the pinned fixture example — decided (A)
+
+The next leftover is the **pinned fixture example** (**Q198**). Not
+the fingerprint recipe. Not the prefix-file list. Not position tokens.
+Not Q55.
+
+Not a new wire field.
+
+Rejected: fingerprint recipe now; prefix-file contents now; wait.
+
+**Supersedes:** Q255 as an open “none on this leftover” (maps file stays;
+this is a different leftover).
+
+## Q259 — The pin is the existing sample fixture — decided (A)
+
+The pinned fixture example is the existing sample
+[`examples/fixture.example.json`](../examples/fixture.example.json). Do
+not invent a second sample match.
+
+Not a new wire field.
+
+Rejected: a new invented fixture; wait; skip the pin.
+
+**Supersedes:** none of Q198 (this is which file).
+
+## Q260 — Do not write the fingerprint recipe — decided (A)
+
+Do not write the fingerprint recipe steps. Recipe text still waits
+(**Q216**). Publisher-own id stays canonical. No new field.
+
+Not a new wire field.
+
+Rejected: write the recipe now; invent a join-key field; wait.
+
+**Supersedes:** none of Q196 or Q216.
+
+## Q261 — Spec names the pin — decided (A)
+
+Spec and the examples page name that file as the pin. No register
+directory in this pick. No new JSON field.
+
+**Supersedes:** none of Q197 (recipe file still waits).
+
+## Q262 — Next leftover is the prefix file — decided (A)
+
+The next leftover is the **prefix file** (`propertyID` schemes). Only
+tokens already on this spec’s examples, plus the unknown bucket. Do not
+invent a full prefix catalog. Recipe text still waits.
+
+Not a new wire field.
+
+Rejected: invent a long prefix list; write the join recipe; wait.
+
+**Supersedes:** Q261 “no register directory in this pick” as an open
+wait on the prefix file.
+
+## Q263 — Prefix file lives in the register leftover — decided (A)
+
+The file lives in the register leftover, not inside the vocab lists
+(**Q192**). Directory: [`register/`](../register/).
+
+Not a new wire field.
+
+Rejected: inside vocabularies; closed enum on the common schema; wait.
+
+**Supersedes:** none of Q192.
+
+## Q264 — File named for prefixes — decided (A)
+
+The file is named for prefixes: [`register/prefixes.json`](../register/prefixes.json).
+
+Not a new wire field.
+
+Rejected: a generic name; inside maps; wait.
+
+**Supersedes:** none of Q192.
+
+## Q265 — JSON array of plain tokens — decided (A)
+
+The file is a **JSON array of plain strings**. No new object keys. Not
+Q5 short form.
+
+Not a new wire field.
+
+Rejected: object rows; Q5 short form; wait.
+
+**Supersedes:** none of Q193.
+
+## Q266 — Unknown bucket is in the file — decided (A)
+
+The unknown bucket is in the file (**Q194**). `propertyID` stays a
+string.
+
+Not a new wire field.
+
+Rejected: no unknown token; invent other as the catch-all; wait.
+
+**Supersedes:** none of Q194.
+
+## Q267 — Only tokens already on this spec — decided (A)
+
+Tokens in this pick are the existing `propertyID` examples on the schema
+plus the sample fixture, and the unknown bucket. Do not invent further
+schemes.
+
+Not a new wire field.
+
+Rejected: invent more schemes now; empty file; wait.
+
+**Supersedes:** Q216 as “no prefix file at all” (contents are not
+invented; they were already examples).
+
+## Q268 — Next leftover is the fingerprint recipe file — decided (A)
+
+The next leftover is the **fingerprint recipe file location**. Do not
+invent hash, separators, or encoding steps.
+
+Not a new wire field.
+
+Rejected: write the encoding steps now; skip the file; wait.
+
+**Supersedes:** Q197 as “no file in this pick”.
+
+## Q269 — Named for fingerprint, in the register leftover — decided (A)
+
+The file is named for fingerprint and lives in the register leftover:
+[`register/fingerprint.md`](../register/fingerprint.md).
+
+Not a new wire field.
+
+Rejected: inside vocabularies; spec only with no file; wait.
+
+**Supersedes:** none of Q197.
+
+## Q270 — Prose file, no invented JSON keys — decided (A)
+
+The recipe file is **prose**, not a JSON object with invented keys.
+
+Not a new wire field.
+
+Rejected: JSON object with invented keys; a wire field; wait.
+
+**Supersedes:** none of Q196.
+
+## Q271 — Restate decided facts only — decided (A)
+
+The file restates decided birth facts only. Encoding, hash, and
+separators still wait (**Q216**, **Q260**).
+
+Not a new wire field.
+
+Rejected: invent SHA or a join string now; drop the file; wait.
+
+**Supersedes:** none of Q216 (steps still wait; this is the file that
+says so).
+
+## Q272 — Next leftover is the anchor policy — decided (A)
+
+The next leftover is the **anchor policy**, as prose in the register
+leftover. Do not invent a list of community registers.
+
+Not a new wire field.
+
+Rejected: invent a community-register list; position token lists next;
+wait.
+
+**Supersedes:** Q271 as an open “what is next” (fingerprint file stays).
+
+## Q273 — File named for anchors — decided (A)
+
+The file is named for anchors:
+[`register/anchors.md`](../register/anchors.md). Restates Q171 only.
+
+Not a new wire field.
+
+Rejected: a new JSON field; spec only with no file; wait.
+
+**Supersedes:** none of Q171 (policy stays; this is the file).
+
+## Q274 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Rejected: cut 0.3.0; cut 1.0; wait.
+
+**Supersedes:** none of Q211.
+
+## Q275 — Position token lists still wait — decided (A)
+
+Do not invent per-sport position tokens. Field stays `position`. Catch-all
+and file shape stay logged (**Q174–Q179**). No positions file in this
+pick.
+
+Not a new wire field.
+
+Rejected: invent soccer (or other) position tokens now; drop `position`;
+wait.
+
+**Supersedes:** none of Q180 or Q209.
+
+## Q276 — Do not unpark Q172 or Q173 — decided (A)
+
+Do not unpark Q172 profile repositories or Q173 hosted validator as
+this walk. Those remain later PRs.
+
+Rejected: create those repos now; wait.
+
+**Supersedes:** none of Q207 or Q208.
+
+## Q277 — Q55 stays parked — decided (A)
+
+Q55 stays parked until 1.0+.
+
+Rejected: unpark Q55; wait.
+
+**Supersedes:** none of Q212.
+
+## Q278 — Join encoding still waits — decided (A)
+
+Do not invent fingerprint encoding, hash, or separators.
+
+Not a new wire field.
+
+Rejected: invent encoding now; wait.
+
+**Supersedes:** none of Q216.
+
+## Q279 — Q171 leftovers in this repo are filed — decided (A)
+
+Prefix file, pinned fixture example, fingerprint recipe file, and
+anchor policy prose are in this repo. Encoding steps and position token
+lists still wait. This leftover pass **closes**.
+
+Not a new wire field.
+
+Rejected: keep inventing leftovers; wait.
+
+**Supersedes:** Q190 as an open “files wait” for the files now on disk.
+
+## Q280 — Write join encoding now — decided
+
+Write the fingerprint encoding now. Five UTF-8 LF lines (sport id,
+league `sameAs` URL or else `id`, `startDate` truncated to the minute UTC,
+participant anchors in `order` order comma-separated, `competitionType`),
+then SHA-256 lowercase hex. Pin:
+[`examples/fixture.example.json`](../examples/fixture.example.json).
+File: [`register/fingerprint.md`](../register/fingerprint.md). Not a new
+JSON field. Publisher-own id stays canonical.
+
+Rejected: wait; invent a wire field named fingerprint; skip the pin.
+
+**Supersedes:** Q216, Q260, Q271, Q278 as “encoding waits”.
+
+## Q281 — Write position token lists now — decided
+
+Write the lists now. File:
+[`vocabularies/positions.md`](../vocabularies/positions.md). Ids are
+`position:<sport>:<token>`. Catch-all `position:unknown:unknown`. Schema
+`position` stays a string. Unrecognised values tolerated (**Q34**). Book-style
+bands, not a formation chart.
+
+Rejected: wait; closed enum on the schema; drop `position`.
+
+**Supersedes:** Q174–Q180, Q209, Q275 as “token lists wait”.
+
+## Q282 — Stay 0.3.0-draft — decided
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Rejected: cut 0.3.0; cut 1.0; wait.
+
+**Supersedes:** none of Q211.
+
+## Q283 — Leftover pass closes — decided
+
+Join encoding and position token lists are in this repo. This leftover
+pass **closes**. Q172 / Q173 stay later. Q55 stays parked.
+
+Not a new wire field.
+
+Rejected: keep inventing leftovers; wait.
+
+**Supersedes:** Q279 as an open “encoding and tokens wait”.
+
+
+
+
+
+

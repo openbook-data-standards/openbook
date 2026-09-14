@@ -15,10 +15,15 @@ Checks, in order:
   7. one-way name check (Q50): camelCase / property-like names in spec and
      selected docs MUST exist on a schema (properties, $defs, or enums). Extra
      schema fields are allowed. The decision log is history and is not scanned.
+  8. maps/*.json is a JSON array of map rows (schema/maps.schema.json);
+     publicKey is unique in a file; named landings must not carry reason.
+  9. register/prefixes.json is a JSON array of plain propertyID tokens
+     (schema/prefixes.schema.json) and includes the unknown bucket.
+ 10. register/fingerprint.md encoding matches the pinned fixture example.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
-import json, re, sys, glob, os, copy
+import hashlib, json, re, sys, glob, os, copy
 try:
     from jsonschema import Draft202012Validator
     from referencing import Registry, Resource
@@ -220,7 +225,7 @@ def schema_names():
         stems.add(name.removesuffix(".schema.json"))
         walk(s)
     voc_dir = os.path.join(ROOT, "vocabularies")
-    voc_tick = re.compile(r"`((?:sport|market|segment|side):[a-z0-9:-]+)`")
+    voc_tick = re.compile(r"`((?:sport|market|segment|side|position):[a-z0-9:-]+)`")
     for p in glob.glob(os.path.join(voc_dir, "*.md")):
         for m in voc_tick.finditer(open(p).read()):
             s = m.group(1)
@@ -245,6 +250,129 @@ if missing_names:
         fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
 else:
     ok(f"{len(mentioned)} documented names present on a schema")
+
+print("8. maps files")
+maps_schema_name = "maps.schema.json"
+if maps_schema_name not in schemas:
+    fail("schema/maps.schema.json missing")
+else:
+    maps_v = validator(schemas[maps_schema_name])
+    maps_dir = os.path.join(ROOT, "maps")
+    map_paths = sorted(glob.glob(os.path.join(maps_dir, "*.json")))
+    if not map_paths:
+        fail("maps/ has no JSON files")
+    for path in map_paths:
+        rel = os.path.relpath(path, ROOT)
+        doc = json.load(open(path))
+        errs = sorted(maps_v.iter_errors(doc), key=lambda e: list(e.path))
+        if errs:
+            for e in errs:
+                fail(f"{rel}: {e.message} at /{'/'.join(map(str, e.path))}")
+        elif not isinstance(doc, list):
+            fail(f"{rel}: maps file must be a JSON array")
+        else:
+            keys = [row.get("publicKey") for row in doc if isinstance(row, dict)]
+            if len(keys) != len(set(keys)):
+                fail(f"{rel}: publicKey must be unique in one file")
+            else:
+                ok(rel)
+    bad_maps = os.path.join(ROOT, "conformance", "invalid", "maps-reason-on-named.json")
+    if os.path.isfile(bad_maps):
+        bad_doc = json.load(open(bad_maps))
+        bad_errs = list(maps_v.iter_errors(bad_doc))
+        if bad_errs:
+            ok("conformance/invalid/maps-reason-on-named.json  (rejected)")
+        else:
+            fail("conformance/invalid/maps-reason-on-named.json: expected reject but validated")
+
+print("9. prefix file")
+pref_schema_name = "prefixes.schema.json"
+pref_path = os.path.join(ROOT, "register", "prefixes.json")
+if pref_schema_name not in schemas:
+    fail("schema/prefixes.schema.json missing")
+elif not os.path.isfile(pref_path):
+    fail("register/prefixes.json missing")
+else:
+    pref_v = validator(schemas[pref_schema_name])
+    pref_doc = json.load(open(pref_path))
+    pref_errs = sorted(pref_v.iter_errors(pref_doc), key=lambda e: list(e.path))
+    if pref_errs:
+        for e in pref_errs:
+            fail(f"register/prefixes.json: {e.message} at /{'/'.join(map(str, e.path))}")
+    elif "unknown" not in pref_doc:
+        fail("register/prefixes.json: missing unknown bucket")
+    else:
+        ok("register/prefixes.json")
+    bad_pref = os.path.join(ROOT, "conformance", "invalid", "prefixes-missing-unknown.json")
+    if os.path.isfile(bad_pref):
+        bad_doc = json.load(open(bad_pref))
+        if "unknown" not in bad_doc:
+            ok("conformance/invalid/prefixes-missing-unknown.json  (rejected)")
+        else:
+            fail("conformance/invalid/prefixes-missing-unknown.json: expected missing unknown")
+
+print("10. fixture join recipe pin")
+PINNED_SHA256 = "2b38ee78a5c6da604719b19ad86a0a6dce7deb6995cc7d210548fc39377a752c"
+
+
+def _join_anchor(obj):
+    if not isinstance(obj, dict):
+        return None
+    same = obj.get("sameAs")
+    if isinstance(same, str) and same.startswith(("http://", "https://")):
+        return same
+    oid = obj.get("id")
+    return oid if isinstance(oid, str) and oid else None
+
+
+def fixture_join_preimage(doc):
+    sport = (doc.get("sport") or {}).get("id")
+    league = doc.get("league") or {}
+    start = doc.get("startDate")
+    parts = doc.get("participants")
+    if not isinstance(sport, str) or not sport:
+        raise ValueError("sport.id missing")
+    league_anchor = _join_anchor(league)
+    if not league_anchor:
+        raise ValueError("league anchor missing")
+    if not isinstance(start, str) or len(start) < 16:
+        raise ValueError("startDate missing")
+    minute = start[:16] + "Z"
+    if not isinstance(parts, list) or not parts:
+        raise ValueError("participants missing")
+    ordered = sorted(parts, key=lambda p: p.get("order") if isinstance(p, dict) else 0)
+    anchors = []
+    for p in ordered:
+        a = _join_anchor(p)
+        if not a:
+            raise ValueError("participant anchor missing")
+        anchors.append(a)
+    ctype = league.get("competitionType")
+    if not isinstance(ctype, str) or not ctype:
+        raise ValueError("competitionType missing")
+    return "\n".join([sport, league_anchor, minute, ",".join(anchors), ctype]) + "\n"
+
+
+fp_md = os.path.join(ROOT, "register", "fingerprint.md")
+fx_path = os.path.join(ROOT, "examples", "fixture.example.json")
+if not os.path.isfile(fp_md):
+    fail("register/fingerprint.md missing")
+elif not os.path.isfile(fx_path):
+    fail("examples/fixture.example.json missing")
+else:
+    try:
+        preimage = fixture_join_preimage(json.load(open(fx_path)))
+        digest = hashlib.sha256(preimage.encode("utf-8")).hexdigest()
+    except (ValueError, TypeError, json.JSONDecodeError) as e:
+        fail(f"examples/fixture.example.json: join preimage: {e}")
+        digest = None
+    if digest is not None:
+        if digest != PINNED_SHA256:
+            fail(f"pinned join digest {digest} != {PINNED_SHA256}")
+        elif PINNED_SHA256 not in open(fp_md).read():
+            fail("register/fingerprint.md missing pinned SHA-256 hex")
+        else:
+            ok("register/fingerprint.md pin")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

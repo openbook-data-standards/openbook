@@ -6,6 +6,32 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Fixture join encoding** — [`register/fingerprint.md`](register/fingerprint.md)
+  is five UTF-8 LF lines (sport id, league anchor, start to the minute UTC,
+  ordered participant anchors, `competitionType`) then SHA-256 lowercase
+  hex. Checked against
+  [`examples/fixture.example.json`](examples/fixture.example.json). Not a
+  new wire field (Q280).
+- **Position token lists** — [`vocabularies/positions.md`](vocabularies/positions.md)
+  lists growable `position:<sport>:<token>` ids. Schema `position` stays a
+  string. Catch-all `position:unknown:unknown` (Q281). Player example uses
+  `position:baseball:shortstop`.
+- **Anchor policy** — [`register/anchors.md`](register/anchors.md)
+  restates Q171. No invented community-register list (Q273).
+- **Fingerprint recipe file** —
+  [`register/fingerprint.md`](register/fingerprint.md) restates decided
+  birth facts. Encoding steps wait. No new wire field (Q271).
+- **Prefix file** — [`register/prefixes.json`](register/prefixes.json)
+  lists plain `propertyID` tokens already on this spec, plus an unknown
+  bucket (Q267). Not on the odds wire.
+- **Pinned fixture example** — [`examples/fixture.example.json`](examples/fixture.example.json)
+  is the pin the optional fixture join recipe is checked against when
+  that recipe exists (Q259). Recipe text waits. No new wire field.
+- **Maps file** — [`maps/betfair.json`](maps/betfair.json) maps Betfair
+  market type ids onto existing OpenBook `market:*` ids, or
+  `market:unknown` plus `reason`. Schema
+  [`schema/maps.schema.json`](schema/maps.schema.json). Not on the odds
+  wire (Q257).
 - [`docs/roadmap.md`](docs/roadmap.md) — three-year direction
   (non-normative). **Q171** register, not an entity database;
   **Q172** profiles as separate specifications; **Q173** feed list
@@ -38,16 +64,13 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (reference model and vocabularies). Specification / schemas
   first; taxonomy and guide marked informative. Same layout and
   colour. No wire change.
-- **Maps leftover on the spec** (Q181–Q189, Q199–Q203, Q215) — public
-  market / segment keys onto existing OpenBook ids, or the unknown
-  catch-all plus a reason. One directory named for maps when files
-  exist, not inside the vocab lists; one JSON file per public list;
-  array of row objects; object keys wait; reason only on the unknown
-  catch-all; public key at most once; order not significant. First
-  public list name waits. No directory and no file until then. Not a
+- **Maps leftover on the spec** (Q181–Q189, Q199–Q203, Q215, Q218–Q257)
+  — public market keys onto existing OpenBook ids, or the unknown
+  catch-all plus a reason. Directory [`maps/`](maps/). First file
+  [`maps/betfair.json`](maps/betfair.json). Row keys `publicKey`, `id`,
+  `reason` on [`schema/maps.schema.json`](schema/maps.schema.json). Not a
   feed document; not on the odds wire.
-  [`spec/openbook.md`](spec/openbook.md) §3.5;
-  [`docs/roadmap.md`](docs/roadmap.md).
+  [`spec/openbook.md`](spec/openbook.md) §3.5.
 - **Wording** — Q171 leftover **corpus case** is **pinned fixture
   example** (one example fixture the fingerprint recipe is checked
   against). Not the Q40 conformance corpus. Same decisions. No new
@@ -243,6 +266,78 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   contents. Not wired in this pick.
 - **Q217** — this question pass closes. No further leftover questions
   until a leftover is named. Not wired in this pick.
+- **Q218** — first public list leftover English: market types from a
+  public exchange already cited in this spec (Betfair Stream). No rows.
+  No JSON object keys. No file. Not wired in this pick.
+- **Q219** — when a file exists it is named for that public list. JSON
+  object keys still wait. No file. Not wired in this pick.
+- **Q220** — public key leftover English: the exchange’s market type
+  id. JSON object keys still wait. No file. Not wired in this pick.
+- **Q221** — landing leftover English: an existing OpenBook market type
+  id. Not a fixture. Not a registry. JSON object keys still wait. No
+  file. Not wired in this pick.
+- **Q222** — unknown path leftover English: the existing unknown
+  catch-all market type plus a reason. No second unknown. JSON object
+  keys still wait. No file. Not wired in this pick.
+- **Q223** — this first list lands only on an OpenBook market type id.
+  Not a sport id. Not a segment id. No file. Not wired in this pick.
+- **Q224** — leftover English stays. JSON object keys still wait. Do
+  not invent names. No file. Not wired in this pick.
+- **Q225** — no maps directory or file until JSON object keys exist.
+  Naming leftover English does not unpark them. Not wired in this pick.
+- **Q226** — many public keys may share one OpenBook market type id.
+  Public key at most once stays. No file. Not wired in this pick.
+- **Q227** — do not invent rows. Rows wait. No file. Not wired in this
+  pick.
+- **Q228** — omitted public key is unmapped. Unknown catch-all is only
+  for rows that exist. No file. Not wired in this pick.
+- **Q229** — no second public list this walk. No file. Not wired in
+  this pick.
+- **Q230** — first-list leftover English closes until a later question
+  names JSON object keys. Not wired in this pick.
+- **Q231** — next leftover unnamed; wait. Not wired in this pick.
+- **Q232** — do not invent JSON object keys. Keys still wait. Not wired
+  in this pick.
+- **Q233** — do not unpark the Q171 fingerprint recipe or prefix-file
+  contents. Not wired in this pick.
+- **Q234** — named leftovers on this walk exhausted; stay stopped. Not
+  wired in this pick.
+- **Q235** — stay `0.3.0-draft`. Not a version cut. Not wired in this
+  pick.
+- **Q236** — this question pass closes. No further leftover questions
+  until a leftover is named. Not wired in this pick.
+- **Q237** — next leftover is JSON object keys for the first maps
+  file. Names wait until a later question. Not wired in this pick.
+- **Q238** — three leftover-English slots: public key, landing, and
+  reason. Do not invent JSON names in this pick. Not wired in this pick.
+- **Q239** — name the JSON keys on this walk, in a later question. This
+  pick does not invent names. Not wired in this pick.
+- **Q240** — public-key JSON name is camelCase leftover English. Do not
+  overload identifier. No file. Not wired in this pick.
+- **Q241** — landing JSON name is `id`. No file. Not wired in this pick.
+- **Q242** — reason JSON name is `reason`. No file. Not wired in this
+  pick.
+- **Q243–Q249** — maps row types and required flags: strings; `publicKey`
+  and `id` on every row; `reason` only on `market:unknown`; closed shape.
+- **Q250–Q257** — first maps file [`maps/betfair.json`](maps/betfair.json);
+  `publicKey` on [`schema/maps.schema.json`](schema/maps.schema.json); spec
+  §3.5 names the keys. Not on the odds wire. Stay `0.3.0-draft`.
+- **Q258–Q261** — pinned fixture example is
+  [`examples/fixture.example.json`](examples/fixture.example.json). Recipe
+  text waits. No new wire field.
+- **Q262–Q267** — prefix file
+  [`register/prefixes.json`](register/prefixes.json). Plain tokens already
+  on this spec, plus unknown. Not on the odds wire.
+- **Q268–Q271** — fingerprint recipe file
+  [`register/fingerprint.md`](register/fingerprint.md). Decided facts only.
+  Encoding steps wait. No new wire field.
+- **Q272–Q279** — [`register/anchors.md`](register/anchors.md). Position
+  token lists wait. Q172 / Q173 stay later. Q55 parked. Stay
+  `0.3.0-draft`. Q171 leftovers in this repo are filed.
+- **Q280–Q283** — join encoding written in
+  [`register/fingerprint.md`](register/fingerprint.md). Position tokens in
+  [`vocabularies/positions.md`](vocabularies/positions.md). Stay
+  `0.3.0-draft`. Leftover pass closes. No new wire field.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

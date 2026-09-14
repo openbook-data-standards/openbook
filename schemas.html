@@ -31,7 +31,7 @@
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#change"><span class="n"></span>change</a><a href="#common"><span class="n"></span>common</a><a href="#discovery"><span class="n"></span>discovery</a><a href="#fixture"><span class="n"></span>fixture</a><a href="#grade"><span class="n"></span>grade</a><a href="#league"><span class="n"></span>league</a><a href="#lineup"><span class="n"></span>lineup</a><a href="#market"><span class="n"></span>market</a><a href="#market_type"><span class="n"></span>market_type</a><a href="#odds_change"><span class="n"></span>odds_change</a><a href="#participant"><span class="n"></span>participant</a><a href="#player"><span class="n"></span>player</a><a href="#publisher"><span class="n"></span>publisher</a><a href="#region"><span class="n"></span>region</a><a href="#score"><span class="n"></span>score</a><a href="#season"><span class="n"></span>season</a><a href="#series"><span class="n"></span>series</a><a href="#sport"><span class="n"></span>sport</a><a href="#stage"><span class="n"></span>stage</a><a href="#stall"><span class="n"></span>stall</a><a href="#toss"><span class="n"></span>toss</a><a href="#examples"><span class="n"></span>examples</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · JSON Schemas</p><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). JSON Patch (RFC 6902) is not an alternate (Q91). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
+<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#change"><span class="n"></span>change</a><a href="#common"><span class="n"></span>common</a><a href="#discovery"><span class="n"></span>discovery</a><a href="#fixture"><span class="n"></span>fixture</a><a href="#grade"><span class="n"></span>grade</a><a href="#league"><span class="n"></span>league</a><a href="#lineup"><span class="n"></span>lineup</a><a href="#maps"><span class="n"></span>maps</a><a href="#market"><span class="n"></span>market</a><a href="#market_type"><span class="n"></span>market_type</a><a href="#odds_change"><span class="n"></span>odds_change</a><a href="#participant"><span class="n"></span>participant</a><a href="#player"><span class="n"></span>player</a><a href="#prefixes"><span class="n"></span>prefixes</a><a href="#publisher"><span class="n"></span>publisher</a><a href="#region"><span class="n"></span>region</a><a href="#score"><span class="n"></span>score</a><a href="#season"><span class="n"></span>season</a><a href="#series"><span class="n"></span>series</a><a href="#sport"><span class="n"></span>sport</a><a href="#stage"><span class="n"></span>stage</a><a href="#stall"><span class="n"></span>stall</a><a href="#toss"><span class="n"></span>toss</a><a href="#examples"><span class="n"></span>examples</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · JSON Schemas</p><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). JSON Patch (RFC 6902) is not an alternate (Q91). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook change envelope&quot;,
@@ -1468,6 +1468,65 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="maps"><h2>OpenBook maps file</h2><p>A JSON array of map rows. Not a feed document. Not on the odds wire. Each row is a public key plus an OpenBook market type id, or the unknown catch-all plus a reason.</p><p><a href="schema/maps.schema.json">maps.schema.json</a> · required: <code>—</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/maps.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook maps file&quot;,
+  &quot;description&quot;: &quot;A JSON array of map rows. Not a feed document. Not on the odds wire. Each row is a public key plus an OpenBook market type id, or the unknown catch-all plus a reason.&quot;,
+  &quot;type&quot;: &quot;array&quot;,
+  &quot;items&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;additionalProperties&quot;: false,
+    &quot;required&quot;: [
+      &quot;publicKey&quot;,
+      &quot;id&quot;
+    ],
+    &quot;properties&quot;: {
+      &quot;publicKey&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 128,
+        &quot;description&quot;: &quot;The public list&#x27;s market type id (Q220, Q240).&quot;
+      },
+      &quot;id&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;pattern&quot;: &quot;^market:[a-z0-9-]+$&quot;,
+        &quot;description&quot;: &quot;An existing OpenBook market type id (Q221, Q241).&quot;
+      },
+      &quot;reason&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 512,
+        &quot;description&quot;: &quot;Free string. Required only when id is market:unknown; forbidden otherwise (Q186, Q201, Q242).&quot;
+      }
+    },
+    &quot;allOf&quot;: [
+      {
+        &quot;if&quot;: {
+          &quot;properties&quot;: {
+            &quot;id&quot;: {
+              &quot;const&quot;: &quot;market:unknown&quot;
+            }
+          },
+          &quot;required&quot;: [
+            &quot;id&quot;
+          ]
+        },
+        &quot;then&quot;: {
+          &quot;required&quot;: [
+            &quot;reason&quot;
+          ]
+        },
+        &quot;else&quot;: {
+          &quot;not&quot;: {
+            &quot;required&quot;: [
+              &quot;reason&quot;
+            ]
+          }
+        }
+      }
+    ]
+  }
 }</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line, basis). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, limit, outcomes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/market.schema.json&quot;,
@@ -1875,7 +1934,8 @@
       &quot;description&quot;: &quot;The team (a participant with participantType team).&quot;
     },
     &quot;position&quot;: {
-      &quot;type&quot;: &quot;string&quot;
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;Growable position:&lt;sport&gt;:&lt;token&gt; id (vocabularies/positions.md). Unrecognised values are tolerated (Q34).&quot;
     },
     &quot;number&quot;: {
       &quot;type&quot;: &quot;integer&quot;,
@@ -1907,6 +1967,20 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="prefixes"><h2>OpenBook propertyID prefix file</h2><p>A JSON array of plain propertyID scheme tokens. Growable. Not a feed document. Not on the odds wire. Not a Q5 short-form id.</p><p><a href="schema/prefixes.schema.json">prefixes.schema.json</a> · required: <code>—</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/prefixes.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook propertyID prefix file&quot;,
+  &quot;description&quot;: &quot;A JSON array of plain propertyID scheme tokens. Growable. Not a feed document. Not on the odds wire. Not a Q5 short-form id.&quot;,
+  &quot;type&quot;: &quot;array&quot;,
+  &quot;uniqueItems&quot;: true,
+  &quot;minItems&quot;: 1,
+  &quot;items&quot;: {
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;pattern&quot;: &quot;^[a-z0-9-]+$&quot;,
+    &quot;minLength&quot;: 1,
+    &quot;maxLength&quot;: 128
+  }
 }</pre></section><section class="schema-block" id="publisher"><h2>OpenBook publisher</h2><p>The feed&#x27;s own record — who transmits, and which sources (whose odds) the feed carries. Analogous to GTFS agency.txt.</p><p><a href="schema/publisher.schema.json">publisher.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, name, baseCurrency, sources</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/publisher.schema.json&quot;,
@@ -3028,7 +3102,7 @@
   &quot;dateModified&quot;: &quot;2026-09-01T09:00:00Z&quot;,
   &quot;participant&quot;: &quot;P-27&quot;,
   &quot;team&quot;: &quot;T-NYY&quot;,
-  &quot;position&quot;: &quot;SS&quot;,
+  &quot;position&quot;: &quot;position:baseball:shortstop&quot;,
   &quot;number&quot;: 2,
   &quot;throws&quot;: &quot;right&quot;,
   &quot;bats&quot;: &quot;both&quot;

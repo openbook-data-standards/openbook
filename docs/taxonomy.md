@@ -16,6 +16,7 @@ legal — before anyone opens a schema.
 | Sport (soccer, tennis) | League id, season id, match id |
 | Market type (moneyline, total, player points) | Team / player ids |
 | Segment (1st half, set 3, Q1) | Venue id |
+| Position (goalkeeper, shortstop) | Shirt number |
 | Side (home, away, over, under) | How they spell “Man City” |
 | | Wikidata link, when they have one, so others can match |
 
@@ -97,6 +98,17 @@ difference.
 | Esports | Maps or games of one match |
 
 Full list: [segments vocabulary](../vocabularies/segments.md).
+
+---
+
+## Position
+
+A **position** is a roster slot on a `player` record (goalkeeper, shortstop),
+not a scoring unit and not a segment. Shared ids look like
+`position:soccer:forward`. Sports without a list still use the field; unknown
+values are allowed. Catch-all: `position:unknown:unknown`.
+
+Full list: [positions vocabulary](../vocabularies/positions.md).
 
 ---
 
@@ -206,5 +218,6 @@ the file.”
 | Market types | [`vocabularies/market_types.md`](../vocabularies/market_types.md) |
 | Sports | [`vocabularies/sports.md`](../vocabularies/sports.md) |
 | Segments | [`vocabularies/segments.md`](../vocabularies/segments.md) |
+| Positions | [`vocabularies/positions.md`](../vocabularies/positions.md) |
 
 To add or deprecate an id, see [CONTRIBUTING](../CONTRIBUTING.md).

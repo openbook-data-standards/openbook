@@ -2,7 +2,10 @@
 
 This is an early working draft. The most valuable contributions right now are to
 the **vocabularies** — especially [`vocabularies/market_types.md`](vocabularies/market_types.md),
-the market taxonomy no one else has published.
+the market taxonomy no one else has published. Shared lists also live in
+[`vocabularies/sports.md`](vocabularies/sports.md),
+[`vocabularies/segments.md`](vocabularies/segments.md) and
+[`vocabularies/positions.md`](vocabularies/positions.md).
 
 ## Proposing a change
 

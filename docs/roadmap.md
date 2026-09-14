@@ -35,8 +35,8 @@ No clean-slate 2.0. Envelope stable; enumerations move.
 | --- | --- | --- |
 | this repository (core) | now → 1.0 in year 2 | Public odds, scores, grades wire |
 | `vocabularies/` | monthly | Sports, segments, market types, sides |
-| maps directory | year 1 | Public keys onto existing OpenBook ids, or the unknown catch-all plus a reason. Named for maps, not inside the vocab lists. One JSON file per public list when a list is named. No directory and no file until then (Q181–Q189, Q199–Q203, Q215) |
-| `register/` | year 1 | Scheme prefixes, never-reuse, redirects |
+| maps directory | year 1 | Public keys onto existing OpenBook ids, or the unknown catch-all plus a reason. Named for maps, not inside the vocab lists. First public list: `maps/betfair.json` (Q181–Q257) |
+| `register/` | year 1 | Prefixes, fingerprint recipe file (encoding waits), anchor policy prose |
 | openbook-register | year 2 | Fingerprint recipe, anchors, snapshots |
 | openbook-pm | year 1 | Event-contract ↔ market / selection |
 | openbook-reg | year 2 | Bet-level reporting that carries OpenBook ids |
@@ -53,11 +53,9 @@ Make it un-ignorable. One producer and one consumer that are not
 `tools/validate.py`, both public. Vocabulary maps published. Register
 foundations with no entity database.
 
-**Q4 2026.** Sibling tooling public. A directory named for maps, when a
-public list is named: each public taxonomy maps onto existing OpenBook
-ids, or onto the unknown catch-all with a reason. First public list
-name waits; no directory and no file until then. Q171–Q173 logged.
-Maps leftover shape is on the spec (Q181–Q189, Q199–Q203, Q215).
+**Q4 2026.** Sibling tooling public. First maps file:
+[`maps/betfair.json`](../maps/betfair.json). Q171–Q173 logged. Maps
+leftover is on the spec (Q181–Q257).
 
 **Q1 2027.** Namespace register (scheme prefixes on `identifier`
 `propertyID`). Optional fixture fingerprint from frozen birth facts
@@ -124,7 +122,8 @@ sponsored listings. Never spec access, never per-id fees.
 
 Later, after 1.0: generated protobuf or SBE from the same schemas; MQTT
 reason-code equivalence. Parked unless pulled: bet-slip portability,
-horse-racing sport id, per-sport player-position lists (Q76).
+horse-racing sport id. Per-sport player-position lists are in
+[`vocabularies/positions.md`](vocabularies/positions.md) (Q76, Q281).
 
 Exit: gate recorded · ≥ 10 badged feeds across ≥ 3 publishers ·
 openbook-reg referenced in ≥ 1 guidance or draft · hosting funded · the
