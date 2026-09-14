@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 · Q195 · Q196 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
@@ -2382,3 +2382,16 @@ Rejected: name a public list in this pick; keep walking file-stem
 leftover English; unpark Q55 or cut a new draft version.
 
 **Supersedes:** Q194 as an open “what is next” (shape stays).
+
+## Q196 — Next leftover unnamed; wait — decided (A)
+
+The next leftover is **unnamed**; wait. Named leftovers sit. Do not
+invent a list. Not Q55. Not a version cut.
+
+Not wired in this pick.
+
+Rejected: Q171 later leftover this walk; Q173 or Q172 this walk;
+position token lists or naming the first maps public list.
+
+**Supersedes:** Q195 as an open “what is next” (the stop stays; the next
+leftover is still unnamed).

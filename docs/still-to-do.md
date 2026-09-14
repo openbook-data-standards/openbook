@@ -1,10 +1,11 @@
 # Still to do
 
-**Working on: spec walk stopped (Q195).** Maps leftover shape is logged
-(**Q181–Q194**). First public list name waits (**Q184**). No file. Not
-Q55. Not a version cut. Not position token lists.
+**Working on: spec walk stopped (Q195).** Next leftover unnamed; wait
+(**Q196**). Maps leftover shape is logged (**Q181–Q194**). First public
+list name waits (**Q184**). No file. Not Q55. Not a version cut. Not
+position token lists.
 
-Questions recorded through **Q195**. Catalog pass closed and on the wire.
+Questions recorded through **Q196**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -23,14 +24,16 @@ Roadmap pass closed (**Q171–Q173**): register not an entity database;
 profiles are separate specifications; feed list is validator tooling.
 Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
 (**Q180**), then the maps leftover unparked (**Q181**). Maps leftover
-shape closed (**Q181–Q194**). Spec walk stopped (**Q195**).
+shape closed (**Q181–Q194**). Spec walk stopped (**Q195**). Next leftover
+unnamed; wait (**Q196**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Stopped (Q195).** Maps leftover shape is logged. First public list
-name waits (**Q184**). No file. Not Q55. Not a version cut.
+**Stopped (Q195).** Next leftover unnamed; wait (**Q196**). Maps leftover
+shape is logged. First public list name waits (**Q184**). No file. Not
+Q55. Not a version cut.
 
 ## Goal (previous — maps leftover, closed)
 
@@ -158,6 +161,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q193** — in one file, a public key at most once; no file in this pick.
 - **Q194** — row order is not significant; do not invent a sort; no file in this pick.
 - **Q195** — stop this spec walk. Maps shape logged. First public list name waits. No file.
+- **Q196** — next leftover unnamed; wait. Not Q55.
 
 ### Parked
 
@@ -175,9 +179,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q196.** What leftover is next? Rec: wait; named leftovers sit; do not invent a list; not Q55. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q197.** Named leftovers exhausted; stop again, or keep waiting? Rec: named leftovers on this walk are exhausted; stay stopped; not Q55. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q195)
+## Done (Q32–Q196)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -231,3 +235,4 @@ feed list beside the validator. Not on the wire.
 **Q193** — in one file, a public key at most once.
 **Q194** — row order is not significant; do not invent a sort.
 **Q195** — stop this spec walk; maps shape logged; first public list name waits.
+**Q196** — next leftover unnamed; wait.

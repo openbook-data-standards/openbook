@@ -175,6 +175,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q195** — maps leftover shape is logged. First public list name
   waits. Spec walk stopped. Not Q55. Not a version cut. Not wired in
   this pick.
+- **Q196** — next leftover unnamed; wait. Not Q55. Not wired in this
+  pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
