@@ -1479,3 +1479,14 @@ Not wired in this pick.
 Rejected: close here.
 
 **Supersedes:** none of Q122.
+
+## Q124 — Leftover other still allowed on winning margin — decided (A)
+
+`other` stays the unlisted remainder on winning margin. `atLeast` is
+only when they list a plus-band.
+
+Not wired in this pick.
+
+Rejected: only exact `line` rows and `atLeast` rows; no leftover.
+
+**Supersedes:** none of Q116.
