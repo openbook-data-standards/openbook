@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q224 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q227 |
 
 The entries below stay in the order they were taken.
 
@@ -2751,3 +2751,44 @@ without restating Q189.
 
 **Supersedes:** none of Q189 (keys still wait; this restates it after
 the first-list leftover English).
+
+## Q225 — Directory and file wait until keys exist — decided (A)
+
+No maps directory and no file **until JSON object keys exist**. Naming
+the first list leftover English (**Q218**) does not unpark a directory
+while keys wait (**Q189**, **Q224**). Do not invent keys. No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: directory may exist now, file still waits; directory and file
+now; wait.
+
+**Supersedes:** Q215 as the current wait (list leftover English is
+named; directory and file now wait on keys, not on naming the list).
+
+## Q226 — Many public keys may share one landing — decided (A)
+
+Many public keys **may share one OpenBook market type id**. In one file,
+a public key at most once (**Q202**) stays. Do not invent rows. JSON
+object keys still wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: one landing at most once per file; wait; stop this leftover.
+
+**Supersedes:** none of Q202 (public key uniqueness stays; this is the
+other direction).
+
+## Q227 — Do not invent rows — decided (A)
+
+**Do not invent rows.** Rows wait. Leftover English only. No public-list
+ids in this pick. JSON object keys still wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: invent the rows now; skip this first list; wait as a stall
+without saying do not invent.
+
+**Supersedes:** none of Q218 (the list leftover English stays; this is
+that rows are not invented from it now).

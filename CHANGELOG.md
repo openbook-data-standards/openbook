@@ -255,6 +255,12 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Not a sport id. Not a segment id. No file. Not wired in this pick.
 - **Q224** — leftover English stays. JSON object keys still wait. Do
   not invent names. No file. Not wired in this pick.
+- **Q225** — no maps directory or file until JSON object keys exist.
+  Naming leftover English does not unpark them. Not wired in this pick.
+- **Q226** — many public keys may share one OpenBook market type id.
+  Public key at most once stays. No file. Not wired in this pick.
+- **Q227** — do not invent rows. Rows wait. No file. Not wired in this
+  pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
