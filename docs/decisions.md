@@ -1647,3 +1647,14 @@ Rejected: all three are sport-specific, including series; none are
 sport-specific.
 
 **Supersedes:** none of Q137.
+
+## Q139 — Series round on stage; lead is live — decided (C)
+
+The printed round stays on `stage` (`seriesGame`). The series lead (who
+is up 2–1) is live. Not the round name copied again.
+
+Not wired in this pick. Live object name waits.
+
+Rejected: `stage` only; live only (drop the round from `stage`).
+
+**Supersedes:** none of Q138.
