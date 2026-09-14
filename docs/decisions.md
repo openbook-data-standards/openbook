@@ -2266,3 +2266,16 @@ Rejected: start listing prefixes now; stop this walk; unpark Q55.
 
 **Supersedes:** Q183 “fingerprint waits” as the next leftover (prefix
 shape stays).
+
+## Q188 — Fingerprint is leftover English — decided (A)
+
+The fingerprint is a **leftover English recipe only**. No new field.
+Publisher-own id stays canonical (**Q171**). Join key, never the object
+id.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: required field on the fixture; optional field on the fixture;
+drop the leftover.
+
+**Supersedes:** none of Q171 (join key still; this is not a wire field).

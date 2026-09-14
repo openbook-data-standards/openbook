@@ -157,6 +157,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q187** — prefix-file shape is logged. The list waits. Next leftover
   in this walk is the fingerprint recipe. No file in this pick. Not
   wired in this pick.
+- **Q188** — fingerprint is leftover English only. No new field.
+  Publisher-own id stays canonical. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
