@@ -31,7 +31,7 @@
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#change"><span class="n"></span>change</a><a href="#common"><span class="n"></span>common</a><a href="#discovery"><span class="n"></span>discovery</a><a href="#fixture"><span class="n"></span>fixture</a><a href="#grade"><span class="n"></span>grade</a><a href="#league"><span class="n"></span>league</a><a href="#lineup"><span class="n"></span>lineup</a><a href="#market"><span class="n"></span>market</a><a href="#market_type"><span class="n"></span>market_type</a><a href="#odds_change"><span class="n"></span>odds_change</a><a href="#participant"><span class="n"></span>participant</a><a href="#player"><span class="n"></span>player</a><a href="#publisher"><span class="n"></span>publisher</a><a href="#region"><span class="n"></span>region</a><a href="#score"><span class="n"></span>score</a><a href="#season"><span class="n"></span>season</a><a href="#sport"><span class="n"></span>sport</a><a href="#stage"><span class="n"></span>stage</a><a href="#examples"><span class="n"></span>examples</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · JSON Schemas</p><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). JSON Patch (RFC 6902) is not an alternate (Q91). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
+<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#change"><span class="n"></span>change</a><a href="#common"><span class="n"></span>common</a><a href="#discovery"><span class="n"></span>discovery</a><a href="#fixture"><span class="n"></span>fixture</a><a href="#grade"><span class="n"></span>grade</a><a href="#league"><span class="n"></span>league</a><a href="#lineup"><span class="n"></span>lineup</a><a href="#market"><span class="n"></span>market</a><a href="#market_type"><span class="n"></span>market_type</a><a href="#odds_change"><span class="n"></span>odds_change</a><a href="#participant"><span class="n"></span>participant</a><a href="#player"><span class="n"></span>player</a><a href="#publisher"><span class="n"></span>publisher</a><a href="#region"><span class="n"></span>region</a><a href="#score"><span class="n"></span>score</a><a href="#season"><span class="n"></span>season</a><a href="#series"><span class="n"></span>series</a><a href="#sport"><span class="n"></span>sport</a><a href="#stage"><span class="n"></span>stage</a><a href="#stall"><span class="n"></span>stall</a><a href="#toss"><span class="n"></span>toss</a><a href="#examples"><span class="n"></span>examples</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · JSON Schemas</p><article class="doc"><h1>JSON Schemas</h1><p>Draft 2020-12. These files are the machine-normative field definitions. Each <code>$id</code> is this same URL on GitHub Pages.</p><section class="schema-block" id="change"><h2>OpenBook change envelope</h2><p>One envelope for every message: one object, one action. `changes` is a JSON Merge Patch against the object&#x27;s schema (absent = unchanged, null = removed). JSON Patch (RFC 6902) is not an alternate (Q91). Mirrors the topic openbook/v1/&lt;publisher&gt;/&lt;object&gt;/&lt;action&gt;/&lt;sport&gt;/&lt;id&gt;.</p><p><a href="schema/change.schema.json">change.schema.json</a> · required: <code>openbookVersion, sequence, datePublished, publisher, object, action, sport, changes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook change envelope&quot;,
@@ -786,7 +786,10 @@
         &quot;participant&quot;,
         &quot;player&quot;,
         &quot;lineup&quot;,
-        &quot;publisher&quot;
+        &quot;publisher&quot;,
+        &quot;stall&quot;,
+        &quot;toss&quot;,
+        &quot;series&quot;
       ]
     },
     &quot;action&quot;: {
@@ -2225,6 +2228,46 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="series"><h2>OpenBook series (live lead)</h2><p>Live playoff series lead (Q86 leftovers, Q139–Q140). Not this game&#x27;s score. Not competitionType series. Round stays on stage (seriesGame). Win counts wait.</p><p><a href="schema/series.schema.json">series.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, stage</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/series.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook series (live lead)&quot;,
+  &quot;description&quot;: &quot;Live playoff series lead (Q86 leftovers, Q139–Q140). Not this game&#x27;s score. Not competitionType series. Round stays on stage (seriesGame). Win counts wait.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;fixture&quot;,
+    &quot;stage&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;This game in the series.&quot;
+    },
+    &quot;stage&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The printed round (seriesGame).&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
 }</pre></section><section class="schema-block" id="sport"><h2>OpenBook sport</h2><p>A sport — shared vocabulary owned by the standard. Disciplines hang beneath (athletics:110m-hurdles).</p><p><a href="schema/sport.schema.json">sport.schema.json</a> · required: <code>openbookVersion, id, name</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/sport.schema.json&quot;,
@@ -2345,6 +2388,100 @@
     },
     &quot;identifier&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/identifier&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="stall"><h2>OpenBook stall</h2><p>Racing stall/draw for one runner in one race (Q86 leftovers, Q141–Q144). Not on the generic fixture or participant row. Gate is order (1-based, Q111). Not a new live object.</p><p><a href="schema/stall.schema.json">stall.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, fixture, participant, order</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/stall.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook stall&quot;,
+  &quot;description&quot;: &quot;Racing stall/draw for one runner in one race (Q86 leftovers, Q141–Q144). Not on the generic fixture or participant row. Gate is order (1-based, Q111). Not a new live object.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;fixture&quot;,
+    &quot;participant&quot;,
+    &quot;order&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The race.&quot;
+    },
+    &quot;participant&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The runner.&quot;
+    },
+    &quot;order&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 1,
+      &quot;description&quot;: &quot;The gate (1-based).&quot;
+    }
+  },
+  &quot;patternProperties&quot;: {
+    &quot;^x_&quot;: {}
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></section><section class="schema-block" id="toss"><h2>OpenBook toss</h2><p>Cricket toss: who won the coin (Q86 leftovers, Q142–Q144). Not on the generic fixture. Not score. Not a new live object. participant is who won. Elected bat/bowl not in this pick.</p><p><a href="schema/toss.schema.json">toss.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, fixture, participant</code></p><pre>{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/toss.schema.json&quot;,
+  &quot;title&quot;: &quot;OpenBook toss&quot;,
+  &quot;description&quot;: &quot;Cricket toss: who won the coin (Q86 leftovers, Q142–Q144). Not on the generic fixture. Not score. Not a new live object. participant is who won. Elected bat/bowl not in this pick.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;openbookVersion&quot;,
+    &quot;id&quot;,
+    &quot;sequence&quot;,
+    &quot;dateModified&quot;,
+    &quot;fixture&quot;,
+    &quot;participant&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;@context&quot;: {},
+    &quot;@type&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;openbookVersion&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/openbookVersion&quot;
+    },
+    &quot;id&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
+    },
+    &quot;sequence&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/sequence&quot;
+    },
+    &quot;dateModified&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/dateTime&quot;
+    },
+    &quot;fixture&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;The match.&quot;
+    },
+    &quot;participant&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+      &quot;description&quot;: &quot;Who won the toss.&quot;
     }
   },
   &quot;patternProperties&quot;: {
@@ -2938,6 +3075,19 @@
       }
     ]
   }
+}</pre></section><section class="schema-block" id="series.example"><h2>series.example.json</h2><p><a href="examples/series.example.json">examples/series.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 105510,
+  &quot;datePublished&quot;: &quot;2026-09-19T14:00:00Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;series&quot;,
+  &quot;action&quot;: &quot;update&quot;,
+  &quot;sport&quot;: &quot;soccer&quot;,
+  &quot;id&quot;: &quot;EVT-88213&quot;,
+  &quot;changes&quot;: {
+    &quot;fixture&quot;: &quot;EVT-88213&quot;,
+    &quot;stage&quot;: &quot;ST-QF&quot;
+  }
 }</pre></section><section class="schema-block" id="snapshot_complete.example"><h2>snapshot_complete.example.json</h2><p><a href="examples/snapshot_complete.example.json">examples/snapshot_complete.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 104900,
@@ -2958,6 +3108,21 @@
   &quot;stageType&quot;: &quot;round&quot;,
   &quot;parent&quot;: &quot;ST-KO&quot;,
   &quot;order&quot;: 3
+}</pre></section><section class="schema-block" id="stall.example"><h2>stall.example.json</h2><p><a href="examples/stall.example.json">examples/stall.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;id&quot;: &quot;STL-4&quot;,
+  &quot;sequence&quot;: 104110,
+  &quot;dateModified&quot;: &quot;2026-09-01T09:00:00Z&quot;,
+  &quot;fixture&quot;: &quot;EVT-88213&quot;,
+  &quot;participant&quot;: &quot;T-3&quot;,
+  &quot;order&quot;: 4
+}</pre></section><section class="schema-block" id="toss.example"><h2>toss.example.json</h2><p><a href="examples/toss.example.json">examples/toss.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;id&quot;: &quot;TOSS-1&quot;,
+  &quot;sequence&quot;: 104120,
+  &quot;dateModified&quot;: &quot;2026-09-01T09:00:00Z&quot;,
+  &quot;fixture&quot;: &quot;EVT-88213&quot;,
+  &quot;participant&quot;: &quot;T-3&quot;
 }</pre></section></article></div></div>
 </div></main>
 <footer><div class="wrap">
