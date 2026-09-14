@@ -1349,3 +1349,14 @@ Rejected: 0-based `order` / `seed`; `sequence` minimum 1; one origin for
 every integer.
 
 **Supersedes:** none of Q22. Confirms the existing minima.
+
+## Q112 — Listed correct score is both totals — decided (A)
+
+A listed correct-score row always has both `homeTotal` and `awayTotal`.
+The leftover bucket (`side: other`) has neither.
+
+Not wired in this pick.
+
+Rejected: one total missing on a listed row.
+
+**Supersedes:** none of Q105.
