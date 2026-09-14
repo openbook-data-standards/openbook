@@ -54,7 +54,7 @@ tokens like the existing `propertyID` examples (**Q193**). Catch-all
 unknown bucket (**Q194**, **Q34**). Prefix-file shape logged; list
 waits. Fingerprint recipe is leftover English; no new field (**Q196**).
 Named for fingerprint, in the register leftover (**Q197**). Fingerprint
-location logged; recipe text waits. Next leftover is the corpus case
+location logged; recipe text waits. Next leftover is the pinned fixture example
 (**Q198**). Anchor policy wait. No file. No new wire field.
 
 ## Goal (previous — Q76 position vocab shape, closed)
@@ -165,14 +165,14 @@ over/under. No new market type. No new field. On the wire.
 - **Q188** — when files exist, JSON, same as the shared vocab lists; name still waits; no file in this pick.
 - **Q189** — JSON object keys wait; do not invent names; row meaning stays leftover English (**Q185**); no file in this pick.
 - **Q190** — Q171 leftovers in this repo logged. Files wait. No new wire field.
-- **Q191** — prefix file first (`propertyID` schemes); fingerprint, corpus, and anchors wait; no file in this pick.
+- **Q191** — prefix file first (`propertyID` schemes); fingerprint, pinned fixture example, and anchors wait; no file in this pick.
 - **Q192** — named for prefixes, in the register leftover, not inside the vocab lists; no file in this pick.
 - **Q193** — plain tokens like the existing `propertyID` examples; not Q5 short form; list waits.
 - **Q194** — unknown bucket (**Q34**); list waits; `propertyID` stays a string.
 - **Q195** — prefix-file shape logged; list waits; next leftover is the fingerprint recipe.
 - **Q196** — fingerprint is leftover English only; no new field; publisher-own id stays canonical.
 - **Q197** — named for fingerprint, in the register leftover, not inside the vocab lists; no file in this pick.
-- **Q198** — fingerprint location logged; recipe text waits; next leftover is the corpus case.
+- **Q198** — fingerprint location logged; recipe text waits; next leftover is the pinned fixture example.
 - **Q199** — when files exist, a JSON array of row objects; keys wait; name waits; no file in this pick.
 - **Q200** — reason is leftover English (a free string); do not invent a reason list; no file in this pick.
 - **Q201** — reason forbidden when the landing is an existing OpenBook id; no file in this pick.
@@ -188,7 +188,7 @@ over/under. No new market type. No new field. On the wire.
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
 - **Q171** — namespace prefix file; fixture fingerprint recipe and a
-  corpus case; anchor policy prose.
+  pinned fixture example; anchor policy prose.
 - **Q172** — profile repositories (prediction-market, reporting,
   integrity, register) that pin a core major.
 - **Q173** — hosted validator and a feed list beside it, not on
@@ -198,7 +198,7 @@ over/under. No new market type. No new field. On the wire.
 
 **Next question: Q205.** What leftover is next? Rec: wait; named leftovers sit; do not invent a list; not Q55. A pasted letter is not implement. Wire is a separate ask.
 
-Sitting (not this walk): corpus case; position token lists; Q55.
+Sitting (not this walk): pinned fixture example; position token lists; Q55.
 
 ## Done (Q32–Q204)
 
@@ -249,14 +249,14 @@ feed list beside the validator. Not on the wire.
 **Q188** — when files exist, JSON, same as the shared vocab lists.
 **Q189** — JSON object keys wait; do not invent names.
 **Q190** — Q171 leftovers in this repo logged; files wait; no new wire field.
-**Q191** — prefix file first; fingerprint, corpus, and anchors wait; no file now.
+**Q191** — prefix file first; fingerprint, pinned fixture example, and anchors wait; no file now.
 **Q192** — named for prefixes, in the register leftover, not inside the vocab lists; no file now.
 **Q193** — plain tokens like the existing `propertyID` examples; list waits.
 **Q194** — unknown bucket; list waits; field stays a string.
 **Q195** — prefix shape logged; list waits; next leftover is the fingerprint recipe.
 **Q196** — fingerprint is leftover English only; no new field.
 **Q197** — named for fingerprint, in the register leftover; no file now.
-**Q198** — fingerprint location logged; recipe text waits; next leftover is the corpus case.
+**Q198** — fingerprint location logged; recipe text waits; next leftover is the pinned fixture example.
 **Q199** — when files exist, a JSON array of row objects.
 **Q200** — reason is leftover English (a free string); not a token list.
 **Q201** — reason forbidden when the landing is an existing OpenBook id.

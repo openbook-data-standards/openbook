@@ -2080,7 +2080,7 @@ Rejected: keep Q2 closed with no register at all; fingerprint as the
 canonical id; OpenBook mints player, team or league ids.
 
 Not on the wire in this pick. Prefix file, fingerprint recipe and
-corpus case wait.
+pinned fixture example wait.
 
 **Supersedes:** none of Q2 (option b remains rejected), Q4, Q6 or Q94.
 
@@ -2310,7 +2310,7 @@ unnamed).
 ## Q190 — Q171 leftovers this walk — decided
 
 This walk is the **Q171 leftovers that live in this repo**: namespace
-prefix file; fixture fingerprint recipe and a corpus case; anchor
+prefix file; fixture fingerprint recipe and a pinned fixture example; anchor
 policy prose. Not maps. Not position token lists. Not Q55. Not Q172
 profile repositories. No new wire field.
 
@@ -2323,7 +2323,7 @@ Rejected: maps leftover; stay stopped; unpark Q55; Q172 other repos.
 ## Q191 — Prefix file first — decided (A)
 
 The **prefix file** is first (`propertyID` schemes). Fingerprint recipe,
-corpus case, and anchor policy wait. No file in this pick.
+pinned fixture example, and anchor policy wait. No file in this pick.
 
 Not wired in this pick.
 
@@ -2406,10 +2406,10 @@ stop this leftover.
 
 **Supersedes:** none of Q196.
 
-## Q198 — Fingerprint location done; corpus next — decided (A)
+## Q198 — Fingerprint location done; pinned fixture example next — decided (A)
 
 Fingerprint location is logged. Recipe text waits. Next leftover in
-this walk is the **corpus case**. No file in this pick.
+this walk is the **pinned fixture example**. No file in this pick.
 
 Not wired in this pick.
 
