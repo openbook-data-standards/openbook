@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q233 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q236 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
@@ -2876,3 +2876,38 @@ contents now; wait.
 
 **Supersedes:** none of Q216 (the wait stays; this is that this walk
 does not unpark them).
+
+## Q234 — Named leftovers exhausted; stay stopped — decided (A)
+
+**Named leftovers on this walk exhausted; stay stopped.** Do not invent
+a leftover. Do not unpark JSON object keys, the Q171 recipe, or
+position token lists in this pick.
+
+Not wired in this pick.
+
+Rejected: unpark a leftover anyway; name JSON object keys now; wait.
+
+**Supersedes:** none of Q231 (unnamed wait stays; this is that named
+leftovers on this walk are exhausted).
+
+## Q235 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Not wired in this pick.
+
+Rejected: cut 0.3.0 now; cut 1.0 now; wait.
+
+**Supersedes:** none of Q211 (still draft).
+
+## Q236 — This question pass closes — decided (A)
+
+**This question pass closes.** No further leftover questions until a
+leftover is named.
+
+Not wired in this pick.
+
+Rejected: keep asking wait questions; name the next leftover now; wait.
+
+**Supersedes:** the open wait pass as the next leftover question
+(**Q217** as an open close is already history; this is this pass).

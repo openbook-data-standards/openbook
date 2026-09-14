@@ -272,6 +272,12 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   in this pick.
 - **Q233** — do not unpark the Q171 fingerprint recipe or prefix-file
   contents. Not wired in this pick.
+- **Q234** — named leftovers on this walk exhausted; stay stopped. Not
+  wired in this pick.
+- **Q235** — stay `0.3.0-draft`. Not a version cut. Not wired in this
+  pick.
+- **Q236** — this question pass closes. No further leftover questions
+  until a leftover is named. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
