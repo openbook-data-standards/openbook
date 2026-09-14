@@ -112,17 +112,30 @@ def rewrite_href(href: str, depth: int) -> str:
 
 
 def inline(md: str, depth: int) -> str:
+    # Links and code carry their own escaping, so stash the finished HTML behind
+    # NUL sentinels, escape the remaining literal prose (markdown syntax chars
+    # like []()*` are untouched by html.escape), then restore. Without this,
+    # a bare <, > or & in prose would emit broken HTML.
+    stash: list[str] = []
+
+    def keep(fragment: str) -> str:
+        stash.append(fragment)
+        return f"\x00{len(stash) - 1}\x00"
+
     def link(m: re.Match) -> str:
-        return f'<a href="{html.escape(rewrite_href(m.group(2), depth), quote=True)}">{inline(m.group(1), depth)}</a>'
+        href = html.escape(rewrite_href(m.group(2), depth), quote=True)
+        return keep(f'<a href="{href}">{inline(m.group(1), depth)}</a>')
 
     md = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", link, md)
 
     def code(m: re.Match) -> str:
-        return f"<code>{html.escape(m.group(1))}</code>"
+        return keep(f"<code>{html.escape(m.group(1))}</code>")
 
     md = re.sub(r"`([^`]+)`", code, md)
+    md = html.escape(md, quote=False)
     md = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", md)
     md = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", md)
+    md = re.sub(r"\x00(\d+)\x00", lambda m: stash[int(m.group(1))], md)
     return md
 
 
@@ -383,7 +396,8 @@ def chrome(title: str, body: str, depth: int, current: str, toc: list[tuple[str,
 
 
 def write_md_page(src: Path, dest: Path, depth: int, current: str, source_label: str) -> None:
-    html_body, toc = md_to_html(src.read_text(), depth)
+    text = src.read_text()
+    html_body, toc = md_to_html(text, depth)
     home = "../" * depth if depth else "./"
     inner = page_frame(
         f'<p class="crumb"><a href="{home}">Home</a> · {html.escape(source_label)}</p>',
@@ -391,7 +405,7 @@ def write_md_page(src: Path, dest: Path, depth: int, current: str, source_label:
         html_body,
         f"Source: {html.escape(source_label)}",
     )
-    title = re.sub(r"^# ", "", src.read_text().splitlines()[0])
+    title = re.sub(r"^# ", "", text.splitlines()[0])
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(chrome(title, inner, depth, current, toc))
 
