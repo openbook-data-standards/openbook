@@ -156,6 +156,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   catch-all. No file in this pick. Not wired in this pick.
 - **Q187** — when files exist: one file per public list. First public
   list name still waits. No file in this pick. Not wired in this pick.
+- **Q188** — when files exist: JSON, same as the shared vocab lists.
+  First public list name still waits. No file in this pick. Not wired
+  in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

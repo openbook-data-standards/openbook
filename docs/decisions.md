@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q187 |
+| Maps leftover | Q181–Q188 |
 
 The entries below stay in the order they were taken.
 
@@ -2280,3 +2280,15 @@ this leftover.
 
 **Supersedes:** none of Q182 (directory stays; this is how many files
 sit in it).
+
+## Q188 — Map files are JSON — decided (A)
+
+When files exist: **JSON**, same as the shared vocab lists. The first
+public list name still waits (**Q184**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: encoding waits; not JSON; stop this leftover.
+
+**Supersedes:** none of Q187 (one file per list stays; this is the
+encoding).
