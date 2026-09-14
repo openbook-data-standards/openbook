@@ -196,6 +196,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   forbidden. No file in this pick. Not wired in this pick.
 - **Q202** — in one file, a public key appears at most once. No file in
   this pick. Not wired in this pick.
+- **Q203** — row order is not significant. Do not invent a sort. No file
+  in this pick. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
