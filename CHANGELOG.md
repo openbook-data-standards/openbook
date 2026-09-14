@@ -152,6 +152,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q185** — prefix tokens are plain like the existing `propertyID`
   examples. Not the Q5 short form. The list waits. Not wired in this
   pick.
+- **Q186** — prefix catch-all is an unknown bucket (Q34). List waits.
+  `propertyID` stays a string. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

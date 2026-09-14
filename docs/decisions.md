@@ -2242,3 +2242,15 @@ Rejected: Q5 short form with a kind in front; formal URN only; stop
 this leftover.
 
 **Supersedes:** none of Q184.
+
+## Q186 — Prefix catch-all — decided (A)
+
+Same Q34 growable-list idea: an **unknown** bucket. The list waits.
+`propertyID` stays a string.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: no catch-all id; `other` like some schema enums; stop this
+leftover.
+
+**Supersedes:** none of Q185.
