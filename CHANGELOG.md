@@ -6,6 +6,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Examples page** — [`docs/examples.md`](docs/examples.md) walks the
+  existing `examples/` documents in `sequence` order (GTFS-style sample feed,
+  not a sandbox). `publisher.example.json` lists `bigbook` so it matches the
+  market and odds samples. No wire change.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
   comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
   Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire
