@@ -16,9 +16,7 @@ and every supplier has a private market taxonomy and a private fixture
 crosswalk. Nobody publishes one. OpenBook already owns sports, segments,
 market types and sides.
 
-Q2 stays right about a **central** entity database and wrong about
-**register**. OpenBook owns a cheap centre: scheme prefixes, never-reuse,
-and a derivation rule for one entity nobody else registers — the fixture.
+Q2 stays right to reject a **central** entity database; Q168 adds a **federated register** without making OpenBook the owner of player, team or league ids. OpenBook owns a cheap centre: scheme prefixes, never-reuse, and a derivation rule for one entity nobody else registers — the fixture.
 Leagues, teams and players stay publisher-own, pinned to Wikidata when a
 QID exists (**Q171**).
 
