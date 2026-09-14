@@ -2306,3 +2306,114 @@ this leftover.
 
 **Supersedes:** none of Q188 (JSON stays; this is that the keys are
 unnamed).
+
+## Q190 — Q171 leftovers this walk — decided
+
+This walk is the **Q171 leftovers that live in this repo**: namespace
+prefix file; fixture fingerprint recipe and a corpus case; anchor
+policy prose. Not maps. Not position token lists. Not Q55. Not Q172
+profile repositories. No new wire field.
+
+Not wired in this pick. Files wait.
+
+Rejected: maps leftover; stay stopped; unpark Q55; Q172 other repos.
+
+**Supersedes:** Q180 as an open “what is next” (position shape stays).
+
+## Q191 — Prefix file first — decided (A)
+
+The **prefix file** is first (`propertyID` schemes). Fingerprint recipe,
+corpus case, and anchor policy wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: fingerprint recipe first; anchor policy first; all three in
+this pick.
+
+**Supersedes:** none of Q190 (walk stays; this is which leftover
+first).
+
+## Q192 — Where the prefix file lives — decided (A)
+
+When the file exists it is **named for prefixes**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/` next to sports; closed enum in
+`common.schema.json`; stop this leftover.
+
+**Supersedes:** none of Q191.
+
+## Q193 — How prefix tokens are spelled — decided (A)
+
+Plain tokens like the existing `propertyID` examples. Not the Q5
+`sport:` / `market:` short form. Not a formal URN only. The list waits.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: Q5 short form with a kind in front; formal URN only; stop
+this leftover.
+
+**Supersedes:** none of Q192.
+
+## Q194 — Prefix catch-all — decided (A)
+
+Same Q34 growable-list idea: an **unknown** bucket. The list waits.
+`propertyID` stays a string.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: no catch-all id; `other` like some schema enums; stop this
+leftover.
+
+**Supersedes:** none of Q193.
+
+## Q195 — Prefix shape done; fingerprint next — decided (A)
+
+Prefix-file shape is logged. The list waits. Next leftover in this walk
+is the **fingerprint recipe**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: start listing prefixes now; stop this walk; unpark Q55.
+
+**Supersedes:** Q191 “fingerprint waits” as the next leftover (prefix
+shape stays).
+
+## Q196 — Fingerprint is leftover English — decided (A)
+
+The fingerprint is a **leftover English recipe only**. No new field.
+Publisher-own id stays canonical (**Q171**). Join key, never the object
+id.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: required field on the fixture; optional field on the fixture;
+drop the leftover.
+
+**Supersedes:** none of Q171 (join key still; this is not a wire field).
+
+## Q197 — Where the fingerprint recipe lives — decided (A)
+
+When the recipe exists it is **named for fingerprint**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/`; spec only with no separate file ever;
+stop this leftover.
+
+**Supersedes:** none of Q196.
+
+## Q198 — Fingerprint location done; corpus next — decided (A)
+
+Fingerprint location is logged. Recipe text waits. Next leftover in
+this walk is the **corpus case**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: write the recipe steps now; stop this walk; unpark Q55.
+
+**Supersedes:** Q197 as an open “what is next” (location stays).
+

@@ -8,7 +8,7 @@ per public list when files exist (**Q187**, **Q188**). JSON object keys
 wait (**Q189**). First public list name waits (**Q184**). Not a wire
 change. No file now. Not Q55. Not position token lists.
 
-Questions recorded through **Q189**. Catalog pass closed and on the wire.
+Questions recorded through **Q198**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -26,7 +26,8 @@ walk stopped (**Q169**), then Q76 position vocab unparked (**Q170**).
 Roadmap pass closed (**Q171–Q173**): register not an entity database;
 profiles are separate specifications; feed list is validator tooling.
 Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
-(**Q180**), then the maps leftover unparked (**Q181**).
+(**Q180**), then the maps leftover unparked (**Q181**). Q171 leftovers
+in this repo logged (**Q190–Q198**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
@@ -39,6 +40,17 @@ named for maps, not inside the vocab lists (**Q182**, **Q183**). One
 JSON file per public list when files exist (**Q187**, **Q188**). JSON
 object keys wait (**Q189**). Cite at least one public taxonomy. First
 public list name waits (**Q184**). Not a wire change. No file now.
+
+## Goal (previous — Q171 leftovers in this repo)
+
+Prefix file first (`propertyID` schemes) (**Q191**). Named for prefixes,
+in the register leftover, not inside the vocab lists (**Q192**). Plain
+tokens like the existing `propertyID` examples (**Q193**). Catch-all
+unknown bucket (**Q194**, **Q34**). Prefix-file shape logged; list
+waits. Fingerprint recipe is leftover English; no new field (**Q196**).
+Named for fingerprint, in the register leftover (**Q197**). Fingerprint
+location logged; recipe text waits. Next leftover is the corpus case
+(**Q198**). Anchor policy wait. No file. No new wire field.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -147,6 +159,15 @@ over/under. No new market type. No new field. On the wire.
 - **Q187** — one file per public list when files exist; name still waits (**Q184**); no file in this pick.
 - **Q188** — when files exist, JSON, same as the shared vocab lists; name still waits; no file in this pick.
 - **Q189** — JSON object keys wait; do not invent names; row meaning stays leftover English (**Q185**); no file in this pick.
+- **Q190** — Q171 leftovers in this repo logged. Files wait. No new wire field.
+- **Q191** — prefix file first (`propertyID` schemes); fingerprint, corpus, and anchors wait; no file in this pick.
+- **Q192** — named for prefixes, in the register leftover, not inside the vocab lists; no file in this pick.
+- **Q193** — plain tokens like the existing `propertyID` examples; not Q5 short form; list waits.
+- **Q194** — unknown bucket (**Q34**); list waits; `propertyID` stays a string.
+- **Q195** — prefix-file shape logged; list waits; next leftover is the fingerprint recipe.
+- **Q196** — fingerprint is leftover English only; no new field; publisher-own id stays canonical.
+- **Q197** — named for fingerprint, in the register leftover, not inside the vocab lists; no file in this pick.
+- **Q198** — fingerprint location logged; recipe text waits; next leftover is the corpus case.
 
 ### Parked
 
@@ -164,9 +185,11 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q190.** When files exist, is the JSON document an array of row objects? Rec: yes; keys still wait (**Q189**); name still waits (**Q184**); no file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q199.** When files exist, is the JSON document an array of row objects? Rec: yes; keys still wait (**Q189**); name still waits (**Q184**); no file now. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q189)
+Sitting (not this walk): corpus case; position token lists; Q55.
+
+## Done (Q32–Q198)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -214,3 +237,12 @@ feed list beside the validator. Not on the wire.
 **Q187** — one file per public list when files exist; name still waits.
 **Q188** — when files exist, JSON, same as the shared vocab lists.
 **Q189** — JSON object keys wait; do not invent names.
+**Q190** — Q171 leftovers in this repo logged; files wait; no new wire field.
+**Q191** — prefix file first; fingerprint, corpus, and anchors wait; no file now.
+**Q192** — named for prefixes, in the register leftover, not inside the vocab lists; no file now.
+**Q193** — plain tokens like the existing `propertyID` examples; list waits.
+**Q194** — unknown bucket; list waits; field stays a string.
+**Q195** — prefix shape logged; list waits; next leftover is the fingerprint recipe.
+**Q196** — fingerprint is leftover English only; no new field.
+**Q197** — named for fingerprint, in the register leftover; no file now.
+**Q198** — fingerprint location logged; recipe text waits; next leftover is the corpus case.
