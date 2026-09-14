@@ -34,7 +34,7 @@ header.top nav a[aria-current="page"]{color:var(--fg);background:var(--fill2)}
 .btn.secondary:hover{background:var(--fill)}
 
 .hero{padding:40px 0 28px}
-.hero h1{font-size:clamp(32px,4.6vw,48px);max-width:22ch}
+.hero h1{font-size:clamp(32px,4.6vw,48px);max-width:28ch}
 .hero p{font-size:19px;color:var(--fg2);max-width:68ch;margin:20px 0 0}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .hero .ver{margin:14px 0 0;font-size:13px;color:var(--mute)}
