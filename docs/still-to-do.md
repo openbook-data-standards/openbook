@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q189**. Catalog pass closed and on the wire.
+Questions recorded through **Q190**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -31,8 +31,9 @@ inside the vocab lists (**Q184**). Plain tokens like the existing
 **Q34**). Prefix-file shape logged; list waits. Next leftover is the
 fingerprint recipe (**Q187**). Recipe is leftover English; no new field
 (**Q188**). Named for fingerprint, in the register leftover (**Q189**).
-Corpus case and anchor policy wait. No file. No new wire field. Not
-maps. Not position token lists.
+Fingerprint location logged; recipe text waits. Next leftover is the
+corpus case (**Q190**). Anchor policy wait. No file. No new wire field.
+Not maps. Not position token lists.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -140,6 +141,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q187** — prefix-file shape logged; list waits; next leftover is the fingerprint recipe.
 - **Q188** — fingerprint is leftover English only; no new field; publisher-own id stays canonical.
 - **Q189** — named for fingerprint, in the register leftover, not inside the vocab lists; no file in this pick.
+- **Q190** — fingerprint location logged; recipe text waits; next leftover is the corpus case.
 
 ### Parked
 
@@ -157,11 +159,11 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q190.** Fingerprint location is logged. Rec: recipe text waits; next leftover in this walk is the corpus case. No file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q191.** What is the corpus case? Rec: leftover English checked against the existing fixture example; no new fixture; no new field; no file now. A pasted letter is not implement. Wire is a separate ask.
 
 Sitting (not this walk): maps leftover; position token lists; Q55.
 
-## Done (Q32–Q189)
+## Done (Q32–Q190)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -208,3 +210,4 @@ feed list beside the validator. Not on the wire.
 **Q187** — prefix shape logged; list waits; next leftover is the fingerprint recipe.
 **Q188** — fingerprint is leftover English only; no new field.
 **Q189** — named for fingerprint, in the register leftover; no file now.
+**Q190** — fingerprint location logged; recipe text waits; next leftover is the corpus case.

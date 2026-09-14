@@ -2291,3 +2291,14 @@ Rejected: inside `vocabularies/`; spec only with no separate file ever;
 stop this leftover.
 
 **Supersedes:** none of Q188.
+
+## Q190 — Fingerprint location done; corpus next — decided (A)
+
+Fingerprint location is logged. Recipe text waits. Next leftover in
+this walk is the **corpus case**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: write the recipe steps now; stop this walk; unpark Q55.
+
+**Supersedes:** Q189 as an open “what is next” (location stays).

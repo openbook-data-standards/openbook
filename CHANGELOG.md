@@ -162,6 +162,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q189** — when the recipe exists it is named for fingerprint, in the
   register leftover, not inside the vocab lists. No file in this pick.
   Not wired in this pick.
+- **Q190** — fingerprint location is logged. Recipe text waits. Next
+  leftover in this walk is the corpus case. No file in this pick. Not
+  wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
