@@ -2218,3 +2218,14 @@ Rejected: put the maps inside the vocab lists; spec leftover English
 only; one file that holds every public list.
 
 **Supersedes:** none of Q181.
+
+## Q183 — Maps directory leftover English — decided (A)
+
+The directory is **named for maps**. No file in this pick. First public
+list waits.
+
+Not wired in this pick.
+
+Rejected: named for crosswalks; name waits; stop this leftover.
+
+**Supersedes:** none of Q182.

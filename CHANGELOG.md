@@ -145,6 +145,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q182** — when files exist: one maps directory, not inside the vocab
   lists. No file in this pick. First public list waits. Not wired in
   this pick.
+- **Q183** — that directory is named for maps. No file in this pick.
+  First public list waits. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
