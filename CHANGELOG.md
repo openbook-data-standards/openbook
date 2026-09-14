@@ -5,6 +5,12 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 
 ## [Unreleased]
 
+### Added
+- [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
+  comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
+  Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire
+  (what is adopted, shape-only, later, or rejected).
+
 ### Changed
 - **Docs readability** — three tracks: a non-technical
   [`docs/guide.md`](docs/guide.md), a human

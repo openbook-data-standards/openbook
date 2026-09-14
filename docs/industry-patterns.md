@@ -4,6 +4,10 @@ A review of publicly documented sports-betting APIs, looking for patterns
 worth adopting and patterns to avoid. Vendor-neutral: every API here is
 public, and each is judged only on its design.
 
+The technology comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022,
+OpenRTB, Betfair streaming, Sportradar UOF, OsmChange, CAP and ODF — specs,
+not vendor APIs — is [`protocol-comparison.md`](protocol-comparison.md).
+
 ## KIBL Sports Outbound (docs.kibl.io/api) — OpenAPI 3.0.3, 71 endpoints
 
 **Worth adopting**
