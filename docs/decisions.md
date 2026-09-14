@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 |
+| Maps leftover | Q181–Q189 · Q199–Q204 |
 
 The entries below stay in the order they were taken.
 
@@ -2417,3 +2417,78 @@ Rejected: write the recipe steps now; stop this walk; unpark Q55.
 
 **Supersedes:** Q197 as an open “what is next” (location stays).
 
+## Q199 — JSON array of row objects — decided (A)
+
+When files exist: a **JSON array of row objects**. Keys still wait
+(**Q189**). The first public list name still waits (**Q184**). No file
+in this pick.
+
+Not wired in this pick.
+
+Rejected: a JSON object whose members are the rows; document shape
+waits; stop this leftover.
+
+**Supersedes:** none of Q189 (keys still wait; this is the document
+shape).
+
+## Q200 — Reason is leftover English — decided (A)
+
+The reason is **leftover English** (a free string). Do not invent a
+reason list. Required only on the unknown catch-all (**Q186**). No file
+in this pick.
+
+Not wired in this pick.
+
+Rejected: a closed list of reason tokens; encoding waits; stop this
+leftover.
+
+**Supersedes:** none of Q186 (when it is required stays; this is that
+the reason is not a token list).
+
+## Q201 — Reason forbidden on a mapped id — decided (A)
+
+When the landing is an existing OpenBook id, a reason is **forbidden**.
+The reason is only for the unknown catch-all (**Q186**). No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: optional on a mapped id; park; stop this leftover.
+
+**Supersedes:** none of Q186 (required-on-unknown stays; this is that
+a mapped id does not carry a reason).
+
+## Q202 — Public key at most once per file — decided (A)
+
+In one file, the same public key appears **at most once**. The first
+public list name still waits (**Q184**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: duplicates allowed; uniqueness waits; stop this leftover.
+
+**Supersedes:** none of Q199 (array of rows stays; this is uniqueness).
+
+## Q203 — Row order is not significant — decided (A)
+
+Row order in a map file is **not significant**. Do not invent a sort.
+The first public list name still waits (**Q184**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: rows must be sorted; order waits; stop this leftover.
+
+**Supersedes:** none of Q202 (uniqueness stays; this is order).
+
+## Q204 — Stop this spec walk — decided (A)
+
+Maps leftover shape is logged (**Q181–Q189**, **Q199–Q203**). The first
+public list name waits (**Q184**). This walk **stops**. Not Q55. Not a
+version cut. Not inventing a public list. No file.
+
+Not wired in this pick.
+
+Rejected: name a public list in this pick; keep walking file-stem
+leftover English; unpark Q55 or cut a new draft version.
+
+**Supersedes:** Q203 as an open “what is next” (shape stays).

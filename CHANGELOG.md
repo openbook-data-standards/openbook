@@ -187,7 +187,20 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q198** — fingerprint location is logged. Recipe text waits. Next
   leftover in this walk is the corpus case. No file in this pick. Not
   wired in this pick.
-
+- **Q199** — when files exist: a JSON array of row objects. Keys still
+  wait. First public list name still waits. No file in this pick. Not
+  wired in this pick.
+- **Q200** — the reason is leftover English (a free string). Do not
+  invent a reason list. No file in this pick. Not wired in this pick.
+- **Q201** — when the landing is an existing OpenBook id, a reason is
+  forbidden. No file in this pick. Not wired in this pick.
+- **Q202** — in one file, a public key appears at most once. No file in
+  this pick. Not wired in this pick.
+- **Q203** — row order is not significant. Do not invent a sort. No file
+  in this pick. Not wired in this pick.
+- **Q204** — maps leftover shape is logged. First public list name
+  waits. Spec walk stopped. Not Q55. Not a version cut. Not wired in
+  this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
