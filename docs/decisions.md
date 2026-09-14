@@ -2015,3 +2015,42 @@ Later pick wired `elected` and `needed`.
 Rejected: name leftover English now; a new area; wire now.
 
 **Supersedes:** Q166 as an open “what is next”.
+
+## Q168 — Next leftover unnamed; wait — decided (A)
+
+The next leftover was **unnamed**; wait. Not Q55. Not a version
+cut. Not stop.
+
+Not wired in this pick.
+
+Rejected: unpark Q55; cut `0.4.0-draft` as this walk; stop again.
+
+**Supersedes:** Q167 “no new board until named” as the next board (the
+next leftover was still unnamed).
+
+## Q169 — Named leftovers exhausted; stop — decided
+
+I pick. Named leftovers on this spec are **done** (catalog through
+`elected` / `needed`). This walk **stops**. Not Q55. Not a version cut.
+Not coach/officials (Q79 / Q81 omit until those markets exist). Not Q96.
+No new field.
+
+Not wired in this pick.
+
+Rejected: invent a new encyclopedia walk; unpark Q55; cut `0.4.0-draft`.
+
+**Supersedes:** Q168 “next leftover unnamed; wait” (the pick is: nothing
+left on the leftover list; stop).
+
+## Q170 — Q76 position vocab this walk — decided
+
+This walk is the **per-sport position vocab** left from Q76.
+`player.position` is still the field. Not Q55. Not coach/officials.
+Not Q96. Not a version cut.
+
+Not wired in this pick. Token lists wait.
+
+Rejected: stay stopped (Q169); unpark Q55; Q79/Q81.
+
+**Supersedes:** Q169 “named leftovers exhausted; stop”; Q76 “a per-sport
+vocab is later, not this walk”.
