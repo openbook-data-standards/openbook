@@ -60,7 +60,10 @@
 <ul>
 <li><strong>JSON</strong> — the required v1 encoding (Q89). Additional encodings MAY exist later as optional bindings; this repo’s scaffolding stays JSON.</li>
 <li><strong>RFC 7386 JSON Merge Patch</strong> — the semantics of every change message: absent = unchanged, <code>null</code> = removed. Decision Q8. JSON Patch (RFC 6902) is never an alternate (Q91).</li>
-<li><strong>OpenAPI 3.1</strong> — a publisher who offers HTTP publishes <strong>their own</strong> pull docs; this repo does not ship <code>openapi.yaml</code> (Q54). Spec still names <code>since=</code> and HTTP 410.</li>
+<li><strong>OpenAPI 3.1</strong> — a publisher who offers HTTP publishes <strong>their own</strong> pull docs; this repo does not ship <code>openapi.yaml</code> (Q54). Spec still names <code>since=</code> and HTTP 410. Discovery <code>kind</code> <code>docs</code> lists those URLs (Q56).</li>
+<li><strong>MCP (Model Context Protocol)</strong> — a client/tooling surface, not a second sportsbook wire. Discovery <code>kind</code> <code>mcp</code> points at the server's own manifest (MCP Registry <code>server.json</code> / <code>/.well-known/mcp.json</code>). Connection, packages and remotes stay in that document (Q56).</li>
+<li><strong>Vendor mapping</strong> — not this spec (Q96). Inbound books stay unknown; OpenBook is the output language. Planned separate Apache-2.0 packages (openbook-starter, openbook-translate). Native ids on a successful map use <code>identifier</code>. FHIR-style concept maps sit beside the resource, not inside it.</li>
+<li><strong>Agent Plugins</strong> — optional plugin-directory format (<code>plugin.json</code> plus fixed component locations). Discovery <code>kind</code> <code>plugin</code> points at the manifest; OpenBook does not fork the layout (Q56).</li>
 <li><strong>AsyncAPI 3.0</strong> — describes the push side (the change streams) (<a href="spec/asyncapi.yaml"><code>../spec/asyncapi.yaml</code></a>; Q42).</li>
 <li><strong>CloudEvents</strong> — never (Q52). OpenBook's own change envelope is the message.</li>
 <li><strong>FIX session</strong> — never (Q93). Recovery is Q33/Q46, not FIX Logon / TestRequest.</li>
@@ -85,6 +88,8 @@
 <li>Wikidata: sports team <code>Q12973014</code>, sports venue <code>Q1076486</code>, property <code>P54</code> member of sports team — https://www.wikidata.org</li>
 <li>CloudEvents — https://github.com/cloudevents/spec · CNCF — https://www.cncf.io/projects/cloudevents/</li>
 <li>AsyncAPI — https://www.asyncapi.com · OpenAPI — https://spec.openapis.org</li>
+<li>MCP Registry <code>server.json</code> — https://github.com/modelcontextprotocol/registry · schema — https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json</li>
+<li>Agent Plugins — https://agent-plugins.org</li>
 <li>RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org</li>
 <li>GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/</li>
 <li>FIX Protocol — https://www.fixtrading.org/standards/ (not the OpenBook session; Q93)</li>

@@ -193,14 +193,48 @@ guarantees, not JSON Schema.
 - Live documents SHOULD declare **`ttl`**: integer seconds, GBFS (Q48).
   Optional on the publisher record; required on the discovery document.
 - A publisher SHOULD offer **one discovery URL** that returns
-  `{ lastUpdated, ttl, feeds: [{ name, url }] }`
+  `{ lastUpdated, ttl, feeds: [{ name, url, kind, id, schemaUrl }] }`
   ([`../schema/discovery.schema.json`](../schema/discovery.schema.json)).
-  Snapshot, stream, and any publisher-hosted API docs are named feeds. The
-  `publisher` object stays identity, not the catalog (Q49).
+  Snapshot, stream, publisher-hosted API docs, and additional surfaces
+  (MCP, plugins) are named feeds. The `publisher` object stays identity, not
+  the catalog (Q49, Q56).
   Documents are not wrapped in a GBFS-style outer container (Q90).
   There is no spec-owned list of many publishers (Q94).
 - A publisher MAY **co-serve** more than one OpenBook version at the same
   time (distinct URLs or topics per `openbookVersion`).
+
+### 5.3 Additional surfaces: MCP and plugins (Q56)
+
+OpenBook standardises the **sportsbook data contract**. MCP servers, Agent
+Plugins, and other client tooling are **additional surfaces**: they are
+advertised on the same discovery document, and they MUST NOT invent a
+second betting model.
+
+- Each discovery entry SHOULD carry **`kind`**: `snapshot` · `stream` ·
+  `docs` · `mcp` · `plugin`. `name` and `url` stay required. `kind` is
+  optional so existing catalogs remain valid; new catalogs SHOULD set it.
+  Consumers MUST ignore unrecognised `kind` values (Q34, Q37).
+- **`snapshot`**, **`stream`**, **`docs`** are OpenBook surfaces. `docs` is
+  the publisher's own OpenAPI, AsyncAPI, or HTML (Q54).
+- **`mcp`** — `url` MUST be that MCP server's **manifest** (the MCP Registry
+  `server.json`, or the conventional `/.well-known/mcp.json` that holds the
+  same body). Connection details (stdio, Streamable HTTP, SSE), packages,
+  and remotes live in that document. OpenBook does not wrap MCP, does not
+  ship MCP's schema, and does not put MCP on the change envelope or topic
+  grammar (same rule as CloudEvents, Q52).
+- **`plugin`** — `url` MUST be that plugin's **manifest** (for example an
+  Agent Plugins `plugin.json`). OpenBook does not define plugin file layout.
+- **`schemaUrl`** SHOULD be set on `mcp` and `plugin` entries: the URI of
+  the schema that governs the document at `url` (for example the MCP
+  Registry server schema, or the Agent Plugins plugin schema). Omit it on
+  `snapshot` / `stream` (those validate against this spec).
+- **`id`** MAY distinguish several `mcp` or `plugin` entries from one
+  publisher.
+- An MCP server or plugin that exposes OpenBook data MUST use OpenBook
+  document shapes (the schemas in [`../schema/`](../schema/)) as the
+  payload. Tools MAY name OpenBook `object` / `action` pairs; they MUST
+  NOT replace `market`, `odds`, `score`, or `grade` with a parallel schema.
+  Vendor extras stay `x_`-prefixed (Q37).
 
 Two independent implementations (a producer and a consumer; not
 [`../tools/validate.py`](../tools/validate.py)) are required to **freeze

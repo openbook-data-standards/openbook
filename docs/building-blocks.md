@@ -58,7 +58,19 @@ grouped by what each one is used for, with the reason it was chosen.
   is never an alternate (Q91).
 - **OpenAPI 3.1** — a publisher who offers HTTP publishes **their own** pull
   docs; this repo does not ship `openapi.yaml` (Q54). Spec still names
-  `since=` and HTTP 410.
+  `since=` and HTTP 410. Discovery `kind` `docs` lists those URLs (Q56).
+- **MCP (Model Context Protocol)** — a client/tooling surface, not a
+  second sportsbook wire. Discovery `kind` `mcp` points at the server's
+  own manifest (MCP Registry `server.json` / `/.well-known/mcp.json`).
+  Connection, packages and remotes stay in that document (Q56).
+- **Vendor mapping** — not this spec (Q96). Inbound books stay unknown;
+  OpenBook is the output language. Planned separate Apache-2.0 packages
+  (openbook-starter, openbook-translate). Native ids on a successful map
+  use `identifier`. FHIR-style concept maps sit beside the resource, not
+  inside it.
+- **Agent Plugins** — optional plugin-directory format (`plugin.json` plus
+  fixed component locations). Discovery `kind` `plugin` points at the
+  manifest; OpenBook does not fork the layout (Q56).
 - **AsyncAPI 3.0** — describes the push side (the change streams)
   ([`../spec/asyncapi.yaml`](../spec/asyncapi.yaml); Q42).
 - **CloudEvents** — never (Q52). OpenBook's own change envelope is the
@@ -104,6 +116,10 @@ grouped by what each one is used for, with the reason it was chosen.
 - CloudEvents — https://github.com/cloudevents/spec · CNCF —
   https://www.cncf.io/projects/cloudevents/
 - AsyncAPI — https://www.asyncapi.com · OpenAPI — https://spec.openapis.org
+- MCP Registry `server.json` —
+  https://github.com/modelcontextprotocol/registry · schema —
+  https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json
+- Agent Plugins — https://agent-plugins.org
 - RFC 3339, RFC 7386, RFC 8141, RFC 9457, RFC 9562 — https://www.rfc-editor.org
 - GTFS-Realtime — https://gtfs.org/documentation/realtime/reference/
 - FIX Protocol — https://www.fixtrading.org/standards/ (not the OpenBook

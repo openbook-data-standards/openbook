@@ -516,6 +516,16 @@
         &quot;model&quot;
       ]
     },
+    &quot;feedKind&quot;: {
+      &quot;enum&quot;: [
+        &quot;snapshot&quot;,
+        &quot;stream&quot;,
+        &quot;docs&quot;,
+        &quot;mcp&quot;,
+        &quot;plugin&quot;
+      ],
+      &quot;description&quot;: &quot;What a discovery feed entry is (Q56). snapshot/stream/docs are the OpenBook feed; mcp and plugin point at another standard&#x27;s manifest, not an OpenBook document.&quot;
+    },
     &quot;stageType&quot;: {
       &quot;enum&quot;: [
         &quot;phase&quot;,
@@ -608,11 +618,11 @@
       ]
     }
   }
-}</pre></section><section class="schema-block" id="discovery"><h2>OpenBook discovery document</h2><p>One URL lists a publisher&#x27;s feeds (Q49). GBFS-shaped field names, not a GBFS data wrapper (Q90). Not a list of other publishers (Q94). The publisher object stays identity, not the catalog.</p><p><a href="schema/discovery.schema.json">discovery.schema.json</a> · required: <code>lastUpdated, ttl, feeds</code></p><pre>{
+}</pre></section><section class="schema-block" id="discovery"><h2>OpenBook discovery document</h2><p>One URL lists a publisher&#x27;s feeds and additional surfaces (Q49, Q56). GBFS-shaped field names, not a GBFS data wrapper (Q90). Not a list of other publishers (Q94). The publisher object stays identity, not the catalog.</p><p><a href="schema/discovery.schema.json">discovery.schema.json</a> · required: <code>lastUpdated, ttl, feeds</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/discovery.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook discovery document&quot;,
-  &quot;description&quot;: &quot;One URL lists a publisher&#x27;s feeds (Q49). GBFS-shaped field names, not a GBFS data wrapper (Q90). Not a list of other publishers (Q94). The publisher object stays identity, not the catalog.&quot;,
+  &quot;description&quot;: &quot;One URL lists a publisher&#x27;s feeds and additional surfaces (Q49, Q56). GBFS-shaped field names, not a GBFS data wrapper (Q90). Not a list of other publishers (Q94). The publisher object stays identity, not the catalog.&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;lastUpdated&quot;,
@@ -644,11 +654,24 @@
         &quot;properties&quot;: {
           &quot;name&quot;: {
             &quot;type&quot;: &quot;string&quot;,
-            &quot;description&quot;: &quot;Snapshot, stream, or publisher-hosted API docs.&quot;
+            &quot;description&quot;: &quot;Human label for this entry (snapshot, stream, docs, or a plugin name).&quot;
           },
           &quot;url&quot;: {
             &quot;type&quot;: &quot;string&quot;,
-            &quot;format&quot;: &quot;uri&quot;
+            &quot;format&quot;: &quot;uri&quot;,
+            &quot;description&quot;: &quot;For snapshot/stream/docs: the OpenBook surface. For mcp/plugin: that surface&#x27;s own manifest URL, not an OpenBook document (Q56).&quot;
+          },
+          &quot;kind&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/feedKind&quot;
+          },
+          &quot;id&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+            &quot;description&quot;: &quot;Publisher-own id when listing more than one mcp or plugin entry.&quot;
+          },
+          &quot;schemaUrl&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;uri&quot;,
+            &quot;description&quot;: &quot;URI of the schema that governs the document at url. Required in practice for mcp and plugin; omitted for snapshot/stream (those are OpenBook).&quot;
           }
         }
       }
@@ -2058,15 +2081,32 @@
   &quot;feeds&quot;: [
     {
       &quot;name&quot;: &quot;snapshot&quot;,
+      &quot;kind&quot;: &quot;snapshot&quot;,
       &quot;url&quot;: &quot;https://example.invalid/acme-feeds/snapshot&quot;
     },
     {
       &quot;name&quot;: &quot;stream&quot;,
-      &quot;url&quot;: &quot;wss://example.invalid/acme-feeds/stream&quot;
+      &quot;kind&quot;: &quot;stream&quot;,
+      &quot;url&quot;: &quot;https://example.invalid/acme-feeds/stream&quot;
     },
     {
       &quot;name&quot;: &quot;docs&quot;,
+      &quot;kind&quot;: &quot;docs&quot;,
       &quot;url&quot;: &quot;https://example.invalid/acme-feeds/docs&quot;
+    },
+    {
+      &quot;name&quot;: &quot;OpenBook MCP&quot;,
+      &quot;kind&quot;: &quot;mcp&quot;,
+      &quot;id&quot;: &quot;openbook-mcp&quot;,
+      &quot;schemaUrl&quot;: &quot;https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json&quot;,
+      &quot;url&quot;: &quot;https://example.invalid/.well-known/mcp.json&quot;
+    },
+    {
+      &quot;name&quot;: &quot;settlement plugin&quot;,
+      &quot;kind&quot;: &quot;plugin&quot;,
+      &quot;id&quot;: &quot;settlement&quot;,
+      &quot;schemaUrl&quot;: &quot;https://agent-plugins.org/schemas/1.0.0/plugin.schema.json&quot;,
+      &quot;url&quot;: &quot;https://example.invalid/plugins/settlement/plugin.json&quot;
     }
   ]
 }</pre></section><section class="schema-block" id="fixture.example"><h2>fixture.example.json</h2><p><a href="examples/fixture.example.json">examples/fixture.example.json</a></p><pre>{

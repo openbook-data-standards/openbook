@@ -45,15 +45,32 @@
   &quot;feeds&quot;: [
     {
       &quot;name&quot;: &quot;snapshot&quot;,
+      &quot;kind&quot;: &quot;snapshot&quot;,
       &quot;url&quot;: &quot;https://example.invalid/acme-feeds/snapshot&quot;
     },
     {
       &quot;name&quot;: &quot;stream&quot;,
-      &quot;url&quot;: &quot;wss://example.invalid/acme-feeds/stream&quot;
+      &quot;kind&quot;: &quot;stream&quot;,
+      &quot;url&quot;: &quot;https://example.invalid/acme-feeds/stream&quot;
     },
     {
       &quot;name&quot;: &quot;docs&quot;,
+      &quot;kind&quot;: &quot;docs&quot;,
       &quot;url&quot;: &quot;https://example.invalid/acme-feeds/docs&quot;
+    },
+    {
+      &quot;name&quot;: &quot;OpenBook MCP&quot;,
+      &quot;kind&quot;: &quot;mcp&quot;,
+      &quot;id&quot;: &quot;openbook-mcp&quot;,
+      &quot;schemaUrl&quot;: &quot;https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json&quot;,
+      &quot;url&quot;: &quot;https://example.invalid/.well-known/mcp.json&quot;
+    },
+    {
+      &quot;name&quot;: &quot;settlement plugin&quot;,
+      &quot;kind&quot;: &quot;plugin&quot;,
+      &quot;id&quot;: &quot;settlement&quot;,
+      &quot;schemaUrl&quot;: &quot;https://agent-plugins.org/schemas/1.0.0/plugin.schema.json&quot;,
+      &quot;url&quot;: &quot;https://example.invalid/plugins/settlement/plugin.json&quot;
     }
   ]
 }</pre>
