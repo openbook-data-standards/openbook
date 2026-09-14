@@ -1680,3 +1680,13 @@ Not wired in this pick.
 Rejected: this race’s `participant` row like `seed`; a new live object.
 
 **Supersedes:** none of Q85 or Q136.
+
+## Q142 — Toss is not on the generic fixture — decided (B)
+
+Cricket toss is a sport slice. Not on the generic fixture. Name waits.
+
+Not wired in this pick.
+
+Rejected: generic fixture; a new live object; on `score`.
+
+**Supersedes:** none of Q141 (same home rule, toss).
