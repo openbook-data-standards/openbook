@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q142**. Catalog pass closed and on the wire.
+Questions recorded through **Q143**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -13,9 +13,10 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 ## Goal (this walk)
 
-**Q86 leftovers.** Racing stall and cricket toss are sport slices. Playoff
-series: round on `stage`; the lead is live. Not more keys on every fixture.
-Names wait. No new field in this pick.
+**Q86 leftovers.** Racing stall and cricket toss are new catalog objects
+(sport slices; names wait). Playoff series: round on `stage`; the lead is
+a new live object (name waits). Not more keys on every fixture. No new
+field in this pick.
 
 ## Goal (previous — yes/no player, closed)
 
@@ -62,6 +63,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q140** — live series lead is a new live object (not `score`).
 - **Q141** — stall is not on the generic fixture or `participant` row.
 - **Q142** — toss is not on the generic fixture.
+- **Q143** — stall and toss are new catalog objects (not `sport`, not live).
 
 ### Parked
 
@@ -73,9 +75,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Are stall and toss new catalog objects (not live, not `sport`)?
+- Stall and toss: two catalog objects, or one?
 
-## Done (Q32–Q142)
+## Done (Q32–Q143)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -104,3 +106,4 @@ pass closed.
 **Q140** — live series lead is a new live object (not `score`).
 **Q141** — stall not on generic fixture or `participant`.
 **Q142** — toss not on the generic fixture.
+**Q143** — stall and toss are new catalog objects.

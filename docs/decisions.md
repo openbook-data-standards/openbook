@@ -1690,3 +1690,14 @@ Not wired in this pick.
 Rejected: generic fixture; a new live object; on `score`.
 
 **Supersedes:** none of Q141 (same home rule, toss).
+
+## Q143 — Stall and toss are new catalog objects — decided (A)
+
+Stall and toss are **new catalog objects**. Names wait. Not the `sport`
+record. Not live (Q141, Q142).
+
+Not wired in this pick.
+
+Rejected: extra keys on `sport`; no new objects.
+
+**Supersedes:** none of Q142.
