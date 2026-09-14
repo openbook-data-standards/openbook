@@ -1301,3 +1301,14 @@ Not wired in this pick.
 Rejected: a separate market per score, HT/FT combo, or margin band.
 
 **Supersedes:** none of Q106. Says where `line` sits for those boards.
+
+## Q108 — Player on the row is an id — decided (A)
+
+Player over/under names the person with their OpenBook id only. The
+name lives on the player record, not on the price row.
+
+Not wired in this pick.
+
+Rejected: id plus name on every price row.
+
+**Supersedes:** Q105 “roster own id” (same meaning, now explicit).
