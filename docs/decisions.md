@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q227 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q230 |
 
 The entries below stay in the order they were taken.
 
@@ -2792,3 +2792,48 @@ without saying do not invent.
 
 **Supersedes:** none of Q218 (the list leftover English stays; this is
 that rows are not invented from it now).
+
+## Q228 — Omitted public key is unmapped — decided (A)
+
+A public key **not in the file** is leftover English **unmapped**. The
+unknown catch-all plus a reason is only for a **row that exists** and
+cannot land on a named OpenBook market type. Absence is not a row. Do
+not invent a silent default. JSON object keys still wait. No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: omitted public key is the unknown catch-all; wait; stop this
+leftover.
+
+**Supersedes:** none of Q222 (unknown path stays; this is that omission
+is not that path).
+
+## Q229 — No second public list this walk — decided (A)
+
+**No second public list this walk.** This leftover is the first list:
+market types from a public exchange already cited. Sport or segment is
+a different map. Do not invent a second list name. JSON object keys
+still wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: sports next on this walk; segments next on this walk; wait.
+
+**Supersedes:** none of Q218 (the first list stays; this is that a second
+list is not this walk).
+
+## Q230 — First-list leftover English closes until keys exist — decided (A)
+
+This first-list leftover English **closes** until a later question names
+JSON object keys. Keys wait. Rows wait. Directory waits. Do not invent
+keys, rows, a filename, or a directory.
+
+Not wired in this pick.
+
+Rejected: keep asking leftover English on this first list; name the
+JSON object keys now; wait.
+
+**Supersedes:** the open first-list leftover walk as the next question
+on that leftover (Q218 leftover English stays; further questions wait
+on keys).

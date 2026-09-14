@@ -1,17 +1,12 @@
 # Still to do
 
-**Working on: maps first public list (Q218–).** Leftover English: market
-types from a public exchange already cited in this spec (Betfair
-Stream). When a file exists it is named for that list (**Q219**). Public
-key leftover English: the exchange’s market type id (**Q220**). Landing
-leftover English: an existing OpenBook market type id (**Q221**), only a
-market type id (**Q223**); unknown path is the existing unknown
-catch-all plus a reason (**Q222**). Many public keys may share one
-landing (**Q226**). Do not invent rows or JSON object keys (**Q189**,
-**Q224**, **Q227**). No maps directory or file until JSON object keys
-exist (**Q225**). Not a registry. Stay `0.3.0-draft`. Q55 parked.
+**Working on: spec walk stopped (Q230).** First public maps list leftover
+English is logged (**Q218–Q230**). JSON object keys wait. Rows wait. No
+maps directory or file until keys exist. No second public list this
+walk. Omitted public key is unmapped. Not a registry. Stay
+`0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q227**. Catalog pass closed and on the wire.
+Questions recorded through **Q230**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -42,19 +37,28 @@ id (**Q221**), only a market type id (**Q223**); unknown path is the
 existing unknown catch-all plus a reason (**Q222**). JSON object keys
 still wait (**Q224**). No maps directory or file until JSON object keys
 exist (**Q225**). Many public keys may share one landing (**Q226**). Do
-not invent rows (**Q227**).
+not invent rows (**Q227**). Omitted public key is unmapped (**Q228**).
+No second public list this walk (**Q229**). First-list leftover English
+closes until JSON object keys exist (**Q230**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**First public maps list — leftover English (Q218–Q227).** Market types
+**Stopped (Q230).** First public maps list leftover English is logged.
+JSON object keys wait. Rows wait. No maps directory or file until keys
+exist. Next leftover unnamed. Not Q55.
+
+## Goal (previous — first public maps list, closed)
+
+**First public maps list — leftover English (Q218–Q230).** Market types
 from a public exchange already cited in this spec (Betfair Stream).
 When a file exists it is named for that list. Public key leftover
 English: the exchange’s market type id. Landing leftover English: an
 existing OpenBook market type id, only a market type id; unknown path
 is the existing unknown catch-all plus a reason. Many public keys may
-share one landing. Do not invent rows or JSON object keys. No maps
+share one landing. Omitted public key is unmapped. No second public
+list this walk. Do not invent rows or JSON object keys. No maps
 directory or file until JSON object keys exist. Not a registry. Not Q55.
 
 ## Goal (previous — maps leftover, closed)
@@ -69,7 +73,7 @@ object keys wait (**Q189**); a public key at most once per file
 (**Q202**); row order not significant (**Q203**). First public list
 leftover English: market types from a public exchange already cited
 (Betfair Stream) (**Q218**). Shape is on the spec (§3.5). Not a feed
-document. No file until keys exist (**Q189**, **Q215**).
+document. No file until keys exist (**Q189**, **Q215**, **Q225**).
 
 ## Goal (previous — Q171 leftovers in this repo)
 
@@ -227,6 +231,9 @@ over/under. No new market type. No new field. On the wire.
 - **Q225** — no maps directory or file until JSON object keys exist; list leftover English being named does not unpark them.
 - **Q226** — many public keys may share one OpenBook market type id; public key at most once stays; no file.
 - **Q227** — do not invent rows; rows wait; no file.
+- **Q228** — omitted public key is unmapped; unknown catch-all is only for rows that exist; no file.
+- **Q229** — no second public list this walk; no file.
+- **Q230** — first-list leftover English closes until a later question names JSON object keys.
 
 ### Parked
 
@@ -244,9 +251,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next questions: Q228–Q230.** Omitted public key is unmapped, not the unknown catch-all; no second public list this walk; this leftover English closes until keys exist. Recs in chat. A pasted letter is not implement. Wire is a separate ask.
+**Next questions: Q231–Q233.** Next leftover unnamed; do not invent JSON object keys as the next leftover; do not unpark the Q171 fingerprint recipe. Recs in chat. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q227)
+## Done (Q32–Q230)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -332,3 +339,6 @@ feed list beside the validator. Not on the wire.
 **Q225** — no maps directory or file until JSON object keys exist.
 **Q226** — many public keys may share one landing.
 **Q227** — do not invent rows; rows wait.
+**Q228** — omitted public key is unmapped.
+**Q229** — no second public list this walk.
+**Q230** — first-list leftover English closes until JSON object keys exist.

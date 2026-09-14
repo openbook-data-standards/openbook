@@ -261,6 +261,12 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Public key at most once stays. No file. Not wired in this pick.
 - **Q227** — do not invent rows. Rows wait. No file. Not wired in this
   pick.
+- **Q228** — omitted public key is unmapped. Unknown catch-all is only
+  for rows that exist. No file. Not wired in this pick.
+- **Q229** — no second public list this walk. No file. Not wired in
+  this pick.
+- **Q230** — first-list leftover English closes until a later question
+  names JSON object keys. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
