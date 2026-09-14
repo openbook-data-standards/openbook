@@ -23,9 +23,9 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q233 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 · Q190–Q198 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
 | Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q230 |
 
@@ -2837,3 +2837,42 @@ JSON object keys now; wait.
 **Supersedes:** the open first-list leftover walk as the next question
 on that leftover (Q218 leftover English stays; further questions wait
 on keys).
+
+## Q231 — Next leftover unnamed; wait — decided (A)
+
+**Next leftover unnamed; wait.** Do not unpark the pinned fixture
+example, JSON object keys, or position token lists in this pick.
+
+Not wired in this pick.
+
+Rejected: pinned fixture example next; JSON object keys next; position
+token lists next.
+
+**Supersedes:** none of Q230 (first-list leftover stays closed until
+keys exist; this is that nothing else is named next).
+
+## Q232 — Do not invent JSON object keys as the next leftover — decided (A)
+
+**Do not invent JSON object keys.** Keys still wait (**Q189**, **Q224**,
+**Q230**). Closing the first-list leftover is not permission to name
+them.
+
+Not wired in this pick.
+
+Rejected: name the three keys now; skip maps keys forever; wait.
+
+**Supersedes:** none of Q189 (keys still wait; this is that they are not
+the next leftover).
+
+## Q233 — Do not unpark the Q171 recipe or prefix-file contents — decided (A)
+
+**Do not unpark.** Fingerprint recipe text waits. Prefix-file contents
+wait. Do not invent them (**Q216**).
+
+Not wired in this pick.
+
+Rejected: unpark the fingerprint recipe now; unpark prefix-file
+contents now; wait.
+
+**Supersedes:** none of Q216 (the wait stays; this is that this walk
+does not unpark them).

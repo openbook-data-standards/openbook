@@ -267,6 +267,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   this pick.
 - **Q230** — first-list leftover English closes until a later question
   names JSON object keys. Not wired in this pick.
+- **Q231** — next leftover unnamed; wait. Not wired in this pick.
+- **Q232** — do not invent JSON object keys. Keys still wait. Not wired
+  in this pick.
+- **Q233** — do not unpark the Q171 fingerprint recipe or prefix-file
+  contents. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

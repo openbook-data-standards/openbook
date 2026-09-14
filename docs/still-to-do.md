@@ -1,12 +1,12 @@
 # Still to do
 
-**Working on: spec walk stopped (Q230).** First public maps list leftover
-English is logged (**Q218–Q230**). JSON object keys wait. Rows wait. No
-maps directory or file until keys exist. No second public list this
-walk. Omitted public key is unmapped. Not a registry. Stay
-`0.3.0-draft`. Q55 parked.
+**Working on: spec walk stopped (Q230, Q231).** First public maps list
+leftover English is logged (**Q218–Q230**). JSON object keys wait. Rows
+wait. No maps directory or file until keys exist. Do not invent JSON
+object keys (**Q232**). Do not unpark the Q171 recipe or prefix-file
+contents (**Q233**). Not a registry. Stay `0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q230**. Catalog pass closed and on the wire.
+Questions recorded through **Q233**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -39,15 +39,18 @@ still wait (**Q224**). No maps directory or file until JSON object keys
 exist (**Q225**). Many public keys may share one landing (**Q226**). Do
 not invent rows (**Q227**). Omitted public key is unmapped (**Q228**).
 No second public list this walk (**Q229**). First-list leftover English
-closes until JSON object keys exist (**Q230**).
+closes until JSON object keys exist (**Q230**). Next leftover unnamed;
+wait (**Q231**). Do not invent JSON object keys (**Q232**). Do not unpark
+the Q171 recipe or prefix-file contents (**Q233**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Stopped (Q230).** First public maps list leftover English is logged.
-JSON object keys wait. Rows wait. No maps directory or file until keys
-exist. Next leftover unnamed. Not Q55.
+**Stopped (Q230, Q231).** First public maps list leftover English is
+logged. JSON object keys wait. Rows wait. No maps directory or file
+until keys exist. Next leftover unnamed. Do not invent keys. Do not
+unpark the Q171 recipe. Not Q55.
 
 ## Goal (previous — first public maps list, closed)
 
@@ -234,6 +237,9 @@ over/under. No new market type. No new field. On the wire.
 - **Q228** — omitted public key is unmapped; unknown catch-all is only for rows that exist; no file.
 - **Q229** — no second public list this walk; no file.
 - **Q230** — first-list leftover English closes until a later question names JSON object keys.
+- **Q231** — next leftover unnamed; wait.
+- **Q232** — do not invent JSON object keys; keys still wait.
+- **Q233** — do not unpark the Q171 fingerprint recipe or prefix-file contents.
 
 ### Parked
 
@@ -251,9 +257,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next questions: Q231–Q233.** Next leftover unnamed; do not invent JSON object keys as the next leftover; do not unpark the Q171 fingerprint recipe. Recs in chat. A pasted letter is not implement. Wire is a separate ask.
+**Next questions: Q234–Q236.** Named leftovers exhausted, stay stopped; stay draft; this question pass closes. Recs in chat. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q230)
+## Done (Q32–Q233)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -342,3 +348,6 @@ feed list beside the validator. Not on the wire.
 **Q228** — omitted public key is unmapped.
 **Q229** — no second public list this walk.
 **Q230** — first-list leftover English closes until JSON object keys exist.
+**Q231** — next leftover unnamed; wait.
+**Q232** — do not invent JSON object keys; keys still wait.
+**Q233** — do not unpark the Q171 recipe or prefix-file contents.
