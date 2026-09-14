@@ -1233,3 +1233,26 @@ Rejected: copying Get Line onto the market; adding min stake as well as
 max `limit`.
 
 **Supersedes:** none of Q45.
+
+## Q104 — Game-prop outcome shapes — decided (A)
+
+Industry encodes props as runner/contestant **strings** or new market ids.
+OpenBook does not. Typed extras per shape, same `market:*` ids, same
+`basis` / `segment`:
+
+- Correct score: two counts on the outcome (home amount, away amount)
+  plus the existing `other` bucket. Corners CS is `basis`, not a new type.
+- HT/FT: two results on the outcome (HT, FT), each home / away / draw.
+- Winning margin: who + a number or band. Band field not named yet.
+- Double chance / odd-even / first-to-score none: grow `side` with tokens
+  the vocab already claims. Tokens not added until named in a later Q.
+- Player over/under: existing over/under + roster `player` on the outcome.
+  Do not explode a new `market:*` per player stat in this pick.
+
+Rejected: one free-text selection string as identity (Pinnacle contestant /
+Betfair runner); new `market:*` per prop, period, or unit (Odds API / UOF).
+
+No new field names in this pick. Wire waits for the names.
+
+**Supersedes:** none of Q98. Completes “every shape on corners” for
+selections.

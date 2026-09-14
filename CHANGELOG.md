@@ -49,6 +49,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q102** — keep `sport:*` ids; map vendor integers with `identifier` /
   `sameAs` (log only).
 - **Q103** — market `limit` is enough; Get Line is out of scope (log only).
+- **Q104** — typed prop outcomes (CS two counts, HT/FT two results, player
+  on the outcome). Field names not in this pick (log only).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q103**. Catalog pass closed and on the wire.
+Questions recorded through **Q104**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**).
@@ -26,6 +26,7 @@ Not the Pinnacle Bets API.
 - **Q102** — keep `sport:*` ids; map vendor integers with `identifier` /
   `sameAs`.
 - **Q103** — market `limit` is enough; Get Line is out of scope.
+- **Q104** — typed prop outcomes. Field names not chosen yet.
 
 ### Parked
 
@@ -38,9 +39,10 @@ Not the Pinnacle Bets API.
 
 ## Next question (not decided)
 
-- This Lines walk is closed. Parked: **Q86**. Later: **Q55**.
+- Names for the Q104 outcome fields (CS pair, HT/FT pair, player on outcome,
+  extra `side` tokens).
 
-## Done (Q32–Q103)
+## Done (Q32–Q104)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -50,3 +52,4 @@ protocol-fit pass closed.
 **Q97–Q103** — Pinnacle Lines: specials are markets; optional `basis`;
 statuses/settled; omit parlay flags; one fixture; `sport:*` ids; Get Line
 out of scope.
+**Q104** — typed prop outcomes; names next.
