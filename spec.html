@@ -63,6 +63,17 @@
 <p>For leagues, participants, venues and territories, <strong><code>sameAs</code></strong> holds the Wikidata entity URL (<code>https://www.wikidata.org/entity/Q9617</code>) — the shared cross-publisher entity id: <strong>REQUIRED when one exists, <code>null</code> when it does not</strong>. A string to pin, never a runtime dependency.</p>
 <h3 id="3-4-external-ids-identifier">3.4 External ids — <code>identifier</code></h3>
 <p>Any object MAY carry <code>identifier</code>: a list of schema.org <code>PropertyValue</code> (<code>{propertyID, value}</code>). Optional, never canonical.</p>
+<h3 id="3-5-maps-onto-public-taxonomies">3.5 Maps onto public taxonomies</h3>
+<p>Public market and segment keys map onto existing OpenBook ids, or onto the unknown catch-all with a reason (Q181, Q185). This is not a feed document and is not on the odds wire.</p>
+<p>When files exist:</p>
+<ul>
+<li>They live in <strong>one directory named for maps</strong>, not inside the vocab lists (Q182, Q183).</li>
+<li><strong>One JSON file per public list</strong> (Q187, Q188).</li>
+<li>Each file is a <strong>JSON array of row objects</strong> (Q190). JSON object keys wait; do not invent names (Q189). Row meaning stays leftover English: public key plus an existing OpenBook id, <strong>or</strong> the unknown catch-all plus a reason.</li>
+<li>A reason is leftover English (a free string), not a token list (Q191). It is required only on the unknown catch-all and <strong>forbidden</strong> when the landing is an existing OpenBook id (Q186, Q192).</li>
+<li>In one file, a public key appears <strong>at most once</strong> (Q193). Row order is not significant (Q194).</li>
+</ul>
+<p>The first public list name waits. Do not invent a taxonomy. No directory and no file until that name exists (Q184, Q207). Cite at least one public taxonomy when a list is named.</p>
 <h2 id="4-the-hierarchy">4. The hierarchy</h2>
 <pre class="mermaid">flowchart TB
   sport[sport — shared] --&gt; league[league — publisher-own]

@@ -33,6 +33,16 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
+- **Maps leftover on the spec** (Q181–Q194, Q207) — public market /
+  segment keys onto existing OpenBook ids, or the unknown catch-all
+  plus a reason. One directory named for maps when files exist, not
+  inside the vocab lists; one JSON file per public list; array of row
+  objects; object keys wait; reason only on the unknown catch-all;
+  public key at most once; order not significant. First public list
+  name waits. No directory and no file until then. Not a feed document;
+  not on the odds wire.
+  [`spec/openbook.md`](spec/openbook.md) §3.5;
+  [`docs/roadmap.md`](docs/roadmap.md).
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) §15 last
   bullet names the rejected thing (an OpenBook-run entity database);
   §16 records protocols studied after the first pass.

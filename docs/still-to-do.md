@@ -2,9 +2,10 @@
 
 **Working on: spec walk stopped (Q195, Q197–Q209).** This question pass
 is closed (**Q209**). Named leftovers exhausted. Sitting leftovers stay
-sitting. Stay `0.3.0-draft`. Maps leftover shape is logged
-(**Q181–Q194**). No maps directory or file until a list is named
-(**Q207**). Q55 parked. Q96 not this spec. Q79 / Q81 stay omit. No file.
+sitting. Stay `0.3.0-draft`. Maps leftover shape is on the spec
+(**Q181–Q194**, **Q207**); not a feed document. No maps directory or file
+until a list is named (**Q207**). Q55 parked. Q96 not this spec. Q79 /
+Q81 stay omit. No file.
 
 Questions recorded through **Q209**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
@@ -39,7 +40,8 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 **Stopped. Question pass closed (Q209).** Named leftovers exhausted.
 Sitting leftovers stay sitting. Stay `0.3.0-draft`. Maps leftover shape
-is logged. First public list name waits (**Q184**). No maps directory or
+is logged. Maps leftover shape is on the spec. First public list name
+waits (**Q184**). No maps directory or
 file. Q55 parked. No file.
 
 ## Goal (previous — maps leftover, closed)
@@ -52,8 +54,8 @@ lists (**Q182**, **Q183**). One JSON file per public list when files
 exist (**Q187**, **Q188**): a JSON array of row objects (**Q190**);
 object keys wait (**Q189**); a public key at most once per file
 (**Q193**); row order not significant (**Q194**). Cite at least one
-public taxonomy. First public list name waits (**Q184**). Not a wire
-change. No file.
+public taxonomy. First public list name waits (**Q184**). Shape is on the spec
+(§3.5). Not a feed document. No file.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
