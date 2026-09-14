@@ -7,10 +7,11 @@ not a token list (**Q191**). One directory named for maps, not inside
 the vocab lists (**Q182**, **Q183**). One JSON file per public list when
 files exist (**Q187**, **Q188**): a JSON array of row objects (**Q190**);
 object keys wait (**Q189**); a public key at most once per file
-(**Q193**). First public list name waits (**Q184**). Not a wire change.
-No file now. Not Q55. Not position token lists.
+(**Q193**); row order not significant (**Q194**). First public list name
+waits (**Q184**). Not a wire change. No file now. Not Q55. Not position
+token lists.
 
-Questions recorded through **Q193**. Catalog pass closed and on the wire.
+Questions recorded through **Q194**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -41,8 +42,9 @@ English, not a token list (**Q191**). One directory named for maps, not
 inside the vocab lists (**Q182**, **Q183**). One JSON file per public
 list when files exist (**Q187**, **Q188**): a JSON array of row objects
 (**Q190**); object keys wait (**Q189**); a public key at most once per
-file (**Q193**). Cite at least one public taxonomy. First public list
-name waits (**Q184**). Not a wire change. No file now.
+file (**Q193**); row order not significant (**Q194**). Cite at least one
+public taxonomy. First public list name waits (**Q184**). Not a wire
+change. No file now.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -155,6 +157,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q191** — reason is leftover English (a free string); do not invent a reason list; no file in this pick.
 - **Q192** — reason forbidden when the landing is an existing OpenBook id; no file in this pick.
 - **Q193** — in one file, a public key at most once; no file in this pick.
+- **Q194** — row order is not significant; do not invent a sort; no file in this pick.
 
 ### Parked
 
@@ -172,9 +175,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q194.** Does row order in the file matter? Rec: no; do not invent a sort; no file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q195.** Stop this leftover until a public list is named? Rec: stop; shape logged; name waits (**Q184**); no file; not Q55. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q193)
+## Done (Q32–Q194)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -226,3 +229,4 @@ feed list beside the validator. Not on the wire.
 **Q191** — reason is leftover English (a free string); not a token list.
 **Q192** — reason forbidden when the landing is an existing OpenBook id.
 **Q193** — in one file, a public key at most once.
+**Q194** — row order is not significant; do not invent a sort.
