@@ -1,17 +1,10 @@
 # Still to do
 
-**Working on: maps leftover (Q181–).** Public key plus an existing
-OpenBook id, or the unknown catch-all plus a reason (**Q185**). Reason
-only on the unknown catch-all (**Q186**, **Q201**); leftover English,
-not a token list (**Q200**). One directory named for maps, not inside
-the vocab lists (**Q182**, **Q183**). One JSON file per public list when
-files exist (**Q187**, **Q188**): a JSON array of row objects (**Q199**);
-object keys wait (**Q189**); a public key at most once per file
-(**Q202**); row order not significant (**Q203**). First public list name
-waits (**Q184**). Not a wire change. No file now. Not Q55. Not position
-token lists.
+**Working on: spec walk stopped (Q204).** Maps leftover shape is logged
+(**Q181–Q189**, **Q199–Q203**). First public list name waits (**Q184**).
+No file. Not Q55. Not a version cut. Not position token lists.
 
-Questions recorded through **Q203**. Catalog pass closed and on the wire.
+Questions recorded through **Q204**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -30,22 +23,28 @@ Roadmap pass closed (**Q171–Q173**): register not an entity database;
 profiles are separate specifications; feed list is validator tooling.
 Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
 (**Q180**), then the maps leftover unparked (**Q181**). Q171 leftovers
-in this repo logged (**Q190–Q198**).
+in this repo logged (**Q190–Q198**). Maps leftover shape closed
+(**Q181–Q189**, **Q199–Q203**). Spec walk stopped (**Q204**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Maps leftover — this is the open walk.** Public key plus an existing
-OpenBook id, or the unknown catch-all plus a reason (**Q181**, **Q185**).
-Reason only on the unknown catch-all (**Q186**, **Q201**); leftover
-English, not a token list (**Q200**). One directory named for maps, not
-inside the vocab lists (**Q182**, **Q183**). One JSON file per public
-list when files exist (**Q187**, **Q188**): a JSON array of row objects
-(**Q199**); object keys wait (**Q189**); a public key at most once per
-file (**Q202**); row order not significant (**Q203**). Cite at least one
+**Stopped (Q204).** Maps leftover shape is logged. First public list
+name waits (**Q184**). No file. Not Q55. Not a version cut.
+
+## Goal (previous — maps leftover, closed)
+
+**Maps leftover.** Public key plus an existing OpenBook id, or the
+unknown catch-all plus a reason (**Q181**, **Q185**). Reason only on the
+unknown catch-all (**Q186**, **Q201**); leftover English, not a token
+list (**Q200**). One directory named for maps, not inside the vocab
+lists (**Q182**, **Q183**). One JSON file per public list when files
+exist (**Q187**, **Q188**): a JSON array of row objects (**Q199**);
+object keys wait (**Q189**); a public key at most once per file
+(**Q202**); row order not significant (**Q203**). Cite at least one
 public taxonomy. First public list name waits (**Q184**). Not a wire
-change. No file now.
+change. No file.
 
 ## Goal (previous — Q171 leftovers in this repo)
 
@@ -179,6 +178,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q201** — reason forbidden when the landing is an existing OpenBook id; no file in this pick.
 - **Q202** — in one file, a public key at most once; no file in this pick.
 - **Q203** — row order is not significant; do not invent a sort; no file in this pick.
+- **Q204** — stop this spec walk. Maps shape logged. First public list name waits. No file.
 
 ### Parked
 
@@ -196,11 +196,11 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q204.** Stop this leftover until a public list is named? Rec: stop; shape logged; name waits (**Q184**); no file; not Q55. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q205.** What leftover is next? Rec: wait; named leftovers sit; do not invent a list; not Q55. A pasted letter is not implement. Wire is a separate ask.
 
 Sitting (not this walk): corpus case; position token lists; Q55.
 
-## Done (Q32–Q203)
+## Done (Q32–Q204)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -262,3 +262,4 @@ feed list beside the validator. Not on the wire.
 **Q201** — reason forbidden when the landing is an existing OpenBook id.
 **Q202** — in one file, a public key at most once.
 **Q203** — row order is not significant; do not invent a sort.
+**Q204** — stop this spec walk; maps shape logged; first public list name waits.

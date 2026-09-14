@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q203 |
+| Maps leftover | Q181–Q189 · Q199–Q204 |
 
 The entries below stay in the order they were taken.
 
@@ -2479,3 +2479,16 @@ Not wired in this pick.
 Rejected: rows must be sorted; order waits; stop this leftover.
 
 **Supersedes:** none of Q202 (uniqueness stays; this is order).
+
+## Q204 — Stop this spec walk — decided (A)
+
+Maps leftover shape is logged (**Q181–Q189**, **Q199–Q203**). The first
+public list name waits (**Q184**). This walk **stops**. Not Q55. Not a
+version cut. Not inventing a public list. No file.
+
+Not wired in this pick.
+
+Rejected: name a public list in this pick; keep walking file-stem
+leftover English; unpark Q55 or cut a new draft version.
+
+**Supersedes:** Q203 as an open “what is next” (shape stays).
