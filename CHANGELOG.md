@@ -115,6 +115,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q161** — elected rules closed; then best-of. Field leftover English at
   implement. Not wired.
 - **Q162** — best-of sits on live `series`. Names wait. Not wired.
+- **Q163** — the number is wins needed to take the series (first to N).
+  Names wait. Not wired.
 
 
 ### Removed

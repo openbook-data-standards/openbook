@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 |
 | Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
@@ -1947,3 +1947,16 @@ Rejected: on `stage`; on the generic fixture; skip best-of.
 
 **Supersedes:** none of Q139 (round stays on `stage`; length is with
 the live lead).
+
+## Q163 — The number is wins needed — decided (A)
+
+The number is **wins needed to take the series** (first to N). One
+integer. Not total games (best of N). Not games remaining. Not two
+numbers. Names wait.
+
+Not wired in this pick.
+
+Rejected: total games in the series; games remaining; both.
+
+**Supersedes:** none of Q152 or Q162 (`wins[].total` stays games won;
+this is the target).
