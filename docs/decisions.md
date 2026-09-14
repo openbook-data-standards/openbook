@@ -1727,3 +1727,11 @@ Not wired in this pick.
 Rejected: name the objects in this pick.
 
 **Supersedes:** none of Q144 (homes stay; names still wait).
+
+## Q146 — Q86 leftovers pass closed — decided (A)
+
+Homes stop here. Object names and wire wait. No new field.
+
+Rejected: keep going; name the objects now.
+
+**Supersedes:** Q145 as an open walk (homes closed; this closes the pass).

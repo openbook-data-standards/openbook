@@ -1,22 +1,25 @@
 # Still to do
 
-Questions recorded through **Q145**. Catalog pass closed and on the wire.
+Questions recorded through **Q146**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
 closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q118–Q125**) and on the wire. Yes/no player pass closed
-(**Q126–Q132**) and on the wire. Spec walk stopped, then unparked
-(**Q133**, **Q134**).
+(**Q126–Q132**) and on the wire. Q86 leftovers pass closed
+(**Q134–Q146**); object names wait.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Q86 leftovers.** Homes locked. Racing stall and cricket toss: two new
-catalog objects (names wait). Playoff series: round on `stage`; lead is
-a new live object (name waits). Not more keys on every fixture. No new
-field in this pick.
+**Closed.** Q86 leftovers. Homes locked. Names and wire wait.
+
+## Goal (previous — Q86 leftovers, closed)
+
+Racing stall and cricket toss: two new catalog objects (names wait).
+Playoff series: round on `stage`; lead is a new live object (name waits).
+Not more keys on every fixture.
 
 ## Goal (previous — yes/no player, closed)
 
@@ -54,32 +57,24 @@ over/under. No new market type. No new field. On the wire.
   (already true on the schema).
 - **Q118** — plus-band walk.
 - **Q133** — stop this spec walk (superseded as the next area by Q134).
-- **Q134** — unpark Q86 leftovers.
-- **Q135** — all three leftovers in this pass.
-- **Q136** — still not keys on every fixture (keep Q86).
-- **Q137** — each leftover its own home.
-- **Q138** — stall and toss are sport slices; series is not.
-- **Q139** — series round on `stage`; the lead is live.
-- **Q140** — live series lead is a new live object (not `score`).
-- **Q141** — stall is not on the generic fixture or `participant` row.
-- **Q142** — toss is not on the generic fixture.
-- **Q143** — stall and toss are new catalog objects (not `sport`, not live).
-- **Q144** — two catalog objects, not one bag.
-- **Q145** — home rules closed. Object names wait.
+- **Q134–Q146** — Q86 leftovers: homes locked; two catalog objects for
+  stall and toss; series lead a new live object; pass closed; names wait.
 
 ### Parked
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
+- **Q134–Q146** — object names for stall, toss, and series lead.
 
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
+- **Q134–Q146** — stall, toss, and series-lead objects (names first).
 
 ## Next question (not decided)
 
-- Close this Q86 leftovers pass here?
+- What is next?
 
-## Done (Q32–Q145)
+## Done (Q32–Q146)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -99,15 +94,4 @@ pass closed.
 `other` still allowed; pass closed.
 **Q126–Q132** — player on yes/no rows; pass closed; on the wire.
 **Q133** — stop this spec walk.
-**Q134** — unpark Q86 leftovers.
-**Q135** — all three leftovers in this pass.
-**Q136** — still not keys on every fixture.
-**Q137** — each leftover its own home.
-**Q138** — stall and toss are sport slices; series is not.
-**Q139** — series round on `stage`; the lead is live.
-**Q140** — live series lead is a new live object (not `score`).
-**Q141** — stall not on generic fixture or `participant`.
-**Q142** — toss not on the generic fixture.
-**Q143** — stall and toss are new catalog objects.
-**Q144** — two catalog objects, not one bag.
-**Q145** — home rules closed.
+**Q134–Q146** — Q86 leftovers; homes locked; pass closed; names wait.
