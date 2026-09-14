@@ -31,10 +31,10 @@
   </nav>
 </div></header>
 <main id="main"><div class="wrap page">
-<p class="crumb"><a href="./">Home</a> · docs/examples.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#1-find-the-feed">1. Find the feed</a><a href="#2-who-is-transmitting">2. Who is transmitting</a><a href="#3-the-fixture-the-catalogue">3. The fixture (the catalogue)</a><a href="#4-a-priced-market-as-a-document">4. A priced market, as a document</a><a href="#5-caught-up-then-quiet-is-bounded">5. Caught up, then quiet is bounded</a><a href="#6-kick-off-delayed">6. Kick-off delayed</a><a href="#7-prices-move">7. Prices move</a><a href="#8-a-market-comes-back-on">8. A market comes back on</a><a href="#9-the-score">9. The score</a><a href="#10-a-grade">10. A grade</a><a href="#the-rest-of-the-corpus">The rest of the corpus</a></nav><article class="doc"><h1 id="examples-one-match-in-order">Examples — one match, in order</h1>
-<p>This is the OpenBook equivalent of <a href="https://gtfs.org/getting-started/example-feed/">GTFS's example feed</a>: worked documents that already live in <a href="examples.html"><code>../examples/</code></a>, shown in the order a consumer would see them. They validate against the schemas. They are <strong>not</strong> a live sandbox.</p>
-<p>The sample match is <strong>Arsenal v Manchester City</strong>, fixture <code>EVT-88213</code>, 19 September 2026. Publisher <code>acme-feeds</code> is fictional. Source names in the sample (<code>acme-book</code>, and any others) are <strong>labels on prices</strong>, not a requirement to use those books. OpenBook is vendor-neutral.</p>
-<p>Plain-language story: the <a href="guide.md">guide</a>. Rules: the <a href="spec.html">specification</a>. Raw dump of every file: <a href="schemas.html">schemas § examples</a>.</p>
+<p class="crumb"><a href="./">Home</a> · docs/examples.md</p><div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#1-find-the-feed">1. Find the feed</a><a href="#2-who-is-transmitting">2. Who is transmitting</a><a href="#3-the-fixture-the-catalogue">3. The fixture (the catalogue)</a><a href="#4-prices-move">4. Prices move</a><a href="#5-a-priced-market-as-a-document">5. A priced market, as a document</a><a href="#6-caught-up-then-quiet-is-bounded">6. Caught up, then quiet is bounded</a><a href="#7-kick-off-delayed">7. Kick-off delayed</a><a href="#8-a-market-comes-back-on">8. A market comes back on</a><a href="#9-the-score">9. The score</a><a href="#10-a-grade">10. A grade</a><a href="#the-rest-of-the-corpus">The rest of the corpus</a></nav><article class="doc"><h1 id="examples-one-match-in-order">Examples — one match, in order</h1>
+<p>This is the OpenBook equivalent of <a href="https://gtfs.org/getting-started/example-feed/">GTFS's example feed</a>: worked documents that already live in <a href="examples.html"><code>../examples/</code></a>, shown in <code>sequence</code> order, which is the order a consumer would apply them. They validate against the schemas. They are <strong>not</strong> a live sandbox.</p>
+<p>The sample match is <strong>Arsenal v Manchester City</strong>, fixture <code>EVT-88213</code>, 19 September 2026. Publisher <code>acme-feeds</code> is fictional. Source names in the sample (<code>acme-book</code>, <code>pinnacle</code>, <code>bigbook</code>) are <strong>labels on prices</strong>, not a requirement to use those books. OpenBook is vendor-neutral.</p>
+<p>Plain-language story: the <a href="guide.html">guide</a>. Rules: the <a href="spec.html">specification</a>. Raw dump of every file: <a href="schemas.html">schemas § examples</a>.</p>
 <hr>
 <h2 id="1-find-the-feed">1. Find the feed</h2>
 <p>A publisher SHOULD offer one discovery URL. <code>ttl</code> is how long a consumer may cache this list. Snapshot, stream, and docs are named feeds — not the publisher object.</p>
@@ -75,7 +75,7 @@
   ]
 }</pre>
 <h2 id="2-who-is-transmitting">2. Who is transmitting</h2>
-<p>The publisher record is identity: name, currency, heartbeat bound, and the <strong>sources</strong> this feed carries. One feed, two books in the sample.</p>
+<p>The publisher record is identity: name, currency, heartbeat bound, and the <strong>sources</strong> this feed carries. One feed, three books in the sample (<code>acme-book</code>, <code>pinnacle</code>, <code>bigbook</code>).</p>
 <p>Source: <a href="examples/publisher.example.json"><code>publisher.example.json</code></a></p>
 <pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
@@ -98,11 +98,16 @@
       &quot;id&quot;: &quot;pinnacle&quot;,
       &quot;name&quot;: &quot;Pinnacle&quot;,
       &quot;sourceType&quot;: &quot;sportsbook&quot;
+    },
+    {
+      &quot;id&quot;: &quot;bigbook&quot;,
+      &quot;name&quot;: &quot;Big Book&quot;,
+      &quot;sourceType&quot;: &quot;sportsbook&quot;
     }
   ]
 }</pre>
 <h2 id="3-the-fixture-the-catalogue">3. The fixture (the catalogue)</h2>
-<p>Standard facts: sport, league, start time, participants with <code>role</code> and <code>order</code>, Wikidata <code>sameAs</code> when it exists. This is the printed list, not a price tick.</p>
+<p>Standard facts: sport, league, start time, participants with <code>role</code> and <code>order</code>, Wikidata <code>sameAs</code> when it exists. This is the printed list, not a price tick. Sequence <code>104870</code>.</p>
 <p>Source: <a href="examples/fixture.example.json"><code>fixture.example.json</code></a></p>
 <pre>{
   &quot;@context&quot;: &quot;https://schema.org&quot;,
@@ -172,81 +177,8 @@
     }
   ]
 }</pre>
-<h2 id="4-a-priced-market-as-a-document">4. A priced market, as a document</h2>
-<p>A market snapshot for one source. <code>limit</code> is on the document; later price-only ticks do not have to repeat it.</p>
-<p>Source: <a href="examples/market.example.json"><code>market.example.json</code></a></p>
-<pre>{
-  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
-  &quot;sequence&quot;: 104880,
-  &quot;dateModified&quot;: &quot;2026-09-19T14:05:00Z&quot;,
-  &quot;fixture&quot;: &quot;EVT-88213&quot;,
-  &quot;marketType&quot;: &quot;market:spread&quot;,
-  &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
-  &quot;line&quot;: &quot;-0.5&quot;,
-  &quot;source&quot;: &quot;bigbook&quot;,
-  &quot;provenance&quot;: &quot;observed&quot;,
-  &quot;status&quot;: &quot;open&quot;,
-  &quot;limit&quot;: {
-    &quot;amount&quot;: &quot;500&quot;
-  },
-  &quot;outcomes&quot;: [
-    {
-      &quot;side&quot;: &quot;home&quot;,
-      &quot;odds&quot;: &quot;1.91&quot;,
-      &quot;line&quot;: &quot;-0.5&quot;,
-      &quot;active&quot;: true
-    },
-    {
-      &quot;side&quot;: &quot;away&quot;,
-      &quot;odds&quot;: &quot;1.95&quot;,
-      &quot;line&quot;: &quot;0.5&quot;,
-      &quot;active&quot;: true
-    }
-  ]
-}</pre>
-<h2 id="5-caught-up-then-quiet-is-bounded">5. Caught up, then quiet is bounded</h2>
-<p>After snapshot + replay, the stream says <code>snapshotComplete</code>. Heartbeats on the same stream mean “still here”; silence longer than <code>heartbeatMs</code> is an alarm, not a feature.</p>
-<p>Sources: <a href="examples/snapshot_complete.example.json"><code>snapshot_complete.example.json</code></a>, <a href="examples/heartbeat.example.json"><code>heartbeat.example.json</code></a></p>
-<pre>{
-  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
-  &quot;sequence&quot;: 104900,
-  &quot;datePublished&quot;: &quot;2026-09-19T14:37:20Z&quot;,
-  &quot;publisher&quot;: &quot;acme-feeds&quot;,
-  &quot;object&quot;: &quot;fixture&quot;,
-  &quot;action&quot;: &quot;snapshotComplete&quot;,
-  &quot;sport&quot;: &quot;soccer&quot;,
-  &quot;id&quot;: &quot;EVT-88213&quot;,
-  &quot;changes&quot;: {}
-}</pre>
-<pre>{
-  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
-  &quot;sequence&quot;: 104901,
-  &quot;datePublished&quot;: &quot;2026-09-19T14:37:25Z&quot;,
-  &quot;publisher&quot;: &quot;acme-feeds&quot;,
-  &quot;object&quot;: &quot;publisher&quot;,
-  &quot;action&quot;: &quot;heartbeat&quot;,
-  &quot;sport&quot;: &quot;unknown&quot;,
-  &quot;changes&quot;: {}
-}</pre>
-<h2 id="6-kick-off-delayed">6. Kick-off delayed</h2>
-<p>A fixture update is a Merge Patch: only the fields that changed. <code>x_</code> is a vendor extra; consumers ignore unrecognised fields.</p>
-<p>Source: <a href="examples/fixture_update.example.json"><code>fixture_update.example.json</code></a></p>
-<pre>{
-  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
-  &quot;sequence&quot;: 104902,
-  &quot;datePublished&quot;: &quot;2026-09-19T13:05:00Z&quot;,
-  &quot;publisher&quot;: &quot;acme-feeds&quot;,
-  &quot;object&quot;: &quot;fixture&quot;,
-  &quot;action&quot;: &quot;update&quot;,
-  &quot;sport&quot;: &quot;soccer&quot;,
-  &quot;id&quot;: &quot;EVT-88213&quot;,
-  &quot;changes&quot;: {
-    &quot;startDate&quot;: &quot;2026-09-19T14:15:00Z&quot;,
-    &quot;x_reason&quot;: &quot;kick-off delayed 15 minutes&quot;
-  }
-}</pre>
-<h2 id="7-prices-move">7. Prices move</h2>
-<p><code>odds/change</code> carries only what moved. Three sources in one message in this sample — licensed, official, and observed — so a consumer can tell them apart. A suspended spread is a status, not a zero price.</p>
+<h2 id="4-prices-move">4. Prices move</h2>
+<p><code>odds/change</code> carries only what moved. Sequence <code>104871</code> — the first live tick after the fixture. Three sources in one message in this sample — licensed, official, and observed — so a consumer can tell them apart. A suspended spread is a status, not a zero price.</p>
 <p>Source: <a href="examples/odds_change.example.json"><code>odds_change.example.json</code></a></p>
 <pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
@@ -311,8 +243,81 @@
     ]
   }
 }</pre>
+<h2 id="5-a-priced-market-as-a-document">5. A priced market, as a document</h2>
+<p>A market snapshot for one source (<code>bigbook</code>). <code>limit</code> is on the document; later price-only ticks do not have to repeat it. Sequence <code>104880</code>.</p>
+<p>Source: <a href="examples/market.example.json"><code>market.example.json</code></a></p>
+<pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 104880,
+  &quot;dateModified&quot;: &quot;2026-09-19T14:05:00Z&quot;,
+  &quot;fixture&quot;: &quot;EVT-88213&quot;,
+  &quot;marketType&quot;: &quot;market:spread&quot;,
+  &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+  &quot;line&quot;: &quot;-0.5&quot;,
+  &quot;source&quot;: &quot;bigbook&quot;,
+  &quot;provenance&quot;: &quot;observed&quot;,
+  &quot;status&quot;: &quot;open&quot;,
+  &quot;limit&quot;: {
+    &quot;amount&quot;: &quot;500&quot;
+  },
+  &quot;outcomes&quot;: [
+    {
+      &quot;side&quot;: &quot;home&quot;,
+      &quot;odds&quot;: &quot;1.91&quot;,
+      &quot;line&quot;: &quot;-0.5&quot;,
+      &quot;active&quot;: true
+    },
+    {
+      &quot;side&quot;: &quot;away&quot;,
+      &quot;odds&quot;: &quot;1.95&quot;,
+      &quot;line&quot;: &quot;0.5&quot;,
+      &quot;active&quot;: true
+    }
+  ]
+}</pre>
+<h2 id="6-caught-up-then-quiet-is-bounded">6. Caught up, then quiet is bounded</h2>
+<p>After snapshot + replay, the stream says <code>snapshotComplete</code> (<code>104900</code>). Heartbeats on the same stream (<code>104901</code>) mean “still here”; silence longer than <code>heartbeatMs</code> is an alarm, not a feature.</p>
+<p>Sources: <a href="examples/snapshot_complete.example.json"><code>snapshot_complete.example.json</code></a>, <a href="examples/heartbeat.example.json"><code>heartbeat.example.json</code></a></p>
+<pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 104900,
+  &quot;datePublished&quot;: &quot;2026-09-19T14:37:20Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;fixture&quot;,
+  &quot;action&quot;: &quot;snapshotComplete&quot;,
+  &quot;sport&quot;: &quot;soccer&quot;,
+  &quot;id&quot;: &quot;EVT-88213&quot;,
+  &quot;changes&quot;: {}
+}</pre>
+<pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 104901,
+  &quot;datePublished&quot;: &quot;2026-09-19T14:37:25Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;publisher&quot;,
+  &quot;action&quot;: &quot;heartbeat&quot;,
+  &quot;sport&quot;: &quot;unknown&quot;,
+  &quot;changes&quot;: {}
+}</pre>
+<h2 id="7-kick-off-delayed">7. Kick-off delayed</h2>
+<p>A fixture update is a Merge Patch: only the fields that changed. <code>x_</code> is a vendor extra; consumers ignore unrecognised fields. Sequence <code>104902</code>.</p>
+<p>Source: <a href="examples/fixture_update.example.json"><code>fixture_update.example.json</code></a></p>
+<pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 104902,
+  &quot;datePublished&quot;: &quot;2026-09-19T13:05:00Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;fixture&quot;,
+  &quot;action&quot;: &quot;update&quot;,
+  &quot;sport&quot;: &quot;soccer&quot;,
+  &quot;id&quot;: &quot;EVT-88213&quot;,
+  &quot;changes&quot;: {
+    &quot;startDate&quot;: &quot;2026-09-19T14:15:00Z&quot;,
+    &quot;x_reason&quot;: &quot;kick-off delayed 15 minutes&quot;
+  }
+}</pre>
 <h2 id="8-a-market-comes-back-on">8. A market comes back on</h2>
-<p>After a goal, the observed spread re-opens. <code>msgType</code> / <code>reason</code> / <code>references</code> point at the earlier sequence. Taking a market off (or putting it back) is <code>market/update</code>, not a sentinel odds value.</p>
+<p>After a goal, the observed spread re-opens. <code>msgType</code> / <code>reason</code> / <code>references</code> point at the earlier sequence. Taking a market off (or putting it back) is <code>market/update</code>, not a sentinel odds value. Sequence <code>105330</code>.</p>
 <p>Source: <a href="examples/market_update.example.json"><code>market_update.example.json</code></a></p>
 <pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
@@ -337,7 +342,7 @@
   }
 }</pre>
 <h2 id="9-the-score">9. The score</h2>
-<p>Live, second half, 67:00 on the broadcast clock. First half is <strong>down</strong> (final, once). Goals and corners are separate score lines.</p>
+<p>Live, second half, 67:00 on the broadcast clock. First half is <strong>down</strong> (final, once). Goals and corners are separate score lines. Sequence <code>105410</code>.</p>
 <p>Source: <a href="examples/score.example.json"><code>score.example.json</code></a></p>
 <pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
@@ -410,7 +415,7 @@
   }
 }</pre>
 <h2 id="10-a-grade">10. A grade</h2>
-<p>Once a segment is down, the book grades a market against it. This grade is first-half total 1.5: over wins, under loses. A correction is a new grade with <code>supersedes</code>, never an edit.</p>
+<p>Once a segment is down, the book grades a market against it. This grade is first-half total 1.5: over wins, under loses. A correction is a new grade with <code>supersedes</code>, never an edit. Sequence <code>106001</code>.</p>
 <p>Source: <a href="examples/grade.example.json"><code>grade.example.json</code></a></p>
 <pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
@@ -445,8 +450,8 @@
 }</pre>
 <hr>
 <h2 id="the-rest-of-the-corpus">The rest of the corpus</h2>
-<p>These files are in <a href="examples.html"><code>../examples/</code></a> too. They are the valid half of the conformance suite.</p>
-<div class="table-wrap"><table><thead><tr><th>File</th><th>What it is</th></tr></thead><tbody><tr><td><a href="examples/participant.example.json"><code>participant.example.json</code></a></td><td>A team or individual as a catalogue object</td></tr><tr><td><a href="examples/player.example.json"><code>player.example.json</code></a></td><td>Roster membership</td></tr><tr><td><a href="examples/stage.example.json"><code>stage.example.json</code></a></td><td>A named slice of a season</td></tr><tr><td><a href="examples/lineup.example.json"><code>lineup.example.json</code></a></td><td>Starting <code>player</code> ids for one fixture</td></tr><tr><td><a href="examples/odds_change_conflated.example.json"><code>odds_change_conflated.example.json</code></a></td><td>A tick that skipped intermediates (<code>conflated: true</code>)</td></tr></tbody></table></div>
+<p>These files are in <a href="examples.html"><code>../examples/</code></a> too. They are the valid half of the conformance suite. Catalogue objects use earlier sequences than the match stream above; the conflated tick sits between <code>104871</code> and <code>104880</code>.</p>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>Sequence</th><th>What it is</th></tr></thead><tbody><tr><td><a href="examples/participant.example.json"><code>participant.example.json</code></a></td><td>104000</td><td>A team or individual as a catalogue object</td></tr><tr><td><a href="examples/stage.example.json"><code>stage.example.json</code></a></td><td>104010</td><td>A named slice of a season</td></tr><tr><td><a href="examples/player.example.json"><code>player.example.json</code></a></td><td>104100</td><td>Roster membership</td></tr><tr><td><a href="examples/odds_change_conflated.example.json"><code>odds_change_conflated.example.json</code></a></td><td>104872</td><td>A tick that skipped intermediates (<code>conflated: true</code>)</td></tr><tr><td><a href="examples/lineup.example.json"><code>lineup.example.json</code></a></td><td>105500</td><td>Starting <code>player</code> ids for one fixture</td></tr></tbody></table></div>
 <p>Invalid cases (must be rejected) live in <a href="conformance/"><code>../conformance/invalid/</code></a>. Run <code>python3 tools/validate.py</code>.</p></article></div><p class="source">Source: docs/examples.md</p>
 </div></main>
 <footer><div class="wrap">

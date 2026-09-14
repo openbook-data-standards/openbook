@@ -21,14 +21,21 @@ NAV = [
 PAGE_MAP = {
     "spec/openbook.md": "spec.html",
     "../spec/openbook.md": "spec.html",
+    "guide.md": "guide.html",
     "docs/guide.md": "guide.html",
     "../docs/guide.md": "guide.html",
+    "examples.md": "examples.html",
     "docs/examples.md": "examples.html",
     "../docs/examples.md": "examples.html",
+    "taxonomy.md": "taxonomy.html",
+    "docs/taxonomy.md": "taxonomy.html",
+    "../docs/taxonomy.md": "taxonomy.html",
     "asyncapi.yaml": "spec/asyncapi.yaml",
     "../spec/asyncapi.yaml": "spec/asyncapi.yaml",
+    "decisions.md": "decisions.html",
     "docs/decisions.md": "decisions.html",
     "../docs/decisions.md": "decisions.html",
+    "building-blocks.md": "building-blocks.html",
     "docs/building-blocks.md": "building-blocks.html",
     "../docs/building-blocks.md": "building-blocks.html",
     "docs/industry-patterns.md": "industry-patterns.html",
@@ -64,6 +71,20 @@ PAGE_MAP = {
     "../conformance/README.md": "conformance/",
     "conformance/README.md": "conformance/",
 }
+
+# Bare names (guide.md) and ../docs/ paths must both rewrite. Dropping
+# docs/taxonomy.md here leaves spec.html pointing at a dead .md URL.
+for _src, _dst in (
+    ("docs/taxonomy.md", "taxonomy.html"),
+    ("../docs/taxonomy.md", "taxonomy.html"),
+    ("taxonomy.md", "taxonomy.html"),
+    ("guide.md", "guide.html"),
+    ("examples.md", "examples.html"),
+    ("decisions.md", "decisions.html"),
+):
+    if PAGE_MAP.get(_src) != _dst:
+        raise RuntimeError(f"PAGE_MAP missing {_src!r} -> {_dst!r}")
+
 
 
 def slug(text: str) -> str:
@@ -382,7 +403,7 @@ def schemas_page() -> str:
         "Each <code>$id</code> is this same URL on GitHub Pages.</p>"
         + "".join(blocks)
         + '<h1 id="examples">Examples (raw files)</h1>'
-        '<p>The story-order walkthrough is the <a href="examples.html">examples page</a>. '
+        '<p>The sequence-order walkthrough is the <a href="examples.html">examples page</a>. '
         "These are the same files, listed for implementers.</p>"
         + "".join(example_blocks())
         + "</article></div>"
