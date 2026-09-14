@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q190 |
+| Maps leftover | Q181–Q191 |
 
 The entries below stay in the order they were taken.
 
@@ -2320,3 +2320,17 @@ waits; stop this leftover.
 
 **Supersedes:** none of Q189 (keys still wait; this is the document
 shape).
+
+## Q191 — Reason is leftover English — decided (A)
+
+The reason is **leftover English** (a free string). Do not invent a
+reason list. Required only on the unknown catch-all (**Q186**). No file
+in this pick.
+
+Not wired in this pick.
+
+Rejected: a closed list of reason tokens; encoding waits; stop this
+leftover.
+
+**Supersedes:** none of Q186 (when it is required stays; this is that
+the reason is not a token list).

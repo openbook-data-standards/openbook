@@ -164,6 +164,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q190** — when files exist: a JSON array of row objects. Keys still
   wait. First public list name still waits. No file in this pick. Not
   wired in this pick.
+- **Q191** — the reason is leftover English (a free string). Do not
+  invent a reason list. No file in this pick. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

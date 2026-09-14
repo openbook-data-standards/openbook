@@ -2,14 +2,14 @@
 
 **Working on: maps leftover (Q181–).** Public key plus an existing
 OpenBook id, or the unknown catch-all plus a reason (**Q185**). Reason
-required only on the unknown catch-all (**Q186**). One directory named
-for maps, not inside the vocab lists (**Q182**, **Q183**). One JSON file
-per public list when files exist (**Q187**, **Q188**): a JSON array of
-row objects (**Q190**); object keys wait (**Q189**). First public list
-name waits (**Q184**). Not a wire change. No file now. Not Q55. Not
-position token lists.
+required only on the unknown catch-all (**Q186**); leftover English, not
+a token list (**Q191**). One directory named for maps, not inside the
+vocab lists (**Q182**, **Q183**). One JSON file per public list when
+files exist (**Q187**, **Q188**): a JSON array of row objects (**Q190**);
+object keys wait (**Q189**). First public list name waits (**Q184**).
+Not a wire change. No file now. Not Q55. Not position token lists.
 
-Questions recorded through **Q190**. Catalog pass closed and on the wire.
+Questions recorded through **Q191**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -35,12 +35,13 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 **Maps leftover — this is the open walk.** Public key plus an existing
 OpenBook id, or the unknown catch-all plus a reason (**Q181**, **Q185**).
-Reason required only on the unknown catch-all (**Q186**). One directory
-named for maps, not inside the vocab lists (**Q182**, **Q183**). One
-JSON file per public list when files exist (**Q187**, **Q188**): a JSON
-array of row objects (**Q190**); object keys wait (**Q189**). Cite at
-least one public taxonomy. First public list name waits (**Q184**). Not
-a wire change. No file now.
+Reason required only on the unknown catch-all (**Q186**); leftover
+English, not a token list (**Q191**). One directory named for maps, not
+inside the vocab lists (**Q182**, **Q183**). One JSON file per public
+list when files exist (**Q187**, **Q188**): a JSON array of row objects
+(**Q190**); object keys wait (**Q189**). Cite at least one public
+taxonomy. First public list name waits (**Q184**). Not a wire change.
+No file now.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -150,6 +151,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q188** — when files exist, JSON, same as the shared vocab lists; name still waits; no file in this pick.
 - **Q189** — JSON object keys wait; do not invent names; row meaning stays leftover English (**Q185**); no file in this pick.
 - **Q190** — when files exist, a JSON array of row objects; keys wait; name waits; no file in this pick.
+- **Q191** — reason is leftover English (a free string); do not invent a reason list; no file in this pick.
 
 ### Parked
 
@@ -167,9 +169,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q191.** Is the reason leftover English (a free string), or a closed list? Rec: leftover English; do not invent a reason list; no file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q192.** When the landing is an existing OpenBook id, is a reason forbidden or optional? Rec: forbidden; reason only on the unknown catch-all (**Q186**); no file now. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q190)
+## Done (Q32–Q191)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -218,3 +220,4 @@ feed list beside the validator. Not on the wire.
 **Q188** — when files exist, JSON, same as the shared vocab lists.
 **Q189** — JSON object keys wait; do not invent names.
 **Q190** — when files exist, a JSON array of row objects.
+**Q191** — reason is leftover English (a free string); not a token list.
