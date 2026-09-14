@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157–Q170 · Q195–Q203 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q195–Q209 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
@@ -2481,3 +2481,74 @@ Not wired in this pick.
 Rejected: cut `0.4.0-draft`; cut 1.0; unpark Q55.
 
 **Supersedes:** none of Q195 (the stop stays; this is the version).
+
+## Q204 — Q55 stays parked — decided (A)
+
+**Q55** stays parked until 1.0+. Do not unpark now. Do not drop it.
+
+Not wired in this pick.
+
+Rejected: unpark Q55 now; drop Q55; invent a different CI leftover.
+
+**Supersedes:** none of Q55 (still parked).
+
+## Q205 — Q96 stays not this spec — decided (A)
+
+**Q96** stays not this spec. Do not pull vendor mapping into this spec.
+Do not create those repos now.
+
+Not wired in this pick.
+
+Rejected: pull vendor mapping into this spec; create those repos now;
+invent a mapping leftover in this spec.
+
+**Supersedes:** none of Q96.
+
+## Q206 — Q79 / Q81 stay omit — decided (A)
+
+**Q79** and **Q81** stay omit. No coach object. No referee object until
+those markets exist.
+
+Not wired in this pick.
+
+Rejected: add coach now; add officials now; invent a new participant
+role.
+
+**Supersedes:** none of Q79 or Q81.
+
+## Q207 — No maps directory or file until named — decided (A)
+
+No maps directory. No maps file. The first public list name waits
+(**Q184**).
+
+Not wired in this pick.
+
+Rejected: create the empty directory now; create a file now; unpark Q55.
+
+**Supersedes:** none of Q184 (name still waits; this is that files wait
+with it).
+
+## Q208 — Do not invent the Q171 recipe — decided (A)
+
+Do not invent the Q171 join-key recipe or prefix-file contents. Ask
+later.
+
+Not wired in this pick.
+
+Rejected: invent the recipe now; invent prefix-file contents now;
+unpark Q55.
+
+**Supersedes:** none of Q171 (later leftover still sits).
+
+## Q209 — Close this question pass — decided (A)
+
+This question pass **closes**. No further leftover questions until a
+leftover is named. Not Q55. Not a version cut. Not inventing a leftover.
+
+Not wired in this pick.
+
+Rejected: invent a new leftover English area; keep asking the same
+sitting leftovers; unpark Q55.
+
+**Supersedes:** Q197–Q203 as an open “what is next” (the stop stays;
+this pass is closed).

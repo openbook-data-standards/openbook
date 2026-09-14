@@ -191,6 +191,15 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   in this pick.
 - **Q203** — stay `0.3.0-draft`. Not a version cut. Not Q55. Not wired
   in this pick.
+- **Q204** — Q55 stays parked until 1.0+. Not wired in this pick.
+- **Q205** — Q96 stays not this spec. Not wired in this pick.
+- **Q206** — Q79 / Q81 stay omit. Not wired in this pick.
+- **Q207** — no maps directory or file until a list is named. Not wired
+  in this pick.
+- **Q208** — do not invent the Q171 join-key recipe or prefix-file
+  contents. Not wired in this pick.
+- **Q209** — this question pass closes. No further leftover questions
+  until a leftover is named. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

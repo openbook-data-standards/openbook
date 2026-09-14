@@ -1,12 +1,12 @@
 # Still to do
 
-**Working on: spec walk stopped (Q195, Q197–Q203).** Named leftovers on
-this walk exhausted. Sitting leftovers stay sitting: Q171 later, Q172,
-Q173, position token lists, maps first public list name (**Q184**).
-Stay `0.3.0-draft` (**Q203**). Maps leftover shape is logged
-(**Q181–Q194**). No file. Not Q55.
+**Working on: spec walk stopped (Q195, Q197–Q209).** This question pass
+is closed (**Q209**). Named leftovers exhausted. Sitting leftovers stay
+sitting. Stay `0.3.0-draft`. Maps leftover shape is logged
+(**Q181–Q194**). No maps directory or file until a list is named
+(**Q207**). Q55 parked. Q96 not this spec. Q79 / Q81 stay omit. No file.
 
-Questions recorded through **Q203**. Catalog pass closed and on the wire.
+Questions recorded through **Q209**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -28,15 +28,19 @@ Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
 shape closed (**Q181–Q194**). Spec walk stopped (**Q195**). Next leftover
 unnamed; wait (**Q196**). Named leftovers exhausted; spec walk stopped
 (**Q197**). Sitting leftovers stay sitting (**Q198–Q202**). Stay
-`0.3.0-draft` (**Q203**).
+`0.3.0-draft` (**Q203**). Question pass closed (**Q209**). Q55 stays
+parked (**Q204**). **Q96** stays not this spec (**Q205**). **Q79** /
+**Q81** stay omit (**Q206**). No maps directory or file until a list is
+named (**Q207**). Do not invent the Q171 recipe (**Q208**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Stopped (Q195, Q197–Q203).** Named leftovers on this walk exhausted.
+**Stopped. Question pass closed (Q209).** Named leftovers exhausted.
 Sitting leftovers stay sitting. Stay `0.3.0-draft`. Maps leftover shape
-is logged. First public list name waits (**Q184**). No file. Not Q55.
+is logged. First public list name waits (**Q184**). No maps directory or
+file. Q55 parked. No file.
 
 ## Goal (previous — maps leftover, closed)
 
@@ -172,6 +176,12 @@ over/under. No new market type. No new field. On the wire.
 - **Q201** — position token lists still wait. Not Q55.
 - **Q202** — first maps public list name still waits (**Q184**). Not Q55.
 - **Q203** — stay `0.3.0-draft`. Not a version cut. Not Q55.
+- **Q204** — Q55 stays parked until 1.0+.
+- **Q205** — Q96 stays not this spec.
+- **Q206** — Q79 / Q81 stay omit.
+- **Q207** — no maps directory or file until a list is named.
+- **Q208** — do not invent the Q171 join-key recipe or prefix-file contents.
+- **Q209** — this question pass closes. No further leftover questions until a leftover is named.
 
 ### Parked
 
@@ -189,9 +199,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: none until a leftover is named.** Named leftovers on this walk exhausted (**Q197–Q203**). Sitting leftovers stay sitting. Stay `0.3.0-draft`. Q55 parked. A pasted letter is not implement. Wire is a separate ask.
+**Next question: none.** This question pass is closed (**Q209**). No further leftover questions until a leftover is named. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q203)
+## Done (Q32–Q209)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -253,3 +263,9 @@ feed list beside the validator. Not on the wire.
 **Q201** — position token lists still wait.
 **Q202** — first maps public list name still waits.
 **Q203** — stay `0.3.0-draft`.
+**Q204** — Q55 stays parked until 1.0+.
+**Q205** — Q96 stays not this spec.
+**Q206** — Q79 / Q81 stay omit.
+**Q207** — no maps directory or file until a list is named.
+**Q208** — do not invent the Q171 join-key recipe or prefix-file contents.
+**Q209** — this question pass closes.
