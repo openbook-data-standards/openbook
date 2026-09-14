@@ -1446,3 +1446,14 @@ Not wired in this pick.
 Rejected: who or `atLeast` missing on that row.
 
 **Supersedes:** Q113 leftover for named plus-bands.
+
+## Q121 — Plus-band does not carry exact line — decided (A)
+
+A plus-band row has `atLeast`, not outcome `line`. An exact margin has
+`line`, not `atLeast`. Same Q114 mix rule.
+
+Not wired in this pick.
+
+Rejected: both on one row.
+
+**Supersedes:** none of Q114.
