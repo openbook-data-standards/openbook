@@ -1457,3 +1457,15 @@ Not wired in this pick.
 Rejected: both on one row.
 
 **Supersedes:** none of Q114.
+
+## Q122 — Wire atLeast — decided (A)
+
+`atLeast` goes on **`market`**, **`odds/change`**, and **`grade`**
+outcomes. Same extras on all three so a grade can name the plus-band
+the market priced.
+
+Not wired in this pick.
+
+Rejected: market-only.
+
+**Supersedes:** Q119 “not wired”.

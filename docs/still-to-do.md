@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q121**. Catalog pass closed and on the wire.
+Questions recorded through **Q122**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -35,6 +35,7 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 - **Q119** — plus-band extra is atLeast (JSON number). Not wired.
 - **Q120** — plus-band row always has who and atLeast.
 - **Q121** — plus-band has atLeast, not exact line.
+- **Q122** — atLeast on market, odds/change, and grade. Not wired.
 ### Parked
 
 - **Q86** — racing stall, cricket toss, playoff series until a payload.
@@ -46,9 +47,9 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 ## Next question (not decided)
 
-- Wire atLeast onto market / odds/change / grade?
+- Close this plus-band pass?
 
-## Done (Q32–Q121)
+## Done (Q32–Q122)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -66,3 +67,4 @@ pass closed.
 **Q119** — plus-band extra is atLeast.
 **Q120** — plus-band row always has who and atLeast.
 **Q121** — plus-band has atLeast, not exact line.
+**Q122** — atLeast on market, odds/change, and grade (not built).
