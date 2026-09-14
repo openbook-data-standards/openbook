@@ -6,6 +6,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Fingerprint recipe file** —
+  [`register/fingerprint.md`](register/fingerprint.md) restates decided
+  birth facts. Encoding steps wait. No new wire field (Q271).
 - **Prefix file** — [`register/prefixes.json`](register/prefixes.json)
   lists plain `propertyID` tokens already on this spec, plus an unknown
   bucket (Q267). Not on the odds wire.
@@ -308,6 +311,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q262–Q267** — prefix file
   [`register/prefixes.json`](register/prefixes.json). Plain tokens already
   on this spec, plus unknown. Not on the odds wire.
+- **Q268–Q271** — fingerprint recipe file
+  [`register/fingerprint.md`](register/fingerprint.md). Decided facts only.
+  Encoding steps wait. No new wire field.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

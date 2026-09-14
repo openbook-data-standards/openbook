@@ -1,11 +1,11 @@
 # Still to do
 
-**Working on: prefix file (Q262–Q267).** [`register/prefixes.json`](../register/prefixes.json)
-is a JSON array of plain `propertyID` tokens already on this spec, plus
-the unknown bucket. Recipe text waits. No new wire field. Stay
+**Working on: fingerprint recipe file (Q268–Q271).**
+[`register/fingerprint.md`](../register/fingerprint.md) restates decided
+birth facts. Encoding steps wait. No new wire field. Stay
 `0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q267**. Catalog pass closed and on the wire.
+Questions recorded through **Q271**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -54,11 +54,19 @@ row (**Q249**). File is `maps/betfair.json` (**Q252**, **Q257**).
 (**Q256**). First maps file built (**Q257**). Next leftover is the pinned
 fixture example (**Q258**). Pin is the existing sample fixture (**Q259**).
 Do not write the recipe (**Q260**). Spec names the pin (**Q261**). Prefix
-file built (**Q262–Q267**).
+file built (**Q262–Q267**). Fingerprint recipe file restates decided facts
+only (**Q268–Q271**). Encoding steps wait.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
+
+**Fingerprint recipe file (Q268–Q271).**
+[`register/fingerprint.md`](../register/fingerprint.md) restates decided
+birth facts. Encoding steps wait. No new wire field. Stay
+`0.3.0-draft`. Not Q55.
+
+## Goal (previous — prefix file, closed)
 
 **Prefix file (Q262–Q267).** [`register/prefixes.json`](../register/prefixes.json)
 is a JSON array of plain `propertyID` tokens already on this spec, plus
@@ -312,6 +320,10 @@ over/under. No new market type. No new field. On the wire.
 - **Q265** — JSON array of plain strings; no new object keys.
 - **Q266** — unknown bucket is in the file; `propertyID` stays a string.
 - **Q267** — only tokens already on this spec, plus unknown.
+- **Q268** — next leftover is the fingerprint recipe file location.
+- **Q269** — named for fingerprint, in the register leftover.
+- **Q270** — prose file; no invented JSON keys.
+- **Q271** — restates decided facts only; encoding steps wait.
 
 
 ### Parked
@@ -321,8 +333,9 @@ over/under. No new market type. No new field. On the wire.
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-- **Q171** — fixture fingerprint recipe; anchor policy prose.
-  Prefix file and pinned fixture example are in this repo.
+- **Q171** — anchor policy prose. Prefix file, pinned fixture example,
+  and fingerprint recipe file location are in this repo. Encoding steps
+  wait.
 - **Q172** — profile repositories (prediction-market, reporting,
   integrity, register) that pin a core major.
 - **Q173** — hosted validator and a feed list beside it, not on
@@ -330,9 +343,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question:** none on this leftover (**Q267**). Recipe text still waits. A pasted letter is not implement.
+**Next question:** none on this leftover (**Q271**). Encoding steps still wait. A pasted letter is not implement.
 
-## Done (Q32–Q267)
+## Done (Q32–Q271)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -458,3 +471,7 @@ feed list beside the validator. Not on the wire.
 **Q265** — JSON array of plain strings.
 **Q266** — unknown bucket in the file.
 **Q267** — only tokens already on this spec, plus unknown.
+**Q268** — fingerprint recipe file location.
+**Q269** — named for fingerprint, in the register leftover.
+**Q270** — prose file; no invented JSON keys.
+**Q271** — restates decided facts only; encoding steps wait.

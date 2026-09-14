@@ -25,7 +25,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
 | What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q236 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q267 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q271 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
 | Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q257 |
 
@@ -3246,6 +3246,51 @@ Rejected: invent more schemes now; empty file; wait.
 
 **Supersedes:** Q216 as “no prefix file at all” (contents are not
 invented; they were already examples).
+
+## Q268 — Next leftover is the fingerprint recipe file — decided (A)
+
+The next leftover is the **fingerprint recipe file location**. Do not
+invent hash, separators, or encoding steps.
+
+Not a new wire field.
+
+Rejected: write the encoding steps now; skip the file; wait.
+
+**Supersedes:** Q197 as “no file in this pick”.
+
+## Q269 — Named for fingerprint, in the register leftover — decided (A)
+
+The file is named for fingerprint and lives in the register leftover:
+[`register/fingerprint.md`](../register/fingerprint.md).
+
+Not a new wire field.
+
+Rejected: inside vocabularies; spec only with no file; wait.
+
+**Supersedes:** none of Q197.
+
+## Q270 — Prose file, no invented JSON keys — decided (A)
+
+The recipe file is **prose**, not a JSON object with invented keys.
+
+Not a new wire field.
+
+Rejected: JSON object with invented keys; a wire field; wait.
+
+**Supersedes:** none of Q196.
+
+## Q271 — Restate decided facts only — decided (A)
+
+The file restates decided birth facts only. Encoding, hash, and
+separators still wait (**Q216**, **Q260**).
+
+Not a new wire field.
+
+Rejected: invent SHA or a join string now; drop the file; wait.
+
+**Supersedes:** none of Q216 (steps still wait; this is the file that
+says so).
+
 
 
 

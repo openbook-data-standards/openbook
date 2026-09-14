@@ -104,9 +104,11 @@ Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
 bucket. `propertyID` stays a string. This is not a feed document and is
 not on the odds wire.
 
-The optional fixture join recipe is not on the wire and is not written
-yet (Q171, Q196, Q216). When it exists it is checked against one pinned
-example: [`examples/fixture.example.json`](../examples/fixture.example.json)
+The optional fixture join recipe is not on the odds wire and is not a
+new field (Q171, Q196). Decided inputs and the pin live in
+[`register/fingerprint.md`](../register/fingerprint.md) (Q197, Q268–Q271).
+Encoding steps still wait (Q216, Q260). The pin is
+[`examples/fixture.example.json`](../examples/fixture.example.json)
 (Q198, Q259). Publisher-own id stays canonical.
 
 ### 3.5 Maps onto public taxonomies
