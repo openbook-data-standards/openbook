@@ -1469,3 +1469,13 @@ Not wired in this pick.
 Rejected: market-only.
 
 **Supersedes:** Q119 “not wired”.
+
+## Q123 — Plus-band pass not closed — decided (B)
+
+Do not close this pass. Name and row rules are not finished.
+
+Not wired in this pick.
+
+Rejected: close here.
+
+**Supersedes:** none of Q122.
