@@ -21,7 +21,11 @@
     {"path": "examples/snapshot_complete.example.json"},
     {"path": "examples/discovery.example.json"},
     {"path": "examples/score.example.json"},
-    {"path": "examples/stage.example.json"}
+    {"path": "examples/stage.example.json"},
+    {"path": "examples/nfl_189046701_publisher.example.json"},
+    {"path": "examples/nfl_189046701_fixture.example.json"},
+    {"path": "examples/nfl_189046701_odds_change.example.json"},
+    {"path": "examples/nfl_189046701_score.example.json"}
   ],
   "invalid": [
     {

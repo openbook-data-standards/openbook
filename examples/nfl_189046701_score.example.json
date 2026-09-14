@@ -1,0 +1,52 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 4,
+  "datePublished": "2026-09-13T17:48:57Z",
+  "publisher": "acme-feeds",
+  "object": "score",
+  "action": "update",
+  "sport": "american-football",
+  "id": "189046701",
+  "changes": {
+    "eventStatus": "live",
+    "currentSegment": "segment:american-football:2nd-quarter",
+    "segments": [
+      {
+        "segment": "segment:american-football:1st-quarter",
+        "status": "down",
+        "order": 1
+      },
+      {
+        "segment": "segment:american-football:2nd-quarter",
+        "status": "live",
+        "order": 2
+      }
+    ],
+    "clock": {
+      "elapsed": 258,
+      "remaining": 642,
+      "running": true,
+      "display": "Q2 10:42"
+    },
+    "scores": [
+      {
+        "participant": "T-JAC",
+        "unit": "points",
+        "total": 14,
+        "bySegment": {
+          "segment:american-football:1st-quarter": 14,
+          "segment:american-football:2nd-quarter": 0
+        }
+      },
+      {
+        "participant": "T-CLE",
+        "unit": "points",
+        "total": 0,
+        "bySegment": {
+          "segment:american-football:1st-quarter": 0,
+          "segment:american-football:2nd-quarter": 0
+        }
+      }
+    ]
+  }
+}

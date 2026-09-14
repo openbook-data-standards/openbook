@@ -53,10 +53,12 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   existing `examples/` documents in `sequence` order (GTFS-style sample feed,
   not a sandbox). `publisher.example.json` lists `bigbook` so it matches the
   market and odds samples. No wire change.
-- [`docs/protocol-comparison.md`](docs/protocol-comparison.md) — technical
-  comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
-  Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire
-  (what is adopted, shape-only, later, or rejected).
+- **NFL live example** — Browns at Jaguars, 13 September 2026,
+  fixture `189046701`. Publisher snapshot, fixture snapshot,
+  `odds/change` (moneyline, spread, total, first-half total) and
+  `score/update` from one observed pull. Compact source keys `m.3` /
+  `m.6` / `m.5` / `h1.7`. Player board with empty prices omitted. No
+  wire change.
 
 ### Changed
 - **Homepage copy** — hero is “an open standard for sportsbook data”;

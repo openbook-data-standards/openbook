@@ -127,6 +127,12 @@ These files are in [`../examples/`](../examples/) too. They are the valid
 half of the conformance suite. Catalogue objects use earlier sequences than
 the match stream above; the conflated tick sits between `104871` and `104880`.
 
+A second fixture, not the Arsenal walk: Browns at Jaguars on 13 September
+2026, publisher-own id `189046701`. Sequence `1`–`4` on that feed only.
+Mapped from one observed live pull (`m.3` moneyline, `m.6` spread
+`r` −23.5, `m.5` total 43.5, `h1.7` first-half total). The player board
+(`s2`) had empty prices and is omitted.
+
 | File | Sequence | What it is |
 | --- | --- | --- |
 | [`market_type.example.json`](../examples/market_type.example.json) | 103900 | A canonical market type (`shape: composite`) |
@@ -137,7 +143,10 @@ the match stream above; the conflated tick sits between `104871` and `104880`.
 | [`toss.example.json`](../examples/toss.example.json) | 104120 | Who won the cricket toss; `elected` bat |
 | [`odds_change_conflated.example.json`](../examples/odds_change_conflated.example.json) | 104872 | A tick that skipped intermediates (`conflated: true`) |
 | [`lineup.example.json`](../examples/lineup.example.json) | 105500 | Starting `player` ids for one fixture |
-| [`series.example.json`](../examples/series.example.json) | 105510 | Live series lead; round on `stage`; two `wins` rows; `needed` 4 |
+| [`nfl_189046701_publisher.example.json`](../examples/nfl_189046701_publisher.example.json) | 1 | NFL live pull: publisher + source `bracco` |
+| [`nfl_189046701_fixture.example.json`](../examples/nfl_189046701_fixture.example.json) | 2 | Browns at Jaguars, fixture `189046701` |
+| [`nfl_189046701_odds_change.example.json`](../examples/nfl_189046701_odds_change.example.json) | 3 | Moneyline, spread −23.5, total 43.5, first-half total 21.5 |
+| [`nfl_189046701_score.example.json`](../examples/nfl_189046701_score.example.json) | 4 | Live Q2, 14–0, clock remaining 642s |
 
 Invalid cases (must be rejected) live in [`../conformance/invalid/`](../conformance/).
 Run `python3 tools/validate.py`.

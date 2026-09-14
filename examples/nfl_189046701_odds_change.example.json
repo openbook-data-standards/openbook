@@ -1,0 +1,99 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 3,
+  "datePublished": "2026-09-13T17:48:57Z",
+  "publisher": "acme-feeds",
+  "object": "odds",
+  "action": "change",
+  "sport": "american-football",
+  "id": "189046701",
+  "changes": {
+    "markets": [
+      {
+        "marketType": "market:moneyline",
+        "segment": "segment:american-football:full-time",
+        "status": "open",
+        "source": "bracco",
+        "provenance": "observed",
+        "limit": {
+          "amount": "2000"
+        },
+        "outcomes": [
+          {
+            "side": "home",
+            "odds": "1.000001"
+          },
+          {
+            "side": "away",
+            "odds": "34.73"
+          }
+        ]
+      },
+      {
+        "marketType": "market:spread",
+        "segment": "segment:american-football:full-time",
+        "line": "-23.5",
+        "basis": "points",
+        "status": "open",
+        "source": "bracco",
+        "provenance": "observed",
+        "limit": {
+          "amount": "3000"
+        },
+        "outcomes": [
+          {
+            "side": "home",
+            "line": "-23.5",
+            "odds": "1.813008"
+          },
+          {
+            "side": "away",
+            "line": "23.5",
+            "odds": "1.934579"
+          }
+        ]
+      },
+      {
+        "marketType": "market:total",
+        "segment": "segment:american-football:full-time",
+        "line": "43.5",
+        "basis": "points",
+        "status": "open",
+        "source": "bracco",
+        "provenance": "observed",
+        "outcomes": [
+          {
+            "side": "over",
+            "odds": "1.869565"
+          },
+          {
+            "side": "under",
+            "odds": "1.877193"
+          }
+        ]
+      },
+      {
+        "marketType": "market:total",
+        "segment": "segment:american-football:1st-half",
+        "line": "21.5",
+        "basis": "points",
+        "status": "open",
+        "source": "bracco",
+        "provenance": "observed",
+        "limit": {
+          "amount": "900"
+        },
+        "outcomes": [
+          {
+            "side": "over",
+            "odds": "2.28"
+          },
+          {
+            "side": "under",
+            "odds": "1.564972"
+          }
+        ]
+      }
+    ]
+  }
+}

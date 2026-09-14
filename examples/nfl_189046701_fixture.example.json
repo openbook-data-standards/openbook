@@ -1,0 +1,58 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 2,
+  "datePublished": "2026-09-13T17:48:57Z",
+  "publisher": "acme-feeds",
+  "object": "fixture",
+  "action": "snapshot",
+  "sport": "american-football",
+  "id": "189046701",
+  "changes": {
+    "id": "189046701",
+    "name": "Cleveland Browns at Jacksonville Jaguars",
+    "sport": {
+      "id": "sport:american-football",
+      "name": "American Football"
+    },
+    "league": {
+      "id": "NFL",
+      "name": "National Football League",
+      "territory": "US",
+      "competitionType": "league",
+      "gender": "men",
+      "ageGroup": "open",
+      "sameAs": "https://www.wikidata.org/entity/Q1215884"
+    },
+    "season": {
+      "id": "S-2026",
+      "name": "2026"
+    },
+    "stage": {
+      "id": "ST-REG",
+      "name": "Regular Season",
+      "stageType": "phase"
+    },
+    "startDate": "2026-09-13T17:00:00Z",
+    "eventStatus": "live",
+    "participants": [
+      {
+        "id": "T-JAC",
+        "name": "Jacksonville Jaguars",
+        "territory": "US",
+        "role": "home",
+        "order": 1,
+        "sameAs": "https://www.wikidata.org/entity/Q272223"
+      },
+      {
+        "id": "T-CLE",
+        "name": "Cleveland Browns",
+        "territory": "US",
+        "role": "away",
+        "order": 2,
+        "sameAs": "https://www.wikidata.org/entity/Q330646"
+      }
+    ]
+  }
+}

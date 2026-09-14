@@ -2881,6 +2881,234 @@
     &quot;source&quot;: &quot;bigbook&quot;,
     &quot;status&quot;: &quot;open&quot;
   }
+}</pre></section><section class="schema-block" id="nfl_189046701_fixture.example"><h2>nfl_189046701_fixture.example.json</h2><p><a href="examples/nfl_189046701_fixture.example.json">examples/nfl_189046701_fixture.example.json</a></p><pre>{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;SportsEvent&quot;,
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 2,
+  &quot;datePublished&quot;: &quot;2026-09-13T17:48:57Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;fixture&quot;,
+  &quot;action&quot;: &quot;snapshot&quot;,
+  &quot;sport&quot;: &quot;american-football&quot;,
+  &quot;id&quot;: &quot;189046701&quot;,
+  &quot;changes&quot;: {
+    &quot;id&quot;: &quot;189046701&quot;,
+    &quot;name&quot;: &quot;Cleveland Browns at Jacksonville Jaguars&quot;,
+    &quot;sport&quot;: {
+      &quot;id&quot;: &quot;sport:american-football&quot;,
+      &quot;name&quot;: &quot;American Football&quot;
+    },
+    &quot;league&quot;: {
+      &quot;id&quot;: &quot;NFL&quot;,
+      &quot;name&quot;: &quot;National Football League&quot;,
+      &quot;territory&quot;: &quot;US&quot;,
+      &quot;competitionType&quot;: &quot;league&quot;,
+      &quot;gender&quot;: &quot;men&quot;,
+      &quot;ageGroup&quot;: &quot;open&quot;,
+      &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q1215884&quot;
+    },
+    &quot;season&quot;: {
+      &quot;id&quot;: &quot;S-2026&quot;,
+      &quot;name&quot;: &quot;2026&quot;
+    },
+    &quot;stage&quot;: {
+      &quot;id&quot;: &quot;ST-REG&quot;,
+      &quot;name&quot;: &quot;Regular Season&quot;,
+      &quot;stageType&quot;: &quot;phase&quot;
+    },
+    &quot;startDate&quot;: &quot;2026-09-13T17:00:00Z&quot;,
+    &quot;eventStatus&quot;: &quot;live&quot;,
+    &quot;participants&quot;: [
+      {
+        &quot;id&quot;: &quot;T-JAC&quot;,
+        &quot;name&quot;: &quot;Jacksonville Jaguars&quot;,
+        &quot;territory&quot;: &quot;US&quot;,
+        &quot;role&quot;: &quot;home&quot;,
+        &quot;order&quot;: 1,
+        &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q272223&quot;
+      },
+      {
+        &quot;id&quot;: &quot;T-CLE&quot;,
+        &quot;name&quot;: &quot;Cleveland Browns&quot;,
+        &quot;territory&quot;: &quot;US&quot;,
+        &quot;role&quot;: &quot;away&quot;,
+        &quot;order&quot;: 2,
+        &quot;sameAs&quot;: &quot;https://www.wikidata.org/entity/Q330646&quot;
+      }
+    ]
+  }
+}</pre></section><section class="schema-block" id="nfl_189046701_odds_change.example"><h2>nfl_189046701_odds_change.example.json</h2><p><a href="examples/nfl_189046701_odds_change.example.json">examples/nfl_189046701_odds_change.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 3,
+  &quot;datePublished&quot;: &quot;2026-09-13T17:48:57Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;odds&quot;,
+  &quot;action&quot;: &quot;change&quot;,
+  &quot;sport&quot;: &quot;american-football&quot;,
+  &quot;id&quot;: &quot;189046701&quot;,
+  &quot;changes&quot;: {
+    &quot;markets&quot;: [
+      {
+        &quot;marketType&quot;: &quot;market:moneyline&quot;,
+        &quot;segment&quot;: &quot;segment:american-football:full-time&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;source&quot;: &quot;bracco&quot;,
+        &quot;provenance&quot;: &quot;observed&quot;,
+        &quot;limit&quot;: {
+          &quot;amount&quot;: &quot;2000&quot;
+        },
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;home&quot;,
+            &quot;odds&quot;: &quot;1.000001&quot;
+          },
+          {
+            &quot;side&quot;: &quot;away&quot;,
+            &quot;odds&quot;: &quot;34.73&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:spread&quot;,
+        &quot;segment&quot;: &quot;segment:american-football:full-time&quot;,
+        &quot;line&quot;: &quot;-23.5&quot;,
+        &quot;basis&quot;: &quot;points&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;source&quot;: &quot;bracco&quot;,
+        &quot;provenance&quot;: &quot;observed&quot;,
+        &quot;limit&quot;: {
+          &quot;amount&quot;: &quot;3000&quot;
+        },
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;home&quot;,
+            &quot;line&quot;: &quot;-23.5&quot;,
+            &quot;odds&quot;: &quot;1.813008&quot;
+          },
+          {
+            &quot;side&quot;: &quot;away&quot;,
+            &quot;line&quot;: &quot;23.5&quot;,
+            &quot;odds&quot;: &quot;1.934579&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:total&quot;,
+        &quot;segment&quot;: &quot;segment:american-football:full-time&quot;,
+        &quot;line&quot;: &quot;43.5&quot;,
+        &quot;basis&quot;: &quot;points&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;source&quot;: &quot;bracco&quot;,
+        &quot;provenance&quot;: &quot;observed&quot;,
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;over&quot;,
+            &quot;odds&quot;: &quot;1.869565&quot;
+          },
+          {
+            &quot;side&quot;: &quot;under&quot;,
+            &quot;odds&quot;: &quot;1.877193&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:total&quot;,
+        &quot;segment&quot;: &quot;segment:american-football:1st-half&quot;,
+        &quot;line&quot;: &quot;21.5&quot;,
+        &quot;basis&quot;: &quot;points&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;source&quot;: &quot;bracco&quot;,
+        &quot;provenance&quot;: &quot;observed&quot;,
+        &quot;limit&quot;: {
+          &quot;amount&quot;: &quot;900&quot;
+        },
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;over&quot;,
+            &quot;odds&quot;: &quot;2.28&quot;
+          },
+          {
+            &quot;side&quot;: &quot;under&quot;,
+            &quot;odds&quot;: &quot;1.564972&quot;
+          }
+        ]
+      }
+    ]
+  }
+}</pre></section><section class="schema-block" id="nfl_189046701_publisher.example"><h2>nfl_189046701_publisher.example.json</h2><p><a href="examples/nfl_189046701_publisher.example.json">examples/nfl_189046701_publisher.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 1,
+  &quot;datePublished&quot;: &quot;2026-09-13T17:48:57Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;publisher&quot;,
+  &quot;action&quot;: &quot;snapshot&quot;,
+  &quot;sport&quot;: &quot;unknown&quot;,
+  &quot;changes&quot;: {
+    &quot;id&quot;: &quot;acme-feeds&quot;,
+    &quot;name&quot;: &quot;Acme Feeds&quot;,
+    &quot;inLanguage&quot;: &quot;en&quot;,
+    &quot;baseCurrency&quot;: &quot;USD&quot;,
+    &quot;heartbeatMs&quot;: 5000,
+    &quot;sources&quot;: [
+      {
+        &quot;id&quot;: &quot;bracco&quot;,
+        &quot;name&quot;: &quot;Bracco&quot;,
+        &quot;sourceType&quot;: &quot;sportsbook&quot;
+      }
+    ]
+  }
+}</pre></section><section class="schema-block" id="nfl_189046701_score.example"><h2>nfl_189046701_score.example.json</h2><p><a href="examples/nfl_189046701_score.example.json">examples/nfl_189046701_score.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 4,
+  &quot;datePublished&quot;: &quot;2026-09-13T17:48:57Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;score&quot;,
+  &quot;action&quot;: &quot;update&quot;,
+  &quot;sport&quot;: &quot;american-football&quot;,
+  &quot;id&quot;: &quot;189046701&quot;,
+  &quot;changes&quot;: {
+    &quot;eventStatus&quot;: &quot;live&quot;,
+    &quot;currentSegment&quot;: &quot;segment:american-football:2nd-quarter&quot;,
+    &quot;segments&quot;: [
+      {
+        &quot;segment&quot;: &quot;segment:american-football:1st-quarter&quot;,
+        &quot;status&quot;: &quot;down&quot;,
+        &quot;order&quot;: 1
+      },
+      {
+        &quot;segment&quot;: &quot;segment:american-football:2nd-quarter&quot;,
+        &quot;status&quot;: &quot;live&quot;,
+        &quot;order&quot;: 2
+      }
+    ],
+    &quot;clock&quot;: {
+      &quot;elapsed&quot;: 258,
+      &quot;remaining&quot;: 642,
+      &quot;running&quot;: true,
+      &quot;display&quot;: &quot;Q2 10:42&quot;
+    },
+    &quot;scores&quot;: [
+      {
+        &quot;participant&quot;: &quot;T-JAC&quot;,
+        &quot;unit&quot;: &quot;points&quot;,
+        &quot;total&quot;: 14,
+        &quot;bySegment&quot;: {
+          &quot;segment:american-football:1st-quarter&quot;: 14,
+          &quot;segment:american-football:2nd-quarter&quot;: 0
+        }
+      },
+      {
+        &quot;participant&quot;: &quot;T-CLE&quot;,
+        &quot;unit&quot;: &quot;points&quot;,
+        &quot;total&quot;: 0,
+        &quot;bySegment&quot;: {
+          &quot;segment:american-football:1st-quarter&quot;: 0,
+          &quot;segment:american-football:2nd-quarter&quot;: 0
+        }
+      }
+    ]
+  }
 }</pre></section><section class="schema-block" id="odds_change.example"><h2>odds_change.example.json</h2><p><a href="examples/odds_change.example.json">examples/odds_change.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 104871,

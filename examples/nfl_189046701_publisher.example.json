@@ -1,0 +1,23 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 1,
+  "datePublished": "2026-09-13T17:48:57Z",
+  "publisher": "acme-feeds",
+  "object": "publisher",
+  "action": "snapshot",
+  "sport": "unknown",
+  "changes": {
+    "id": "acme-feeds",
+    "name": "Acme Feeds",
+    "inLanguage": "en",
+    "baseCurrency": "USD",
+    "heartbeatMs": 5000,
+    "sources": [
+      {
+        "id": "bracco",
+        "name": "Bracco",
+        "sourceType": "sportsbook"
+      }
+    ]
+  }
+}
