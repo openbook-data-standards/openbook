@@ -122,7 +122,8 @@ sponsored listings. Never spec access, never per-id fees.
 
 Later, after 1.0: generated protobuf or SBE from the same schemas; MQTT
 reason-code equivalence. Parked unless pulled: bet-slip portability,
-horse-racing sport id, per-sport player-position lists (Q76).
+horse-racing sport id. Per-sport player-position lists are in
+[`vocabularies/positions.md`](vocabularies/positions.md) (Q76, Q281).
 
 Exit: gate recorded · ≥ 10 badged feeds across ≥ 3 publishers ·
 openbook-reg referenced in ≥ 1 guidance or draft · hosting funded · the

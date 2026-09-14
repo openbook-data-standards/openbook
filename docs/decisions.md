@@ -3374,6 +3374,52 @@ Rejected: keep inventing leftovers; wait.
 
 **Supersedes:** Q190 as an open “files wait” for the files now on disk.
 
+## Q280 — Write join encoding now — decided
+
+Write the fingerprint encoding now. Five UTF-8 LF lines (sport id,
+league `sameAs` URL or else `id`, `startDate` truncated to the minute UTC,
+participant anchors in `order` order comma-separated, `competitionType`),
+then SHA-256 lowercase hex. Pin:
+[`examples/fixture.example.json`](../examples/fixture.example.json).
+File: [`register/fingerprint.md`](../register/fingerprint.md). Not a new
+JSON field. Publisher-own id stays canonical.
+
+Rejected: wait; invent a wire field named fingerprint; skip the pin.
+
+**Supersedes:** Q216, Q260, Q271, Q278 as “encoding waits”.
+
+## Q281 — Write position token lists now — decided
+
+Write the lists now. File:
+[`vocabularies/positions.md`](../vocabularies/positions.md). Ids are
+`position:<sport>:<token>`. Catch-all `position:unknown:unknown`. Schema
+`position` stays a string. Unrecognised values tolerated (**Q34**). Book-style
+bands, not a formation chart.
+
+Rejected: wait; closed enum on the schema; drop `position`.
+
+**Supersedes:** Q174–Q180, Q209, Q275 as “token lists wait”.
+
+## Q282 — Stay 0.3.0-draft — decided
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Rejected: cut 0.3.0; cut 1.0; wait.
+
+**Supersedes:** none of Q211.
+
+## Q283 — Leftover pass closes — decided
+
+Join encoding and position token lists are in this repo. This leftover
+pass **closes**. Q172 / Q173 stay later. Q55 stays parked.
+
+Not a new wire field.
+
+Rejected: keep inventing leftovers; wait.
+
+**Supersedes:** Q279 as an open “encoding and tokens wait”.
+
+
 
 
 

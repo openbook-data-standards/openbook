@@ -6,6 +6,16 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Fixture join encoding** — [`register/fingerprint.md`](register/fingerprint.md)
+  is five UTF-8 LF lines (sport id, league anchor, start to the minute UTC,
+  ordered participant anchors, `competitionType`) then SHA-256 lowercase
+  hex. Checked against
+  [`examples/fixture.example.json`](examples/fixture.example.json). Not a
+  new wire field (Q280).
+- **Position token lists** — [`vocabularies/positions.md`](vocabularies/positions.md)
+  lists growable `position:<sport>:<token>` ids. Schema `position` stays a
+  string. Catch-all `position:unknown:unknown` (Q281). Player example uses
+  `position:baseball:shortstop`.
 - **Anchor policy** — [`register/anchors.md`](register/anchors.md)
   restates Q171. No invented community-register list (Q273).
 - **Fingerprint recipe file** —
@@ -324,6 +334,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q272–Q279** — [`register/anchors.md`](register/anchors.md). Position
   token lists wait. Q172 / Q173 stay later. Q55 parked. Stay
   `0.3.0-draft`. Q171 leftovers in this repo are filed.
+- **Q280–Q283** — join encoding written in
+  [`register/fingerprint.md`](register/fingerprint.md). Position tokens in
+  [`vocabularies/positions.md`](vocabularies/positions.md). Stay
+  `0.3.0-draft`. Leftover pass closes. No new wire field.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

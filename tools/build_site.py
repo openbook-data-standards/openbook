@@ -63,6 +63,8 @@ PAGE_MAP = {
     "../vocabularies/sports.md": "vocabularies/#sports",
     "vocabularies/segments.md": "vocabularies/#segments",
     "../vocabularies/segments.md": "vocabularies/#segments",
+    "vocabularies/positions.md": "vocabularies/#positions",
+    "../vocabularies/positions.md": "vocabularies/#positions",
     "../vocabularies/": "vocabularies/",
     "vocabularies/": "vocabularies/",
     "../schema/": "schemas.html",
@@ -488,6 +490,7 @@ def vocab_index() -> str:
         (ROOT / "vocabularies/market_types.md", "market-types", "Market types", "vocabularies/market_types.md"),
         (ROOT / "vocabularies/sports.md", "sports", "Sports", "vocabularies/sports.md"),
         (ROOT / "vocabularies/segments.md", "segments", "Segments", "vocabularies/segments.md"),
+        (ROOT / "vocabularies/positions.md", "positions", "Positions", "vocabularies/positions.md"),
     ]
     toc_items = [("how-to-read", "How to read")] + [(sid, label) for _, sid, label, _ in sections]
     parts = []
@@ -503,7 +506,7 @@ def vocab_index() -> str:
         "computers use. For what the words mean in plain language, start with the "
         '<a href="../taxonomy.html">taxonomy</a>. The technical contract is the '
         '<a href="../spec.html">specification</a>.</p>'
-        "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports and segments follow.</p></section>"
+        "<p>Readable, versioned ids. Short on the wire, formal as <code>urn:openbook:</code> in the spec. Market types, sports, segments and positions follow.</p></section>"
         + "".join(parts),
     )
     return chrome("Vocabularies", inner, 1, "vocabularies/", toc_items)
@@ -528,6 +531,7 @@ def main() -> None:
     write_redirect(ROOT / "vocabularies/market-types.html", "./#market-types", "vocabularies/#market-types")
     write_redirect(ROOT / "vocabularies/sports.html", "./#sports", "vocabularies/#sports")
     write_redirect(ROOT / "vocabularies/segments.html", "./#segments", "vocabularies/#segments")
+    write_redirect(ROOT / "vocabularies/positions.html", "./#positions", "vocabularies/#positions")
     (ROOT / "schemas.html").write_text(schemas_page())
     write_md_page(ROOT / "conformance/README.md", ROOT / "conformance/index.html", 1, "conformance/", "conformance/README.md")
     (ROOT / ".nojekyll").write_text("")

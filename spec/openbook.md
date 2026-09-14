@@ -108,9 +108,11 @@ bucket. `propertyID` stays a string. This is not a feed document and is
 not on the odds wire.
 
 The optional fixture join recipe is not on the odds wire and is not a
-new field (Q171, Q196). Decided inputs and the pin live in
-[`register/fingerprint.md`](../register/fingerprint.md) (Q197, Q268–Q271).
-Encoding steps still wait (Q216, Q260). The pin is
+new field (Q171, Q196). Encoding, pin, and worked digest live in
+[`register/fingerprint.md`](../register/fingerprint.md) (Q197, Q268–Q271,
+Q280). Five UTF-8 LF lines (sport id, league anchor, start to the minute
+UTC, ordered participant anchors, `competitionType`), then SHA-256
+lowercase hex. The pin is
 [`examples/fixture.example.json`](../examples/fixture.example.json)
 (Q198, Q259). Publisher-own id stays canonical.
 
@@ -380,7 +382,7 @@ fixture list. Live objects are the board that keeps moving.
 | `season` | Own id, `league`, `name` (display), `startDate`, `endDate` (Q60 / Q9) |
 | `stage` | Own id, `season`, `name`, `parent`, `stageType` (phase · group · round · matchday · leg · seriesGame), `order`, optional `startDate` / `endDate` |
 | `participant` | Own id, `participantType` (team · individual), `sport`, `territory`, `sameAs`. Required `name` (popular/board). Optional `shortName`, `names` (ISO 639-1), `nameLatin` (ISO 9 / ISO 843), `alternateName[]`. **Teams** MAY add `location` + `nickname`, `registeredName`, `abbreviation`. **Individuals** MAY add `givenName` / `familyName` (vCard RFC 6350 / ITU X.520); no `abbreviation`. No league field. Fixture `participants[]` copies `name` plus `role` and `order` |
-| `player` | Roster membership: own id, `participant` (the person), `team` (the team participant), `position`, `number`. Optional `throws` and `bats` (`left` · `right` · `both`). No name fields |
+| `player` | Roster membership: own id, `participant` (the person), `team` (the team participant), `position` (`position:<sport>:<token>` in [`vocabularies/positions.md`](../vocabularies/positions.md); unknown tokens tolerated), `number`. Optional `throws` and `bats` (`left` · `right` · `both`). No name fields |
 | `stall` | Racing gate for one runner in one race (Q141–Q144): own id, `fixture`, `participant`, `order` (the gate, 1-based). Not on the generic fixture or `participant` row. No horse-racing sport id in this pick (`sport:unknown` if needed, Q34) |
 | `toss` | Cricket toss (Q142–Q144, Q157–Q160): own id, `fixture`, `participant` (who won), required `elected` (`bat` · `bowl`). Not on the generic fixture. Not `score`. `elected` is leftover English; not player `bats` |
 | `fixture` | §6 plus `eventStatus`, `cutoffDate`, optional `superEvent` (schema.org; **not** a live/pregame pair — Q101: one fixture, `eventStatus` is live), optional display `name`, `location` (nested schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`, optional WGS 84 `latitude` / `longitude`), optional `surface` |

@@ -1,11 +1,10 @@
 # Still to do
 
-**Working on: question pass closed (Q279).** Prefix file, pinned
-fixture, fingerprint recipe file, and anchor policy are in this repo.
-Encoding steps wait. Position token lists wait. Stay `0.3.0-draft`.
-Q55 parked. Q172 / Q173 still later PRs.
+**Working on: question pass closed (Q283).** Join encoding and position
+token lists are in this repo. Stay `0.3.0-draft`. Q55 parked. Q172 / Q173
+still later PRs.
 
-Questions recorded through **Q279**. Catalog pass closed and on the wire.
+Questions recorded through **Q283**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -59,11 +58,18 @@ only (**Q268–Q271**). Encoding steps wait. Anchor policy prose
 (**Q272–Q273**). Stay `0.3.0-draft` (**Q274**). Position token lists still
 wait (**Q275**). Do not unpark Q172 / Q173 (**Q276**). Q55 parked
 (**Q277**). Join encoding still waits (**Q278**). Q171 leftovers in this
-repo are filed (**Q279**).
+repo are filed (**Q279**). Join encoding written (**Q280**). Position
+token lists written (**Q281**). Stay `0.3.0-draft` (**Q282**). This leftover
+pass closes (**Q283**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
+
+**Closed (Q283).** Join encoding and position token lists are in this
+repo. Stay `0.3.0-draft`. Not Q55.
+
+## Goal (previous — Q171 leftovers in this repo, closed)
 
 **Closed (Q279).** Prefix file, pinned fixture, fingerprint recipe file,
 and anchor policy are in this repo. Encoding steps wait. Position
@@ -342,6 +348,10 @@ over/under. No new market type. No new field. On the wire.
 - **Q277** — Q55 stays parked until 1.0+.
 - **Q278** — join encoding still waits.
 - **Q279** — Q171 leftovers in this repo are filed; this leftover pass closes.
+- **Q280** — write join encoding: five UTF-8 LF lines, SHA-256 lowercase hex. Not a new field.
+- **Q281** — write position token lists in `vocabularies/positions.md`; field stays `position`; catch-all `position:unknown:unknown`.
+- **Q282** — stay `0.3.0-draft`.
+- **Q283** — leftover pass closes.
 
 
 
@@ -352,19 +362,16 @@ over/under. No new market type. No new field. On the wire.
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-- **Q171** — fingerprint encoding steps (hash / separators). Prefix file,
-  pinned fixture, recipe file, and anchor policy are in this repo.
 - **Q172** — profile repositories (prediction-market, reporting,
   integrity, register) that pin a core major.
 - **Q173** — hosted validator and a feed list beside it, not on
   discovery.
-- **Q174–Q179** — position token lists (file shape logged; tokens wait).
 
 ## Next question (not decided)
 
-**Next question:** none until a leftover is named (**Q279**). Encoding steps and position token lists still wait. A pasted letter is not implement.
+**Next question:** none until a leftover is named (**Q283**). A pasted letter is not implement.
 
-## Done (Q32–Q279)
+## Done (Q32–Q283)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -502,3 +509,7 @@ feed list beside the validator. Not on the wire.
 **Q277** — Q55 stays parked.
 **Q278** — join encoding still waits.
 **Q279** — Q171 leftovers in this repo are filed.
+**Q280** — write join encoding now; five LF lines then SHA-256 hex; not a new field.
+**Q281** — write position token lists; file named for positions; schema stays a string.
+**Q282** — stay `0.3.0-draft`.
+**Q283** — leftover pass closes.

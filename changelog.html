@@ -36,6 +36,8 @@
 <h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
 <ul>
+<li><strong>Fixture join encoding</strong> — <a href="register/fingerprint.md"><code>register/fingerprint.md</code></a> is five UTF-8 LF lines (sport id, league anchor, start to the minute UTC, ordered participant anchors, <code>competitionType</code>) then SHA-256 lowercase hex. Checked against <a href="examples/fixture.example.json"><code>examples/fixture.example.json</code></a>. Not a new wire field (Q280).</li>
+<li><strong>Position token lists</strong> — <a href="vocabularies/#positions"><code>vocabularies/positions.md</code></a> lists growable <code>position:&lt;sport&gt;:&lt;token&gt;</code> ids. Schema <code>position</code> stays a string. Catch-all <code>position:unknown:unknown</code> (Q281). Player example uses <code>position:baseball:shortstop</code>.</li>
 <li><strong>Anchor policy</strong> — <a href="register/anchors.md"><code>register/anchors.md</code></a> restates Q171. No invented community-register list (Q273).</li>
 <li><strong>Fingerprint recipe file</strong> — <a href="register/fingerprint.md"><code>register/fingerprint.md</code></a> restates decided birth facts. Encoding steps wait. No new wire field (Q271).</li>
 <li><strong>Prefix file</strong> — <a href="register/prefixes.json"><code>register/prefixes.json</code></a> lists plain <code>propertyID</code> tokens already on this spec, plus an unknown bucket (Q267). Not on the odds wire.</li>
@@ -49,6 +51,7 @@
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
+<li><strong>Homepage copy</strong> — hero is “an open standard for sportsbook data”; the subhead is vendor-neutral plus sportsbook &amp; gambling data (reference model and vocabularies). Specification / schemas first; taxonomy and guide marked informative. Same layout and colour. No wire change.</li>
 <li><strong>Maps leftover on the spec</strong> (Q181–Q189, Q199–Q203, Q215, Q218–Q257) — public market keys onto existing OpenBook ids, or the unknown catch-all plus a reason. Directory <a href="maps/"><code>maps/</code></a>. First file <a href="maps/betfair.json"><code>maps/betfair.json</code></a>. Row keys <code>publicKey</code>, <code>id</code>, <code>reason</code> on <a href="schema/maps.schema.json"><code>schema/maps.schema.json</code></a>. Not a feed document; not on the odds wire. <a href="spec.html"><code>spec/openbook.md</code></a> §3.5.</li>
 <li><strong>Wording</strong> — Q171 leftover <strong>corpus case</strong> is <strong>pinned fixture example</strong> (one example fixture the fingerprint recipe is checked against). Not the Q40 conformance corpus. Same decisions. No new rule.</li>
 <li><a href="protocol-comparison.html"><code>docs/protocol-comparison.md</code></a> §15 last bullet names the rejected thing (an OpenBook-run entity database); §16 records protocols studied after the first pass.</li>
@@ -159,6 +162,7 @@
 <li><strong>Q262–Q267</strong> — prefix file <a href="register/prefixes.json"><code>register/prefixes.json</code></a>. Plain tokens already on this spec, plus unknown. Not on the odds wire.</li>
 <li><strong>Q268–Q271</strong> — fingerprint recipe file <a href="register/fingerprint.md"><code>register/fingerprint.md</code></a>. Decided facts only. Encoding steps wait. No new wire field.</li>
 <li><strong>Q272–Q279</strong> — <a href="register/anchors.md"><code>register/anchors.md</code></a>. Position token lists wait. Q172 / Q173 stay later. Q55 parked. Stay <code>0.3.0-draft</code>. Q171 leftovers in this repo are filed.</li>
+<li><strong>Q280–Q283</strong> — join encoding written in <a href="register/fingerprint.md"><code>register/fingerprint.md</code></a>. Position tokens in <a href="vocabularies/#positions"><code>vocabularies/positions.md</code></a>. Stay <code>0.3.0-draft</code>. Leftover pass closes. No new wire field.</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>

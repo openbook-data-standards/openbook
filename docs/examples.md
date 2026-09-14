@@ -7,8 +7,8 @@ validate against the schemas. They are **not** a live sandbox.
 
 The sample match is **Arsenal v Manchester City**, fixture `EVT-88213`,
 19 September 2026. That same file is the pinned fixture example the
-optional fixture join recipe is checked against when that recipe exists
-(Q198, Q259). Publisher `acme-feeds` is fictional. Source names in the
+optional fixture join recipe is checked against
+([`register/fingerprint.md`](../register/fingerprint.md); Q198, Q259, Q280). Publisher `acme-feeds` is fictional. Source names in the
 sample (`acme-book`, `pinnacle`, `bigbook`) are **labels on prices**, not a
 requirement to use those books. OpenBook is vendor-neutral.
 

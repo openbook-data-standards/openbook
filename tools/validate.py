@@ -19,10 +19,11 @@ Checks, in order:
      publicKey is unique in a file; named landings must not carry reason.
   9. register/prefixes.json is a JSON array of plain propertyID tokens
      (schema/prefixes.schema.json) and includes the unknown bucket.
+ 10. register/fingerprint.md encoding matches the pinned fixture example.
 
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
-import json, re, sys, glob, os, copy
+import hashlib, json, re, sys, glob, os, copy
 try:
     from jsonschema import Draft202012Validator
     from referencing import Registry, Resource
@@ -224,7 +225,7 @@ def schema_names():
         stems.add(name.removesuffix(".schema.json"))
         walk(s)
     voc_dir = os.path.join(ROOT, "vocabularies")
-    voc_tick = re.compile(r"`((?:sport|market|segment|side):[a-z0-9:-]+)`")
+    voc_tick = re.compile(r"`((?:sport|market|segment|side|position):[a-z0-9:-]+)`")
     for p in glob.glob(os.path.join(voc_dir, "*.md")):
         for m in voc_tick.finditer(open(p).read()):
             s = m.group(1)
@@ -309,6 +310,69 @@ else:
             ok("conformance/invalid/prefixes-missing-unknown.json  (rejected)")
         else:
             fail("conformance/invalid/prefixes-missing-unknown.json: expected missing unknown")
+
+print("10. fixture join recipe pin")
+PINNED_SHA256 = "2b38ee78a5c6da604719b19ad86a0a6dce7deb6995cc7d210548fc39377a752c"
+
+
+def _join_anchor(obj):
+    if not isinstance(obj, dict):
+        return None
+    same = obj.get("sameAs")
+    if isinstance(same, str) and same.startswith(("http://", "https://")):
+        return same
+    oid = obj.get("id")
+    return oid if isinstance(oid, str) and oid else None
+
+
+def fixture_join_preimage(doc):
+    sport = (doc.get("sport") or {}).get("id")
+    league = doc.get("league") or {}
+    start = doc.get("startDate")
+    parts = doc.get("participants")
+    if not isinstance(sport, str) or not sport:
+        raise ValueError("sport.id missing")
+    league_anchor = _join_anchor(league)
+    if not league_anchor:
+        raise ValueError("league anchor missing")
+    if not isinstance(start, str) or len(start) < 16:
+        raise ValueError("startDate missing")
+    minute = start[:16] + "Z"
+    if not isinstance(parts, list) or not parts:
+        raise ValueError("participants missing")
+    ordered = sorted(parts, key=lambda p: p.get("order") if isinstance(p, dict) else 0)
+    anchors = []
+    for p in ordered:
+        a = _join_anchor(p)
+        if not a:
+            raise ValueError("participant anchor missing")
+        anchors.append(a)
+    ctype = league.get("competitionType")
+    if not isinstance(ctype, str) or not ctype:
+        raise ValueError("competitionType missing")
+    return "\n".join([sport, league_anchor, minute, ",".join(anchors), ctype]) + "\n"
+
+
+fp_md = os.path.join(ROOT, "register", "fingerprint.md")
+fx_path = os.path.join(ROOT, "examples", "fixture.example.json")
+if not os.path.isfile(fp_md):
+    fail("register/fingerprint.md missing")
+elif not os.path.isfile(fx_path):
+    fail("examples/fixture.example.json missing")
+else:
+    try:
+        preimage = fixture_join_preimage(json.load(open(fx_path)))
+        digest = hashlib.sha256(preimage.encode("utf-8")).hexdigest()
+    except (ValueError, TypeError, json.JSONDecodeError) as e:
+        fail(f"examples/fixture.example.json: join preimage: {e}")
+        digest = None
+    if digest is not None:
+        if digest != PINNED_SHA256:
+            fail(f"pinned join digest {digest} != {PINNED_SHA256}")
+        elif PINNED_SHA256 not in open(fp_md).read():
+            fail("register/fingerprint.md missing pinned SHA-256 hex")
+        else:
+            ok("register/fingerprint.md pin")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

@@ -16,6 +16,6 @@ here.
 
 ## Out of scope here
 
-- Fixture join encoding steps (see [`fingerprint.md`](fingerprint.md))
+- Fixture join encoding (see [`fingerprint.md`](fingerprint.md))
 - Prefix tokens (see [`prefixes.json`](prefixes.json))
-- Position token lists (still wait)
+- Position token lists (see [`../vocabularies/positions.md`](../vocabularies/positions.md))
