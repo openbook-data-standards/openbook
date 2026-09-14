@@ -1635,3 +1635,15 @@ Not wired in this pick.
 Rejected: one new live object for all three; all three on `stage`.
 
 **Supersedes:** none of Q136.
+
+## Q138 — Stall and toss are sport slices; series is not — decided (A)
+
+Stall and toss are sport-specific. Series is a separate home (stage or
+live), not a racing or cricket field.
+
+Not wired in this pick.
+
+Rejected: all three are sport-specific, including series; none are
+sport-specific.
+
+**Supersedes:** none of Q137.
