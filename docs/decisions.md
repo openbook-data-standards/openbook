@@ -1601,3 +1601,15 @@ Not wired in this pick.
 Rejected: stay stopped (Q133); unpark Q55.
 
 **Supersedes:** Q133 “Q86 stays parked”; Q133 “no new board until named”.
+
+## Q135 — All three leftovers in this pass — decided (D)
+
+This pass covers racing stall, cricket toss, and playoff series. One
+pass, three leftovers. Names and home still wait.
+
+Not wired in this pick.
+
+Rejected: series only; stall only; toss only.
+
+**Supersedes:** none of Q134 (the leftovers list). Says the pass is all
+three, not one first.
