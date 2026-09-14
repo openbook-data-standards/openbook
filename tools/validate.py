@@ -186,7 +186,7 @@ IDENT = re.compile(r"^[a-z][a-zA-Z0-9]*$")
 NOT_FIELDS = frozenset({
     "http", "https", "urn", "null", "true", "false", "spec", "version",
     "en", "es", "v1", "since",
-    "homeTeam", "awayTeam", "tools",
+    "homeTeam", "awayTeam", "tools", "openbook",
 })
 NAME_DOCS = (
     os.path.join(ROOT, "spec", "openbook.md"),

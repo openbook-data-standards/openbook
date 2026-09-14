@@ -6,6 +6,13 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Changed
+- **Docs readability** — three tracks: a non-technical
+  [`docs/guide.md`](docs/guide.md), a human
+  [`docs/taxonomy.md`](docs/taxonomy.md) for shared lists, and a
+  table-and-diagram rewrite of [`spec/openbook.md`](spec/openbook.md)
+  (no wire change). Vocabularies stay the id lists. Guide has a Saturday
+  walkthrough; the decision log has a theme map; homepage has a reading
+  path. Still site/docs only.
 - **Q11** — names on the participant: required `name`; optional `shortName`,
   `names`, `nameLatin`, `alternateName`. Teams MAY add `location`,
   `nickname`, `registeredName`, `abbreviation`. Persons MAY add `givenName`

@@ -1,12 +1,31 @@
 # OpenBook — design decisions
 
 A running log of the decisions that shape the standard, in the order they were
-taken, each with the options that were on the table and why one won. The
-specification in [`../spec/openbook.md`](../spec/openbook.md) is revised to
-match; where the two disagree, the newer decision here wins until the spec
-catches up (tracked in [`../CHANGELOG.md`](../CHANGELOG.md)).
+taken, each with the options that were on the table and why one won.
+
+> **This is not the spec.** Current rules live in
+> [`../spec/openbook.md`](../spec/openbook.md). Meanings of sports, bets and
+> slices live in [`taxonomy.md`](taxonomy.md). This log is *why* those rules
+> exist. Where the two disagree, the newer decision here wins until the spec
+> catches up (tracked in [`../CHANGELOG.md`](../CHANGELOG.md)).
 
 Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
+
+## Map (jump to a theme)
+
+| Theme | Questions |
+| --- | --- |
+| What OpenBook is | Q1 · Q2 · Q3 |
+| Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
+| Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
+| Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 |
+| Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
+| Money and limits | Q39 · Q44 · Q45 |
+| Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
+| What we omit | Q71–Q82 · Q86 · Q87 |
+
+The entries below stay in the order they were taken.
 
 ---
 
