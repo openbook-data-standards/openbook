@@ -59,6 +59,7 @@
 <li><strong>Q104</strong> — typed prop outcomes (CS two counts, HT/FT two results, player on the outcome). Field names not in this pick (log only).</li>
 <li><strong>Q105</strong> — names: <code>homeTotal</code> / <code>awayTotal</code>; <code>halfTime</code> / <code>fullTime</code>; <code>player</code> on the outcome; <code>side</code> tokens odd, even, none, home-or-draw, away-or-draw, home-or-away. Wired with Q106–Q117.</li>
 <li><strong>Q106–Q117</strong> — those extras on <code>market</code>, <code>odds/change</code>, and <code>grade</code>. One market many rows; player is an id; HT/FT pair; listed CS both totals; listed winning margin who+number; no mixed boards; <code>none</code> is listed; prop-row pass closed.</li>
+<li><strong>Q118–Q125</strong> — winning-margin plus-bands: <code>atLeast</code> (JSON number; 3 means 3 or more) on <code>market</code>, <code>odds/change</code>, and <code>grade</code>. Plus-band row is <code>participant</code> + <code>atLeast</code> (not outcome <code>line</code>); exact margin keeps <code>line</code>; leftover <code>other</code> still allowed; pass closed.</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>

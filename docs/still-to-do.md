@@ -4,19 +4,15 @@ Questions recorded through **Q125**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
-closed (**Q104–Q117**) and on the wire. Plus-band pass closed (**Q118–Q125**);
-not wired.
-**Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
-Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
-not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
-closed (**Q104–Q117**) and on the wire.
+closed (**Q104–Q117**) and on the wire. Plus-band pass closed
+(**Q118–Q125**) and on the wire.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk — closed)
 
 **Name winning-margin plus-bands.** Exact margins already use `participant`
-+ outcome `line`. Plus-band extra named; not wired.
++ outcome `line`. Plus-band extra is `atLeast`. On the wire.
 
 ### Wired
 
@@ -25,6 +21,9 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 - **Q101** — one fixture; `eventStatus` is live.
 - **Q105–Q117** — typed prop outcome extras on `market`, `odds/change`,
   and `grade`.
+- **Q119–Q125** — `atLeast` on `market`, `odds/change`, and `grade`.
+  Plus-band row is `participant` + `atLeast`; exact keeps `line`; leftover
+  `other` still allowed; pass closed.
 
 ### Log only
 
@@ -37,13 +36,7 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 - **Q111** — listing `order` / `seed` stay 1; `sequence` may be 0
   (already true on the schema).
 - **Q118** — plus-band walk.
-- **Q119** — plus-band extra is atLeast (JSON number). Not wired.
-- **Q120** — plus-band row always has who and atLeast.
-- **Q121** — plus-band has atLeast, not exact line.
-- **Q122** — atLeast on market, odds/change, and grade. Not wired.
-- **Q123** — pass not closed.
-- **Q124** — leftover other still allowed on winning margin.
-- **Q125** — plus-band pass closed. Not wired.
+
 ### Parked
 
 - **Q86** — racing stall, cricket toss, playoff series until a payload.
@@ -55,7 +48,7 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 ## Next question (not decided)
 
-- Say implement to put atLeast on the wire.
+- Next area.
 
 ## Done (Q32–Q125)
 
@@ -72,10 +65,6 @@ out of scope.
 awayTotal; halfTime / fullTime; player id; extra side tokens; row rules;
 pass closed.
 **Q118** — plus-band walk.
-**Q119** — plus-band extra is atLeast.
-**Q120** — plus-band row always has who and atLeast.
-**Q121** — plus-band has atLeast, not exact line.
-**Q122** — atLeast on market, odds/change, and grade (not built).
-**Q123** — plus-band pass not closed.
-**Q124** — leftover other still allowed on winning margin.
-**Q125** — plus-band pass closed. Not wired.
+**Q119–Q125** — plus-bands on the wire: `atLeast` on `market`,
+`odds/change`, and `grade`; who + `atLeast`; not exact `line`; leftover
+`other` still allowed; pass closed.

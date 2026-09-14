@@ -126,9 +126,10 @@ a total. A named participant on an outright.
 Sides are a small shared list. A priced market then lists its outcomes as
 “this side, at these odds.” Extra tokens: odd / even, none (nobody scores —
 not the leftover), double-chance home-or-draw / away-or-draw / home-or-away.
-Leftover unlisted scores and unnamed plus-bands are `other`. Correct score
-also carries `homeTotal` / `awayTotal`. HT/FT carries `halfTime` / `fullTime`.
-Player over/under names `player`.
+Leftover unlisted scores and unlisted remainder on winning margin are `other`.
+Correct score also carries `homeTotal` / `awayTotal`. HT/FT carries
+`halfTime` / `fullTime`. Winning margin is `participant` plus outcome `line`
+or `atLeast`; leftover `other`. Player over/under names `player`.
 
 ---
 

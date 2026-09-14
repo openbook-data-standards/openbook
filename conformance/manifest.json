@@ -51,6 +51,10 @@
     {
       "path": "conformance/invalid/prop-row-mix.json",
       "reason": "a row does not mix boards (Q114)"
+    },
+    {
+      "path": "conformance/invalid/at-least-with-line.json",
+      "reason": "plus-band atLeast does not carry exact outcome line (Q121)"
     }
   ]
 }

@@ -1495,6 +1495,7 @@ Rejected: only exact `line` rows and `atLeast` rows; no leftover.
 
 Names and row rules for plus-bands stop here. Wire waits until
 implement (`atLeast` on `market`, `odds/change`, and `grade`, Q122).
+Later pick wired those extras.
 
 Rejected: keep asking plus-band questions in this pass.
 
