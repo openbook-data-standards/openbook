@@ -31,6 +31,28 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   participant (pre-1.0; Q11). Native script is `nameLatin`.
 
 ### Added
+- **Input bounds** — shared primitives in
+  [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
+  `maxItems`, so conformant parsers reject oversized input; covered by
+  `conformance/invalid/alternate-name-too-long.json`.
+- **Q95** — protocol-fit pass closed; next work is a new area, not more
+  take/don't-take pins from that comparison list
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q94** — no spec-owned multi-publisher index; one discovery URL per
+  publisher (Q49); an aggregator is itself a publisher (Q1)
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q93** — FIX session is not the OpenBook session; Q33/Q46 stand
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q92** — ISO 20022 is not the OpenBook model or encoding; Q13/Q38/Q44
+  stand ([`docs/decisions.md`](docs/decisions.md)).
+- **Q91** — JSON Patch (RFC 6902) is never an alternate change encoding; Merge
+  Patch (Q8) stands ([`docs/decisions.md`](docs/decisions.md)).
+- **Q90** — no GBFS-style data wrapper; discovery stays `{ lastUpdated, ttl,
+  feeds }` at the root (Q49); objects and change messages stay themselves
+  ([`docs/decisions.md`](docs/decisions.md)).
+- **Q89** — JSON (`application/json`) is the required v1 encoding; additional
+  encodings MAY exist later as optional bindings; scaffolding stays JSON
+  ([`docs/decisions.md`](docs/decisions.md)).
 - **Security model** — [`SECURITY.md`](SECURITY.md) states what the standard
   secures (closed schemas, canonical-id integrity) and what it delegates to
   deployments (TLS, authn/authz, rate limiting, schema-fetch integrity).
