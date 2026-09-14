@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q144**. Catalog pass closed and on the wire.
+Questions recorded through **Q145**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -13,8 +13,8 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 ## Goal (this walk)
 
-**Q86 leftovers.** Racing stall and cricket toss are new catalog objects
-(sport slices; names wait). Playoff series: round on `stage`; the lead is
+**Q86 leftovers.** Homes locked. Racing stall and cricket toss: two new
+catalog objects (names wait). Playoff series: round on `stage`; lead is
 a new live object (name waits). Not more keys on every fixture. No new
 field in this pick.
 
@@ -65,6 +65,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q142** — toss is not on the generic fixture.
 - **Q143** — stall and toss are new catalog objects (not `sport`, not live).
 - **Q144** — two catalog objects, not one bag.
+- **Q145** — home rules closed. Object names wait.
 
 ### Parked
 
@@ -76,9 +77,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Close home rules here? Object names later.
+- Close this Q86 leftovers pass here?
 
-## Done (Q32–Q144)
+## Done (Q32–Q145)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -109,3 +110,4 @@ pass closed.
 **Q142** — toss not on the generic fixture.
 **Q143** — stall and toss are new catalog objects.
 **Q144** — two catalog objects, not one bag.
+**Q145** — home rules closed.

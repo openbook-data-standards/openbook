@@ -1712,3 +1712,18 @@ Not wired in this pick. Object names wait.
 Rejected: one catalog object that holds both.
 
 **Supersedes:** none of Q137 or Q143.
+
+## Q145 — Home rules closed — decided (A)
+
+Homes are locked. Object names wait until picked (or implement). No new
+field in this pick.
+
+- Series round stays on `stage`. Series lead is a new live object.
+- Stall and toss are two new catalog objects. Not the generic fixture.
+  Not `participant`. Not `sport`. Not live.
+
+Not wired in this pick.
+
+Rejected: name the objects in this pick.
+
+**Supersedes:** none of Q144 (homes stay; names still wait).
