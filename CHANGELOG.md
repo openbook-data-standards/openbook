@@ -81,6 +81,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   still waits. Not wired in this pick.
 - **Q149** — win counts are one row per series side on live `series`; same
   `participant` ids as this fixture. Count names wait. Not wired.
+- **Q150** — exactly two rows, both required; this fixture’s two
+  participants. Not wired.
 
 
 ### Removed
