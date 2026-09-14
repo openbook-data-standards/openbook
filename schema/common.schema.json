@@ -759,8 +759,10 @@
         "handicap",
         "exact-value",
         "correct-score",
-        "yes-no"
-      ]
+        "yes-no",
+        "composite"
+      ],
+      "description": "How a market type is structured. composite = legs that reference other market outcomes (parlay, same-game parlay)."
     },
     "marketCategory": {
       "enum": [
