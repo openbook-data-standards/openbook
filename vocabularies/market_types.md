@@ -58,9 +58,9 @@ unrecognised `market:*` values.
 | `market:both-teams-to-score` | Both Teams To Score | yes-no | score-prop | yes, no | Whether both participants score at least once in the segment. |
 | `market:clean-sheet` | Clean Sheet | yes-no | score-prop | yes, no | Whether the named side concedes zero. The side that must keep the sheet is home or away on the outcome (or `participant`). |
 | `market:win-to-nil` | Win To Nil | binary | score-prop | home, away | Whether that side wins the segment without conceding. Not a clean sheet on a draw. |
-| `market:odd-even-total` | Total Odd/Even | yes-no | score-prop | odd, even | Parity of the combined score. Zero is even. |
+| `market:odd-even-total` | Total Odd/Even | n-way | score-prop | odd, even | Parity of the combined score. Zero is even. |
 | `market:winning-margin` | Winning Margin | n-way | score-prop | participant + outcome line or atLeast; leftover other | How far the winner wins by. Exact bands use outcome `line`; a plus-band (3 or more) uses `atLeast`. Leftover is `other`. No market `line`. |
-| `market:highest-scoring-half` | Highest Scoring Half | n-way | score-prop | 1st-half / 2nd-half as sides home / away, plus draw | Which half of regulation has more combined score. Tie is `draw`. The halves are not `reference_segment` here — they are the selections. |
+| `market:highest-scoring-half` | Highest Scoring Half | n-way | score-prop | home, away, draw | Which half of regulation has more combined score. `home` is the first half, `away` the second; a tie is `draw`. |
 | `market:race-to` | Race To (N) | binary | score-prop | home, away | Who first reaches the market `line` (points, goals, runs). If neither does, the book’s `ruleset` says void or a `none` row. |
 
 ## Game props

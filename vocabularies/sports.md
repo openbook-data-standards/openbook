@@ -17,11 +17,11 @@ omitted (the sport or league `primaryUnit`). It is not a second id.
 | --- | --- | --- |
 | `sport:soccer` | Soccer | Association football (11-a-side). Default unit: goals. Includes extra time and penalties as segments of the same fixture, not a different sport. |
 | `sport:futsal` | Futsal | Indoor five-a-side football, its own sport (not soccer with a different league). Default unit: goals. |
-| `sport:basketball` | Basketball | Five-a-side basketball as graded by the league ruleset (NBA, FIBA, WNBA, NCAA). Default unit: points. |
+| `sport:basketball` | Basketball | Five-a-side basketball as graded by the league ruleset. Default unit: points. |
 | `sport:baseball` | Baseball | Baseball and the same scoring family (not softball as a separate id yet). Default unit: runs. |
 | `sport:american-football` | American Football | Gridiron football as graded by the league ruleset. Default unit: points. |
-| `sport:australian-rules` | Australian Rules | Australian rules football (AFL). Not rugby and not American football. Default unit: points. |
-| `sport:ice-hockey` | Ice Hockey | Ice hockey as graded by the league ruleset (NHL, IIHF). Default unit: goals. |
+| `sport:australian-rules` | Australian Rules | Australian rules football. Not rugby and not American football. Default unit: points. |
+| `sport:ice-hockey` | Ice Hockey | Ice hockey as graded by the league ruleset. Default unit: goals. |
 | `sport:tennis` | Tennis | Tennis, including singles and doubles as participant shape, not a different sport. Default unit: sets. Game and point totals use `basis`. |
 | `sport:table-tennis` | Table Tennis | Table tennis (ping-pong). Default unit: sets. Point totals use `basis`. |
 | `sport:volleyball` | Volleyball | Indoor volleyball. Default unit: sets. Point totals use `basis`. |

@@ -127,6 +127,7 @@ the match stream above; the conflated tick sits between `104871` and `104880`.
 
 | File | Sequence | What it is |
 | --- | --- | --- |
+| [`market_type.example.json`](../examples/market_type.example.json) | 103900 | A canonical market type (`shape: composite`) |
 | [`participant.example.json`](../examples/participant.example.json) | 104000 | A team or individual as a catalogue object |
 | [`stage.example.json`](../examples/stage.example.json) | 104010 | A named slice of a season |
 | [`player.example.json`](../examples/player.example.json) | 104100 | Roster membership |

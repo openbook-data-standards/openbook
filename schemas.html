@@ -365,6 +365,13 @@
       ],
       &quot;description&quot;: &quot;Throwing/shooting or batting side (Q88). No ISO.&quot;
     },
+    &quot;elected&quot;: {
+      &quot;enum&quot;: [
+        &quot;bat&quot;,
+        &quot;bowl&quot;
+      ],
+      &quot;description&quot;: &quot;What the toss winner elected (Q159). Leftover English. Not player bats.&quot;
+    },
     &quot;side&quot;: {
       &quot;enum&quot;: [
         &quot;home&quot;,
@@ -2230,18 +2237,19 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="series"><h2>OpenBook series (live lead)</h2><p>Live playoff series lead (Q86 leftovers, Q139–Q140). Not this game&#x27;s score. Not competitionType series. Round stays on stage (seriesGame). Win counts wait.</p><p><a href="schema/series.schema.json">series.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, stage</code></p><pre>{
+}</pre></section><section class="schema-block" id="series"><h2>OpenBook series (live lead)</h2><p>Live playoff series lead (Q86 leftovers, Q139–Q140, Q148–Q155, Q162–Q165). Not this game&#x27;s score. Not competitionType series. Round stays on stage (seriesGame). wins is leftover English (Q154): exactly two rows, this fixture&#x27;s participants, total is games won (integer, 0 allowed). A win ticks when this game is down. needed is leftover English (Q164): optional wins needed to take the series (integer ≥ 1).</p><p><a href="schema/series.schema.json">series.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, stage, wins</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/series.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook series (live lead)&quot;,
-  &quot;description&quot;: &quot;Live playoff series lead (Q86 leftovers, Q139–Q140). Not this game&#x27;s score. Not competitionType series. Round stays on stage (seriesGame). Win counts wait.&quot;,
+  &quot;description&quot;: &quot;Live playoff series lead (Q86 leftovers, Q139–Q140, Q148–Q155, Q162–Q165). Not this game&#x27;s score. Not competitionType series. Round stays on stage (seriesGame). wins is leftover English (Q154): exactly two rows, this fixture&#x27;s participants, total is games won (integer, 0 allowed). A win ticks when this game is down. needed is leftover English (Q164): optional wins needed to take the series (integer ≥ 1).&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;openbookVersion&quot;,
     &quot;sequence&quot;,
     &quot;dateModified&quot;,
     &quot;fixture&quot;,
-    &quot;stage&quot;
+    &quot;stage&quot;,
+    &quot;wins&quot;
   ],
   &quot;properties&quot;: {
     &quot;@context&quot;: {},
@@ -2264,6 +2272,36 @@
     &quot;stage&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
       &quot;description&quot;: &quot;The printed round (seriesGame).&quot;
+    },
+    &quot;wins&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;minItems&quot;: 2,
+      &quot;maxItems&quot;: 2,
+      &quot;description&quot;: &quot;Exactly two rows (Q150). Leftover English (Q154). Not scores. Not participants.&quot;,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;additionalProperties&quot;: false,
+        &quot;required&quot;: [
+          &quot;participant&quot;,
+          &quot;total&quot;
+        ],
+        &quot;properties&quot;: {
+          &quot;participant&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
+            &quot;description&quot;: &quot;This fixture&#x27;s series side.&quot;
+          },
+          &quot;total&quot;: {
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;minimum&quot;: 0,
+            &quot;description&quot;: &quot;Games won in this series (Q152–Q153). Not this game&#x27;s points.&quot;
+          }
+        }
+      }
+    },
+    &quot;needed&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 1,
+      &quot;description&quot;: &quot;Wins needed to take the series (Q163–Q165). Leftover English. Optional. Not total. Not line.&quot;
     }
   },
   &quot;patternProperties&quot;: {
@@ -2446,11 +2484,11 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="toss"><h2>OpenBook toss</h2><p>Cricket toss: who won the coin (Q86 leftovers, Q142–Q144). Not on the generic fixture. Not score. Not a new live object. participant is who won. Elected bat/bowl not in this pick.</p><p><a href="schema/toss.schema.json">toss.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, fixture, participant</code></p><pre>{
+}</pre></section><section class="schema-block" id="toss"><h2>OpenBook toss</h2><p>Cricket toss: who won the coin and what they elected (Q86 leftovers, Q142–Q144, Q157–Q160). Not on the generic fixture. Not score. Not a new live object. participant is who won. elected is leftover English: required bat or bowl.</p><p><a href="schema/toss.schema.json">toss.schema.json</a> · required: <code>openbookVersion, id, sequence, dateModified, fixture, participant, elected</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/toss.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook toss&quot;,
-  &quot;description&quot;: &quot;Cricket toss: who won the coin (Q86 leftovers, Q142–Q144). Not on the generic fixture. Not score. Not a new live object. participant is who won. Elected bat/bowl not in this pick.&quot;,
+  &quot;description&quot;: &quot;Cricket toss: who won the coin and what they elected (Q86 leftovers, Q142–Q144, Q157–Q160). Not on the generic fixture. Not score. Not a new live object. participant is who won. elected is leftover English: required bat or bowl.&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;openbookVersion&quot;,
@@ -2458,7 +2496,8 @@
     &quot;sequence&quot;,
     &quot;dateModified&quot;,
     &quot;fixture&quot;,
-    &quot;participant&quot;
+    &quot;participant&quot;,
+    &quot;elected&quot;
   ],
   &quot;properties&quot;: {
     &quot;@context&quot;: {},
@@ -2484,6 +2523,10 @@
     &quot;participant&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
       &quot;description&quot;: &quot;Who won the toss.&quot;
+    },
+    &quot;elected&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/elected&quot;,
+      &quot;description&quot;: &quot;What the winner elected (Q159–Q160). Required.&quot;
     }
   },
   &quot;patternProperties&quot;: {
@@ -2736,13 +2779,13 @@
   ]
 }</pre></section><section class="schema-block" id="market_type.example"><h2>market_type.example.json</h2><p><a href="examples/market_type.example.json">examples/market_type.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
-  &quot;id&quot;: &quot;market:parlay&quot;,
-  &quot;name&quot;: &quot;Parlay / Accumulator&quot;,
+  &quot;sequence&quot;: 103900,
+  &quot;dateModified&quot;: &quot;2026-09-19T14:00:00Z&quot;,
+  &quot;id&quot;: &quot;market:same-game-parlay&quot;,
+  &quot;name&quot;: &quot;Same-Game Parlay&quot;,
   &quot;genre&quot;: &quot;combination&quot;,
   &quot;shape&quot;: &quot;composite&quot;,
-  &quot;category&quot;: &quot;parlay-special&quot;,
-  &quot;sequence&quot;: 104900,
-  &quot;dateModified&quot;: &quot;2026-09-19T14:00:00Z&quot;
+  &quot;category&quot;: &quot;same-game-parlay&quot;
 }</pre></section><section class="schema-block" id="market_update.example"><h2>market_update.example.json</h2><p><a href="examples/market_update.example.json">examples/market_update.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 105330,
@@ -3097,7 +3140,18 @@
   &quot;id&quot;: &quot;EVT-88213&quot;,
   &quot;changes&quot;: {
     &quot;fixture&quot;: &quot;EVT-88213&quot;,
-    &quot;stage&quot;: &quot;ST-QF&quot;
+    &quot;stage&quot;: &quot;ST-QF&quot;,
+    &quot;wins&quot;: [
+      {
+        &quot;participant&quot;: &quot;T-3&quot;,
+        &quot;total&quot;: 2
+      },
+      {
+        &quot;participant&quot;: &quot;T-11&quot;,
+        &quot;total&quot;: 1
+      }
+    ],
+    &quot;needed&quot;: 4
   }
 }</pre></section><section class="schema-block" id="snapshot_complete.example"><h2>snapshot_complete.example.json</h2><p><a href="examples/snapshot_complete.example.json">examples/snapshot_complete.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
@@ -3133,7 +3187,8 @@
   &quot;sequence&quot;: 104120,
   &quot;dateModified&quot;: &quot;2026-09-01T09:00:00Z&quot;,
   &quot;fixture&quot;: &quot;EVT-88213&quot;,
-  &quot;participant&quot;: &quot;T-3&quot;
+  &quot;participant&quot;: &quot;T-3&quot;,
+  &quot;elected&quot;: &quot;bat&quot;
 }</pre></section></article></div></div>
 </div></main>
 <footer><div class="wrap">

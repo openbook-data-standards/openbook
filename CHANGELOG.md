@@ -6,32 +6,19 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
-- **Vocabularies: full and descriptive** — every row in
+- **Vocabularies** — every row in
   [`vocabularies/sports.md`](vocabularies/sports.md),
   [`vocabularies/segments.md`](vocabularies/segments.md) and
-  [`vocabularies/market_types.md`](vocabularies/market_types.md) now carries a
-  plain-language description and settlement rule. Sports grow from 17 to the
-  sports mainstream books price (racket, combat, winter, motor, esports,
-  GAA, cue and target sports) with `primaryUnit`, and disciplines for
-  swimming, alpine skiing, cycling, motorsport and esports beside athletics.
-  Segments gain per-slice definitions, `overtime-<n>`, clock windows, and
-  slices for every listed sport. Market types grow to the mainstream board:
-  3-way handicap, to qualify, set score, clean sheet, win to nil, fight
-  markets, first/last scorer, US player props, cricket, golf, darts and
-  esports props, top-N finish, relegation, playoffs, head-to-head. Market
-  family headings name their `marketCategory`. Vendor names appear nowhere
-  on the site; provider evidence is in the pull request.
-- `marketShape` gains **`composite`** for parlay and same-game-parlay legs;
-  `examples/market_type.example.json` validates it.
-
-### Changed
-- **Segments: one whole-contest word.** `segment:cricket:full-match` and
-  `segment:motorsport:full-session` become `full-time`; athletics gains
-  `full-time`. Draft ids, never frozen, so no deprecation entry (Q35).
-- `market:odd-even-total` is shape `n-way` (sides `odd` / `even`), not
-  `yes-no`; `market:moneyline` is shape `n-way` (two- or three-way).
-- [`docs/taxonomy.md`](docs/taxonomy.md): plain-language Side section,
-  complete segment table, market families named by `marketCategory`.
+  [`vocabularies/market_types.md`](vocabularies/market_types.md) carries a
+  description and settlement rule. Sports grow to what mainstream books
+  price (futsal, badminton, handball, field hockey, snooker, darts,
+  cycling, Australian rules, swimming, skiing, lacrosse, esports
+  titles as disciplines). Every sport names `full-time` as the whole
+  contest as graded. Market types include common score, game, player, and
+  outright boards. Human map: [`docs/taxonomy.md`](docs/taxonomy.md).
+- **`composite` market shape** — parlays and same-game parlays are that
+  shape (legs are other market outcomes). Schema, spec, and
+  [`examples/market_type.example.json`](examples/market_type.example.json).
 - **Examples page** — [`docs/examples.md`](docs/examples.md) walks the
   existing `examples/` documents in `sequence` order (GTFS-style sample feed,
   not a sandbox). `publisher.example.json` lists `bigbook` so it matches the
@@ -40,6 +27,15 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   comparison of GTFS, GBFS, MQTT, WIS2, FIX, ISO 20022, OpenRTB, Betfair
   Stream, Sportradar UOF, OsmChange, CAP and ODF against the OpenBook wire
   (what is adopted, shape-only, later, or rejected).
+
+### Changed
+- **Segments: one whole-contest word.** Cricket and motorsport use
+  `full-time` (draft ids `full-match` / `full-session` dropped); athletics
+  gains `full-time`. Never frozen, so no deprecation entry (Q35).
+- `market:odd-even-total` is shape `n-way` (sides `odd` / `even`), not
+  `yes-no`; `market:moneyline` is shape `n-way` (two- or three-way).
+- [`docs/taxonomy.md`](docs/taxonomy.md): Side as a table, complete
+  segment families, market families named by `marketCategory`.
 - **Site layout** — header, homepage and doc pages share one wrap width so
   the logo lines up with the page; the crumb sits with the title; TOC
   numbers share a gutter.
