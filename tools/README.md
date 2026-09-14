@@ -17,5 +17,6 @@ Exit code 0 means conformant. CI runs it on every pull request
 few docs pages) MUST exist on a schema. To validate your own feed, point it
 at a folder of your documents and messages — coming as `--examples <dir>`.
 
-`tools/build_site.py` turns the markdown spec, vocabularies, and docs into
+`tools/feeds.json` is the Q173 list of known feeds (not a discovery
+document). `tools/build_site.py` turns the markdown spec, vocabularies, and docs into
 GitHub Pages HTML so the site can be read without opening GitHub.

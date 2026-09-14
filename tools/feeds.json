@@ -1,0 +1,10 @@
+{
+  "description": "Known OpenBook feeds and conformance status (Q173). Not a discovery document. Each publisher still has one discovery URL (Q49). An aggregator is itself a publisher (Q1).",
+  "feeds": [
+    {
+      "publisher": "acme-feeds",
+      "status": "sample",
+      "note": "Worked examples in this repository (examples/). Not a live public feed."
+    }
+  ]
+}

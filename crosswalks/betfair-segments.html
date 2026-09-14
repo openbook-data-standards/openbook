@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Betfair soccer period labels → OpenBook segment id — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/crosswalks/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="../guide.html">Guide</a>
+    <a href="../examples.html">Examples</a>
+    <a href="../spec.html">Spec</a>
+    <a href="../taxonomy.html">Taxonomy</a>
+    <a href="../vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<div class="page-layout"><div class="page-main"><p class="crumb"><a href="../">Home</a> · crosswalks/betfair-segments.md</p><article class="doc"><h1 id="betfair-soccer-period-labels-openbook-segment-id">Betfair soccer period labels → OpenBook segment id</h1>
+<p>Public list: Betfair Exchange soccer market catalogues describe periods in English (first half, second half, match odds). Documentation: Betfair Exchange Stream API pages linked from <a href="../protocol-comparison.html"><code>../docs/protocol-comparison.md</code></a> §16.</p>
+<div class="table-wrap"><table><thead><tr><th>Betfair label</th><th>OpenBook</th><th>Reason</th></tr></thead><tbody><tr><td>First Half</td><td><code>segment:soccer:1st-half</code></td><td>First period of regulation.</td></tr><tr><td>Second Half</td><td><code>segment:soccer:2nd-half</code></td><td>Second period of regulation.</td></tr><tr><td>Match Odds</td><td><code>segment:soccer:full-time</code></td><td>Contest as graded.</td></tr><tr><td>Extra Time</td><td><code>segment:soccer:extra-time</code></td><td>Whole extra-time period.</td></tr><tr><td>Penalties</td><td><code>segment:soccer:penalties</code></td><td>Penalty shoot-out.</td></tr><tr><td>Innings 1</td><td><code>segment:unknown:unknown</code></td><td>Soccer catalogue; not a soccer period.</td></tr></tbody></table></div></article></div></div><p class="source">Source: crosswalks/betfair-segments.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="../" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+
+</body>
+</html>

@@ -18,14 +18,19 @@ walk stopped (**Q169**), then Q76 position vocab unparked (**Q170**).
 Roadmap pass closed (**Q171–Q173**): register not an entity database;
 profiles are separate specifications; feed list is validator tooling.
 Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
-(**Q180**).
+(**Q180**). Q171 prefix file, join-key recipe, and corpus case are
+in the register directory. Q172 profile pointers are in
+docs/profiles.md. Q173 feed list is tools/feeds.json (hosted runner
+still waits). Betfair maps are in the crosswalks directory.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Stopped (Q180).** Position-vocab shape is logged. Token lists wait.
-No file.
+**Later leftovers in this repo (Q171–Q173 + maps).** Prefix file, join-key
+recipe, corpus case, profile pointers, feed list beside the validator,
+and one public taxonomy map. Token lists still wait. Hosted runner and
+sibling profile repositories are not created here. **Q55** stays parked.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -132,19 +137,18 @@ over/under. No new market type. No new field. On the wire.
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
-- **Q171** — namespace prefix file; fixture fingerprint recipe and a
-  corpus case; anchor policy prose.
-- **Q172** — profile repositories (prediction-market, reporting,
-  integrity, register) that pin a core major.
-- **Q173** — hosted validator and a feed list beside it, not on
-  discovery.
+- **Q172** — sibling profile repositories (openbook-pm, openbook-reg,
+  openbook-integrity, openbook-register). Pointers are in
+  docs/profiles.md; the repos are not created.
+- **Q173** — hosted validator runner and badge. Feed list is
+  tools/feeds.json.
 
 ## Next question (not decided)
 
 - None. This spec walk stopped (**Q180**). Resume when token lists are
-  unparked, or when you pick the next leftover. Maps in a crosswalks
-  directory wait (public market / segment keys onto existing OpenBook
-  ids, or the unknown catch-all with a reason).
+  unparked, or when you pick the next leftover.
+- Sitting: more public taxonomies in the crosswalks directory (roadmap exit is
+  maps to at least four). Hosted validator. Sibling profile repos.
 
 ## Done (Q32–Q180)
 

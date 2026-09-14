@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixture join key — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/register/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="../guide.html">Guide</a>
+    <a href="../examples.html">Examples</a>
+    <a href="../spec.html">Spec</a>
+    <a href="../taxonomy.html">Taxonomy</a>
+    <a href="../vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#birth-facts-frozen-at-first-publication"><span class="n"></span>Birth facts</a><a href="#string"><span class="n"></span>String</a></nav><div class="page-main"><p class="crumb"><a href="../">Home</a> · register/fingerprint.md</p><article class="doc"><h1 id="fixture-join-key">Fixture join key</h1>
+<p>Optional join key for one fixture (Q171). It is derived. It is not the object <code>id</code>. The publisher-own <code>id</code> stays canonical. This recipe is not a new field on the wire.</p>
+<h2 id="birth-facts-frozen-at-first-publication">Birth facts (frozen at first publication)</h2>
+<ul>
+<li><code>sport</code> id</li>
+<li>league anchor: <code>league.sameAs</code> when present, otherwise <code>league.id</code></li>
+<li><code>startDate</code> truncated to the minute in UTC</li>
+<li>participant anchors, in <code>order</code>: each row’s <code>sameAs</code> when present, otherwise that row’s <code>id</code></li>
+<li><code>league.competitionType</code></li>
+</ul>
+<h2 id="string">String</h2>
+<p>UTF-8, five fields after the version, separated by <code>|</code>:</p>
+<p><code>v1|{sport id}|{league anchor}|{start to the minute UTC}|{participant anchors comma-separated}|{competitionType}</code></p>
+<p>Start to the minute uses <code>YYYY-MM-DDTHH:MMZ</code> (UTC). Participant anchors keep <code>order</code>. Do not include names, venues, or later score facts.</p>
+<p>A worked case: <a href="corpus.md"><code>corpus.md</code></a>.</p></article></div></div><p class="source">Source: register/fingerprint.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="../" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+
+</body>
+</html>

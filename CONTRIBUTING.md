@@ -8,7 +8,10 @@ the market taxonomy no one else has published.
 
 1. Open an issue describing the change and the real-world feed(s) that motivate
    it. Vocabulary additions should cite at least one provider that carries the
-   sport / market / segment.
+   sport / market / segment. A new `propertyID` prefix goes in
+   [`register/prefixes.md`](register/prefixes.md) and is never reused. A map
+   from a public taxonomy goes in [`crosswalks/`](crosswalks/) and must land on
+   an existing OpenBook id or the unknown catch-all with a reason.
 2. For a schema change, update the JSON Schema in [`schema/`](schema/) **and** the
    prose in [`spec/openbook.md`](spec/openbook.md) in the same change; the schema
    is machine-normative and must not drift from the prose.

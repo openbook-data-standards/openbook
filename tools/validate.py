@@ -19,6 +19,7 @@ Checks, in order:
 Usage:  python3 tools/validate.py [--topic TOPIC ...]      exit 0 = conformant
 """
 import json, re, sys, glob, os, copy
+from datetime import datetime, timezone
 try:
     from jsonschema import Draft202012Validator
     from referencing import Registry, Resource
@@ -245,6 +246,71 @@ if missing_names:
         fail(f"name `{n}` in docs is not on a schema ({mentioned[n][0]})")
 else:
     ok(f"{len(mentioned)} documented names present on a schema")
+
+print("8. register, feeds list, and crosswalks (Q171, Q173)")
+PREFIX_KIND = {"publisher", "provider", "exchange"}
+PREFIX_STATUS = {"allocated", "retired"}
+prefix_re = re.compile(r"^\| `([a-z0-9-]+)` \| ([a-z]+) \| ([a-z]+) \|")
+seen_prefixes = []
+for line in open(os.path.join(ROOT, "register/prefixes.md")):
+    m = prefix_re.match(line)
+    if not m:
+        continue
+    pfx, kind, status = m.group(1), m.group(2), m.group(3)
+    if kind not in PREFIX_KIND:
+        fail(f"register/prefixes.md: {pfx} kind {kind}")
+    if status not in PREFIX_STATUS:
+        fail(f"register/prefixes.md: {pfx} status {status}")
+    if pfx in seen_prefixes:
+        fail(f"register/prefixes.md: duplicate {pfx}")
+    seen_prefixes.append(pfx)
+if len(seen_prefixes) < 4:
+    fail("register/prefixes.md: expected the prefixes already cited on this spec")
+else:
+    ok(f"{len(seen_prefixes)} prefixes")
+
+def join_key(doc):
+    sport = doc["sport"]["id"]
+    league = doc["league"]
+    league_anchor = league.get("sameAs") or league["id"]
+    raw = doc["startDate"].replace("Z", "+00:00")
+    start = datetime.fromisoformat(raw).astimezone(timezone.utc)
+    minute = start.strftime("%Y-%m-%dT%H:%MZ")
+    people = sorted(doc["participants"], key=lambda row: row["order"])
+    anchors = ",".join((row.get("sameAs") or row["id"]) for row in people)
+    return f"v1|{sport}|{league_anchor}|{minute}|{anchors}|{league['competitionType']}"
+
+example = json.load(open(os.path.join(EXAMPLE_DIR, "fixture.example.json")))
+computed = join_key(example)
+corpus = open(os.path.join(ROOT, "register/corpus.md")).read()
+block = re.search(r"```\n(v1\|.+)\n```", corpus)
+if not block:
+    fail("register/corpus.md: missing expected join-key fence")
+elif block.group(1) != computed:
+    fail(f"register/corpus.md: expected {computed!r} got {block.group(1)!r}")
+else:
+    ok("fixture.example.json join key")
+
+feeds_path = os.path.join(ROOT, "tools/feeds.json")
+feeds = json.load(open(feeds_path))
+if not isinstance(feeds.get("feeds"), list):
+    fail("tools/feeds.json: feeds must be a list")
+else:
+    for i, row in enumerate(feeds["feeds"]):
+        if not row.get("publisher") or not row.get("status"):
+            fail(f"tools/feeds.json: row {i} needs publisher and status")
+    ok(f"{len(feeds['feeds'])} listed feed(s)")
+
+target_re = re.compile(r"`((?:sport|market|segment):[a-z0-9:-]+)`")
+for path in sorted(glob.glob(os.path.join(ROOT, "crosswalks/*.md"))):
+    if os.path.basename(path) == "README.md":
+        continue
+    rel = os.path.relpath(path, ROOT)
+    for m in target_re.finditer(open(path).read()):
+        tok = m.group(1)
+        if tok not in known_names:
+            fail(f"{rel}: {tok} is not an OpenBook vocab id")
+ok("crosswalk targets exist on a vocabulary")
 
 print()
 if failures: sys.exit(f"{len(failures)} problem(s) — not conformant")

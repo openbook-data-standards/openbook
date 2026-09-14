@@ -6,6 +6,17 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Q171 later leftover** — scheme prefixes in
+  [`register/prefixes.md`](register/prefixes.md); derived fixture join-key
+  recipe and corpus case (`register/fingerprint.md`, `register/corpus.md`).
+  Anchor policy in the spec (§3.5). Not a new wire field.
+- **Q172** — [`docs/profiles.md`](docs/profiles.md) points at separate
+  profile repositories. Those repos are not created.
+- **Q173** — known-feed list beside the validator
+  ([`tools/feeds.json`](tools/feeds.json)), not on discovery.
+- **Crosswalks** — Betfair `marketType` and soccer period labels onto
+  existing OpenBook ids, or the unknown catch-all with a reason
+  ([`crosswalks/`](crosswalks/)). Not a wire change.
 - [`docs/roadmap.md`](docs/roadmap.md) — three-year direction
   (non-normative). **Q171** register, not an entity database;
   **Q172** profiles as separate specifications; **Q173** feed list

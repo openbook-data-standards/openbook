@@ -98,7 +98,24 @@ not**. A string to pin, never a runtime dependency.
 ### 3.4 External ids — `identifier`
 
 Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
-(`{propertyID, value}`). Optional, never canonical.
+(`{propertyID, value}`). Optional, never canonical. `propertyID` SHOULD
+be a prefix allocated in
+[`../register/prefixes.md`](../register/prefixes.md) (Q171). Prefixes are
+first-come and never reused; retire and redirect only.
+
+### 3.5 Matching join key (derived)
+
+An optional **join key** MAY be derived from birth facts frozen at first
+publication: `sport` id, league anchor (`league.sameAs` when present,
+otherwise `league.id`), `startDate` to the minute UTC, participant
+anchors in `order` (`sameAs` when present, otherwise that row’s `id`),
+and `league.competitionType`. The publisher-own fixture `id` stays
+canonical. The join key is not a field on the wire. Recipe and a worked
+case: [`../register/fingerprint.md`](../register/fingerprint.md).
+
+`sameAs` remains the Wikidata URL (Q12, Q171). A feed MAY also name one
+community register per sport when one exists (football: Reep, as cited in
+[`../docs/protocol-comparison.md`](../docs/protocol-comparison.md)).
 
 ## 4. The hierarchy
 
@@ -305,7 +322,8 @@ Every fixture MUST carry the facts below. Consumers match on sport + league
 (name, territory) + start time + participants (names, territories), and on
 Wikidata QIDs when both sides have them. `role` and `order` are facts the
 publisher asserts; the sign of a handicap is derived from them. A feed's
-presentation order is never a fact.
+presentation order is never a fact. The optional derived join key in §3.5
+uses a subset of these facts; it is not an extra field.
 
 | | Field | Notes |
 | --- | --- | --- |

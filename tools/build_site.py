@@ -46,6 +46,25 @@ PAGE_MAP = {
     "docs/roadmap.md": "roadmap.html",
     "../docs/roadmap.md": "roadmap.html",
     "roadmap.md": "roadmap.html",
+    "docs/profiles.md": "profiles.html",
+    "../docs/profiles.md": "profiles.html",
+    "profiles.md": "profiles.html",
+    "../register/prefixes.md": "register/prefixes.html",
+    "register/prefixes.md": "register/prefixes.html",
+    "../register/fingerprint.md": "register/fingerprint.html",
+    "register/fingerprint.md": "register/fingerprint.html",
+    "../register/corpus.md": "register/corpus.html",
+    "register/corpus.md": "register/corpus.html",
+    "../register/README.md": "register/",
+    "register/README.md": "register/",
+    "../crosswalks/README.md": "crosswalks/",
+    "crosswalks/README.md": "crosswalks/",
+    "../crosswalks/betfair-markets.md": "crosswalks/betfair-markets.html",
+    "crosswalks/betfair-markets.md": "crosswalks/betfair-markets.html",
+    "../crosswalks/betfair-segments.md": "crosswalks/betfair-segments.html",
+    "crosswalks/betfair-segments.md": "crosswalks/betfair-segments.html",
+    "../tools/feeds.json": "tools/feeds.json",
+    "tools/feeds.json": "tools/feeds.json",
     "industry-patterns.md": "industry-patterns.html",
     "GOVERNANCE.md": "governance.html",
     "../GOVERNANCE.md": "governance.html",
@@ -509,6 +528,14 @@ def main() -> None:
     write_md_page(ROOT / "docs/industry-patterns.md", ROOT / "industry-patterns.html", 0, "industry-patterns.html", "docs/industry-patterns.md")
     write_md_page(ROOT / "docs/protocol-comparison.md", ROOT / "protocol-comparison.html", 0, "protocol-comparison.html", "docs/protocol-comparison.md")
     write_md_page(ROOT / "docs/roadmap.md", ROOT / "roadmap.html", 0, "roadmap.html", "docs/roadmap.md")
+    write_md_page(ROOT / "docs/profiles.md", ROOT / "profiles.html", 0, "profiles.html", "docs/profiles.md")
+    write_md_page(ROOT / "register/README.md", ROOT / "register/index.html", 1, "register/", "register/README.md")
+    write_md_page(ROOT / "register/prefixes.md", ROOT / "register/prefixes.html", 1, "register/", "register/prefixes.md")
+    write_md_page(ROOT / "register/fingerprint.md", ROOT / "register/fingerprint.html", 1, "register/", "register/fingerprint.md")
+    write_md_page(ROOT / "register/corpus.md", ROOT / "register/corpus.html", 1, "register/", "register/corpus.md")
+    write_md_page(ROOT / "crosswalks/README.md", ROOT / "crosswalks/index.html", 1, "crosswalks/", "crosswalks/README.md")
+    write_md_page(ROOT / "crosswalks/betfair-markets.md", ROOT / "crosswalks/betfair-markets.html", 1, "crosswalks/", "crosswalks/betfair-markets.md")
+    write_md_page(ROOT / "crosswalks/betfair-segments.md", ROOT / "crosswalks/betfair-segments.html", 1, "crosswalks/", "crosswalks/betfair-segments.md")
     write_md_page(ROOT / "GOVERNANCE.md", ROOT / "governance.html", 0, "governance.html", "GOVERNANCE.md")
     write_md_page(ROOT / "SECURITY.md", ROOT / "security.html", 0, "security.html", "SECURITY.md")
     write_md_page(ROOT / "VERSIONING.md", ROOT / "versioning.html", 0, "versioning.html", "VERSIONING.md")
