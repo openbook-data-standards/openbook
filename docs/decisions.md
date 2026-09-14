@@ -1589,3 +1589,15 @@ player row rules are written in this pick (no new field).
 Rejected: unpark Q86; a new book-feed walk.
 
 **Supersedes:** Q132 as an open “what is next”.
+
+## Q134 — Unpark Q86 leftovers — decided (A)
+
+This walk is the Q86 leftovers: racing stall, cricket toss, playoff
+series. They are still **not** more keys on every fixture (Q86). Names
+and home (stage, live object, or sport slice) wait for later Qs.
+
+Not wired in this pick.
+
+Rejected: stay stopped (Q133); unpark Q55.
+
+**Supersedes:** Q133 “Q86 stays parked”; Q133 “no new board until named”.
