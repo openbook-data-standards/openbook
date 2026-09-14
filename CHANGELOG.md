@@ -16,6 +16,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
+- **Site layout** — header, homepage and doc pages share one wrap width so
+  the logo lines up with the page; the crumb sits with the title; TOC
+  numbers share a gutter.
 - **Site nav** — shorter on-this-page labels (drop the slogan after `:` /
   `(`); numbered TOC rows align; top nav uses a current-page chip. Spec
   headings unchanged.
