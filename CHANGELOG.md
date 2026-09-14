@@ -112,6 +112,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q159** — elected is one token, bat or bowl. Field name leftover English
   at implement. Not wired.
 - **Q160** — elected is required on `toss`. Not wired.
+- **Q161** — elected rules closed; then best-of. Field leftover English at
+  implement. Not wired.
 
 
 ### Removed

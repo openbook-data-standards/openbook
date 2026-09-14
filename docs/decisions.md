@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 |
 | Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
@@ -1922,3 +1922,16 @@ Rejected: optional; leftover `other` as a third token; leave required
 unspecified.
 
 **Supersedes:** none of Q159 (same one token; this locks required).
+
+## Q161 — Elected rules closed — decided (A)
+
+Elected rules closed. On `toss`; one required token, bat or bowl;
+field leftover English at implement. Not leftover `other`. Then
+**best-of**. No new field in this pick.
+
+Not wired in this pick.
+
+Rejected: leftover `other`; name the field now; stop this spec walk.
+
+**Supersedes:** Q157 as an open “elected first” (elected slice closed;
+best-of is next).
