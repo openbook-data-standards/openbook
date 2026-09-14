@@ -1024,3 +1024,15 @@ Rejected: two fixtures linked by `superEvent`; copying `parentId`; a
 corners child event (corners is `basis` on the same fixture, Q90).
 
 **Supersedes:** the walk note that pregame and live are separate fixtures.
+
+## Q94 — Sports catalog — decided (A)
+
+OpenBook sport ids stay `sport:*` (`sport:soccer`, `sport:unknown`, …).
+A vendor integer (Pinnacle `sportId`) maps with `identifier` / `sameAs`.
+Add a sport to the vocab when it is priced, not by dumping `/sports`.
+Consumers MUST accept unrecognised `sport:*` values (Q34).
+
+Rejected: Pinnacle sport integers as OpenBook ids; import their full list
+now.
+
+**Supersedes:** none of the sports vocabulary.

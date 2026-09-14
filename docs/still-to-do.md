@@ -29,6 +29,8 @@ answered. Do not invent names.
 
 - **Q89** — Pinnacle specials are **markets**. No new object.
 - **Q92** — no parlay/teaser flags on the fixture.
+- **Q94** — keep `sport:*` ids; map vendor integers with `identifier` /
+  `sameAs`. Do not dump Pinnacle `/sports`.
 
 ### Wired on this walk
 
@@ -39,8 +41,7 @@ answered. Do not invent names.
 
 ### Not decided yet (walk these; do not invent)
 
-1. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
-2. **Get Line** — confirm market `limit` is enough.
+1. **Get Line** — confirm market `limit` is enough.
 
 ### Not in the Pinnacle Lines fixture schema
 
@@ -54,8 +55,8 @@ payload has them. Do not add them to cover “all sports.”
 
 ## Next question (not decided)
 
-- Sports catalog: Pinnacle sport list vs OpenBook sport ids.
+- Get Line: is market `limit` enough?
 
-## Done (Q32–Q93)
+## Done (Q32–Q94)
 
-Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled · **Q92** omit parlay flags · **Q93** one fixture.
+Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled · **Q92** omit parlay flags · **Q93** one fixture · **Q94** `sport:*` ids.

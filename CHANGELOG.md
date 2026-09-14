@@ -29,6 +29,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q92** — no parlay/teaser flags on the fixture (log only).
 - **Q93** — one fixture; `eventStatus` is live. `superEvent` is not a
   live/pregame pair.
+- **Q94** — keep `sport:*` ids; map vendor integers with `identifier` /
+  `sameAs` (log only).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
