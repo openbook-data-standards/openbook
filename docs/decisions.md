@@ -1500,3 +1500,14 @@ Later pick wired those extras.
 Rejected: keep asking plus-band questions in this pass.
 
 **Supersedes:** Q123 (pass not closed).
+
+## Q126 — Next area is player on yes/no — decided (A)
+
+Player yes/no rows (anytime scorer / to score) name the person with the
+same OpenBook `player` id as player over/under. No new market type.
+
+Not wired in this pick.
+
+Rejected: a new book feed walk; stop until plus-bands merge.
+
+**Supersedes:** Q117 “pass closed” as the next area, not the prop extras.
