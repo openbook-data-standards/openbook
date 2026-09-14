@@ -77,3 +77,4 @@ openbook/  (this repository)
   examples/               ← valid worked documents (also the valid corpus)
   conformance/            ← language-agnostic corpus (manifest + invalid cases)
   tools/validate.py       ← one runner; not a language oracle
+  packages/openbook-translate/  ← Apache-2.0 ABC (Q96); not the spec

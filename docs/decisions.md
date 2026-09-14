@@ -1089,10 +1089,13 @@ MollyBet (or any unknown inbound) onto it is **not** the specification,
 the way FHIR keeps concept maps beside Patient and GTFS does not ship a
 vendor translator.
 
-Planned Python tooling (not in this repo; names only, repos not created
-in this change):
+Planned Python tooling (names locked in this question). The first
+`openbook-translate` tree now lives at `packages/openbook-translate`
+(Apache-2.0 code; vendored `schema/*.json` stay CC BY with NOTICE).
+`openbook-starter` is still not in this repository. A dedicated GitHub
+repository MAY split later; the locks below do not change.
 
-- **openbook-starter** — copyable example + CLI `openbook start`. Writes
+- **openbook-starter** (not built here) — copyable example + CLI `openbook start`. Writes
   documents only under `openbook/`: publisher, discovery, `snapshot.json`
   (the publisher document). Discovery lists only URLs that exist
   (snapshot, not placeholder stream/docs). Identity: flags, prompt if

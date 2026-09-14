@@ -2,8 +2,9 @@
 
 Questions recorded through **Q103**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
-Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
-not this spec. Pinnacle Lines walk closed (**Q97–Q103**).
+Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping is not
+this spec; `openbook-translate` tree is in packages (Apache-2.0).
+`openbook-starter` is not built. Pinnacle Lines walk closed (**Q97–Q103**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
@@ -35,6 +36,7 @@ Not the Pinnacle Bets API.
 ## Later PRs (decided, not built)
 
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
+- **Q96** — `openbook-starter` (translate ABC is built).
 
 ## Next question (not decided)
 
@@ -46,7 +48,8 @@ Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
 Patch; not ISO 20022; not FIX session; no spec-owned multi-publisher index;
 protocol-fit pass closed.
-**Q96** — vendor mapping / starter / translate packages are not this spec.
+**Q96** — vendor mapping is not this spec; `openbook-translate` is in
+packages; `openbook-starter` is not built.
 **Q97–Q103** — Pinnacle Lines: specials are markets; optional `basis`;
 statuses/settled; omit parlay flags; one fixture; `sport:*` ids; Get Line
 out of scope.

@@ -63,7 +63,7 @@
 <h3 id="added">Added</h3>
 <ul>
 <li><strong>Input bounds</strong> — shared primitives in <a href="schema/common.schema.json"><code>schema/common.schema.json</code></a> carry <code>maxLength</code> / <code>maxItems</code>, so conformant parsers reject oversized input; covered by <code>conformance/invalid/alternate-name-too-long.json</code>.</li>
-<li><strong>Q96</strong> — vendor mapping, starter CLI, and translate ABC are <strong>not</strong> this spec; planned names openbook-starter / openbook-translate (<a href="decisions.html"><code>docs/decisions.md</code></a>). Repos not created in this change.</li>
+<li><strong>Q96</strong> — vendor mapping is <strong>not</strong> this spec. First <a href="packages/openbook-translate"><code>packages/openbook-translate</code></a> tree (Apache-2.0 ABC, acme contract adapter, vendored schemas, <code>openbook-spec-version</code> stamp). <code>openbook-starter</code> still not built (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
 <li><strong>Q95</strong> — protocol-fit pass closed; next work is a new area, not more take/don't-take pins from that comparison list (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
 <li><strong>Q94</strong> — no spec-owned multi-publisher index; one discovery URL per publisher (Q49); an aggregator is itself a publisher (Q1) (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>
 <li><strong>Q93</strong> — FIX session is not the OpenBook session; Q33/Q46 stand (<a href="decisions.html"><code>docs/decisions.md</code></a>).</li>

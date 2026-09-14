@@ -12,3 +12,12 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install 'jsonschema>=4.18' referencing
       - run: python3 tools/validate.py
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with: { python-version: "3.11" }
+    - run: pip install -e './packages/openbook-translate[dev]'
+    - run: pytest packages/openbook-translate
+    - run: python3 -m openbook_translate update --local
