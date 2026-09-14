@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q106**. Catalog pass closed and on the wire.
+Questions recorded through **Q107**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**).
@@ -30,6 +30,7 @@ Not the Pinnacle Bets API.
 - **Q105** — homeTotal / awayTotal; halfTime / fullTime; player on the
   outcome; extra side tokens.
 - **Q106** — those extras on market, odds/change, and grade. Not wired.
+- **Q107** — CS / HT/FT / winning margin are one market, many rows.
 
 ### Parked
 
@@ -42,10 +43,9 @@ Not the Pinnacle Bets API.
 
 ## Next question (not decided)
 
-- For CS / HT/FT / winning margin: one market with many outcomes (omit
-  market `line`), or one OpenBook market per scoreline / combo / band?
+- Player over/under: just the roster id on the row, or id plus name?
 
-## Done (Q32–Q106)
+## Done (Q32–Q107)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -60,3 +60,4 @@ out of scope.
 the outcome; extra side tokens.
 **Q106** — wire those extras onto market / odds/change / grade (not
 built).
+**Q107** — CS / HT/FT / winning margin: one market, many rows.

@@ -1285,3 +1285,19 @@ Rejected: market-only (grade cannot match); a new object for prop
 selections.
 
 **Supersedes:** Q105 “not wired”.
+
+## Q107 — One market, many rows — decided (A)
+
+Correct score, HT/FT, and winning margin are **one market** with many
+rows. No handicap number on that market. The row carries the score
+(`homeTotal` / `awayTotal`), the HT/FT pair, or the margin (`participant`
++ outcome `line`). Plus-bands stay `side: other` until a band is named
+(Q105).
+
+Player over/under still has its number on the market (the 24.5).
+
+Not wired in this pick.
+
+Rejected: a separate market per score, HT/FT combo, or margin band.
+
+**Supersedes:** none of Q106. Says where `line` sits for those boards.
