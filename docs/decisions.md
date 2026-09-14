@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q188 |
+| Maps leftover | Q181–Q189 |
 
 The entries below stay in the order they were taken.
 
@@ -2292,3 +2292,17 @@ Rejected: encoding waits; not JSON; stop this leftover.
 
 **Supersedes:** none of Q187 (one file per list stays; this is the
 encoding).
+
+## Q189 — JSON object keys wait — decided (A)
+
+When files exist: **JSON object keys wait**. Do not invent names in
+this pick. Row meaning stays leftover English (**Q185**). No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: name the keys in this pick; park with no extra rule; stop
+this leftover.
+
+**Supersedes:** none of Q188 (JSON stays; this is that the keys are
+unnamed).

@@ -159,6 +159,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q188** — when files exist: JSON, same as the shared vocab lists.
   First public list name still waits. No file in this pick. Not wired
   in this pick.
+- **Q189** — JSON object keys wait. Do not invent names. Row meaning
+  stays leftover English. No file in this pick. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
