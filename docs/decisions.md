@@ -1036,3 +1036,14 @@ Rejected: Pinnacle sport integers as OpenBook ids; import their full list
 now.
 
 **Supersedes:** none of the sports vocabulary.
+
+## Q95 — Get Line — decided (A)
+
+Market `limit` is enough on the feed (Q45). Pinnacle `/line` is a ticket
+check before placing — Bets API, out of scope. No second limit object, no
+min-stake field in this pick.
+
+Rejected: copying Get Line onto the market; adding min stake as well as
+max `limit`.
+
+**Supersedes:** none of Q45.

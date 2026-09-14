@@ -31,6 +31,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   live/pregame pair.
 - **Q94** — keep `sport:*` ids; map vendor integers with `identifier` /
   `sameAs` (log only).
+- **Q95** — market `limit` is enough; Get Line is out of scope (log only).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
