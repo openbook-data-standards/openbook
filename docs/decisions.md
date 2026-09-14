@@ -938,3 +938,13 @@ Rejected: one `hand` field; ISO 5218-style sex codes; person-level FIFA
 Gender as a stand-in.
 
 **Supersedes:** none of Q75/Q76.
+
+## Q89 — Pinnacle specials — decided (markets)
+
+A Pinnacle special that is one priced question (contestants, cutoff) is an
+OpenBook **market** on a fixture. No new object. HT/FT is one n-way, not an
+SGP. SGP/parlay is combining markets.
+
+Rejected: a Pinnacle-only specials object; treat HT/FT as a same-game parlay.
+
+**Supersedes:** none of the market vocabulary.

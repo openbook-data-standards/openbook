@@ -20,6 +20,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q80** — `lineup` live object: fixture-keyed roster `player` ids.
 - Plan: cover the Pinnacle Lines API
   ([`docs/still-to-do.md`](docs/still-to-do.md)). No wire change in that note.
+- **Q89** — Pinnacle specials are markets; no new object (log only).
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
