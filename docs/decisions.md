@@ -1543,3 +1543,15 @@ Not wired in this pick.
 Rejected: both `yes` and `no` required for each named player.
 
 **Supersedes:** none of Q128.
+
+## Q130 — Yes/no player is one market, many rows — decided (A)
+
+A yes/no player board is **one market** with many named-player rows.
+Same idea as Q107 for correct score / HT/FT / winning margin.
+
+Not wired in this pick.
+
+Rejected: one market per player.
+
+**Supersedes:** none of Q107 (player over/under still has its number on
+the market).
