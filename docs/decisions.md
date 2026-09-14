@@ -1001,3 +1001,15 @@ envelope.
 
 **Supersedes:** none of Q25 / Q27–Q31 / Q43. Confirms that mapping for
 the Pinnacle Lines walk.
+
+## Q92 — Parlay / teaser flags — decided (omit)
+
+Do not put parlay or teaser flags on the fixture. If a book publishes a
+parlay or same-game parlay, it is a **market** (`market:parlay` /
+`market:same-game-parlay`). Whether two lines may be combined is book
+policy (Pinnacle `/line/parlay`, Bets API) — out of scope.
+
+Rejected: `parlayRestriction` / `altTeaser` on the fixture; flags on
+each market for “may be parlayed.”
+
+**Supersedes:** none of Q89.

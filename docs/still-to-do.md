@@ -28,6 +28,7 @@ answered. Do not invent names.
 ### Decided on this walk (not wired unless named)
 
 - **Q89** — Pinnacle specials are **markets**. No new object.
+- **Q92** — no parlay/teaser flags on the fixture.
 
 ### Wired on this walk
 
@@ -36,11 +37,9 @@ answered. Do not invent names.
 
 ### Not decided yet (walk these; do not invent)
 
-1. **Parlay / teaser flags on the event** — whether the event may be
-   parlayed, same-event parlay period list, alternative teaser points.
-2. **Live pairing** — confirm `superEvent`; do not add a second model.
-3. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
-4. **Get Line** — confirm market `limit` is enough.
+1. **Live pairing** — confirm `superEvent`; do not add a second model.
+2. **Sports catalog** — Pinnacle’s sport list as OpenBook sport ids.
+3. **Get Line** — confirm market `limit` is enough.
 
 ### Not in the Pinnacle Lines fixture schema
 
@@ -54,8 +53,8 @@ payload has them. Do not add them to cover “all sports.”
 
 ## Next question (not decided)
 
-- Parlay / teaser flags on the event.
+- Live pairing: confirm `superEvent`.
 
-## Done (Q32–Q91)
+## Done (Q32–Q92)
 
-Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled.
+Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q89** specials = markets · **Q90** market `basis` · **Q91** statuses and settled · **Q92** omit parlay flags.
