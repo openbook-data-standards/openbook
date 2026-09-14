@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q157**. Catalog pass closed and on the wire.
+Questions recorded through **Q158**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -17,7 +17,8 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 ## Goal (this walk)
 
-**Toss elected, then best-of length.** Elected first. Names wait.
+**Toss elected, then best-of length.** Elected first, on existing
+`toss`. Names wait.
 
 ## Goal (previous — series win counts, closed)
 
@@ -76,6 +77,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q147** — stop this spec walk (superseded as the next area by Q148).
 - **Q156** — stop this spec walk (superseded as the next area by Q157).
 - **Q157** — toss elected then best-of this pass; elected first; names wait.
+- **Q158** — elected sits on existing `toss`.
 
 ### Parked
 
@@ -87,9 +89,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Where elected sits (existing `toss` vs a new object).
+- Shape of elected (one token vs reuse `bats` / `side`).
 
-## Done (Q32–Q157)
+## Done (Q32–Q158)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -115,3 +117,4 @@ pass closed.
 **Q148–Q155** — series win counts on the wire (`wins`).
 **Q156** — stop this spec walk.
 **Q157** — toss elected then best-of this pass.
+**Q158** — elected sits on existing `toss`.

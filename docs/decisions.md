@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 |
 | Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
@@ -1884,3 +1884,16 @@ Rejected: elected only; best-of only; a new area.
 
 **Supersedes:** Q156 “no new board until named”; Q146 “elected bat/bowl
 wait” and Q156 “best-of length waits” as the next area.
+
+## Q158 — Elected sits on toss — decided (A)
+
+Elected sits on the existing **`toss`** object (who won + elected). Not
+a second catalog object. Not `score`. Not the generic fixture (Q142).
+Names wait.
+
+Not wired in this pick.
+
+Rejected: a second catalog object; on `score`; on the generic fixture.
+
+**Supersedes:** none of Q142 or Q157 (same `toss` home; this adds
+elected there).

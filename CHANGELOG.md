@@ -108,6 +108,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   best-of length wait.
 - **Q157** — this pass is toss elected first, then best-of length. Names
   wait. Not wired in this pick.
+- **Q158** — elected sits on existing `toss`. Names wait. Not wired.
 
 
 ### Removed
