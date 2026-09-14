@@ -375,9 +375,240 @@
         &quot;yes&quot;,
         &quot;no&quot;,
         &quot;participant&quot;,
-        &quot;other&quot;
+        &quot;other&quot;,
+        &quot;odd&quot;,
+        &quot;even&quot;,
+        &quot;none&quot;,
+        &quot;home-or-draw&quot;,
+        &quot;away-or-draw&quot;,
+        &quot;home-or-away&quot;
+      ],
+      &quot;description&quot;: &quot;Q105 extra tokens: odd, even, none, home-or-draw, away-or-draw, home-or-away. none is a listed selection (Q116). other is leftover.&quot;
+    },
+    &quot;homeAwayDraw&quot;: {
+      &quot;enum&quot;: [
+        &quot;home&quot;,
+        &quot;away&quot;,
+        &quot;draw&quot;
+      ],
+      &quot;description&quot;: &quot;HT/FT halfTime and fullTime only (Q109).&quot;
+    },
+    &quot;propOutcomePairing&quot;: {
+      &quot;description&quot;: &quot;Row rules Q110, Q112, Q114. Listed CS both totals; HT/FT both halves; no mix of those extras with player.&quot;,
+      &quot;allOf&quot;: [
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;halfTime&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;required&quot;: [
+              &quot;fullTime&quot;
+            ]
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;fullTime&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;required&quot;: [
+              &quot;halfTime&quot;
+            ]
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;homeTotal&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;required&quot;: [
+              &quot;awayTotal&quot;
+            ]
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;awayTotal&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;required&quot;: [
+              &quot;homeTotal&quot;
+            ]
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;homeTotal&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;not&quot;: {
+              &quot;anyOf&quot;: [
+                {
+                  &quot;required&quot;: [
+                    &quot;halfTime&quot;
+                  ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;player&quot;
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;halfTime&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;not&quot;: {
+              &quot;anyOf&quot;: [
+                {
+                  &quot;required&quot;: [
+                    &quot;homeTotal&quot;
+                  ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;player&quot;
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;player&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;not&quot;: {
+              &quot;anyOf&quot;: [
+                {
+                  &quot;required&quot;: [
+                    &quot;homeTotal&quot;
+                  ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;halfTime&quot;
+                  ]
+                }
+              ]
+            }
+          }
+        }
       ]
     },
+    &quot;marketOutcome&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;side&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;patternProperties&quot;: {
+        &quot;^x_&quot;: {}
+      },
+      &quot;properties&quot;: {
+        &quot;side&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/side&quot;
+        },
+        &quot;participant&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/ownId&quot;,
+          &quot;description&quot;: &quot;Required when side = participant. Listed winning margin always has this plus outcome line (Q113).&quot;
+        },
+        &quot;odds&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/decimalOdds&quot;
+        },
+        &quot;line&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/decimalString&quot;
+        },
+        &quot;active&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;homeTotal&quot;: {
+          &quot;type&quot;: &quot;number&quot;,
+          &quot;description&quot;: &quot;Listed correct-score home amount (Q105). JSON number like scores[].total. Pair with awayTotal (Q112).&quot;
+        },
+        &quot;awayTotal&quot;: {
+          &quot;type&quot;: &quot;number&quot;,
+          &quot;description&quot;: &quot;Listed correct-score away amount (Q105). Pair with homeTotal (Q112).&quot;
+        },
+        &quot;halfTime&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/homeAwayDraw&quot;
+        },
+        &quot;fullTime&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/homeAwayDraw&quot;
+        },
+        &quot;player&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/ownId&quot;,
+          &quot;description&quot;: &quot;Player over/under: OpenBook player id only (Q108, Q115).&quot;
+        }
+      },
+      &quot;allOf&quot;: [
+        {
+          &quot;$ref&quot;: &quot;#/$defs/propOutcomePairing&quot;
+        }
+      ]
+    },
+    &quot;gradeOutcome&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;side&quot;,
+        &quot;result&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;properties&quot;: {
+        &quot;side&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/side&quot;
+        },
+        &quot;participant&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/ownId&quot;
+        },
+        &quot;line&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/decimalString&quot;
+        },
+        &quot;result&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/gradeResult&quot;
+        },
+        &quot;homeTotal&quot;: {
+          &quot;type&quot;: &quot;number&quot;
+        },
+        &quot;awayTotal&quot;: {
+          &quot;type&quot;: &quot;number&quot;
+        },
+        &quot;halfTime&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/homeAwayDraw&quot;
+        },
+        &quot;fullTime&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/homeAwayDraw&quot;
+        },
+        &quot;player&quot;: {
+          &quot;$ref&quot;: &quot;#/$defs/ownId&quot;
+        }
+      },
+      &quot;allOf&quot;: [
+        {
+          &quot;$ref&quot;: &quot;#/$defs/propOutcomePairing&quot;
+        }
+      ]
+    },
+
     &quot;provenance&quot;: {
       &quot;enum&quot;: [
         &quot;official&quot;,
@@ -939,26 +1170,7 @@
       &quot;type&quot;: &quot;array&quot;,
       &quot;minItems&quot;: 1,
       &quot;items&quot;: {
-        &quot;type&quot;: &quot;object&quot;,
-        &quot;required&quot;: [
-          &quot;side&quot;,
-          &quot;result&quot;
-        ],
-        &quot;additionalProperties&quot;: false,
-        &quot;properties&quot;: {
-          &quot;side&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
-          },
-          &quot;participant&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
-          },
-          &quot;line&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
-          },
-          &quot;result&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/gradeResult&quot;
-          }
-        }
+        &quot;$ref&quot;: &quot;common.schema.json#/$defs/gradeOutcome&quot;
       }
     }
   },
@@ -1207,32 +1419,7 @@
       &quot;type&quot;: &quot;array&quot;,
       &quot;minItems&quot;: 1,
       &quot;items&quot;: {
-        &quot;type&quot;: &quot;object&quot;,
-        &quot;required&quot;: [
-          &quot;side&quot;
-        ],
-        &quot;additionalProperties&quot;: false,
-        &quot;patternProperties&quot;: {
-          &quot;^x_&quot;: {}
-        },
-        &quot;properties&quot;: {
-          &quot;side&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
-          },
-          &quot;participant&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
-            &quot;description&quot;: &quot;Required when side = participant.&quot;
-          },
-          &quot;odds&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalOdds&quot;
-          },
-          &quot;line&quot;: {
-            &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
-          },
-          &quot;active&quot;: {
-            &quot;type&quot;: &quot;boolean&quot;
-          }
-        }
+        &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketOutcome&quot;
       }
     }
   },
@@ -1373,32 +1560,7 @@
             &quot;type&quot;: &quot;array&quot;,
             &quot;minItems&quot;: 1,
             &quot;items&quot;: {
-              &quot;type&quot;: &quot;object&quot;,
-              &quot;required&quot;: [
-                &quot;side&quot;
-              ],
-              &quot;properties&quot;: {
-                &quot;side&quot;: {
-                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/side&quot;
-                },
-                &quot;participant&quot;: {
-                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;,
-                  &quot;description&quot;: &quot;Required when side = participant.&quot;
-                },
-                &quot;odds&quot;: {
-                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalOdds&quot;
-                },
-                &quot;line&quot;: {
-                  &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
-                },
-                &quot;active&quot;: {
-                  &quot;type&quot;: &quot;boolean&quot;
-                }
-              },
-              &quot;patternProperties&quot;: {
-                &quot;^x_&quot;: {}
-              },
-              &quot;additionalProperties&quot;: false
+              &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketOutcome&quot;
             }
           },
           &quot;marketType&quot;: {
@@ -2227,6 +2389,33 @@
       }
     ]
   }
+}</pre></section><section class="schema-block" id="grade_htft.example"><h2>grade_htft.example.json</h2><p><a href="examples/grade_htft.example.json">examples/grade_htft.example.json</a></p><pre>{
+  &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
+  &quot;sequence&quot;: 106002,
+  &quot;datePublished&quot;: &quot;2026-09-19T15:50:00Z&quot;,
+  &quot;publisher&quot;: &quot;acme-feeds&quot;,
+  &quot;object&quot;: &quot;grade&quot;,
+  &quot;action&quot;: &quot;create&quot;,
+  &quot;sport&quot;: &quot;soccer&quot;,
+  &quot;id&quot;: &quot;EVT-88213&quot;,
+  &quot;changes&quot;: {
+    &quot;gradeId&quot;: &quot;GRD-77121&quot;,
+    &quot;fixture&quot;: &quot;EVT-88213&quot;,
+    &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+    &quot;source&quot;: &quot;acme-book&quot;,
+    &quot;marketType&quot;: &quot;market:half-time-full-time&quot;,
+    &quot;basis&quot;: &quot;goals&quot;,
+    &quot;basedOn&quot;: 105410,
+    &quot;dateGraded&quot;: &quot;2026-09-19T15:50:00Z&quot;,
+    &quot;outcomes&quot;: [
+      {
+        &quot;side&quot;: &quot;draw&quot;,
+        &quot;halfTime&quot;: &quot;home&quot;,
+        &quot;fullTime&quot;: &quot;draw&quot;,
+        &quot;result&quot;: &quot;win&quot;
+      }
+    ]
+  }
 }</pre></section><section class="schema-block" id="heartbeat.example"><h2>heartbeat.example.json</h2><p><a href="examples/heartbeat.example.json">examples/heartbeat.example.json</a></p><pre>{
   &quot;openbookVersion&quot;: &quot;0.3.0-draft&quot;,
   &quot;sequence&quot;: 104901,
@@ -2379,6 +2568,70 @@
             &quot;side&quot;: &quot;away&quot;,
             &quot;line&quot;: &quot;0.5&quot;,
             &quot;active&quot;: false
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:correct-score&quot;,
+        &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+        &quot;basis&quot;: &quot;corners&quot;,
+        &quot;source&quot;: &quot;acme-book&quot;,
+        &quot;provenance&quot;: &quot;official&quot;,
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;home&quot;,
+            &quot;homeTotal&quot;: 1,
+            &quot;awayTotal&quot;: 0,
+            &quot;odds&quot;: &quot;8.5&quot;
+          },
+          {
+            &quot;side&quot;: &quot;other&quot;,
+            &quot;odds&quot;: &quot;1.12&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:half-time-full-time&quot;,
+        &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+        &quot;source&quot;: &quot;acme-book&quot;,
+        &quot;provenance&quot;: &quot;official&quot;,
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;draw&quot;,
+            &quot;halfTime&quot;: &quot;home&quot;,
+            &quot;fullTime&quot;: &quot;draw&quot;,
+            &quot;odds&quot;: &quot;15.0&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:player-points&quot;,
+        &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+        &quot;line&quot;: &quot;1.5&quot;,
+        &quot;source&quot;: &quot;acme-book&quot;,
+        &quot;provenance&quot;: &quot;official&quot;,
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;over&quot;,
+            &quot;player&quot;: &quot;PL-9&quot;,
+            &quot;odds&quot;: &quot;1.85&quot;
+          },
+          {
+            &quot;side&quot;: &quot;under&quot;,
+            &quot;player&quot;: &quot;PL-9&quot;,
+            &quot;odds&quot;: &quot;1.95&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:double-chance&quot;,
+        &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+        &quot;source&quot;: &quot;pinnacle&quot;,
+        &quot;provenance&quot;: &quot;licensed&quot;,
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;home-or-draw&quot;,
+            &quot;odds&quot;: &quot;1.25&quot;
           }
         ]
       }

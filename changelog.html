@@ -56,6 +56,9 @@
 <li><strong>Q101</strong> — one fixture; <code>eventStatus</code> is live. <code>superEvent</code> is not a live/pregame pair.</li>
 <li><strong>Q102</strong> — keep <code>sport:*</code> ids; map vendor integers with <code>identifier</code> / <code>sameAs</code> (log only).</li>
 <li><strong>Q103</strong> — market <code>limit</code> is enough; Get Line is out of scope (log only).</li>
+<li><strong>Q104</strong> — typed prop outcomes (CS two counts, HT/FT two results, player on the outcome). Field names not in this pick (log only).</li>
+<li><strong>Q105</strong> — names: <code>homeTotal</code> / <code>awayTotal</code>; <code>halfTime</code> / <code>fullTime</code>; <code>player</code> on the outcome; <code>side</code> tokens odd, even, none, home-or-draw, away-or-draw, home-or-away. Wired with Q106–Q117.</li>
+<li><strong>Q106–Q117</strong> — those extras on <code>market</code>, <code>odds/change</code>, and <code>grade</code>. One market many rows; player is an id; HT/FT pair; listed CS both totals; listed winning margin who+number; no mixed boards; <code>none</code> is listed; prop-row pass closed.</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>

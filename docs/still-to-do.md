@@ -1,9 +1,10 @@
 # Still to do
 
-Questions recorded through **Q103**. Catalog pass closed and on the wire.
+Questions recorded through **Q117**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
-not this spec. Pinnacle Lines walk closed (**Q97–Q103**).
+not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
+closed (**Q104–Q117**) and on the wire.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
@@ -18,6 +19,8 @@ Not the Pinnacle Bets API.
 - **Q98** — optional `basis` on `market` and `odds/change`.
 - **Q99** — spec: four places; no new fields.
 - **Q101** — one fixture; `eventStatus` is live.
+- **Q105–Q117** — typed prop outcome extras on `market`, `odds/change`,
+  and `grade`.
 
 ### Log only
 
@@ -26,6 +29,9 @@ Not the Pinnacle Bets API.
 - **Q102** — keep `sport:*` ids; map vendor integers with `identifier` /
   `sameAs`.
 - **Q103** — market `limit` is enough; Get Line is out of scope.
+- **Q104** — typed prop outcomes. Field names **Q105**.
+- **Q111** — listing `order` / `seed` stay 1; `sequence` may be 0
+  (already true on the schema).
 
 ### Parked
 
@@ -38,9 +44,9 @@ Not the Pinnacle Bets API.
 
 ## Next question (not decided)
 
-- This Lines walk is closed. Parked: **Q86**. Later: **Q55**.
+- New area.
 
-## Done (Q32–Q103)
+## Done (Q32–Q117)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -50,3 +56,7 @@ protocol-fit pass closed.
 **Q97–Q103** — Pinnacle Lines: specials are markets; optional `basis`;
 statuses/settled; omit parlay flags; one fixture; `sport:*` ids; Get Line
 out of scope.
+**Q104** — typed prop outcomes.
+**Q105–Q117** — extras on market / odds/change / grade: homeTotal /
+awayTotal; halfTime / fullTime; player id; extra side tokens; row rules;
+pass closed.

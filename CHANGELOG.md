@@ -55,6 +55,16 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q102** — keep `sport:*` ids; map vendor integers with `identifier` /
   `sameAs` (log only).
 - **Q103** — market `limit` is enough; Get Line is out of scope (log only).
+- **Q104** — typed prop outcomes (CS two counts, HT/FT two results, player
+  on the outcome). Field names not in this pick (log only).
+- **Q105** — names: `homeTotal` / `awayTotal`; `halfTime` / `fullTime`;
+  `player` on the outcome; `side` tokens odd, even, none, home-or-draw,
+  away-or-draw, home-or-away. Wired with Q106–Q117.
+- **Q106–Q117** — those extras on `market`, `odds/change`, and `grade`.
+  One market many rows; player is an id; HT/FT pair; listed CS both
+  totals; listed winning margin who+number; no mixed boards; `none` is
+  listed; prop-row pass closed.
+
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

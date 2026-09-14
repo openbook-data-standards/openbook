@@ -1,0 +1,27 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "sequence": 1,
+  "datePublished": "2026-09-19T14:37:12Z",
+  "publisher": "acme-feeds",
+  "object": "odds",
+  "action": "change",
+  "sport": "soccer",
+  "id": "EVT-88213",
+  "changes": {
+    "markets": [
+      {
+        "marketType": "market:half-time-full-time",
+        "segment": "segment:soccer:full-time",
+        "source": "acme-book",
+        "provenance": "official",
+        "outcomes": [
+          {
+            "side": "home",
+            "halfTime": "home",
+            "odds": "3.4"
+          }
+        ]
+      }
+    ]
+  }
+}

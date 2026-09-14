@@ -1233,3 +1233,184 @@ Rejected: copying Get Line onto the market; adding min stake as well as
 max `limit`.
 
 **Supersedes:** none of Q45.
+
+## Q104 — Game-prop outcome shapes — decided (A)
+
+Industry encodes props as runner/contestant **strings** or new market ids.
+OpenBook does not. Typed extras per shape, same `market:*` ids, same
+`basis` / `segment`:
+
+- Correct score: two counts on the outcome (home amount, away amount)
+  plus the existing `other` bucket. Corners CS is `basis`, not a new type.
+- HT/FT: two results on the outcome (HT, FT), each home / away / draw.
+- Winning margin: who + a number or band. Band field not named yet.
+- Double chance / odd-even / first-to-score none: grow `side` with tokens
+  the vocab already claims. Tokens not added until named in a later Q.
+- Player over/under: existing over/under + roster `player` on the outcome.
+  Do not explode a new `market:*` per player stat in this pick.
+
+Rejected: one free-text selection string as identity (Pinnacle contestant /
+Betfair runner); new `market:*` per prop, period, or unit (Odds API / UOF).
+
+No new field names in this pick. Wire waits for the names.
+
+**Supersedes:** none of Q98. Completes “every shape on corners” for
+selections.
+
+## Q105 — Prop outcome names — decided (A)
+
+- Correct score: **`homeTotal`**, **`awayTotal`** (JSON numbers, same as
+  `scores[].total`). `side: other` is the unlisted bucket.
+- HT/FT: **`halfTime`**, **`fullTime`**, each a `side` of `home` · `away` ·
+  `draw`.
+- Winning margin: existing **`participant`** + **`line`**. Plus-bands
+  (`3+`) are `side: other` until a band is named.
+- Player over/under: **`player`** (roster own id).
+- `side` tokens to add: **`odd`**, **`even`**, **`none`**,
+  **`home-or-draw`**, **`away-or-draw`**, **`home-or-away`**.
+
+Rejected: `homeScore` / `awayScore`; contestant string; `playerId`.
+
+**Supersedes:** Q104 “names later”.
+
+## Q106 — Wire Q105 — decided (A)
+
+The Q105 fields and `side` tokens go on **`market`**, **`odds/change`**,
+and **`grade`** outcomes. Same extras on all three so a grade can name
+the same selection the market priced.
+
+Not wired in this pick.
+
+Rejected: market-only (grade cannot match); a new object for prop
+selections.
+
+**Supersedes:** Q105 “not wired”.
+
+## Q107 — One market, many rows — decided (A)
+
+Correct score, HT/FT, and winning margin are **one market** with many
+rows. No handicap number on that market. The row carries the score
+(`homeTotal` / `awayTotal`), the HT/FT pair, or the margin (`participant`
++ outcome `line`). Plus-bands stay `side: other` until a band is named
+(Q105).
+
+Player over/under still has its number on the market (the 24.5).
+
+Not wired in this pick.
+
+Rejected: a separate market per score, HT/FT combo, or margin band.
+
+**Supersedes:** none of Q106. Says where `line` sits for those boards.
+
+## Q108 — Player on the row is an id — decided (A)
+
+Player over/under names the person with their OpenBook id only. The
+name lives on the player record, not on the price row.
+
+Not wired in this pick.
+
+Rejected: id plus name on every price row.
+
+**Supersedes:** Q105 “roster own id” (same meaning, now explicit).
+
+## Q109 — HT/FT is home, away, or draw — decided (A)
+
+On a half-time/full-time row, `halfTime` and `fullTime` are only
+**home**, **away**, or **draw**. Not over, odd, other, or the rest of
+`side`.
+
+Not wired in this pick.
+
+Rejected: the full `side` list on those two fields.
+
+**Supersedes:** Q105 “each a side of home · away · draw” (same three,
+now exclusive).
+
+## Q110 — HT/FT is always a pair — decided (A)
+
+An HT/FT row always has both `halfTime` and `fullTime`. A listed
+result is a pair (home then draw, away then home, …).
+
+Not wired in this pick.
+
+Rejected: one of the two missing.
+
+**Supersedes:** none of Q109.
+
+## Q111 — Listing is 1; sequence may be 0 — decided (A)
+
+`order` and `seed` stay **1-based** (first listed is 1; top seed is 1).
+`sequence` still allows **0** (cursor / `since` from the start). Clocks
+and scores still use 0 as a quantity.
+
+Already on the wire. No schema change.
+
+Rejected: 0-based `order` / `seed`; `sequence` minimum 1; one origin for
+every integer.
+
+**Supersedes:** none of Q22. Confirms the existing minima.
+
+## Q112 — Listed correct score is both totals — decided (A)
+
+A listed correct-score row always has both `homeTotal` and `awayTotal`.
+The leftover bucket (`side: other`) has neither.
+
+Not wired in this pick.
+
+Rejected: one total missing on a listed row.
+
+**Supersedes:** none of Q105.
+
+## Q113 — Listed winning margin is who plus the number — decided (A)
+
+A listed winning-margin row always has **`participant`** and the outcome
+**`line`**. Plus-bands (`3+`) stay `side: other` with neither until a
+band is named (Q105).
+
+Not wired in this pick.
+
+Rejected: who or the number missing on a listed row.
+
+**Supersedes:** none of Q107.
+
+## Q114 — A row does not mix boards — decided (A)
+
+A row only carries the extras for that board. Correct-score totals do
+not appear on an HT/FT row, and so on.
+
+Not wired in this pick.
+
+Rejected: mixing extras from different boards on one row.
+
+**Supersedes:** none of Q105–Q113.
+
+## Q115 — Player over/under always names the player — decided (A)
+
+Every player over/under row has `player` (the OpenBook id, Q108).
+
+Not wired in this pick.
+
+Rejected: the id missing on that row.
+
+**Supersedes:** none of Q108.
+
+## Q116 — None is not the leftover — decided (A)
+
+`none` is a real listed selection (nobody scores / no booking). Leftover
+stays `other` (unlisted score, plus-bands until named).
+
+Not wired in this pick.
+
+Rejected: `none` as the leftover bucket.
+
+**Supersedes:** none of Q105.
+
+## Q117 — Prop-row pass closed — decided (A)
+
+Names and row rules for typed prop outcomes stop here. Plus-bands stay
+`side: other` until a band is named. Wire is Q105–Q116 on `market`,
+`odds/change`, and `grade`.
+
+Rejected: keep asking row-rule questions in this pass.
+
+**Supersedes:** Q106 “not wired in this pick”.
