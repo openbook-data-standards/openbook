@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q221 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q224 |
 
 The entries below stay in the order they were taken.
 
@@ -2708,3 +2708,46 @@ waits.
 
 **Supersedes:** none of Q185 (row contents stay; this is what the landing
 is for this first list).
+
+## Q222 — Unknown-catch-all landing leftover English — decided (A)
+
+When a public key does not map to a named OpenBook market type, the
+landing leftover English is **the existing OpenBook unknown catch-all
+market type, plus a reason**. That catch-all is already on the
+market-types list. Do not invent a second unknown. Do not invent a JSON
+name. JSON object keys still wait (**Q189**). No file in this
+pick.
+
+Not wired in this pick.
+
+Rejected: no landing, reason only; skip unknown rows on this first
+list; wait.
+
+**Supersedes:** none of Q185 or Q186 (row contents and reason rule stay;
+this is which landing the unknown path uses).
+
+## Q223 — This first list lands only on a market type id — decided (A)
+
+For this first list, a row may land **only on an OpenBook market type
+id** (named or the unknown catch-all). Not a sport id. Not a segment id.
+JSON object keys still wait (**Q189**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: also a sport id; also a segment id; wait.
+
+**Supersedes:** none of Q218 or Q221 (list and landing stay; this is
+that sport and segment are a different map).
+
+## Q224 — JSON object keys still wait — decided (A)
+
+Leftover English stays. **JSON object keys still wait.** Do not invent
+names (**Q189**). No file in this pick.
+
+Not wired in this pick.
+
+Rejected: name the three keys now; stop this leftover; wait as a stall
+without restating Q189.
+
+**Supersedes:** none of Q189 (keys still wait; this restates it after
+the first-list leftover English).

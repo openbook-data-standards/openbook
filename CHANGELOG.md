@@ -248,6 +248,13 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q221** — landing leftover English: an existing OpenBook market type
   id. Not a fixture. Not a registry. JSON object keys still wait. No
   file. Not wired in this pick.
+- **Q222** — unknown path leftover English: the existing unknown
+  catch-all market type plus a reason. No second unknown. JSON object
+  keys still wait. No file. Not wired in this pick.
+- **Q223** — this first list lands only on an OpenBook market type id.
+  Not a sport id. Not a segment id. No file. Not wired in this pick.
+- **Q224** — leftover English stays. JSON object keys still wait. Do
+  not invent names. No file. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
