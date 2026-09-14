@@ -1423,3 +1423,15 @@ until the name in a later Q. Not wired in this pick.
 Rejected: a new feed walk; stop for a Q86 payload.
 
 **Supersedes:** Q117 “until a band is named” (this is that walk).
+
+## Q119 — Plus-band name is atLeast — decided (A)
+
+The plus-band extra is **`atLeast`**, a JSON number (same as
+`homeTotal`). 3 means 3 or more. Exact winning-margin rows still use
+outcome `line`.
+
+Not wired in this pick.
+
+Rejected: reuse `line` as the floor.
+
+**Supersedes:** Q105 “until a band is named”; Q118 “name later”.
