@@ -90,6 +90,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q153** — each row’s count is `total`. Array name waits. Not wired.
 - **Q154** — array name leftover English at implement; not `scores`; not
   `participants`. Not wired.
+- **Q155** — series win-count pass closed. Array leftover English at
+  implement. Not wired.
 
 
 ### Removed

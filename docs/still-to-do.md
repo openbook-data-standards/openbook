@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q154**. Catalog pass closed and on the wire.
+Questions recorded through **Q155**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -9,21 +9,28 @@ closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q126–Q132**) and on the wire. Q86 leftovers pass closed
 (**Q134–Q146**) and on the wire (`stall`, `toss`, live `series`). Spec
 walk stopped (**Q147**), then unparked for series win counts (**Q148**).
+Series win-count pass closed (**Q148–Q155**); not on the wire.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Live series win counts.** Exactly two rows on live `series`, both
-required; same `participant` ids as this fixture. A win ticks when this
-game is down. The number is games won (integer, 0 allowed) on `total`.
-Array name is leftover English at implement. Toss elected still waits.
+**Closed.** Live series win counts. Array leftover English at implement.
+Not wired.
+
+## Goal (previous — series win counts, closed)
+
+Exactly two rows on live `series`, both required; same `participant` ids
+as this fixture. A win ticks when this game is down. The number is games
+won (integer, 0 allowed) on `total`. Array name leftover English at
+implement. Toss elected still waits.
 
 ## Goal (previous — Q86 leftovers, closed)
 
 Racing `stall` and cricket `toss`: two catalog objects. Playoff series:
 round on `stage`; live `series` is the lead. Not more keys on every
-fixture. Win counts and elected bat/bowl wait.
+fixture. Win counts decided **Q148–Q155** (not wired). Elected bat/bowl
+waits.
 
 ## Goal (previous — yes/no player, closed)
 
@@ -73,6 +80,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q153** — count field is `total`; array name waits.
 - **Q154** — array name leftover English at implement; not `scores`; not
   `participants`.
+- **Q155** — series win-count pass closed; not wired.
 
 ### Parked
 
@@ -84,9 +92,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Close this pass, or keep going (best-of length).
+- None. This pass closed (**Q155**).
 
-## Done (Q32–Q154)
+## Done (Q32–Q155)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -116,3 +124,4 @@ pass closed.
 **Q152** — the number is games won.
 **Q153** — count field is `total`.
 **Q154** — array name leftover English at implement.
+**Q155** — series win-count pass closed.
