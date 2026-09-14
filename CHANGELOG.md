@@ -114,6 +114,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q160** — elected is required on `toss`. Not wired.
 - **Q161** — elected rules closed; then best-of. Field leftover English at
   implement. Not wired.
+- **Q162** — best-of sits on live `series`. Names wait. Not wired.
 
 
 ### Removed
