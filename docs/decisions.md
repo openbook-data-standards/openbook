@@ -2242,3 +2242,14 @@ OpenBook ids onto themselves; stop this leftover.
 
 **Supersedes:** none of Q183 (directory name stays; the first list is
 still unnamed).
+
+## Q185 — Map row contents — decided (A)
+
+When a row exists: public key plus an existing OpenBook id, **or** the
+unknown catch-all plus a reason. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: public key only; OpenBook id only; row shape waits.
+
+**Supersedes:** none of Q181 (this is the row).

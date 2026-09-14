@@ -149,6 +149,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   First public list waits. Not wired in this pick.
 - **Q184** — first public list name waits. No file in this pick. Do not
   invent a taxonomy. Not wired in this pick.
+- **Q185** — a map row is public key plus an existing OpenBook id, or
+  the unknown catch-all plus a reason. No file in this pick. Not wired
+  in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
