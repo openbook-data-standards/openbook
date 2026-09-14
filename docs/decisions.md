@@ -2254,3 +2254,15 @@ Rejected: no catch-all id; `other` like some schema enums; stop this
 leftover.
 
 **Supersedes:** none of Q185.
+
+## Q187 — Prefix shape done; fingerprint next — decided (A)
+
+Prefix-file shape is logged. The list waits. Next leftover in this walk
+is the **fingerprint recipe**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: start listing prefixes now; stop this walk; unpark Q55.
+
+**Supersedes:** Q183 “fingerprint waits” as the next leftover (prefix
+shape stays).

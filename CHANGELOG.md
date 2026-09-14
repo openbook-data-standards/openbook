@@ -154,6 +154,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   pick.
 - **Q186** — prefix catch-all is an unknown bucket (Q34). List waits.
   `propertyID` stays a string. Not wired in this pick.
+- **Q187** — prefix-file shape is logged. The list waits. Next leftover
+  in this walk is the fingerprint recipe. No file in this pick. Not
+  wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

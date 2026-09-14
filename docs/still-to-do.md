@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q186**. Catalog pass closed and on the wire.
+Questions recorded through **Q187**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -28,7 +28,8 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 schemes) (**Q183**). Named for prefixes, in the register leftover, not
 inside the vocab lists (**Q184**). Plain tokens like the existing
 `propertyID` examples (**Q185**). Catch-all unknown bucket (**Q186**,
-**Q34**). Fingerprint recipe, corpus case, and anchor policy wait. No
+**Q34**). Prefix-file shape logged; list waits. Next leftover is the
+fingerprint recipe (**Q187**). Corpus case and anchor policy wait. No
 file. No new wire field. Not maps. Not position token lists.
 
 ## Goal (previous — Q76 position vocab shape, closed)
@@ -134,6 +135,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q184** — named for prefixes, in the register leftover, not inside the vocab lists; no file in this pick.
 - **Q185** — plain tokens like the existing `propertyID` examples; not Q5 short form; list waits.
 - **Q186** — unknown bucket (**Q34**); list waits; `propertyID` stays a string.
+- **Q187** — prefix-file shape logged; list waits; next leftover is the fingerprint recipe.
 
 ### Parked
 
@@ -151,11 +153,11 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q187.** Prefix-file shape is logged. Rec: the list waits; next leftover in this walk is the fingerprint recipe. No file now. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q188.** Is the fingerprint a wire field? Rec: leftover English recipe only; no new field; publisher-own id stays canonical (Q171). A pasted letter is not implement. Wire is a separate ask.
 
 Sitting (not this walk): maps leftover; position token lists; Q55.
 
-## Done (Q32–Q186)
+## Done (Q32–Q187)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -199,3 +201,4 @@ feed list beside the validator. Not on the wire.
 **Q184** — named for prefixes, in the register leftover, not inside the vocab lists; no file now.
 **Q185** — plain tokens like the existing `propertyID` examples; list waits.
 **Q186** — unknown bucket; list waits; field stays a string.
+**Q187** — prefix shape logged; list waits; next leftover is the fingerprint recipe.
