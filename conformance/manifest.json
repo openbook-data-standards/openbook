@@ -55,6 +55,10 @@
     {
       "path": "conformance/invalid/at-least-with-line.json",
       "reason": "plus-band atLeast does not carry exact outcome line (Q121)"
+    },
+    {
+      "path": "conformance/invalid/player-yes-with-line.json",
+      "reason": "yes/no player row has player and not outcome line (Q127, Q131)"
     }
   ]
 }

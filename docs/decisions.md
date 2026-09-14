@@ -1574,7 +1574,7 @@ as over/under; always present; leftover `other` is not used; `no` is
 optional; one market, many rows; no market `line`. Wire waits until
 implement. No new field.
 
-Not wired in this pick.
+Later pick wired those extras (spec, pairing, example). No new field.
 
 Rejected: keep asking yes/no player questions in this pass.
 

@@ -68,6 +68,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   means 3 or more) on `market`, `odds/change`, and `grade`. Plus-band
   row is `participant` + `atLeast` (not outcome `line`); exact margin
   keeps `line`; leftover `other` still allowed; pass closed.
+- **Q126–Q133** — player yes/no rows (anytime scorer / to score): same
+  `player` id; always present; leftover `other` not used; `no` optional;
+  one market, many rows; no market `line`; no new field. Pairing on
+  `market` / `odds/change` / `grade`. Spec walk stopped.
 
 
 ### Removed

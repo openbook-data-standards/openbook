@@ -269,7 +269,7 @@
       "description": "HT/FT halfTime and fullTime only (Q109)."
     },
     "propOutcomePairing": {
-      "description": "Row rules Q110, Q112, Q114, Q119–Q121. Listed CS both totals; HT/FT both halves; plus-band is participant + atLeast, not line; no mix of boards.",
+      "description": "Row rules Q110, Q112, Q114, Q119–Q121, Q126–Q131. Listed CS both totals; HT/FT both halves; plus-band is participant + atLeast, not line; yes/no player has player and not leftover other or outcome line; no mix of boards.",
       "allOf": [
         {
           "if": {
@@ -447,6 +447,44 @@
               ]
             }
           }
+        },
+        {
+          "if": {
+            "required": [
+              "player"
+            ]
+          },
+          "then": {
+            "properties": {
+              "side": {
+                "not": {
+                  "const": "other"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "player"
+            ],
+            "properties": {
+              "side": {
+                "enum": [
+                  "yes",
+                  "no"
+                ]
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "line"
+              ]
+            }
+          }
         }
       ]
     },
@@ -492,7 +530,7 @@
         },
         "player": {
           "$ref": "#/$defs/ownId",
-          "description": "Player over/under: OpenBook player id only (Q108, Q115)."
+          "description": "Player over/under and yes/no player rows: OpenBook player id only (Q108, Q115, Q126, Q127)."
         },
         "atLeast": {
           "type": "number",
