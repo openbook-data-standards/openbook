@@ -40,7 +40,8 @@ Catch-all like segments (**Q178**). Token lists wait. No file.
 **Closed.** Roadmap logged. Register is prefixes + optional fixture
 fingerprint + anchors, not an OpenBook-run entity database (**Q171**).
 Profiles are separate specifications (**Q172**). Feed list lives beside
-the validator (**Q173**). No wire change.
+the validator (**Q173**). Q76 position vocab was the leftover walk
+(**Q170**); shape now logged (**Q174–Q179**). No wire change.
 
 ## Goal (previous — named leftovers, closed)
 
@@ -141,10 +142,8 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This spec walk stopped (**Q180**). Resume when token lists are
-  unparked, or when you pick the next leftover. Maps in a crosswalks
-  directory wait (public market / segment keys onto existing OpenBook
-  ids, or the unknown catch-all with a reason).
+- None. This spec walk stopped (**Q180**). Resume when token lists are unparked, or when you pick the next leftover.
+- Sitting (not this walk): maps in a crosswalks directory: public market / segment keys onto existing OpenBook ids, or the unknown catch-all with a reason. Cite at least one public taxonomy. Not a wire change.
 
 ## Done (Q32–Q180)
 
@@ -178,5 +177,10 @@ pass closed.
 **Q170** — Q76 per-sport position vocab this walk; field stays `position`; token lists wait.
 **Q171–Q173** — roadmap: register not a registry; profiles separate;
 feed list beside the validator. Not on the wire.
-**Q174–Q179** — Q76 position-vocab shape logged; token lists wait; no file.
-**Q180** — stop this spec walk.
+**Q174** — keep optional `position`; growable per-sport shared ids; lists wait.
+**Q175** — one vocab file like the other shared lists; schema stays a string; no file now.
+**Q176** — short-form like Q5; sport in the id like segments; prefix and tokens wait.
+**Q177** — first word is `position`; tokens wait.
+**Q178** — catch-all same pattern as segments; lists wait.
+**Q179** — named for positions, same folder as the other shared lists; no file now.
+**Q180** — stop this spec walk; token lists wait.
