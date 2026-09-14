@@ -262,8 +262,6 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   `eventStatus` is live), optional display `name`, `location` (nested
   schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`,
   optional WGS 84 `latitude` / `longitude`), optional `surface`.
-  schema.org Place: `addressLocality` + `territory`, optional IANA `timeZone`,
-  optional WGS 84 `latitude` / `longitude`), optional `surface`.
 - **`market`** — a fixture's market as priced by one source: `fixture`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
   `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's
