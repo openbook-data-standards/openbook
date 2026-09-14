@@ -1,12 +1,12 @@
 # Still to do
 
 **Working on: maps JSON object keys (Q237–).** Three leftover-English
-slots: public key, landing, and reason (**Q238**). Name the JSON keys
-on this walk, in a later question (**Q239**). This pick does not invent
-the names. Rows wait. No maps directory or file until keys exist. Stay
-`0.3.0-draft`. Q55 parked.
+slots: public key, landing, and reason (**Q238**). JSON names: camelCase
+leftover English for the public-key slot (**Q240**); landing is `id`
+(**Q241**); reason is `reason` (**Q242**). Rows wait. No maps directory
+or file until a later pick. Stay `0.3.0-draft`. Q55 parked.
 
-Questions recorded through **Q239**. Catalog pass closed and on the wire.
+Questions recorded through **Q242**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -46,16 +46,18 @@ exhausted; stay stopped (**Q234**). Stay `0.3.0-draft` (**Q235**).
 Question pass closed (**Q236**). Next leftover is JSON object keys for
 the first maps file (**Q237**). Three leftover-English slots: public
 key, landing, and reason (**Q238**). Name JSON keys on this walk, in a
-later question (**Q239**).
+later question (**Q239**). JSON names: camelCase leftover English for
+the public-key slot (**Q240**); landing is `id` (**Q241**); reason is
+`reason` (**Q242**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Maps JSON object keys (Q237–).** Three leftover-English slots: public
-key, landing, and reason. Name the JSON keys on this walk, in a later
-question. Do not invent names in the picks already logged. Rows wait.
-No file until keys exist. Stay `0.3.0-draft`. Not Q55.
+**Maps JSON object keys (Q237–Q242).** Three leftover-English slots:
+public key, landing, and reason. JSON names: camelCase leftover English
+for the public-key slot; landing is `id`; reason is `reason`. Rows
+wait. No file until a later pick. Stay `0.3.0-draft`. Not Q55.
 
 ## Goal (previous — wait pass, closed)
 
@@ -257,6 +259,9 @@ over/under. No new market type. No new field. On the wire.
 - **Q237** — next leftover is JSON object keys for the first maps file; names wait until a later question; no file.
 - **Q238** — three leftover-English slots: public key, landing, and reason; do not invent JSON names in this pick.
 - **Q239** — name the JSON keys on this walk, in a later question; this pick does not invent names.
+- **Q240** — public-key JSON name is camelCase leftover English; do not overload identifier; no file.
+- **Q241** — landing JSON name is `id`; no file.
+- **Q242** — reason JSON name is `reason`; no file.
 
 ### Parked
 
@@ -274,9 +279,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next questions: Q240–Q242.** JSON name for the public-key slot; JSON name for the landing slot; JSON name for the reason slot. Recs in chat. A pasted letter is not implement. Wire is a separate ask.
+**Next questions: Q243–Q257.** Types, required, closed row, directory/file still wait, filename waits, scanned docs wait, leftover closes. Rec A on each; mark any that are not A. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q239)
+## Done (Q32–Q242)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -374,3 +379,6 @@ feed list beside the validator. Not on the wire.
 **Q237** — next leftover is JSON object keys for the first maps file.
 **Q238** — three leftover-English slots: public key, landing, and reason.
 **Q239** — name JSON keys on this walk, in a later question.
+**Q240** — public-key JSON name is camelCase leftover English.
+**Q241** — landing JSON name is `id`.
+**Q242** — reason JSON name is `reason`.

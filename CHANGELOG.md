@@ -284,6 +284,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   reason. Do not invent JSON names in this pick. Not wired in this pick.
 - **Q239** — name the JSON keys on this walk, in a later question. This
   pick does not invent names. Not wired in this pick.
+- **Q240** — public-key JSON name is camelCase leftover English. Do not
+  overload identifier. No file. Not wired in this pick.
+- **Q241** — landing JSON name is `id`. No file. Not wired in this pick.
+- **Q242** — reason JSON name is `reason`. No file. Not wired in this
+  pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

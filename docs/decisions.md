@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q230 · Q237–Q239 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q230 · Q237–Q242 |
 
 The entries below stay in the order they were taken.
 
@@ -2953,3 +2953,43 @@ names in this pick; wait.
 
 **Supersedes:** none of Q189 (names still wait until that later
 question).
+
+## Q240 — Public-key JSON name — decided (A)
+
+The JSON name for the public-key slot is **camelCase leftover English**
+(`publicKey`). Do not overload `identifier`. No file in this pick.
+Rows still wait.
+
+Not wired in this pick.
+
+Rejected: reuse `identifier`; reuse `value`; wait.
+
+**Supersedes:** Q189 as an open wait on this name (the public-key slot
+is named).
+
+## Q241 — Landing JSON name — decided (A)
+
+The JSON name for the landing slot is **`id`**. Landing leftover
+English is an existing OpenBook market type id. Do not invent a second
+id key. No file in this pick. Rows still wait.
+
+Not wired in this pick.
+
+Rejected: camelCase leftover English for landing; reuse `sameAs`; wait.
+
+**Supersedes:** Q189 as an open wait on this name (the landing slot is
+named).
+
+## Q242 — Reason JSON name — decided (A)
+
+The JSON name for the reason slot is **`reason`**. Reason leftover
+English is a free string. Do not invent a second reason key. No file
+in this pick. Rows still wait.
+
+Not wired in this pick.
+
+Rejected: a different camelCase leftover English; no JSON name; wait.
+
+**Supersedes:** Q189 as an open wait on this name (the reason slot is
+named). The three JSON names exist. Directory and file rules stay
+until the next picks (**Q225**, **Q227**).
