@@ -1,10 +1,12 @@
 # Still to do
 
-**Working on: spec walk stopped (Q204).** Maps leftover shape is logged
-(**Q181–Q189**, **Q199–Q203**). First public list name waits (**Q184**).
-No file. Not Q55. Not a version cut. Not position token lists.
+**Working on: next leftover (Q218).** Pinned fixture example from
+**Q198**. Ask; do not invent the example or the fingerprint recipe
+(**Q216**). Maps leftover shape is on the spec; no maps directory or
+file until a list is named (**Q184**, **Q215**). Stay `0.3.0-draft`.
+Q55 parked. No file.
 
-Questions recorded through **Q204**. Catalog pass closed and on the wire.
+Questions recorded through **Q217**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -24,14 +26,18 @@ profiles are separate specifications; feed list is validator tooling.
 Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
 (**Q180**), then the maps leftover unparked (**Q181**). Q171 leftovers
 in this repo logged (**Q190–Q198**). Maps leftover shape closed
-(**Q181–Q189**, **Q199–Q203**). Spec walk stopped (**Q204**).
+(**Q181–Q189**, **Q199–Q203**). Spec walk stopped (**Q204**). Next leftover
+unnamed; wait (**Q205**). Named leftovers exhausted (**Q206–Q214**). No
+maps directory or file until a list is named (**Q215**). Do not invent
+the Q171 recipe (**Q216**). Question pass closed (**Q217**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Stopped (Q204).** Maps leftover shape is logged. First public list
-name waits (**Q184**). No file. Not Q55. Not a version cut.
+**Pinned fixture example leftover (Q198) — this is the open walk if Q218
+is A.** Ask; do not invent the example or the fingerprint recipe. No
+file. Not Q55.
 
 ## Goal (previous — maps leftover, closed)
 
@@ -43,8 +49,9 @@ lists (**Q182**, **Q183**). One JSON file per public list when files
 exist (**Q187**, **Q188**): a JSON array of row objects (**Q199**);
 object keys wait (**Q189**); a public key at most once per file
 (**Q202**); row order not significant (**Q203**). Cite at least one
-public taxonomy. First public list name waits (**Q184**). Not a wire
-change. No file.
+public taxonomy. First public list name waits (**Q184**). Shape is on
+the spec (§3.5). Not a feed document. No maps directory or file until a
+list is named (**Q215**).
 
 ## Goal (previous — Q171 leftovers in this repo)
 
@@ -179,6 +186,19 @@ over/under. No new market type. No new field. On the wire.
 - **Q202** — in one file, a public key at most once; no file in this pick.
 - **Q203** — row order is not significant; do not invent a sort; no file in this pick.
 - **Q204** — stop this spec walk. Maps shape logged. First public list name waits. No file.
+- **Q205** — next leftover unnamed; wait. Not Q55.
+- **Q206** — named leftovers on this walk exhausted; stay stopped. Not Q55.
+- **Q207** — do not unpark Q172 profile pointers as this walk. Not Q55.
+- **Q208** — do not unpark Q173 hosted validator as this walk. Not Q55.
+- **Q209** — position token lists still wait. Not Q55.
+- **Q210** — first maps public list name still waits (**Q184**). Not Q55.
+- **Q211** — stay `0.3.0-draft`. Not a version cut. Not Q55.
+- **Q212** — Q55 stays parked until 1.0+.
+- **Q213** — Q96 stays not this spec.
+- **Q214** — Q79 / Q81 stay omit.
+- **Q215** — no maps directory or file until a list is named.
+- **Q216** — do not invent the Q171 fingerprint recipe or prefix-file contents.
+- **Q217** — this question pass closes. No further leftover questions until a leftover is named.
 
 ### Parked
 
@@ -196,11 +216,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-**Next question: Q205.** What leftover is next? Rec: wait; named leftovers sit; do not invent a list; not Q55. A pasted letter is not implement. Wire is a separate ask.
+**Next question: Q218.** Unpark the pinned fixture example leftover from **Q198**? Rec: this walk is that leftover; ask; do not invent the example or the fingerprint recipe (**Q216**); no file now. A pasted letter is not implement.
 
-Sitting (not this walk): pinned fixture example; position token lists; Q55.
-
-## Done (Q32–Q204)
+## Done (Q32–Q217)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -263,3 +281,16 @@ feed list beside the validator. Not on the wire.
 **Q202** — in one file, a public key at most once.
 **Q203** — row order is not significant; do not invent a sort.
 **Q204** — stop this spec walk; maps shape logged; first public list name waits.
+**Q205** — next leftover unnamed; wait.
+**Q206** — named leftovers on this walk exhausted; stay stopped.
+**Q207** — do not unpark Q172 profile pointers as this walk.
+**Q208** — do not unpark Q173 hosted validator as this walk.
+**Q209** — position token lists still wait.
+**Q210** — first maps public list name still waits.
+**Q211** — stay `0.3.0-draft`.
+**Q212** — Q55 stays parked until 1.0+.
+**Q213** — Q96 stays not this spec.
+**Q214** — Q79 / Q81 stay omit.
+**Q215** — no maps directory or file until a list is named.
+**Q216** — do not invent the Q171 fingerprint recipe or prefix-file contents.
+**Q217** — this question pass closes.

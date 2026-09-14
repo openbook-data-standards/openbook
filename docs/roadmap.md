@@ -35,7 +35,7 @@ No clean-slate 2.0. Envelope stable; enumerations move.
 | --- | --- | --- |
 | this repository (core) | now → 1.0 in year 2 | Public odds, scores, grades wire |
 | `vocabularies/` | monthly | Sports, segments, market types, sides |
-| `crosswalks/` | year 1 | Maps from those ids to public taxonomies |
+| maps directory | year 1 | Public keys onto existing OpenBook ids, or the unknown catch-all plus a reason. Named for maps, not inside the vocab lists. One JSON file per public list when a list is named. No directory and no file until then (Q181–Q189, Q199–Q203, Q215) |
 | `register/` | year 1 | Scheme prefixes, never-reuse, redirects |
 | openbook-register | year 2 | Fingerprint recipe, anchors, snapshots |
 | openbook-pm | year 1 | Event-contract ↔ market / selection |
@@ -53,9 +53,11 @@ Make it un-ignorable. One producer and one consumer that are not
 `tools/validate.py`, both public. Vocabulary maps published. Register
 foundations with no entity database.
 
-**Q4 2026.** Sibling tooling public. A `crosswalks/` directory: each
-public taxonomy maps onto existing OpenBook ids, or onto the unknown
-catch-all with a reason. CI checks the map. Q171–Q173 logged.
+**Q4 2026.** Sibling tooling public. A directory named for maps, when a
+public list is named: each public taxonomy maps onto existing OpenBook
+ids, or onto the unknown catch-all with a reason. First public list
+name waits; no directory and no file until then. Q171–Q173 logged.
+Maps leftover shape is on the spec (Q181–Q189, Q199–Q203, Q215).
 
 **Q1 2027.** Namespace register (scheme prefixes on `identifier`
 `propertyID`). Optional fixture fingerprint from frozen birth facts

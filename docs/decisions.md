@@ -23,11 +23,11 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 · Q168 · Q169 · Q170 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 |
 
 The entries below stay in the order they were taken.
 
@@ -2492,3 +2492,162 @@ Rejected: name a public list in this pick; keep walking file-stem
 leftover English; unpark Q55 or cut a new draft version.
 
 **Supersedes:** Q203 as an open “what is next” (shape stays).
+
+## Q205 — Next leftover unnamed; wait — decided (A)
+
+The next leftover is **unnamed**; wait. Named leftovers sit. Do not
+invent a list. Not Q55. Not a version cut. Q171 leftovers already
+logged in this repo (**Q190–Q198**); recipe text still waits.
+
+Not wired in this pick.
+
+Rejected: invent the fingerprint recipe; Q172 or Q173 this walk;
+position token lists or naming the first maps public list.
+
+**Supersedes:** Q204 as an open “what is next” (the stop stays; the next
+leftover is still unnamed).
+
+## Q206 — Named leftovers exhausted; stop — decided (A)
+
+Named leftovers on this walk are **exhausted**. Stay **stopped**. Not
+Q55. Not a version cut. Not inventing a list. Same pick as **Q169**
+after **Q168**.
+
+Not wired in this pick.
+
+Rejected: keep waiting with no extra stop; unpark Q172 or Q173; invent
+a leftover or unpark Q55.
+
+**Supersedes:** Q205 “next leftover unnamed; wait” (the pick is: nothing
+left on this walk’s leftover list; stop).
+
+## Q207 — Do not unpark Q172 profile pointers — decided (A)
+
+Stay **stopped**. Do not unpark Q172 profile pointers as this walk.
+Profiles stay separate specifications (**Q172**). Not Q55.
+
+Not wired in this pick.
+
+Rejected: pointers in this spec as this walk; create profile repos now;
+unpark Q55.
+
+**Supersedes:** none of Q172.
+
+## Q208 — Do not unpark Q173 hosted validator — decided (A)
+
+Stay **stopped**. Do not unpark Q173 hosted validator and feed list as
+this walk. Not Q55.
+
+Not wired in this pick.
+
+Rejected: hosted validator this walk; feed list on discovery; unpark
+Q55.
+
+**Supersedes:** none of Q173.
+
+## Q209 — Position token lists still wait — decided (A)
+
+Stay **stopped**. Position token lists wait (**Q180**). Do not invent
+the first sport’s tokens. Not Q55.
+
+Not wired in this pick.
+
+Rejected: invent the first sport’s tokens now; name the first maps
+public list; unpark Q55.
+
+**Supersedes:** none of Q180 (token lists still wait).
+
+## Q210 — First maps public list name still waits — decided (A)
+
+Stay **stopped**. The first maps public list **name waits** (**Q184**).
+Do not invent a taxonomy. Not Q55.
+
+Not wired in this pick.
+
+Rejected: pick a list already cited in this spec as this pick; map
+OpenBook ids onto themselves; unpark Q55.
+
+**Supersedes:** none of Q184 (name still waits).
+
+## Q211 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Unreleased is the bucket. Not a version cut.
+Not Q55.
+
+Not wired in this pick.
+
+Rejected: cut `0.4.0-draft`; cut 1.0; unpark Q55.
+
+**Supersedes:** none of Q204 (the stop stays; this is the version).
+
+## Q212 — Q55 stays parked — decided (A)
+
+**Q55** stays parked until 1.0+. Do not unpark now. Do not drop it.
+
+Not wired in this pick.
+
+Rejected: unpark Q55 now; drop Q55; invent a different CI leftover.
+
+**Supersedes:** none of Q55 (still parked).
+
+## Q213 — Q96 stays not this spec — decided (A)
+
+**Q96** stays not this spec. Do not pull vendor mapping into this spec.
+Do not create those repos now.
+
+Not wired in this pick.
+
+Rejected: pull vendor mapping into this spec; create those repos now;
+invent a mapping leftover in this spec.
+
+**Supersedes:** none of Q96.
+
+## Q214 — Q79 / Q81 stay omit — decided (A)
+
+**Q79** and **Q81** stay omit. No coach object. No referee object until
+those markets exist.
+
+Not wired in this pick.
+
+Rejected: add coach now; add officials now; invent a new participant
+role.
+
+**Supersedes:** none of Q79 or Q81.
+
+## Q215 — No maps directory or file until named — decided (A)
+
+No maps directory. No maps file. The first public list name waits
+(**Q184**).
+
+Not wired in this pick.
+
+Rejected: create the empty directory now; create a file now; unpark Q55.
+
+**Supersedes:** none of Q184 (name still waits; this is that files wait
+with it).
+
+## Q216 — Do not invent the Q171 recipe — decided (A)
+
+Do not invent the Q171 fingerprint recipe or prefix-file contents.
+Ask later. Prefix and fingerprint location already logged
+(**Q191–Q198**). Recipe text still waits.
+
+Not wired in this pick.
+
+Rejected: invent the recipe now; invent prefix-file contents now;
+unpark Q55.
+
+**Supersedes:** none of Q198 (recipe text still waits).
+
+## Q217 — Close this question pass — decided (A)
+
+This question pass **closes**. No further leftover questions until a
+leftover is named. Not Q55. Not a version cut. Not inventing a leftover.
+
+Not wired in this pick.
+
+Rejected: invent a new leftover English area; keep asking the same
+sitting leftovers; unpark Q55.
+
+**Supersedes:** Q205–Q216 as an open “what is next” (the stop stays;
+this pass is closed).
