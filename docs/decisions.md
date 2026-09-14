@@ -1414,3 +1414,89 @@ Names and row rules for typed prop outcomes stop here. Plus-bands stay
 Rejected: keep asking row-rule questions in this pass.
 
 **Supersedes:** Q106 “not wired in this pick”.
+
+## Q118 — Next area is plus-bands — decided (A)
+
+This walk names winning-margin plus-bands (`3+`). They stay `side: other`
+until the name in a later Q. Not wired in this pick.
+
+Rejected: a new feed walk; stop for a Q86 payload.
+
+**Supersedes:** Q117 “until a band is named” (this is that walk).
+
+## Q119 — Plus-band name is atLeast — decided (A)
+
+The plus-band extra is **`atLeast`**, a JSON number (same as
+`homeTotal`). 3 means 3 or more. Exact winning-margin rows still use
+outcome `line`.
+
+Not wired in this pick.
+
+Rejected: reuse `line` as the floor.
+
+**Supersedes:** Q105 “until a band is named”; Q118 “name later”.
+
+## Q120 — Plus-band is who plus atLeast — decided (A)
+
+A plus-band row always has **`participant`** and **`atLeast`**. It is
+not leftover `other`.
+
+Not wired in this pick.
+
+Rejected: who or `atLeast` missing on that row.
+
+**Supersedes:** Q113 leftover for named plus-bands.
+
+## Q121 — Plus-band does not carry exact line — decided (A)
+
+A plus-band row has `atLeast`, not outcome `line`. An exact margin has
+`line`, not `atLeast`. Same Q114 mix rule.
+
+Not wired in this pick.
+
+Rejected: both on one row.
+
+**Supersedes:** none of Q114.
+
+## Q122 — Wire atLeast — decided (A)
+
+`atLeast` goes on **`market`**, **`odds/change`**, and **`grade`**
+outcomes. Same extras on all three so a grade can name the plus-band
+the market priced.
+
+Not wired in this pick.
+
+Rejected: market-only.
+
+**Supersedes:** Q119 “not wired”.
+
+## Q123 — Plus-band pass not closed — decided (B)
+
+Do not close this pass. Name and row rules are not finished.
+
+Not wired in this pick.
+
+Rejected: close here.
+
+**Supersedes:** none of Q122.
+
+## Q124 — Leftover other still allowed on winning margin — decided (A)
+
+`other` stays the unlisted remainder on winning margin. `atLeast` is
+only when they list a plus-band.
+
+Not wired in this pick.
+
+Rejected: only exact `line` rows and `atLeast` rows; no leftover.
+
+**Supersedes:** none of Q116.
+
+## Q125 — Plus-band pass closed — decided (A)
+
+Names and row rules for plus-bands stop here. Wire waits until
+implement (`atLeast` on `market`, `odds/change`, and `grade`, Q122).
+Later pick wired those extras.
+
+Rejected: keep asking plus-band questions in this pass.
+
+**Supersedes:** Q123 (pass not closed).

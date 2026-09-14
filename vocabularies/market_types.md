@@ -28,7 +28,7 @@ For what these words mean without ids, see
 
 | `market:both-teams-to-score` | Both Teams To Score | yes-no | yes, no |
 | `market:odd-even-total` | Total Odd/Even | yes-no | odd, even |
-| `market:winning-margin` | Winning Margin | n-way | participant + outcome line; leftover other |
+| `market:winning-margin` | Winning Margin | n-way | participant + outcome line or atLeast; leftover other |
 | `market:race-to` | Race To (N points) | binary | home, away |
 
 ## Game props

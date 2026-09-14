@@ -394,7 +394,7 @@
       &quot;description&quot;: &quot;HT/FT halfTime and fullTime only (Q109).&quot;
     },
     &quot;propOutcomePairing&quot;: {
-      &quot;description&quot;: &quot;Row rules Q110, Q112, Q114. Listed CS both totals; HT/FT both halves; no mix of those extras with player.&quot;,
+      &quot;description&quot;: &quot;Row rules Q110, Q112, Q114, Q119–Q121. Listed CS both totals; HT/FT both halves; plus-band is participant + atLeast, not line; no mix of boards.&quot;,
       &quot;allOf&quot;: [
         {
           &quot;if&quot;: {
@@ -447,6 +447,51 @@
         {
           &quot;if&quot;: {
             &quot;required&quot;: [
+              &quot;atLeast&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;required&quot;: [
+              &quot;participant&quot;
+            ]
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
+              &quot;atLeast&quot;
+            ]
+          },
+          &quot;then&quot;: {
+            &quot;not&quot;: {
+              &quot;anyOf&quot;: [
+                {
+                  &quot;required&quot;: [
+                    &quot;line&quot;
+                  ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;homeTotal&quot;
+                  ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;halfTime&quot;
+                  ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;player&quot;
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          &quot;if&quot;: {
+            &quot;required&quot;: [
               &quot;homeTotal&quot;
             ]
           },
@@ -461,6 +506,11 @@
                 {
                   &quot;required&quot;: [
                     &quot;player&quot;
+                  ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;atLeast&quot;
                   ]
                 }
               ]
@@ -485,6 +535,11 @@
                   &quot;required&quot;: [
                     &quot;player&quot;
                   ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;atLeast&quot;
+                  ]
                 }
               ]
             }
@@ -508,6 +563,11 @@
                   &quot;required&quot;: [
                     &quot;halfTime&quot;
                   ]
+                },
+                {
+                  &quot;required&quot;: [
+                    &quot;atLeast&quot;
+                  ]
                 }
               ]
             }
@@ -530,7 +590,7 @@
         },
         &quot;participant&quot;: {
           &quot;$ref&quot;: &quot;#/$defs/ownId&quot;,
-          &quot;description&quot;: &quot;Required when side = participant. Listed winning margin always has this plus outcome line (Q113).&quot;
+          &quot;description&quot;: &quot;Required when side = participant. Listed winning margin always has this plus outcome line (Q113) or atLeast (Q120).&quot;
         },
         &quot;odds&quot;: {
           &quot;$ref&quot;: &quot;#/$defs/decimalOdds&quot;
@@ -558,6 +618,10 @@
         &quot;player&quot;: {
           &quot;$ref&quot;: &quot;#/$defs/ownId&quot;,
           &quot;description&quot;: &quot;Player over/under: OpenBook player id only (Q108, Q115).&quot;
+        },
+        &quot;atLeast&quot;: {
+          &quot;type&quot;: &quot;number&quot;,
+          &quot;description&quot;: &quot;Listed winning-margin plus-band floor (Q119). JSON number like homeTotal. 3 means 3 or more. Pair with participant (Q120). Not outcome line (Q121).&quot;
         }
       },
       &quot;allOf&quot;: [
@@ -600,6 +664,10 @@
         },
         &quot;player&quot;: {
           &quot;$ref&quot;: &quot;#/$defs/ownId&quot;
+        },
+        &quot;atLeast&quot;: {
+          &quot;type&quot;: &quot;number&quot;,
+          &quot;description&quot;: &quot;Listed winning-margin plus-band floor (Q119). JSON number like homeTotal. 3 means 3 or more. Pair with participant (Q120). Not outcome line (Q121).&quot;
         }
       },
       &quot;allOf&quot;: [
@@ -2632,6 +2700,30 @@
           {
             &quot;side&quot;: &quot;home-or-draw&quot;,
             &quot;odds&quot;: &quot;1.25&quot;
+          }
+        ]
+      },
+      {
+        &quot;marketType&quot;: &quot;market:winning-margin&quot;,
+        &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
+        &quot;source&quot;: &quot;acme-book&quot;,
+        &quot;provenance&quot;: &quot;official&quot;,
+        &quot;outcomes&quot;: [
+          {
+            &quot;side&quot;: &quot;participant&quot;,
+            &quot;participant&quot;: &quot;T-3&quot;,
+            &quot;line&quot;: &quot;1&quot;,
+            &quot;odds&quot;: &quot;4.50&quot;
+          },
+          {
+            &quot;side&quot;: &quot;participant&quot;,
+            &quot;participant&quot;: &quot;T-11&quot;,
+            &quot;atLeast&quot;: 3,
+            &quot;odds&quot;: &quot;6.00&quot;
+          },
+          {
+            &quot;side&quot;: &quot;other&quot;,
+            &quot;odds&quot;: &quot;1.40&quot;
           }
         ]
       }

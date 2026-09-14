@@ -64,6 +64,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   One market many rows; player is an id; HT/FT pair; listed CS both
   totals; listed winning margin who+number; no mixed boards; `none` is
   listed; prop-row pass closed.
+- **Q118–Q125** — winning-margin plus-bands: `atLeast` (JSON number; 3
+  means 3 or more) on `market`, `odds/change`, and `grade`. Plus-band
+  row is `participant` + `atLeast` (not outcome `line`); exact margin
+  keeps `line`; leftover `other` still allowed; pass closed.
 
 
 ### Removed

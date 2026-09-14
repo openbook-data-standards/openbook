@@ -1,18 +1,18 @@
 # Still to do
 
-Questions recorded through **Q117**. Catalog pass closed and on the wire.
+Questions recorded through **Q125**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
-closed (**Q104–Q117**) and on the wire.
+closed (**Q104–Q117**) and on the wire. Plus-band pass closed
+(**Q118–Q125**) and on the wire.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk — closed)
 
-**Cover the Pinnacle Lines API in OpenBook.** If Pinnacle publishes it on
-that feed, OpenBook can carry it. Industry shape, not a Pinnacle clone.
-Not the Pinnacle Bets API.
+**Name winning-margin plus-bands.** Exact margins already use `participant`
++ outcome `line`. Plus-band extra is `atLeast`. On the wire.
 
 ### Wired
 
@@ -21,6 +21,9 @@ Not the Pinnacle Bets API.
 - **Q101** — one fixture; `eventStatus` is live.
 - **Q105–Q117** — typed prop outcome extras on `market`, `odds/change`,
   and `grade`.
+- **Q119–Q125** — `atLeast` on `market`, `odds/change`, and `grade`.
+  Plus-band row is `participant` + `atLeast`; exact keeps `line`; leftover
+  `other` still allowed; pass closed.
 
 ### Log only
 
@@ -32,6 +35,7 @@ Not the Pinnacle Bets API.
 - **Q104** — typed prop outcomes. Field names **Q105**.
 - **Q111** — listing `order` / `seed` stay 1; `sequence` may be 0
   (already true on the schema).
+- **Q118** — plus-band walk.
 
 ### Parked
 
@@ -44,9 +48,9 @@ Not the Pinnacle Bets API.
 
 ## Next question (not decided)
 
-- New area.
+- Next area.
 
-## Done (Q32–Q117)
+## Done (Q32–Q125)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -60,3 +64,7 @@ out of scope.
 **Q105–Q117** — extras on market / odds/change / grade: homeTotal /
 awayTotal; halfTime / fullTime; player id; extra side tokens; row rules;
 pass closed.
+**Q118** — plus-band walk.
+**Q119–Q125** — plus-bands on the wire: `atLeast` on `market`,
+`odds/change`, and `grade`; who + `atLeast`; not exact `line`; leftover
+`other` still allowed; pass closed.

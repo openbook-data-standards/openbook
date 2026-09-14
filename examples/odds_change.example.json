@@ -122,6 +122,30 @@
             "odds": "1.25"
           }
         ]
+      },
+      {
+        "marketType": "market:winning-margin",
+        "segment": "segment:soccer:full-time",
+        "source": "acme-book",
+        "provenance": "official",
+        "outcomes": [
+          {
+            "side": "participant",
+            "participant": "T-3",
+            "line": "1",
+            "odds": "4.50"
+          },
+          {
+            "side": "participant",
+            "participant": "T-11",
+            "atLeast": 3,
+            "odds": "6.00"
+          },
+          {
+            "side": "other",
+            "odds": "1.40"
+          }
+        ]
       }
     ]
   }
