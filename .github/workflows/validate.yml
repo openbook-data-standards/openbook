@@ -12,3 +12,21 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install 'jsonschema>=4.18' referencing
       - run: python3 tools/validate.py
+
+  site-fresh:
+    # Fail if the committed HTML is stale: rebuild from the markdown/schema
+    # sources and require no diff. Keeps generated pages in lockstep with the
+    # canonical .md sources so a source edit can't merge without a rebuild.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python3 tools/build_site.py
+      - name: Committed HTML matches a fresh build
+        run: |
+          if ! git diff --quiet -- '*.html'; then
+            echo "::error::Committed HTML is out of date. Run 'python3 tools/build_site.py' and commit the result."
+            git --no-pager diff --stat -- '*.html'
+            exit 1
+          fi

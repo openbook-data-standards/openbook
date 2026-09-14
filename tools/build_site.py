@@ -293,9 +293,9 @@ def toc_entry(text: str) -> tuple[str | None, str]:
     plain = re.sub(r"<[^>]+>", "", text).strip()
     numbered = re.match(r"^(\d+[a-z]?)\.\s+(.+)$", plain, re.I)
     if numbered:
-        title = re.split(r"\s*[:(,]", numbered.group(2), 1)[0].strip()
+        title = re.split(r"\s*[:(,]", numbered.group(2), maxsplit=1)[0].strip()
         return numbered.group(1), title or numbered.group(2)
-    return None, re.split(r"\s*[:(,]", plain, 1)[0].strip() or plain
+    return None, re.split(r"\s*[:(,]", plain, maxsplit=1)[0].strip() or plain
 
 
 def toc_nav(toc: list[tuple[str, str]] | None) -> str:
