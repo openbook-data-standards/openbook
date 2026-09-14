@@ -119,6 +119,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Names wait. Not wired.
 - **Q164** — optional leftover English on live `series` at implement; not
   `total`; not `line`. Not wired.
+- **Q165** — wins needed ≥ 1 when present. Not wired.
+- **Q166** — toss-elected and best-of pass closed. Leftover English at
+  implement. Not wired.
+- **Q167** — stop this spec walk. Wire waits.
 
 
 ### Removed

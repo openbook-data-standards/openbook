@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 |
 | Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
@@ -1973,3 +1973,39 @@ root; reuse `atLeast`.
 
 **Supersedes:** Q163 “names wait” for how the number is carried
 (optional leftover English; not `total`).
+
+## Q165 — Wins needed is at least 1 when present — decided (A)
+
+When present, wins needed is an integer **≥ 1**. Not 0. Not
+unspecified. Not `atLeast`.
+
+Not wired in this pick. Leftover English at implement (Q164).
+
+Rejected: 0 allowed; leave the minimum unspecified; reuse `atLeast`.
+
+**Supersedes:** none of Q164 (optional stays; this is the bound when
+present).
+
+## Q166 — This pass closed — decided (A)
+
+Pass closed. Elected: on `toss`; required bat-or-bowl token; leftover
+English at implement. Best-of: optional leftover English on live
+`series`; wins needed; ≥ 1 when present; not `total`. No new field in
+this pick.
+
+Not wired in this pick.
+
+Rejected: name leftover English now; keep going; wire now.
+
+**Supersedes:** Q157 as an open walk (this closes the pass).
+
+## Q167 — Stop this spec walk — decided (A)
+
+No new board until named. Elected and best-of stay logged. Leftover
+English at implement. Wire waits.
+
+Not wired in this pick.
+
+Rejected: name leftover English now; a new area; wire now.
+
+**Supersedes:** Q166 as an open “what is next”.

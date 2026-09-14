@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q164**. Catalog pass closed and on the wire.
+Questions recorded through **Q167**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -11,15 +11,23 @@ closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 walk stopped (**Q147**), then unparked for series win counts (**Q148**).
 Series win-count pass closed (**Q148–Q155**) and on the wire (`wins`). Spec
 walk stopped (**Q156**), then unparked for toss elected then best-of
-(**Q157**).
+(**Q157**). Toss-elected and best-of pass closed (**Q157–Q166**); not on
+the wire. Spec walk stopped (**Q167**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Toss elected closed; best-of length next.** Elected: on `toss`, one
-required token (bat or bowl), leftover English at implement. Best-of: on
-live `series`; optional leftover English for wins needed; not `total`.
+**Closed.** Toss elected and best-of. Spec walk stopped (**Q167**).
+Leftover English at implement. Not wired.
+
+## Goal (previous — toss elected and best-of, closed)
+
+Elected: on `toss`; required bat-or-bowl token; leftover English at
+implement. Best-of: optional leftover English on live `series`; wins
+needed to take the series; ≥ 1 when present; not `total`.
+
+## Goal (previous — series win counts, closed)
 
 ## Goal (previous — series win counts, closed)
 
@@ -32,8 +40,8 @@ still waits.
 
 Racing `stall` and cricket `toss`: two catalog objects. Playoff series:
 round on `stage`; live `series` is the lead. Not more keys on every
-fixture. Win counts on the wire (**Q148–Q155**). Elected bat/bowl
-waits.
+fixture. Win counts on the wire (**Q148–Q155**). Elected bat/bowl and
+best-of decided **Q157–Q166** (not wired).
 
 ## Goal (previous — yes/no player, closed)
 
@@ -87,6 +95,9 @@ over/under. No new market type. No new field. On the wire.
 - **Q163** — the number is wins needed to take the series.
 - **Q164** — optional leftover English on `series`; not `total`; not
   `line`.
+- **Q165** — wins needed ≥ 1 when present.
+- **Q166** — this pass closed; not wired.
+- **Q167** — stop this spec walk.
 
 ### Parked
 
@@ -98,9 +109,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- Close this pass (integer min; leftover English; stop vs wire).
+- None. This spec walk stopped (**Q167**).
 
-## Done (Q32–Q164)
+## Done (Q32–Q167)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -132,3 +143,7 @@ pass closed.
 **Q161** — elected rules closed.
 **Q162** — best-of sits on live `series`.
 **Q163** — wins needed to take the series.
+**Q164** — optional leftover English on `series`.
+**Q165** — wins needed ≥ 1 when present.
+**Q166** — this pass closed.
+**Q167** — stop this spec walk.
