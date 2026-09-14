@@ -106,6 +106,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   each `participant` + `total` (games won, integer, 0 allowed). A win
   ticks when this game is down. Spec walk stopped. Toss elected and
   best-of length wait.
+- **Q157** — this pass is toss elected first, then best-of length. Names
+  wait. Not wired in this pick.
 
 
 ### Removed

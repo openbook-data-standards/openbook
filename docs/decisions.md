@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 |
 | Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
@@ -1872,3 +1872,15 @@ Later pick wired `wins`.
 Rejected: name the array now; a new area; toss elected next.
 
 **Supersedes:** Q155 as an open “what is next”.
+
+## Q157 — Toss elected then best-of this pass — decided (C)
+
+This pass covers **toss elected** first, then **best-of length**.
+Names wait. Not Q55.
+
+Not wired in this pick.
+
+Rejected: elected only; best-of only; a new area.
+
+**Supersedes:** Q156 “no new board until named”; Q146 “elected bat/bowl
+wait” and Q156 “best-of length waits” as the next area.
