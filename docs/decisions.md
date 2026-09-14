@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q191 |
+| Maps leftover | Q181–Q192 |
 
 The entries below stay in the order they were taken.
 
@@ -2334,3 +2334,16 @@ leftover.
 
 **Supersedes:** none of Q186 (when it is required stays; this is that
 the reason is not a token list).
+
+## Q192 — Reason forbidden on a mapped id — decided (A)
+
+When the landing is an existing OpenBook id, a reason is **forbidden**.
+The reason is only for the unknown catch-all (**Q186**). No file in
+this pick.
+
+Not wired in this pick.
+
+Rejected: optional on a mapped id; park; stop this leftover.
+
+**Supersedes:** none of Q186 (required-on-unknown stays; this is that
+a mapped id does not carry a reason).
