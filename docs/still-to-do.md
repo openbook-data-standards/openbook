@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q167**. Catalog pass closed and on the wire.
+Questions recorded through **Q168**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -12,14 +12,16 @@ walk stopped (**Q147**), then unparked for series win counts (**Q148**).
 Series win-count pass closed (**Q148–Q155**) and on the wire (`wins`). Spec
 walk stopped (**Q156**), then unparked for toss elected then best-of
 (**Q157**). Toss-elected and best-of pass closed (**Q157–Q166**) and on
-the wire (`elected`, `needed`). Spec walk stopped (**Q167**).
+the wire (`elected`, `needed`). Spec walk stopped (**Q167**), then a new
+area waits to be named (**Q168**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Toss elected and best-of on the wire (`elected`, `needed`).
-Spec walk stopped (**Q167**).
+**A new area you name.** Name waits. Not Q55.
+
+## Goal (previous — toss elected and best-of, closed)
 
 ## Goal (previous — toss elected and best-of, closed)
 
@@ -84,7 +86,8 @@ over/under. No new market type. No new field. On the wire.
 - **Q133** — stop this spec walk (superseded as the next area by Q134).
 - **Q147** — stop this spec walk (superseded as the next area by Q148).
 - **Q156** — stop this spec walk (superseded as the next area by Q157).
-- **Q167** — stop this spec walk.
+- **Q167** — stop this spec walk (superseded as the next area by Q168).
+- **Q168** — new area you name; name waits.
 
 ### Parked
 
@@ -96,9 +99,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This spec walk stopped (**Q167**).
+- Name the area.
 
-## Done (Q32–Q167)
+## Done (Q32–Q168)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -125,3 +128,4 @@ pass closed.
 **Q156** — stop this spec walk.
 **Q157–Q166** — toss `elected` and series `needed` on the wire.
 **Q167** — stop this spec walk.
+**Q168** — new area you name.

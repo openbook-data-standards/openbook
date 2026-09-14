@@ -2015,3 +2015,15 @@ Later pick wired `elected` and `needed`.
 Rejected: name leftover English now; a new area; wire now.
 
 **Supersedes:** Q166 as an open “what is next”.
+
+## Q168 — New area, name waits — decided (A)
+
+This walk is a **new area you name**. Name waits. Not Q55. Not a version
+cut. Not stop.
+
+Not wired in this pick.
+
+Rejected: unpark Q55; cut `0.4.0-draft` as this walk; stop again.
+
+**Supersedes:** Q167 “no new board until named” as the next board (the
+area is still unnamed).
