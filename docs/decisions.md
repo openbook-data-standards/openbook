@@ -25,7 +25,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
 | What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q236 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q261 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
 | Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q257 |
 
@@ -3134,4 +3134,48 @@ Build [`maps/betfair.json`](../maps/betfair.json). Not on the odds wire.
 Rejected: separate ask later; schema with no file; wait.
 
 **Supersedes:** Q225 / Q250 as an open wait on a file with rows.
+
+## Q258 — Next leftover is the pinned fixture example — decided (A)
+
+The next leftover is the **pinned fixture example** (**Q198**). Not
+the fingerprint recipe. Not the prefix-file list. Not position tokens.
+Not Q55.
+
+Not a new wire field.
+
+Rejected: fingerprint recipe now; prefix-file contents now; wait.
+
+**Supersedes:** Q255 as an open “none on this leftover” (maps file stays;
+this is a different leftover).
+
+## Q259 — The pin is the existing sample fixture — decided (A)
+
+The pinned fixture example is the existing sample
+[`examples/fixture.example.json`](../examples/fixture.example.json). Do
+not invent a second sample match.
+
+Not a new wire field.
+
+Rejected: a new invented fixture; wait; skip the pin.
+
+**Supersedes:** none of Q198 (this is which file).
+
+## Q260 — Do not write the fingerprint recipe — decided (A)
+
+Do not write the fingerprint recipe steps. Recipe text still waits
+(**Q216**). Publisher-own id stays canonical. No new field.
+
+Not a new wire field.
+
+Rejected: write the recipe now; invent a join-key field; wait.
+
+**Supersedes:** none of Q196 or Q216.
+
+## Q261 — Spec names the pin — decided (A)
+
+Spec and the examples page name that file as the pin. No register
+directory in this pick. No new JSON field.
+
+**Supersedes:** none of Q197 (recipe file still waits).
+
 

@@ -100,6 +100,11 @@ not**. A string to pin, never a runtime dependency.
 Any object MAY carry `identifier`: a list of schema.org `PropertyValue`
 (`{propertyID, value}`). Optional, never canonical.
 
+The optional fixture join recipe is not on the wire and is not written
+yet (Q171, Q196, Q216). When it exists it is checked against one pinned
+example: [`examples/fixture.example.json`](../examples/fixture.example.json)
+(Q198, Q259). Publisher-own id stays canonical.
+
 ### 3.5 Maps onto public taxonomies
 
 Public market and segment keys map onto existing OpenBook ids, or onto

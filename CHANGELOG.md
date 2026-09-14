@@ -6,6 +6,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Pinned fixture example** — [`examples/fixture.example.json`](examples/fixture.example.json)
+  is the pin the optional fixture join recipe is checked against when
+  that recipe exists (Q259). Recipe text waits. No new wire field.
 - **Maps file** — [`maps/betfair.json`](maps/betfair.json) maps Betfair
   market type ids onto existing OpenBook `market:*` ids, or
   `market:unknown` plus `reason`. Schema
@@ -296,6 +299,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q250–Q257** — first maps file [`maps/betfair.json`](maps/betfair.json);
   `publicKey` on [`schema/maps.schema.json`](schema/maps.schema.json); spec
   §3.5 names the keys. Not on the odds wire. Stay `0.3.0-draft`.
+- **Q258–Q261** — pinned fixture example is
+  [`examples/fixture.example.json`](examples/fixture.example.json). Recipe
+  text waits. No new wire field.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
