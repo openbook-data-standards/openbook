@@ -139,32 +139,55 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Not wired in this pick.
 - **Q180** — position-vocab shape is logged. Token lists wait. Spec walk
   stopped. Not Q55. Not a version cut. Not wired in this pick.
-- **Q182** — this walk is the Q171 leftovers that live in this repo:
+- **Q181** — this walk is the maps leftover. Public market / segment
+  keys onto existing OpenBook ids, or the unknown catch-all with a
+  reason. Not a wire change. No file in this pick.
+- **Q182** — when files exist: one maps directory, not inside the vocab
+  lists. No file in this pick. First public list waits. Not wired in
+  this pick.
+- **Q183** — that directory is named for maps. No file in this pick.
+  First public list waits. Not wired in this pick.
+- **Q184** — first public list name waits. No file in this pick. Do not
+  invent a taxonomy. Not wired in this pick.
+- **Q185** — a map row is public key plus an existing OpenBook id, or
+  the unknown catch-all plus a reason. No file in this pick. Not wired
+  in this pick.
+- **Q186** — the reason is required only when the landing is the unknown
+  catch-all. No file in this pick. Not wired in this pick.
+- **Q187** — when files exist: one file per public list. First public
+  list name still waits. No file in this pick. Not wired in this pick.
+- **Q188** — when files exist: JSON, same as the shared vocab lists.
+  First public list name still waits. No file in this pick. Not wired
+  in this pick.
+- **Q189** — JSON object keys wait. Do not invent names. Row meaning
+  stays leftover English. No file in this pick. Not wired in this pick.
+- **Q190** — this walk is the Q171 leftovers that live in this repo:
   prefix file; fixture fingerprint recipe and a corpus case; anchor
   policy prose. Not maps. Not a new wire field. Files wait. Not wired
   in this pick.
-- **Q183** — prefix file first (`propertyID` schemes). Fingerprint
+- **Q191** — prefix file first (`propertyID` schemes). Fingerprint
   recipe, corpus case, and anchor policy wait. No file in this pick.
   Not wired in this pick.
-- **Q184** — when the file exists it is named for prefixes, in the
+- **Q192** — when the file exists it is named for prefixes, in the
   register leftover, not inside the vocab lists. No file in this pick.
   Not wired in this pick.
-- **Q185** — prefix tokens are plain like the existing `propertyID`
+- **Q193** — prefix tokens are plain like the existing `propertyID`
   examples. Not the Q5 short form. The list waits. Not wired in this
   pick.
-- **Q186** — prefix catch-all is an unknown bucket (Q34). List waits.
+- **Q194** — prefix catch-all is an unknown bucket (Q34). List waits.
   `propertyID` stays a string. Not wired in this pick.
-- **Q187** — prefix-file shape is logged. The list waits. Next leftover
+- **Q195** — prefix-file shape is logged. The list waits. Next leftover
   in this walk is the fingerprint recipe. No file in this pick. Not
   wired in this pick.
-- **Q188** — fingerprint is leftover English only. No new field.
+- **Q196** — fingerprint is leftover English only. No new field.
   Publisher-own id stays canonical. Not wired in this pick.
-- **Q189** — when the recipe exists it is named for fingerprint, in the
+- **Q197** — when the recipe exists it is named for fingerprint, in the
   register leftover, not inside the vocab lists. No file in this pick.
   Not wired in this pick.
-- **Q190** — fingerprint location is logged. Recipe text waits. Next
+- **Q198** — fingerprint location is logged. Recipe text waits. Next
   leftover in this walk is the corpus case. No file in this pick. Not
   wired in this pick.
+
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
