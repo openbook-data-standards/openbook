@@ -13,11 +13,11 @@ legal — before anyone opens a schema.
 
 | Shared by the standard (same everywhere) | Each publisher’s own |
 | --- | --- |
-| Sport (soccer, tennis) and discipline (100 m, Formula 1) | League id, season id, match id |
+| Sport (soccer, tennis) | League id, season id, match id |
 | Market type (moneyline, total, player points) | Team / player ids |
 | Segment (1st half, set 3, Q1) | Venue id |
 | Side (home, away, over, under) | How they spell “Man City” |
-| Basis (goals, corners, sets) | Wikidata link, when they have one, so others can match |
+| | Wikidata link, when they have one, so others can match |
 
 The shared ids look like `sport:soccer` or `market:total` on the wire. You do
 not need those spellings to *talk* about the taxonomy; they are how computers
@@ -33,24 +33,19 @@ repurposed.
 
 The game being played. Soccer, basketball, tennis. Not “the Olympics” — that
 is a competition (a league, in OpenBook’s terms) that contains many sports.
-Not “women’s soccer” either — gender and age group belong to the league, and
-the sport stays soccer.
 
-A few sports have **disciplines** underneath: the 100 m inside athletics,
-Formula 1 inside motorsport, Counter-Strike inside esports. Those are still
-the same sport, sliced finer.
-
-Each sport names its **primary unit**: what a score normally counts. Goals in
-soccer, points in basketball, runs in cricket, sets in tennis, time in
-athletics. A market that counts something else (corners, cards, games) says so
-with a basis.
-
-Horse and greyhound racing have no sport id yet; the racing card is modelled
-separately (stalls) until a racing publisher proposes one.
+A few sports have **disciplines** underneath (100 m, marathon; a video-game
+title under esports). Those are still the same sport, sliced finer. A
+series (Formula 1, a Grand Tour, Worlds) is a league, not a sport.
 
 Catch-all: when a publisher sees a sport that is not on the list yet, they
 should say “unknown” rather than invent a private code. The list grows by
-proposal, one sport at a time, when a real feed prices it.
+proposal. Horse racing has no sport id in this draft; use unknown until one
+is proposed.
+
+Each sport has a default scoring unit (goals, points, runs, …). A priced
+market can count something else by setting `basis` — corners on a soccer
+total is still a total, not a new market type.
 
 Full list: [sports vocabulary](../vocabularies/sports.md).
 
@@ -77,32 +72,29 @@ A **segment** is a slice *inside* a match, used both for live state (“we are
 in the first half”) and for which slice a bet is on (“first-half total”).
 
 It is **not** a separate match. First half and full time of the same soccer
-game are two segments of one fixture. A different session — qualifying and
-the race, first leg and second leg, game 3 of a series — is a separate
-fixture, not a segment.
+game are two segments of one fixture. Qualifying, sprint and race in
+motorsport *are* separate fixtures; Q1/Q2/Q3 are segments of the qualifying
+fixture.
 
-Three words do most of the work:
-
-| Word | Means |
-| --- | --- |
-| Full time | The whole contest as it is graded, including any overtime, extra time, shootout or extra innings the rules allow. Every sport has this slice. |
-| Regulation | The scheduled length only — 90 minutes, 60 minutes, four quarters. Listed only where a contest can run past it. |
-| A period | One half, quarter, period, set, inning, round, frame, map, hole or lap. A period includes its own stoppage time and excludes overtime. |
+Every sport has **full time**: the whole contest as graded, including
+overtime or extra time when the league’s rules say they count. Regulation
+is the same contest without those extensions, where books price the
+difference.
 
 | Sport family | Typical slices |
 | --- | --- |
-| Soccer, handball, rugby, GAA | Halves, extra time, penalties, clock windows |
-| Basketball, American football, Aussie rules, netball, hockey on turf or water | Quarters, halves, overtime (numbered where there can be several) |
-| Ice hockey, floorball | Periods, overtime, shootout |
-| Tennis, volleyball, table tennis, badminton, squash | Sets, sometimes games and tiebreaks |
-| Baseball, softball | Innings, first five or seven, extra innings |
-| Cricket | Innings, overs, powerplay, super over |
-| Boxing, MMA, kickboxing | Rounds |
-| Snooker, darts, bowls, curling | Frames, sets and legs, ends |
-| Golf | Rounds, front and back nine, holes, play-off |
-| Motorsport, cycling | Q1/Q2/Q3 of the qualifying fixture, laps, stages, sprints and climbs |
-| Athletics, swimming, skiing | Heats, semi-finals, the final, runs, attempts, splits |
-| Esports | Maps or games of a series, rounds inside a map |
+| Soccer / rugby / futsal / handball | 1st half, 2nd half, full time, extra time, penalties |
+| Basketball / American football / Australian rules / lacrosse | Quarters, halves, overtime |
+| Ice hockey | Periods, overtime, shootout |
+| Baseball | Innings, first five, first seven, extra innings |
+| Tennis / volleyball / badminton / table tennis | Sets, sometimes games or a tie-break |
+| Cricket | Full time, innings, overs, powerplay |
+| Golf | Rounds, front nine, back nine, holes |
+| Fights (MMA, boxing) | Rounds |
+| Snooker / darts | Frames, or sets and legs |
+| Motorsport | Q1/Q2/Q3 and laps *inside* one session fixture |
+| Athletics / swimming | The fixture’s result as full time; heats and attempts when priced |
+| Esports | Maps or games of one match |
 
 Full list: [segments vocabulary](../vocabularies/segments.md).
 
@@ -115,53 +107,37 @@ Easy to mix up:
 | Word | Means | Example |
 | --- | --- | --- |
 | Market type | The *kind* of bet, shared | Total (over/under) |
-| Market | That kind of bet, on this match, this slice, this line, from this book | One book’s 2.5 full-time total on EVT-88213 |
+| Market | That kind of bet, on this match, this slice, this line, from this book | 2.5 full-time total on a named fixture from one source |
 | Side | Which selection | over, under, home, away |
 | Line | The number on a handicap or total | 2.5 |
-| Basis | What is being counted | goals, corners, sets, maps |
+| Basis | What is being counted | goals, corners, maps |
 
 The same market type can be offered on many segments (full time *and* first
-half), many lines (2.5, 3.5) and many bases (goals, corners). Those are
-different markets, one type. A corner total is not a new kind of bet; it is a
-total that counts corners.
+half) and many lines (2.5, 3.5). Those are different markets, one type.
 
 ```mermaid
 flowchart LR
   type[Market type: total] --> m1[Full time, line 2.5]
   type --> m2[Full time, line 3.5]
   type --> m3[1st half, line 1.5]
-  type --> m4[Full time, corners, line 9.5]
 ```
-
-### Shape
-
-Every market type has a **shape**: how it is built, which tells a client how
-to draw it and a grader how to settle it.
-
-| Shape | Looks like | Example |
-| --- | --- | --- |
-| Binary | Two sides, one wins | Draw no bet, race to 20 |
-| N-way | A list of named sides or participants | Three-way moneyline, outright winner |
-| Over/under | A line and two sides | Total, player points |
-| Handicap | A line given to one side | Point spread, Asian handicap |
-| Correct score | One row per score pair, plus “any other” | Correct score, set betting |
-| Exact value | One row per exact count | Reserved; no market uses it yet |
-| Yes/no | One question | Both teams to score, anytime scorer |
-| Composite | Legs that point at other markets | Parlay, same-game parlay |
 
 ### Families of market types
 
-Each family is the market type’s **category** on the wire.
+These names are the `category` on a market-type document.
 
-| Family | Category | What the customer is betting | Typical types |
-| --- | --- | --- | --- |
-| Main lines | `main-line` | Who wins, the handicap, the total | moneyline, spread, total, team total, double chance, to qualify |
-| Score props | `score-prop` | The score itself, or a fact about it | correct score, set betting, BTTS, odd/even, winning margin, clean sheet |
-| Game props | `game-prop` | Something about how the contest unfolds | first to score, overtime yes/no, HT/FT, round betting, fastest lap |
-| Player props | `player-prop` | A person on the roster | player points, passing yards, anytime scorer, batter runs |
-| Outrights | `outright` | The competition, not one match | outright winner, top-N finish, to be relegated |
-| Same-game parlays | `same-game-parlay` | Several selections from one match, one price | same-game parlay |
-| Parlays and specials | `parlay-special` | Selections across matches, and the catch-all | accumulator, unknown |
+| Family | What the customer is betting | Typical types |
+| --- | --- | --- |
+| Main line | Who wins, the handicap, the total | moneyline, spread, total, team total, draw no bet, double chance |
+| Score prop | The exact or special score | correct score, exact total, BTTS, clean sheet, odd/even, winning margin |
+| Game prop | How the game unfolds | first to score, overtime yes/no, method of victory, HT/FT |
+| Player prop | A person on the roster | player points, anytime scorer, passing yards, wickets |
+| Outright | The competition, not one match | outright winner, group winner, head to head, podium |
+| Same-game parlay / parlay | Several selections glued together | same-game parlay, accumulator |
+
+**Shape** is how the board is built: two-way, n-way, over/under, handicap,
+exact value, correct score, yes/no, or **composite** (a parlay that points at
+other outcomes). Shape is not the same as category.
 
 Full list with ids: [market types vocabulary](../vocabularies/market_types.md).
 
@@ -169,22 +145,25 @@ Full list with ids: [market types vocabulary](../vocabularies/market_types.md).
 
 ## Side
 
-Which outcome of a market. Sides are a small shared list; a priced market
-lists its outcomes as “this side, at these odds.”
+Which outcome of a market. A priced market lists its outcomes as “this
+side, at these odds.”
 
-| Side | Means | Used by |
-| --- | --- | --- |
-| home, away | The home participant, the away participant. Home/away is a fact the publisher asserts, not “whichever name came first”. In a head-to-head between two golfers, they are the fixture’s two participants in order. | Moneyline, spread, race to, to qualify |
-| draw | A tie stands | Three-way moneyline, 3-way handicap, winning margin, round betting |
-| over, under | Above or below the line | Totals, every over/under player prop |
-| yes, no | The question is true or false | BTTS, clean sheet, anytime scorer (`no` optional on player boards) |
-| odd, even | Parity of the total; zero is even | Total odd/even |
-| none | A listed “nobody” selection: no goal scored, no scorer | First to score, first scorer |
-| home-or-draw, away-or-draw, home-or-away | Two results in one selection | Double chance |
-| participant | A named team or individual; the row says which | Outrights, winning margin, group winner |
-| other | The leftover: every result not listed on its own row | Correct score, winning margin, set betting, round betting |
+| Side | Used when |
+| --- | --- |
+| home / away / draw | Moneyline, draw no bet, and any two- or three-way result |
+| over / under | Totals and player over/unders |
+| yes / no | BTTS, overtime, podium, anytime scorer |
+| odd / even | Total odd/even |
+| none | A listed “nobody” selection (nobody scores). Not leftover. |
+| other | Leftover unlisted scores or unlisted remainder on winning margin. Not used on yes/no player boards. |
+| home-or-draw / away-or-draw / home-or-away | Double chance |
+| participant | A named team, player, number, round, or method, depending on the market |
 
-Some rows carry a little more than a side:
+Extra fields on a row, not sides: listed correct score carries `homeTotal` /
+`awayTotal`. HT/FT carries `halfTime` / `fullTime`. Winning margin is
+`participant` plus outcome `line` (exact) or `atLeast` (3 or more). Player
+over/under and yes/no player name `player`. Yes/no player omits market
+`line`; leftover `other` is not used.
 
 | Extra on the row | Means | Used by |
 | --- | --- | --- |
@@ -225,7 +204,7 @@ the file.”
 | List | File |
 | --- | --- |
 | Market types | [`vocabularies/market_types.md`](../vocabularies/market_types.md) |
-| Sports and disciplines | [`vocabularies/sports.md`](../vocabularies/sports.md) |
+| Sports | [`vocabularies/sports.md`](../vocabularies/sports.md) |
 | Segments | [`vocabularies/segments.md`](../vocabularies/segments.md) |
 
 To add or deprecate an id, see [CONTRIBUTING](../CONTRIBUTING.md).
