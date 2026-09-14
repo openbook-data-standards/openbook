@@ -161,6 +161,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   in this pick.
 - **Q189** — JSON object keys wait. Do not invent names. Row meaning
   stays leftover English. No file in this pick. Not wired in this pick.
+- **Q190** — when files exist: a JSON array of row objects. Keys still
+  wait. First public list name still waits. No file in this pick. Not
+  wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
