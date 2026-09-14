@@ -117,6 +117,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q162** — best-of sits on live `series`. Names wait. Not wired.
 - **Q163** — the number is wins needed to take the series (first to N).
   Names wait. Not wired.
+- **Q164** — optional leftover English on live `series` at implement; not
+  `total`; not `line`. Not wired.
 
 
 ### Removed
