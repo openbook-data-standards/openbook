@@ -33,9 +33,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
-- **Homepage copy** — same layout and colour; hero and tracks sound like
-  the protocol (specification / schemas first; taxonomy and guide marked
-  informative). No wire change.
+- **Homepage copy** — hero is “an open standard for sportsbook data”;
+  the subhead is vendor-neutral plus sportsbook & gambling data
+  (reference model, live wire, vocabularies). Specification / schemas
+  first; taxonomy and guide marked informative. Same layout and
+  colour. No wire change.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) §15 last
   bullet names the rejected thing (an OpenBook-run entity database);
   §16 records protocols studied after the first pass.
