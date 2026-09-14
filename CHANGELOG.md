@@ -35,6 +35,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   [`schema/common.schema.json`](schema/common.schema.json) carry `maxLength` /
   `maxItems`, so conformant parsers reject oversized input; covered by
   `conformance/invalid/alternate-name-too-long.json`.
+- **Q96** — vendor mapping, starter CLI, and translate ABC are **not**
+  this spec; planned names openbook-starter / openbook-translate
+  ([`docs/decisions.md`](docs/decisions.md)). Repos not created in this
+  change.
 - **Q95** — protocol-fit pass closed; next work is a new area, not more
   take/don't-take pins from that comparison list
   ([`docs/decisions.md`](docs/decisions.md)).

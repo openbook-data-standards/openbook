@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q95**. Catalog pass closed and on the wire.
+Questions recorded through **Q96**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (Q89–Q95). Log only.
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
@@ -16,9 +16,11 @@ Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check 
 
 - (none parked from this walk)
 
-## Done (Q32–Q95)
+## Done (Q32–Q96)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
 Patch; not ISO 20022; not FIX session; no spec-owned multi-publisher index;
 protocol-fit pass closed.
+**Q96** — vendor mapping / starter / translate packages are not this spec
+(pointer only; those repos are not in this change).

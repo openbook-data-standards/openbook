@@ -63,6 +63,11 @@ grouped by what each one is used for, with the reason it was chosen.
   second sportsbook wire. Discovery `kind` `mcp` points at the server's
   own manifest (MCP Registry `server.json` / `/.well-known/mcp.json`).
   Connection, packages and remotes stay in that document (Q56).
+- **Vendor mapping** — not this spec (Q96). Inbound books stay unknown;
+  OpenBook is the output language. Planned separate Apache-2.0 packages
+  (openbook-starter, openbook-translate). Native ids on a successful map
+  use `identifier`. FHIR-style concept maps sit beside the resource, not
+  inside it.
 - **Agent Plugins** — optional plugin-directory format (`plugin.json` plus
   fixed component locations). Discovery `kind` `plugin` points at the
   manifest; OpenBook does not fork the layout (Q56).
