@@ -139,7 +139,7 @@ footer strong{color:var(--fg);display:block;margin-bottom:6px}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
 .page-toc{margin:0 0 32px}
 .page-toc strong{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
-.page-toc a{display:grid;grid-template-columns:1.75rem minmax(0,1fr);column-gap:8px;align-items:baseline;padding:5px 0;color:var(--fg2);font-size:13px;text-decoration:none;line-height:1.35}
+.page-toc a{display:grid;grid-template-columns:2rem minmax(0,1fr);column-gap:8px;align-items:baseline;padding:5px 0;color:var(--fg2);font-size:13px;text-decoration:none;line-height:1.35}
 .page-toc a:not(:has(.n)){display:block;padding-left:0}
 .page-toc .n{font-variant-numeric:tabular-nums;font-size:11px;color:var(--mute);text-align:right;letter-spacing:0}
 .page-toc a:hover{color:var(--fg)}
