@@ -27,7 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218 |
 
 The entries below stay in the order they were taken.
 
@@ -2651,3 +2651,18 @@ sitting leftovers; unpark Q55.
 
 **Supersedes:** Q205–Q216 as an open “what is next” (the stop stays;
 this pass is closed).
+
+## Q218 — First public list leftover English — decided (A)
+
+The first public list is leftover English: **market types from a public
+exchange already cited in this spec** (Betfair Stream). Do not invent
+rows. Do not invent JSON object keys (**Q189**). No file in this pick.
+Not a registry of fixtures, teams, or players.
+
+Not wired in this pick.
+
+Rejected: Sportradar UOF market types as this pick; sports or segments
+first; name still waits.
+
+**Supersedes:** Q184 “first public list name waits” (this is the leftover
+English name); Q210 as an open wait; Q217 as an open “what is next”.

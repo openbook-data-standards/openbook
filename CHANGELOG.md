@@ -238,6 +238,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   contents. Not wired in this pick.
 - **Q217** — this question pass closes. No further leftover questions
   until a leftover is named. Not wired in this pick.
+- **Q218** — first public list leftover English: market types from a
+  public exchange already cited in this spec (Betfair Stream). No rows.
+  No JSON object keys. No file. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
