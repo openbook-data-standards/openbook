@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q110**. Catalog pass closed and on the wire.
+Questions recorded through **Q111**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**).
@@ -34,6 +34,7 @@ Not the Pinnacle Bets API.
 - **Q108** — player on the row is the OpenBook id only.
 - **Q109** — HT/FT half and full are only home, away, or draw.
 - **Q110** — HT/FT row always has both half and full.
+- **Q111** — listing `order` / `seed` stay 1; `sequence` may be 0.
 
 ### Parked
 
@@ -49,7 +50,7 @@ Not the Pinnacle Bets API.
 - On a listed correct-score row, must both home and away totals be
   present?
 
-## Done (Q32–Q110)
+## Done (Q32–Q111)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -68,3 +69,4 @@ built).
 **Q108** — player on the row is the OpenBook id only.
 **Q109** — HT/FT half and full are only home, away, or draw.
 **Q110** — HT/FT row always has both half and full.
+**Q111** — listing order / seed stay 1; sequence may be 0.

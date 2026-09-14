@@ -1336,3 +1336,16 @@ Not wired in this pick.
 Rejected: one of the two missing.
 
 **Supersedes:** none of Q109.
+
+## Q111 — Listing is 1; sequence may be 0 — decided (A)
+
+`order` and `seed` stay **1-based** (first listed is 1; top seed is 1).
+`sequence` still allows **0** (cursor / `since` from the start). Clocks
+and scores still use 0 as a quantity.
+
+Already on the wire. No schema change.
+
+Rejected: 0-based `order` / `seed`; `sequence` minimum 1; one origin for
+every integer.
+
+**Supersedes:** none of Q22. Confirms the existing minima.
