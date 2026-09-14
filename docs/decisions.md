@@ -1360,3 +1360,15 @@ Not wired in this pick.
 Rejected: one total missing on a listed row.
 
 **Supersedes:** none of Q105.
+
+## Q113 — Listed winning margin is who plus the number — decided (A)
+
+A listed winning-margin row always has **`participant`** and the outcome
+**`line`**. Plus-bands (`3+`) stay `side: other` with neither until a
+band is named (Q105).
+
+Not wired in this pick.
+
+Rejected: who or the number missing on a listed row.
+
+**Supersedes:** none of Q107.
