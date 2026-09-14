@@ -328,7 +328,7 @@ fixture list. Live objects are the board that keeps moving.
 | Object | What it is |
 | --- | --- |
 | `publisher` | Who transmits, `baseCurrency` (ISO 4217, once per feed), and the `sources[]` the feed carries (`id`, `name`, `sourceType` of sportsbook, exchange, or model). GTFS agency.txt. Another currency is another subscription (Q44). Level L MUST declare **`heartbeatMs`**. Optional **`ttl`** (seconds) MAY also sit here; the discovery document is where `ttl` is required (Q46, Q48). Optional `registeredName` (Q60) and `inLanguage` (ISO 639-1, Q68) |
-| `sport`, `segment`, `marketType`, `side` | Shared vocabularies ([`../vocabularies/`](../vocabularies/)). A sport MAY carry a default `limit`. Sport, market type, and segment are **`name` only** (Q59) |
+| `sport`, `segment`, `marketType`, `side` | Shared vocabularies ([`../vocabularies/`](../vocabularies/)). A sport MAY carry a default `limit`. Sport, market type, and segment are **`name` only** (Q59). A market type carries `shape` (`binary` · `n-way` · `over-under` · `handicap` · `exact-value` · `correct-score` · `yes-no` · `composite`, the last for parlay legs that reference other market outcomes) and `category` |
 | `region` | `id` = CLDR territory code; `name`, `names{lang}`, `superEvent`, crosswalks `iocCode`, `fifaCode`, `sameAs` |
 | `league` | Own id, `name`, `sport`, `territory`, `competitionType`, optional `organizer`, `ruleset`, `sameAs`, optional `limit`. Team-style names: optional `shortName`, `registeredName` (Q59). Optional `gender` (`men` · `women` · `mixed` · `open`) and `ageGroup` (Q72, Q73) |
 | `season` | Own id, `league`, `name` (display), `startDate`, `endDate` (Q60 / Q9) |

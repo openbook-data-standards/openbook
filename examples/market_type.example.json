@@ -1,0 +1,10 @@
+{
+  "openbookVersion": "0.3.0-draft",
+  "id": "market:parlay",
+  "name": "Parlay / Accumulator",
+  "genre": "combination",
+  "shape": "composite",
+  "category": "parlay-special",
+  "sequence": 104900,
+  "dateModified": "2026-09-19T14:00:00Z"
+}
