@@ -19,7 +19,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Ids | Q4 · Q5 · Q6 · Q12 · Q53 |
 | Catalogue shape | Q7 · Q19 · Q20 · Q21 · Q22 |
 | Names and places | Q10 · Q11 · Q13 · Q57–Q70 |
-| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 · Q149 · Q150 · Q151 · Q152 · Q153 · Q154 · Q155 |
+| Live wire | Q8 · Q14 · Q16 · Q17 · Q29 · Q33 · Q46 · Q47 · Q148 · Q149 · Q150 · Q151 · Q152 · Q153 · Q154 · Q155 · Q156 |
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
@@ -1854,3 +1854,15 @@ Rejected: keep going (best-of length); stop this spec walk in this pick;
 toss elected next.
 
 **Supersedes:** Q148 as an open walk (this closes the pass).
+
+## Q156 — Stop this spec walk — decided (A)
+
+No new board until named. Series win counts stay logged. Array leftover
+English at implement. Wire waits. Toss elected waits. Best-of length
+waits.
+
+Not wired in this pick.
+
+Rejected: name the array now; a new area; toss elected next.
+
+**Supersedes:** Q155 as an open “what is next”.

@@ -92,6 +92,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `participants`. Not wired.
 - **Q155** — series win-count pass closed. Array leftover English at
   implement. Not wired.
+- **Q156** — stop this spec walk. Wire waits.
 
 
 ### Removed

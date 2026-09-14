@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q155**. Catalog pass closed and on the wire.
+Questions recorded through **Q156**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -9,14 +9,15 @@ closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q126–Q132**) and on the wire. Q86 leftovers pass closed
 (**Q134–Q146**) and on the wire (`stall`, `toss`, live `series`). Spec
 walk stopped (**Q147**), then unparked for series win counts (**Q148**).
-Series win-count pass closed (**Q148–Q155**); not on the wire.
+Series win-count pass closed (**Q148–Q155**); not on the wire. Spec
+walk stopped (**Q156**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Live series win counts. Array leftover English at implement.
-Not wired.
+**Closed.** Live series win counts. Spec walk stopped (**Q156**). Array
+leftover English at implement. Not wired.
 
 ## Goal (previous — series win counts, closed)
 
@@ -81,6 +82,7 @@ over/under. No new market type. No new field. On the wire.
 - **Q154** — array name leftover English at implement; not `scores`; not
   `participants`.
 - **Q155** — series win-count pass closed; not wired.
+- **Q156** — stop this spec walk.
 
 ### Parked
 
@@ -92,9 +94,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This pass closed (**Q155**).
+- None. This spec walk stopped (**Q156**).
 
-## Done (Q32–Q155)
+## Done (Q32–Q156)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -125,3 +127,4 @@ pass closed.
 **Q153** — count field is `total`.
 **Q154** — array name leftover English at implement.
 **Q155** — series win-count pass closed.
+**Q156** — stop this spec walk.
