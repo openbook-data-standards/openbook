@@ -36,7 +36,7 @@ No clean-slate 2.0. Envelope stable; enumerations move.
 | this repository (core) | now → 1.0 in year 2 | Public odds, scores, grades wire |
 | `vocabularies/` | monthly | Sports, segments, market types, sides |
 | maps directory | year 1 | Public keys onto existing OpenBook ids, or the unknown catch-all plus a reason. Named for maps, not inside the vocab lists. First public list: `maps/betfair.json` (Q181–Q257) |
-| `register/` | year 1 | Scheme prefixes (`register/prefixes.json`); fingerprint recipe file (`register/fingerprint.md`) restates decided facts, encoding steps wait; redirects |
+| `register/` | year 1 | Prefixes, fingerprint recipe file (encoding waits), anchor policy prose |
 | openbook-register | year 2 | Fingerprint recipe, anchors, snapshots |
 | openbook-pm | year 1 | Event-contract ↔ market / selection |
 | openbook-reg | year 2 | Bet-level reporting that carries OpenBook ids |

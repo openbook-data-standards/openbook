@@ -93,7 +93,10 @@ Leagues, seasons, stages, fixtures, participants, players and venues carry the
 For leagues, participants, venues and territories, **`sameAs`** holds the
 Wikidata entity URL (`https://www.wikidata.org/entity/Q9617`) — the shared
 cross-publisher entity id: **REQUIRED when one exists, `null` when it does
-not**. A string to pin, never a runtime dependency.
+not**. A string to pin, never a runtime dependency. Anchor policy prose:
+[`register/anchors.md`](../register/anchors.md) (Q171, Q272–Q273).
+`sameAs` MAY name one community register per sport when one exists; that
+list is not in this spec.
 
 ### 3.4 External ids — `identifier`
 

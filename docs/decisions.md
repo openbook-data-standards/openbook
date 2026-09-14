@@ -25,8 +25,8 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
 | What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q236 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q271 |
-| Position vocab | Q76 · Q170 · Q174–Q180 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q279 |
+| Position vocab | Q76 · Q170 · Q174–Q180 · Q275 |
 | Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q257 |
 
 The entries below stay in the order they were taken.
@@ -3290,6 +3290,90 @@ Rejected: invent SHA or a join string now; drop the file; wait.
 
 **Supersedes:** none of Q216 (steps still wait; this is the file that
 says so).
+
+## Q272 — Next leftover is the anchor policy — decided (A)
+
+The next leftover is the **anchor policy**, as prose in the register
+leftover. Do not invent a list of community registers.
+
+Not a new wire field.
+
+Rejected: invent a community-register list; position token lists next;
+wait.
+
+**Supersedes:** Q271 as an open “what is next” (fingerprint file stays).
+
+## Q273 — File named for anchors — decided (A)
+
+The file is named for anchors:
+[`register/anchors.md`](../register/anchors.md). Restates Q171 only.
+
+Not a new wire field.
+
+Rejected: a new JSON field; spec only with no file; wait.
+
+**Supersedes:** none of Q171 (policy stays; this is the file).
+
+## Q274 — Stay 0.3.0-draft — decided (A)
+
+Stay **`0.3.0-draft`**. Not a version cut.
+
+Rejected: cut 0.3.0; cut 1.0; wait.
+
+**Supersedes:** none of Q211.
+
+## Q275 — Position token lists still wait — decided (A)
+
+Do not invent per-sport position tokens. Field stays `position`. Catch-all
+and file shape stay logged (**Q174–Q179**). No positions file in this
+pick.
+
+Not a new wire field.
+
+Rejected: invent soccer (or other) position tokens now; drop `position`;
+wait.
+
+**Supersedes:** none of Q180 or Q209.
+
+## Q276 — Do not unpark Q172 or Q173 — decided (A)
+
+Do not unpark Q172 profile repositories or Q173 hosted validator as
+this walk. Those remain later PRs.
+
+Rejected: create those repos now; wait.
+
+**Supersedes:** none of Q207 or Q208.
+
+## Q277 — Q55 stays parked — decided (A)
+
+Q55 stays parked until 1.0+.
+
+Rejected: unpark Q55; wait.
+
+**Supersedes:** none of Q212.
+
+## Q278 — Join encoding still waits — decided (A)
+
+Do not invent fingerprint encoding, hash, or separators.
+
+Not a new wire field.
+
+Rejected: invent encoding now; wait.
+
+**Supersedes:** none of Q216.
+
+## Q279 — Q171 leftovers in this repo are filed — decided (A)
+
+Prefix file, pinned fixture example, fingerprint recipe file, and
+anchor policy prose are in this repo. Encoding steps and position token
+lists still wait. This leftover pass **closes**.
+
+Not a new wire field.
+
+Rejected: keep inventing leftovers; wait.
+
+**Supersedes:** Q190 as an open “files wait” for the files now on disk.
+
 
 
 

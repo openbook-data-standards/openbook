@@ -6,6 +6,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Anchor policy** — [`register/anchors.md`](register/anchors.md)
+  restates Q171. No invented community-register list (Q273).
 - **Fingerprint recipe file** —
   [`register/fingerprint.md`](register/fingerprint.md) restates decided
   birth facts. Encoding steps wait. No new wire field (Q271).
@@ -314,6 +316,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q268–Q271** — fingerprint recipe file
   [`register/fingerprint.md`](register/fingerprint.md). Decided facts only.
   Encoding steps wait. No new wire field.
+- **Q272–Q279** — [`register/anchors.md`](register/anchors.md). Position
+  token lists wait. Q172 / Q173 stay later. Q55 parked. Stay
+  `0.3.0-draft`. Q171 leftovers in this repo are filed.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on
