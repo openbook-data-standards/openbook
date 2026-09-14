@@ -106,6 +106,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   each `participant` + `total` (games won, integer, 0 allowed). A win
   ticks when this game is down. Spec walk stopped. Toss elected and
   best-of length wait.
+- **Q157–Q167** — toss `elected` (`bat` · `bowl`, required leftover
+  English) and optional `needed` on live `series` (wins needed to take
+  the series, integer ≥ 1). Not `total`. Not `line`. Spec walk stopped.
 
 
 ### Removed

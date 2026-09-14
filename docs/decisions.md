@@ -23,7 +23,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q157 · Q158 · Q159 · Q160 · Q161 · Q162 · Q163 · Q164 · Q165 · Q166 · Q167 |
 | Tooling around the spec | Q96 |
 
 The entries below stay in the order they were taken.
@@ -1872,3 +1872,146 @@ Later pick wired `wins`.
 Rejected: name the array now; a new area; toss elected next.
 
 **Supersedes:** Q155 as an open “what is next”.
+
+## Q157 — Toss elected then best-of this pass — decided (C)
+
+This pass covers **toss elected** first, then **best-of length**.
+Names wait. Not Q55.
+
+Not wired in this pick.
+
+Rejected: elected only; best-of only; a new area.
+
+**Supersedes:** Q156 “no new board until named”; Q146 “elected bat/bowl
+wait” and Q156 “best-of length waits” as the next area.
+
+## Q158 — Elected sits on toss — decided (A)
+
+Elected sits on the existing **`toss`** object (who won + elected). Not
+a second catalog object. Not `score`. Not the generic fixture (Q142).
+Names wait.
+
+Not wired in this pick.
+
+Rejected: a second catalog object; on `score`; on the generic fixture.
+
+**Supersedes:** none of Q142 or Q157 (same `toss` home; this adds
+elected there).
+
+## Q159 — Elected is one token, bat or bowl — decided (A)
+
+Elected is **one token**: bat or bowl. Field name leftover English at
+implement. Not player `bats`. Not `side`. Not two flags.
+
+Not wired in this pick.
+
+Later pick wired leftover English **`elected`** (`bat` · `bowl`).
+
+Rejected: reuse `bats`; reuse `side`; two flags.
+
+**Supersedes:** none of Q88 or Q158 (`bats` stays handedness; elected
+is a different token on `toss`).
+
+## Q160 — Elected is required on toss — decided (A)
+
+Elected is **required** whenever `toss` is published. Who won and what
+they elected travel together. Not optional. Not leftover `other`.
+Required is specified.
+
+Not wired in this pick. Field name leftover English at implement (Q159).
+
+Rejected: optional; leftover `other` as a third token; leave required
+unspecified.
+
+**Supersedes:** none of Q159 (same one token; this locks required).
+
+## Q161 — Elected rules closed — decided (A)
+
+Elected rules closed. On `toss`; one required token, bat or bowl;
+field leftover English at implement. Not leftover `other`. Then
+**best-of**. No new field in this pick.
+
+Not wired in this pick.
+
+Rejected: leftover `other`; name the field now; stop this spec walk.
+
+**Supersedes:** Q157 as an open “elected first” (elected slice closed;
+best-of is next).
+
+## Q162 — Best-of sits on live series — decided (A)
+
+Best-of length sits on live **`series`** (with `wins`). Not on `stage`.
+Not on the generic fixture (Q136). Names wait.
+
+Not wired in this pick.
+
+Rejected: on `stage`; on the generic fixture; skip best-of.
+
+**Supersedes:** none of Q139 (round stays on `stage`; length is with
+the live lead).
+
+## Q163 — The number is wins needed — decided (A)
+
+The number is **wins needed to take the series** (first to N). One
+integer. Not total games (best of N). Not games remaining. Not two
+numbers. Names wait.
+
+Not wired in this pick.
+
+Rejected: total games in the series; games remaining; both.
+
+**Supersedes:** none of Q152 or Q162 (`wins[].total` stays games won;
+this is the target).
+
+## Q164 — Optional leftover English, not total — decided (A)
+
+Wins needed is **optional leftover English** on live `series` at
+implement. Not `total`. Not `line`. Not `atLeast`. Not required.
+
+Not wired in this pick.
+
+Later pick wired leftover English **`needed`**.
+
+Rejected: required leftover English; reuse `total` on the `series`
+root; reuse `atLeast`.
+
+**Supersedes:** Q163 “names wait” for how the number is carried
+(optional leftover English; not `total`).
+
+## Q165 — Wins needed is at least 1 when present — decided (A)
+
+When present, wins needed is an integer **≥ 1**. Not 0. Not
+unspecified. Not `atLeast`.
+
+Not wired in this pick. Leftover English at implement (Q164).
+
+Rejected: 0 allowed; leave the minimum unspecified; reuse `atLeast`.
+
+**Supersedes:** none of Q164 (optional stays; this is the bound when
+present).
+
+## Q166 — This pass closed — decided (A)
+
+Pass closed. Elected: on `toss`; required bat-or-bowl token; leftover
+English at implement. Best-of: optional leftover English on live
+`series`; wins needed; ≥ 1 when present; not `total`. No new field in
+this pick.
+
+Not wired in this pick.
+
+Rejected: name leftover English now; keep going; wire now.
+
+**Supersedes:** Q157 as an open walk (this closes the pass).
+
+## Q167 — Stop this spec walk — decided (A)
+
+No new board until named. Elected and best-of stay logged. Leftover
+English at implement. Wire waits.
+
+Not wired in this pick.
+
+Later pick wired `elected` and `needed`.
+
+Rejected: name leftover English now; a new area; wire now.
+
+**Supersedes:** Q166 as an open “what is next”.

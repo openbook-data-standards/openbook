@@ -240,6 +240,13 @@
       ],
       "description": "Throwing/shooting or batting side (Q88). No ISO."
     },
+    "elected": {
+      "enum": [
+        "bat",
+        "bowl"
+      ],
+      "description": "What the toss winner elected (Q159). Leftover English. Not player bats."
+    },
     "side": {
       "enum": [
         "home",
