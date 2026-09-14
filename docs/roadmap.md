@@ -73,7 +73,7 @@ smallest required set; two implementations live; maps to at least four
 taxonomies.
 
 Exit: producer + consumer public and badged · maps to ≥ 4 taxonomies ·
-≥ 10 prefixes · fingerprint in the spec with a corpus case · ≥ 3 listed
+≥ 10 prefixes · fingerprint in the spec with a pinned fixture example · ≥ 3 listed
 feeds · tooling on an index.
 
 ## Year 2 — 2027-Q4 → 2028-Q3

@@ -33,6 +33,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
+- **Wording** — Q171 leftover **corpus case** is **pinned fixture
+  example** (one example fixture the fingerprint recipe is checked
+  against). Not the Q40 conformance corpus. Same decisions. No new
+  rule.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) §15 last
   bullet names the rejected thing (an OpenBook-run entity database);
   §16 records protocols studied after the first pass.
@@ -162,11 +166,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q189** — JSON object keys wait. Do not invent names. Row meaning
   stays leftover English. No file in this pick. Not wired in this pick.
 - **Q190** — this walk is the Q171 leftovers that live in this repo:
-  prefix file; fixture fingerprint recipe and a corpus case; anchor
+  prefix file; fixture fingerprint recipe and a pinned fixture example; anchor
   policy prose. Not maps. Not a new wire field. Files wait. Not wired
   in this pick.
 - **Q191** — prefix file first (`propertyID` schemes). Fingerprint
-  recipe, corpus case, and anchor policy wait. No file in this pick.
+  recipe, pinned fixture example, and anchor policy wait. No file in this pick.
   Not wired in this pick.
 - **Q192** — when the file exists it is named for prefixes, in the
   register leftover, not inside the vocab lists. No file in this pick.
@@ -185,7 +189,7 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   register leftover, not inside the vocab lists. No file in this pick.
   Not wired in this pick.
 - **Q198** — fingerprint location is logged. Recipe text waits. Next
-  leftover in this walk is the corpus case. No file in this pick. Not
+  leftover in this walk is the pinned fixture example. No file in this pick. Not
   wired in this pick.
 - **Q199** — when files exist: a JSON array of row objects. Keys still
   wait. First public list name still waits. No file in this pick. Not
