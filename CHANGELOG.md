@@ -152,6 +152,8 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Q185** — a map row is public key plus an existing OpenBook id, or
   the unknown catch-all plus a reason. No file in this pick. Not wired
   in this pick.
+- **Q186** — the reason is required only when the landing is the unknown
+  catch-all. No file in this pick. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

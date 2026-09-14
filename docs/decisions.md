@@ -27,6 +27,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Tooling around the spec | Q96 · Q172 · Q173 |
 | Register (not a registry) | Q2 · Q171 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
+| Maps leftover | Q181–Q186 |
 
 The entries below stay in the order they were taken.
 
@@ -2253,3 +2254,16 @@ Not wired in this pick.
 Rejected: public key only; OpenBook id only; row shape waits.
 
 **Supersedes:** none of Q181 (this is the row).
+
+## Q186 — When the reason is required — decided (A)
+
+The reason is required **only when the landing is the unknown
+catch-all**. When the landing is an existing OpenBook id, the reason is
+not required. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: reason on every row; reason never required; stop this leftover.
+
+**Supersedes:** none of Q185 (row contents stay; this is when the reason
+applies).
