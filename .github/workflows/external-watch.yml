@@ -42,7 +42,7 @@ jobs:
             state+="$key: ${v:-none}"$'\n'
           done < <(jq -r '.wikidata_external_id_labels[] | [.key,.pattern] | @tsv' "$TARGETS")
           while IFS=$'\t' read -r key url pattern; do
-            v=$(curl -fsSL "$url" 2>/dev/null | grep -oiE "$pattern" | head -1 | sed 's/  */ /g' || true)
+            v=$(curl -fsSL -A "Mozilla/5.0 (openbook-external-watch)" "$url" 2>/dev/null | grep -oiE "$pattern" | head -1 | sed 's/  */ /g' || true)
             state+="$key: ${v:-not parsed}"$'\n'
           done < <(jq -r '.pages[] | [.key,.url,.pattern] | @tsv' "$TARGETS")
           { echo "state<<EOF"; printf '%s' "$state"; echo "EOF"; } >> "$GITHUB_OUTPUT"
