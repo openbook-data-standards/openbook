@@ -33,9 +33,9 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
-- **Homepage copy** — `index.html` hero, meta, and open-spec section use
-  the vendor-neutral positioning (reference model, live wire,
-  vocabularies; GTFS / OpenRTB analogy). No wire change.
+- **Homepage copy** — same layout and colour; hero and tracks sound like
+  the protocol (specification / schemas first; taxonomy and guide marked
+  informative). No wire change.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) §15 last
   bullet names the rejected thing (an OpenBook-run entity database);
   §16 records protocols studied after the first pass.
