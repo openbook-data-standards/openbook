@@ -139,6 +139,28 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   Not wired in this pick.
 - **Q180** — position-vocab shape is logged. Token lists wait. Spec walk
   stopped. Not Q55. Not a version cut. Not wired in this pick.
+- **Q181** — this walk is the maps leftover. Public market / segment
+  keys onto existing OpenBook ids, or the unknown catch-all with a
+  reason. Not a wire change. No file in this pick.
+- **Q182** — when files exist: one maps directory, not inside the vocab
+  lists. No file in this pick. First public list waits. Not wired in
+  this pick.
+- **Q183** — that directory is named for maps. No file in this pick.
+  First public list waits. Not wired in this pick.
+- **Q184** — first public list name waits. No file in this pick. Do not
+  invent a taxonomy. Not wired in this pick.
+- **Q185** — a map row is public key plus an existing OpenBook id, or
+  the unknown catch-all plus a reason. No file in this pick. Not wired
+  in this pick.
+- **Q186** — the reason is required only when the landing is the unknown
+  catch-all. No file in this pick. Not wired in this pick.
+- **Q187** — when files exist: one file per public list. First public
+  list name still waits. No file in this pick. Not wired in this pick.
+- **Q188** — when files exist: JSON, same as the shared vocab lists.
+  First public list name still waits. No file in this pick. Not wired
+  in this pick.
+- **Q189** — JSON object keys wait. Do not invent names. Row meaning
+  stays leftover English. No file in this pick. Not wired in this pick.
 
 ### Removed
 - `localName`, `additionalName`, `honorificPrefix`, `honorificSuffix` on

@@ -1,6 +1,14 @@
 # Still to do
 
-Questions recorded through **Q180**. Catalog pass closed and on the wire.
+**Working on: maps leftover (Q181–).** Public key plus an existing
+OpenBook id, or the unknown catch-all plus a reason (**Q185**). Reason
+required only on the unknown catch-all (**Q186**). One directory named
+for maps, not inside the vocab lists (**Q182**, **Q183**). One JSON file
+per public list when files exist (**Q187**, **Q188**). JSON object keys
+wait (**Q189**). First public list name waits (**Q184**). Not a wire
+change. No file now. Not Q55. Not position token lists.
+
+Questions recorded through **Q189**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -18,14 +26,19 @@ walk stopped (**Q169**), then Q76 position vocab unparked (**Q170**).
 Roadmap pass closed (**Q171–Q173**): register not an entity database;
 profiles are separate specifications; feed list is validator tooling.
 Position-vocab shape closed (**Q174–Q179**). Spec walk stopped
-(**Q180**).
+(**Q180**), then the maps leftover unparked (**Q181**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Stopped (Q180).** Position-vocab shape is logged. Token lists wait.
-No file.
+**Maps leftover — this is the open walk.** Public key plus an existing
+OpenBook id, or the unknown catch-all plus a reason (**Q181**, **Q185**).
+Reason required only on the unknown catch-all (**Q186**). One directory
+named for maps, not inside the vocab lists (**Q182**, **Q183**). One
+JSON file per public list when files exist (**Q187**, **Q188**). JSON
+object keys wait (**Q189**). Cite at least one public taxonomy. First
+public list name waits (**Q184**). Not a wire change. No file now.
 
 ## Goal (previous — Q76 position vocab shape, closed)
 
@@ -125,6 +138,15 @@ over/under. No new market type. No new field. On the wire.
 - **Q178** — catch-all same pattern as segments (**Q34**); lists wait.
 - **Q179** — named for positions, same folder as the other shared lists; no file in this pick.
 - **Q180** — stop this spec walk. Shape logged. Token lists wait.
+- **Q181** — maps leftover this walk. Not a wire change. No file in this pick.
+- **Q182** — one maps directory, not inside the vocab lists; no file in this pick; first public list waits.
+- **Q183** — directory named for maps; no file in this pick; first public list waits.
+- **Q184** — first public list name waits; no file in this pick; do not invent a taxonomy.
+- **Q185** — map row: public key plus existing OpenBook id, or unknown catch-all plus a reason; no file in this pick.
+- **Q186** — reason required only when the landing is the unknown catch-all; no file in this pick.
+- **Q187** — one file per public list when files exist; name still waits (**Q184**); no file in this pick.
+- **Q188** — when files exist, JSON, same as the shared vocab lists; name still waits; no file in this pick.
+- **Q189** — JSON object keys wait; do not invent names; row meaning stays leftover English (**Q185**); no file in this pick.
 
 ### Parked
 
@@ -142,10 +164,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This spec walk stopped (**Q180**). Resume when token lists are unparked, or when you pick the next leftover.
-- Sitting (not this walk): maps in a crosswalks directory: public market / segment keys onto existing OpenBook ids, or the unknown catch-all with a reason. Cite at least one public taxonomy. Not a wire change.
+**Next question: Q190.** When files exist, is the JSON document an array of row objects? Rec: yes; keys still wait (**Q189**); name still waits (**Q184**); no file now. A pasted letter is not implement. Wire is a separate ask.
 
-## Done (Q32–Q180)
+## Done (Q32–Q189)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -184,3 +205,12 @@ feed list beside the validator. Not on the wire.
 **Q178** — catch-all same pattern as segments; lists wait.
 **Q179** — named for positions, same folder as the other shared lists; no file now.
 **Q180** — stop this spec walk; token lists wait.
+**Q181** — maps leftover this walk; not a wire change; no file now.
+**Q182** — one maps directory, not inside the vocab lists; no file now.
+**Q183** — directory named for maps; no file now; first public list waits.
+**Q184** — first public list name waits; do not invent a taxonomy.
+**Q185** — map row: public key plus existing OpenBook id, or unknown plus a reason.
+**Q186** — reason required only when the landing is the unknown catch-all.
+**Q187** — one file per public list when files exist; name still waits.
+**Q188** — when files exist, JSON, same as the shared vocab lists.
+**Q189** — JSON object keys wait; do not invent names.
