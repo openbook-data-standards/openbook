@@ -1097,11 +1097,11 @@
     &quot;^x_&quot;: {}
   },
   &quot;additionalProperties&quot;: false
-}</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, limit, outcomes</code></p><pre>{
+}</pre></section><section class="schema-block" id="market"><h2>OpenBook market</h2><p>A fixture&#x27;s market as priced by ONE source — the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line, basis). Price moves arrive as odds/change.</p><p><a href="schema/market.schema.json">market.schema.json</a> · required: <code>openbookVersion, sequence, dateModified, fixture, marketType, source, provenance, status, limit, outcomes</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/market.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook market&quot;,
-  &quot;description&quot;: &quot;A fixture&#x27;s market as priced by ONE source \u2014 the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line). Price moves arrive as odds/change.&quot;,
+  &quot;description&quot;: &quot;A fixture&#x27;s market as priced by ONE source \u2014 the document form used by market/snapshot and market/update. Identity: (source, fixture, marketType, segment, line, basis). Price moves arrive as odds/change.&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;openbookVersion&quot;,
@@ -1140,6 +1140,10 @@
     },
     &quot;line&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;
+    },
+    &quot;basis&quot;: {
+      &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;,
+      &quot;description&quot;: &quot;What this market counts (Q90). Same list as score/grade. If omitted, sport/league primaryUnit. Not a new market type.&quot;
     },
     &quot;source&quot;: {
       &quot;$ref&quot;: &quot;common.schema.json#/$defs/ownId&quot;
@@ -1277,11 +1281,11 @@
   &quot;patternProperties&quot;: {
     &quot;^x_&quot;: {}
   }
-}</pre></section><section class="schema-block" id="odds_change"><h2>OpenBook odds/change payload</h2><p>The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line).</p><p><a href="schema/odds_change.schema.json">odds_change.schema.json</a> · required: <code>markets</code></p><pre>{
+}</pre></section><section class="schema-block" id="odds_change"><h2>OpenBook odds/change payload</h2><p>The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line, basis).</p><p><a href="schema/odds_change.schema.json">odds_change.schema.json</a> · required: <code>markets</code></p><pre>{
   &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
   &quot;$id&quot;: &quot;https://openbook-data-standards.github.io/openbook/schema/odds_change.schema.json&quot;,
   &quot;title&quot;: &quot;OpenBook odds/change payload&quot;,
-  &quot;description&quot;: &quot;The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line).&quot;,
+  &quot;description&quot;: &quot;The `changes` payload of an odds/change message: only the markets/outcomes whose prices moved (Merge Patch). Each market names its source and provenance. Identity: (source, fixture, marketType, segment, line, basis).&quot;,
   &quot;type&quot;: &quot;object&quot;,
   &quot;required&quot;: [
     &quot;markets&quot;
@@ -1305,6 +1309,10 @@
           &quot;line&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/decimalString&quot;,
             &quot;description&quot;: &quot;Handicap / total value for the market, when applicable.&quot;
+          },
+          &quot;basis&quot;: {
+            &quot;$ref&quot;: &quot;common.schema.json#/$defs/scoreUnit&quot;,
+            &quot;description&quot;: &quot;What this market counts (Q90). If omitted, sport/league primaryUnit.&quot;
           },
           &quot;status&quot;: {
             &quot;$ref&quot;: &quot;common.schema.json#/$defs/marketStatus&quot;
@@ -2287,6 +2295,7 @@
         &quot;marketType&quot;: &quot;market:total&quot;,
         &quot;segment&quot;: &quot;segment:soccer:full-time&quot;,
         &quot;line&quot;: &quot;2.5&quot;,
+        &quot;basis&quot;: &quot;corners&quot;,
         &quot;source&quot;: &quot;acme-book&quot;,
         &quot;provenance&quot;: &quot;official&quot;,
         &quot;outcomes&quot;: [

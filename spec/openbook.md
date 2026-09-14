@@ -197,7 +197,12 @@ healthy, not only what it replays:
 
 Rules: `eventStatus: ended` ⇒ every segment `down`. A market whose segment is
 `down` MUST be `closed` or `void`. A `grade` MAY only reference a `down`
-segment.
+segment. `segmentStatus: paused` is halt on the field, not odds offline.
+A period taken off the board is a fan-out of `marketStatus` on markets with
+that `segment` (Q91). Prefer the affected markets; bulk only when the book
+took the whole period down. Progress lives on `score`, not on odds. There
+is no betting-open flag on the fixture or the segment. Graded is the `grade`
+object, not `marketStatus`.
 
 **Corrections without settling twice** (Q31): a downed segment's
 `status` and `downAt` never change. A publisher correcting a result sends
@@ -260,10 +265,12 @@ Each reference document carries `openbookVersion`, `id`, `sequence`,
   `marketType`, `segment`, `line`, `source`, `provenance` (`official` ·
   `licensed` · `observed`), `status`, **`limit`** `{amount}` in the feed's
   `baseCurrency` (required on the market document / snapshot), `outcomes[]`
-  (`side`, `odds`, `line`, `active`). Identity: `(source, fixture, marketType,
-  segment, line)`. Price-only ticks (`odds/change`) do not repeat `limit`
-  unless it changed. **Most specific wins** (Q45): market `limit` → league
-  `limit` → sport `limit`. A priced market MUST resolve to a limit.
+  (`side`, `odds`, `line`, `active`). Optional `basis` (same `scoreUnit` list
+  as score/grade). If omitted, sport/league `primaryUnit`. Not a new market
+  type (Q90). Identity: `(source, fixture, marketType, segment, line, basis)`.
+  Price-only ticks (`odds/change`) do not repeat `limit` unless it changed.
+  **Most specific wins** (Q45): market `limit` → league `limit` → sport
+  `limit`. A priced market MUST resolve to a limit.
 - **`score`** — `fixture`, `eventStatus` (+ `statusReason`), `segments[]`
   (each `segment`, `status`, `downAt`), `currentSegment`, `clock` (`elapsed` /
   `remaining` in integer seconds, `running`, broadcast `display`), and

@@ -28,11 +28,11 @@ answered. Do not invent names.
 ### Decided on this walk (not wired unless named)
 
 - **Q89** — Pinnacle specials are **markets**. No new object.
-- **Q90** — optional `basis` on every market (same `scoreUnit` list). Same
-  `market:*` ids. Omit = sport/league `primaryUnit`. Not a new type.
-- **Q91** — four places, no new fields. Progress on `score`; betting is
-  `marketStatus`; settled = segment `down` + `grade` (Q27–Q31). Team
-  totals and draw sides already in the vocab.
+
+### Wired on this walk
+
+- **Q90** — optional `basis` on `market` and `odds/change`.
+- **Q91** — spec prose only (four places; no new fields).
 
 ### Not decided yet (walk these; do not invent)
 
