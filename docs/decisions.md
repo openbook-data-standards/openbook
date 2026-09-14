@@ -1669,3 +1669,14 @@ Not wired in this pick. Object name waits.
 Rejected: put the lead on `score`; put the lead on the fixture.
 
 **Supersedes:** none of Q139.
+
+## Q141 — Stall is not on generic fixture or participant — decided (B)
+
+Racing stall is a sport slice. Not on the generic fixture. Not on the
+generic `participant` row (not a second `seed`). Name waits.
+
+Not wired in this pick.
+
+Rejected: this race’s `participant` row like `seed`; a new live object.
+
+**Supersedes:** none of Q85 or Q136.
