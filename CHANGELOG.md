@@ -72,6 +72,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   `player` id; always present; leftover `other` not used; `no` optional;
   one market, many rows; no market `line`; no new field. Pairing on
   `market` / `odds/change` / `grade`. Spec walk stopped.
+- **Q134–Q147** — Q86 leftovers on the wire: catalog `stall` (`fixture`,
+  `participant`, `order` as the gate) and `toss` (`fixture`, `participant`
+  who won); live `series` (fixture-keyed lead; `stage` is the printed
+  round). Not on the generic fixture. Not `score`. Not `competitionType`
+  series. Win counts and elected bat/bowl wait. Spec walk stopped.
 
 
 ### Removed

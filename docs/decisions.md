@@ -1589,3 +1589,164 @@ player row rules are written in this pick (no new field).
 Rejected: unpark Q86; a new book-feed walk.
 
 **Supersedes:** Q132 as an open “what is next”.
+
+## Q134 — Unpark Q86 leftovers — decided (A)
+
+This walk is the Q86 leftovers: racing stall, cricket toss, playoff
+series. They are still **not** more keys on every fixture (Q86). Names
+and home (stage, live object, or sport slice) wait for later Qs.
+
+Not wired in this pick.
+
+Rejected: stay stopped (Q133); unpark Q55.
+
+**Supersedes:** Q133 “Q86 stays parked”; Q133 “no new board until named”.
+
+## Q135 — All three leftovers in this pass — decided (D)
+
+This pass covers racing stall, cricket toss, and playoff series. One
+pass, three leftovers. Names and home still wait.
+
+Not wired in this pick.
+
+Rejected: series only; stall only; toss only.
+
+**Supersedes:** none of Q134 (the leftovers list). Says the pass is all
+three, not one first.
+
+## Q136 — Still not keys on every fixture — decided (A)
+
+Stall, toss, and series stay off the generic fixture. Keep Q86. Home is
+stage, a live object, or a sport slice, decided per leftover.
+
+Not wired in this pick.
+
+Rejected: reopen Q86; put them on the generic fixture.
+
+**Supersedes:** none of Q86 (same rule, now for this walk).
+
+## Q137 — Each leftover its own home — decided (A)
+
+Stall, toss, and series each have their own home. Not one object that
+holds all three. Not all three on `stage`.
+
+Not wired in this pick.
+
+Rejected: one new live object for all three; all three on `stage`.
+
+**Supersedes:** none of Q136.
+
+## Q138 — Stall and toss are sport slices; series is not — decided (A)
+
+Stall and toss are sport-specific. Series is a separate home (stage or
+live), not a racing or cricket field.
+
+Not wired in this pick.
+
+Rejected: all three are sport-specific, including series; none are
+sport-specific.
+
+**Supersedes:** none of Q137.
+
+## Q139 — Series round on stage; lead is live — decided (C)
+
+The printed round stays on `stage` (`seriesGame`). The series lead (who
+is up 2–1) is live. Not the round name copied again.
+
+Not wired in this pick. Live object name waits.
+
+Rejected: `stage` only; live only (drop the round from `stage`).
+
+**Supersedes:** none of Q138.
+
+## Q140 — Live series lead is a new live object — decided (A)
+
+The series lead is a **new** live object. `score` stays this game’s
+points. Not on the fixture.
+
+Not wired in this pick. Object name waits.
+
+Rejected: put the lead on `score`; put the lead on the fixture.
+
+**Supersedes:** none of Q139.
+
+## Q141 — Stall is not on generic fixture or participant — decided (B)
+
+Racing stall is a sport slice. Not on the generic fixture. Not on the
+generic `participant` row (not a second `seed`). Name waits.
+
+Not wired in this pick.
+
+Rejected: this race’s `participant` row like `seed`; a new live object.
+
+**Supersedes:** none of Q85 or Q136.
+
+## Q142 — Toss is not on the generic fixture — decided (B)
+
+Cricket toss is a sport slice. Not on the generic fixture. Name waits.
+
+Not wired in this pick.
+
+Rejected: generic fixture; a new live object; on `score`.
+
+**Supersedes:** none of Q141 (same home rule, toss).
+
+## Q143 — Stall and toss are new catalog objects — decided (A)
+
+Stall and toss are **new catalog objects**. Names wait. Not the `sport`
+record. Not live (Q141, Q142).
+
+Not wired in this pick.
+
+Rejected: extra keys on `sport`; no new objects.
+
+**Supersedes:** none of Q142.
+
+## Q144 — Stall and toss are two catalog objects — decided (A)
+
+Two catalog objects. Each leftover its own home (Q137). Not one object
+that holds both.
+
+Not wired in this pick. Object names wait.
+
+Rejected: one catalog object that holds both.
+
+**Supersedes:** none of Q137 or Q143.
+
+## Q145 — Home rules closed — decided (A)
+
+Homes are locked. Object names wait until picked (or implement). No new
+field in this pick.
+
+- Series round stays on `stage`. Series lead is a new live object.
+- Stall and toss are two new catalog objects. Not the generic fixture.
+  Not `participant`. Not `sport`. Not live.
+
+Not wired in this pick.
+
+Rejected: name the objects in this pick.
+
+**Supersedes:** none of Q144 (homes stay; names still wait).
+
+## Q146 — Q86 leftovers pass closed — decided (A)
+
+Homes stop here. Object names and wire wait. No new field.
+
+Later pick wired leftover words as object types: catalog `stall` and
+`toss`; live `series` (the lead, not `competitionType` series). Gate is
+existing `order`. Win counts and elected bat/bowl wait.
+
+Rejected: keep going; name the objects now.
+
+**Supersedes:** Q145 as an open walk (homes closed; this closes the pass).
+
+## Q147 — Stop this spec walk — decided (A)
+
+No new board until named. Object names for stall, toss, and series lead
+wait. Wire waits.
+
+Later pick wired those objects.
+
+Rejected: name those objects now; a new area.
+
+**Supersedes:** Q146 as an open “what is next”.

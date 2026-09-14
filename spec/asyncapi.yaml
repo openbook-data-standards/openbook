@@ -34,7 +34,7 @@ channels:
       fixtureId:
         description: Publisher's fixture id.
       object:
-        description: fixture · odds · market · score · grade · lineup
+        description: fixture · odds · market · score · grade · lineup · series
       action:
         description: snapshot · create · update · delete · change · snapshotComplete · heartbeat
     messages:
@@ -52,7 +52,7 @@ channels:
       sport:
         description: Shared sport slug without the `sport:` prefix.
       object:
-        description: league · season · stage · participant · player
+        description: league · season · stage · participant · player · stall · toss
       id:
         description: The object's own id.
       action:

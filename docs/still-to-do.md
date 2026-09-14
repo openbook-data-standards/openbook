@@ -1,19 +1,26 @@
 # Still to do
 
-Questions recorded through **Q133**. Catalog pass closed and on the wire.
+Questions recorded through **Q147**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
 closed (**Q104–Q117**) and on the wire. Plus-band pass closed
 (**Q118–Q125**) and on the wire. Yes/no player pass closed
-(**Q126–Q132**) and on the wire. Spec walk stopped (**Q133**).
+(**Q126–Q132**) and on the wire. Q86 leftovers pass closed
+(**Q134–Q146**) and on the wire (`stall`, `toss`, live `series`). Spec
+walk stopped (**Q147**).
 Q46–Q49 and **Q56** are on the wire. **Q50** is the docs-vs-schema name check in
 `tools/validate.py`.
 
 ## Goal (this walk)
 
-**Closed.** Stop this spec walk (**Q133**). Player on yes/no rows is on
-the wire. No new board until named.
+**Closed.** Q86 leftovers. Homes on the wire. Spec walk stopped (**Q147**).
+
+## Goal (previous — Q86 leftovers, closed)
+
+Racing `stall` and cricket `toss`: two catalog objects. Playoff series:
+round on `stage`; live `series` is the lead. Not more keys on every
+fixture. Win counts and elected bat/bowl wait.
 
 ## Goal (previous — yes/no player, closed)
 
@@ -38,6 +45,8 @@ over/under. No new market type. No new field. On the wire.
 - **Q126–Q132** — player on yes/no rows: same player id; always present;
   leftover `other` not used; `no` optional; one market, many rows; no
   market `line`; pass closed.
+- **Q134–Q146** — `stall` and `toss` catalog objects; live `series` lead;
+  pass closed.
 
 ### Log only
 
@@ -50,11 +59,11 @@ over/under. No new market type. No new field. On the wire.
 - **Q111** — listing `order` / `seed` stay 1; `sequence` may be 0
   (already true on the schema).
 - **Q118** — plus-band walk.
-- **Q133** — stop this spec walk. No new board until named.
+- **Q133** — stop this spec walk (superseded as the next area by Q134).
+- **Q147** — stop this spec walk.
 
 ### Parked
 
-- **Q86** — racing stall, cricket toss, playoff series until a payload.
 - **Q55** — schema-diff CI for frozen majors only (1.0+).
 
 ## Later PRs (decided, not built)
@@ -63,9 +72,9 @@ over/under. No new market type. No new field. On the wire.
 
 ## Next question (not decided)
 
-- None. This spec walk stopped (**Q133**).
+- None. This spec walk stopped (**Q147**).
 
-## Done (Q32–Q133)
+## Done (Q32–Q147)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -85,3 +94,6 @@ pass closed.
 `other` still allowed; pass closed.
 **Q126–Q132** — player on yes/no rows; pass closed; on the wire.
 **Q133** — stop this spec walk.
+**Q134–Q146** — Q86 leftovers; `stall` / `toss` / live `series` on the wire;
+pass closed.
+**Q147** — stop this spec walk.
