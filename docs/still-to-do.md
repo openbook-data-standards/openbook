@@ -1,6 +1,6 @@
 # Still to do
 
-Questions recorded through **Q128**. Catalog pass closed and on the wire.
+Questions recorded through **Q129**. Catalog pass closed and on the wire.
 **Q88** `throws` / `bats` are on `player`. **Q80** `lineup` is on the wire.
 Protocol-fit pass closed (**Q89–Q95**). **Q96** vendor mapping / starter is
 not this spec. Pinnacle Lines walk closed (**Q97–Q103**). Prop-row pass
@@ -44,6 +44,7 @@ over/under. No new market type.
 - **Q126** — player on yes/no rows. Same player id.
 - **Q127** — player id always on those rows (same as Q115).
 - **Q128** — leftover `other` is not used on yes/no player boards.
+- **Q129** — `no` is optional; they may list only `yes`.
 
 ### Parked
 
@@ -56,9 +57,9 @@ over/under. No new market type.
 
 ## Next question (not decided)
 
-- On a yes/no player board, must they list both `yes` and `no`?
+- Is a yes/no player board one market with many player rows?
 
-## Done (Q32–Q128)
+## Done (Q32–Q129)
 
 Q32–Q55 · **Q11** names · catalog place/league/`gender`/`ageGroup`/`surface`/`seed` · **Q88** `throws`/`bats` · **Q80** `lineup` · **Q56** MCP/plugin discovery `kind`.
 **Q89–Q95** protocol-fit: JSON v1 encoding; no GBFS data wrapper; no JSON
@@ -79,3 +80,4 @@ pass closed.
 **Q126** — player on yes/no rows.
 **Q127** — player id always on those rows.
 **Q128** — leftover `other` is not used on yes/no player boards.
+**Q129** — `no` is optional.

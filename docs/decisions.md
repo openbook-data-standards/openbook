@@ -1533,3 +1533,13 @@ Not wired in this pick.
 Rejected: `other` allowed (someone else, or unlisted).
 
 **Supersedes:** none of Q124 (winning-margin leftover still allowed).
+
+## Q129 — No is optional on yes/no player boards — decided (A)
+
+They may list only `yes`. `no` is optional.
+
+Not wired in this pick.
+
+Rejected: both `yes` and `no` required for each named player.
+
+**Supersedes:** none of Q128.
