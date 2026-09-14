@@ -2230,3 +2230,15 @@ Rejected: inside `vocabularies/` next to sports; closed enum in
 `common.schema.json`; stop this leftover.
 
 **Supersedes:** none of Q183.
+
+## Q185 — How prefix tokens are spelled — decided (A)
+
+Plain tokens like the existing `propertyID` examples. Not the Q5
+`sport:` / `market:` short form. Not a formal URN only. The list waits.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: Q5 short form with a kind in front; formal URN only; stop
+this leftover.
+
+**Supersedes:** none of Q184.
