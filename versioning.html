@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Versioning — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/versioning.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./spec.html">Spec</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · VERSIONING.md</p><nav class="page-toc"><strong>On this page</strong><a href="#compatibility-within-a-frozen-major-q32">Compatibility within a frozen major (Q32)</a><a href="#rules">Rules</a></nav><article class="doc"><h1 id="versioning">Versioning</h1>
+<p>OpenBook uses semantic versioning: <code>MAJOR.MINOR.PATCH</code>.</p>
+<ul>
+<li><strong>MAJOR</strong> — a breaking change to the wire: a field removed or retyped, a required field added, a canonical id semantics change.</li>
+<li><strong>MINOR</strong> — backward-compatible additions: new optional fields, new vocabulary entries (new sports, market types, segments), new live message types.</li>
+<li><strong>PATCH</strong> — clarifications, documentation, examples; no schema change.</li>
+</ul>
+<h2 id="compatibility-within-a-frozen-major-q32">Compatibility within a frozen major (Q32)</h2>
+<p>Once a <strong>major is frozen</strong> (1.0 and later), compatibility is <strong>FULL-TRANSITIVE</strong>: every minor of that major is readable by a consumer built against any other minor of that major, both directions, checked against all prior minors of that major.</p>
+<p>In practice:</p>
+<ul>
+<li>New fields MUST be optional or defaulted.</li>
+<li>No field is re-typed or removed within a major.</li>
+<li>The required set is permanent within a major (keep it small).</li>
+</ul>
+<p>This is the Confluent Schema Registry FULL + TRANSITIVE *idea*, adapted to JSON Schema (instance compatibility, not Avro reader/writer resolution). A machine schema-diff gate is not part of this decision.</p>
+<h2 id="rules">Rules</h2>
+<ul>
+<li>Every object and message carries <code>openbookVersion</code>, the version it was produced against.</li>
+<li>Publishers validate strictly against the schema. Consumers <strong>MUST</strong> ignore unrecognized fields (including unknown <code>x_</code>-prefixed fields) so MINOR additions never break an older consumer (Q37).</li>
+<li>Canonical ids, list-values and field names are permanent once shipped in a frozen version. They are deprecated with reason + replacement + sunset, never re-pointed, and <strong>never reused</strong> (Q35, Q36). Removal from the live set is only at MAJOR, after the window.</li>
+<li>Pre-1.0 (<code>0.x</code>) the wire may still change between MINOR versions; the <code>-draft</code> suffix marks a version that is not yet frozen. Q32 is the intended 1.0 contract; it is not a 0.x freeze.</li>
+<li><strong>Freezing 1.0</strong> requires two independent implementations: one producer and one consumer, neither of which is <a href="tools/validate.py"><code>tools/validate.py</code></a> (Q41). That gate does not apply to 0.x or to each MINOR.</li>
+</ul>
+<p>The current version is recorded in <a href="changelog.html"><code>CHANGELOG.md</code></a>.</p></article><p class="source">Source: VERSIONING.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>

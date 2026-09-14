@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Governance &amp; licensing — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/governance.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./spec.html">Spec</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<p class="crumb"><a href="./">Home</a> · GOVERNANCE.md</p><nav class="page-toc"><strong>On this page</strong><a href="#open-spec-closed-code">Open spec, closed code</a><a href="#how-it-s-governed-staged">How it&#x27;s governed (staged)</a><a href="#change-control">Change control</a><a href="#what-this-is-not">What this is not</a></nav><article class="doc"><h1 id="governance-licensing">Governance & licensing</h1>
+<h2 id="open-spec-closed-code">Open spec, closed code</h2>
+<p>OpenBook is an open <strong>standard</strong> for sportsbook & gambling data; the document in <a href="spec/"><code>spec/</code></a> is its <strong>specification</strong>. It standardises the data contract — the schemas in <a href="schemas.html"><code>schema/</code></a> and the controlled vocabularies in <a href="vocabularies/"><code>vocabularies/</code></a>. It says nothing about how any implementer produces, models or prices the data behind a conformant feed.</p>
+<ul>
+<li><strong>The specification</strong> (this folder) is published under <strong>CC BY 4.0</strong> — see <a href="LICENSE"><code>LICENSE</code></a>. Anyone may implement it, quote it, and build on it, with attribution.</li>
+<li><strong>Implementations</strong> — parsers, pricing engines, trading models, back-office — are each implementer's own and stay proprietary. Conformance is about the wire, not the engine.</li>
+<li>The <strong>conformance corpus</strong> (<a href="conformance/"><code>conformance/</code></a>) is part of the specification (CC BY 4.0): language-agnostic JSON cases any implementation MUST pass. The in-repo validator is one runner, not a language oracle (Q40).</li>
+<li>Reference libraries and extra runners, if published later, carry Apache-2.0 with a royalty-free patent grant, separate from the spec's CC BY licence.</li>
+</ul>
+<h2 id="how-it-s-governed-staged">How it's governed (staged)</h2>
+<p>Modelled on how live-data standards actually reached adoption, not on standards committees:</p>
+<ol>
+<li><strong>Gravity play (now).</strong> Published openly under one steward, no committee. The value is the vocabulary and the validator being good enough to adopt. This is how GTFS and OpenTelemetry won.</li>
+<li><strong>Consortium (later).</strong> A lightweight working group only once there are 2–3 <strong>non-competing</strong> adopters, so the vocabulary reflects more than one house.</li>
+<li><strong>Standards body (maybe).</strong> A neutral home (or a betting module proposed to an existing body) only if the ecosystem asks for it. An ISO number is an outcome, not a starting move.</li>
+</ol>
+<h2 id="change-control">Change control</h2>
+<ul>
+<li>Vocabularies and schemas change through <a href="contributing.html"><code>CONTRIBUTING.md</code></a>.</li>
+<li>Canonical ids are <strong>stable</strong>: once an id is published it is never re-pointed or reused, only deprecated.</li>
+<li>Versioning follows <a href="versioning.html"><code>VERSIONING.md</code></a>.</li>
+<li><strong>1.0 freeze</strong> requires two independent implementations — one producer and one consumer — that are not the in-repo validator (Q41). 0.x minors have no two-implementation gate.</li>
+</ul>
+<h2 id="what-this-is-not">What this is not</h2>
+<ul>
+<li>Not a product, and not affiliated with any existing platform (including any similarly named betting platform). Always written in full as a specification.</li>
+<li>Not tied to any one provider's ids or internal system. It names none.</li>
+</ul></article><p class="source">Source: GOVERNANCE.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+</body>
+</html>
