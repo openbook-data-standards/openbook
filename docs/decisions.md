@@ -1091,7 +1091,9 @@ vendor translator.
 
 Planned Python tooling (not in this repo; names only, repos not created
 in this change). GitHub: **openbook-data-standards** (same org as the spec),
-**private** until we choose to open them:
+**private** until we choose to open them. Empty repos to be created now
+(names reserved); this agent cannot create org repos (needs a human with
+createRepository):
 
 - **openbook-starter** — copyable example + CLI `openbook start`. Writes
 
