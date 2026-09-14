@@ -33,16 +33,20 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   (what is adopted, shape-only, later, or rejected).
 
 ### Changed
-- **Maps leftover on the spec** (Q181–Q194, Q207) — public market /
-  segment keys onto existing OpenBook ids, or the unknown catch-all
-  plus a reason. One directory named for maps when files exist, not
-  inside the vocab lists; one JSON file per public list; array of row
-  objects; object keys wait; reason only on the unknown catch-all;
-  public key at most once; order not significant. First public list
-  name waits. No directory and no file until then. Not a feed document;
-  not on the odds wire.
+- **Maps leftover on the spec** (Q181–Q189, Q199–Q203, Q215) — public
+  market / segment keys onto existing OpenBook ids, or the unknown
+  catch-all plus a reason. One directory named for maps when files
+  exist, not inside the vocab lists; one JSON file per public list;
+  array of row objects; object keys wait; reason only on the unknown
+  catch-all; public key at most once; order not significant. First
+  public list name waits. No directory and no file until then. Not a
+  feed document; not on the odds wire.
   [`spec/openbook.md`](spec/openbook.md) §3.5;
   [`docs/roadmap.md`](docs/roadmap.md).
+- **Wording** — Q171 leftover **corpus case** is **pinned fixture
+  example** (one example fixture the fingerprint recipe is checked
+  against). Not the Q40 conformance corpus. Same decisions. No new
+  rule.
 - [`docs/protocol-comparison.md`](docs/protocol-comparison.md) §15 last
   bullet names the rejected thing (an OpenBook-run entity database);
   §16 records protocols studied after the first pass.
@@ -171,44 +175,68 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
   in this pick.
 - **Q189** — JSON object keys wait. Do not invent names. Row meaning
   stays leftover English. No file in this pick. Not wired in this pick.
-- **Q190** — when files exist: a JSON array of row objects. Keys still
+- **Q190** — this walk is the Q171 leftovers that live in this repo:
+  prefix file; fixture fingerprint recipe and a pinned fixture example; anchor
+  policy prose. Not maps. Not a new wire field. Files wait. Not wired
+  in this pick.
+- **Q191** — prefix file first (`propertyID` schemes). Fingerprint
+  recipe, pinned fixture example, and anchor policy wait. No file in this pick.
+  Not wired in this pick.
+- **Q192** — when the file exists it is named for prefixes, in the
+  register leftover, not inside the vocab lists. No file in this pick.
+  Not wired in this pick.
+- **Q193** — prefix tokens are plain like the existing `propertyID`
+  examples. Not the Q5 short form. The list waits. Not wired in this
+  pick.
+- **Q194** — prefix catch-all is an unknown bucket (Q34). List waits.
+  `propertyID` stays a string. Not wired in this pick.
+- **Q195** — prefix-file shape is logged. The list waits. Next leftover
+  in this walk is the fingerprint recipe. No file in this pick. Not
+  wired in this pick.
+- **Q196** — fingerprint is leftover English only. No new field.
+  Publisher-own id stays canonical. Not wired in this pick.
+- **Q197** — when the recipe exists it is named for fingerprint, in the
+  register leftover, not inside the vocab lists. No file in this pick.
+  Not wired in this pick.
+- **Q198** — fingerprint location is logged. Recipe text waits. Next
+  leftover in this walk is the pinned fixture example. No file in this pick. Not
+  wired in this pick.
+- **Q199** — when files exist: a JSON array of row objects. Keys still
   wait. First public list name still waits. No file in this pick. Not
   wired in this pick.
-- **Q191** — the reason is leftover English (a free string). Do not
+- **Q200** — the reason is leftover English (a free string). Do not
   invent a reason list. No file in this pick. Not wired in this pick.
-- **Q192** — when the landing is an existing OpenBook id, a reason is
+- **Q201** — when the landing is an existing OpenBook id, a reason is
   forbidden. No file in this pick. Not wired in this pick.
-- **Q193** — in one file, a public key appears at most once. No file in
+- **Q202** — in one file, a public key appears at most once. No file in
   this pick. Not wired in this pick.
-- **Q194** — row order is not significant. Do not invent a sort. No file
+- **Q203** — row order is not significant. Do not invent a sort. No file
   in this pick. Not wired in this pick.
-- **Q195** — maps leftover shape is logged. First public list name
+- **Q204** — maps leftover shape is logged. First public list name
   waits. Spec walk stopped. Not Q55. Not a version cut. Not wired in
   this pick.
-- **Q196** — next leftover unnamed; wait. Not Q55. Not wired in this
+- **Q205** — next leftover unnamed; wait. Not Q55. Not wired in this
   pick.
-- **Q197** — named leftovers on this walk exhausted; stay stopped. Not
+- **Q206** — named leftovers on this walk exhausted; stay stopped. Not
   Q55. Not a version cut. Not wired in this pick.
-- **Q198** — do not unpark Q171 later leftover as this walk. Not Q55.
+- **Q207** — do not unpark Q172 profile pointers as this walk. Not Q55.
   Not wired in this pick.
-- **Q199** — do not unpark Q172 profile pointers as this walk. Not Q55.
+- **Q208** — do not unpark Q173 hosted validator as this walk. Not Q55.
   Not wired in this pick.
-- **Q200** — do not unpark Q173 hosted validator as this walk. Not Q55.
-  Not wired in this pick.
-- **Q201** — position token lists still wait. Not Q55. Not wired in this
+- **Q209** — position token lists still wait. Not Q55. Not wired in this
   pick.
-- **Q202** — first maps public list name still waits. Not Q55. Not wired
+- **Q210** — first maps public list name still waits. Not Q55. Not wired
   in this pick.
-- **Q203** — stay `0.3.0-draft`. Not a version cut. Not Q55. Not wired
+- **Q211** — stay `0.3.0-draft`. Not a version cut. Not Q55. Not wired
   in this pick.
-- **Q204** — Q55 stays parked until 1.0+. Not wired in this pick.
-- **Q205** — Q96 stays not this spec. Not wired in this pick.
-- **Q206** — Q79 / Q81 stay omit. Not wired in this pick.
-- **Q207** — no maps directory or file until a list is named. Not wired
+- **Q212** — Q55 stays parked until 1.0+. Not wired in this pick.
+- **Q213** — Q96 stays not this spec. Not wired in this pick.
+- **Q214** — Q79 / Q81 stay omit. Not wired in this pick.
+- **Q215** — no maps directory or file until a list is named. Not wired
   in this pick.
-- **Q208** — do not invent the Q171 join-key recipe or prefix-file
+- **Q216** — do not invent the Q171 fingerprint recipe or prefix-file
   contents. Not wired in this pick.
-- **Q209** — this question pass closes. No further leftover questions
+- **Q217** — this question pass closes. No further leftover questions
   until a leftover is named. Not wired in this pick.
 
 ### Removed

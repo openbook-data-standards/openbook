@@ -23,11 +23,11 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Status, scores, grades | Q15 · Q23 · Q25 · Q27 · Q28 · Q30 · Q31 · Q43 |
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
-| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q195–Q209 |
+| What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 |
 | Tooling around the spec | Q96 · Q172 · Q173 |
-| Register (not a registry) | Q2 · Q171 |
+| Register (not a registry) | Q2 · Q171 · Q190–Q198 |
 | Position vocab | Q76 · Q170 · Q174–Q180 |
-| Maps leftover | Q181–Q195 |
+| Maps leftover | Q181–Q189 · Q199–Q204 · Q215 |
 
 The entries below stay in the order they were taken.
 
@@ -2080,7 +2080,7 @@ Rejected: keep Q2 closed with no register at all; fingerprint as the
 canonical id; OpenBook mints player, team or league ids.
 
 Not on the wire in this pick. Prefix file, fingerprint recipe and
-corpus case wait.
+pinned fixture example wait.
 
 **Supersedes:** none of Q2 (option b remains rejected), Q4, Q6 or Q94.
 
@@ -2307,7 +2307,117 @@ this leftover.
 **Supersedes:** none of Q188 (JSON stays; this is that the keys are
 unnamed).
 
-## Q190 — JSON array of row objects — decided (A)
+## Q190 — Q171 leftovers this walk — decided
+
+This walk is the **Q171 leftovers that live in this repo**: namespace
+prefix file; fixture fingerprint recipe and a pinned fixture example; anchor
+policy prose. Not maps. Not position token lists. Not Q55. Not Q172
+profile repositories. No new wire field.
+
+Not wired in this pick. Files wait.
+
+Rejected: maps leftover; stay stopped; unpark Q55; Q172 other repos.
+
+**Supersedes:** Q180 as an open “what is next” (position shape stays).
+
+## Q191 — Prefix file first — decided (A)
+
+The **prefix file** is first (`propertyID` schemes). Fingerprint recipe,
+pinned fixture example, and anchor policy wait. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: fingerprint recipe first; anchor policy first; all three in
+this pick.
+
+**Supersedes:** none of Q190 (walk stays; this is which leftover
+first).
+
+## Q192 — Where the prefix file lives — decided (A)
+
+When the file exists it is **named for prefixes**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/` next to sports; closed enum in
+`common.schema.json`; stop this leftover.
+
+**Supersedes:** none of Q191.
+
+## Q193 — How prefix tokens are spelled — decided (A)
+
+Plain tokens like the existing `propertyID` examples. Not the Q5
+`sport:` / `market:` short form. Not a formal URN only. The list waits.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: Q5 short form with a kind in front; formal URN only; stop
+this leftover.
+
+**Supersedes:** none of Q192.
+
+## Q194 — Prefix catch-all — decided (A)
+
+Same Q34 growable-list idea: an **unknown** bucket. The list waits.
+`propertyID` stays a string.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: no catch-all id; `other` like some schema enums; stop this
+leftover.
+
+**Supersedes:** none of Q193.
+
+## Q195 — Prefix shape done; fingerprint next — decided (A)
+
+Prefix-file shape is logged. The list waits. Next leftover in this walk
+is the **fingerprint recipe**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: start listing prefixes now; stop this walk; unpark Q55.
+
+**Supersedes:** Q191 “fingerprint waits” as the next leftover (prefix
+shape stays).
+
+## Q196 — Fingerprint is leftover English — decided (A)
+
+The fingerprint is a **leftover English recipe only**. No new field.
+Publisher-own id stays canonical (**Q171**). Join key, never the object
+id.
+
+Not wired in this pick. No file in this pick.
+
+Rejected: required field on the fixture; optional field on the fixture;
+drop the leftover.
+
+**Supersedes:** none of Q171 (join key still; this is not a wire field).
+
+## Q197 — Where the fingerprint recipe lives — decided (A)
+
+When the recipe exists it is **named for fingerprint**, in the register
+leftover, not inside the vocab lists. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: inside `vocabularies/`; spec only with no separate file ever;
+stop this leftover.
+
+**Supersedes:** none of Q196.
+
+## Q198 — Fingerprint location done; pinned fixture example next — decided (A)
+
+Fingerprint location is logged. Recipe text waits. Next leftover in
+this walk is the **pinned fixture example**. No file in this pick.
+
+Not wired in this pick.
+
+Rejected: write the recipe steps now; stop this walk; unpark Q55.
+
+**Supersedes:** Q197 as an open “what is next” (location stays).
+
+## Q199 — JSON array of row objects — decided (A)
 
 When files exist: a **JSON array of row objects**. Keys still wait
 (**Q189**). The first public list name still waits (**Q184**). No file
@@ -2321,7 +2431,7 @@ waits; stop this leftover.
 **Supersedes:** none of Q189 (keys still wait; this is the document
 shape).
 
-## Q191 — Reason is leftover English — decided (A)
+## Q200 — Reason is leftover English — decided (A)
 
 The reason is **leftover English** (a free string). Do not invent a
 reason list. Required only on the unknown catch-all (**Q186**). No file
@@ -2335,7 +2445,7 @@ leftover.
 **Supersedes:** none of Q186 (when it is required stays; this is that
 the reason is not a token list).
 
-## Q192 — Reason forbidden on a mapped id — decided (A)
+## Q201 — Reason forbidden on a mapped id — decided (A)
 
 When the landing is an existing OpenBook id, a reason is **forbidden**.
 The reason is only for the unknown catch-all (**Q186**). No file in
@@ -2348,7 +2458,7 @@ Rejected: optional on a mapped id; park; stop this leftover.
 **Supersedes:** none of Q186 (required-on-unknown stays; this is that
 a mapped id does not carry a reason).
 
-## Q193 — Public key at most once per file — decided (A)
+## Q202 — Public key at most once per file — decided (A)
 
 In one file, the same public key appears **at most once**. The first
 public list name still waits (**Q184**). No file in this pick.
@@ -2357,9 +2467,9 @@ Not wired in this pick.
 
 Rejected: duplicates allowed; uniqueness waits; stop this leftover.
 
-**Supersedes:** none of Q190 (array of rows stays; this is uniqueness).
+**Supersedes:** none of Q199 (array of rows stays; this is uniqueness).
 
-## Q194 — Row order is not significant — decided (A)
+## Q203 — Row order is not significant — decided (A)
 
 Row order in a map file is **not significant**. Do not invent a sort.
 The first public list name still waits (**Q184**). No file in this pick.
@@ -2368,35 +2478,36 @@ Not wired in this pick.
 
 Rejected: rows must be sorted; order waits; stop this leftover.
 
-**Supersedes:** none of Q193 (uniqueness stays; this is order).
+**Supersedes:** none of Q202 (uniqueness stays; this is order).
 
-## Q195 — Stop this spec walk — decided (A)
+## Q204 — Stop this spec walk — decided (A)
 
-Maps leftover shape is logged (**Q181–Q194**). The first public list
-name waits (**Q184**). This walk **stops**. Not Q55. Not a version cut.
-Not inventing a public list. No file.
+Maps leftover shape is logged (**Q181–Q189**, **Q199–Q203**). The first
+public list name waits (**Q184**). This walk **stops**. Not Q55. Not a
+version cut. Not inventing a public list. No file.
 
 Not wired in this pick.
 
 Rejected: name a public list in this pick; keep walking file-stem
 leftover English; unpark Q55 or cut a new draft version.
 
-**Supersedes:** Q194 as an open “what is next” (shape stays).
+**Supersedes:** Q203 as an open “what is next” (shape stays).
 
-## Q196 — Next leftover unnamed; wait — decided (A)
+## Q205 — Next leftover unnamed; wait — decided (A)
 
 The next leftover is **unnamed**; wait. Named leftovers sit. Do not
-invent a list. Not Q55. Not a version cut.
+invent a list. Not Q55. Not a version cut. Q171 leftovers already
+logged in this repo (**Q190–Q198**); recipe text still waits.
 
 Not wired in this pick.
 
-Rejected: Q171 later leftover this walk; Q173 or Q172 this walk;
+Rejected: invent the fingerprint recipe; Q172 or Q173 this walk;
 position token lists or naming the first maps public list.
 
-**Supersedes:** Q195 as an open “what is next” (the stop stays; the next
+**Supersedes:** Q204 as an open “what is next” (the stop stays; the next
 leftover is still unnamed).
 
-## Q197 — Named leftovers exhausted; stop — decided (A)
+## Q206 — Named leftovers exhausted; stop — decided (A)
 
 Named leftovers on this walk are **exhausted**. Stay **stopped**. Not
 Q55. Not a version cut. Not inventing a list. Same pick as **Q169**
@@ -2404,26 +2515,13 @@ after **Q168**.
 
 Not wired in this pick.
 
-Rejected: keep waiting with no extra stop; unpark Q171 later or Q172 /
-Q173; invent a leftover or unpark Q55.
+Rejected: keep waiting with no extra stop; unpark Q172 or Q173; invent
+a leftover or unpark Q55.
 
-**Supersedes:** Q196 “next leftover unnamed; wait” (the pick is: nothing
+**Supersedes:** Q205 “next leftover unnamed; wait” (the pick is: nothing
 left on this walk’s leftover list; stop).
 
-## Q198 — Do not unpark Q171 later leftover — decided (A)
-
-Stay **stopped**. Do not unpark the Q171 later leftover as this walk.
-Ask later; do not invent the recipe. Not Q55.
-
-Not wired in this pick.
-
-Rejected: this next walk is Q171 later leftover; unpark only the prefix
-file; unpark Q55.
-
-**Supersedes:** none of Q171 (later leftover still sits; this walk does
-not take it).
-
-## Q199 — Do not unpark Q172 profile pointers — decided (A)
+## Q207 — Do not unpark Q172 profile pointers — decided (A)
 
 Stay **stopped**. Do not unpark Q172 profile pointers as this walk.
 Profiles stay separate specifications (**Q172**). Not Q55.
@@ -2435,7 +2533,7 @@ unpark Q55.
 
 **Supersedes:** none of Q172.
 
-## Q200 — Do not unpark Q173 hosted validator — decided (A)
+## Q208 — Do not unpark Q173 hosted validator — decided (A)
 
 Stay **stopped**. Do not unpark Q173 hosted validator and feed list as
 this walk. Not Q55.
@@ -2447,7 +2545,7 @@ Q55.
 
 **Supersedes:** none of Q173.
 
-## Q201 — Position token lists still wait — decided (A)
+## Q209 — Position token lists still wait — decided (A)
 
 Stay **stopped**. Position token lists wait (**Q180**). Do not invent
 the first sport’s tokens. Not Q55.
@@ -2459,7 +2557,7 @@ public list; unpark Q55.
 
 **Supersedes:** none of Q180 (token lists still wait).
 
-## Q202 — First maps public list name still waits — decided (A)
+## Q210 — First maps public list name still waits — decided (A)
 
 Stay **stopped**. The first maps public list **name waits** (**Q184**).
 Do not invent a taxonomy. Not Q55.
@@ -2471,7 +2569,7 @@ OpenBook ids onto themselves; unpark Q55.
 
 **Supersedes:** none of Q184 (name still waits).
 
-## Q203 — Stay 0.3.0-draft — decided (A)
+## Q211 — Stay 0.3.0-draft — decided (A)
 
 Stay **`0.3.0-draft`**. Unreleased is the bucket. Not a version cut.
 Not Q55.
@@ -2480,9 +2578,9 @@ Not wired in this pick.
 
 Rejected: cut `0.4.0-draft`; cut 1.0; unpark Q55.
 
-**Supersedes:** none of Q195 (the stop stays; this is the version).
+**Supersedes:** none of Q204 (the stop stays; this is the version).
 
-## Q204 — Q55 stays parked — decided (A)
+## Q212 — Q55 stays parked — decided (A)
 
 **Q55** stays parked until 1.0+. Do not unpark now. Do not drop it.
 
@@ -2492,7 +2590,7 @@ Rejected: unpark Q55 now; drop Q55; invent a different CI leftover.
 
 **Supersedes:** none of Q55 (still parked).
 
-## Q205 — Q96 stays not this spec — decided (A)
+## Q213 — Q96 stays not this spec — decided (A)
 
 **Q96** stays not this spec. Do not pull vendor mapping into this spec.
 Do not create those repos now.
@@ -2504,7 +2602,7 @@ invent a mapping leftover in this spec.
 
 **Supersedes:** none of Q96.
 
-## Q206 — Q79 / Q81 stay omit — decided (A)
+## Q214 — Q79 / Q81 stay omit — decided (A)
 
 **Q79** and **Q81** stay omit. No coach object. No referee object until
 those markets exist.
@@ -2516,7 +2614,7 @@ role.
 
 **Supersedes:** none of Q79 or Q81.
 
-## Q207 — No maps directory or file until named — decided (A)
+## Q215 — No maps directory or file until named — decided (A)
 
 No maps directory. No maps file. The first public list name waits
 (**Q184**).
@@ -2528,19 +2626,20 @@ Rejected: create the empty directory now; create a file now; unpark Q55.
 **Supersedes:** none of Q184 (name still waits; this is that files wait
 with it).
 
-## Q208 — Do not invent the Q171 recipe — decided (A)
+## Q216 — Do not invent the Q171 recipe — decided (A)
 
-Do not invent the Q171 join-key recipe or prefix-file contents. Ask
-later.
+Do not invent the Q171 fingerprint recipe or prefix-file contents.
+Ask later. Prefix and fingerprint location already logged
+(**Q191–Q198**). Recipe text still waits.
 
 Not wired in this pick.
 
 Rejected: invent the recipe now; invent prefix-file contents now;
 unpark Q55.
 
-**Supersedes:** none of Q171 (later leftover still sits).
+**Supersedes:** none of Q198 (recipe text still waits).
 
-## Q209 — Close this question pass — decided (A)
+## Q217 — Close this question pass — decided (A)
 
 This question pass **closes**. No further leftover questions until a
 leftover is named. Not Q55. Not a version cut. Not inventing a leftover.
@@ -2550,5 +2649,5 @@ Not wired in this pick.
 Rejected: invent a new leftover English area; keep asking the same
 sitting leftovers; unpark Q55.
 
-**Supersedes:** Q197–Q203 as an open “what is next” (the stop stays;
+**Supersedes:** Q205–Q216 as an open “what is next” (the stop stays;
 this pass is closed).
