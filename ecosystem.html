@@ -34,7 +34,7 @@
 <main id="main"><div class="wrap page">
 <div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#openbook"><span class="n"></span>openbook</a><a href="#openbook-starter"><span class="n"></span>openbook-starter</a><a href="#openbook-translate"><span class="n"></span>openbook-translate</a><a href="#openbook-js"><span class="n"></span>openbook-js</a><a href="#openbook-betting"><span class="n"></span>openbook-betting</a><a href="#openexchange"><span class="n"></span>openexchange</a><a href="#openvenue"><span class="n"></span>openvenue</a><a href="#opentrack"><span class="n"></span>opentrack</a><a href="#openprob"><span class="n"></span>openprob</a><a href="#github"><span class="n"></span>.github</a><a href="#readiness-register"><span class="n"></span>Readiness register</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · docs/ecosystem.md</p><article class="doc"><h1 id="openbook-ecosystem-catalog">OpenBook ecosystem catalog</h1>
 <p>Informational, not a wire specification. Generated from <a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/ecosystem.json">ecosystem.json</a>; edit the catalog, not this page.</p>
-<p>Bundle <strong>0.1.0</strong> · reviewed <strong>2026-11-02</strong>. Versions and distribution are observations, not promises of current registry availability.</p>
+<p>Bundle <strong>0.1.0</strong> · reviewed <strong>2026-11-03</strong>. Versions and distribution are observations, not promises of current registry availability.</p>
 <p>Start with the <a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/onboarding.md">onboarding guide</a>, <a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/agent-skills.md">agent setup</a>, or <a href="https://github.com/openbook-data-standards/openbook/blob/main/docs/extending-ecosystem.md">extension workflow</a>.</p>
 <p>Related projects below are conceptual relationships, not an install dependency graph. Standalone projects do not claim conformance to sibling standards.</p>
 <h2 id="openbook">openbook</h2>
@@ -60,11 +60,11 @@
 <li>Version: 0.1.0 (manifest; no release tag observed).</li>
 <li>License: Apache-2.0.</li>
 <li>Prerequisites: Python 3.11+; Isolated Python environment; Publisher identity and an explicit output directory.</li>
-<li>Distribution: Public source checkout; README still describes private/SSH installation. Do not assume a PyPI release.</li>
+<li>Distribution: Public source checkout; install with pip from the HTTPS Git URL until a PyPI release exists. The translations extra resolves openbook-translate from its tagged Git release.</li>
 <li>Related projects: openbook, openbook-translate.</li>
 <li>Agent skill: <code>openbook-publish</code>.</li>
 <li>First success: Generate publisher, discovery and snapshot documents in an empty scratch directory with --no-workflow; inspect them without publishing.</li>
-<li>Readiness blockers: ONB-002, ONB-003.</li>
+<li>Readiness blockers: none recorded; not a runtime certification.</li>
 <li>Sources: <a href="https://github.com/openbook-data-standards/openbook-starter/blob/main/README.md">source 1</a> · <a href="https://github.com/openbook-data-standards/openbook-starter/blob/main/pyproject.toml">source 2</a>.</li>
 </ul>
 <h2 id="openbook-translate">openbook-translate</h2>
@@ -109,7 +109,7 @@
 <li>Related projects: openbook.</li>
 <li>Agent skill: <code>openbook-market-contracts</code>.</li>
 <li>First success: Trace venue, coverage and a synthetic bet lifecycle against the profile schemas, not the closed core object enum.</li>
-<li>Readiness blockers: ONB-005.</li>
+<li>Readiness blockers: none recorded; not a runtime certification.</li>
 <li>Sources: <a href="https://github.com/openbook-data-standards/openbook-betting/blob/main/README.md">source 1</a>.</li>
 </ul>
 <h2 id="openexchange">openexchange</h2>
@@ -123,9 +123,9 @@
 <li>Distribution: Public specification and JSON Schemas; no client, router or execution runtime.</li>
 <li>Related projects: openbook, openvenue.</li>
 <li>Agent skill: <code>openbook-market-contracts</code>.</li>
-<li>First success: Explain a runner's depth and venue fee contract from the schemas; no supplied example corpus was found at review.</li>
-<li>Readiness blockers: ONB-006.</li>
-<li>Sources: <a href="https://github.com/openbook-data-standards/openexchange/blob/main/README.md">source 1</a> · <a href="https://github.com/openbook-data-standards/openexchange/blob/main/spec/openexchange.md">source 2</a>.</li>
+<li>First success: Validate the five synthetic example documents under examples/ against the schemas using the walkthrough snippet, then explain a runner's depth and the venue fee contract.</li>
+<li>Readiness blockers: none recorded; not a runtime certification.</li>
+<li>Sources: <a href="https://github.com/openbook-data-standards/openexchange/blob/main/README.md">source 1</a> · <a href="https://github.com/openbook-data-standards/openexchange/blob/main/spec/openexchange.md">source 2</a> · <a href="https://github.com/openbook-data-standards/openexchange/blob/main/examples/README.md">source 3</a>.</li>
 </ul>
 <h2 id="openvenue">openvenue</h2>
 <p>Canonical tokenized markets, equivalence, order books and all-in quote/routing contracts.</p>
@@ -148,14 +148,14 @@
 <li>Repository: <a href="https://github.com/openbook-data-standards/opentrack">opentrack</a>.</li>
 <li>Type: experimental-library; maturity: experimental.</li>
 <li>Version: 0.0.1 (manifest).</li>
-<li>License: License pending; public visibility is not an open-source license.</li>
-<li>Prerequisites: Python 3.11+; Owner licensing decision before recommending reuse/distribution.</li>
-<li>Distribution: Publicly readable source; no license declared. Do not present as licensed open-source software.</li>
+<li>License: Apache-2.0.</li>
+<li>Prerequisites: Python 3.11+; Standard library at runtime.</li>
+<li>Distribution: Public source checkout under Apache-2.0; experimental, not a published interoperability standard.</li>
 <li>Related projects: standalone / none required.</li>
 <li>Agent skill: <code>openbook-racing</code>.</li>
-<li>First success: Read model definitions and explain source identity, unknown discipline and quoted-value versus fixed-odds distinctions; reuse remains license-gated.</li>
-<li>Readiness blockers: ONB-004.</li>
-<li>Sources: <a href="https://github.com/openbook-data-standards/opentrack/blob/main/README.md">source 1</a> · <a href="https://github.com/openbook-data-standards/opentrack/blob/main/pyproject.toml">source 2</a>.</li>
+<li>First success: Read model definitions and explain source identity, unknown discipline and quoted-value versus fixed-odds distinctions.</li>
+<li>Readiness blockers: none recorded; not a runtime certification.</li>
+<li>Sources: <a href="https://github.com/openbook-data-standards/opentrack/blob/main/README.md">source 1</a> · <a href="https://github.com/openbook-data-standards/opentrack/blob/main/pyproject.toml">source 2</a> · <a href="https://github.com/openbook-data-standards/opentrack/blob/main/LICENSE">source 3</a>.</li>
 </ul>
 <h2 id="openprob">openprob</h2>
 <p>Standalone forecasting contracts, finite count distributions, labels and descriptive evaluation.</p>
@@ -169,7 +169,7 @@
 <li>Related projects: standalone / none required.</li>
 <li>Agent skill: <code>openbook-forecasting</code>.</li>
 <li>First success: Run the authorized synthetic module example and explain coverage, abstention, unresolved labels and chronology without making profitability claims.</li>
-<li>Readiness blockers: ONB-007.</li>
+<li>Readiness blockers: none recorded; not a runtime certification.</li>
 <li>Sources: <a href="https://github.com/openbook-data-standards/openprob/blob/main/README.md">source 1</a> · <a href="https://github.com/openbook-data-standards/openprob/blob/main/pyproject.toml">source 2</a>.</li>
 </ul>
 <h2 id="github">.github</h2>
@@ -191,25 +191,7 @@
 <p>A skill install does not resolve these owner decisions. Do not remove a blocker until its source and distribution/compatibility evidence have been rechecked.</p>
 <h3 id="onb-001">ONB-001</h3>
 <p>The three documented npm packages returned public registry 404. Publishing is not authorized by onboarding work.</p>
-<p>Owner: openbook-js release maintainers. Required: Package publication or a separately verified source-consumer distribution workflow.</p>
-<h3 id="onb-002">ONB-002</h3>
-<p>Starter README still calls the public starter and translation repositories private and documents SSH-first installation.</p>
-<p>Owner: openbook-starter maintainers. Required: Approval to update the sibling repository.</p>
-<h3 id="onb-003">ONB-003</h3>
-<p>Starter's translations extra names a registry dependency although the kernel documents Git-only releases. This guide installs the tagged kernel separately.</p>
-<p>Owner: openbook-starter release maintainers. Required: Sibling dependency/distribution change approval.</p>
-<h3 id="onb-004">ONB-004</h3>
-<p>No license is declared. Do not infer permission to reuse or distribute from public visibility.</p>
-<p>Owner: OpenTrack owner. Required: Explicit licensing decision.</p>
-<h3 id="onb-005">ONB-005</h3>
-<p>The betting profile uses its own envelope because core closes object types. Do not silently change core or claim generic client compatibility.</p>
-<p>Owner: OpenBook core and betting profile maintainers. Required: Standards compatibility decision.</p>
-<h3 id="onb-006">ONB-006</h3>
-<p>No examples directory was found. Read-only schema orientation is available, but a supplied runnable walkthrough is not.</p>
-<p>Owner: OpenExchange maintainers. Required: Approval for a sibling worked-example corpus.</p>
-<h3 id="onb-007">ONB-007</h3>
-<p>README says no CI workflow is installed, but the public tree includes .github/workflows/ci.yml. Follow current workflow contents rather than that stale sentence.</p>
-<p>Owner: OpenProb maintainers. Required: Approval to update the sibling README.</p></article></div></div><p class="source">Source: docs/ecosystem.md</p>
+<p>Owner: openbook-js release maintainers. Required: Package publication or a separately verified source-consumer distribution workflow.</p></article></div></div><p class="source">Source: docs/ecosystem.md</p>
 </div></main>
 <footer><div class="wrap">
   <a class="logo" href="./" style="margin-bottom:12px">

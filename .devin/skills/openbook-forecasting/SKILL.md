@@ -7,7 +7,7 @@ description: Get started with OpenProb forecasting contracts, finite count distr
 
 ## Sources
 
-Read the [OpenProb README](https://github.com/openbook-data-standards/openprob/blob/main/README.md), [manifest](https://github.com/openbook-data-standards/openprob/blob/main/pyproject.toml), current source contracts/evaluation and [catalog](https://github.com/openbook-data-standards/openbook/blob/main/docs/ecosystem.json). The README's no-CI statement is stale (ONB-007); inspect the actual workflow.
+Read the [OpenProb README](https://github.com/openbook-data-standards/openprob/blob/main/README.md), [manifest](https://github.com/openbook-data-standards/openprob/blob/main/pyproject.toml), current source contracts/evaluation and [catalog](https://github.com/openbook-data-standards/openbook/blob/main/docs/ecosystem.json). Inspect the actual CI workflow for the executed checks.
 
 ## Workflow
 

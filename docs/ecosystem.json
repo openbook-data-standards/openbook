@@ -1,7 +1,7 @@
 {
   "catalog_version": 1,
   "bundle_version": "0.1.0",
-  "reviewed_on": "2026-11-02",
+  "reviewed_on": "2026-11-03",
   "maintainer": "OpenBook Data Standards maintainers (repository CODEOWNERS)",
   "scope": "Public repositories only; informational onboarding metadata, not a wire contract or conformance claim.",
   "skills": ["openbook", "openbook-publish", "openbook-translate", "openbook-consume", "openbook-market-contracts", "openbook-forecasting", "openbook-racing", "openbook-contribute"],
@@ -29,12 +29,12 @@
       "license": "Apache-2.0",
       "maturity": "early",
       "prerequisites": ["Python 3.11+", "Isolated Python environment", "Publisher identity and an explicit output directory"],
-      "distribution": "Public source checkout; README still describes private/SSH installation. Do not assume a PyPI release.",
+      "distribution": "Public source checkout; install with pip from the HTTPS Git URL until a PyPI release exists. The translations extra resolves openbook-translate from its tagged Git release.",
       "related_projects": ["openbook", "openbook-translate"],
       "skill": "openbook-publish",
       "first_success": "Generate publisher, discovery and snapshot documents in an empty scratch directory with --no-workflow; inspect them without publishing.",
       "sources": ["https://github.com/openbook-data-standards/openbook-starter/blob/main/README.md", "https://github.com/openbook-data-standards/openbook-starter/blob/main/pyproject.toml"],
-      "blockers": ["ONB-002", "ONB-003"]
+      "blockers": []
     },
     {
       "id": "openbook-translate",
@@ -79,7 +79,7 @@
       "skill": "openbook-market-contracts",
       "first_success": "Trace venue, coverage and a synthetic bet lifecycle against the profile schemas, not the closed core object enum.",
       "sources": ["https://github.com/openbook-data-standards/openbook-betting/blob/main/README.md"],
-      "blockers": ["ONB-005"]
+      "blockers": []
     },
     {
       "id": "openexchange",
@@ -92,9 +92,9 @@
       "distribution": "Public specification and JSON Schemas; no client, router or execution runtime.",
       "related_projects": ["openbook", "openvenue"],
       "skill": "openbook-market-contracts",
-      "first_success": "Explain a runner's depth and venue fee contract from the schemas; no supplied example corpus was found at review.",
-      "sources": ["https://github.com/openbook-data-standards/openexchange/blob/main/README.md", "https://github.com/openbook-data-standards/openexchange/blob/main/spec/openexchange.md"],
-      "blockers": ["ONB-006"]
+      "first_success": "Validate the five synthetic example documents under examples/ against the schemas using the walkthrough snippet, then explain a runner's depth and the venue fee contract.",
+      "sources": ["https://github.com/openbook-data-standards/openexchange/blob/main/README.md", "https://github.com/openbook-data-standards/openexchange/blob/main/spec/openexchange.md", "https://github.com/openbook-data-standards/openexchange/blob/main/examples/README.md"],
+      "blockers": []
     },
     {
       "id": "openvenue",
@@ -116,15 +116,15 @@
       "kind": "experimental-library",
       "summary": "Standalone horse-racing snapshot, runner, market and selection dataclasses; harness semantics remain under validation.",
       "version": "0.0.1 (manifest)",
-      "license": "License pending; public visibility is not an open-source license",
+      "license": "Apache-2.0",
       "maturity": "experimental",
-      "prerequisites": ["Python 3.11+", "Owner licensing decision before recommending reuse/distribution"],
-      "distribution": "Publicly readable source; no license declared. Do not present as licensed open-source software.",
+      "prerequisites": ["Python 3.11+", "Standard library at runtime"],
+      "distribution": "Public source checkout under Apache-2.0; experimental, not a published interoperability standard.",
       "related_projects": [],
       "skill": "openbook-racing",
-      "first_success": "Read model definitions and explain source identity, unknown discipline and quoted-value versus fixed-odds distinctions; reuse remains license-gated.",
-      "sources": ["https://github.com/openbook-data-standards/opentrack/blob/main/README.md", "https://github.com/openbook-data-standards/opentrack/blob/main/pyproject.toml"],
-      "blockers": ["ONB-004"]
+      "first_success": "Read model definitions and explain source identity, unknown discipline and quoted-value versus fixed-odds distinctions.",
+      "sources": ["https://github.com/openbook-data-standards/opentrack/blob/main/README.md", "https://github.com/openbook-data-standards/opentrack/blob/main/pyproject.toml", "https://github.com/openbook-data-standards/opentrack/blob/main/LICENSE"],
+      "blockers": []
     },
     {
       "id": "openprob",
@@ -139,7 +139,7 @@
       "skill": "openbook-forecasting",
       "first_success": "Run the authorized synthetic module example and explain coverage, abstention, unresolved labels and chronology without making profitability claims.",
       "sources": ["https://github.com/openbook-data-standards/openprob/blob/main/README.md", "https://github.com/openbook-data-standards/openprob/blob/main/pyproject.toml"],
-      "blockers": ["ONB-007"]
+      "blockers": []
     },
     {
       "id": ".github",
@@ -158,12 +158,6 @@
     }
   ],
   "blockers": [
-    {"id": "ONB-001", "owner": "openbook-js release maintainers", "requires": "Package publication or a separately verified source-consumer distribution workflow", "detail": "The three documented npm packages returned public registry 404. Publishing is not authorized by onboarding work."},
-    {"id": "ONB-002", "owner": "openbook-starter maintainers", "requires": "Approval to update the sibling repository", "detail": "Starter README still calls the public starter and translation repositories private and documents SSH-first installation."},
-    {"id": "ONB-003", "owner": "openbook-starter release maintainers", "requires": "Sibling dependency/distribution change approval", "detail": "Starter's translations extra names a registry dependency although the kernel documents Git-only releases. This guide installs the tagged kernel separately."},
-    {"id": "ONB-004", "owner": "OpenTrack owner", "requires": "Explicit licensing decision", "detail": "No license is declared. Do not infer permission to reuse or distribute from public visibility."},
-    {"id": "ONB-005", "owner": "OpenBook core and betting profile maintainers", "requires": "Standards compatibility decision", "detail": "The betting profile uses its own envelope because core closes object types. Do not silently change core or claim generic client compatibility."},
-    {"id": "ONB-006", "owner": "OpenExchange maintainers", "requires": "Approval for a sibling worked-example corpus", "detail": "No examples directory was found. Read-only schema orientation is available, but a supplied runnable walkthrough is not."},
-    {"id": "ONB-007", "owner": "OpenProb maintainers", "requires": "Approval to update the sibling README", "detail": "README says no CI workflow is installed, but the public tree includes .github/workflows/ci.yml. Follow current workflow contents rather than that stale sentence."}
+    {"id": "ONB-001", "owner": "openbook-js release maintainers", "requires": "Package publication or a separately verified source-consumer distribution workflow", "detail": "The three documented npm packages returned public registry 404. Publishing is not authorized by onboarding work."}
   ]
 }

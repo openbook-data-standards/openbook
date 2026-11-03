@@ -2,7 +2,7 @@
 
 Informational, not a wire specification. Generated from [ecosystem.json](https://github.com/openbook-data-standards/openbook/blob/main/docs/ecosystem.json); edit the catalog, not this page.
 
-Bundle **0.1.0** · reviewed **2026-11-02**. Versions and distribution are observations, not promises of current registry availability.
+Bundle **0.1.0** · reviewed **2026-11-03**. Versions and distribution are observations, not promises of current registry availability.
 
 Start with the [onboarding guide](https://github.com/openbook-data-standards/openbook/blob/main/docs/onboarding.md), [agent setup](https://github.com/openbook-data-standards/openbook/blob/main/docs/agent-skills.md), or [extension workflow](https://github.com/openbook-data-standards/openbook/blob/main/docs/extending-ecosystem.md).
 
@@ -33,11 +33,11 @@ Python publisher/discovery scaffolding CLI; not a feed server or provider adapte
 - Version: 0.1.0 (manifest; no release tag observed).
 - License: Apache-2.0.
 - Prerequisites: Python 3.11+; Isolated Python environment; Publisher identity and an explicit output directory.
-- Distribution: Public source checkout; README still describes private/SSH installation. Do not assume a PyPI release.
+- Distribution: Public source checkout; install with pip from the HTTPS Git URL until a PyPI release exists. The translations extra resolves openbook-translate from its tagged Git release.
 - Related projects: openbook, openbook-translate.
 - Agent skill: `openbook-publish`.
 - First success: Generate publisher, discovery and snapshot documents in an empty scratch directory with --no-workflow; inspect them without publishing.
-- Readiness blockers: ONB-002, ONB-003.
+- Readiness blockers: none recorded; not a runtime certification.
 - Sources: [source 1](https://github.com/openbook-data-standards/openbook-starter/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/openbook-starter/blob/main/pyproject.toml).
 
 ## openbook-translate
@@ -85,7 +85,7 @@ Venue coverage and bet-order lifecycle data contracts; not an execution service.
 - Related projects: openbook.
 - Agent skill: `openbook-market-contracts`.
 - First success: Trace venue, coverage and a synthetic bet lifecycle against the profile schemas, not the closed core object enum.
-- Readiness blockers: ONB-005.
+- Readiness blockers: none recorded; not a runtime certification.
 - Sources: [source 1](https://github.com/openbook-data-standards/openbook-betting/blob/main/README.md).
 
 ## openexchange
@@ -100,9 +100,9 @@ Exchange venues, market state, runners, back/lay depth, starting-price fields an
 - Distribution: Public specification and JSON Schemas; no client, router or execution runtime.
 - Related projects: openbook, openvenue.
 - Agent skill: `openbook-market-contracts`.
-- First success: Explain a runner's depth and venue fee contract from the schemas; no supplied example corpus was found at review.
-- Readiness blockers: ONB-006.
-- Sources: [source 1](https://github.com/openbook-data-standards/openexchange/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/openexchange/blob/main/spec/openexchange.md).
+- First success: Validate the five synthetic example documents under examples/ against the schemas using the walkthrough snippet, then explain a runner's depth and the venue fee contract.
+- Readiness blockers: none recorded; not a runtime certification.
+- Sources: [source 1](https://github.com/openbook-data-standards/openexchange/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/openexchange/blob/main/spec/openexchange.md) · [source 3](https://github.com/openbook-data-standards/openexchange/blob/main/examples/README.md).
 
 ## openvenue
 
@@ -127,14 +127,14 @@ Standalone horse-racing snapshot, runner, market and selection dataclasses; harn
 - Repository: [opentrack](https://github.com/openbook-data-standards/opentrack).
 - Type: experimental-library; maturity: experimental.
 - Version: 0.0.1 (manifest).
-- License: License pending; public visibility is not an open-source license.
-- Prerequisites: Python 3.11+; Owner licensing decision before recommending reuse/distribution.
-- Distribution: Publicly readable source; no license declared. Do not present as licensed open-source software.
+- License: Apache-2.0.
+- Prerequisites: Python 3.11+; Standard library at runtime.
+- Distribution: Public source checkout under Apache-2.0; experimental, not a published interoperability standard.
 - Related projects: standalone / none required.
 - Agent skill: `openbook-racing`.
-- First success: Read model definitions and explain source identity, unknown discipline and quoted-value versus fixed-odds distinctions; reuse remains license-gated.
-- Readiness blockers: ONB-004.
-- Sources: [source 1](https://github.com/openbook-data-standards/opentrack/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/opentrack/blob/main/pyproject.toml).
+- First success: Read model definitions and explain source identity, unknown discipline and quoted-value versus fixed-odds distinctions.
+- Readiness blockers: none recorded; not a runtime certification.
+- Sources: [source 1](https://github.com/openbook-data-standards/opentrack/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/opentrack/blob/main/pyproject.toml) · [source 3](https://github.com/openbook-data-standards/opentrack/blob/main/LICENSE).
 
 ## openprob
 
@@ -149,7 +149,7 @@ Standalone forecasting contracts, finite count distributions, labels and descrip
 - Related projects: standalone / none required.
 - Agent skill: `openbook-forecasting`.
 - First success: Run the authorized synthetic module example and explain coverage, abstention, unresolved labels and chronology without making profitability claims.
-- Readiness blockers: ONB-007.
+- Readiness blockers: none recorded; not a runtime certification.
 - Sources: [source 1](https://github.com/openbook-data-standards/openprob/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/openprob/blob/main/pyproject.toml).
 
 ## .github
@@ -177,39 +177,3 @@ A skill install does not resolve these owner decisions. Do not remove a blocker 
 The three documented npm packages returned public registry 404. Publishing is not authorized by onboarding work.
 
 Owner: openbook-js release maintainers. Required: Package publication or a separately verified source-consumer distribution workflow.
-
-### ONB-002
-
-Starter README still calls the public starter and translation repositories private and documents SSH-first installation.
-
-Owner: openbook-starter maintainers. Required: Approval to update the sibling repository.
-
-### ONB-003
-
-Starter's translations extra names a registry dependency although the kernel documents Git-only releases. This guide installs the tagged kernel separately.
-
-Owner: openbook-starter release maintainers. Required: Sibling dependency/distribution change approval.
-
-### ONB-004
-
-No license is declared. Do not infer permission to reuse or distribute from public visibility.
-
-Owner: OpenTrack owner. Required: Explicit licensing decision.
-
-### ONB-005
-
-The betting profile uses its own envelope because core closes object types. Do not silently change core or claim generic client compatibility.
-
-Owner: OpenBook core and betting profile maintainers. Required: Standards compatibility decision.
-
-### ONB-006
-
-No examples directory was found. Read-only schema orientation is available, but a supplied runnable walkthrough is not.
-
-Owner: OpenExchange maintainers. Required: Approval for a sibling worked-example corpus.
-
-### ONB-007
-
-README says no CI workflow is installed, but the public tree includes .github/workflows/ci.yml. Follow current workflow contents rather than that stale sentence.
-
-Owner: OpenProb maintainers. Required: Approval to update the sibling README.
