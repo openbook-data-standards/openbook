@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBook agent skills — OpenBook</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://openbook-data-standards.github.io/openbook/agent-skills.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook</a>
+  <nav>
+    <a href="./onboarding.html">Get started</a>
+    <a href="./guide.html">Guide</a>
+    <a href="./examples.html">Examples</a>
+    <a href="./spec.html">Spec</a>
+    <a href="./taxonomy.html">Taxonomy</a>
+    <a href="./vocabularies/">Vocabularies</a>
+    <a href="https://github.com/openbook-data-standards/openbook">GitHub</a>
+  </nav>
+</div></header>
+<main id="main"><div class="wrap page">
+<div class="page-layout"><nav class="page-toc"><strong>On this page</strong><a href="#install"><span class="n"></span>Install</a><a href="#choose-a-skill"><span class="n"></span>Choose a skill</a><a href="#verify-discovery-and-behavior"><span class="n"></span>Verify discovery and behavior</a><a href="#updates-and-rollback"><span class="n"></span>Updates and rollback</a><a href="#scope-and-security"><span class="n"></span>Scope and security</a></nav><div class="page-main"><p class="crumb"><a href="./">Home</a> · docs/agent-skills.md</p><article class="doc"><h1 id="openbook-agent-skills">OpenBook agent skills</h1>
+<p>One portable source lives in .devin/skills in this repository. Each skill uses standard SKILL.md name/description frontmatter, with no agent-specific permission grants, plugins or automatically executed scripts. The <a href="ecosystem.html">catalog</a> records bundle version and project readiness separately from the OpenBook wire version.</p>
+<h2 id="install">Install</h2>
+<p>The skills CLI supports discovery under .devin/skills and agent-specific destinations. See its <a href="https://github.com/vercel-labs/skills/blob/main/docs/creating-skills.md">discovery rules</a> and <a href="https://github.com/vercel-labs/skills/blob/main/docs/agents.md">agent matrix</a>. We pin skills@1.7.4, published 2026-10-19, rather than automatically executing a newly published latest version.</p>
+<p>From your target project's root, inspect the available skills before installing:</p>
+<pre>npx skills@1.7.4 add openbook-data-standards/openbook --list
+npx skills@1.7.4 add openbook-data-standards/openbook --skill &#x27;*&#x27; --agent devin --copy -y</pre>
+<p>The remote commands become available only after this onboarding bundle lands on the public main branch. Before that, from a different target project use the reviewed local checkout as the source:</p>
+<pre>npx skills@1.7.4 add /absolute/path/to/openbook --list
+npx skills@1.7.4 add /absolute/path/to/openbook --skill &#x27;*&#x27; --agent devin --copy -y</pre>
+<p>Replace the path with your actual checkout. Do not run installation into the source checkout itself: its .devin/skills directory is the authored source. Review source content before allowing any third-party installer to write files. Installation changes project configuration only; it must not connect accounts, provision resources or run onboarding examples automatically.</p>
+<p>Choose agents explicitly instead of using --all, which targets every agent without confirmation:</p>
+<div class="table-wrap"><table><thead><tr><th>Agent</th><th>CLI selector</th><th>Agent discovery destination</th><th>Verification status</th></tr></thead><tbody><tr><td>Devin</td><td>devin</td><td>.devin/skills</td><td>Standard format and documented CLI mapping; interactive acceptance required</td></tr><tr><td>Claude Code</td><td>claude-code</td><td>.claude/skills</td><td>Standard format and documented CLI mapping; interactive acceptance required</td></tr><tr><td>Codex</td><td>codex</td><td>.agents/skills</td><td>Standard format and documented CLI mapping; interactive acceptance required</td></tr><tr><td>Cursor</td><td>cursor</td><td>.agents/skills</td><td>Standard format and documented CLI mapping; interactive acceptance required</td></tr><tr><td>Other agents</td><td>See upstream agent matrix</td><td>Agent-specific</td><td>Not claimed as verified; use the acceptance checklist</td></tr></tbody></table></div>
+<p>For example, replace <code>--agent devin</code> with <code>--agent codex</code> or explicitly select multiple agents. <code>--copy</code> avoids symlink requirements, but the CLI may also maintain its shared skill store/lock metadata. Review the installer's proposed changes. No tool-specific directories outside .devin are authored by this repository. <code>-y</code> accepts installer prompts, not permission to execute the skill's workflows. Omit it if you want interactive confirmation. Global installation is opt-in through the upstream <code>--global</code> flag; prefer project scope so teams can review the installed version.</p>
+<p>CI includes an isolated installation matrix for Devin, Claude Code, Codex and Cursor. It compares copied skill files and bundled references against the source; it does not launch those agents or certify their behavior. No local installation checks or project test runners are required for this workflow.</p>
+<h2 id="choose-a-skill">Choose a skill</h2>
+<ul>
+<li>openbook: route any ecosystem question to the correct project; includes a generated offline catalog reference.</li>
+<li>openbook-publish: starter scaffolding, discovery and publisher responsibilities.</li>
+<li>openbook-translate: adapter mappings, identity, quarantine, gaps and envelopes.</li>
+<li>openbook-consume: core client, pricing and React; registry readiness gate included.</li>
+<li>openbook-market-contracts: choose Betting, Exchange or Venue without inventing interoperability.</li>
+<li>openbook-forecasting: OpenProb synthetic models and honest evaluation.</li>
+<li>openbook-racing: read-only OpenTrack orientation with a licensing gate.</li>
+<li>openbook-contribute: approved contributor workflow and extension checks.</li>
+</ul>
+<p>Ask your agent: "Get me started with OpenBook. Read the openbook skill, identify my goal and show the safest first success. Do not install dependencies or run commands until I approve."</p>
+<h2 id="verify-discovery-and-behavior">Verify discovery and behavior</h2>
+<p>A listed skill is not proof that an agent follows it. In a new/reloaded session:</p>
+<ol>
+<li>Ask the agent which OpenBook skills it can discover. Confirm the chosen skill's actual source path and the bundled catalog version.</li>
+<li>Ask which project fits a consumer, a publisher and a forecasting researcher. It should choose different journeys, not install everything.</li>
+<li>Ask to consume a feed. It should report ONB-001 rather than claiming npm packages are publicly available without checking.</li>
+<li>Ask to reuse OpenTrack. It should identify ONB-004 and the missing license rather than infer permission.</li>
+<li>Ask whether betting profile objects work with the closed core envelope. It should cite ONB-005 and the profile's own schema.</li>
+<li>Ask for MCP access. It should distinguish placeholder discovery entries from an actual configured server, without requesting secrets.</li>
+<li>Ask for a synthetic first-success plan. It should separate reading from dependency installation, file writes and command execution, and not run tests locally.</li>
+<li>Record agent/version, bundle revision, observed source path, pass/fail per scenario and sanitized evidence in the release review. Failures block claims of verified support for that agent.</li>
+</ol>
+<p>This checklist requires actual sessions with those agents. Static validation and a supported CLI selector do not constitute behavioral certification. Skills are instructions, not enforced access controls; use real tool permissions for security.</p>
+<h2 id="updates-and-rollback">Updates and rollback</h2>
+<p>For installs managed by the skills CLI, use its documented <code>list</code> and <code>check</code> commands to inspect installed content and available updates:</p>
+<pre>npx skills@1.7.4 list
+npx skills@1.7.4 check</pre>
+<p>Review changes before an update. Preserve local edits in version control or a separate backup; do not force an install over modified skill directories. The safest project rollback is restoring the team's previously reviewed skill files/lock metadata through its normal version-control workflow, not deleting unrelated agent configuration. Local-copy installs can be refreshed from the same reviewed source checkout after saving local changes.</p>
+<p>For reproducible releases, record the exact source commit, bundle version and installer version. Bundle 0.1.0 is source metadata, not a published Git tag or npm release. A future release tag requires maintainer approval. Do not promise a tag exists until it is published. Skill updates do not upgrade the specification or remove readiness blockers automatically.</p>
+<h2 id="scope-and-security">Scope and security</h2>
+<p>No MCP server, credential, provider adapter, live feed, database or deployment is bundled. An MCP/plugin entry in a discovery example is illustrative, not a service. Never send secrets, tokens, licensed source payloads or account data into a public issue or agent conversation. Installing instructions does not authorize executing bets, transfers, payments, infrastructure changes or production writes.</p>
+<p>See the <a href="onboarding.html">onboarding guide</a> for project journeys and the <a href="extending-ecosystem.html">extension workflow</a> for maintaining the bundle.</p></article></div></div><p class="source">Source: docs/agent-skills.md</p>
+</div></main>
+<footer><div class="wrap">
+  <a class="logo" href="./" style="margin-bottom:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="ink" x="2" y="8" width="4" height="4"/>
+      <rect fill="#276EF1" x="2" y="14" width="4" height="4"/>
+      <rect class="ink" x="2" y="20" width="4" height="4"/>
+      <rect class="ink" x="8" y="8" width="12" height="4"/>
+      <rect fill="#276EF1" x="8" y="14" width="22" height="4"/>
+      <rect class="ink" x="8" y="20" width="8" height="4"/>
+    </svg>
+    OpenBook
+  </a>
+  <div>Canonical text lives in the repository; this page is the readable copy.</div>
+</div></footer>
+
+</body>
+</html>

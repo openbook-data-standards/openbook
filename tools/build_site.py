@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 NAV = [
+    ("onboarding.html", "Get started"),
     ("guide.html", "Guide"),
     ("examples.html", "Examples"),
     ("spec.html", "Spec"),
@@ -18,7 +19,17 @@ NAV = [
     ("https://github.com/openbook-data-standards/openbook", "GitHub"),
 ]
 
+ONBOARDING_PAGES = {
+    "onboarding": "Get started",
+    "ecosystem": "Ecosystem catalog",
+    "agent-skills": "Agent skills",
+    "extending-ecosystem": "Extend the ecosystem",
+}
+
 PAGE_MAP = {
+    **{prefix + name + ".md": name + ".html" for name in ONBOARDING_PAGES for prefix in ("", "docs/", "../docs/")},
+    "ecosystem.json": "docs/ecosystem.json",
+    "../AGENTS.md": "https://github.com/openbook-data-standards/openbook/blob/main/AGENTS.md",
     "spec/openbook.md": "spec.html",
     "../spec/openbook.md": "spec.html",
     "guide.md": "guide.html",
@@ -513,6 +524,8 @@ def vocab_index() -> str:
 
 
 def main() -> None:
+    for name in ONBOARDING_PAGES:
+        write_md_page(ROOT / f"docs/{name}.md", ROOT / f"{name}.html", 0, f"{name}.html", f"docs/{name}.md")
     write_md_page(ROOT / "docs/guide.md", ROOT / "guide.html", 0, "guide.html", "docs/guide.md")
     write_md_page(ROOT / "docs/examples.md", ROOT / "examples.html", 0, "examples.html", "docs/examples.md")
     write_md_page(ROOT / "docs/taxonomy.md", ROOT / "taxonomy.html", 0, "taxonomy.html", "docs/taxonomy.md")

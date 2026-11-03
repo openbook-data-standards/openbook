@@ -6,6 +6,11 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 ## [Unreleased]
 
 ### Added
+- **Ecosystem onboarding and portable agent skills** — goal-based public-project
+  journeys, a schema-checked informational catalog and readiness register, eight
+  skills under `.devin/skills/`, generated catalog references, and static CI
+  checks. Extension templates keep new projects and workflows additive. No wire
+  contract, licensing decision or package publication is changed.
 - **Fixture join encoding** — [`register/fingerprint.md`](register/fingerprint.md)
   is five UTF-8 LF lines (sport id, league anchor, start to the minute UTC,
   ordered participant anchors, `competitionType`) then SHA-256 lowercase

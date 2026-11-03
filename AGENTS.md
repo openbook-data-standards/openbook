@@ -43,3 +43,14 @@ Do not batch questions. Do not skip the queue because the task “seems obvious�
 
 Do the smallest change that matches the answer. Do not expand scope. Do not
 touch unrelated files. Do not “finish” adjacent work.
+
+## Onboarding maintenance
+
+The informational public-project inventory is `docs/ecosystem.json`, separate
+from normative wire schemas. Portable authored skills live in `.devin/skills/`.
+For approved onboarding work, run `python3 tools/build_onboarding.py` to generate
+catalogs, `python3 tools/build_onboarding.py --check` for static integrity, and
+`python3 tools/build_site.py` for committed HTML. The optional `--upstream` check
+makes read-only GitHub inventory/source-link requests through authenticated gh.
+See `docs/extending-ecosystem.md` for templates and release gates. Do not run
+tests locally; CI owns test execution. Do not edit generated catalogs directly.
