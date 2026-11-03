@@ -13,6 +13,10 @@
 
 **Homepage:** https://openbook-data-standards.github.io/openbook/
 
+**New here?** [Get started across the ecosystem](docs/onboarding.md) · [Project catalog and readiness](docs/ecosystem.md) · [Install agent skills](docs/agent-skills.md) · [Add a project or skill](docs/extending-ecosystem.md)
+
+The onboarding bundle covers the public standards, tools and experimental projects. It does not change the wire specification, publish packages, supply a hosted feed or grant access to private implementations.
+
 
 **Status:** `v0.3.0-draft` · working draft, not yet published · started 2026-09-12
 **Name:** OpenBook · **What it is:** an open standard for sportsbook & gambling data · **The documents:** [plain-language guide](docs/guide.md) · [examples](docs/examples.md) · [taxonomy](docs/taxonomy.md) · [specification](spec/openbook.md)

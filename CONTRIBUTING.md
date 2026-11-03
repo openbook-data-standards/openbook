@@ -7,6 +7,17 @@ the market taxonomy no one else has published. Shared lists also live in
 [`vocabularies/segments.md`](vocabularies/segments.md) and
 [`vocabularies/positions.md`](vocabularies/positions.md).
 
+## Ecosystem documentation and agent skills
+
+For onboarding changes, use the [extension workflow](docs/extending-ecosystem.md).
+Edit the shared [catalog](docs/ecosystem.json), not its generated copies; add a
+synthetic first-success journey and explicit licensing/distribution blockers.
+Portable skill sources live in `.devin/skills/`. Regenerate catalogs with
+`python3 tools/build_onboarding.py`, statically check with `--check`, and rebuild
+the site with `python3 tools/build_site.py`. These are documentation/static
+commands; do not run tests locally. CI owns test execution. Normative contract
+changes and sibling repository edits require separate authorization.
+
 ## Proposing a change
 
 1. Open an issue describing the change and the real-world feed(s) that motivate

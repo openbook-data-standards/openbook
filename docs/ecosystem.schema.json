@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Informational ecosystem catalog (not an OpenBook wire schema)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalog_version", "bundle_version", "reviewed_on", "maintainer", "scope", "skills", "projects", "blockers"],
+  "properties": {
+    "catalog_version": {"const": 1},
+    "bundle_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "reviewed_on": {"type": "string", "format": "date"},
+    "maintainer": {"type": "string", "minLength": 1},
+    "scope": {"type": "string", "minLength": 1},
+    "skills": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^openbook(?:-[a-z]+)*$"}},
+    "projects": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/project"}},
+    "blockers": {"type": "array", "items": {"$ref": "#/$defs/blocker"}}
+  },
+  "$defs": {
+    "strings": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "summary", "version", "license", "maturity", "prerequisites", "distribution", "related_projects", "skill", "first_success", "sources", "blockers"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(?:[a-z][a-z0-9-]*|\\.github)$"},
+        "kind": {"enum": ["standard", "profile", "tool", "library", "experimental-library", "organization-profile"]},
+        "summary": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "license": {"type": "string", "minLength": 1},
+        "maturity": {"enum": ["draft", "early", "experimental", "documentation"]},
+        "prerequisites": {"allOf": [{"$ref": "#/$defs/strings"}, {"minItems": 1}]},
+        "distribution": {"type": "string", "minLength": 1},
+        "related_projects": {"$ref": "#/$defs/strings"},
+        "skill": {"type": "string", "minLength": 1},
+        "first_success": {"type": "string", "minLength": 1},
+        "sources": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "format": "uri", "pattern": "^https://github\\.com/openbook-data-standards/"}},
+        "blockers": {"$ref": "#/$defs/strings"}
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "owner", "requires", "detail"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^ONB-[0-9]{3}$"},
+        "owner": {"type": "string", "minLength": 1},
+        "requires": {"type": "string", "minLength": 1},
+        "detail": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
