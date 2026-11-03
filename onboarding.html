@@ -52,7 +52,7 @@
 <p>Distinguish publisher (transmits), source (whose price), consumer (reads), reference objects (durable context), and live changes. Fixture status, segment finality and market availability answer different questions. Preserve source/native identity and timestamps; do not invent cross-provider identity resolution.</p>
 <p>First success: follow one fixture from reference documents to a market update and grade, citing the actual example fields. Explain what changes, what stays cached and which source owns each price. No runtime or credentials are required for this reading journey.</p>
 <h2 id="publish-a-feed">Publish a feed</h2>
-<p>Use <a href="https://github.com/openbook-data-standards/openbook-starter">openbook-starter</a> with Python 3.11+ in an isolated environment. Its README still describes private SSH installation; the public HTTPS source is the entry point until upstream release instructions are corrected (ONB-002).</p>
+<p>Use <a href="https://github.com/openbook-data-standards/openbook-starter">openbook-starter</a> with Python 3.11+ in an isolated environment. Its README documents public HTTPS Git installation until a PyPI release exists.</p>
 <p>The following is a source-checkout workflow, not a claim that a PyPI package exists. Review and record the checkout commit before installing. Dependency installation and writing the scratch directory require the user's consent.</p>
 <pre>git clone https://github.com/openbook-data-standards/openbook-starter.git
 cd openbook-starter
@@ -62,7 +62,7 @@ python3 -m pip install .
 openbook start --id acme-feeds --name &quot;Acme Feeds&quot; --currency GBP --base-url https://example.invalid/acme-feeds --dir ./scratch --no-input --no-workflow</pre>
 <p>Use an empty scratch destination; do not pass <code>--force</code> over existing work. The example.invalid URL is intentionally non-routable. Before publishing, replace it with hosting you control and verify the actual URL path. The starter does not upload files or start a service.</p>
 <p>First success: inspect scratch/openbook/publisher.json, discovery.json and snapshot.json. The snapshot initially represents the publisher, not a populated odds feed. Discovery should list only the endpoint you will really provide. <code>--no-workflow</code> avoids installing scheduled automation. No live provider credentials are needed.</p>
-<p>For translation support, install the kernel separately at a reviewed tag; do not rely on the starter's registry-based translations extra until ONB-003 is resolved.</p>
+<p>For translation support, the starter's <code>translations</code> extra pulls the kernel from its tagged Git release; you can also install <code>openbook-translate</code> separately at a reviewed tag.</p>
 <h2 id="translate-provider-data">Translate provider data</h2>
 <p>Use <a href="https://github.com/openbook-data-standards/openbook-translate">openbook-translate</a>, Python 3.11+, jsonschema and referencing. The kernel documents Git releases rather than PyPI uploads.</p>
 <pre>python3 -m venv .venv
@@ -99,9 +99,9 @@ PY</pre>
 <h2 id="exchange-routing-and-order-lifecycle-contracts">Exchange, routing and order-lifecycle contracts</h2>
 <p>Choose the model for the information you must preserve:</p>
 <ul>
-<li><a href="https://github.com/openbook-data-standards/openexchange">OpenExchange</a>: venue state, native runner identity, back/lay depth, starting-price fields and fee profiles. Read its specification and schemas. No supplied example corpus was found at review (ONB-006), so do not claim a runnable adapter walkthrough exists.</li>
+<li><a href="https://github.com/openbook-data-standards/openexchange">OpenExchange</a>: venue state, native runner identity, back/lay depth, starting-price fields and fee profiles. Read its specification and schemas, then run the synthetic <code>examples/</code> corpus — a venue, fee profile, market book and back/lay order books — through its validation walkthrough.</li>
 <li><a href="https://github.com/openbook-data-standards/openvenue">OpenVenue</a>: canonical tokenized instruments, evidence of equivalence, order books, and all-in quotes including fees. Follow its supplied two-venue example documents; no router or wallet connection is required.</li>
-<li><a href="https://github.com/openbook-data-standards/openbook-betting">OpenBook Betting</a>: venue, coverage and synthetic bet lifecycles. Its profile objects use its own envelope schema because core closes object types (ONB-005). Validate against the profile, not a silently modified core schema.</li>
+<li><a href="https://github.com/openbook-data-standards/openbook-betting">OpenBook Betting</a>: venue, coverage and synthetic bet lifecycles. Its profile objects use their own envelope schema because core closes object types — recorded as decision Q284 in the core decision log. Validate against the profile, not a silently modified core schema.</li>
 </ul>
 <p>First success: identify the exact contract and show which native state, fees and lifecycle transitions it preserves. Do not merge superficially similar contracts, infer quote equivalence, synthesize complementary prices without evidence, or submit an order. Execution, accounts, payments and wallets are outside this onboarding.</p>
 <h2 id="forecasting-and-evaluation">Forecasting and evaluation</h2>
@@ -109,10 +109,10 @@ PY</pre>
 <pre>git clone https://github.com/openbook-data-standards/openprob.git
 cd openprob
 PYTHONPATH=src python3 -B -m openprob</pre>
-<p>First success: inspect the forecasts and illustrative evaluation printed to stdout. Explain chronology, abstention, unresolved labels, coverage, Brier/log loss and correlated thresholds. This is an example, not a test runner, retained research archive, proof of model skill or profitability claim. Obtain consent before executing it. Follow the actual CI workflow rather than the README's stale statement that no workflow is installed (ONB-007).</p>
+<p>First success: inspect the forecasts and illustrative evaluation printed to stdout. Explain chronology, abstention, unresolved labels, coverage, Brier/log loss and correlated thresholds. This is an example, not a test runner, retained research archive, proof of model skill or profitability claim. Obtain consent before executing it. The repository CI runs ruff and unittest on every push and pull request.</p>
 <h2 id="horse-racing-models">Horse-racing models</h2>
 <p><a href="https://github.com/openbook-data-standards/opentrack">OpenTrack</a> contains experimental Python 3.11+ immutable dataclasses for runners, selections, markets and race snapshots. It is not a provider client, canonical identity service, OpenBook conformance implementation or execution system.</p>
-<p>Read the public models to understand source identifiers, source quoted values versus usable fixed odds, unknown discipline and unverified currency. Harness-specific details still need representative evidence. First success is a source-backed explanation of those boundaries. Do not recommend reuse or distribution until the owner chooses a license (ONB-004).</p>
+<p>Read the public models to understand source identifiers, source quoted values versus usable fixed odds, unknown discipline and unverified currency. Harness-specific details still need representative evidence. First success is a source-backed explanation of those boundaries. The project is Apache-2.0; it remains experimental, so quote its draft status rather than presenting it as a finished standard.</p>
 <h2 id="troubleshooting-and-evidence">Troubleshooting and evidence</h2>
 <ul>
 <li>Installation failure: record the exact package, reviewed tag/commit, runtime and sanitized error. Do not substitute an unrelated similarly named package.</li>

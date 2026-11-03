@@ -12,11 +12,11 @@ Read the [starter README](https://github.com/openbook-data-standards/openbook-st
 ## Workflow
 
 1. Confirm the user wants publisher documents, not a server, importer or provider adapter. Inspect target rules and choose Python 3.11+ in an isolated environment.
-2. Check the current distribution. The repository is public despite stale private/SSH README wording (ONB-002); no PyPI release is established by the catalog. Prefer a reviewed HTTPS checkout and record its commit.
+2. Check the current distribution. The repository is public and documents HTTPS Git installation; no PyPI release is established by the catalog. Prefer a reviewed HTTPS checkout and record its commit.
 3. Ask approval for installing the reviewed source and writing to an empty scratch directory. Agree on publisher id, name, currency and base URL. An example.invalid address is a placeholder, not hosted infrastructure.
 4. Run openbook start only with approved values, --no-input, an explicit --dir and --no-workflow. Never use --force over existing files. Its CLI creates an openbook directory beneath the chosen root.
 5. Inspect publisher.json, discovery.json and snapshot.json. The initial snapshot is the publisher document, not a complete sports/odds feed. Ensure discovery names only endpoints actually intended to exist; verify their real paths before publication.
-6. Explain separately what hosting, ongoing publication and source translation require. Install the tagged translation kernel separately if authorized; the starter translations extra has a distribution mismatch (ONB-003). Do not enable scheduled workflows implicitly.
+6. Explain separately what hosting, ongoing publication and source translation require. The starter translations extra pulls the tagged translation kernel from Git; a separate tagged install is also fine if authorized. Do not enable scheduled workflows implicitly.
 
 ## Evidence
 

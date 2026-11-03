@@ -24,7 +24,7 @@ Status key: **decided** · **proposed** (awaiting confirmation) · **open**.
 | Money and limits | Q39 · Q44 · Q45 |
 | Compatibility and ops | Q32 · Q34–Q37 · Q40–Q42 · Q48 · Q49 |
 | What we omit | Q71–Q82 · Q86 · Q87 · Q96 · Q157–Q170 · Q204–Q217 · Q231–Q236 |
-| Tooling around the spec | Q96 · Q172 · Q173 |
+| Tooling around the spec | Q96 · Q172 · Q173 · Q284 |
 | Register (not a registry) | Q2 · Q171 · Q190–Q198 · Q216 · Q233 · Q258–Q279 |
 | Position vocab | Q76 · Q170 · Q174–Q180 · Q275 |
 | Maps leftover | Q181–Q189 · Q199–Q204 · Q215 · Q218–Q257 |
@@ -3418,6 +3418,26 @@ Not a new wire field.
 Rejected: keep inventing leftovers; wait.
 
 **Supersedes:** Q279 as an open “encoding and tokens wait”.
+
+## Q284 — Profiles carry their own change envelope — decided
+
+Core `0.3.0-draft` closes `objectType` to the core objects, so a profile
+object (`venue`, `coverage`, `bet`) cannot ride a core change envelope.
+For the `0.x` line **profiles carry their own `change.schema.json`** —
+structurally identical to core's and differing only in the `object` set —
+as `openbook-betting` already does. Consumers must validate a profile
+envelope against the profile's schema, not assume generic core-client
+compatibility.
+
+Opening `objectType` to profile names, or giving profiles a first-class
+envelope in core, is a **major-version** question: revisit at `1.0`, not
+in a `0.x` patch.
+
+Rejected: open `objectType` in `0.3.0-draft` (silently widens a closed
+wire contract); require profiles to stuff objects into a core envelope
+that then fails validation.
+
+**Supersedes:** none.
 
 
 

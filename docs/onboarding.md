@@ -30,7 +30,7 @@ First success: follow one fixture from reference documents to a market update an
 
 ## Publish a feed
 
-Use [openbook-starter](https://github.com/openbook-data-standards/openbook-starter) with Python 3.11+ in an isolated environment. Its README still describes private SSH installation; the public HTTPS source is the entry point until upstream release instructions are corrected (ONB-002).
+Use [openbook-starter](https://github.com/openbook-data-standards/openbook-starter) with Python 3.11+ in an isolated environment. Its README documents public HTTPS Git installation until a PyPI release exists.
 
 The following is a source-checkout workflow, not a claim that a PyPI package exists. Review and record the checkout commit before installing. Dependency installation and writing the scratch directory require the user's consent.
 
@@ -47,7 +47,7 @@ Use an empty scratch destination; do not pass `--force` over existing work. The 
 
 First success: inspect scratch/openbook/publisher.json, discovery.json and snapshot.json. The snapshot initially represents the publisher, not a populated odds feed. Discovery should list only the endpoint you will really provide. `--no-workflow` avoids installing scheduled automation. No live provider credentials are needed.
 
-For translation support, install the kernel separately at a reviewed tag; do not rely on the starter's registry-based translations extra until ONB-003 is resolved.
+For translation support, the starter's `translations` extra pulls the kernel from its tagged Git release; you can also install `openbook-translate` separately at a reviewed tag.
 
 ## Translate provider data
 
@@ -104,9 +104,9 @@ When a usable build is available, first success means a synthetic snapshot creat
 
 Choose the model for the information you must preserve:
 
-- [OpenExchange](https://github.com/openbook-data-standards/openexchange): venue state, native runner identity, back/lay depth, starting-price fields and fee profiles. Read its specification and schemas. No supplied example corpus was found at review (ONB-006), so do not claim a runnable adapter walkthrough exists.
+- [OpenExchange](https://github.com/openbook-data-standards/openexchange): venue state, native runner identity, back/lay depth, starting-price fields and fee profiles. Read its specification and schemas, then run the synthetic `examples/` corpus — a venue, fee profile, market book and back/lay order books — through its validation walkthrough.
 - [OpenVenue](https://github.com/openbook-data-standards/openvenue): canonical tokenized instruments, evidence of equivalence, order books, and all-in quotes including fees. Follow its supplied two-venue example documents; no router or wallet connection is required.
-- [OpenBook Betting](https://github.com/openbook-data-standards/openbook-betting): venue, coverage and synthetic bet lifecycles. Its profile objects use its own envelope schema because core closes object types (ONB-005). Validate against the profile, not a silently modified core schema.
+- [OpenBook Betting](https://github.com/openbook-data-standards/openbook-betting): venue, coverage and synthetic bet lifecycles. Its profile objects use their own envelope schema because core closes object types — recorded as decision Q284 in the core decision log. Validate against the profile, not a silently modified core schema.
 
 First success: identify the exact contract and show which native state, fees and lifecycle transitions it preserves. Do not merge superficially similar contracts, infer quote equivalence, synthesize complementary prices without evidence, or submit an order. Execution, accounts, payments and wallets are outside this onboarding.
 
@@ -120,13 +120,13 @@ cd openprob
 PYTHONPATH=src python3 -B -m openprob
 ```
 
-First success: inspect the forecasts and illustrative evaluation printed to stdout. Explain chronology, abstention, unresolved labels, coverage, Brier/log loss and correlated thresholds. This is an example, not a test runner, retained research archive, proof of model skill or profitability claim. Obtain consent before executing it. Follow the actual CI workflow rather than the README's stale statement that no workflow is installed (ONB-007).
+First success: inspect the forecasts and illustrative evaluation printed to stdout. Explain chronology, abstention, unresolved labels, coverage, Brier/log loss and correlated thresholds. This is an example, not a test runner, retained research archive, proof of model skill or profitability claim. Obtain consent before executing it. The repository CI runs ruff and unittest on every push and pull request.
 
 ## Horse-racing models
 
 [OpenTrack](https://github.com/openbook-data-standards/opentrack) contains experimental Python 3.11+ immutable dataclasses for runners, selections, markets and race snapshots. It is not a provider client, canonical identity service, OpenBook conformance implementation or execution system.
 
-Read the public models to understand source identifiers, source quoted values versus usable fixed odds, unknown discipline and unverified currency. Harness-specific details still need representative evidence. First success is a source-backed explanation of those boundaries. Do not recommend reuse or distribution until the owner chooses a license (ONB-004).
+Read the public models to understand source identifiers, source quoted values versus usable fixed odds, unknown discipline and unverified currency. Harness-specific details still need representative evidence. First success is a source-backed explanation of those boundaries. The project is Apache-2.0; it remains experimental, so quote its draft status rather than presenting it as a finished standard.
 
 ## Troubleshooting and evidence
 

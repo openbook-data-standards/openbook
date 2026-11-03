@@ -13,8 +13,8 @@ Read the [betting profile](https://github.com/openbook-data-standards/openbook-b
 
 1. Identify the user's required information before selecting a contract: venue acceptance/order lifecycle uses Betting; exchange state/runners/back-lay depth uses OpenExchange; tokenized instrument equivalence and fee-adjusted quotes uses OpenVenue. Core OpenBook supplies sportsbook document identity and changes, not all these surfaces.
 2. Explain overlap without declaring wire interchangeability. Check each project's normative precedence independently: OpenVenue says its prose wins; OpenExchange says its schemas win. Do not silently reconcile differences.
-3. Gate betting profile compatibility: its objects do not fit core's closed object enum and use a profile envelope (ONB-005). Do not modify core or promise compatibility with openbook-js without evidence.
-4. Read synthetic Betting/OpenVenue documents. OpenExchange lacks a supplied example corpus at catalog review (ONB-006); provide schema orientation rather than inventing a supported end-to-end adapter.
+3. Gate betting profile compatibility: its objects do not fit core's closed object enum and use a profile envelope — recorded as core decision Q284, revisiting at a core major. Do not modify core or promise compatibility with openbook-js without evidence.
+4. Read synthetic Betting/OpenVenue documents and validate the OpenExchange examples/ corpus against its schemas. Still do not invent a supported end-to-end adapter beyond what the examples show.
 5. Preserve native runner/venue identity, original back/lay semantics, exact decimal amounts, timestamps, fees and lifecycle states. Equivalence requires evidence; similar names do not establish the same instrument. Source quotes are not accepted executable orders.
 6. For any authorized implementation, propose a bounded adapter and CI validation using the selected contract/version. Obtain separate approval for changes to normative contracts.
 
