@@ -116,9 +116,9 @@ Canonical tokenized markets, equivalence, order books and all-in quote/routing c
 - Distribution: Public specification, JSON Schemas and examples; not a supplied routing implementation.
 - Related projects: openexchange.
 - Agent skill: `openbook-market-contracts`.
-- First success: Follow the two synthetic venue books through the quote request/decision examples without sending an order.
+- First success: Follow the two synthetic venue books through the quote request/decision examples without sending an order; every schema now has a worked example under examples/.
 - Readiness blockers: none recorded; not a runtime certification.
-- Sources: [source 1](https://github.com/openbook-data-standards/openvenue/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/openvenue/blob/main/spec/openvenue.md).
+- Sources: [source 1](https://github.com/openbook-data-standards/openvenue/blob/main/README.md) · [source 2](https://github.com/openbook-data-standards/openvenue/blob/main/spec/openvenue.md) · [source 3](https://github.com/openbook-data-standards/openvenue/blob/main/examples/README.md).
 
 ## opentrack
 

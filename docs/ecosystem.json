@@ -107,8 +107,8 @@
       "distribution": "Public specification, JSON Schemas and examples; not a supplied routing implementation.",
       "related_projects": ["openexchange"],
       "skill": "openbook-market-contracts",
-      "first_success": "Follow the two synthetic venue books through the quote request/decision examples without sending an order.",
-      "sources": ["https://github.com/openbook-data-standards/openvenue/blob/main/README.md", "https://github.com/openbook-data-standards/openvenue/blob/main/spec/openvenue.md"],
+      "first_success": "Follow the two synthetic venue books through the quote request/decision examples without sending an order; every schema now has a worked example under examples/.",
+      "sources": ["https://github.com/openbook-data-standards/openvenue/blob/main/README.md", "https://github.com/openbook-data-standards/openvenue/blob/main/spec/openvenue.md", "https://github.com/openbook-data-standards/openvenue/blob/main/examples/README.md"],
       "blockers": []
     },
     {
