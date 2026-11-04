@@ -18,7 +18,7 @@ OpenBook is the sportsbook reference/live contract. A separately maintained prov
 
 The sibling contracts cover different surfaces: OpenBook Betting describes coverage and order lifecycle; OpenExchange preserves exchange state, runners, depth and fees; OpenVenue describes tokenized market equivalence and all-in quotes. These are not interchangeable schemas or supplied execution engines.
 
-OpenTrack and OpenProb are standalone experimental models. Neither establishes conformance to core OpenBook or automatic interoperability with the other projects. OpenTrack is publicly readable but has no declared license; reuse is gated on the owner's decision.
+OpenTrack and OpenProb are standalone experimental models. Neither establishes conformance to core OpenBook or automatic interoperability with the other projects. Both are Apache-2.0; they remain experimental drafts, so quote that status rather than presenting them as finished standards.
 
 ## Understand the standard
 
@@ -27,6 +27,8 @@ Start with the [guide](guide.md), [taxonomy](taxonomy.md), [examples](examples.m
 Distinguish publisher (transmits), source (whose price), consumer (reads), reference objects (durable context), and live changes. Fixture status, segment finality and market availability answer different questions. Preserve source/native identity and timestamps; do not invent cross-provider identity resolution.
 
 First success: follow one fixture from reference documents to a market update and grade, citing the actual example fields. Explain what changes, what stays cached and which source owns each price. No runtime or credentials are required for this reading journey.
+
+To see the pieces compose, run [`examples/end-to-end/walkthrough.py`](https://github.com/openbook-data-standards/openbook/blob/main/examples/end-to-end/walkthrough.py): it applies a shipped fixture-update envelope to the snapshot fixture with an RFC 7386 Merge Patch and re-validates — the same flow starter scaffolding, a translate adapter, and a consumer perform at each seam.
 
 ## Publish a feed
 

@@ -30,10 +30,10 @@ Python publisher/discovery scaffolding CLI; not a feed server or provider adapte
 
 - Repository: [openbook-starter](https://github.com/openbook-data-standards/openbook-starter).
 - Type: tool; maturity: early.
-- Version: 0.1.0 (manifest; no release tag observed).
+- Version: 0.1.0 (tag v0.1.0).
 - License: Apache-2.0.
 - Prerequisites: Python 3.11+; Isolated Python environment; Publisher identity and an explicit output directory.
-- Distribution: Public source checkout; install with pip from the HTTPS Git URL until a PyPI release exists. The translations extra resolves openbook-translate from its tagged Git release.
+- Distribution: Install with pip from the v0.1.0 Git tag until a PyPI release exists. The translations extra resolves openbook-translate from its tagged Git release.
 - Related projects: openbook, openbook-translate.
 - Agent skill: `openbook-publish`.
 - First success: Generate publisher, discovery and snapshot documents in an empty scratch directory with --no-workflow; inspect them without publishing.

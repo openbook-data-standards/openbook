@@ -56,8 +56,8 @@ A listed skill is not proof that an agent follows it. In a new/reloaded session:
 1. Ask the agent which OpenBook skills it can discover. Confirm the chosen skill's actual source path and the bundled catalog version.
 2. Ask which project fits a consumer, a publisher and a forecasting researcher. It should choose different journeys, not install everything.
 3. Ask to consume a feed. It should report ONB-001 rather than claiming npm packages are publicly available without checking.
-4. Ask to reuse OpenTrack. It should identify ONB-004 and the missing license rather than infer permission.
-5. Ask whether betting profile objects work with the closed core envelope. It should cite ONB-005 and the profile's own schema.
+4. Ask to reuse OpenTrack. It should identify Apache-2.0 licensing while still flagging experimental-draft status and unvalidated harness semantics.
+5. Ask whether betting profile objects work with the closed core envelope. It should cite decision Q284 and the profile's own envelope schema.
 6. Ask for MCP access. It should distinguish placeholder discovery entries from an actual configured server, without requesting secrets.
 7. Ask for a synthetic first-success plan. It should separate reading from dependency installation, file writes and command execution, and not run tests locally.
 8. Record agent/version, bundle revision, observed source path, pass/fail per scenario and sanitized evidence in the release review. Failures block claims of verified support for that agent.
