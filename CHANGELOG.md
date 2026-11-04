@@ -14,6 +14,10 @@ Format follows Keep a Changelog; versioning follows [`VERSIONING.md`](VERSIONING
 - **Profile change-envelope decision (Q284)** — profiles carry their own
   `change.schema.json` on the `0.x` line; opening core `objectType` is deferred
   to a core major. Informational only: no core schema changed.
+- **End-to-end synthetic walkthrough** — [`examples/end-to-end/`](examples/end-to-end/)
+  applies a shipped change envelope to a snapshot document with an RFC 7386
+  Merge Patch and re-validates, showing how starter, translate and consumers
+  meet at each seam.
 - **Fixture join encoding** — [`register/fingerprint.md`](register/fingerprint.md)
   is five UTF-8 LF lines (sport id, league anchor, start to the minute UTC,
   ordered participant anchors, `competitionType`) then SHA-256 lowercase
